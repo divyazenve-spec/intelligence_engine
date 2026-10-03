@@ -450,6 +450,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     document.body.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-panel="forecast"]');
+      if (!btn) {
+        var it = e.target.closest('button, a, li');
+        if (it && it.textContent && it.textContent.toLowerCase().indexOf('forecast') >= 0) btn = it;
+      }
       if (btn) {
         e.preventDefault();
         if (window.ZenveSalesDashboard) window.ZenveSalesDashboard.open('forecast');

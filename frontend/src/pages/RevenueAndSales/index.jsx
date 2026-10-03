@@ -1,0 +1,10 @@
+export { default as SalesDashboard } from './SalesDashboard';
+export { default as RevenueByChannel } from './RevenueByChannel';
+export { default as RevenueByLocation } from './RevenueByLocation';
+export { default as RevenueByProduct } from './RevenueByProduct';
+export { default as RevenueByEmployee } from './RevenueByEmployee';
+export { default as RevenueByDoctor } from './RevenueByDoctor';
+export { default as RevenueByCustomer } from './RevenueByCustomer';
+export { default as SalesFunnel } from './SalesFunnel';
+export { default as TargetsAndAchievement } from './TargetsAndAchievement';
+export { default as SalesForecast } from './SalesForecast';

@@ -1,0 +1,246 @@
+/**
+ * Zenve BI — Central Pages Registry
+ * Exports all category and subcategory dashboard components.
+ */
+
+// 1. Executive
+export { default as ExecutiveDashboard } from './Executive/ExecutiveDashboard';
+
+// 2. Revenue & Sales
+export {
+  SalesDashboard,
+  RevenueByChannel,
+  RevenueByLocation,
+  RevenueByProduct,
+  RevenueByEmployee,
+  RevenueByDoctor,
+  RevenueByCustomer,
+  SalesFunnel,
+  TargetsAndAchievement,
+  SalesForecast
+} from './RevenueAndSales';
+
+// 3. Orders & Operations
+export { default as OrdersDashboard } from './OrdersAndOperations/OrdersDashboard';
+
+// 4. Products & Inventory
+export { default as InventoryDashboard } from './ProductsAndInventory/InventoryDashboard';
+
+// 5. Pharmacy
+export { default as PharmacyDashboard } from './Pharmacy/PharmacyDashboard';
+
+// 6. Veterinary Services
+export { default as ServicesDashboard } from './VeterinaryServices/ServicesDashboard';
+
+// 7. Doctors
+export { default as DoctorsDashboard } from './Doctors/DoctorsDashboard';
+
+// 8. Clinics & Hospitals
+export { default as ClinicsDashboard } from './ClinicsAndHospitals/ClinicsDashboard';
+
+// 9. Customers 360°
+export { default as CustomerDashboard } from './Customers360/CustomerDashboard';
+
+// 10. Pets 360°
+export { default as PetsDashboard } from './Pets360/PetsDashboard';
+
+// 11. Employees & HR
+export { default as HRDashboard } from './EmployeesAndHR/HRDashboard';
+
+// 12. Finance & Accounting
+export { default as FinanceDashboard } from './FinanceAndAccounting/FinanceDashboard';
+
+// 13. Marketing
+export { default as MarketingDashboard } from './Marketing/MarketingDashboard';
+
+// 14. Vendors & Procurement
+export { default as VendorsDashboard } from './VendorsAndProcurement/VendorsDashboard';
+
+// 15. Logistics & Delivery
+export { default as LogisticsDashboard } from './LogisticsAndDelivery/LogisticsDashboard';
+
+// 16. Zenve Fashion
+export { default as FashionDashboard } from './ZenveFashion/FashionDashboard';
+
+// 17. B2B / Enterprise
+export { default as B2BDashboard } from './B2BEnterprise/B2BDashboard';
+
+// 18. Subscriptions
+export { default as SubscriptionsDashboard } from './Subscriptions/SubscriptionsDashboard';
+
+// 19. Reports & Analytics
+export { default as ReportsDashboard } from './ReportsAndAnalytics/ReportsDashboard';
+
+// 20. AI Assistant
+export { default as AIAssistantDashboard } from './AIAssistant/AIAssistantDashboard';
+
+// 21. Alerts & Notifications
+export { default as AlertsDashboard } from './AlertsAndNotifications/AlertsDashboard';
+
+// 22. Audit & Compliance
+export { default as AuditDashboard } from './AuditAndCompliance/AuditDashboard';
+
+// 23. System Health
+export { default as SystemHealthDashboard } from './SystemHealth/SystemHealthDashboard';
+
+// 24. Settings
+export { default as SettingsDashboard } from './Settings/SettingsDashboard';
+
+// Category Registry Metadata
+export const CATEGORIES_NAVIGATOR = [
+  {
+    category: 'Executive Dashboard',
+    icon: '🏛️',
+    items: ['Executive Dashboard', 'CEO Control Center', 'Business Overview', 'KPI Dashboard'],
+    defaultPath: '/executive'
+  },
+  {
+    category: 'Revenue & Sales',
+    icon: '💼',
+    items: [
+      'Sales Dashboard',
+      'Revenue by Channel',
+      'Revenue by Location',
+      'Revenue by Product',
+      'Revenue by Employee',
+      'Revenue by Doctor',
+      'Revenue by Customer',
+      'Sales Funnel',
+      'Targets & Achievement',
+      'Sales Forecast'
+    ],
+    defaultPath: '/sales'
+  },
+  {
+    category: 'Orders & Operations',
+    icon: '🚚',
+    items: ['All Orders', 'Order Management', 'Order Status', 'Returns & Refunds', 'Cancellations', 'Delivery Performance', '60-Minute Delivery', 'Operations Dashboard'],
+    defaultPath: '/orders'
+  },
+  {
+    category: 'Products & Inventory',
+    icon: '📦',
+    items: ['Product Catalog', 'SKU Management', 'Inventory Dashboard', 'Stock Management', 'Low Stock', 'Out of Stock', 'Expiry Management', 'Warehouse Management'],
+    defaultPath: '/inventory'
+  },
+  {
+    category: 'Pharmacy',
+    icon: '💊',
+    items: ['Pharmacy Dashboard', 'Pharmacy Sales', 'Medicines', 'Prescriptions', 'Pharmacy Orders', 'Batch Management', 'Expiry Tracking', 'Pharmacy Inventory'],
+    defaultPath: '/pharmacy'
+  },
+  {
+    category: 'Veterinary Services',
+    icon: '🩺',
+    items: ['Services Dashboard', 'Consultations', 'Appointments', 'Treatments', 'Vaccinations', 'Diagnostics', 'Procedures', 'Service Revenue'],
+    defaultPath: '/services'
+  },
+  {
+    category: 'Doctors',
+    icon: '👨‍⚕️',
+    items: ['Doctors Dashboard', 'All Doctors', 'Doctor Performance', 'Doctor Revenue', 'Doctor Patients', 'Doctor Orders', 'Doctor Commissions'],
+    defaultPath: '/doctors'
+  },
+  {
+    category: 'Clinics & Hospitals',
+    icon: '🏥',
+    items: ['Clinics Dashboard', 'All Clinics', 'Hospitals', 'Clinic Performance', 'Clinic Revenue', 'Clinic Orders', 'Clinic Network'],
+    defaultPath: '/clinics'
+  },
+  {
+    category: 'Customers 360°',
+    icon: '👥',
+    items: ['Customer Dashboard', 'All Customers', 'New Customers', 'Active Customers', 'Repeat Customers', 'Customer Lifetime Value', 'Customer Segmentation'],
+    defaultPath: '/customers'
+  },
+  {
+    category: 'Pets 360°',
+    icon: '🐾',
+    items: ['All Pets', 'Pet Profiles', 'Pet Health Records', 'Vaccination Records', 'Treatment History', 'Pet Analytics'],
+    defaultPath: '/pets'
+  },
+  {
+    category: 'Employees & HR',
+    icon: '🧑‍💼',
+    items: ['HR Dashboard', 'All Employees', 'Departments', 'Employee Performance', 'Employee Targets', 'Payroll', 'Salary Cost'],
+    defaultPath: '/hr'
+  },
+  {
+    category: 'Finance & Accounting',
+    icon: '💰',
+    items: ['Finance Dashboard', 'Profit & Loss', 'Balance Sheet', 'Cash Flow', 'Revenue', 'Expenses', 'Gross Profit', 'EBITDA', 'Receivables', 'Payables'],
+    defaultPath: '/finance'
+  },
+  {
+    category: 'Marketing',
+    icon: '📣',
+    items: ['Marketing Dashboard', 'Campaigns', 'Leads', 'Lead Sources', 'App Analytics', 'Advertising', 'ROAS', 'Conversion Funnel'],
+    defaultPath: '/marketing'
+  },
+  {
+    category: 'Vendors & Procurement',
+    icon: '🤝',
+    items: ['Vendor Dashboard', 'All Vendors', 'Vendor Performance', 'Vendor Payments', 'Purchase Orders', 'Procurement Savings'],
+    defaultPath: '/vendors'
+  },
+  {
+    category: 'Logistics & Delivery',
+    icon: '⚡',
+    items: ['Logistics Dashboard', 'Delivery Orders', 'Delivery Partners', 'Delivery Tracking', '60-Minute Delivery', 'Delivery SLA'],
+    defaultPath: '/logistics'
+  },
+  {
+    category: 'Zenve Fashion',
+    icon: '🎀',
+    items: ['Fashion Dashboard', 'Fashion Products', 'Fashion Orders', 'Fashion Customers', 'Showrooms', 'Online Fashion Sales'],
+    defaultPath: '/fashion'
+  },
+  {
+    category: 'B2B / Enterprise',
+    icon: '🏢',
+    items: ['B2B Dashboard', 'Enterprise Customers', 'Corporate Accounts', 'B2B Orders', 'B2B Sales', 'B2B Revenue', 'Contracts'],
+    defaultPath: '/b2b'
+  },
+  {
+    category: 'Subscriptions',
+    icon: '🔄',
+    items: ['Subscription Dashboard', 'Active Subscriptions', 'New Subscriptions', 'Renewals', 'Expiring Subscriptions', 'Churn'],
+    defaultPath: '/subscriptions'
+  },
+  {
+    category: 'Reports & Analytics',
+    icon: '📑',
+    items: ['Sales Reports', 'Revenue Reports', 'Customer Reports', 'Product Reports', 'Finance Reports', 'Export Center'],
+    defaultPath: '/reports'
+  },
+  {
+    category: 'AI Assistant',
+    icon: '🤖',
+    items: ['Ask Zenve AI', 'Business Insights', 'Revenue Intelligence', 'Sales Forecast', 'Anomaly Detection'],
+    defaultPath: '/ai'
+  },
+  {
+    category: 'Alerts & Notifications',
+    icon: '🔔',
+    items: ['Critical Alerts', 'Revenue Alerts', 'Inventory Alerts', 'Payment Alerts', 'Delivery Alerts', 'Notification Center'],
+    defaultPath: '/alerts'
+  },
+  {
+    category: 'Audit & Compliance',
+    icon: '🛡️',
+    items: ['Audit Log', 'User Activity', 'Login History', 'Data Changes', 'Financial Audit Trail', 'Compliance Dashboard'],
+    defaultPath: '/audit'
+  },
+  {
+    category: 'System Health',
+    icon: '🖥️',
+    items: ['Application Health', 'API Health', 'Database Health', 'Payment Gateway', 'CRM Status', 'Integration Logs'],
+    defaultPath: '/health'
+  },
+  {
+    category: 'Settings',
+    icon: '⚙️',
+    items: ['Company Settings', 'Business Units', 'Locations', 'Users', 'Roles & Permissions', 'API & Integrations', 'Security'],
+    defaultPath: '/settings'
+  }
+];

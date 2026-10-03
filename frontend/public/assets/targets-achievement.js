@@ -368,6 +368,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     document.body.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-panel="targets"]');
+      if (!btn) {
+        var it = e.target.closest('button, a, li');
+        if (it && it.textContent && (it.textContent.toLowerCase().indexOf('target') >= 0 || it.textContent.toLowerCase().indexOf('achieve') >= 0)) btn = it;
+      }
       if (btn) {
         e.preventDefault();
         if (window.ZenveSalesDashboard) window.ZenveSalesDashboard.open('targets');
