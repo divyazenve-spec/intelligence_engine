@@ -2265,6 +2265,7 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
+    if (s.indexOf('revenue & sales') >= 0 || s.indexOf('revenue and sales') >= 0) return null;
     if (s.indexOf('funnel') >= 0) return 'funnel';
     if (s.indexOf('target') >= 0 || s.indexOf('achieve') >= 0) return 'targets';
     if (s.indexOf('forecast') >= 0) return 'forecast';
@@ -2274,7 +2275,7 @@
     if (s.indexOf('employee') >= 0) return 'employee';
     if (s.indexOf('doctor') >= 0) return 'doctor';
     if (s.indexOf('customer') >= 0) return 'customer';
-    if (s.indexOf('sales') >= 0) return 'sales';
+    if (s.indexOf('sales dashboard') >= 0 || s === 'sales') return 'sales';
     return null;
   }
 
@@ -2394,6 +2395,9 @@
     var t = e.target;
     if (!t || !t.closest) return;
 
+    // Never intercept accordion category headers or search input
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
+
     // 1. Any button or link with "Sales Dashboard", "Revenue by Channel", etc.
     var item = t.closest('button, [data-go], a, [role="button"]');
     if (item && item.textContent) {
@@ -2462,6 +2466,7 @@
   document.addEventListener('pointerdown', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
     var item = t.closest('.sidebar-scope button, .sidebar-scope a');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());
