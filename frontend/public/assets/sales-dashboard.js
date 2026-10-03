@@ -1,0 +1,2177 @@
+/* Zenve BI — interactive Sales Dashboard.
+   Opened from the sidebar: Revenue & Sales > Sales Dashboard, or via #sales-dashboard.
+   Self-contained (no external libraries). Reads live data from the backend with offline fallback. */
+(function () {
+  'use strict';
+  var FN = '/_serverFn/bcbf405abb63715daaf1487f2958492789217ff1449ff447570bc418404b6901';
+  var FALLBACK = '/api/v1/data';
+  var STATIC_FALLBACK = '/assets/sample-fallback.json';
+
+  var inr = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var CH_COLORS = { Android: 'var(--android, #3ddc84)', iOS: 'var(--ios, #0071e3)', Web: 'var(--web, #6366f1)', Other: 'var(--other-app, #f59e0b)' };
+  var ST_COLORS = { Paid: 'var(--success, #10b981)', Pending: 'var(--warning, #f59e0b)', Refunded: 'var(--info, #0ea5e9)', Cancelled: 'var(--destructive, #ef4444)' };
+  var CAT_COLORS = ['var(--chart-1, #0ea5e9)', 'var(--chart-3, #10b981)', 'var(--chart-2, #8b5cf6)', 'var(--chart-5, #f59e0b)', 'var(--chart-4, #ec4899)'];
+  var PAGE_SIZE = 10;
+
+  var TABS = [
+    { id: 'sales', label: 'Sales Overview', icon: '💼', hash: '#sales-dashboard' },
+    { id: 'channel', label: 'Revenue by Channel', icon: '📱', hash: '#revenue-by-channel' },
+    { id: 'location', label: 'Revenue by Location', icon: '📍', hash: '#revenue-by-location' },
+    { id: 'product', label: 'Revenue by Product', icon: '📦', hash: '#revenue-by-product' },
+    { id: 'employee', label: 'Revenue by Employee', icon: '👨‍💼', hash: '#revenue-by-employee' },
+    { id: 'doctor', label: 'Revenue by Doctor', icon: '🩺', hash: '#revenue-by-doctor' },
+    { id: 'customer', label: 'Revenue by Customer', icon: '👥', hash: '#revenue-by-customer' }
+  ];
+
+  var DOCTOR_SPECIALTIES = {
+    'Cardiology': { name: 'Dr. Arvind Swaminathan', spec: 'Cardiologist, MD, DM', reg: 'MCI-48291', av: 'AS' },
+    'Neurology': { name: 'Dr. Meera Nambiar', spec: 'Senior Neurologist, MD', reg: 'MCI-39102', av: 'MN' },
+    'Pediatrics': { name: 'Dr. Siddharth Rao', spec: 'Pediatric Specialist, DCH', reg: 'MCI-51829', av: 'SR' },
+    'General Medicine': { name: 'Dr. Divya Balasubramanian', spec: 'Lead Physician, MBBS, MD', reg: 'MCI-62910', av: 'DB' },
+    'General Care': { name: 'Dr. Divya Balasubramanian', spec: 'Lead Physician, MBBS, MD', reg: 'MCI-62910', av: 'DB' },
+    'Diagnostics': { name: 'Dr. Kavita Reddy', spec: 'Clinical Pathologist, MD', reg: 'MCI-29481', av: 'KR' },
+    'Orthopedics': { name: 'Dr. Rohan Kulkarni', spec: 'Orthopedic Surgeon, MS', reg: 'MCI-73019', av: 'RK' },
+    'Dermatology': { name: 'Dr. Alok Verma', spec: 'Consultant Dermatologist, MD', reg: 'MCI-84012', av: 'AV' },
+    'Wellness': { name: 'Dr. Sunita Sen', spec: 'Wellness & Preventive Care, MD', reg: 'MCI-91823', av: 'SS' }
+  };
+  var DOCTOR_LIST = [
+    { name: 'Dr. Divya Balasubramanian', spec: 'Lead Physician, MBBS, MD', reg: 'MCI-62910', av: 'DB' },
+    { name: 'Dr. Arvind Swaminathan', spec: 'Cardiologist, MD, DM', reg: 'MCI-48291', av: 'AS' },
+    { name: 'Dr. Meera Nambiar', spec: 'Senior Neurologist, MD', reg: 'MCI-39102', av: 'MN' },
+    { name: 'Dr. Siddharth Rao', spec: 'Pediatric Specialist, DCH', reg: 'MCI-51829', av: 'SR' },
+    { name: 'Dr. Kavita Reddy', spec: 'Clinical Pathologist, MD', reg: 'MCI-29481', av: 'KR' },
+    { name: 'Dr. Rohan Kulkarni', spec: 'Orthopedic Surgeon, MS', reg: 'MCI-73019', av: 'RK' },
+    { name: 'Dr. Alok Verma', spec: 'Consultant Dermatologist, MD', reg: 'MCI-84012', av: 'AV' },
+    { name: 'Dr. Sunita Sen', spec: 'Wellness & Preventive Care, MD', reg: 'MCI-91823', av: 'SS' }
+  ];
+
+  function getDoctorForSale(s) {
+    if (s.doctor) {
+      var av = s.doctor.split(/\s+/).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+      return { name: s.doctor, spec: s.specialty || 'Medical Specialist', reg: s.reg || 'MCI-Active', av: av || 'DR' };
+    }
+    if (s.source && DOCTOR_SPECIALTIES[s.source]) {
+      return DOCTOR_SPECIALTIES[s.source];
+    }
+    var str = (s.source || '') + (s.person || '');
+    var h = 0;
+    for (var i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i);
+    return DOCTOR_LIST[Math.abs(h) % DOCTOR_LIST.length];
+  }
+
+  var EMPLOYEE_LIST = [
+    { id: 'EMP-01', name: 'Dr. Priya Sharma', dept: 'Clinical Operations', role: 'Chief Medical Officer', av: 'PS', target: 250000 },
+    { id: 'EMP-02', name: 'Rajesh Verma', dept: 'Patient Services', role: 'Senior Care Coordinator', av: 'RV', target: 180000 },
+    { id: 'EMP-03', name: 'Ananya Deshmukh', dept: 'Outpatient Care', role: 'Outpatient Services Lead', av: 'AD', target: 200000 },
+    { id: 'EMP-04', name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Lab Operations Manager', av: 'VM', target: 160000 },
+    { id: 'EMP-05', name: 'Sneha Patel', dept: 'Pharmacy & Wellness', role: 'Head Pharmacist', av: 'SP', target: 140000 },
+    { id: 'EMP-06', name: 'Arjun Nair', dept: 'Telehealth', role: 'Digital Health Consultant', av: 'AN', target: 150000 }
+  ];
+
+  function getEmployeeForSale(s) {
+    if (s.employee) {
+      var av = s.employee.split(/\s+/).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+      return { id: s.employee_id || 'EMP', name: s.employee, dept: s.department || 'Operations', role: s.role || 'Coordinator', av: av || 'EM', target: 180000 };
+    }
+    var str = (s.transaction_ref || '') + (s.source || '');
+    var h = 0;
+    for (var i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i);
+    return EMPLOYEE_LIST[Math.abs(h) % EMPLOYEE_LIST.length];
+  }
+
+  var S = {
+    data: { metrics: [], sales: [] },
+    loaded: false,
+    error: null,
+    isLive: false,
+    from: '',
+    to: '',
+    status: 'All',
+    app: 'All',
+    category: 'All',
+    city: 'All',
+    q: '',
+    metric: 'revenue',
+    compare: true,
+    sort: { key: 'sold_at', dir: -1 },
+    page: 1,
+    open: false,
+    tab: 'sales'
+  };
+
+  var root = null;
+  var trendGeo = null;
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function num(n) {
+    n = Number(n);
+    return isFinite(n) ? n : 0;
+  }
+  function safeDay(s) {
+    if (!s) return '';
+    if (typeof s !== 'string') s = String(s);
+    s = s.trim();
+    if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
+    if (/^\d{4}\/\d{2}\/\d{2}/.test(s)) return s.slice(0, 10).replace(/\//g, '-');
+    var mDmy = s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+    if (mDmy) {
+      var p1 = parseInt(mDmy[1], 10), p2 = parseInt(mDmy[2], 10), pYear = mDmy[3];
+      var day = p1, month = p2;
+      if (p1 > 12 && p2 <= 12) {
+        day = p1; month = p2;
+      } else if (p2 > 12 && p1 <= 12) {
+        month = p1; day = p2;
+      }
+      return pYear + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    }
+    if (/^\d{10,13}$/.test(s)) {
+      var ts = parseInt(s, 10);
+      if (ts < 1e11) ts *= 1000;
+      var dtTs = new Date(ts);
+      if (!isNaN(dtTs.getTime())) return dtTs.toISOString().slice(0, 10);
+    }
+    var dt = new Date(s);
+    if (!isNaN(dt.getTime())) {
+      var y = dt.getUTCFullYear();
+      var m = String(dt.getUTCMonth() + 1).padStart(2, '0');
+      var d = String(dt.getUTCDate()).padStart(2, '0');
+      return y + '-' + m + '-' + d;
+    }
+    return s.slice(0, 10);
+  }
+  function compact(n) {
+    var a = Math.abs(n), s = n < 0 ? '-' : '';
+    if (a >= 1e7) return s + '₹' + (a / 1e7).toFixed(2).replace(/\.?0+$/, '') + 'Cr';
+    if (a >= 1e5) return s + '₹' + (a / 1e5).toFixed(2).replace(/\.?0+$/, '') + 'L';
+    if (a >= 1e3) return s + '₹' + (a / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+    return s + '₹' + Math.round(a);
+  }
+  function toDate(s) {
+    if (!s) return new Date();
+    return new Date(s + 'T00:00:00Z');
+  }
+  function fmtDate(d) {
+    if (!d || isNaN(d.getTime())) return '';
+    return d.toISOString().slice(0, 10);
+  }
+  function addDays(s, n) {
+    var d = toDate(s);
+    if (isNaN(d.getTime())) return s || '';
+    d.setUTCDate(d.getUTCDate() + n);
+    return fmtDate(d);
+  }
+  function diffDays(a, b) {
+    var da = toDate(a), db = toDate(b);
+    if (isNaN(da.getTime()) || isNaN(db.getTime())) return 0;
+    return Math.round((db - da) / 864e5);
+  }
+  function prettyDay(s) {
+    var d = toDate(s);
+    if (isNaN(d.getTime())) return s || '';
+    return DOW[d.getUTCDay()] + ', ' + d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()];
+  }
+  function shortDay(s) {
+    var d = toDate(s);
+    if (isNaN(d.getTime())) return s || '';
+    return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()];
+  }
+  function prettyStamp(s) {
+    if (!s) return '';
+    return shortDay(s.slice(0, 10)) + ', ' + (s.slice(11, 16) || '00:00');
+  }
+  function niceMax(v) {
+    if (!v || v <= 0) return 1;
+    var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  }
+  function $(sel, ctx) {
+    var c = ctx || root;
+    return c && c.querySelector ? c.querySelector(sel) : null;
+  }
+  function uniq(arr) {
+    return Array.from(new Set(arr.filter(Boolean))).sort();
+  }
+
+  /* ---------- data ---------- */
+  function dataBounds() {
+    var days = (S.data.sales || [])
+      .map(function (s) { return safeDay(s.sold_at); })
+      .concat((S.data.metrics || []).map(function (m) { return m && m.business_date ? m.business_date : ''; }))
+      .filter(Boolean)
+      .sort();
+    return days.length ? { min: days[0], max: days[days.length - 1] } : null;
+  }
+  function preset(n) {
+    var b = dataBounds();
+    if (!b) return;
+    S.to = b.max;
+    S.from = n ? addDays(b.max, -(n - 1)) : b.min;
+    if (S.from < b.min && n) S.from = b.min;
+  }
+  function fetchJson(url) {
+    return fetch(url, { headers: { accept: 'application/json' } }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+
+  var lastDatasetSig = '';
+  function applyData(d, isLive, forceResetRange) {
+    if (!d) return;
+    var rawSales = d.sales || [];
+    var rawMetrics = d.metrics || [];
+
+    S.data = {
+      metrics: rawMetrics,
+      sales: rawSales.map(function (s) {
+        s.amount = num(s.amount);
+        return s;
+      })
+    };
+    S.isLive = !!isLive;
+    var first = !S.loaded;
+    S.loaded = true;
+
+    var b = dataBounds();
+    var curSig = rawSales.length + ':' + (b ? (b.min + '_' + b.max) : '');
+    var sigChanged = lastDatasetSig && lastDatasetSig !== curSig;
+    lastDatasetSig = curSig;
+
+    // Detect if current date range is out of bounds or dataset has changed
+    var outOfRange = !b || !S.from || !S.to || (S.from < b.min) || (S.from > b.max) || (S.to < b.min) || (S.to > b.max);
+    if (first || forceResetRange || sigChanged || outOfRange) {
+      if (b) {
+        S.from = b.min;
+        S.to = b.max;
+      }
+      S.status = 'All';
+      S.app = 'All';
+      S.category = 'All';
+      S.city = 'All';
+      S.q = '';
+      S.page = 1;
+    }
+
+    buildFilterOptions();
+    syncFilterInputs();
+    renderAll();
+  }
+
+  function load() {
+    S.error = null;
+    if (!S.loaded) renderAll();
+
+    return fetchJson(FN)
+      .then(function (d) {
+        applyData(d, true);
+      })
+      .catch(function () {
+        return fetchJson(FALLBACK).then(function (d) {
+          applyData(d, true);
+        });
+      })
+      .catch(function () {
+        return fetchJson(STATIC_FALLBACK).then(function (d) {
+          applyData(d, false);
+        });
+      })
+      .catch(function (e) {
+        if (!S.loaded || !S.data.sales.length) {
+          S.error = e.message || 'Could not load sales data.';
+          renderAll();
+        }
+      });
+  }
+
+  function match(s, from, to, skip) {
+    if (!s) return false;
+    var day = safeDay(s.sold_at);
+    if (!day) return false;
+    if (from && day < from) return false;
+    if (to && day > to) return false;
+    if (skip !== 'status' && S.status !== 'All' && s.status !== S.status) return false;
+    if (skip !== 'app' && S.app !== 'All' && s.app_source !== S.app) return false;
+    if (skip !== 'category' && S.category !== 'All' && s.source !== S.category) return false;
+    if (skip !== 'city' && S.city !== 'All' && s.city !== S.city) return false;
+    if (S.q) {
+      var q = S.q.toLowerCase();
+      var hay = [s.transaction_ref, s.person, s.source, s.city, s.status, s.app_source]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  }
+  function rows(from, to, skip) {
+    return (S.data.sales || []).filter(function (s) { return match(s, from, to, skip); });
+  }
+  function paid(list) {
+    return (list || []).filter(function (s) { return s.status === 'Paid'; });
+  }
+  function sum(list) {
+    return (list || []).reduce(function (a, s) { return a + num(s.amount); }, 0);
+  }
+  function groupBy(list, key, val) {
+    var m = {};
+    (list || []).forEach(function (s) {
+      var k = s[key] || 'Other';
+      m[k] = (m[k] || 0) + val(s);
+    });
+    return Object.keys(m).map(function (k) { return { k: k, v: m[k] }; }).sort(function (a, b) { return b.v - a.v; });
+  }
+  function downloads(from, to) {
+    return (S.data.metrics || []).reduce(function (a, m) {
+      if (!m || !m.business_date) return a;
+      if (from && m.business_date < from) return a;
+      if (to && m.business_date > to) return a;
+      var an = num(m.android_downloads), io = num(m.ios_downloads);
+      if (S.app === 'Android') return a + an;
+      if (S.app === 'iOS') return a + io;
+      if (S.app === 'All') return a + an + io;
+      return a;
+    }, 0);
+  }
+  function stats(from, to) {
+    var list = rows(from, to), p = paid(list), rev = sum(p), dl = downloads(from, to);
+    var custs = new Set(list.map(function (s) { return s.person; }).filter(Boolean)).size;
+    return {
+      list: list,
+      rev: rev,
+      orders: list.length,
+      paidOrders: p.length,
+      aov: p.length ? rev / p.length : 0,
+      customers: custs,
+      rate: list.length ? (p.length / list.length * 100) : 0,
+      rpd: dl ? (rev / dl) : 0,
+      dl: dl
+    };
+  }
+  function prevRange() {
+    var len = diffDays(S.from, S.to) + 1;
+    if (len <= 0) len = 14;
+    return { from: addDays(S.from, -len), to: addDays(S.from, -1) };
+  }
+
+  /* ---------- skeleton ---------- */
+  function build() {
+    if (root && document.body.contains(root)) return;
+    root = document.createElement('div');
+    root.id = 'zsd-root';
+    root.setAttribute('role', 'region');
+    root.setAttribute('aria-label', 'Sales Dashboard');
+    root.innerHTML =
+      '<div class="zsd-head"><div><h2 class="zsd-title" id="zsd-title">Sales Dashboard</h2>' +
+      '<div class="zsd-sub" id="zsd-sub">Revenue &amp; Sales · interactive view of every transaction</div></div>' +
+      '<div class="zsd-actions"><div class="zsd-seg" id="zsd-presets">' +
+      '<button data-p="7" type="button">7D</button><button data-p="14" type="button">14D</button><button data-p="30" type="button">30D</button><button data-p="0" type="button">All</button></div>' +
+      '<button class="zsd-btn" id="zsd-refresh" type="button">↻ Refresh</button>' +
+      '<button class="zsd-btn zsd-btn-pipeline" id="zsd-pipeline-open" type="button">⚡ Ingest Dataset</button>' +
+      '<button class="zsd-btn" id="zsd-export" type="button">⭳ Export CSV</button>' +
+      '<button class="zsd-btn primary" id="zsd-back" type="button">← Executive Dashboard</button></div></div>' +
+      '<div class="zsd-body">' +
+      '<div class="zsd-tabs-bar" id="zsd-tabs"></div>' +
+      '<div class="zsd-filters">' +
+      '<input type="date" id="zsd-from" aria-label="From date"><span class="zsd-arrow">›</span><input type="date" id="zsd-to" aria-label="To date">' +
+      '<select id="zsd-status" aria-label="Status"></select><select id="zsd-app" aria-label="Channel"></select>' +
+      '<select id="zsd-category" aria-label="Service"></select><select id="zsd-city" aria-label="City"></select>' +
+      '<input type="search" id="zsd-q" class="zsd-search" placeholder="Search customer, order, service…" aria-label="Search sales">' +
+      '<button class="zsd-btn" id="zsd-reset" type="button">Reset</button></div>' +
+      '<div class="zsd-chips" id="zsd-chips"></div><div id="zsd-content"></div></div>' +
+      '<div id="zsd-pipeline-modal" class="zsd-modal-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="zsd-pipe-title">' +
+      '<div class="zsd-modal-dialog">' +
+      '<div class="zsd-modal-header"><div>' +
+      '<h3 id="zsd-pipe-title" class="zsd-modal-title">⚡ Ingest Custom Dataset</h3>' +
+      '<p class="zsd-modal-sub">Upload CSV or JSON files to dynamically load transactions into the Sales Dashboard.</p></div>' +
+      '<button class="zsd-modal-close" id="zsd-pipe-close" type="button" aria-label="Close dialog">✕</button></div>' +
+      '<div class="zsd-modal-body">' +
+      '<div id="zsd-dropzone" class="zsd-dropzone">' +
+      '<input type="file" id="zsd-file-input" accept=".csv,.json,.tsv,.txt" style="display:none;">' +
+      '<div class="zsd-dropzone-icon">📁</div>' +
+      '<div class="zsd-dropzone-title">Drag &amp; drop your CSV or JSON dataset here</div>' +
+      '<div class="zsd-dropzone-sub">or browse a file from your device</div>' +
+      '<div class="zsd-dropzone-actions">' +
+      '<button class="zsd-btn primary" id="zsd-pipe-browse" type="button">Select File</button>' +
+      '<button class="zsd-btn" id="zsd-pipe-load-sample" type="button">⚡ Load Q4 Sample Data</button>' +
+      '<a class="zsd-btn" href="/api/v1/pipeline/template" download="zenve_sales_template.csv">⭳ Download Template</a></div></div>' +
+      '<div class="zsd-pipe-options"><div class="zsd-pipe-opt-title">Ingestion Mode:</div>' +
+      '<div class="zsd-pipe-modes">' +
+      '<label class="zsd-pipe-mode-card"><input type="radio" name="zsd-pipe-mode" value="replace" checked>' +
+      '<div><strong>Replace Entire Dataset</strong><span>Clears existing sales &amp; metrics, replacing them with the uploaded file.</span></div></label>' +
+      '<label class="zsd-pipe-mode-card"><input type="radio" name="zsd-pipe-mode" value="append">' +
+      '<div><strong>Append to Existing Records</strong><span>Preserves current database records and merges new rows into the timeline.</span></div></label></div></div>' +
+      '<div id="zsd-pipe-preview-wrap" style="display:none;" class="zsd-pipe-preview-box">' +
+      '<div class="zsd-pipe-preview-header"><h4>Dataset Preview</h4><span id="zsd-pipe-preview-stats" class="zsd-pipe-preview-stats"></span></div>' +
+      '<div class="zsd-pipe-table-wrap"><table class="zsd-tbl" id="zsd-pipe-preview-table">' +
+      '<thead><tr><th>Order ID</th><th>Date</th><th>Customer</th><th>Service</th><th>City</th><th>Channel</th><th>Status</th><th class="r">Amount</th></tr></thead>' +
+      '<tbody></tbody></table></div></div>' +
+      '<div id="zsd-pipe-alert" class="zsd-notice-banner" style="display:none;"></div></div>' +
+      '<div class="zsd-modal-footer">' +
+      '<button class="zsd-btn" id="zsd-pipe-reset-db" type="button" title="Restore default 105 demo records">↺ Factory Reset</button>' +
+      '<div style="flex:1"></div>' +
+      '<button class="zsd-btn" id="zsd-pipe-cancel" type="button">Cancel</button>' +
+      '<button class="zsd-btn primary" id="zsd-pipe-submit" type="button" disabled>Ingest &amp; Update Dashboard</button></div></div></div>';
+    document.body.appendChild(root);
+
+    var backBtn = $('#zsd-back'); if (backBtn) backBtn.onclick = close;
+    var refBtn = $('#zsd-refresh'); if (refBtn) refBtn.onclick = function () { load(); };
+    var expBtn = $('#zsd-export'); if (expBtn) expBtn.onclick = exportCsv;
+    var rstBtn = $('#zsd-reset'); if (rstBtn) rstBtn.onclick = resetFilters;
+    wirePipelineModal();
+
+    var tabsBar = $('#zsd-tabs');
+    if (tabsBar) {
+      tabsBar.onclick = function (e) {
+        var b = e.target.closest('[data-tab]');
+        if (!b) return;
+        var tid = b.getAttribute('data-tab');
+        if (tid) switchTab(tid);
+      };
+    }
+
+    var presets = $('#zsd-presets');
+    if (presets) {
+      presets.onclick = function (e) {
+        var b = e.target.closest('button');
+        if (!b) return;
+        preset(Number(b.getAttribute('data-p')));
+        S.page = 1;
+        syncFilterInputs();
+        renderAll();
+      };
+    }
+
+    ['from', 'to'].forEach(function (k) {
+      var inp = $('#zsd-' + k);
+      if (inp) {
+        inp.onchange = function (e) {
+          if (!e.target.value) return;
+          S[k] = e.target.value;
+          if (S.from && S.to && S.from > S.to) {
+            if (k === 'from') S.to = S.from;
+            else S.from = S.to;
+          }
+          S.page = 1;
+          syncFilterInputs();
+          renderAll();
+        };
+      }
+    });
+
+    ['status', 'app', 'category', 'city'].forEach(function (k) {
+      var sel = $('#zsd-' + k);
+      if (sel) {
+        sel.onchange = function (e) {
+          S[k] = e.target.value;
+          S.page = 1;
+          renderAll();
+        };
+      }
+    });
+
+    var t;
+    var qInp = $('#zsd-q');
+    if (qInp) {
+      qInp.oninput = function (e) {
+        clearTimeout(t);
+        var v = e.target.value;
+        t = setTimeout(function () {
+          S.q = v.trim();
+          S.page = 1;
+          renderAll();
+        }, 120);
+      };
+    }
+
+    var chips = $('#zsd-chips');
+    if (chips) {
+      chips.onclick = function (e) {
+        var b = e.target.closest('[data-clear]');
+        if (!b) return;
+        var k = b.getAttribute('data-clear');
+        if (k === 'q') {
+          S.q = '';
+          var qi = $('#zsd-q');
+          if (qi) qi.value = '';
+        } else {
+          S[k] = 'All';
+        }
+        S.page = 1;
+        syncFilterInputs();
+        renderAll();
+      };
+    }
+
+    var content = $('#zsd-content');
+    if (content) {
+      content.addEventListener('click', onContentClick);
+      content.addEventListener('change', function (e) {
+        if (e.target.id === 'zsd-compare') {
+          S.compare = e.target.checked;
+          renderTrend();
+        }
+      });
+      content.addEventListener('mousemove', onTrendMove);
+      content.addEventListener('mouseleave', hideTip);
+    }
+  }
+
+  function toggle(key, val) {
+    S[key] = S[key] === val ? 'All' : val;
+    S.page = 1;
+    syncFilterInputs();
+    renderAll();
+  }
+
+  function onContentClick(e) {
+    var f = e.target.closest('[data-f]');
+    if (f) {
+      toggle(f.getAttribute('data-f'), f.getAttribute('data-v'));
+      return;
+    }
+    var m = e.target.closest('[data-metric]');
+    if (m) {
+      S.metric = m.getAttribute('data-metric');
+      renderTrend();
+      return;
+    }
+    var th = e.target.closest('th[data-sort]');
+    if (th) {
+      var k = th.getAttribute('data-sort');
+      S.sort = { key: k, dir: S.sort.key === k ? -S.sort.dir : (k === 'amount' || k === 'sold_at' ? -1 : 1) };
+      S.page = 1;
+      renderTable();
+      return;
+    }
+    var pg = e.target.closest('[data-page]');
+    if (pg && !pg.disabled) {
+      S.page += Number(pg.getAttribute('data-page'));
+      renderTable();
+    }
+  }
+
+  function buildFilterOptions() {
+    if (!root) return;
+    function fill(id, label, values, cur) {
+      var s = $('#zsd-' + id);
+      if (!s) return;
+      s.innerHTML = '<option value="All">' + label + '</option>' + values.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join('');
+      s.value = values.indexOf(cur) >= 0 ? cur : 'All';
+    }
+    var sl = S.data.sales || [];
+    fill('status', 'All statuses', uniq(sl.map(function (s) { return s.status; })), S.status);
+    fill('app', 'All channels', uniq(sl.map(function (s) { return s.app_source; })), S.app);
+    fill('category', 'All services', uniq(sl.map(function (s) { return s.source; })), S.category);
+    fill('city', 'All cities', uniq(sl.map(function (s) { return s.city; })), S.city);
+    ['status', 'app', 'category', 'city'].forEach(function (k) {
+      var el = $('#zsd-' + k);
+      if (el) S[k] = el.value;
+    });
+  }
+
+  function syncFilterInputs() {
+    if (!root) return;
+    var fromEl = $('#zsd-from'), toEl = $('#zsd-to');
+    if (fromEl) fromEl.value = S.from;
+    if (toEl) toEl.value = S.to;
+    ['status', 'app', 'category', 'city'].forEach(function (k) {
+      var el = $('#zsd-' + k);
+      if (el) el.value = S[k];
+    });
+    var b = dataBounds();
+    var hit = null;
+    if (b && S.to === b.max) {
+      [7, 14, 30, 0].some(function (n) {
+        var ok = n ? S.from === addDays(b.max, -(n - 1)) : S.from === b.min;
+        if (ok) hit = n;
+        return ok;
+      });
+    }
+    var presets = $('#zsd-presets');
+    if (presets) {
+      presets.querySelectorAll('button').forEach(function (btn) {
+        btn.classList.toggle('on', hit !== null && Number(btn.getAttribute('data-p')) === hit);
+      });
+    }
+  }
+
+  function resetFilters() {
+    S.status = S.app = S.category = S.city = 'All';
+    S.q = '';
+    var qi = $('#zsd-q');
+    if (qi) qi.value = '';
+    preset(0);
+    S.page = 1;
+    syncFilterInputs();
+    renderAll();
+  }
+
+  /* ---------- rendering ---------- */
+  function renderTabsBar() {
+    var tabsEl = $('#zsd-tabs');
+    if (!tabsEl) return;
+    var salesCount = (S.data.sales || []).length;
+    var chCount = uniq((S.data.sales || []).map(function (s) { return s.app_source; })).length;
+    var locCount = uniq((S.data.sales || []).map(function (s) { return s.city; })).length;
+    var prodCount = uniq((S.data.sales || []).map(function (s) { return s.source; })).length;
+    var custCount = new Set((S.data.sales || []).map(function (s) { return s.person; }).filter(Boolean)).size;
+
+    var counts = {
+      sales: salesCount,
+      channel: chCount,
+      location: locCount,
+      product: prodCount,
+      employee: EMPLOYEE_LIST.length,
+      doctor: DOCTOR_LIST.length,
+      customer: custCount
+    };
+
+    tabsEl.innerHTML = TABS.map(function (t) {
+      var active = S.tab === t.id ? ' active' : '';
+      var cnt = counts[t.id] !== undefined ? '<span class="zsd-tab-count">' + counts[t.id] + '</span>' : '';
+      return '<button class="zsd-tab' + active + '" data-tab="' + t.id + '" type="button">' +
+        '<span class="zsd-tab-icon">' + t.icon + '</span> ' + esc(t.label) + ' ' + cnt + '</button>';
+    }).join('');
+  }
+
+  function renderKpiCards(cards) {
+    return '<div class="zsd-kpis">' + cards.map(function (c) {
+      return '<div class="zsd-card zsd-kpi"><div class="zsd-lbl">' + c[0] + '</div><div class="zsd-val">' + c[1] + '</div>' + c[2] + '</div>';
+    }).join('') + '</div>';
+  }
+
+  function renderAll() {
+    if (!root) return;
+    var c = $('#zsd-content');
+    if (!c) return;
+
+    if (S.error) {
+      c.innerHTML = '<div class="zsd-msg"><b>Could not load sales data</b> (' + esc(S.error) + ').<br>Check that the backend is running and reachable.<br><br><button class="zsd-btn" id="zsd-retry" type="button">Retry</button></div>';
+      var retry = $('#zsd-retry');
+      if (retry) retry.onclick = load;
+      return;
+    }
+    if (!S.loaded) {
+      c.innerHTML = '<div class="zsd-msg">Loading sales data…</div>';
+      return;
+    }
+
+    var tabInfo = TABS.find(function (t) { return t.id === S.tab; }) || TABS[0];
+    var b = dataBounds();
+    var titleEl = $('#zsd-title');
+    if (titleEl) titleEl.textContent = tabInfo.label;
+    var sub = $('#zsd-sub');
+    if (sub) {
+      sub.innerHTML = esc(tabInfo.label) + ' · ' + (S.data.sales || []).length + ' transactions' +
+        (b ? ' · ' + shortDay(b.min) + ' to ' + shortDay(b.max) : '') +
+        (S.isLive ? ' · <span style="color:var(--success)">● Live</span>' : ' · <span style="color:var(--warning)">○ Preview</span>');
+    }
+
+    renderTabsBar();
+    renderChips();
+
+    switch (S.tab) {
+      case 'channel':
+        renderChannelDashboard();
+        break;
+      case 'location':
+        renderLocationDashboard();
+        break;
+      case 'product':
+        renderProductDashboard();
+        break;
+      case 'employee':
+        renderEmployeeDashboard();
+        break;
+      case 'doctor':
+        renderDoctorDashboard();
+        break;
+      case 'customer':
+        renderCustomerDashboard();
+        break;
+      case 'sales':
+      default:
+        renderSalesDashboard();
+        break;
+    }
+  }
+
+  function renderChips() {
+    var out = [];
+    [['status', 'Status'], ['app', 'Channel'], ['category', 'Service'], ['city', 'City']].forEach(function (p) {
+      if (S[p[0]] !== 'All') {
+        out.push('<button class="zsd-chip" data-clear="' + p[0] + '" title="Remove filter">' + p[1] + ': ' + esc(S[p[0]]) + ' ✕</button>');
+      }
+    });
+    if (S.q) out.push('<button class="zsd-chip" data-clear="q" title="Remove filter">Search: ' + esc(S.q) + ' ✕</button>');
+    var chips = $('#zsd-chips');
+    if (chips) chips.innerHTML = out.join('');
+  }
+
+  function delta(cur, prev, invert) {
+    if (!prev) return '<div class="zsd-delta">vs prior: n/a</div>';
+    var p = (cur - prev) / prev * 100, up = p >= 0;
+    if (Math.abs(p) < 0.05) return '<div class="zsd-delta">→ 0.0% vs prior</div>';
+    return '<div class="zsd-delta ' + ((up !== !!invert) ? 'up' : 'down') + '">' + (up ? '↗ +' : '↘ ') + p.toFixed(1) + '% vs prior</div>';
+  }
+
+  function renderKpis() {
+    var cur = stats(S.from, S.to), pr = prevRange(), prev = stats(pr.from, pr.to);
+    var cards = [
+      ['Paid revenue', inr.format(cur.rev), delta(cur.rev, prev.rev)],
+      ['Orders', String(cur.orders), delta(cur.orders, prev.orders)],
+      ['Avg order value', inr.format(Math.round(cur.aov)), delta(cur.aov, prev.aov)],
+      ['Customers', String(cur.customers), delta(cur.customers, prev.customers)],
+      ['Paid rate', cur.rate.toFixed(1) + '%', '<div class="zsd-delta">' + cur.paidOrders + ' of ' + cur.orders + ' orders paid</div>'],
+      ['Revenue / download', cur.dl ? '₹' + cur.rpd.toFixed(1) : '—', '<div class="zsd-delta">' + cur.dl.toLocaleString('en-IN') + ' installs</div>']
+    ];
+    var kpis = $('#zsd-kpis');
+    if (kpis) {
+      kpis.innerHTML = cards.map(function (c) {
+        return '<div class="zsd-card zsd-kpi"><div class="zsd-lbl">' + c[0] + '</div><div class="zsd-val">' + c[1] + '</div>' + c[2] + '</div>';
+      }).join('');
+    }
+  }
+
+  /* trend chart */
+  function series(from, to) {
+    if (!from || !to) return [];
+    var n = diffDays(from, to) + 1;
+    if (n <= 0) return [];
+    var out = [], idx = {};
+    for (var i = 0; i < n; i++) {
+      var d = addDays(from, i);
+      idx[d] = i;
+      out.push({ day: d, rev: 0, orders: 0 });
+    }
+    rows(from, to).forEach(function (s) {
+      var day = safeDay(s.sold_at);
+      var o = out[idx[day]];
+      if (!o) return;
+      o.orders++;
+      if (s.status === 'Paid') o.rev += num(s.amount);
+    });
+    return out;
+  }
+
+  function renderTrend() {
+    var cur = series(S.from, S.to), pr = prevRange(), prev = series(pr.from, pr.to);
+    var trendEl = $('#zsd-trend');
+    if (!trendEl) return;
+
+    var n = cur.length;
+    if (n === 0) {
+      trendEl.innerHTML = panelHead('Sales trend', 'No data for selected dates') +
+        '<div class="zsd-empty">No transactions found in this date range</div>';
+      return;
+    }
+
+    var key = S.metric === 'revenue' ? 'rev' : 'orders';
+    var fmt = function (v) { return S.metric === 'revenue' ? inr.format(v) : v + ' orders'; };
+    var W = 800, H = 260, L = 54, R = 14, T = 14, B = 28, iw = W - L - R, ih = H - T - B;
+    var allVals = cur.map(function (d) { return d[key]; });
+    if (S.compare && prev.length) {
+      allVals = allVals.concat(prev.map(function (d) { return d[key]; }));
+    }
+    var maxV = niceMax(Math.max.apply(null, allVals.length ? allVals : [0]));
+    var X = function (i) { return L + (n <= 1 ? iw / 2 : i * iw / (n - 1)); };
+    var Y = function (v) { return T + ih - (maxV > 0 ? (v / maxV * ih) : 0); };
+    var path = function (arr) {
+      if (!arr || !arr.length) return '';
+      return arr.map(function (d, i) { return (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(d[key]).toFixed(1); }).join(' ');
+    };
+
+    var grid = '', k;
+    for (k = 0; k <= 4; k++) {
+      var v = maxV * k / 4, y = Y(v);
+      grid += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-dasharray="' + (k ? '3 4' : '0') + '"/>' +
+        '<text x="' + (L - 8) + '" y="' + (y + 3) + '" text-anchor="end">' + (S.metric === 'revenue' ? compact(v) : Math.round(v * 10) / 10) + '</text>';
+    }
+
+    var step = Math.max(1, Math.ceil(n / 8)), xl = '';
+    for (var i = 0; i < n; i += step) {
+      if (cur[i]) xl += '<text x="' + X(i) + '" y="' + (H - 8) + '" text-anchor="middle">' + shortDay(cur[i].day) + '</text>';
+    }
+
+    var area = n > 1
+      ? path(cur) + ' L' + X(n - 1).toFixed(1) + ' ' + (T + ih) + ' L' + X(0).toFixed(1) + ' ' + (T + ih) + ' Z'
+      : '';
+    var singleMarker = n === 1
+      ? '<circle cx="' + X(0).toFixed(1) + '" cy="' + Y(cur[0][key]).toFixed(1) + '" r="6" fill="var(--primary)"/>'
+      : '';
+
+    trendGeo = { cur: cur, prev: prev, key: key, fmt: fmt, W: W, H: H, L: L, iw: iw, n: n, X: X, Y: Y, T: T, ih: ih };
+    trendEl.innerHTML =
+      '<div class="zsd-ph"><h3>Sales trend<small>' + shortDay(S.from) + ' – ' + shortDay(S.to) + ' · hover for daily detail</small></h3>' +
+      '<div class="zsd-tog"><div class="zsd-seg"><button data-metric="revenue" class="' + (S.metric === 'revenue' ? 'on' : '') + '">Revenue</button>' +
+      '<button data-metric="orders" class="' + (S.metric === 'orders' ? 'on' : '') + '">Orders</button></div>' +
+      '<label><input type="checkbox" id="zsd-compare" ' + (S.compare ? 'checked' : '') + '> Prior period</label></div></div>' +
+      '<div class="zsd-chartwrap" id="zsd-trendwrap"><svg class="zsd-svg" id="zsd-trendsvg" viewBox="0 0 ' + W + ' ' + H + '">' +
+      '<defs><linearGradient id="zsd-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--primary)" stop-opacity=".28"/><stop offset="1" stop-color="var(--primary)" stop-opacity="0"/></linearGradient></defs>' +
+      grid + xl +
+      (S.compare && prev.length > 1 ? '<path d="' + path(prev) + '" fill="none" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7"/>' : '') +
+      (area ? '<path d="' + area + '" fill="url(#zsd-grad)"/>' : '') +
+      '<path d="' + path(cur) + '" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linejoin="round"/>' +
+      singleMarker +
+      '<g id="zsd-hover" style="display:none"><line id="zsd-hl" y1="' + T + '" y2="' + (T + ih) + '" stroke="var(--primary)" stroke-opacity=".4"/>' +
+      '<circle id="zsd-hc" r="4.5" fill="var(--card)" stroke="var(--primary)" stroke-width="2.2"/></g></svg>' +
+      '<div class="zsd-tip" id="zsd-tip"></div></div>';
+  }
+
+  function hideTip() {
+    var t = $('#zsd-tip'), h = $('#zsd-hover');
+    if (t) t.style.opacity = 0;
+    if (h) h.style.display = 'none';
+  }
+
+  function onTrendMove(e) {
+    var svg = e.target && e.target.closest && e.target.closest('#zsd-trendsvg');
+    if (!svg || !trendGeo || !trendGeo.cur || !trendGeo.cur.length) { hideTip(); return; }
+    var g = trendGeo, r = svg.getBoundingClientRect();
+    if (!r.width || !r.height) { hideTip(); return; }
+    var sx = (e.clientX - r.left) / r.width * g.W;
+    var i = g.n <= 1 ? 0 : Math.round((sx - g.L) / g.iw * (g.n - 1));
+    i = Math.max(0, Math.min(g.n - 1, i));
+    var d = g.cur[i];
+    if (!d) { hideTip(); return; }
+    var x = g.X(i), y = g.Y(d[g.key]);
+
+    var h = $('#zsd-hover');
+    if (h) h.style.display = 'block';
+    var hl = $('#zsd-hl'); if (hl) { hl.setAttribute('x1', x); hl.setAttribute('x2', x); }
+    var hc = $('#zsd-hc'); if (hc) { hc.setAttribute('cx', x); hc.setAttribute('cy', y); }
+    var tip = $('#zsd-tip');
+    if (tip) {
+      var p = g.prev && g.prev[i];
+      tip.innerHTML = '<b>' + prettyDay(d.day) + '</b><br>' + g.fmt(d[g.key]) + (S.compare && p ? '<br><span style="opacity:.7">Prior: ' + g.fmt(p[g.key]) + '</span>' : '');
+      tip.style.left = (x / g.W * r.width) + 'px';
+      tip.style.top = (y / g.H * r.height) + 'px';
+      tip.style.opacity = 1;
+    }
+  }
+
+  /* breakdown panels */
+  function panelHead(title, sub) {
+    return '<div class="zsd-ph"><h3>' + title + '<small>' + sub + '</small></h3></div>';
+  }
+  function barList(items, filterKey, colorFn, fmt, cur) {
+    if (!items.length) return '<div class="zsd-empty">No data for these filters</div>';
+    var max = items[0].v || 1;
+    return '<div class="zsd-list">' + items.map(function (it, i) {
+      return '<button class="zsd-row ' + (cur === it.k ? 'sel' : '') + '" data-f="' + filterKey + '" data-v="' + esc(it.k) + '" title="Click to filter">' +
+        '<div class="zsd-row-top"><span>' + esc(it.k) + '</span><b>' + fmt(it.v) + '</b></div>' +
+        '<div class="zsd-bar"><i style="width:' + Math.max(2, it.v / max * 100) + '%;background:' + colorFn(it.k, i) + '"></i></div></button>';
+    }).join('') + '</div>';
+  }
+  function renderCategory() {
+    var catEl = $('#zsd-cat');
+    if (!catEl) return;
+    var items = groupBy(paid(rows(S.from, S.to, 'category')), 'source', function (s) { return s.amount; }).slice(0, 8);
+    catEl.innerHTML = panelHead('Revenue by service', 'Paid revenue · click to filter') +
+      barList(items, 'category', function (k, i) { return CAT_COLORS[i % CAT_COLORS.length]; }, function (v) { return inr.format(v); }, S.category);
+  }
+  function renderCity() {
+    var cityEl = $('#zsd-city-p');
+    if (!cityEl) return;
+    var items = groupBy(paid(rows(S.from, S.to, 'city')), 'city', function (s) { return s.amount; }).slice(0, 8);
+    cityEl.innerHTML = panelHead('Revenue by city', 'Paid revenue · click to filter') +
+      barList(items, 'city', function () { return 'var(--chart-3)'; }, function (v) { return inr.format(v); }, S.city);
+  }
+  function renderStatus() {
+    var statusEl = $('#zsd-status-p');
+    if (!statusEl) return;
+    var order = ['Paid', 'Pending', 'Refunded', 'Cancelled'], list = rows(S.from, S.to, 'status'), m = {};
+    list.forEach(function (s) { m[s.status] = (m[s.status] || 0) + 1; });
+    Object.keys(m).forEach(function (k) { if (order.indexOf(k) < 0) order.push(k); });
+    var items = order.filter(function (k) { return m[k]; }).map(function (k) { return { k: k, v: m[k] }; }).sort(function (a, b) { return b.v - a.v; });
+    statusEl.innerHTML = panelHead('Order status', list.length + ' orders · click to filter') +
+      barList(items, 'status', function (k) { return ST_COLORS[k] || 'var(--muted-foreground)'; }, function (v) { return v + ' (' + Math.round(v / Math.max(1, list.length) * 100) + '%)'; }, S.status);
+  }
+  function renderChannel() {
+    var chEl = $('#zsd-channel');
+    if (!chEl) return;
+    var items = groupBy(paid(rows(S.from, S.to, 'app')), 'app_source', function (s) { return s.amount; });
+    var total = sum(items.map(function (i) { return { amount: i.v }; }));
+    var body;
+    if (!total) {
+      body = '<div class="zsd-empty">No paid revenue for these filters</div>';
+    } else {
+      var r = 56, C = 2 * Math.PI * r, acc = 0;
+      var segs = items.map(function (it) {
+        var len = C * it.v / total;
+        var s = '<circle class="seg" data-f="app" data-v="' + esc(it.k) + '" cx="75" cy="75" r="' + r + '" fill="none" stroke="' + (CH_COLORS[it.k] || 'var(--chart-4)') +
+          '" stroke-width="' + (S.app === it.k ? 26 : 20) + '" stroke-dasharray="' + len.toFixed(2) + ' ' + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-acc).toFixed(2) +
+          '" transform="rotate(-90 75 75)" style="cursor:pointer"><title>' + esc(it.k) + ': ' + inr.format(it.v) + '</title></circle>';
+        acc += len;
+        return s;
+      }).join('');
+      body = '<div class="zsd-donut"><svg viewBox="0 0 150 150">' + segs +
+        '<text x="75" y="73" text-anchor="middle" style="font-size:15px;font-weight:700;fill:var(--foreground);font-family:inherit">' + compact(total) + '</text>' +
+        '<text x="75" y="89" text-anchor="middle" style="font-size:9px">Paid revenue</text></svg><div class="zsd-legend">' +
+        items.map(function (it) {
+          return '<button class="zsd-leg ' + (S.app === it.k ? 'sel' : '') + '" data-f="app" data-v="' + esc(it.k) + '"><span class="dot" style="background:' + (CH_COLORS[it.k] || 'var(--chart-4)') +
+            '"></span><span class="n">' + esc(it.k) + '</span><span class="p">' + Math.round(it.v / total * 100) + '%</span><span class="v">' + compact(it.v) + '</span></button>';
+        }).join('') + '</div></div>';
+    }
+    chEl.innerHTML = panelHead('Revenue by channel', 'Android · iOS · Web · Other') + body;
+  }
+  function renderTop() {
+    var topEl = $('#zsd-top');
+    if (!topEl) return;
+    var items = groupBy(paid(rows(S.from, S.to)), 'person', function (s) { return s.amount; }).slice(0, 6);
+    var list = paid(rows(S.from, S.to));
+    var html = items.length ? '<div class="zsd-top">' + items.map(function (it) {
+      var oc = list.filter(function (s) { return s.person === it.k; }).length;
+      var initials = (it.k || 'C').split(/\s+/).filter(Boolean).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase() || 'C';
+      return '<div><span class="zsd-av">' + esc(initials) + '</span><span class="nm">' + esc(it.k) +
+        '<br><span style="font-size:10px;color:var(--muted-foreground)">' + oc + ' paid order' + (oc > 1 ? 's' : '') + '</span></span><b>' + inr.format(it.v) + '</b></div>';
+    }).join('') + '</div>' : '<div class="zsd-empty">No paid orders for these filters</div>';
+    topEl.innerHTML = panelHead('Top customers', 'By paid revenue') + html;
+  }
+
+  /* table */
+  var COLS = [
+    ['transaction_ref', 'Order'],
+    ['sold_at', 'Date'],
+    ['person', 'Customer'],
+    ['source', 'Service'],
+    ['city', 'City'],
+    ['app_source', 'Channel'],
+    ['status', 'Status'],
+    ['amount', 'Amount']
+  ];
+  function sortedRows() {
+    var k = S.sort.key, d = S.sort.dir;
+    return rows(S.from, S.to).sort(function (a, b) {
+      var x = a[k], y = b[k];
+      return (typeof x === 'number' ? x - y : String(x || '').localeCompare(String(y || ''))) * d || ((a.sold_at || '') < (b.sold_at || '') ? 1 : -1);
+    });
+  }
+  function renderTable() {
+    var tblEl = $('#zsd-table');
+    if (!tblEl) return;
+    var all = sortedRows(), pages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+    S.page = Math.max(1, Math.min(S.page, pages));
+    var slice = all.slice((S.page - 1) * PAGE_SIZE, S.page * PAGE_SIZE);
+    var head = COLS.map(function (c) {
+      var on = S.sort.key === c[0];
+      return '<th data-sort="' + c[0] + '" class="' + (c[0] === 'amount' ? 'r' : '') + '">' + c[1] + (on ? (S.sort.dir > 0 ? ' ▲' : ' ▼') : '') + '</th>';
+    }).join('');
+    var body = slice.map(function (s) {
+      return '<tr><td>' + esc(s.transaction_ref) + '</td><td>' + prettyStamp(s.sold_at) + '</td><td>' + esc(s.person) + '</td><td>' + esc(s.source) + '</td><td>' + esc(s.city) +
+        '</td><td>' + esc(s.app_source) + '</td><td><span class="zsd-badge ' + esc(s.status) + '">' + esc(s.status) + '</span></td><td class="r"><b>' + inr.format(s.amount) + '</b></td></tr>';
+    }).join('');
+    var from = all.length ? (S.page - 1) * PAGE_SIZE + 1 : 0, to = Math.min(all.length, S.page * PAGE_SIZE);
+    tblEl.innerHTML = panelHead('Transactions', all.length + ' matching orders · click a header to sort') +
+      (all.length ? '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' + head + '</tr></thead><tbody>' + body + '</tbody></table></div>' : '<div class="zsd-empty">No transactions match these filters</div>') +
+      '<div class="zsd-pager"><span>' + from + '–' + to + ' of ' + all.length + '</span><div><button data-page="-1" ' + (S.page <= 1 ? 'disabled' : '') + '>← Prev</button>' +
+      '<span style="align-self:center">Page ' + S.page + ' / ' + pages + '</span><button data-page="1" ' + (S.page >= pages ? 'disabled' : '') + '>Next →</button></div></div>';
+  }
+  function exportCsv() {
+    var all = sortedRows();
+    var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+    var csv = ['Order,Date,Customer,Service,City,Channel,Status,Amount'].concat(all.map(function (s) {
+      return [s.transaction_ref, s.sold_at, s.person, s.source, s.city, s.app_source, s.status, s.amount].map(q).join(',');
+    })).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'zenve-sales-' + S.from + '_to_' + S.to + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      a.remove();
+      URL.revokeObjectURL(url);
+    }, 100);
+  }
+
+  /* ---------- specialized dashboard renderers ---------- */
+  function renderSalesDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    if (!c.querySelector('#zsd-trend') || c.getAttribute('data-view') !== 'sales') {
+      c.setAttribute('data-view', 'sales');
+      c.innerHTML =
+        '<div class="zsd-kpis" id="zsd-kpis"></div>' +
+        '<div class="zsd-grid zsd-g-main"><div class="zsd-card zsd-panel" id="zsd-trend"></div><div class="zsd-card zsd-panel" id="zsd-channel"></div></div>' +
+        '<div class="zsd-grid zsd-g-3"><div class="zsd-card zsd-panel" id="zsd-cat"></div><div class="zsd-card zsd-panel" id="zsd-city-p"></div>' +
+        '<div class="zsd-card zsd-panel" id="zsd-status-p"></div></div>' +
+        '<div class="zsd-grid zsd-g-main"><div class="zsd-card zsd-panel" id="zsd-table"></div><div class="zsd-card zsd-panel" id="zsd-top"></div></div>';
+    }
+    renderKpis();
+    renderTrend();
+    renderChannel();
+    renderCategory();
+    renderCity();
+    renderStatus();
+    renderTop();
+    renderTable();
+  }
+
+  function renderChannelDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'channel');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var rawChList = uniq(list.map(function (s) { return s.app_source; })).filter(Boolean);
+    var defaultChs = ['Android', 'iOS', 'Web', 'Other'];
+    var channels = uniq(rawChList.length ? rawChList : defaultChs);
+    var icons = { Android: '📱', iOS: '🍏', Web: '🌐', Other: '🔌', Clinic: '🏥', Store: '🏬', Direct: '🤝', Partner: '💼', Mobile: '📱', Desktop: '💻' };
+    var CH_PALETTE = ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#14b8a6', '#f97316', '#64748b'];
+    var chData = channels.map(function (ch, idx) {
+      var chAll = list.filter(function (s) { return s.app_source === ch; });
+      var chPaid = p.filter(function (s) { return s.app_source === ch; });
+      var rev = sum(chPaid);
+      var orders = chAll.length;
+      var paidOrders = chPaid.length;
+      var aov = paidOrders ? Math.round(rev / paidOrders) : 0;
+      var rate = orders ? (paidOrders / orders * 100) : 0;
+      var share = totPaid ? (rev / totPaid * 100) : 0;
+      return {
+        name: ch,
+        icon: icons[ch] || '🌐',
+        rev: rev,
+        orders: orders,
+        paidOrders: paidOrders,
+        aov: aov,
+        rate: rate,
+        share: share,
+        color: CH_COLORS[ch] || CH_PALETTE[idx % CH_PALETTE.length]
+      };
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topCh = chData[0] || { name: 'Android', rev: 0, share: 0 };
+    var kpiCards = [
+      ['Total Channel Revenue', inr.format(totPaid), '<div class="zsd-delta">' + p.length + ' paid / ' + list.length + ' orders</div>'],
+      ['Lead Platform', topCh.name + ' (' + topCh.share.toFixed(1) + '%)', '<div class="zsd-delta up">' + inr.format(topCh.rev) + ' generated</div>'],
+      ['Platform Conversion', (list.length ? (p.length / list.length * 100).toFixed(1) : 0) + '%', '<div class="zsd-delta">' + p.length + ' orders paid</div>'],
+      ['Average Order Value', inr.format(p.length ? Math.round(totPaid / p.length) : 0), '<div class="zsd-delta">across all channels</div>']
+    ];
+
+    var donutSvg = '';
+    if (totPaid) {
+      var r = 56, C = 2 * Math.PI * r, acc = 0;
+      var segs = chData.map(function (it) {
+        var len = C * it.rev / totPaid;
+        var s = '<circle class="seg" data-f="app" data-v="' + esc(it.name) + '" cx="75" cy="75" r="' + r + '" fill="none" stroke="' + it.color +
+          '" stroke-width="' + (S.app === it.name ? 26 : 20) + '" stroke-dasharray="' + len.toFixed(2) + ' ' + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-acc).toFixed(2) +
+          '" transform="rotate(-90 75 75)" style="cursor:pointer"><title>' + esc(it.name) + ': ' + inr.format(it.rev) + '</title></circle>';
+        acc += len;
+        return s;
+      }).join('');
+      donutSvg = '<div class="zsd-donut"><svg viewBox="0 0 150 150">' + segs +
+        '<text x="75" y="73" text-anchor="middle" style="font-size:15px;font-weight:700;fill:var(--foreground);font-family:inherit">' + compact(totPaid) + '</text>' +
+        '<text x="75" y="89" text-anchor="middle" style="font-size:9px">Total Revenue</text></svg><div class="zsd-legend">' +
+        chData.map(function (it) {
+          return '<button class="zsd-leg ' + (S.app === it.name ? 'sel' : '') + '" data-f="app" data-v="' + esc(it.name) + '"><span class="dot" style="background:' + it.color +
+            '"></span><span class="n">' + esc(it.name) + '</span><span class="p">' + it.share.toFixed(1) + '%</span><span class="v">' + compact(it.rev) + '</span></button>';
+        }).join('') + '</div></div>';
+    } else {
+      donutSvg = '<div class="zsd-empty">No revenue recorded for selected filters</div>';
+    }
+
+    var chCardsHtml = chData.map(function (it) {
+      return '<div class="zsd-ch-card">' +
+        '<div class="zsd-ch-head"><div class="zsd-ch-title"><span style="font-size:18px">' + it.icon + '</span><span>' + esc(it.name) + '</span></div>' +
+        '<span class="zsd-pill primary">' + it.share.toFixed(1) + '% share</span></div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + Math.max(3, it.share) + '%;background:' + it.color + '"></div></div>' +
+        '<div class="zsd-ch-stats">' +
+        '<div><div class="zsd-ch-stat-val">' + inr.format(it.rev) + '</div><div class="zsd-ch-stat-lbl">Revenue</div></div>' +
+        '<div><div class="zsd-ch-stat-val">' + it.paidOrders + ' / ' + it.orders + '</div><div class="zsd-ch-stat-lbl">Orders</div></div>' +
+        '<div><div class="zsd-ch-stat-val">' + inr.format(it.aov) + '</div><div class="zsd-ch-stat-lbl">AOV</div></div>' +
+        '</div></div>';
+    }).join('');
+
+    var tableRows = chData.map(function (it, idx) {
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + it.icon + ' ' + esc(it.name) + '</b></td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r"><span class="zsd-pill primary">' + it.share.toFixed(1) + '%</span></td>' +
+        '<td class="r">' + it.orders + '</td>' +
+        '<td class="r">' + it.paidOrders + '</td>' +
+        '<td class="r">' + it.rate.toFixed(1) + '%</td>' +
+        '<td class="r">' + inr.format(it.aov) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      '<div class="zsd-grid zsd-g-channel">' +
+      '<div class="zsd-card zsd-panel">' + panelHead('Revenue by Channel', 'Market share & contribution') + donutSvg + '</div>' +
+      '<div class="zsd-card zsd-panel">' + panelHead('Channel Benchmarks', 'Performance & unit economics') +
+      '<div class="zsd-ch-benchmarks-grid">' + chCardsHtml + '</div></div></div>' +
+      '<div class="zsd-card zsd-panel" style="margin-top:12px;">' +
+      panelHead('Channel Performance Matrix', 'Comprehensive platform breakdown') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>Channel</th><th class="r">Revenue</th><th class="r">Share</th><th class="r">Total Orders</th><th class="r">Paid Orders</th><th class="r">Conversion</th><th class="r">AOV</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  function renderLocationDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'location');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var cities = uniq(list.map(function (s) { return s.city; }));
+    var cityData = cities.map(function (city) {
+      var cityAll = list.filter(function (s) { return s.city === city; });
+      var cityPaid = p.filter(function (s) { return s.city === city; });
+      var rev = sum(cityPaid);
+      var orders = cityAll.length;
+      var paidOrders = cityPaid.length;
+      var aov = paidOrders ? Math.round(rev / paidOrders) : 0;
+      var share = totPaid ? (rev / totPaid * 100) : 0;
+      var topSvc = groupBy(cityPaid, 'source', function (s) { return 1; })[0];
+      var topCh = groupBy(cityPaid, 'app_source', function (s) { return 1; })[0];
+      return {
+        name: city,
+        rev: rev,
+        orders: orders,
+        paidOrders: paidOrders,
+        aov: aov,
+        share: share,
+        topService: topSvc ? topSvc.k : 'General',
+        topChannel: topCh ? topCh.k : 'Android'
+      };
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topCity = cityData[0] || { name: 'Bengaluru', rev: 0, share: 0 };
+    var top3Share = cityData.slice(0, 3).reduce(function (a, it) { return a + it.share; }, 0);
+    var kpiCards = [
+      ['Active Hubs', cityData.length + ' cities', '<div class="zsd-delta">Nationwide healthcare network</div>'],
+      ['Top Revenue Hub', topCity.name + ' (' + topCity.share.toFixed(1) + '%)', '<div class="zsd-delta up">' + inr.format(topCity.rev) + ' generated</div>'],
+      ['Metro Concentration', top3Share.toFixed(1) + '%', '<div class="zsd-delta">Revenue in top 3 cities</div>'],
+      ['Geographic AOV', inr.format(p.length ? Math.round(totPaid / p.length) : 0), '<div class="zsd-delta">across all locations</div>']
+    ];
+
+    var maxCityRev = cityData[0] ? cityData[0].rev : 1;
+    var barsHtml = cityData.length ? '<div class="zsd-list">' + cityData.map(function (it, idx) {
+      var isSel = S.city === it.name;
+      return '<button class="zsd-row ' + (isSel ? 'sel' : '') + '" data-f="city" data-v="' + esc(it.name) + '" title="Click to filter">' +
+        '<div class="zsd-row-top"><span><b class="zsd-rank-badge top-' + (idx + 1) + '" style="margin-right:6px;">' + (idx + 1) + '</b>' + esc(it.name) + '</span><b>' + inr.format(it.rev) + ' (' + it.share.toFixed(1) + '%)</b></div>' +
+        '<div class="zsd-bar"><i style="width:' + Math.max(2, it.rev / maxCityRev * 100) + '%;background:var(--chart-3)"></i></div></button>';
+    }).join('') + '</div>' : '<div class="zsd-empty">No cities match filters</div>';
+
+    var cardsHtml = cityData.slice(0, 6).map(function (it, idx) {
+      return '<div class="zsd-entity-card">' +
+        '<div class="zsd-card-top">' +
+        '<div class="zsd-card-avatar" style="background:rgba(16,185,129,0.15);color:#10b981;">📍</div>' +
+        '<div class="zsd-card-meta"><h4 class="zsd-card-title">' + esc(it.name) + '</h4>' +
+        '<div class="zsd-card-sub">Top Service: ' + esc(it.topService) + '</div></div>' +
+        '<span class="zsd-pill success">#' + (idx + 1) + ' · ' + it.share.toFixed(1) + '%</span></div>' +
+        '<div class="zsd-card-stats">' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.rev) + '</b><span>Revenue</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.paidOrders + ' orders</b><span>Volume</span></div>' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.aov) + '</b><span>Avg Ticket</span></div>' +
+        '<div class="zsd-stat-item"><b>' + esc(it.topChannel) + '</b><span>Top App</span></div>' +
+        '</div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + Math.max(3, it.share) + '%;background:#10b981"></div></div>' +
+        '</div>';
+    }).join('');
+
+    var tableRows = cityData.map(function (it, idx) {
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + esc(it.name) + '</b></td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r"><span class="zsd-pill success">' + it.share.toFixed(1) + '%</span></td>' +
+        '<td class="r">' + it.orders + '</td>' +
+        '<td class="r">' + it.paidOrders + '</td>' +
+        '<td class="r">' + inr.format(it.aov) + '</td>' +
+        '<td>' + esc(it.topService) + '</td>' +
+        '<td>' + esc(it.topChannel) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      '<div class="zsd-grid zsd-g-main">' +
+      '<div class="zsd-card zsd-panel">' + panelHead('City Revenue Ranking', 'Click any city to filter transactions') + barsHtml + '</div>' +
+      '<div class="zsd-card zsd-panel">' + panelHead('Top Performing Hubs', 'Leading urban healthcare centers') +
+      '<div class="zsd-card-grid">' + cardsHtml + '</div></div></div>' +
+      '<div class="zsd-card zsd-panel" style="margin-top:12px;">' +
+      panelHead('Geographic Revenue Matrix', 'Comprehensive location benchmarks') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>City</th><th class="r">Revenue</th><th class="r">Share</th><th class="r">Total Orders</th><th class="r">Paid Orders</th><th class="r">AOV</th><th>Top Service</th><th>Top Channel</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  function renderProductDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'product');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var products = uniq(list.map(function (s) { return s.source; }));
+    var prodData = products.map(function (prod) {
+      var prodAll = list.filter(function (s) { return s.source === prod; });
+      var prodPaid = p.filter(function (s) { return s.source === prod; });
+      var rev = sum(prodPaid);
+      var orders = prodAll.length;
+      var paidOrders = prodPaid.length;
+      var aov = paidOrders ? Math.round(rev / paidOrders) : 0;
+      var share = totPaid ? (rev / totPaid * 100) : 0;
+      var topCity = groupBy(prodPaid, 'city', function (s) { return 1; })[0];
+      var topCh = groupBy(prodPaid, 'app_source', function (s) { return 1; })[0];
+      return {
+        name: prod,
+        rev: rev,
+        orders: orders,
+        paidOrders: paidOrders,
+        aov: aov,
+        share: share,
+        topCity: topCity ? topCity.k : 'Bengaluru',
+        topChannel: topCh ? topCh.k : 'Android'
+      };
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topProd = prodData[0] || { name: 'General Medicine', rev: 0, share: 0 };
+    var kpiCards = [
+      ['Service Catalog', prodData.length + ' services', '<div class="zsd-delta">Active medical offerings</div>'],
+      ['Top Grossing Service', topProd.name + ' (' + topProd.share.toFixed(1) + '%)', '<div class="zsd-delta up">' + inr.format(topProd.rev) + ' generated</div>'],
+      ['Procedures & Orders', list.length + ' bookings', '<div class="zsd-delta">' + p.length + ' paid procedures</div>'],
+      ['Avg Service Price', inr.format(p.length ? Math.round(totPaid / p.length) : 0), '<div class="zsd-delta">per paid procedure</div>']
+    ];
+
+    var maxProdRev = prodData[0] ? prodData[0].rev : 1;
+    var barsHtml = prodData.length ? '<div class="zsd-list">' + prodData.map(function (it, idx) {
+      var isSel = S.category === it.name;
+      return '<button class="zsd-row ' + (isSel ? 'sel' : '') + '" data-f="category" data-v="' + esc(it.name) + '" title="Click to filter">' +
+        '<div class="zsd-row-top"><span><b class="zsd-rank-badge top-' + (idx + 1) + '" style="margin-right:6px;">' + (idx + 1) + '</b>' + esc(it.name) + '</span><b>' + inr.format(it.rev) + ' (' + it.share.toFixed(1) + '%)</b></div>' +
+        '<div class="zsd-bar"><i style="width:' + Math.max(2, it.rev / maxProdRev * 100) + '%;background:' + CAT_COLORS[idx % CAT_COLORS.length] + '"></i></div></button>';
+    }).join('') + '</div>' : '<div class="zsd-empty">No products match filters</div>';
+
+    var cardsHtml = prodData.slice(0, 6).map(function (it, idx) {
+      return '<div class="zsd-entity-card">' +
+        '<div class="zsd-card-top">' +
+        '<div class="zsd-card-avatar" style="background:rgba(139,92,246,0.15);color:#8b5cf6;">📦</div>' +
+        '<div class="zsd-card-meta"><h4 class="zsd-card-title">' + esc(it.name) + '</h4>' +
+        '<div class="zsd-card-sub">Top City: ' + esc(it.topCity) + '</div></div>' +
+        '<span class="zsd-pill info">#' + (idx + 1) + ' · ' + it.share.toFixed(1) + '%</span></div>' +
+        '<div class="zsd-card-stats">' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.rev) + '</b><span>Revenue</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.paidOrders + ' orders</b><span>Completed</span></div>' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.aov) + '</b><span>Avg Ticket</span></div>' +
+        '<div class="zsd-stat-item"><b>' + esc(it.topChannel) + '</b><span>Top Channel</span></div>' +
+        '</div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + Math.max(3, it.share) + '%;background:#8b5cf6"></div></div>' +
+        '</div>';
+    }).join('');
+
+    var tableRows = prodData.map(function (it, idx) {
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + esc(it.name) + '</b></td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r"><span class="zsd-pill info">' + it.share.toFixed(1) + '%</span></td>' +
+        '<td class="r">' + it.orders + '</td>' +
+        '<td class="r">' + it.paidOrders + '</td>' +
+        '<td class="r">' + inr.format(it.aov) + '</td>' +
+        '<td>' + esc(it.topCity) + '</td>' +
+        '<td>' + esc(it.topChannel) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      '<div class="zsd-grid zsd-g-main">' +
+      '<div class="zsd-card zsd-panel">' + panelHead('Service Revenue Ranking', 'Click any service to filter transactions') + barsHtml + '</div>' +
+      '<div class="zsd-card zsd-panel">' + panelHead('Featured Services & Procedures', 'Portfolio performance and margins') +
+      '<div class="zsd-card-grid">' + cardsHtml + '</div></div></div>' +
+      '<div class="zsd-card zsd-panel" style="margin-top:12px;">' +
+      panelHead('Service Portfolio Matrix', 'Comprehensive unit economics') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>Service / Product</th><th class="r">Revenue</th><th class="r">Share</th><th class="r">Total Orders</th><th class="r">Paid Orders</th><th class="r">AOV</th><th>Top City</th><th>Top Channel</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  function renderEmployeeDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'employee');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var empMap = {};
+    list.forEach(function (s) {
+      var emp = getEmployeeForSale(s);
+      if (!empMap[emp.name]) {
+        empMap[emp.name] = {
+          name: emp.name,
+          dept: emp.dept,
+          role: emp.role,
+          av: emp.av,
+          target: emp.target || 200000,
+          orders: 0,
+          paidOrders: 0,
+          rev: 0
+        };
+      }
+      empMap[emp.name].orders++;
+      if (s.status === 'Paid') {
+        empMap[emp.name].paidOrders++;
+        empMap[emp.name].rev += num(s.amount);
+      }
+    });
+
+    var empData = Object.keys(empMap).map(function (k) {
+      var it = empMap[k];
+      it.aov = it.paidOrders ? Math.round(it.rev / it.paidOrders) : 0;
+      it.attainment = it.target ? (it.rev / it.target * 100) : 100;
+      it.rate = it.orders ? (it.paidOrders / it.orders * 100) : 0;
+      it.share = totPaid ? (it.rev / totPaid * 100) : 0;
+      return it;
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topEmp = empData[0] || { name: 'Dr. Priya Sharma', rev: 0 };
+    var kpiCards = [
+      ['Operational Staff', empData.length + ' staff', '<div class="zsd-delta">Active healthcare coordinators</div>'],
+      ['Top Revenue Producer', topEmp.name, '<div class="zsd-delta up">' + inr.format(topEmp.rev) + ' generated</div>'],
+      ['Avg Revenue / Staff', inr.format(empData.length ? Math.round(totPaid / empData.length) : 0), '<div class="zsd-delta">across all departments</div>'],
+      ['Staff Conversion Rate', (list.length ? (p.length / list.length * 100).toFixed(1) : 0) + '%', '<div class="zsd-delta">' + p.length + ' completed bookings</div>']
+    ];
+
+    var cardsHtml = empData.map(function (it, idx) {
+      var isExceeded = it.attainment >= 100;
+      var pillClass = isExceeded ? 'success' : (it.attainment >= 75 ? 'primary' : 'warning');
+      return '<div class="zsd-entity-card">' +
+        '<div class="zsd-card-top">' +
+        '<div class="zsd-card-avatar">' + esc(it.av) + '</div>' +
+        '<div class="zsd-card-meta"><h4 class="zsd-card-title">' + esc(it.name) + '</h4>' +
+        '<div class="zsd-card-sub">' + esc(it.role) + ' · ' + esc(it.dept) + '</div></div>' +
+        '<span class="zsd-pill ' + pillClass + '">#' + (idx + 1) + ' · ' + it.attainment.toFixed(0) + '% Target</span></div>' +
+        '<div class="zsd-card-stats">' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.rev) + '</b><span>Revenue</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.paidOrders + ' orders</b><span>Handled</span></div>' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.aov) + '</b><span>Avg Ticket</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.rate.toFixed(1) + '%</b><span>Conversion</span></div>' +
+        '</div>' +
+        '<div style="font-size:10px;display:flex;justify-content:space-between;color:var(--muted-foreground)">' +
+        '<span>Target: ' + inr.format(it.target) + '</span><span>' + it.attainment.toFixed(1) + '%</span></div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + Math.min(100, Math.max(3, it.attainment)) + '%;background:' + (isExceeded ? 'var(--success)' : 'var(--primary)') + '"></div></div>' +
+        '</div>';
+    }).join('');
+
+    var tableRows = empData.map(function (it, idx) {
+      var badge = it.attainment >= 100 ? '<span class="zsd-pill success">★ Star Performer</span>' : (it.attainment >= 80 ? '<span class="zsd-pill primary">Target On Track</span>' : '<span class="zsd-pill warning">In Progress</span>');
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + esc(it.name) + '</b></td>' +
+        '<td><span class="zsd-tag">' + esc(it.dept) + '</span></td>' +
+        '<td>' + esc(it.role) + '</td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r">' + it.paidOrders + ' / ' + it.orders + '</td>' +
+        '<td class="r">' + inr.format(it.aov) + '</td>' +
+        '<td class="r"><b>' + it.attainment.toFixed(1) + '%</b></td>' +
+        '<td class="r">' + badge + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
+      panelHead('Employee Performance Leaderboard', 'Operational revenue attribution & monthly targets') +
+      '<div class="zsd-card-grid">' + cardsHtml + '</div></div>' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('Staff Productivity Matrix', 'Full staff consultation & revenue summary') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>Employee</th><th>Department</th><th>Role</th><th class="r">Revenue</th><th class="r">Orders</th><th class="r">AOV</th><th class="r">Target Progress</th><th class="r">Status</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  function renderDoctorDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'doctor');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var docMap = {};
+    list.forEach(function (s) {
+      var doc = getDoctorForSale(s);
+      if (!docMap[doc.name]) {
+        docMap[doc.name] = {
+          name: doc.name,
+          spec: doc.spec,
+          reg: doc.reg,
+          av: doc.av,
+          consults: 0,
+          paidConsults: 0,
+          rev: 0
+        };
+      }
+      docMap[doc.name].consults++;
+      if (s.status === 'Paid') {
+        docMap[doc.name].paidConsults++;
+        docMap[doc.name].rev += num(s.amount);
+      }
+    });
+
+    var docData = Object.keys(docMap).map(function (k) {
+      var it = docMap[k];
+      it.avgFee = it.paidConsults ? Math.round(it.rev / it.paidConsults) : 0;
+      it.share = totPaid ? (it.rev / totPaid * 100) : 0;
+      return it;
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topDoc = docData[0] || { name: 'Dr. Divya Balasubramanian', rev: 0, share: 0 };
+    var kpiCards = [
+      ['Medical Specialists', docData.length + ' doctors', '<div class="zsd-delta">Consulting physicians & surgeons</div>'],
+      ['Leading Physician', topDoc.name + ' (' + topDoc.share.toFixed(1) + '%)', '<div class="zsd-delta up">' + inr.format(topDoc.rev) + ' generated</div>'],
+      ['Total Patient Consults', list.length + ' visits', '<div class="zsd-delta">' + p.length + ' paid consultations</div>'],
+      ['Avg Consultation Fee', inr.format(p.length ? Math.round(totPaid / p.length) : 0), '<div class="zsd-delta">per clinical session</div>']
+    ];
+
+    var cardsHtml = docData.map(function (it, idx) {
+      return '<div class="zsd-entity-card">' +
+        '<div class="zsd-card-top">' +
+        '<div class="zsd-card-avatar" style="background:rgba(14,165,233,0.15);color:#0ea5e9;">' + esc(it.av) + '</div>' +
+        '<div class="zsd-card-meta"><h4 class="zsd-card-title">' + esc(it.name) + '</h4>' +
+        '<div class="zsd-card-sub"><span class="zsd-tag primary">' + esc(it.spec) + '</span></div></div>' +
+        '<span class="zsd-pill info">#' + (idx + 1) + ' · ' + it.share.toFixed(1) + '%</span></div>' +
+        '<div class="zsd-card-stats">' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.rev) + '</b><span>Revenue</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.paidConsults + ' consults</b><span>Patients</span></div>' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.avgFee) + '</b><span>Avg Fee</span></div>' +
+        '<div class="zsd-stat-item"><b>' + esc(it.reg) + '</b><span>Reg #</span></div>' +
+        '</div>' +
+        '<div style="font-size:10px;display:flex;justify-content:space-between;color:var(--muted-foreground)">' +
+        '<span>Share of Clinic Revenue</span><span>' + it.share.toFixed(1) + '%</span></div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + Math.max(3, it.share) + '%;background:#0ea5e9"></div></div>' +
+        '</div>';
+    }).join('');
+
+    var tableRows = docData.map(function (it, idx) {
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + esc(it.name) + '</b></td>' +
+        '<td><span class="zsd-tag primary">' + esc(it.spec) + '</span></td>' +
+        '<td><code>' + esc(it.reg) + '</code></td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r"><span class="zsd-pill info">' + it.share.toFixed(1) + '%</span></td>' +
+        '<td class="r">' + it.paidConsults + ' / ' + it.consults + '</td>' +
+        '<td class="r">' + inr.format(it.avgFee) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
+      panelHead('Physician Clinical Performance', 'Doctor-level consultation revenue and specialty contribution') +
+      '<div class="zsd-card-grid">' + cardsHtml + '</div></div>' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('Doctor Consultation & Procedure Matrix', 'Full clinical billing breakdown') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>Doctor Name</th><th>Specialty</th><th>Registration</th><th class="r">Revenue</th><th class="r">Share</th><th class="r">Consultations</th><th class="r">Avg Fee</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  function renderCustomerDashboard() {
+    var c = $('#zsd-content');
+    if (!c) return;
+    c.setAttribute('data-view', 'customer');
+
+    var list = rows(S.from, S.to);
+    var p = paid(list);
+    var totPaid = sum(p);
+
+    var custMap = {};
+    list.forEach(function (s) {
+      var name = s.person || 'Anonymous Customer';
+      if (!custMap[name]) {
+        custMap[name] = {
+          name: name,
+          orders: 0,
+          paidOrders: 0,
+          rev: 0,
+          lastDate: safeDay(s.sold_at),
+          city: s.city || 'Bengaluru',
+          topSvcMap: {},
+          topChMap: {}
+        };
+      }
+      custMap[name].orders++;
+      var d = safeDay(s.sold_at);
+      if (d && (!custMap[name].lastDate || d > custMap[name].lastDate)) {
+        custMap[name].lastDate = d;
+      }
+      if (s.source) custMap[name].topSvcMap[s.source] = (custMap[name].topSvcMap[s.source] || 0) + 1;
+      if (s.app_source) custMap[name].topChMap[s.app_source] = (custMap[name].topChMap[s.app_source] || 0) + 1;
+
+      if (s.status === 'Paid') {
+        custMap[name].paidOrders++;
+        custMap[name].rev += num(s.amount);
+      }
+    });
+
+    var custData = Object.keys(custMap).map(function (k) {
+      var it = custMap[k];
+      it.aov = it.paidOrders ? Math.round(it.rev / it.paidOrders) : 0;
+      var topSvc = Object.keys(it.topSvcMap).sort(function (a, b) { return it.topSvcMap[b] - it.topSvcMap[a]; })[0];
+      var topCh = Object.keys(it.topChMap).sort(function (a, b) { return it.topChMap[b] - it.topChMap[a]; })[0];
+      it.topService = topSvc || 'General Care';
+      it.topChannel = topCh || 'Android';
+      it.tier = it.rev >= 30000 ? 'Diamond' : (it.rev >= 15000 ? 'Gold' : (it.rev >= 5000 ? 'Silver' : 'Bronze'));
+      var parts = it.name.split(/\s+/).filter(Boolean);
+      it.av = (parts[0] ? parts[0][0] : 'C') + (parts[1] ? parts[1][0] : '');
+      return it;
+    }).sort(function (a, b) { return b.rev - a.rev; });
+
+    var topCust = custData[0] || { name: 'Customer', rev: 0 };
+    var repeatCusts = custData.filter(function (it) { return it.orders > 1; }).length;
+    var diamondCusts = custData.filter(function (it) { return it.tier === 'Diamond'; });
+    var goldCusts = custData.filter(function (it) { return it.tier === 'Gold'; });
+    var silverCusts = custData.filter(function (it) { return it.tier === 'Silver'; });
+    var bronzeCusts = custData.filter(function (it) { return it.tier === 'Bronze'; });
+
+    var diamondRev = sum(diamondCusts.map(function (c) { return { amount: c.rev }; }));
+    var goldRev = sum(goldCusts.map(function (c) { return { amount: c.rev }; }));
+    var silverRev = sum(silverCusts.map(function (c) { return { amount: c.rev }; }));
+    var bronzeRev = sum(bronzeCusts.map(function (c) { return { amount: c.rev }; }));
+
+    var kpiCards = [
+      ['Total Unique Clients', custData.length + ' customers', '<div class="zsd-delta">' + repeatCusts + ' repeat spenders (' + (custData.length ? (repeatCusts / custData.length * 100).toFixed(1) : 0) + '%)</div>'],
+      ['Top Customer Spend', topCust.name, '<div class="zsd-delta up">' + inr.format(topCust.rev) + ' lifetime value</div>'],
+      ['Avg Spend per Client', inr.format(custData.length ? Math.round(totPaid / custData.length) : 0), '<div class="zsd-delta">across all cohorts</div>'],
+      ['VIP Tier Revenue', inr.format(diamondRev + goldRev), '<div class="zsd-delta">' + (totPaid ? ((diamondRev + goldRev) / totPaid * 100).toFixed(1) : 0) + '% from VIP Diamond & Gold</div>']
+    ];
+
+    var tiersHtml =
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">' +
+      '<div class="zsd-entity-card" style="padding:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;"><b>💎 Diamond</b><span class="zsd-pill zsd-tier-diamond">' + diamondCusts.length + ' clients</span></div>' +
+      '<div style="font-size:16px;font-weight:700;margin-top:6px;font-family:IBM Plex Mono,monospace;">' + inr.format(diamondRev) + '</div>' +
+      '<div style="font-size:10px;color:var(--muted-foreground)">Spend &gt; ₹30,000</div></div>' +
+      '<div class="zsd-entity-card" style="padding:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;"><b>🥇 Gold</b><span class="zsd-pill zsd-tier-gold">' + goldCusts.length + ' clients</span></div>' +
+      '<div style="font-size:16px;font-weight:700;margin-top:6px;font-family:IBM Plex Mono,monospace;">' + inr.format(goldRev) + '</div>' +
+      '<div style="font-size:10px;color:var(--muted-foreground)">Spend ₹15K–₹30K</div></div>' +
+      '<div class="zsd-entity-card" style="padding:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;"><b>🥈 Silver</b><span class="zsd-pill zsd-tier-silver">' + silverCusts.length + ' clients</span></div>' +
+      '<div style="font-size:16px;font-weight:700;margin-top:6px;font-family:IBM Plex Mono,monospace;">' + inr.format(silverRev) + '</div>' +
+      '<div style="font-size:10px;color:var(--muted-foreground)">Spend ₹5K–₹15K</div></div>' +
+      '<div class="zsd-entity-card" style="padding:12px;">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;"><b>🥉 Bronze</b><span class="zsd-pill zsd-tier-bronze">' + bronzeCusts.length + ' clients</span></div>' +
+      '<div style="font-size:16px;font-weight:700;margin-top:6px;font-family:IBM Plex Mono,monospace;">' + inr.format(bronzeRev) + '</div>' +
+      '<div style="font-size:10px;color:var(--muted-foreground)">Spend &lt; ₹5,000</div></div>' +
+      '</div>';
+
+    var cardsHtml = custData.slice(0, 6).map(function (it, idx) {
+      var tierClass = 'zsd-tier-' + it.tier.toLowerCase();
+      return '<div class="zsd-entity-card">' +
+        '<div class="zsd-card-top">' +
+        '<div class="zsd-card-avatar">' + esc(it.av) + '</div>' +
+        '<div class="zsd-card-meta"><h4 class="zsd-card-title">' + esc(it.name) + '</h4>' +
+        '<div class="zsd-card-sub">' + esc(it.city) + ' · Last: ' + esc(shortDay(it.lastDate)) + '</div></div>' +
+        '<span class="zsd-pill ' + tierClass + '">#' + (idx + 1) + ' · ' + it.tier + '</span></div>' +
+        '<div class="zsd-card-stats">' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.rev) + '</b><span>Lifetime Spend</span></div>' +
+        '<div class="zsd-stat-item"><b>' + it.paidOrders + ' orders</b><span>Frequency</span></div>' +
+        '<div class="zsd-stat-item"><b>' + inr.format(it.aov) + '</b><span>Avg Ticket</span></div>' +
+        '<div class="zsd-stat-item"><b>' + esc(it.topChannel) + '</b><span>Channel</span></div>' +
+        '</div>' +
+        '<div style="font-size:10px;color:var(--muted-foreground);display:flex;justify-content:space-between;">' +
+        '<span>Favorite: ' + esc(it.topService) + '</span><span>' + (it.orders > 1 ? '🔁 Repeat Client' : '🌱 First Order') + '</span></div>' +
+        '</div>';
+    }).join('');
+
+    var tableRows = custData.map(function (it, idx) {
+      var tierClass = 'zsd-tier-' + it.tier.toLowerCase();
+      return '<tr>' +
+        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
+        '<td><b>' + esc(it.name) + '</b></td>' +
+        '<td class="r"><b>' + inr.format(it.rev) + '</b></td>' +
+        '<td class="r">' + it.paidOrders + ' / ' + it.orders + '</td>' +
+        '<td class="r">' + inr.format(it.aov) + '</td>' +
+        '<td>' + esc(it.topService) + '</td>' +
+        '<td>' + esc(it.city) + '</td>' +
+        '<td>' + esc(it.topChannel) + '</td>' +
+        '<td><span class="zsd-pill ' + tierClass + '">' + it.tier + '</span></td>' +
+        '<td>' + esc(shortDay(it.lastDate)) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    c.innerHTML =
+      renderKpiCards(kpiCards) +
+      tiersHtml +
+      '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
+      panelHead('High-Value Client Spotlight', 'Top spending client profiles and behavioral loyalty') +
+      '<div class="zsd-card-grid">' + cardsHtml + '</div></div>' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('Customer Lifetime Revenue Leaderboard', 'Full client directory with lifetime spend & order counts') +
+      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
+      '<th>Rank</th><th>Customer Name</th><th class="r">Total Spend</th><th class="r">Orders</th><th class="r">AOV</th><th>Favorite Service</th><th>City</th><th>Channel</th><th>Tier</th><th>Last Active</th>' +
+      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+  }
+
+  /* ---------- open / close ---------- */
+  function tabFromText(text) {
+    if (!text) return null;
+    var s = text.trim().toLowerCase();
+    if (s.indexOf('revenue by channel') >= 0 || s === 'channel') return 'channel';
+    if (s.indexOf('revenue by location') >= 0 || s.indexOf('geographic sales') >= 0 || s === 'location') return 'location';
+    if (s.indexOf('revenue by product') >= 0 || s.indexOf('top products') >= 0 || s === 'product') return 'product';
+    if (s.indexOf('revenue by employee') >= 0 || s.indexOf('top employees') >= 0 || s === 'employee') return 'employee';
+    if (s.indexOf('revenue by doctor') >= 0 || s.indexOf('top doctors') >= 0 || s === 'doctor') return 'doctor';
+    if (s.indexOf('revenue by customer') >= 0 || s.indexOf('customer dashboard') >= 0 || s === 'customer') return 'customer';
+    if (s.indexOf('sales dashboard') >= 0) return 'sales';
+    return null;
+  }
+
+  function tabFromHash(hash) {
+    if (!hash) return null;
+    if (hash === '#revenue-by-channel') return 'channel';
+    if (hash === '#revenue-by-location') return 'location';
+    if (hash === '#revenue-by-product') return 'product';
+    if (hash === '#revenue-by-employee') return 'employee';
+    if (hash === '#revenue-by-doctor') return 'doctor';
+    if (hash === '#revenue-by-customer') return 'customer';
+    if (hash === '#sales-dashboard') return 'sales';
+    return null;
+  }
+
+  function hashFromTab(tab) {
+    var t = TABS.find(function (it) { return it.id === tab; });
+    return t ? t.hash : '#sales-dashboard';
+  }
+
+  function markSidebar(on, tab) {
+    var targetTab = tab || S.tab || 'sales';
+    document.querySelectorAll('.sidebar-scope li button, .sidebar-scope button, .sidebar-scope a').forEach(function (b) {
+      var bTab = tabFromText(b.textContent ? b.textContent.trim() : '');
+      if (bTab) {
+        b.classList.toggle('zsd-active', on && bTab === targetTab);
+      }
+    });
+  }
+
+  function switchTab(newTab) {
+    if (!newTab) return;
+    S.tab = newTab;
+    S.page = 1;
+    var targetHash = hashFromTab(newTab);
+    try {
+      if (location.hash !== targetHash) {
+        history.pushState(null, '', targetHash);
+      }
+    } catch (e) { }
+    markSidebar(true, newTab);
+    renderAll();
+  }
+
+  function open(tab) {
+    if (tab && TABS.some(function (t) { return t.id === tab; })) {
+      S.tab = tab;
+    } else if (!S.tab) {
+      S.tab = tabFromHash(location.hash) || 'sales';
+    }
+    if (!root) build();
+    else if (!document.body.contains(root)) document.body.appendChild(root);
+    S.open = true;
+    root.classList.add('zsd-open');
+    root.scrollTop = 0;
+    var targetHash = hashFromTab(S.tab);
+    try {
+      if (location.hash !== targetHash) {
+        history.pushState(null, '', targetHash);
+      }
+    } catch (e) { }
+
+    // Clean up any Radix placeholder dialog / lock attributes
+    try {
+      document.querySelectorAll('[role="dialog"]').forEach(function (d) {
+        if (d.closest('#zsd-root')) return;
+        var btn = d.querySelector('button[aria-label*="close" i], button:last-child');
+        if (btn) {
+          try { btn.click(); } catch (err) {}
+        }
+        try { d.remove(); } catch (err) {}
+      });
+      document.querySelectorAll('[data-radix-focus-guard], [data-radix-popper-content-wrapper]').forEach(function (g) {
+        try { g.remove(); } catch (err) {}
+      });
+      document.body.style.pointerEvents = '';
+      document.body.style.overflow = '';
+      document.body.removeAttribute('data-scroll-locked');
+    } catch (e) { }
+
+    setTimeout(function () { markSidebar(true, S.tab); }, 0);
+    if (S.loaded) {
+      renderAll();
+    }
+    load();
+  }
+
+  function close() {
+    if (!root || !S.open) return;
+    S.open = false;
+    root.classList.remove('zsd-open');
+    hideTip();
+    markSidebar(false);
+    try {
+      if (location.hash.startsWith('#revenue-by-') || location.hash === '#sales-dashboard') {
+        history.pushState(null, '', location.pathname + location.search);
+      }
+    } catch (e) { }
+  }
+
+  window.addEventListener('zenve:open-sales-dashboard', function (e) {
+    var tab = (e && e.detail && e.detail.tab) ? e.detail.tab : 'sales';
+    open(tab);
+  });
+  window.ZenveSalesDashboard = { open: open, close: close, switchTab: switchTab, reload: load };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && S.open) close();
+  });
+
+  // Global click delegator (capture phase to intercept before React)
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+
+    // 1. Any button or link with "Sales Dashboard", "Revenue by Channel", etc.
+    var item = t.closest('button, [data-go], a, [role="button"]');
+    if (item && item.textContent) {
+      var tab = tabFromText(item.textContent.trim());
+      if (!tab) {
+        // If clicking a "View all" button, check parent card/panel title
+        var card = t.closest('article, .panel, [data-panel]');
+        var head = card ? card.querySelector('h3, h2, .font-display') : null;
+        if (head && head.textContent && item.textContent.trim().toLowerCase().indexOf('view all') >= 0) {
+          tab = tabFromText(head.textContent.trim());
+        }
+      }
+      if (tab) {
+        if (!t.closest('#zsd-root')) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          open(tab);
+          return;
+        }
+      }
+    }
+
+    // 2. Direct click on card headings like "Revenue by Channel", "Geographic Sales", etc.
+    var heading = t.closest('h1, h2, h3, h4');
+    if (heading && heading.textContent && !t.closest('#zsd-root')) {
+      var hTab = tabFromText(heading.textContent.trim());
+      if (hTab) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        open(hTab);
+        return;
+      }
+    }
+
+    // 3. Element explicitly targeted for sales dashboard
+    if (t.closest('[data-open-sales-dashboard]')) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      open('sales');
+      return;
+    }
+
+    if (!S.open) return;
+
+    // 4. Inside the sales dashboard itself, do NOT close
+    if (t.closest('#zsd-root')) return;
+
+    // 5. Sidebar interactions
+    var b = t.closest('.sidebar-scope button, .sidebar-scope a');
+    if (!b) return;
+
+    // If clicking menu search or accordion toggle (with aria-expanded), do NOT close
+    if (b.getAttribute('aria-label') === 'Search menu') return;
+    if (b.getAttribute('aria-expanded') !== null) return;
+    if (b.closest('[role="dialog"]')) return;
+    if (b.textContent && tabFromText(b.textContent.trim())) return;
+
+    // Navigating to other pages closes the sales dashboard
+    close();
+  }, true);
+
+  // Prevent pointerdown from activating synthetic focus locks on revenue sidebar items
+  document.addEventListener('pointerdown', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var item = t.closest('.sidebar-scope button, .sidebar-scope a');
+    if (item && item.textContent) {
+      var tab = tabFromText(item.textContent.trim());
+      if (tab) {
+        e.stopPropagation();
+      }
+    }
+  }, true);
+
+  window.addEventListener('hashchange', function () {
+    var tab = tabFromHash(location.hash);
+    if (tab) {
+      if (!S.open) open(tab);
+      else switchTab(tab);
+    } else if (S.open) {
+      close();
+    }
+  });
+
+  // Check initial hash
+  var initialTab = tabFromHash(location.hash);
+  if (initialTab) {
+    var go = function () { setTimeout(function () { open(initialTab); }, 400); };
+    if (document.readyState === 'complete') go();
+    else window.addEventListener('load', go);
+  }
+
+  /* ---------- Data Pipeline Modal & Ingestion Controller ---------- */
+  var pipelineState = {
+    fileData: null,
+    filename: '',
+    parsedRows: []
+  };
+
+  function parseCsvPreview(text) {
+    if (!text) return [];
+    text = text.replace(/^\ufeff/, '');
+    var rawLines = text.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean);
+    if (!rawLines.length) return [];
+
+    var first = rawLines[0];
+    var delim = '\t';
+    if (first.indexOf('\t') >= 0) delim = '\t';
+    else if (first.indexOf(';') >= 0 && first.indexOf(',') < 0) delim = ';';
+    else delim = ',';
+
+    function parseLine(line) {
+      var entries = [];
+      var cur = '', inQuotes = false;
+      for (var i = 0; i < line.length; i++) {
+        var ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+          else { inQuotes = !inQuotes; }
+        } else if (ch === delim && !inQuotes) {
+          entries.push(cur.trim());
+          cur = '';
+        } else {
+          cur += ch;
+        }
+      }
+      entries.push(cur.trim());
+      return entries;
+    }
+
+    var headers = parseLine(rawLines[0]).map(function (h) {
+      return h.toLowerCase().replace(/[^a-z0-9]/g, '');
+    });
+
+    var rows = [];
+    for (var i = 1; i < rawLines.length; i++) {
+      var parts = parseLine(rawLines[i]);
+      if (!parts.length || (parts.length === 1 && !parts[0])) continue;
+      var obj = {};
+      headers.forEach(function (h, idx) {
+        obj[h] = parts[idx] !== undefined ? parts[idx] : '';
+      });
+
+      var rawDate = obj.date || obj.soldat || obj.orderdate || obj.createdat || obj.datetime || obj.timestamp || obj.txndate || '';
+      var rawAmt = obj.amount || obj.revenue || obj.totalamount || obj.total || obj.price || obj.netamount || obj.grandtotal || obj.sales || '0';
+      var amt = parseFloat(String(rawAmt).replace(/[^0-9.-]/g, '')) || 0;
+
+      rows.push({
+        order_id: obj.orderid || obj.order || obj.id || obj.transactionref || obj.transref || obj.ref || ('ZV-' + (70000 + i)),
+        sold_at: safeDay(rawDate) || new Date().toISOString().slice(0, 10),
+        person: obj.person || obj.customer || obj.customername || obj.patient || obj.patientname || obj.client || obj.clientname || obj.name || obj.user || ('Customer ' + i),
+        source: obj.service || obj.servicename || obj.source || obj.category || obj.product || obj.productname || obj.item || obj.itemname || 'General Care',
+        city: obj.city || obj.location || obj.branch || obj.center || obj.region || obj.clinic || 'Bengaluru',
+        channel: obj.channel || obj.app || obj.appsource || obj.platform || obj.medium || 'Android',
+        status: obj.status || obj.orderstatus || obj.paymentstatus || obj.state || 'Paid',
+        amount: amt
+      });
+    }
+    return rows;
+  }
+
+  function wirePipelineModal() {
+    var modal = $('#zsd-pipeline-modal');
+    var openBtn = $('#zsd-pipeline-open');
+    var closeBtn = $('#zsd-pipe-close');
+    var cancelBtn = $('#zsd-pipe-cancel');
+    var dropzone = $('#zsd-dropzone');
+    var fileInput = $('#zsd-file-input');
+    var browseBtn = $('#zsd-pipe-browse');
+    var sampleBtn = $('#zsd-pipe-load-sample');
+    var submitBtn = $('#zsd-pipe-submit');
+    var resetDbBtn = $('#zsd-pipe-reset-db');
+    var previewWrap = $('#zsd-pipe-preview-wrap');
+    var previewStats = $('#zsd-pipe-preview-stats');
+    var previewTbody = $('#zsd-pipe-preview-table tbody');
+    var alertBox = $('#zsd-pipe-alert');
+
+    function showAlert(msg, type) {
+      if (!alertBox) return;
+      alertBox.className = 'zsd-notice-banner ' + (type || 'info');
+      alertBox.textContent = msg;
+      alertBox.style.display = 'block';
+    }
+    function hideAlert() {
+      if (alertBox) alertBox.style.display = 'none';
+    }
+
+    function openModal() {
+      if (!modal) return;
+      modal.style.display = 'flex';
+      hideAlert();
+    }
+    function closeModal() {
+      if (!modal) return;
+      modal.style.display = 'none';
+    }
+
+    if (openBtn) openBtn.onclick = openModal;
+    if (closeBtn) closeBtn.onclick = closeModal;
+    if (cancelBtn) cancelBtn.onclick = closeModal;
+    if (modal) {
+      modal.onclick = function (e) {
+        if (e.target === modal) closeModal();
+      };
+    }
+
+    function processContent(content, filename) {
+      pipelineState.fileData = content;
+      pipelineState.filename = filename || 'dataset.csv';
+      hideAlert();
+
+      var rows = [];
+      try {
+        if (content.trim().startsWith('{') || content.trim().startsWith('[')) {
+          var j = JSON.parse(content);
+          var list = Array.isArray(j) ? j : (j.sales || j.rows || j.data || []);
+          rows = list.map(function (it, idx) {
+            return {
+              order_id: it.order_id || it.order || ('ZV-' + (70000 + idx)),
+              sold_at: it.sold_at || it.date || new Date().toISOString(),
+              person: it.person || it.customer || 'Customer ' + idx,
+              source: it.source || it.service || 'Service',
+              city: it.city || 'Bengaluru',
+              channel: it.channel || it.app_source || 'Android',
+              status: it.status || 'Paid',
+              amount: num(it.amount)
+            };
+          });
+        } else {
+          rows = parseCsvPreview(content);
+        }
+      } catch (err) {
+        showAlert('Could not parse file: ' + err.message, 'error');
+        return;
+      }
+
+      if (!rows.length) {
+        showAlert('No valid rows found in file.', 'error');
+        return;
+      }
+
+      pipelineState.parsedRows = rows;
+      var totalRev = rows.reduce(function (a, r) { return a + (r.amount || 0); }, 0);
+      var dates = rows.map(function (r) { return safeDay(r.sold_at); }).filter(Boolean).sort();
+      var dateRange = dates.length ? (dates[0] + ' → ' + dates[dates.length - 1]) : 'N/A';
+
+      if (previewStats) {
+        previewStats.textContent = rows.length + ' rows · ' + dateRange + ' · Total: ' + inr.format(totalRev);
+      }
+
+      if (previewTbody) {
+        previewTbody.innerHTML = rows.slice(0, 5).map(function (r) {
+          return '<tr><td><b>' + esc(r.order_id) + '</b></td>' +
+            '<td>' + esc(safeDay(r.sold_at)) + '</td>' +
+            '<td>' + esc(r.person) + '</td>' +
+            '<td>' + esc(r.source) + '</td>' +
+            '<td>' + esc(r.city) + '</td>' +
+            '<td>' + esc(r.channel) + '</td>' +
+            '<td><span class="zsd-badge ' + esc(r.status) + '">' + esc(r.status) + '</span></td>' +
+            '<td class="r"><b>' + inr.format(r.amount) + '</b></td></tr>';
+        }).join('');
+      }
+
+      if (previewWrap) previewWrap.style.display = 'block';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Ingest & Update Dashboard (' + rows.length + ' rows)';
+      }
+    }
+
+    if (browseBtn && fileInput) {
+      browseBtn.onclick = function () { fileInput.click(); };
+      fileInput.onchange = function (e) {
+        var file = e.target.files && e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          processContent(evt.target.result, file.name);
+        };
+        reader.readAsText(file);
+      };
+    }
+
+    if (dropzone) {
+      ['dragenter', 'dragover'].forEach(function (evtName) {
+        dropzone.addEventListener(evtName, function (e) {
+          e.preventDefault();
+          dropzone.classList.add('dragover');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (evtName) {
+        dropzone.addEventListener(evtName, function (e) {
+          e.preventDefault();
+          dropzone.classList.remove('dragover');
+        });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        var file = e.dataTransfer.files && e.dataTransfer.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          processContent(evt.target.result, file.name);
+        };
+        reader.readAsText(file);
+      });
+    }
+
+    if (sampleBtn) {
+      sampleBtn.onclick = function () {
+        showAlert('Fetching sample Q4 sales dataset...', 'info');
+        fetch('/assets/sample-q4-sales.csv')
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.text();
+          })
+          .then(function (txt) {
+            processContent(txt, 'sample-q4-sales.csv');
+            showAlert('Loaded 20 sample Q4 sales records. Select Ingestion Mode and click Ingest.', 'info');
+          })
+          .catch(function (err) {
+            showAlert('Could not load sample: ' + err.message, 'error');
+          });
+      };
+    }
+
+    if (submitBtn) {
+      submitBtn.onclick = function () {
+        if (!pipelineState.fileData) return;
+        var modeRadio = document.querySelector('input[name="zsd-pipe-mode"]:checked');
+        var mode = modeRadio ? modeRadio.value : 'replace';
+
+        submitBtn.disabled = true;
+        showAlert('Ingesting dataset (' + mode + ' mode) into database & updating dashboard...', 'info');
+
+        var formData = new FormData();
+        var blob = new Blob([pipelineState.fileData], { type: 'text/csv;charset=utf-8' });
+        formData.append('file', blob, pipelineState.filename || 'dataset.csv');
+
+        fetch('/api/v1/pipeline/upload?mode=' + encodeURIComponent(mode), {
+          method: 'POST',
+          body: formData
+        })
+          .then(function (r) {
+            if (!r.ok) return r.json().then(function (j) { throw new Error(j.error || ('HTTP ' + r.status)); });
+            return r.json();
+          })
+          .then(function (res) {
+            if (!res.success) throw new Error(res.error || 'Failed to ingest data');
+            showAlert('✓ ' + (res.message || 'Ingestion complete!'), 'success');
+            submitBtn.textContent = '✓ Updated!';
+
+            // Dynamically refresh the dashboard with the newly ingested dataset
+            if (res.data) {
+              applyData(res.data, true, true);
+            } else {
+              load();
+            }
+
+            setTimeout(function () {
+              closeModal();
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Ingest & Update Dashboard';
+            }, 900);
+          })
+          .catch(function (err) {
+            showAlert('Error ingesting dataset: ' + err.message, 'error');
+            submitBtn.disabled = false;
+          });
+      };
+    }
+
+    if (resetDbBtn) {
+      resetDbBtn.onclick = function () {
+        if (!confirm('Are you sure you want to restore the default 105 demo transactions and 30 daily metrics?')) return;
+        showAlert('Resetting database to factory baseline...', 'info');
+        fetch('/api/v1/pipeline/reset', { method: 'POST' })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.success) throw new Error(res.error || 'Reset failed');
+            showAlert('✓ ' + (res.message || 'Database reset successfully.'), 'success');
+            if (res.data) {
+              applyData(res.data, true, true);
+            } else {
+              load();
+            }
+            setTimeout(closeModal, 800);
+          })
+          .catch(function (err) {
+            showAlert('Reset error: ' + err.message, 'error');
+          });
+      };
+    }
+  }
+
+  // Auto-wire helper in main UI: when section #daily exists, make its header open the Sales Dashboard
+  function wireMainPage() {
+    var dailySec = document.getElementById('daily');
+    if (dailySec) {
+      var pulse = dailySec.querySelector('article');
+      if (pulse && !pulse.hasAttribute('data-zsd-wired')) {
+        pulse.setAttribute('data-zsd-wired', 'true');
+        pulse.style.cursor = 'pointer';
+        pulse.title = 'Click to open full interactive Sales Dashboard';
+        var badge = document.createElement('div');
+        badge.className = 'zsd-pulse-badge';
+        badge.innerHTML = '⚡ Open Interactive Sales Dashboard →';
+        badge.style.cssText = 'font-size:11px;font-weight:600;color:var(--primary);margin-top:6px;cursor:pointer;';
+        pulse.querySelector('.flex')?.appendChild(badge) || pulse.appendChild(badge);
+        pulse.addEventListener('click', function (e) {
+          if (!e.target.closest('button')) open();
+        });
+      }
+    }
+  }
+
+  if (document.readyState === 'complete') setTimeout(wireMainPage, 1000);
+  else window.addEventListener('load', function () { setTimeout(wireMainPage, 1000); });
+})();

@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS daily_metrics (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  business_date DATE NOT NULL UNIQUE,
+  sales_total DECIMAL(14,2) NOT NULL DEFAULT 0,
+  android_downloads INT NOT NULL DEFAULT 0,
+  ios_downloads INT NOT NULL DEFAULT 0
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS sales (
+  seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+  sale_id VARCHAR(64) NOT NULL UNIQUE,
+  transaction_ref VARCHAR(64) NOT NULL,
+  sold_at VARCHAR(40) NOT NULL,
+  source VARCHAR(120) NOT NULL,
+  person VARCHAR(160) NOT NULL,
+  city VARCHAR(80) NOT NULL,
+  amount DECIMAL(14,2) NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'Paid',
+  app_source VARCHAR(20) NOT NULL DEFAULT 'Android',
+  is_demo TINYINT(1) NOT NULL DEFAULT 0,
+  INDEX idx_sales_sold_at (sold_at)
+) ENGINE=InnoDB;
