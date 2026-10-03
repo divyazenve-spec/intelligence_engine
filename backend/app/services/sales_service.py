@@ -1,86 +1,68 @@
-"""Sales data access service (SQLAlchemy)."""
+"""Sales data service: read / write sales & daily_metrics via SQLAlchemy."""
+from __future__ import annotations
+
+import json
 import random
-import time
-from datetime import date
+from datetime import datetime
+from pathlib import Path
 
 from sqlalchemy.orm import Session
 
 from app.models import DailyMetric, Sale
-from app.schemas.sales import sale_fields, to_float
+from app.schemas.sales import metric_to_dict, sale_to_dict
+
+# Path to the bundled sample fallback JSON (shipped with the frontend assets)
+_SAMPLE_JSON = (
+    Path(__file__).resolve().parents[3]
+    / "frontend" / "public" / "assets" / "sample-fallback.json"
+)
+
+
+def _load_sample_fallback() -> dict:
+    """Load the bundled sample data shipped with the frontend."""
+    try:
+        with open(_SAMPLE_JSON, encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return {"sales": [], "metrics": []}
 
 
 def load_all(db: Session) -> dict:
-    """Return all sales and daily metrics ordered for the dashboard."""
-    metrics = db.query(DailyMetric).order_by(DailyMetric.business_date).all()
-    sales = db.query(Sale).order_by(Sale.sold_at.desc(), Sale.seq.desc()).all()
-    return {
-        "metrics": [m.to_dict() for m in metrics],
-        "sales": [s.to_dict() for s in sales],
-        "mode": "live",
-    }
+    """Return all sales and daily_metrics as plain dicts."""
+    sales = [sale_to_dict(s) for s in db.query(Sale).order_by(Sale.sold_at.desc()).all()]
+    metrics = [metric_to_dict(m) for m in db.query(DailyMetric).order_by(DailyMetric.business_date).all()]
+
+    # If no data yet, return the bundled sample
+    if not sales:
+        return _load_sample_fallback()
+
+    return {"sales": sales, "metrics": metrics}
 
 
-def _apply_metric(db: Session, business_date: str, status: str, amount: float, android: int, ios: int):
-    """Update or create a DailyMetric row for the given date."""
-    bdate = date.fromisoformat(business_date)
-    metric = db.query(DailyMetric).filter(DailyMetric.business_date == bdate).first()
-    if metric is None:
-        metric = DailyMetric(
-            business_date=bdate,
-            sales_total=amount if status == "Paid" else 0,
-            android_downloads=android,
-            ios_downloads=ios,
-        )
-        db.add(metric)
-    else:
-        if status == "Paid":
-            metric.sales_total = float(metric.sales_total) + amount
-        metric.android_downloads += android
-        metric.ios_downloads += ios
+def save_sale(sale_data: dict, db: Session) -> dict:
+    """Upsert a single sale record (insert or update by sale_id)."""
+    sale_id = sale_data.get("sale_id") or f"sale-{int(datetime.now().timestamp()*1000)}-{random.randint(100,999)}"
 
+    existing = db.query(Sale).filter(Sale.sale_id == sale_id).first()
+    if existing:
+        for field in ("transaction_ref", "sold_at", "source", "person", "city", "amount", "status", "app_source"):
+            if field in sale_data:
+                setattr(existing, field, sale_data[field])
+        db.commit()
+        return {"success": True, "sale_id": sale_id, "action": "updated"}
 
-def _create(db: Session, fields: dict, android: int, ios: int, spread: int) -> Sale:
-    sale_id = f"sale-{int(time.time() * 1000)}-{random.randint(0, spread - 1)}"
-    sale = Sale(sale_id=sale_id, is_demo=False, **fields)
+    sale = Sale(
+        sale_id=sale_id,
+        transaction_ref=sale_data.get("transaction_ref", f"ZV-{random.randint(10000,99999)}"),
+        sold_at=sale_data.get("sold_at", datetime.now().strftime("%Y-%m-%dT%H:%M:%S")),
+        source=sale_data.get("source", "General Care"),
+        person=sale_data.get("person", "Customer"),
+        city=sale_data.get("city", "Bengaluru"),
+        amount=float(sale_data.get("amount", 0)),
+        status=sale_data.get("status", "Paid"),
+        app_source=sale_data.get("app_source", "Android"),
+        is_demo=int(sale_data.get("is_demo", 0)),
+    )
     db.add(sale)
-    db.flush()  # get seq assigned without committing
-    business_date = (sale.sold_at or "")[:10]
-    if business_date:
-        _apply_metric(db, business_date, sale.status, float(sale.amount), android, ios)
-    return sale
-
-
-def save_sale(data: dict, db: Session) -> dict:
-    """Persist a single new sale and update daily metrics."""
-    fields = sale_fields(data, "General Pet Care", "Anonymous Customer")
-    try:
-        sale = _create(
-            db, fields,
-            int(to_float(data.get("androidDownloads"))),
-            int(to_float(data.get("iosDownloads"))),
-            1000,
-        )
-        db.commit()
-        db.refresh(sale)
-        return {"success": True, "sale": sale.to_dict()}
-    except Exception:
-        db.rollback()
-        raise
-
-
-def import_rows(rows: list, db: Session) -> dict:
-    """Bulk-import sale rows and update daily metrics."""
-    try:
-        for r in rows:
-            _create(
-                db,
-                sale_fields(r, "General Healthcare", "Customer"),
-                int(to_float(r.get("androidDownloads"))),
-                int(to_float(r.get("iosDownloads"))),
-                10000,
-            )
-        db.commit()
-        return {"success": True, "count": len(rows)}
-    except Exception:
-        db.rollback()
-        raise
+    db.commit()
+    return {"success": True, "sale_id": sale_id, "action": "created"}

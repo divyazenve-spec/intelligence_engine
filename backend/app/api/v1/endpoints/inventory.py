@@ -1,71 +1,47 @@
-"""Inventory endpoints: list and upsert inventory items.
+"""Inventory endpoints — load and save inventory data (JSON blob in DB or file)."""
+from __future__ import annotations
 
-Note: inventory is currently held in-process memory (no DB table yet).
-"""
 import json
-from typing import Any, Optional
+from pathlib import Path
 
-from fastapi import APIRouter, Request
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from fastapi import Depends, Request
+from sqlalchemy.orm import Session
 
-router = APIRouter()
+from app.api.deps import get_db
 
-# In-process store (same as the original Django version)
-INVENTORY_ITEMS: list[dict] = [
-    {"id": 1, "sku": "ZV-CAN-01", "name": "Royal Canin Puppy Food", "category": "Pet Products", "quantity": 24, "reorder_level": 30, "unit_price": 2850.0},
-    {"id": 2, "sku": "ZV-BRA-02", "name": "Bravecto Flea & Tick 20-40kg", "category": "Pharmacy", "quantity": 48, "reorder_level": 20, "unit_price": 1950.0},
-    {"id": 3, "sku": "ZV-PED-03", "name": "Pedigree Adult Dry Food 10kg", "category": "Pet Products", "quantity": 85, "reorder_level": 25, "unit_price": 1400.0},
-    {"id": 4, "sku": "ZV-VAC-04", "name": "Zoetis Vanguard 7 Vaccine", "category": "Medicines", "quantity": 62, "reorder_level": 15, "unit_price": 850.0},
-    {"id": 5, "sku": "ZV-CON-05", "name": "Veterinary Clinical Tele-Kit", "category": "Veterinary Services", "quantity": 110, "reorder_level": 30, "unit_price": 650.0},
-    {"id": 6, "sku": "ZV-MED-06", "name": "Pet Pharmacy Multi-Vitamins", "category": "Pharmacy", "quantity": 9, "reorder_level": 20, "unit_price": 420.0},
-]
+# Simple file-based inventory persistence (no dedicated table needed)
+_INVENTORY_FILE = Path(__file__).resolve().parents[5] / "frontend" / "public" / "assets" / "inventory.json"
 
 
-class InventoryItemIn(BaseModel):
-    sku: Optional[str] = ""
-    name: Optional[str] = "New Product"
-    category: Optional[str] = "General"
-    quantity: Optional[int] = 0
-    reorderLevel: Optional[int] = 10
-    unitPrice: Optional[float] = 0.0
+def _load_inventory_data() -> dict:
+    try:
+        if _INVENTORY_FILE.exists():
+            with open(_INVENTORY_FILE, encoding="utf-8") as fh:
+                return json.load(fh)
+    except Exception:
+        pass
+    return {"items": [], "lastUpdated": None}
 
 
-class InventoryBody(BaseModel):
-    data: Optional[InventoryItemIn] = None
+def _save_inventory_data(data: dict) -> None:
+    try:
+        _INVENTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(_INVENTORY_FILE, "w", encoding="utf-8") as fh:
+            json.dump(data, fh, ensure_ascii=False, indent=2)
+    except Exception as exc:
+        raise RuntimeError(f"Failed to save inventory: {exc}") from exc
 
 
-@router.get("")
-@router.post("")
-def load_inventory():
-    """Return the full inventory list."""
-    return {"items": INVENTORY_ITEMS, "mode": "live"}
+async def load_inventory(request: Request, db: Session = Depends(get_db)):
+    """Return current inventory data."""
+    return _load_inventory_data()
 
 
-@router.post("/save")
-def save_inventory(body: InventoryBody):
-    """Upsert an inventory item by SKU."""
-    data = body.data
-    if not data:
-        return JSONResponse({"error": "No data provided"}, status_code=400)
-    sku = (data.sku or "").strip()
-    existing = next((item for item in INVENTORY_ITEMS if item["sku"].lower() == sku.lower()), None)
-    if existing:
-        existing["name"] = data.name or existing["name"]
-        existing["category"] = data.category or existing["category"]
-        existing["quantity"] = data.quantity if data.quantity is not None else existing["quantity"]
-        existing["reorder_level"] = data.reorderLevel if data.reorderLevel is not None else existing["reorder_level"]
-        existing["unit_price"] = data.unitPrice if data.unitPrice is not None else existing["unit_price"]
-        return {"success": True, "item": existing}
-
-    new_item = {
-        "id": len(INVENTORY_ITEMS) + 1,
-        "sku": sku or f"ZV-{len(INVENTORY_ITEMS) + 1:03d}",
-        "name": data.name,
-        "category": data.category,
-        "quantity": data.quantity,
-        "reorder_level": data.reorderLevel,
-        "unit_price": data.unitPrice,
-    }
-    INVENTORY_ITEMS.append(new_item)
-    return {"success": True, "item": new_item}
+async def save_inventory(request: Request, db: Session = Depends(get_db)):
+    """Persist inventory data sent as JSON body."""
+    try:
+        body = await request.json()
+    except Exception:
+        return {"success": False, "error": "Invalid JSON body."}
+    _save_inventory_data(body)
+    return {"success": True}

@@ -1,4 +1,6 @@
-"""SQLAlchemy engine, session factory, and FastAPI dependency."""
+"""SQLAlchemy engine, session factory, and FastAPI dependency (SQLite backend)."""
+from pathlib import Path
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
@@ -6,9 +8,8 @@ from app.core.config import settings
 
 engine = create_engine(
     settings.database_url,
+    connect_args={"check_same_thread": False},  # required for SQLite + FastAPI
     pool_pre_ping=True,
-    pool_recycle=3600,
-    connect_args={"charset": "utf8mb4"},
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

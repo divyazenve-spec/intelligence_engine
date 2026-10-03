@@ -1,2 +1,5 @@
-from .sale import Sale  # noqa: F401
-from .metric import DailyMetric  # noqa: F401
+"""ORM models package — re-exports for convenience."""
+from app.models.metric import DailyMetric
+from app.models.sale import Sale
+
+__all__ = ["Sale", "DailyMetric"]

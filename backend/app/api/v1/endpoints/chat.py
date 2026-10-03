@@ -1,24 +1,18 @@
-"""AI trend brief endpoint."""
-from typing import Any, Optional
+"""Chat / AI brief endpoint."""
+from __future__ import annotations
 
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from fastapi import Depends, Request
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
 from app.services import ai_service
 
-router = APIRouter()
 
-
-class BriefBody(BaseModel):
-    data: Optional[dict[str, Any]] = None
-
-
-@router.post("/brief")
-@router.get("/brief")
-def ai_brief(db: Session = Depends(get_db), body: Optional[BriefBody] = None):
-    """Generate an executive intelligence brief from the current dataset."""
-    data = (body.data if body and body.data else {}) or {}
-    text = ai_service.generate_brief(data, db)
-    return {"text": text}
+async def ai_brief(request: Request, db: Session = Depends(get_db)):
+    """Generate and return an executive AI trend brief."""
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    brief = ai_service.generate_brief(body, db)
+    return {"brief": brief}

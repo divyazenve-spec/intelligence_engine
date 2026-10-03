@@ -204,5 +204,41 @@
 .zsd-ch-stat-val{font-size:13px;font-weight:700;font-family:"IBM Plex Mono",monospace;color:var(--foreground)}
 .zsd-ch-stat-lbl{font-size:9px;text-transform:uppercase;color:var(--muted-foreground);margin-top:2px}
 
+/* Sales Funnel, Targets, and Forecast Extensions */
+.zsd-funnel-stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.zsd-stage-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease}
+.zsd-stage-card:hover{border-color:color-mix(in oklab,var(--primary) 40%,transparent)}
+.zsd-stage-step{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase;color:var(--muted-foreground)}
+.zsd-stage-num{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:4px;background:color-mix(in oklab,var(--primary) 15%,transparent);color:var(--primary);font-weight:700;font-size:10px}
+.zsd-stage-title{font-size:13px;font-weight:700;margin:0;display:flex;align-items:center;gap:6px}
+.zsd-stage-val{font-size:20px;font-weight:700;font-family:"IBM Plex Mono",monospace;color:var(--foreground)}
+.zsd-dropoff-pill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:rgba(239,68,68,0.12);color:#ef4444}
+.zsd-conv-pill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:rgba(16,185,129,0.12);color:#10b981}
+
+/* Targets & Quota */
+.zsd-gauge-box{display:flex;flex-wrap:wrap;align-items:center;gap:20px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px}
+.zsd-gauge-visual{flex:0 0 170px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.zsd-gauge-meta{flex:1;min-width:240px;display:flex;flex-direction:column;gap:12px}
+.zsd-pacing-row{display:flex;flex-direction:column;gap:4px}
+.zsd-pacing-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-foreground)}
+.zsd-pacing-track{height:8px;border-radius:99px;background:var(--secondary);overflow:hidden;position:relative}
+.zsd-pacing-fill{height:100%;border-radius:99px;transition:width .3s ease}
+.zsd-attain-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700}
+.zsd-attain-badge.exceeded{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
+.zsd-attain-badge.on-track{background:rgba(14,165,233,0.15);color:#0ea5e9;border:1px solid rgba(14,165,233,0.3)}
+.zsd-attain-badge.at-risk{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+.zsd-attain-badge.behind{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
+
+/* Forecast Scenarios & Controls */
+.zsd-scenario-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.zsd-scenario-btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted-foreground);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.zsd-scenario-btn:hover{background:var(--accent);color:var(--foreground)}
+.zsd-scenario-btn.active{background:color-mix(in oklab,var(--primary) 16%,transparent);color:var(--primary);border-color:color-mix(in oklab,var(--primary) 50%,transparent)}
+.zsd-forecast-driver{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start}
+.zsd-driver-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.zsd-driver-body h5{margin:0 0 3px;font-size:12px;font-weight:700;color:var(--foreground)}
+.zsd-driver-body p{margin:0;font-size:11px;color:var(--muted-foreground);line-height:1.45}
+
+
 
 

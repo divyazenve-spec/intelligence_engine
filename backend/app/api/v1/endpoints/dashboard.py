@@ -1,15 +1,14 @@
-"""Dashboard endpoint: returns all sales + daily metrics."""
-from fastapi import APIRouter, Depends
+"""Dashboard endpoint — serves all KPIs, sales, and metrics data."""
+from __future__ import annotations
+
+from fastapi import Depends, Request
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
 from app.services import sales_service
 
-router = APIRouter()
 
-
-@router.get("")
-@router.post("")
-def load_data(db: Session = Depends(get_db)):
-    """Load all sales and daily metrics from the database."""
-    return sales_service.load_all(db)
+async def load_data(request: Request, db: Session = Depends(get_db)):
+    """Return all dashboard data (sales + daily metrics)."""
+    data = sales_service.load_all(db)
+    return data

@@ -1,37 +1,23 @@
-"""Number formatting helpers matching the JS toLocaleString output used in the AI brief."""
+"""Indian number formatting utilities."""
 
 
-def num(value):
-    """int for whole numbers, float otherwise (matches JSON numbers from the original API)."""
-    if value is None:
-        return 0
-    f = float(value)
-    return int(f) if f == int(f) else f
+def format_indian(n: int | float) -> str:
+    """Format a number in Indian numbering system (lakhs, crores)."""
+    n = int(round(n))
+    if n < 0:
+        return "-" + format_indian(-n)
+    if n < 1000:
+        return str(n)
+    s = str(n)
+    # Last 3 digits, then groups of 2
+    result = s[-3:]
+    s = s[:-3]
+    while s:
+        result = s[-2:] + "," + result
+        s = s[:-2]
+    return result
 
 
-def format_indian(n):
-    """JS `toLocaleString('en-IN')` equivalent (lakh/crore grouping)."""
-    neg = n < 0
-    n = abs(n)
-    whole = int(n)
-    frac = ""
-    if n != whole:
-        frac = ("%.3f" % (n - whole)).rstrip("0")[1:]
-        if frac == ".":
-            frac = ""
-    s = str(whole)
-    if len(s) > 3:
-        head, tail = s[:-3], s[-3:]
-        parts = []
-        while len(head) > 2:
-            parts.insert(0, head[-2:])
-            head = head[:-2]
-        if head:
-            parts.insert(0, head)
-        s = ",".join(parts) + "," + tail
-    return ("-" if neg else "") + s + frac
-
-
-def format_int(n):
-    """JS `toLocaleString()` (en-US) for integers."""
-    return f"{int(n):,}"
+def format_int(n: int | float) -> str:
+    """Format integer with Indian comma style."""
+    return format_indian(int(round(n)))

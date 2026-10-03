@@ -13,6 +13,11 @@ from fastapi.responses import FileResponse, JSONResponse
 
 from app.api.v1.router import router as v1_router
 from app.core.config import settings
+from app.core.database import Base, engine
+from app.models import DailyMetric, Sale  # noqa: F401 — registers models with Base
+
+# Auto-create tables (SQLite, no migrations needed)
+Base.metadata.create_all(bind=engine)
 
 # ---------------------------------------------------------------------------
 # Logging

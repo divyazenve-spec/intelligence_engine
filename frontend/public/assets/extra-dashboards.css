@@ -1,0 +1,229 @@
+/* ===================================================================
+   Zenve BI — Extra Dashboards: Sales Funnel | Targets | Sales Forecast
+   Shares all CSS variables from styles-*.css & sales-dashboard.css
+   =================================================================== */
+
+/* ── Shared panel root ──────────────────────────────────────────── */
+.zpanel-root {
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 50; overflow-y: auto;
+  background: var(--background); color: var(--foreground);
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none; animation: zpFadeIn .18s ease-out;
+}
+.zpanel-root.zpanel-open { display: block; }
+@keyframes zpFadeIn { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: translateY(0) } }
+@media (min-width: 1024px) { .zpanel-root { left: 224px; } }
+.zpanel-root * { box-sizing: border-box; }
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.zp-head {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 24px;
+  background: color-mix(in oklab, var(--background) 94%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.zp-head-left { display: flex; flex-direction: column; }
+.zp-title { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.zp-sub   { font-size: 11px; color: var(--muted-foreground); margin-top: 3px; }
+.zp-head-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* ── Button ─────────────────────────────────────────────────────── */
+.zp-btn {
+  font-size: 12px; display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--card);
+  font-weight: 600; cursor: pointer; transition: all .15s ease;
+  color: inherit;
+}
+.zp-btn:hover { background: var(--accent); }
+.zp-btn.primary {
+  background: var(--primary); border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.zp-btn.primary:hover { filter: brightness(1.08); }
+
+/* ── Body ───────────────────────────────────────────────────────── */
+.zp-body { padding: 20px 24px 48px; max-width: 1500px; }
+
+/* ── Period selector ────────────────────────────────────────────── */
+.zp-seg {
+  display: flex; padding: 3px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--card);
+}
+.zp-seg button {
+  border: 0; background: transparent; padding: 5px 12px;
+  border-radius: 7px; font-size: 12px; font-weight: 600;
+  color: var(--muted-foreground); cursor: pointer; transition: all .15s ease;
+}
+.zp-seg button.on {
+  background: color-mix(in oklab, var(--primary) 16%, transparent);
+  color: var(--primary);
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+.zp-card {
+  background: var(--card); color: var(--card-foreground);
+  border: 1px solid var(--border); border-radius: var(--radius, 12px);
+  box-shadow: 0 1px 3px rgb(0 0 0 / .05);
+}
+.zp-panel { padding: 16px 18px; min-width: 0; }
+.zp-ph { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.zp-ph h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.zp-ph small { display: block; font-size: 11px; font-weight: 400; color: var(--muted-foreground); margin-top: 2px; }
+
+/* ── KPI row ────────────────────────────────────────────────────── */
+.zp-kpis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+.zp-kpi  { padding: 14px 16px; }
+.zp-lbl  { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-foreground); }
+.zp-val  { font-size: 24px; font-weight: 700; margin-top: 12px; letter-spacing: -.02em; line-height: 1.1; }
+.zp-delta { margin-top: 8px; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--muted-foreground); }
+.zp-delta.up { color: var(--success); } .zp-delta.down { color: var(--destructive); }
+
+/* ── Grids ──────────────────────────────────────────────────────── */
+.zp-grid { display: grid; gap: 12px; margin-top: 12px; }
+.zp-g2 { grid-template-columns: 1fr 1fr; }
+.zp-g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.zp-g-main { grid-template-columns: minmax(0,2fr) minmax(0,1fr); }
+
+/* ── SVG charts ─────────────────────────────────────────────────── */
+.zp-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.zp-svg text { font-size: 10px; fill: var(--muted-foreground); font-family: "IBM Plex Mono", monospace; }
+.zp-chartwrap { position: relative; }
+.zp-tip {
+  position: absolute; pointer-events: none; z-index: 6;
+  padding: 7px 10px; border-radius: 8px;
+  background: var(--foreground); color: var(--background);
+  font-size: 11px; line-height: 1.5; white-space: nowrap;
+  transform: translate(-50%, -110%); opacity: 0;
+  transition: opacity .08s; box-shadow: 0 4px 12px rgb(0 0 0 / .2);
+}
+.zp-tip b { font-weight: 700; }
+.zp-tip.show { opacity: 1; }
+
+/* ── Progress bar ───────────────────────────────────────────────── */
+.zp-prog { height: 8px; border-radius: 99px; background: var(--secondary); overflow: hidden; }
+.zp-prog-fill { height: 100%; border-radius: 99px; transition: width .4s ease; }
+
+/* ── Funnel stages ──────────────────────────────────────────────── */
+.zf-stage {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.zf-bar-wrap {
+  width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.zf-bar-outer {
+  height: 52px; border-radius: 10px;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s ease; position: relative; overflow: hidden;
+}
+.zf-bar-outer:hover {
+  background: color-mix(in oklab, var(--primary) 20%, transparent);
+  border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+}
+.zf-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  border-radius: 10px; transition: width .6s ease;
+}
+.zf-bar-label {
+  position: relative; z-index: 1;
+  font-size: 13px; font-weight: 700; color: var(--foreground);
+}
+.zf-connector {
+  width: 2px; height: 16px;
+  background: color-mix(in oklab, var(--primary) 35%, transparent);
+  margin: 2px 0;
+}
+.zf-meta { text-align: center; font-size: 11px; color: var(--muted-foreground); }
+.zf-meta b { display: block; font-size: 15px; font-weight: 700; color: var(--foreground); font-family: "IBM Plex Mono", monospace; }
+.zf-conv { font-size: 11px; font-family: "IBM Plex Mono", monospace; color: var(--muted-foreground); }
+.zf-conv.up { color: var(--success); }
+.zf-conv.down { color: var(--destructive); }
+.zf-drop {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  font-size: 10px; color: var(--destructive);
+  font-family: "IBM Plex Mono", monospace; height: 16px;
+}
+
+/* Stage color palette */
+.zf-c0 { background: rgba(14,165,233,.35); }
+.zf-c1 { background: rgba(99,102,241,.35); }
+.zf-c2 { background: rgba(139,92,246,.35); }
+.zf-c3 { background: rgba(236,72,153,.35); }
+.zf-c4 { background: rgba(16,185,129,.35); }
+
+/* ── Targets ────────────────────────────────────────────────────── */
+.zt-row {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+  border-radius: 10px; background: color-mix(in oklab, var(--background) 60%, transparent);
+  border: 1px solid var(--border); margin-bottom: 8px; cursor: pointer;
+  transition: all .15s ease;
+}
+.zt-row:hover {
+  border-color: color-mix(in oklab, var(--primary) 50%, transparent);
+  background: color-mix(in oklab, var(--primary) 5%, transparent);
+}
+.zt-av {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 700;
+  background: color-mix(in oklab, var(--primary) 16%, transparent);
+  color: var(--primary);
+}
+.zt-info { flex: 1; min-width: 0; }
+.zt-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zt-dept { font-size: 10px; color: var(--muted-foreground); }
+.zt-nums { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.zt-pct { font-size: 14px; font-weight: 700; font-family: "IBM Plex Mono", monospace; }
+.zt-achieved { font-size: 10px; color: var(--muted-foreground); }
+
+/* Achievement ring */
+.zt-ring { width: 44px; height: 44px; flex-shrink: 0; }
+
+/* ── Forecast ───────────────────────────────────────────────────── */
+.zfc-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600;
+}
+.zfc-pill.bull { background: color-mix(in oklab, var(--success) 15%, transparent); color: var(--success); }
+.zfc-pill.bear { background: color-mix(in oklab, var(--destructive) 15%, transparent); color: var(--destructive); }
+.zfc-pill.neut { background: color-mix(in oklab, var(--warning) 15%, transparent); color: var(--warning); }
+
+.zfc-legend { display: flex; gap: 14px; font-size: 11px; color: var(--muted-foreground); align-items: center; flex-wrap: wrap; }
+.zfc-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+/* ── Table ──────────────────────────────────────────────────────── */
+.zp-tbl-wrap { overflow-x: auto; }
+.zp-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.zp-tbl th {
+  text-align: left; padding: 9px 10px;
+  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted-foreground); font-weight: 600;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.zp-tbl th.r, .zp-tbl td.r { text-align: right; }
+.zp-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.zp-tbl tbody tr:hover { background: var(--accent); }
+
+/* ── Empty / msg ────────────────────────────────────────────────── */
+.zp-msg { padding: 60px 0; text-align: center; color: var(--muted-foreground); font-size: 13px; }
+
+/* ── Sidebar active state ───────────────────────────────────────── */
+.sidebar-scope li button.zpanel-active {
+  background: var(--sidebar-accent); color: var(--primary); font-weight: 600;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1279px) {
+  .zp-kpis  { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .zp-g2, .zp-g3, .zp-g-main { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .zp-kpis { grid-template-columns: 1fr 1fr; }
+  .zp-head  { flex-direction: column; align-items: flex-start; }
+}

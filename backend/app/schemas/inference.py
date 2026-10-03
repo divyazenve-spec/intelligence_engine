@@ -1,32 +1,18 @@
-"""Pydantic schemas for the AI brief endpoint.
+"""Pydantic schemas and filter helpers for AI/inference requests."""
+from __future__ import annotations
 
-Request body:  {"data": {startDate, endDate, status, appSource}}
-Response:      {"text": "<brief>"}
-"""
-from pydantic import BaseModel
-from typing import Optional
-
-
-class BriefRequest(BaseModel):
-    startDate: Optional[str] = None
-    endDate: Optional[str] = None
-    status: Optional[str] = "All"
-    appSource: Optional[str] = "All"
-
-
-class BriefDataWrapper(BaseModel):
-    data: Optional[BriefRequest] = None
-
-
-class BriefResponse(BaseModel):
-    text: str
+from typing import Any
 
 
 def brief_filters(data: dict) -> dict:
-    """Extract filter keys from a raw dict (kept for service compatibility)."""
+    """Extract and normalise filter parameters from an AI brief request payload."""
+    start = (data.get("start") or data.get("date_start") or "").strip()
+    end = (data.get("end") or data.get("date_end") or "").strip()
+    status = (data.get("status") or "All").strip()
+    app_source = (data.get("app_source") or data.get("channel") or "All").strip()
     return {
-        "start": data.get("startDate"),
-        "end": data.get("endDate"),
-        "status": data.get("status") or "All",
-        "app_source": data.get("appSource") or "All",
+        "start": start or None,
+        "end": end or None,
+        "status": status,
+        "app_source": app_source,
     }

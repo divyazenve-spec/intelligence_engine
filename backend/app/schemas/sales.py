@@ -1,69 +1,40 @@
-"""Sale payload normalisation helpers.
+"""Pydantic schemas and helper functions for the sales domain."""
+from __future__ import annotations
 
-Request body (save):   {"data": {transactionRef, soldAt, source, person, city, amount, status,
-                                 appSource, androidDownloads, iosDownloads}}
-Request body (import): {"data": {"rows": [ ...same fields... ]}}
-"""
-import datetime as dt
-import time
-from typing import Any, Optional
-
-from pydantic import BaseModel
+from typing import Any
 
 
-# ---------------------------------------------------------------------------
-# Pydantic schemas
-# ---------------------------------------------------------------------------
-
-class SaleIn(BaseModel):
-    transactionRef: Optional[str] = None
-    soldAt: Optional[str] = None
-    source: Optional[str] = None
-    person: Optional[str] = None
-    city: Optional[str] = None
-    amount: Optional[float] = 0.0
-    status: Optional[str] = "Paid"
-    appSource: Optional[str] = "Android"
-    androidDownloads: Optional[float] = 0
-    iosDownloads: Optional[float] = 0
-
-
-class SaleDataWrapper(BaseModel):
-    data: Optional[SaleIn] = None
-
-
-class ImportDataPayload(BaseModel):
-    rows: Optional[list[dict[str, Any]]] = None
-
-
-class ImportDataWrapper(BaseModel):
-    data: Optional[ImportDataPayload] = None
-
-
-# ---------------------------------------------------------------------------
-# Normalisation helpers (used by services)
-# ---------------------------------------------------------------------------
-
-def _now_iso() -> str:
-    n = dt.datetime.now(dt.timezone.utc)
-    return n.strftime("%Y-%m-%dT%H:%M:%S.") + f"{n.microsecond // 1000:03d}Z"
-
-
-def to_float(v) -> float:
+def to_float(val: Any) -> float:
+    """Convert any value to float, returning 0.0 on failure."""
+    if isinstance(val, (int, float)):
+        return float(val)
     try:
-        return float(v or 0)
+        return float(str(val).replace(",", "").strip())
     except (TypeError, ValueError):
         return 0.0
 
 
-def sale_fields(d: dict, default_source: str, default_person: str) -> dict:
+def sale_to_dict(sale) -> dict:
+    """Convert a Sale ORM instance to a plain dict for JSON serialisation."""
     return {
-        "transaction_ref": d.get("transactionRef") or f"ZV-{str(int(time.time() * 1000))[-5:]}",
-        "sold_at": d.get("soldAt") or _now_iso(),
-        "source": d.get("source") or default_source,
-        "person": d.get("person") or default_person,
-        "city": d.get("city") or "Bengaluru",
-        "amount": to_float(d.get("amount")),
-        "status": d.get("status") or "Paid",
-        "app_source": d.get("appSource") or "Android",
+        "id": sale.sale_id,
+        "transaction_ref": sale.transaction_ref,
+        "sold_at": sale.sold_at,
+        "source": sale.source,
+        "person": sale.person,
+        "city": sale.city,
+        "amount": float(sale.amount),
+        "status": sale.status,
+        "app_source": sale.app_source,
+        "is_demo": bool(sale.is_demo),
+    }
+
+
+def metric_to_dict(metric) -> dict:
+    """Convert a DailyMetric ORM instance to a plain dict."""
+    return {
+        "business_date": str(metric.business_date),
+        "sales_total": float(metric.sales_total),
+        "android_downloads": metric.android_downloads,
+        "ios_downloads": metric.ios_downloads,
     }

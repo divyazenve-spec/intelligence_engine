@@ -1,53 +1,62 @@
-"""Sales endpoints: save a single sale or bulk-import rows."""
-from typing import Any, Optional
+"""Sales endpoints — save a single sale, bulk-import from CSV/JSON."""
+from __future__ import annotations
 
-from fastapi import APIRouter, Depends
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+import json
+
+from fastapi import Depends, File, Form, Request, UploadFile
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
-from app.services import sales_service
-
-router = APIRouter()
+from app.services import pipeline_service, sales_service
 
 
-# ---------------------------------------------------------------------------
-# Request schemas (TanStack server fns wrap payload in {"data": {...}})
-# ---------------------------------------------------------------------------
-
-class SaveSaleBody(BaseModel):
-    data: Optional[dict[str, Any]] = None
-
-
-class ImportSalesBody(BaseModel):
-    data: Optional[dict[str, Any]] = None
+async def save_sale(request: Request, db: Session = Depends(get_db)):
+    """Save / upsert a single sale record from a JSON body."""
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    return sales_service.save_sale(body, db)
 
 
-def _unwrap(body: dict) -> dict:
-    """TanStack server functions send {"data": {...}}; plain callers send the object itself."""
-    if isinstance(body, dict):
-        return body.get("data") or body
-    return {}
+async def import_sales(
+    request: Request,
+    file: UploadFile | None = File(default=None),
+    data: str | None = Form(default=None),
+    mode: str = Form(default="replace"),
+    db: Session = Depends(get_db),
+):
+    """
+    Bulk-import sales from a CSV or JSON upload.
 
+    Accepts either:
+    - multipart/form-data  with a `file` field (CSV or JSON)
+    - application/json body  with `{ data: "...", mode: "replace"|"append" }`
+    """
+    content: str = ""
+    filename: str = ""
 
-def _get_rows(body: dict) -> list:
-    return (body.get("data") or {}).get("rows") or body.get("rows") or []
+    if file and file.filename:
+        raw = await file.read()
+        content = raw.decode("utf-8", errors="replace")
+        filename = file.filename
+    elif data:
+        content = data
+    else:
+        # Try reading JSON body
+        try:
+            body = await request.json()
+            content = body.get("data", "")
+            mode = body.get("mode", mode)
+            filename = body.get("filename", "")
+        except Exception:
+            pass
 
+    if not content:
+        return {"success": False, "error": "No data provided."}
 
-# ---------------------------------------------------------------------------
-# Endpoints
-# ---------------------------------------------------------------------------
-
-@router.post("/save")
-def save_sale(body: SaveSaleBody, db: Session = Depends(get_db)):
-    """Persist a single sale record."""
-    data = _unwrap(body.model_dump())
-    return sales_service.save_sale(data, db)
-
-
-@router.post("/import")
-def import_sales(body: ImportSalesBody, db: Session = Depends(get_db)):
-    """Bulk-import an array of sale rows."""
-    rows = _get_rows(body.model_dump())
-    return sales_service.import_rows(rows, db)
+    try:
+        records = pipeline_service.parse_data_content(content, filename)
+        return pipeline_service.ingest_records(records, db, mode=mode)
+    except Exception as exc:
+        return {"success": False, "error": str(exc)}
