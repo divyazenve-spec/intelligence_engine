@@ -435,7 +435,7 @@
         }).join(''),
       '</nav>',
 
-      '<main class="zc360-body">'
+      '<div class="zc360-body">'
     ];
 
     switch (S.tab) {
@@ -453,7 +453,7 @@
       default:               html.push(renderDashboard());
     }
 
-    html.push('</main>');
+    html.push('</div>');
     root.innerHTML = html.join('');
   }
 

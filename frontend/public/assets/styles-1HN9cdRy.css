@@ -53,6 +53,13 @@ main {
 #zlog-dashboard-root main,
 #zmkt-dashboard-root main,
 #zhr-dashboard-root main,
+#zdoc-root main,
+#zdoc-root .zdoc-body,
+#zc360-root main,
+#zc360-root .zc360-body,
+#zb2b-root main,
+#zix-root main,
+#zsub-root main,
 #zlog-dashboard-root .zlog-content {
   margin: 0 !important;
   margin-left: 0 !important;

@@ -382,7 +382,7 @@
         }).join(''),
       '</nav>',
 
-      '<main class="zdoc-body">'
+      '<div class="zdoc-body">'
     ];
 
     switch (S.tab) {
@@ -398,7 +398,7 @@
       default:            html.push(renderDashboard());
     }
 
-    html.push('</main>');
+    html.push('</div>');
     root.innerHTML = html.join('');
   }
 
