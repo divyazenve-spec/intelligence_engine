@@ -1,0 +1,950 @@
+/* =====================================================================
+   Zenve BI — Orders & Operations Control Center
+   Comprehensive Suite:
+     1. Operations Dashboard
+     2. Order Management
+     3. Order Status & Live Tracking
+     4. Returns & Refunds
+     5. Cancellations & Root Causes
+     6. Delivery Performance & Logistics Scorecard
+     7. 60-Minute Express Delivery Command
+   ===================================================================== */
+
+#zod-root {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  overflow-y: auto;
+  background: var(--background, #090d16);
+  color: var(--foreground, #f8fafc);
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  animation: zodFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+#zod-root.zod-open {
+  display: block;
+}
+
+@keyframes zodFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1024px) {
+  #zod-root {
+    left: 224px; /* match sidebar width */
+  }
+}
+
+#zod-root * {
+  box-sizing: border-box;
+}
+
+#zod-root button,
+#zod-root input,
+#zod-root select {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ── Top Header ───────────────────────────────────────────────────── */
+.zod-head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: color-mix(in oklab, var(--background, #090d16) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.zod-head-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zod-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zod-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.015em;
+  color: var(--foreground, #fff);
+  white-space: nowrap;
+}
+
+.zod-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.zod-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: zodPulse 1.8s infinite;
+}
+
+@keyframes zodPulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.zod-sub {
+  font-size: 11px;
+  color: var(--muted-foreground, #94a3b8);
+  margin-top: 3px;
+}
+
+.zod-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Segmented Period & Buttons ───────────────────────────────────── */
+.zod-seg {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  border-radius: 9px;
+  background: var(--card, rgba(255, 255, 255, 0.03));
+}
+
+.zod-seg button {
+  border: 0;
+  background: transparent;
+  padding: 5px 11px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground, #94a3b8);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.zod-seg button.on {
+  background: color-mix(in oklab, var(--primary, #0ea5e9) 18%, transparent);
+  color: var(--primary, #38bdf8);
+}
+
+.zod-btn {
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  background: var(--card, rgba(255, 255, 255, 0.04));
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.zod-btn:hover {
+  background: var(--accent, rgba(255, 255, 255, 0.08));
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.zod-btn.primary {
+  background: var(--primary, #0ea5e9);
+  border-color: var(--primary, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
+}
+
+.zod-btn.primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+}
+
+.zod-btn.success {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+.zod-btn.success:hover {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+.zod-btn.danger {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+.zod-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.25);
+}
+
+/* ── Sticky Sub-Navbar: Navigation Tabs ───────────────────────────── */
+.zod-tabs-bar {
+  position: sticky;
+  top: 63px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 24px;
+  background: color-mix(in oklab, var(--background, #090d16) 94%, transparent);
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.07));
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.zod-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zod-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-foreground, #94a3b8);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.14s ease;
+}
+
+.zod-tab:hover {
+  color: var(--foreground, #f8fafc);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.zod-tab.on {
+  color: var(--primary, #38bdf8);
+  background: color-mix(in oklab, var(--primary, #0ea5e9) 14%, transparent);
+  border-color: color-mix(in oklab, var(--primary, #0ea5e9) 35%, transparent);
+}
+
+.zod-tab-badge {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+}
+
+.zod-tab.on .zod-tab-badge {
+  background: color-mix(in oklab, var(--primary, #0ea5e9) 25%, transparent);
+}
+
+.zod-tab-badge.pulse {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  animation: zodPulseBadge 1.5s infinite;
+}
+
+@keyframes zodPulseBadge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ── Filter Strip ─────────────────────────────────────────────────── */
+.zod-filters-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.zod-filters-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.zod-search-input {
+  height: 34px;
+  min-width: 240px;
+  max-width: 380px;
+  padding: 0 12px 0 32px;
+  background: var(--card, rgba(255, 255, 255, 0.03)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") no-repeat 10px center;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  font-size: 12px;
+  color: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.zod-search-input:focus {
+  border-color: var(--primary, #0ea5e9);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary, #0ea5e9) 30%, transparent);
+}
+
+.zod-select {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  background: var(--card, rgba(255, 255, 255, 0.03));
+  font-size: 12px;
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.zod-select:focus {
+  border-color: var(--primary, #0ea5e9);
+}
+
+/* ── Body Container ───────────────────────────────────────────────── */
+.zod-body {
+  padding: 20px 24px 60px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ── Generic Cards & Panels ───────────────────────────────────────── */
+.zod-card {
+  background: var(--card, rgba(17, 24, 39, 0.6));
+  color: var(--card-foreground, #f8fafc);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.zod-panel {
+  padding: 18px 20px;
+}
+
+.zod-ph {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.zod-ph h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zod-ph small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted-foreground, #94a3b8);
+  margin-top: 2px;
+}
+
+/* ── KPI Row ──────────────────────────────────────────────────────── */
+.zod-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.zod-kpi {
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.zod-kpi:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.zod-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.zod-lbl {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground, #94a3b8);
+}
+
+.zod-kpi-icon {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.zod-val {
+  font-size: 26px;
+  font-weight: 800;
+  margin-top: 10px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.zod-delta {
+  margin-top: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted-foreground, #94a3b8);
+}
+
+.zod-delta.up { color: #10b981; }
+.zod-delta.down { color: #ef4444; }
+.zod-delta.warn { color: #f59e0b; }
+
+/* ── Pipeline Progress Strip ──────────────────────────────────────── */
+.zod-pipeline-wrap {
+  margin-bottom: 16px;
+}
+
+.zod-pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.zod-pipe-stage {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.zod-pipe-stage:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.zod-pipe-stage.active {
+  border-color: var(--primary, #0ea5e9);
+  background: color-mix(in oklab, var(--primary, #0ea5e9) 12%, transparent);
+}
+
+.zod-pipe-icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.zod-pipe-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground, #94a3b8);
+}
+
+.zod-pipe-count {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--foreground, #fff);
+}
+
+.zod-pipe-sub {
+  font-size: 9px;
+  color: var(--muted-foreground, #64748b);
+  margin-top: 4px;
+}
+
+/* ── Tables & Lists ───────────────────────────────────────────────── */
+.zod-tbl-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.zod-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.zod-tbl thead {
+  background: rgba(255, 255, 255, 0.03);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground, #94a3b8);
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.zod-tbl th,
+.zod-tbl td {
+  padding: 11px 14px;
+  white-space: nowrap;
+}
+
+.zod-tbl tbody tr {
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.05));
+  transition: background 0.12s ease;
+  cursor: pointer;
+}
+
+.zod-tbl tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.zod-tbl td.r,
+.zod-tbl th.r {
+  text-align: right;
+}
+
+/* ── Badges ───────────────────────────────────────────────────────── */
+.zod-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.02em;
+}
+
+.zod-badge.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.zod-badge.blue {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.zod-badge.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.zod-badge.red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.zod-badge.purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.zod-badge.express {
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.2), rgba(249, 115, 22, 0.3));
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
+}
+
+/* ── 60-Minute Countdown Clock & Urgent Cards ─────────────────────── */
+.zod-countdown-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(234, 88, 12, 0.12);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  color: #fb923c;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.zod-countdown-urgent {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  animation: zodPulseClock 1.2s infinite;
+}
+
+@keyframes zodPulseClock {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.9; }
+}
+
+/* ── Live Route Map Visualization ─────────────────────────────────── */
+.zod-map-box {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 60% 40%, #1e293b, #0f172a 80%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zod-map-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.zod-map-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+
+.zod-map-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 11px;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ── Timeline Explorer ────────────────────────────────────────────── */
+.zod-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 28px;
+  margin-top: 16px;
+}
+
+.zod-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 10px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.zod-timeline-step {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.zod-timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.zod-timeline-node {
+  position: absolute;
+  left: -28px;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--background, #090d16);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  z-index: 1;
+}
+
+.zod-timeline-step.done .zod-timeline-node {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.zod-timeline-step.active .zod-timeline-node {
+  border-color: #0ea5e9;
+  background: rgba(14, 165, 233, 0.2);
+  color: #0ea5e9;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+  animation: zodPulse 2s infinite;
+}
+
+.zod-timeline-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.zod-timeline-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground, #f8fafc);
+}
+
+.zod-timeline-time {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  color: var(--muted-foreground, #94a3b8);
+}
+
+.zod-timeline-desc {
+  font-size: 11px;
+  color: var(--muted-foreground, #94a3b8);
+  margin-top: 3px;
+}
+
+/* ── Modal Dialogs ────────────────────────────────────────────────── */
+.zod-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: zodFadeIn 0.15s ease-out;
+}
+
+.zod-modal-dialog {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.zod-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.zod-modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.zod-modal-close {
+  background: transparent;
+  border: 0;
+  font-size: 18px;
+  color: var(--muted-foreground, #94a3b8);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.zod-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.zod-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zod-modal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Toast Notification ───────────────────────────────────────────── */
+.zod-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #0f172a;
+  border: 1px solid #10b981;
+  color: #f8fafc;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  animation: zodSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zodSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Grid Layouts ─────────────────────────────────────────────────── */
+.zod-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 1024px) {
+  .zod-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.zod-grid-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 1180px) {
+  .zod-grid-main {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.zod-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* ── Rider / Fleet Card ───────────────────────────────────────────── */
+.zod-rider-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.zod-rider-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.zod-rider-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.zod-rider-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground, #fff);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zod-rider-meta {
+  font-size: 11px;
+  color: var(--muted-foreground, #94a3b8);
+  margin-top: 2px;
+}
+
+/* ── Progress bar ─────────────────────────────────────────────────── */
+.zod-bar-wrap {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.zod-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
