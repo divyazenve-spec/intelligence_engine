@@ -74,13 +74,44 @@ export { default as B2BDashboard } from './B2BEnterprise/B2BDashboard';
 export { default as SubscriptionsDashboard } from './Subscriptions/SubscriptionsDashboard';
 
 // 19. Reports & Analytics
-export { default as ReportsDashboard } from './ReportsAndAnalytics/ReportsDashboard';
+export {
+  ReportsDashboard,
+  SalesReport,
+  RevenueReport,
+  CustomerReport,
+  PetReport,
+  DoctorReport,
+  ClinicReport,
+  ProductReport,
+  InventoryReport,
+  FinanceReport,
+  HRReport,
+  MarketingReport,
+  OperationsReport,
+  VendorReport,
+  CustomReports,
+  ScheduledReports,
+  ExportCenter
+} from './ReportsAndAnalytics';
 
 // 20. AI Assistant
 export { default as AIAssistantDashboard } from './AIAssistant/AIAssistantDashboard';
 
 // 21. Alerts & Notifications
-export { default as AlertsDashboard } from './AlertsAndNotifications/AlertsDashboard';
+export {
+  AlertsDashboard,
+  CriticalAlerts,
+  RevenueAlerts,
+  InventoryAlerts,
+  PaymentAlerts,
+  OrderAlerts,
+  DeliveryAlerts,
+  FinanceAlerts,
+  HRAlerts,
+  SystemAlerts,
+  AlertRules,
+  NotificationCenter
+} from './AlertsAndNotifications';
 
 // 22. Audit & Compliance
 export { default as AuditDashboard } from './AuditAndCompliance/AuditDashboard';
@@ -227,7 +258,24 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Reports & Analytics',
     icon: '📑',
-    items: ['Sales Reports', 'Revenue Reports', 'Customer Reports', 'Product Reports', 'Finance Reports', 'Export Center'],
+    items: [
+      'Sales Reports',
+      'Revenue Reports',
+      'Customer Reports',
+      'Pet Reports',
+      'Doctor Reports',
+      'Clinic Reports',
+      'Product Reports',
+      'Inventory Reports',
+      'Finance Reports',
+      'HR Reports',
+      'Marketing Reports',
+      'Operations Reports',
+      'Vendor Reports',
+      'Custom Reports',
+      'Scheduled Reports',
+      'Export Center'
+    ],
     defaultPath: '/reports'
   },
   {
@@ -239,7 +287,19 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Alerts & Notifications',
     icon: '🔔',
-    items: ['Critical Alerts', 'Revenue Alerts', 'Inventory Alerts', 'Payment Alerts', 'Delivery Alerts', 'Notification Center'],
+    items: [
+      'Critical Alerts',
+      'Revenue Alerts',
+      'Inventory Alerts',
+      'Payment Alerts',
+      'Order Alerts',
+      'Delivery Alerts',
+      'Finance Alerts',
+      'HR Alerts',
+      'System Alerts',
+      'Alert Rules',
+      'Notification Center'
+    ],
     defaultPath: '/alerts'
   },
   {

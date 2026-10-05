@@ -1,0 +1,790 @@
+/* =====================================================================
+   Zenve BI — Reports & Analytics Executive Command Center
+   Comprehensive Enterprise Reporting Suite for All 16 Modules
+   ===================================================================== */
+
+/* ── 1. Root Overlay Canvas ────────────────────────────────────────── */
+#zrep-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 50 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zrep-root.zrep-open {
+  display: block !important;
+}
+
+#zrep-root::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#zrep-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+#zrep-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+#zrep-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.zrep-locked,
+body.zrep-locked {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+#zrep-root,
+#zrep-root * {
+  box-sizing: border-box !important;
+}
+
+/* Responsive adjustment for tablets & mobile */
+@media (max-width: 1023px) {
+  #zrep-root {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* ── 2. Master Sticky Header ───────────────────────────────────────── */
+.zrep-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zrep-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zrep-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e0e7ff, #ede9fe) !important;
+  border: 1px solid #c7d2fe !important;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.18);
+}
+
+.zrep-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zrep-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zrep-main-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f172a !important;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.zrep-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 9999px;
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #166534 !important;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.zrep-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: zrep-pulse 1.8s infinite;
+}
+
+@keyframes zrep-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.zrep-sub-title {
+  font-size: 12px;
+  color: #64748b;
+  margin: 3px 0 0 0;
+}
+
+.zrep-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.zrep-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.zrep-btn-primary {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.25);
+}
+.zrep-btn-primary:hover {
+  background: #4338ca !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.35);
+}
+
+.zrep-btn-outline {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+.zrep-btn-outline:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+.zrep-btn-close {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.zrep-btn-close:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+/* ── 3. Navigation Chips Ribbon ────────────────────────────────────── */
+.zrep-nav-ribbon {
+  position: sticky;
+  top: 69px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 24px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.zrep-nav-ribbon::-webkit-scrollbar {
+  display: none;
+}
+
+.zrep-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.zrep-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+.zrep-chip.active {
+  background: #eef2ff !important;
+  color: #4338ca !important;
+  border-color: #818cf8 !important;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(99, 102, 241, 0.12);
+}
+
+.zrep-chip-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  color: #475569;
+}
+.zrep-chip.active .zrep-chip-badge {
+  background: #c7d2fe;
+  color: #3730a3;
+}
+
+/* ── 4. Main Content Workspace ─────────────────────────────────────── */
+#zrep-root main,
+#zrep-root .zrep-main-workspace,
+#zrep-workspace,
+.zrep-main-workspace {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 20px 24px 60px 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.zrep-view-panel {
+  display: none;
+  animation: zrep-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zrep-view-panel.active {
+  display: block;
+}
+
+@keyframes zrep-fade-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 5. KPI Metrics Grid ───────────────────────────────────────────── */
+.zrep-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.zrep-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.zrep-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.zrep-kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.zrep-kpi-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.zrep-kpi-icon {
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 8px;
+  background: #f8fafc;
+  line-height: 1;
+}
+
+.zrep-kpi-value {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.zrep-kpi-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+.zrep-trend-pos {
+  color: #16a34a;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.zrep-trend-neg {
+  color: #dc2626;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.zrep-kpi-desc {
+  color: #94a3b8;
+}
+
+/* ── 6. Filter & Search Action Bar ─────────────────────────────────── */
+.zrep-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.zrep-search-box {
+  position: relative;
+  min-width: 280px;
+  flex: 1;
+  max-width: 420px;
+}
+.zrep-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.zrep-search-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+.zrep-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.zrep-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.zrep-select {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+}
+.zrep-select:focus {
+  border-color: #6366f1;
+}
+
+/* ── 7. Data Panels & Tables ───────────────────────────────────────── */
+.zrep-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+  overflow: hidden;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.zrep-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fafafa;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-sizing: border-box !important;
+}
+
+.zrep-card-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.zrep-card-subtitle {
+  font-size: 11.5px;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+.zrep-card-body {
+  padding: 20px;
+}
+
+.zrep-table-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+}
+
+.zrep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  text-align: left;
+}
+
+.zrep-table th {
+  padding: 11px 14px;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.zrep-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+.zrep-table tr:hover td {
+  background: #f8fafc;
+}
+.zrep-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Badge Pills */
+.zrep-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.zrep-pill-green {
+  background: #dcfce7;
+  color: #15803d;
+}
+.zrep-pill-blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.zrep-pill-purple {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.zrep-pill-amber {
+  background: #fef3c7;
+  color: #b45309;
+}
+.zrep-pill-red {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.zrep-pill-gray {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* ── 8. Progress Bars & Bar Sparks ─────────────────────────────────── */
+.zrep-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.zrep-progress-fill {
+  height: 100%;
+  background: #4f46e5;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+.zrep-progress-fill.green { background: #22c55e; }
+.zrep-progress-fill.amber { background: #f59e0b; }
+.zrep-progress-fill.red   { background: #ef4444; }
+.zrep-progress-fill.cyan  { background: #06b6d4; }
+
+/* ── 9. Two-Column & Multi-Column Layouts ───────────────────────────── */
+.zrep-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+  .zrep-grid-2 { grid-template-columns: 1fr; }
+}
+
+.zrep-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+@media (max-width: 1100px) {
+  .zrep-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ── 10. Custom Report Builder Styles ──────────────────────────────── */
+.zrep-builder-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.zrep-builder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.zrep-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zrep-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.zrep-check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+.zrep-check-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #334155;
+  cursor: pointer;
+}
+
+/* ── 11. Scheduled Reports Card Grid ───────────────────────────────── */
+.zrep-sched-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.15s ease;
+}
+.zrep-sched-card:hover {
+  border-color: #818cf8;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+}
+.zrep-sched-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.zrep-sched-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #0f172a;
+}
+.zrep-sched-cron {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+/* ── 12. Modal Dialog ──────────────────────────────────────────────── */
+.zrep-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.zrep-modal {
+  background: #ffffff;
+  border-radius: 14px;
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  animation: zrep-modal-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes zrep-modal-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.zrep-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fafafa;
+}
+.zrep-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.zrep-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #fafafa;
+}
+
+/* ── 13. Toast Notification ────────────────────────────────────────── */
+.zrep-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  animation: zrep-slide-up 0.25s ease-out;
+}
+@keyframes zrep-slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── 14. Responsive Rules ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .zrep-header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  .zrep-main-workspace {
+    padding: 16px;
+  }
+  .zrep-nav-ribbon {
+    padding: 6px 14px;
+  }
+}
