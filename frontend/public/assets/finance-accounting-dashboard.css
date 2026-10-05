@@ -1,0 +1,277 @@
+/* =====================================================================
+   Zenve BI — Finance & Accounting Domain Control Center & Dashboards
+   Suite (18 Subdomains):
+     1. Finance Dashboard     (#finance-dashboard)
+     2. Profit & Loss          (#profit-loss)
+     3. Balance Sheet          (#balance-sheet)
+     4. Cash Flow              (#cash-flow)
+     5. Revenue                (#revenue)
+     6. Expenses               (#expenses)
+     7. COGS                   (#cogs)
+     8. Gross Profit           (#gross-profit)
+     9. EBITDA                 (#ebitda)
+     10. Net Profit            (#net-profit)
+     11. Accounts Receivable   (#accounts-receivable)
+     12. Accounts Payable      (#accounts-payable)
+     13. Invoices              (#invoices)
+     14. Payments              (#payments)
+     15. Refunds               (#refunds)
+     16. Taxes                 (#taxes)
+     17. Financial Forecast    (#financial-forecast)
+     18. Cost Analysis         (#cost-analysis)
+   ===================================================================== */
+
+#zfa-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 60 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: var(--background, #090e17) !important;
+  color: var(--foreground, #f8fafc) !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  animation: zfaFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box !important;
+}
+
+#zfa-root.zfa-open { display: block !important; }
+
+@keyframes zfaFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 1024px) {
+  #zfa-root {
+    left: 224px !important;
+    width: calc(100vw - 224px) !important;
+    max-width: calc(100vw - 224px) !important;
+  }
+}
+
+#zfa-root * { box-sizing: border-box; }
+#zfa-root button, #zfa-root input, #zfa-root select {
+  font-family: inherit; color: inherit;
+}
+
+/* Header */
+.zfa-head {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 28px;
+  background: color-mix(in oklab, var(--background, #090e17) 94%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  flex-wrap: wrap;
+}
+
+.zfa-head-left { display: flex; flex-direction: column; min-width: 0; gap: 3px; }
+.zfa-title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.zfa-title { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--foreground, #fff); white-space: nowrap; }
+.zfa-sub { font-size: 12px; margin: 0; color: var(--muted-foreground, #94a3b8); line-height: 1.4; }
+
+.zfa-live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px;
+  background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.3); color: #34d399;
+  font-size: 11px; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.zfa-pulse-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #34d399; box-shadow: 0 0 8px #34d399;
+  animation: zfaPulse 1.8s infinite;
+}
+
+@keyframes zfaPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.4); }
+}
+
+.zfa-head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.zfa-btn {
+  padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border, rgba(255,255,255,0.1));
+  background: rgba(255,255,255,0.04); cursor: pointer; font-size: 12px; font-weight: 600;
+  transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; white-space: nowrap;
+}
+.zfa-btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); }
+.zfa-btn.primary { background: rgba(59,130,246,0.22); border-color: rgba(59,130,246,0.5); color: #60a5fa; }
+.zfa-btn.primary:hover { background: rgba(59,130,246,0.35); color: #93c5fd; }
+.zfa-btn.success { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.4); color: #34d399; }
+.zfa-btn.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #f87171; }
+
+/* Tabs Bar (18 Subdomains) */
+.zfa-tabs-bar {
+  display: flex; gap: 4px; padding: 10px 28px 0;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  overflow-x: auto; scrollbar-width: none;
+  background: var(--background, #090e17);
+}
+.zfa-tabs-bar::-webkit-scrollbar { display: none; }
+
+.zfa-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px; border: none; background: transparent;
+  color: var(--muted-foreground, #94a3b8); font-size: 11px; font-weight: 600;
+  cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.15s ease; margin-bottom: -1px;
+}
+.zfa-tab:hover { color: var(--foreground, #f8fafc); background: rgba(255,255,255,0.04); border-radius: 6px 6px 0 0; }
+.zfa-tab.active {
+  color: #38bdf8; border-bottom-color: #38bdf8;
+  background: rgba(56,189,248,0.08); border-radius: 6px 6px 0 0;
+}
+.zfa-tab-badge {
+  font-size: 9px; padding: 1px 6px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); font-family: "IBM Plex Mono", monospace; font-weight: 600;
+}
+.zfa-tab-badge.warn { background: rgba(245,158,11,0.2); color: #fbbf24; }
+.zfa-tab-badge.danger { background: rgba(239,68,68,0.2); color: #f87171; }
+.zfa-tab.active .zfa-tab-badge { background: rgba(56,189,248,0.25); color: #7dd3fc; }
+
+/* Body Content — Unified 28px horizontal alignment matching header and tabs */
+.zfa-body,
+#zfa-root .zfa-body,
+#zfa-root div.zfa-body,
+#zfa-root main.zfa-body {
+  padding: 24px 28px 48px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* KPI Grid */
+.zfa-kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px;
+}
+.zfa-kpi {
+  background: var(--card, #131d2e);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.zfa-kpi:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+.zfa-kpi-top { display: flex; justify-content: space-between; align-items: center; }
+.zfa-kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--muted-foreground, #94a3b8); letter-spacing: 0.05em; font-family: "IBM Plex Mono", monospace; }
+.zfa-kpi-icon { font-size: 18px; }
+.zfa-kpi-val { font-size: 24px; font-weight: 700; font-family: "IBM Plex Mono", monospace; color: var(--foreground, #f8fafc); }
+.zfa-kpi-bottom { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.zfa-delta { padding: 2px 7px; border-radius: 99px; font-weight: 600; }
+.zfa-delta.up { color: #10b981; background: rgba(16,185,129,0.15); }
+.zfa-delta.down { color: #ef4444; background: rgba(239,68,68,0.15); }
+.zfa-delta.warn { color: #f59e0b; background: rgba(245,158,11,0.15); }
+.zfa-subtext { color: var(--muted-foreground, #94a3b8); }
+
+/* Card Panels */
+.zfa-card {
+  background: var(--card, #131d2e);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+.zfa-card-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px; flex-wrap: wrap; gap: 12px;
+}
+.zfa-card-title { margin: 0; font-size: 16px; font-weight: 700; color: #fff; }
+.zfa-card-sub { font-size: 12px; color: var(--muted-foreground, #94a3b8); margin-top: 3px; line-height: 1.4; }
+
+/* Grid splits */
+.zfa-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 18px; }
+.zfa-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+
+/* Data Tables */
+.zfa-table-wrap {
+  overflow-x: auto;
+  margin: 0 -24px -22px;
+  border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 0 0 12px 12px;
+}
+.zfa-table {
+  width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;
+}
+.zfa-table th {
+  padding: 12px 24px;
+  background: rgba(0,0,0,0.18);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  color: var(--muted-foreground, #94a3b8); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; font-family: "IBM Plex Mono", monospace;
+}
+.zfa-table td {
+  padding: 13px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--foreground, #f8fafc); vertical-align: middle;
+}
+.zfa-table tr:last-child td { border-bottom: none; }
+.zfa-table tr:hover td { background: rgba(255,255,255,0.025); }
+
+/* Badges */
+.zfa-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  font-family: "IBM Plex Mono", monospace;
+}
+.zfa-badge.green { background: rgba(16,185,129,0.15); color: #34d399; }
+.zfa-badge.blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.zfa-badge.cyan { background: rgba(6,182,212,0.15); color: #22d3ee; }
+.zfa-badge.amber { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.zfa-badge.red { background: rgba(239,68,68,0.15); color: #f87171; }
+.zfa-badge.purple { background: rgba(168,85,247,0.15); color: #c084fc; }
+
+/* Filter Bars */
+.zfa-filters {
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  padding-bottom: 16px; margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.zfa-input {
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+  padding: 7px 12px; border-radius: 8px; font-size: 12px; color: #fff;
+  height: 34px; outline: none; transition: border-color 0.15s;
+}
+.zfa-input:focus { border-color: #38bdf8; box-shadow: 0 0 0 2px rgba(56,189,248,0.2); }
+.zfa-select {
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+  padding: 7px 12px; border-radius: 8px; font-size: 12px; color: #cbd5e1;
+  height: 34px; outline: none; cursor: pointer;
+}
+
+/* Modal */
+.zfa-modal-backdrop {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+  z-index: 100; display: flex; align-items: center; justify-content: center;
+  padding: 20px; animation: zfaFadeIn 0.15s ease-out;
+}
+.zfa-modal {
+  background: #111a2c; border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px; width: 100%; max-width: 540px; padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.zfa-modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.zfa-modal-title { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
+.zfa-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.zfa-form-group label { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; font-family: "IBM Plex Mono", monospace; }
+.zfa-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+@media (max-width: 1023px) {
+  #zfa-root { left: 0 !important; width: 100vw !important; max-width: 100vw !important; }
+  .zfa-head { padding: 12px 16px; }
+  .zfa-tabs-bar { padding: 8px 16px 0; }
+  .zfa-body { padding: 16px !important; gap: 16px !important; }
+  .zfa-grid-2, .zfa-grid-3 { grid-template-columns: 1fr; }
+}

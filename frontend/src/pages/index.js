@@ -87,7 +87,26 @@ export { default as Onboarding } from './EmployeesAndHR/Onboarding';
 export { default as EmployeeExpenses } from './EmployeesAndHR/EmployeeExpenses';
 
 // 12. Finance & Accounting
-export { default as FinanceDashboard } from './FinanceAndAccounting/FinanceDashboard';
+export {
+  FinanceDashboard,
+  ProfitAndLoss,
+  BalanceSheet,
+  CashFlow,
+  Revenue as FinanceRevenue,
+  Expenses as FinanceExpenses,
+  COGS,
+  GrossProfit,
+  EBITDA,
+  NetProfit,
+  AccountsReceivable,
+  AccountsPayable,
+  Invoices,
+  Payments as FinancePayments,
+  Refunds as FinanceRefunds,
+  Taxes,
+  FinancialForecast,
+  CostAnalysis
+} from './FinanceAndAccounting';
 
 // 13. Marketing
 export { default as MarketingDashboard } from './Marketing/MarketingDashboard';
@@ -298,7 +317,26 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Finance & Accounting',
     icon: '💰',
-    items: ['Finance Dashboard', 'Profit & Loss', 'Balance Sheet', 'Cash Flow', 'Revenue', 'Expenses', 'Gross Profit', 'EBITDA', 'Receivables', 'Payables'],
+    items: [
+      'Finance Dashboard',
+      'Profit & Loss',
+      'Balance Sheet',
+      'Cash Flow',
+      'Revenue',
+      'Expenses',
+      'COGS',
+      'Gross Profit',
+      'EBITDA',
+      'Net Profit',
+      'Accounts Receivable',
+      'Accounts Payable',
+      'Invoices',
+      'Payments',
+      'Refunds',
+      'Taxes',
+      'Financial Forecast',
+      'Cost Analysis'
+    ],
     defaultPath: '/finance'
   },
   {

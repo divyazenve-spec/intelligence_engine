@@ -902,12 +902,15 @@
     if (window.ZenveAlertsDashboard && typeof window.ZenveAlertsDashboard.close === 'function') {
       try { window.ZenveAlertsDashboard.close(); } catch (e) {}
     }
+    if (window.ZenveFinanceDashboard && typeof window.ZenveFinanceDashboard.close === 'function') {
+      try { window.ZenveFinanceDashboard.close(); } catch (e) {}
+    }
     if (window.ZenveSettingsDashboard && typeof window.ZenveSettingsDashboard.close === 'function') {
       try { window.ZenveSettingsDashboard.close(); } catch (e) {}
     }
 
     document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
-      if (el.id !== 'zch-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zrep-open', 'zalt-open', 'zset-open');
+      if (el.id !== 'zch-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zrep-open', 'zalt-open', 'zset-open', 'zfa-open');
     });
 
     // Dismiss any Radix placeholder dialog
