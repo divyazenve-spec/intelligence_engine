@@ -738,10 +738,18 @@
     ['zfa-root', 'zmkt-dashboard-root', 'zvp-root', 'zod-root', 'zsd-root', 'zpid-root', 'zph-root', 'zch-root', 'zrep-root', 'zalt-root', 'zset-root', 'zhr-root', 'zsys-root'].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) {
-        el.classList.remove('zfa-open', 'zmkt-open', 'zvp-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zch-open', 'zrep-open', 'zalt-open', 'zset-open', 'zhr-open', 'zsys-open');
+        el.classList.remove('zfa-open', 'zmkt-open', 'zvp-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zch-open', 'zrep-open', 'zalt-open', 'zset-open', 'zhr-open', 'zsys-open', 'zpanel-open');
         el.style.display = 'none';
       }
     });
+    if (document.querySelectorAll) {
+      document.querySelectorAll('.zpanel-root').forEach(function(el) {
+        if (el.id !== 'zfsh-root') {
+          el.style.display = 'none';
+          el.classList.remove('zfa-open', 'zmkt-open', 'zvp-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zch-open', 'zrep-open', 'zalt-open', 'zset-open', 'zhr-open', 'zsys-open', 'zpanel-open');
+        }
+      });
+    }
 
     if (tab && TABS.some(function (t) { return t.id === tab; })) {
       S.tab = tab;
@@ -752,7 +760,13 @@
     build();
     S.open = true;
     root.style.display = 'block';
-    root.classList.add('zfsh-open');
+    root.classList.add('zfsh-open', 'zpanel-open');
+    try {
+      document.documentElement.classList.remove('zvp-locked', 'zalt-locked');
+      document.body.classList.remove('zvp-locked', 'zalt-locked');
+      document.documentElement.classList.add('zfsh-locked');
+      document.body.classList.add('zfsh-locked');
+    } catch (e) {}
     render();
 
     var targetTab = TABS.find(function (t) { return t.id === S.tab; });
@@ -765,9 +779,13 @@
   function close() {
     S.open = false;
     if (root) {
-      root.classList.remove('zfsh-open');
+      root.classList.remove('zfsh-open', 'zpanel-open');
       root.style.display = 'none';
     }
+    try {
+      document.documentElement.classList.remove('zfsh-locked');
+      document.body.classList.remove('zfsh-locked');
+    } catch (e) {}
     if (window.location.hash && tabFromHash(window.location.hash)) {
       try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch (e) {}
     }
@@ -790,7 +808,7 @@
     if (t) {
       open(t);
     } else if (S.open && window.location.hash && window.location.hash !== '#') {
-      var otherDomains = ['sales', 'operations', 'inventory', 'pharmacy', 'clinics', 'doctors', 'reports', 'alerts', 'settings', 'finance', 'marketing', 'vendors'];
+      var otherDomains = ['sales', 'operations', 'inventory', 'pharmacy', 'clinics', 'doctors', 'reports', 'alerts', 'settings', 'finance', 'marketing', 'vendors', 'procurement'];
       var isOther = otherDomains.some(function(d) { return window.location.hash.indexOf(d) >= 0; });
       if (isOther) close();
     }
@@ -812,7 +830,7 @@
         return;
       }
 
-      var isSidebar = !!el.closest('aside, nav, [class*="sidebar"]');
+      var isSidebar = !!el.closest('aside, [class*="sidebar"]') && !el.closest('#zfsh-root');
       if (isSidebar) {
         var txt = el.textContent || '';
         var t2 = tabFromText(txt);
