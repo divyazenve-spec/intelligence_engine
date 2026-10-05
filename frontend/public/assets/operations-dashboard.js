@@ -260,8 +260,11 @@
     if (window.ZenveSalesDashboard && typeof window.ZenveSalesDashboard.close === 'function') {
       try { window.ZenveSalesDashboard.close(); } catch (e) {}
     }
-    document.querySelectorAll('.zpanel-root').forEach(function (el) {
-      if (el.id !== 'zod-root') el.classList.remove('zpanel-open');
+    if (window.ZenveProductsInventory && typeof window.ZenveProductsInventory.close === 'function') {
+      try { window.ZenveProductsInventory.close(); } catch (e) {}
+    }
+    document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
+      if (el.id !== 'zod-root') el.classList.remove('zpanel-open', 'zsd-open', 'zpid-open');
     });
 
     // Close any stray Radix dialogs or locks

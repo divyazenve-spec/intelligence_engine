@@ -2473,6 +2473,16 @@
   }
 
   function open(tab) {
+    if (window.ZenveOperationsDashboard && typeof window.ZenveOperationsDashboard.close === 'function') {
+      try { window.ZenveOperationsDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveProductsInventory && typeof window.ZenveProductsInventory.close === 'function') {
+      try { window.ZenveProductsInventory.close(); } catch (e) {}
+    }
+    document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
+      if (el.id !== 'zsd-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open');
+    });
+
     if (tab && TABS.some(function (t) { return t.id === tab; })) {
       S.tab = tab;
     } else if (!S.tab) {

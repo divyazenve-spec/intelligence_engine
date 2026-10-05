@@ -1,0 +1,260 @@
+/* =====================================================================
+   Zenve BI — Products & Inventory Control Center
+   Suite:
+     1. Product Catalog
+     2. SKU Management
+     3. Inventory Dashboard
+     4. Stock Management
+     5. Low Stock Alert Centre
+     6. Out of Stock
+     7. Expiry Management
+     8. Warehouse Management
+   ===================================================================== */
+
+#zpid-root {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 50;
+  overflow-y: auto;
+  background: var(--background, #090d16);
+  color: var(--foreground, #f8fafc);
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  animation: zpidFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+#zpid-root.zpid-open { display: block; }
+
+@keyframes zpidFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 1024px) {
+  #zpid-root { left: 224px; }
+}
+
+#zpid-root * { box-sizing: border-box; }
+#zpid-root button, #zpid-root input, #zpid-root select {
+  font-family: inherit; color: inherit;
+}
+
+.zpid-head {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 24px;
+  background: color-mix(in oklab, var(--background, #090d16) 92%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  flex-wrap: wrap;
+}
+
+.zpid-head-left { display: flex; flex-direction: column; min-width: 0; }
+.zpid-title-row { display: flex; align-items: center; gap: 10px; }
+.zpid-title { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--foreground,#fff); white-space: nowrap; }
+.zpid-sub { font-size: 12px; margin: 2px 0 0; color: var(--muted-foreground,#94a3b8); }
+
+.zpid-live-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(139,92,246,0.14); border: 1px solid rgba(139,92,246,0.3); color: #a78bfa;
+  font-size: 10px; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.zpid-pulse-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #a78bfa; box-shadow: 0 0 8px #a78bfa;
+  animation: zpidPulse 1.8s infinite;
+}
+
+@keyframes zpidPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.4); }
+}
+
+.zpid-head-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.zpid-btn {
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1));
+  background: rgba(255,255,255,0.04); cursor: pointer; font-size: 12px; font-weight: 600;
+  transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;
+}
+.zpid-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+.zpid-btn.primary { background: rgba(139,92,246,0.15); border-color: rgba(139,92,246,0.4); color: #a78bfa; }
+.zpid-btn.primary:hover { background: rgba(139,92,246,0.25); }
+
+.zpid-seg { display: flex; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1)); overflow: hidden; }
+.zpid-seg button { padding: 5px 10px; border: none; background: transparent; font-size: 11px; font-weight: 600; cursor: pointer; color: var(--muted-foreground,#94a3b8); transition: all 0.15s; }
+.zpid-seg button.on { background: rgba(139,92,246,0.18); color: #c4b5fd; }
+
+.zpid-tabs-bar {
+  display: flex; gap: 2px; padding: 12px 24px 0;
+  border-bottom: 1px solid var(--border,rgba(255,255,255,0.08));
+  overflow-x: auto; scrollbar-width: none;
+  background: var(--background,#090d16);
+}
+.zpid-tabs-bar::-webkit-scrollbar { display: none; }
+
+.zpid-tab {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 14px; border: none; background: transparent; cursor: pointer;
+  border-radius: 8px 8px 0 0; font-size: 12px; font-weight: 600; white-space: nowrap;
+  color: var(--muted-foreground,#94a3b8); transition: all 0.15s;
+}
+.zpid-tab:hover { color: var(--foreground,#f8fafc); background: rgba(255,255,255,0.04); }
+.zpid-tab.on { color: #c4b5fd; background: rgba(139,92,246,0.1); border-bottom: 2px solid #8b5cf6; }
+
+.zpid-tab-badge { font-size: 10px; padding: 1px 6px; border-radius: 999px; background: rgba(139,92,246,0.18); color: #a78bfa; font-family: "IBM Plex Mono", monospace; font-weight: 700; }
+.zpid-tab-badge.warn { background: rgba(245,158,11,0.18); color: #fbbf24; }
+.zpid-tab-badge.danger { background: rgba(239,68,68,0.18); color: #f87171; }
+
+.zpid-body { padding: 20px 24px 40px; display: flex; flex-direction: column; gap: 16px; }
+
+.zpid-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; }
+
+.zpid-kpi {
+  background: var(--card,#1e293b); border: 1px solid var(--border,rgba(255,255,255,0.08));
+  border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;
+  transition: border-color 0.15s;
+}
+.zpid-kpi:hover { border-color: rgba(139,92,246,0.3); }
+.zpid-kpi-top { display: flex; align-items: center; justify-content: space-between; }
+.zpid-kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground,#94a3b8); font-family: "IBM Plex Mono", monospace; }
+.zpid-kpi-icon { font-size: 16px; }
+.zpid-kpi-value { font-size: 24px; font-weight: 700; font-family: "IBM Plex Mono", monospace; color: var(--foreground,#f8fafc); line-height: 1; }
+.zpid-kpi-delta { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
+.zpid-kpi-delta.up   { background: rgba(16,185,129,0.15); color: #10b981; }
+.zpid-kpi-delta.down { background: rgba(239,68,68,0.15);  color: #ef4444; }
+.zpid-kpi-delta.warn { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.zpid-kpi-delta.neutral { background: rgba(148,163,184,0.15); color: #94a3b8; }
+
+.zpid-card { background: var(--card,#1e293b); border: 1px solid var(--border,rgba(255,255,255,0.08)); border-radius: 14px; overflow: hidden; }
+.zpid-ph { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 16px 18px 12px; border-bottom: 1px solid var(--border,rgba(255,255,255,0.06)); flex-wrap: wrap; }
+.zpid-ph h3 { margin: 0; font-size: 14px; font-weight: 700; }
+.zpid-ph small { display: block; font-size: 11px; color: var(--muted-foreground,#94a3b8); margin-top: 2px; }
+
+.zpid-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
+.zpid-badge.green  { background: rgba(16,185,129,0.15); color: #10b981; }
+.zpid-badge.amber  { background: rgba(245,158,11,0.15);  color: #f59e0b; }
+.zpid-badge.red    { background: rgba(239,68,68,0.15);   color: #f87171; }
+.zpid-badge.purple { background: rgba(139,92,246,0.15);  color: #a78bfa; }
+.zpid-badge.blue   { background: rgba(14,165,233,0.15);  color: #38bdf8; }
+
+.zpid-table-wrap { overflow-x: auto; }
+.zpid-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.zpid-table th { padding: 10px 14px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground,#94a3b8); font-family: "IBM Plex Mono", monospace; border-bottom: 1px solid var(--border,rgba(255,255,255,0.08)); white-space: nowrap; }
+.zpid-table td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.zpid-table tr:last-child td { border-bottom: none; }
+.zpid-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.zpid-mono { font-family: "IBM Plex Mono", monospace; font-size: 11px; }
+.zpid-muted { color: var(--muted-foreground,#94a3b8); }
+.zpid-bold { font-weight: 700; }
+
+.zpid-stock-bar-wrap { display: flex; align-items: center; gap: 8px; min-width: 100px; }
+.zpid-stock-bar-bg { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; }
+.zpid-stock-bar-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+
+.zpid-pill { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
+.zpid-pill.healthy  { background: rgba(16,185,129,0.15); color: #10b981; }
+.zpid-pill.low      { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.zpid-pill.critical { background: rgba(239,68,68,0.15);  color: #f87171; }
+.zpid-pill.out      { background: rgba(100,116,139,0.15); color: #94a3b8; }
+.zpid-pill.expiring { background: rgba(251,146,60,0.15); color: #fb923c; }
+.zpid-pill.good     { background: rgba(56,189,248,0.15);  color: #38bdf8; }
+
+.zpid-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.zpid-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 14px; }
+.zpid-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 14px; }
+@media (max-width: 768px) { .zpid-grid-2 { grid-template-columns: 1fr; } }
+
+.zpid-donut-wrap { padding: 16px 18px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.zpid-donut-legend { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 160px; }
+.zpid-donut-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.zpid-donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+.zpid-hub-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border,rgba(255,255,255,0.08)); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.zpid-hub-name { font-size: 13px; font-weight: 700; }
+.zpid-hub-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.zpid-hub-chip { font-size: 10px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+
+.zpid-expiry-item { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.zpid-expiry-item:last-child { border-bottom: none; }
+.zpid-expiry-days { font-size: 24px; font-weight: 800; font-family: "IBM Plex Mono", monospace; min-width: 46px; text-align: center; }
+.zpid-expiry-info { flex: 1; }
+.zpid-expiry-name { font-size: 13px; font-weight: 600; }
+.zpid-expiry-meta { font-size: 11px; color: var(--muted-foreground,#94a3b8); margin-top: 2px; }
+.zpid-expiry-action { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: none; cursor: pointer; background: rgba(251,146,60,0.15); color: #fb923c; }
+.zpid-expiry-action:hover { background: rgba(251,146,60,0.25); }
+
+.zpid-search-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 18px 0; }
+.zpid-search { flex: 1; min-width: 200px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1)); background: rgba(255,255,255,0.04); font-size: 12px; outline: none; transition: border-color 0.15s; }
+.zpid-search:focus { border-color: rgba(139,92,246,0.45); }
+.zpid-search::placeholder { color: var(--muted-foreground,#64748b); }
+.zpid-filter-select { padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1)); background: rgba(255,255,255,0.04); font-size: 12px; cursor: pointer; }
+
+.zpid-cat-ribbon { display: flex; gap: 6px; padding: 12px 18px 0; flex-wrap: wrap; }
+.zpid-cat-chip { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid var(--border,rgba(255,255,255,0.1)); background: transparent; cursor: pointer; transition: all 0.15s; }
+.zpid-cat-chip.on, .zpid-cat-chip:hover { background: rgba(139,92,246,0.15); border-color: rgba(139,92,246,0.4); color: #c4b5fd; }
+
+.zpid-chart-wrap { padding: 16px 18px; }
+.zpid-chart-wrap svg { width: 100%; display: block; }
+
+.zpid-progress-row { display: flex; flex-direction: column; gap: 10px; padding: 12px 18px; }
+.zpid-progress-item { display: flex; flex-direction: column; gap: 4px; }
+.zpid-progress-label { display: flex; justify-content: space-between; font-size: 11px; }
+.zpid-progress-label span:first-child { font-weight: 600; }
+.zpid-progress-label span:last-child { color: var(--muted-foreground,#94a3b8); font-family: "IBM Plex Mono", monospace; }
+.zpid-progress-track { height: 6px; background: rgba(255,255,255,0.07); border-radius: 99px; overflow: hidden; }
+.zpid-progress-fill  { height: 100%; border-radius: 99px; transition: width 0.4s; }
+
+.zpid-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #1e293b; border: 1px solid rgba(139,92,246,0.35); color: #f8fafc;
+  padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; z-index: 9999;
+  display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  animation: zpidFadeIn 0.2s ease;
+}
+
+#zpid-root::-webkit-scrollbar { width: 6px; }
+#zpid-root::-webkit-scrollbar-track { background: transparent; }
+#zpid-root::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+/* ── Transfer Manifest & Valuation Extensions ── */
+.zpid-modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: zpidFadeIn 0.18s ease;
+}
+.zpid-modal-card {
+  background: #151e2e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 540px;
+  padding: 24px;
+  color: #f8fafc;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.zpid-route-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 600; font-size: 12px;
+}
+.zpid-telemetry-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px; border-radius: 99px;
+  font-size: 10px; font-weight: 600; font-family: "IBM Plex Mono", monospace;
+}
+.zpid-telemetry-pill.cold {
+  background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.zpid-telemetry-pill.ambient {
+  background: rgba(255, 255, 255, 0.06); color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
