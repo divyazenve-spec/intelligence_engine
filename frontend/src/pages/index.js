@@ -109,7 +109,22 @@ export {
 } from './FinanceAndAccounting';
 
 // 13. Marketing
-export { default as MarketingDashboard } from './Marketing/MarketingDashboard';
+export {
+  MarketingDashboard,
+  Campaigns,
+  Leads,
+  LeadSources,
+  WebsiteAnalytics,
+  AppAnalytics,
+  SocialMedia,
+  Advertising,
+  MarketingSpend,
+  CustomerAcquisition,
+  CAC,
+  ROAS,
+  MarketingROI,
+  ConversionFunnel
+} from './Marketing';
 
 // 14. Vendors & Procurement
 export { default as VendorsDashboard } from './VendorsAndProcurement/VendorsDashboard';
@@ -342,7 +357,22 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Marketing',
     icon: '📣',
-    items: ['Marketing Dashboard', 'Campaigns', 'Leads', 'Lead Sources', 'App Analytics', 'Advertising', 'ROAS', 'Conversion Funnel'],
+    items: [
+      'Marketing Dashboard',
+      'Campaigns',
+      'Leads',
+      'Lead Sources',
+      'Website Analytics',
+      'App Analytics',
+      'Social Media',
+      'Advertising',
+      'Marketing Spend',
+      'Customer Acquisition',
+      'CAC',
+      'ROAS',
+      'Marketing ROI',
+      'Conversion Funnel'
+    ],
     defaultPath: '/marketing'
   },
   {

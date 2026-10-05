@@ -1,0 +1,746 @@
+/* =====================================================================
+   Zenve BI — Marketing & Growth Executive Control Center
+   Sidebar: Marketing > Marketing Dashboard, Campaigns, Leads, Lead Sources, etc.
+   Pure Light Executive Design System
+   ===================================================================== */
+
+#zmkt-dashboard-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 60 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zmkt-dashboard-root.zpanel-open {
+  display: block !important;
+}
+
+#zmkt-dashboard-root::-webkit-scrollbar {
+  width: 6px;
+}
+
+#zmkt-dashboard-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+#zmkt-dashboard-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+
+#zmkt-dashboard-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+#zmkt-dashboard-root,
+#zmkt-dashboard-root * {
+  box-sizing: border-box !important;
+}
+
+/* ── Top Executive Header ─────────────────────────────────────────── */
+.zmkt-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zmkt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zmkt-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe) !important;
+  border: 1px solid #bfdbfe !important;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.zmkt-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zmkt-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zmkt-main-title {
+  font-family: var(--font-display, "Sora", sans-serif) !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+.zmkt-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 9px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #ecfdf5 !important;
+  color: #059669 !important;
+  border: 1px solid #a7f3d0 !important;
+  white-space: nowrap;
+}
+
+.zmkt-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: zmktPulse 2s infinite;
+}
+
+@keyframes zmktPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.zmkt-subtitle {
+  font-size: 12px !important;
+  color: #64748b !important;
+  margin: 2px 0 0 0 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zmkt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.zmkt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.zmkt-btn-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.zmkt-btn-primary:hover {
+  background: #1d4ed8 !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+}
+
+.zmkt-btn-secondary {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.zmkt-btn-secondary:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+.zmkt-btn-icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+}
+
+.zmkt-btn-icon:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* ── Chip Navigation Bar ──────────────────────────────────────────── */
+.zmkt-nav-bar {
+  position: sticky;
+  top: 67px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.zmkt-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zmkt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.zmkt-chip:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.zmkt-chip.active {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: #93c5fd !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.08) !important;
+}
+
+.zmkt-chip-count {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.zmkt-chip.active .zmkt-chip-count {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* ── Content View Area ────────────────────────────────────────────── */
+.zmkt-content {
+  padding: 24px 32px 64px 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ── Executive KPI Cards Grid ─────────────────────────────────────── */
+.zmkt-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.zmkt-kpi-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 18px 20px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.zmkt-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  border-color: #cbd5e1 !important;
+}
+
+.zmkt-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zmkt-kpi-label {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.zmkt-kpi-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.zmkt-kpi-val {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.zmkt-kpi-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.zmkt-badge-up {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zmkt-badge-down {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.zmkt-badge-neutral {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* ── Panel Box Containers ─────────────────────────────────────────── */
+.zmkt-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  padding: 22px 24px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  margin-bottom: 24px;
+}
+
+.zmkt-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.zmkt-card-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.zmkt-card-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+/* ── Filters Bar ──────────────────────────────────────────────────── */
+.zmkt-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.zmkt-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  max-width: 440px;
+}
+
+.zmkt-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.zmkt-search-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px 0 34px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.zmkt-search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.zmkt-select {
+  height: 38px;
+  padding: 0 32px 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────── */
+.zmkt-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.zmkt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.zmkt-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.zmkt-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.zmkt-table tbody tr {
+  transition: background 0.12s ease;
+}
+
+.zmkt-table tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+.zmkt-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.zmkt-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.zmkt-tag-active { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+.zmkt-tag-scheduled { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.zmkt-tag-paused { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+.zmkt-tag-completed { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+.zmkt-tag-high { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.zmkt-tag-med { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+.zmkt-tag-low { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+
+.zmkt-roas-pill {
+  padding: 3px 9px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 12px;
+  background: #dcfce7;
+  color: #15803d;
+  display: inline-block;
+}
+
+/* ── Interactive Funnel Visualization ─────────────────────────────── */
+.zmkt-funnel-step {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  margin-bottom: 12px;
+  transition: all 0.15s ease;
+}
+
+.zmkt-funnel-step:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.zmkt-funnel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.zmkt-funnel-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.zmkt-bar-track {
+  height: 8px;
+  width: 100%;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.zmkt-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+/* ── Modals ───────────────────────────────────────────────────────── */
+.zmkt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: zmktFadeIn 0.15s ease;
+}
+
+@keyframes zmktFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.zmkt-modal-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.zmkt-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.zmkt-modal-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zmkt-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zmkt-modal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.zmkt-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zmkt-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.zmkt-input {
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+}
+
+.zmkt-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ── Toast Notifications ─────────────────────────────────────────── */
+.zmkt-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 120;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: zmktSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zmktSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  #zmkt-dashboard-root {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  .zmkt-header {
+    padding: 12px 16px;
+  }
+  .zmkt-nav-bar {
+    padding: 8px 16px;
+  }
+  .zmkt-content {
+    padding: 16px;
+  }
+}

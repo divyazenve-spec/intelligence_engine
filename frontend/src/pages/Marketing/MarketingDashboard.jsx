@@ -1,34 +1,181 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
+import Campaigns from './Campaigns';
+import Leads from './Leads';
+import LeadSources from './LeadSources';
+import WebsiteAnalytics from './WebsiteAnalytics';
+import AppAnalytics from './AppAnalytics';
+import SocialMedia from './SocialMedia';
+import Advertising from './Advertising';
+import MarketingSpend from './MarketingSpend';
+import CustomerAcquisition from './CustomerAcquisition';
+import CAC from './CAC';
+import ROAS from './ROAS';
+import MarketingROI from './MarketingROI';
+import ConversionFunnel from './ConversionFunnel';
 
 export default function MarketingDashboard() {
+  const [activeSubcategory, setActiveSubcategory] = useState('overview');
+
+  const subcategories = [
+    { id: 'overview', label: 'Executive Overview', icon: '📊' },
+    { id: 'campaigns', label: 'Campaigns', icon: '🚀' },
+    { id: 'leads', label: 'Leads', icon: '🎯' },
+    { id: 'lead-sources', label: 'Lead Sources', icon: '🌐' },
+    { id: 'website-analytics', label: 'Website Analytics', icon: '💻' },
+    { id: 'app-analytics', label: 'App Analytics', icon: '📱' },
+    { id: 'social-media', label: 'Social Media', icon: '📸' },
+    { id: 'advertising', label: 'Advertising', icon: '📢' },
+    { id: 'marketing-spend', label: 'Marketing Spend', icon: '💰' },
+    { id: 'customer-acquisition', label: 'Customer Acquisition', icon: '🐾' },
+    { id: 'cac', label: 'CAC', icon: '🎯' },
+    { id: 'roas', label: 'ROAS', icon: '🚀' },
+    { id: 'marketing-roi', label: 'Marketing ROI', icon: '💎' },
+    { id: 'conversion-funnel', label: 'Conversion Funnel', icon: '⚡' }
+  ];
+
+  if (activeSubcategory === 'campaigns') return <Campaigns />;
+  if (activeSubcategory === 'leads') return <Leads />;
+  if (activeSubcategory === 'lead-sources') return <LeadSources />;
+  if (activeSubcategory === 'website-analytics') return <WebsiteAnalytics />;
+  if (activeSubcategory === 'app-analytics') return <AppAnalytics />;
+  if (activeSubcategory === 'social-media') return <SocialMedia />;
+  if (activeSubcategory === 'advertising') return <Advertising />;
+  if (activeSubcategory === 'marketing-spend') return <MarketingSpend />;
+  if (activeSubcategory === 'customer-acquisition') return <CustomerAcquisition />;
+  if (activeSubcategory === 'cac') return <CAC />;
+  if (activeSubcategory === 'roas') return <ROAS />;
+  if (activeSubcategory === 'marketing-roi') return <MarketingROI />;
+  if (activeSubcategory === 'conversion-funnel') return <ConversionFunnel />;
+
   return (
     <DashboardLayout
       category="Marketing"
-      subcategory="Campaigns, Leads & ROAS"
-      title="Marketing Performance & Acquisition"
-      subtitle="Ad spend efficiency, blended CAC, conversion attribution, and multi-channel ROAS"
+      subcategory="Marketing Dashboard"
+      title="Marketing & Growth Command Center"
+      subtitle="Complete multi-channel intelligence: campaigns, pet parent leads, ad spend efficiency, CAC, ROAS & conversion funnels"
       icon="📣"
-      badge="2.9x ROAS"
+      badge="4.45x Blended ROAS"
+      actions={
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => setActiveSubcategory('campaigns')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: '6px',
+              fontSize: '12px',
+              fontWeight: 600,
+              background: '#2563eb',
+              color: '#ffffff',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Launch Campaign 🚀
+          </button>
+        </div>
+      }
     >
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Ad Spend" value="₹6,40,000" delta="-4.2%" trend="up" subtext="Meta, Google, In-App" icon="💳" />
-        <KpiCard label="Acquired Leads" value="12,840" delta="+14.6%" trend="up" subtext="Form & app clicks" icon="🎯" />
-        <KpiCard label="Converted Customers" value="2,160" delta="+18.3%" trend="up" subtext="First paid order" icon="👥" />
-        <KpiCard label="Blended ROAS" value="2.9x" delta="+16.4%" trend="up" subtext="₹18.75L revenue" icon="🚀" />
+      {/* Subcategory Switcher Chips */}
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '8px',
+        padding: '12px',
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '10px'
+      }}>
+        {subcategories.map(sc => (
+          <button
+            key={sc.id}
+            onClick={() => setActiveSubcategory(sc.id)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 12px',
+              borderRadius: '6px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: activeSubcategory === sc.id ? '1px solid #2563eb' : '1px solid #e2e8f0',
+              background: activeSubcategory === sc.id ? '#eff6ff' : '#ffffff',
+              color: activeSubcategory === sc.id ? '#2563eb' : '#475569',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <span>{sc.icon}</span>
+            <span>{sc.label}</span>
+          </button>
+        ))}
       </div>
 
-      <div style={{
-        background: 'var(--card, #1e293b)',
-        border: '1px solid var(--border, rgba(255,255,255,0.08))',
-        borderRadius: '12px',
-        padding: '20px'
-      }}>
-        <h3 style={{ margin: '0 0 12px', fontSize: '15px', fontWeight: 700 }}>Acquisition Channel ROAS</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Google Search (3.4x), Meta Instagram (2.8x), Local Vet Clinic Referrals (4.2x)</p>
-        <div style={{ height: '140px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', display: 'grid', placeItems: 'center', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>
-          Campaign Conversion Funnel & Lead Cost Timeline
+      {/* Primary KPI Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <KpiCard label="Total Ad Spend" value="₹7,56,500" delta="-5.4% under budget" trend="up" subtext="Meta, Google, In-App" icon="💳" />
+        <KpiCard label="Acquired Leads" value="18,400" delta="+22.6%" trend="up" subtext="Inbound & app clicks" icon="🎯" />
+        <KpiCard label="Blended CAC" value="₹365" delta="-8.4%" trend="up" subtext="Industry benchmark: ₹450" icon="👥" />
+        <KpiCard label="Blended ROAS" value="4.45x" delta="+18.4%" trend="up" subtext="₹33.65L attributed GMV" icon="🚀" />
+      </div>
+
+      {/* Grid of Main Channels & Funnel Snapshot */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '16px' }}>
+        {/* Top Channels */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Top Acquisition Channels</h3>
+            <button onClick={() => setActiveSubcategory('lead-sources')} style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>View All Sources →</button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {[
+              { name: 'Google Search Ads', leads: '6,420', roas: '5.2x', share: '34.8%', color: '#3b82f6' },
+              { name: 'Meta Instagram & Reels', leads: '4,180', roas: '4.1x', share: '22.7%', color: '#ec4899' },
+              { name: 'Vet Clinic Referral Network', leads: '2,940', roas: '5.8x', share: '16.0%', color: '#10b981' },
+              { name: 'In-App Viral Invites', leads: '2,450', roas: '6.4x', share: '13.3%', color: '#f59e0b' },
+              { name: 'Organic SEO & Pet Guides', leads: '1,650', roas: 'N/A', share: '9.0%', color: '#8b5cf6' }
+            ].map(ch => (
+              <div key={ch.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', background: '#f8fafc', borderRadius: '8px' }}>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '13px', color: '#0f172a' }}>{ch.name}</div>
+                  <div style={{ fontSize: '11px', color: '#64748b' }}>{ch.leads} leads · {ch.share} share</div>
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                  <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
+                    {ch.roas} ROAS
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Funnel Preview */}
+        <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Conversion Velocity & Drop-Off</h3>
+            <button onClick={() => setActiveSubcategory('conversion-funnel')} style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>Deep Funnel →</button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[
+              { label: 'Ad Impressions', val: '1.84M', pct: '100%', color: '#3b82f6' },
+              { label: 'Website & App Clicks', val: '148,000', pct: '8.0%', color: '#0ea5e9' },
+              { label: 'Pet Parent Leads', val: '32,400', pct: '21.9%', color: '#10b981' },
+              { label: 'Consult / Cart Initiated', val: '12,800', pct: '39.5%', color: '#f59e0b' },
+              { label: 'Paid Orders Completed', val: '4,720', pct: '36.9%', color: '#ec4899' }
+            ].map(fn => (
+              <div key={fn.label}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
+                  <span style={{ fontWeight: 600, color: '#334155' }}>{fn.label}</span>
+                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{fn.val} ({fn.pct})</span>
+                </div>
+                <div style={{ height: '6px', background: '#f1f5f9', borderRadius: '99px', overflow: 'hidden' }}>
+                  <div style={{ width: fn.pct, height: '100%', background: fn.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </DashboardLayout>
