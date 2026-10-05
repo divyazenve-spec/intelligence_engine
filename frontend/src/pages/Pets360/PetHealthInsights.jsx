@@ -1,0 +1,426 @@
+import React, { useState } from 'react';
+import DashboardLayout from '../shared/DashboardLayout';
+import KpiCard from '../shared/KpiCard';
+
+export default function PetHealthInsights() {
+  const [filter, setFilter] = useState('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [actionMessage, setActionMessage] = useState('');
+
+  const insights = [
+    {
+      id: 'INS-01',
+      title: 'Seasonal Flea, Tick & Malassezia Surge',
+      category: 'Critical Outbreak',
+      severity: 'Critical',
+      impact: 'High Risk (410 Canines)',
+      cohort: 'Canine (Bengaluru & Mumbai Hubs)',
+      timeframe: 'Past 14 Days',
+      description: 'Post-monsoon ambient humidity has caused a 38% spike in canine Malassezia pachydermatis dermatitis, tick infestations, and Ehrlichiosis canis seropositivity in outpatient consults.',
+      recommendation: 'Broadcast automated WhatsApp push reminders for Bravecto / NexGard 3-month chewables to 410 overdue canine pet parents. Stock up ectoparasiticide inventory.',
+      status: 'Action Required',
+      metric: '+38% Case Surge',
+      preventable: '94% Avertable',
+      actionLabel: 'Broadcast WhatsApp Recall'
+    },
+    {
+      id: 'INS-02',
+      title: 'Canine Parvovirus (CPV) Strain Cluster in Pups < 4 Mos',
+      category: 'Critical Outbreak',
+      severity: 'Critical',
+      impact: 'High Risk (124 Pups)',
+      cohort: 'Canine Pediatric (< 16 weeks) — Delhi NCR',
+      timeframe: 'Past 7 Days',
+      description: 'Surveillance telemetry detected 8 confirmed CPV cases within a 6km radius in Delhi NCR/Gurugram. High mortality risk for unimmunized or single-dose puppies.',
+      recommendation: 'Initiate emergency isolation ward triage protocol. Send high-priority immunization recall to 124 pet parents with pending 2nd or 3rd DHPPiL booster doses.',
+      status: 'Action Required',
+      metric: '8 CPV Cases Detected',
+      preventable: '98% Vaccine Protected',
+      actionLabel: 'Trigger Emergency Booster Alerts'
+    },
+    {
+      id: 'INS-03',
+      title: 'Senior Feline Early Renal Azotemia (SDMA Biomarker Cluster)',
+      category: 'Clinical Warning',
+      severity: 'Warning',
+      impact: 'Medium Risk (24 Felines)',
+      cohort: 'Persian & Domestic Shorthair (Age > 6y)',
+      timeframe: 'Past 30 Days',
+      description: 'Routine SDMA biomarker screening identified early Stage 2 Chronic Kidney Disease (CKD) in 24 senior cats prior to overt serum creatinine elevation or clinical nephron loss.',
+      recommendation: 'Enroll flagged pets into Royal Canin Renal / Hill’s k/d therapeutic diet plans and schedule subcutaneous fluid home hydration consultations.',
+      status: 'Under Protocol',
+      metric: '24 Early Staged',
+      preventable: 'Slows Progression by 62%',
+      actionLabel: 'Prescribe Renal Diet Regimen'
+    },
+    {
+      id: 'INS-04',
+      title: 'Brachycephalic Airway (BOAS) Heat Distress Risk',
+      category: 'Breed Genetic Risk',
+      severity: 'Warning',
+      impact: 'Moderate Risk (48 Pets)',
+      cohort: 'French Bulldogs, Pugs & Shih Tzus',
+      timeframe: 'Ongoing Surveillance',
+      description: 'Elevated ambient afternoon temperatures have correlated with a 22% increase in grade 2+ stertor, stridor, and respiratory distress admissions among brachycephalic patients.',
+      recommendation: 'Publish hot-weather exercise avoidance guides to parent app. Schedule preventative rhinoplasty / staphylectomy consultations for high-risk candidates.',
+      status: 'Advisory Active',
+      metric: '48 Flagged Patients',
+      preventable: 'Averts Heatstroke ICU',
+      actionLabel: 'Send BOAS Care Guide'
+    },
+    {
+      id: 'INS-05',
+      title: 'Canine Degenerative Mitral Valve Disease (MMVD) Staging',
+      category: 'Breed Genetic Risk',
+      severity: 'Warning',
+      impact: 'Moderate Risk (32 Dogs)',
+      cohort: 'Shih Tzus, Dachshunds & Senior Toy Breeds',
+      timeframe: 'Past 60 Days',
+      description: 'Auscultation data flagged systolic murmurs (Grade 2-3/6) in 32 senior toy breeds. 14 patients progressed to Stage B2 enlargement requiring inodilator therapy.',
+      recommendation: 'Schedule cardiac Doppler echocardiograms and initiate Pimobendan (Vetmedin 1.25mg) to delay congestive heart failure onset.',
+      status: 'Under Protocol',
+      metric: '32 Murmurs Logged',
+      preventable: '+60% Delay to CHF',
+      actionLabel: 'Schedule Echocardiograms'
+    },
+    {
+      id: 'INS-06',
+      title: 'High Primary Immunization Adherence in Puppy Cohort',
+      category: 'Wellness Milestone',
+      severity: 'Milestone',
+      impact: 'High Protective Efficacy',
+      cohort: 'Canine (< 12 months, All Hubs)',
+      timeframe: 'Year-to-Date',
+      description: '97.4% of registered puppies completed the full DHPPiL + Canine Corona primary vaccination series on schedule within the standard 16-week developmental window.',
+      recommendation: 'Issue automated digital health passports with tamper-proof QR codes and calendarize 1-year Rabies booster reminders in the Zenve Parent App.',
+      status: 'Target Achieved',
+      metric: '97.4% Completion',
+      preventable: 'Herd Immunity Secured',
+      actionLabel: 'Issue Health Passports'
+    }
+  ];
+
+  const biomarkerSurveillance = [
+    { test: 'Symmetric Dimethylarginine (SDMA)', indication: 'Early Renal Nephron Loss (Feline/Canine)', tested: 342, normal: 312, atRisk: 24, pathological: 6, action: 'Early CKD Renal Diet & Hydration' },
+    { test: 'Canine NT-proBNP Cardiac Biomarker', indication: 'Myocardial Wall Stress & MMVD Progression', tested: 188, normal: 156, atRisk: 21, pathological: 11, action: 'Cardiac Ultrasound & Pimobendan' },
+    { test: 'Fasting Blood Glucose & Fructosamine', indication: 'Endocrine & Diabetes Mellitus Screening', tested: 260, normal: 242, atRisk: 14, pathological: 4, action: 'Glargine Insulin & Satiety Diet' },
+    { test: 'Urine Protein:Creatinine (UPC) Ratio', indication: 'Glomerular Proteinuria & Renal Disease', tested: 215, normal: 198, atRisk: 12, pathological: 5, action: 'ACE Inhibitor (Benazepril) Therapy' },
+    { test: 'Feline Spec fPL (Pancreatic Lipase)', indication: 'Acute / Chronic Feline Pancreatitis', tested: 144, normal: 128, atRisk: 10, pathological: 6, action: 'Anti-emetic, Analgesia, Ultra-low Fat Diet' }
+  ];
+
+  const handleAction = (title, label) => {
+    setActionMessage(`Executing "${label}" for: ${title}`);
+    setTimeout(() => setActionMessage(''), 4500);
+  };
+
+  const filteredInsights = insights.filter(ins => {
+    const matchesFilter = filter === 'ALL' || ins.severity === filter || ins.category.toLowerCase().includes(filter.toLowerCase());
+    const matchesSearch = ins.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          ins.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          ins.cohort.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+
+  return (
+    <DashboardLayout
+      category="Pets 360°"
+      subcategory="Pet Health Insights"
+      title="Zenve AI Pet Health Intelligence & Epidemiological Surveillance"
+      subtitle="Machine learning-driven epidemiological alert triggers, infectious disease clustering, genetic risk flags, biomarker surveillance, and proactive clinical recall protocols"
+      icon="🧠"
+      badge="6 Live Clinical Signals"
+      actions={
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {['ALL', 'Critical', 'Warning', 'Milestone'].map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              style={{
+                padding: '6px 14px',
+                borderRadius: '6px',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: filter === f ? '1px solid #2563eb' : '1px solid #e2e8f0',
+                background: filter === f ? '#eff6ff' : '#ffffff',
+                color: filter === f ? '#2563eb' : '#64748b',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              {f === 'ALL' ? 'All Signals' : f}
+            </button>
+          ))}
+        </div>
+      }
+    >
+      {/* Toast Feedback */}
+      {actionMessage && (
+        <div style={{
+          marginBottom: '18px',
+          padding: '12px 18px',
+          borderRadius: '8px',
+          background: '#eff6ff',
+          border: '1px solid #93c5fd',
+          color: '#1e40af',
+          fontSize: '13px',
+          fontWeight: 600,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          animation: 'fadeIn 0.2s ease'
+        }}>
+          <span>⚡</span>
+          <span>{actionMessage}</span>
+        </div>
+      )}
+
+      {/* KPI Ribbon */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
+        <KpiCard label="Population Health Index" value="91.2/100" delta="Optimal Health Band" trend="up" subtext="Aggregated clinical wellness score" icon="🧠" />
+        <KpiCard label="Active Surveillance Triggers" value="5 Live Alerts" delta="2 Critical, 3 Warnings" trend="neutral" subtext="Epidemiological clusters" icon="🚨" />
+        <KpiCard label="Early Morbidity Staging" value="88.5%" delta="+6.2 pts YoY" trend="up" subtext="Averts late-stage hospitalization" icon="🛡️" />
+        <KpiCard label="Parent Recall Action Rate" value="81.4%" delta="642 Recalls Sent" trend="up" subtext="WhatsApp & push response" icon="📱" />
+        <KpiCard label="Chronic Care Cohort" value="142 Pets" delta="Cardiac & Renal" trend="neutral" subtext="Enrolled in remote monitoring" icon="🩺" />
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '10px',
+        padding: '14px 18px',
+        marginBottom: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '12px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1, minWidth: '260px' }}>
+          <span style={{ fontSize: '14px' }}>🔍</span>
+          <input
+            type="text"
+            placeholder="Search health insights by condition, breed, cohort, or symptom..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              border: 'none',
+              outline: 'none',
+              fontSize: '13px',
+              color: '#0f172a'
+            }}
+          />
+        </div>
+
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {['ALL', 'Critical Outbreak', 'Clinical Warning', 'Breed Genetic Risk', 'Wellness Milestone'].map(c => (
+            <button
+              key={c}
+              onClick={() => setFilter(c === 'ALL' ? 'ALL' : c)}
+              style={{
+                padding: '4px 10px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: filter === c ? '1px solid #2563eb' : '1px solid #e2e8f0',
+                background: filter === c ? '#eff6ff' : '#f8fafc',
+                color: filter === c ? '#2563eb' : '#64748b'
+              }}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Insights Grid */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+        {filteredInsights.map(ins => {
+          const isCritical = ins.severity === 'Critical';
+          const isWarning = ins.severity === 'Warning';
+          const isMilestone = ins.severity === 'Milestone';
+
+          const badgeBg = isCritical ? '#fef2f2' : isWarning ? '#fffbeb' : '#ecfdf5';
+          const badgeColor = isCritical ? '#dc2626' : isWarning ? '#d97706' : '#059669';
+          const badgeBorder = isCritical ? '#fca5a5' : isWarning ? '#fde68a' : '#a7f3d0';
+
+          return (
+            <div key={ins.id} style={{
+              background: '#ffffff',
+              border: '1px solid #e2e8f0',
+              borderRadius: '12px',
+              padding: '20px 24px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+              position: 'relative'
+            }}>
+              {/* Header */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px', flexWrap: 'wrap', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                  <span style={{
+                    padding: '4px 10px',
+                    borderRadius: '999px',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    background: badgeBg,
+                    color: badgeColor,
+                    border: `1px solid ${badgeBorder}`
+                  }}>
+                    {ins.category}
+                  </span>
+                  <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>{ins.title}</h3>
+                  <span style={{ fontSize: '11px', color: '#64748b', background: '#f1f5f9', padding: '2px 8px', borderRadius: '4px' }}>
+                    {ins.timeframe}
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    fontSize: '13px',
+                    color: isCritical ? '#dc2626' : '#2563eb',
+                    background: isCritical ? '#fef2f2' : '#eff6ff',
+                    padding: '4px 10px',
+                    borderRadius: '6px'
+                  }}>
+                    {ins.metric}
+                  </span>
+                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#059669', background: '#ecfdf5', padding: '4px 8px', borderRadius: '6px' }}>
+                    {ins.preventable}
+                  </span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#475569', lineHeight: 1.6 }}>
+                {ins.description}
+              </p>
+
+              {/* Recommendation Callout */}
+              <div style={{
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                padding: '14px 18px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '14px'
+              }}>
+                <div style={{ flex: 1, minWidth: '280px' }}>
+                  <div style={{ fontSize: '13px', color: '#0f172a', marginBottom: '4px' }}>
+                    <strong style={{ color: '#2563eb' }}>💡 Recommended Action Protocol:</strong> {ins.recommendation}
+                  </div>
+                  <div style={{ fontSize: '11px', color: '#64748b' }}>
+                    Target Cohort: <strong style={{ color: '#334155' }}>{ins.cohort}</strong> • Impact: <strong style={{ color: '#334155' }}>{ins.impact}</strong>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <button
+                    onClick={() => handleAction(ins.title, ins.actionLabel)}
+                    style={{
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      background: '#2563eb',
+                      color: '#ffffff',
+                      border: 'none',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: '0 1px 2px rgba(37,99,235,0.2)',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <span>⚡</span>
+                    {ins.actionLabel}
+                  </button>
+                  <button
+                    onClick={() => handleAction(ins.title, 'Export Cohort EHRs')}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      background: '#ffffff',
+                      color: '#475569',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Export Cohort
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Biomarker Surveillance & Early Detection Clustering */}
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        padding: '20px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+          <div>
+            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Biomarker Surveillance & Subclinical Pathology Clustering</h3>
+            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Automated telemetry monitoring early asymptomatic disease markers across clinical diagnostics</p>
+          </div>
+          <span style={{ fontSize: '11px', color: '#2563eb', fontWeight: 600, background: '#eff6ff', padding: '4px 10px', borderRadius: '4px' }}>
+            1,149 Laboratory Panels Screened
+          </span>
+        </div>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13px' }}>
+            <thead>
+              <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: '#475569', fontSize: '11px', textTransform: 'uppercase' }}>
+                <th style={{ padding: '12px 16px' }}>Diagnostic Biomarker Test</th>
+                <th style={{ padding: '12px 16px' }}>Clinical Indication</th>
+                <th style={{ padding: '12px 16px' }}>Tested Count</th>
+                <th style={{ padding: '12px 16px' }}>Normal Cohort</th>
+                <th style={{ padding: '12px 16px' }}>At-Risk / Borderline</th>
+                <th style={{ padding: '12px 16px' }}>Pathological</th>
+                <th style={{ padding: '12px 16px' }}>Proactive Protocol</th>
+              </tr>
+            </thead>
+            <tbody>
+              {biomarkerSurveillance.map((bm, idx) => (
+                <tr key={bm.test} style={{ borderBottom: idx !== biomarkerSurveillance.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{bm.test}</td>
+                  <td style={{ padding: '12px 16px', color: '#475569' }}>{bm.indication}</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600 }}>{bm.tested}</td>
+                  <td style={{ padding: '12px 16px', color: '#059669', fontWeight: 700 }}>{bm.normal}</td>
+                  <td style={{ padding: '12px 16px', color: '#d97706', fontWeight: 700 }}>
+                    <span style={{ background: '#fffbeb', padding: '2px 8px', borderRadius: '4px', border: '1px solid #fde68a' }}>
+                      {bm.atRisk}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 16px', color: '#dc2626', fontWeight: 700 }}>
+                    <span style={{ background: '#fef2f2', padding: '2px 8px', borderRadius: '4px', border: '1px solid #fca5a5' }}>
+                      {bm.pathological}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 16px', fontSize: '12px', color: '#2563eb', fontWeight: 600 }}>
+                    {bm.action}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}

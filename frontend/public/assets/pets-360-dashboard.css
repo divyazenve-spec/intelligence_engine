@@ -1,0 +1,640 @@
+/* =====================================================================
+   Zenve BI — Pets 360° Executive Control Center
+   Sidebar: Pets 360° Suite (9 Subcategories)
+   Pure Light Executive Design System
+   ===================================================================== */
+
+#zpet-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 60 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zpet-root.zpanel-open {
+  display: block !important;
+}
+
+#zpet-root::-webkit-scrollbar {
+  width: 6px;
+}
+#zpet-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+#zpet-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+#zpet-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+#zpet-root,
+#zpet-root * {
+  box-sizing: border-box !important;
+}
+
+/* ── Top Executive Header ─────────────────────────────────────────── */
+.zpet-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zpet-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zpet-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+  border: 1px solid #fcd34d !important;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.zpet-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zpet-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zpet-main-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.zpet-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zpet-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: zpetPulse 2s infinite;
+}
+
+@keyframes zpetPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.zpet-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zpet-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.zpet-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.zpet-btn-secondary {
+  background: #ffffff;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.zpet-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.zpet-btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+}
+
+.zpet-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.zpet-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.zpet-btn-close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+/* ── Subcategory Chip Navigator ───────────────────────────────────── */
+.zpet-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.zpet-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zpet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.zpet-chip:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.zpet-chip.active {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  font-weight: 600;
+}
+
+.zpet-chip-count {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* ── Main Content Body ────────────────────────────────────────────── */
+.zpet-content,
+#zpet-root main,
+#zpet-root .zpet-content {
+  padding: 24px 32px 64px 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ── KPI Grid ─────────────────────────────────────────────────────── */
+.zpet-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.zpet-kpi {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.zpet-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zpet-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.zpet-kpi-icon {
+  font-size: 18px;
+}
+
+.zpet-kpi-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 4px 0 2px;
+}
+
+.zpet-kpi-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.zpet-badge-pos {
+  color: #059669;
+  font-weight: 700;
+}
+
+.zpet-badge-neu {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.zpet-badge-neg {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* ── Filter & Search Toolbar ──────────────────────────────────────── */
+.zpet-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  flex-wrap: wrap;
+}
+
+.zpet-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 12px;
+  flex: 1;
+  max-width: 440px;
+}
+
+.zpet-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #0f172a;
+  width: 100%;
+  font-family: inherit;
+}
+
+.zpet-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.zpet-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.zpet-pill {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.zpet-pill:hover {
+  background: #e2e8f0;
+}
+
+.zpet-pill.active {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+/* ── Card & Table Container ───────────────────────────────────────── */
+.zpet-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.zpet-card-header {
+  padding: 16px 22px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zpet-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.zpet-card-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin: 3px 0 0;
+}
+
+.zpet-table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.zpet-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.zpet-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.zpet-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.zpet-table tr:hover td {
+  background: #f8fafc;
+}
+
+.zpet-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Status Pills & Badges ────────────────────────────────────────── */
+.zpet-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.zpet-pill-green {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zpet-pill-blue {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.zpet-pill-yellow {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.zpet-pill-red {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+
+/* ── Modal Dialog ─────────────────────────────────────────────────── */
+.zpet-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+
+.zpet-modal-overlay.open {
+  display: grid;
+}
+
+.zpet-modal {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  animation: zpetModalIn 0.2s ease-out;
+}
+
+@keyframes zpetModalIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.zpet-modal-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zpet-modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zpet-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.zpet-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.zpet-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.zpet-form-control {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  background: #f8fafc;
+}
+
+.zpet-form-control:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+.zpet-modal-foot {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ── Toast Notification ───────────────────────────────────────────── */
+.zpet-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.zpet-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}

@@ -151,3 +151,9 @@ footer.flex-col.sm\:flex-row {
 }
 
 
+
+/* 13. Pets 360 Overlay Reset: Prevent main margin-left double offset */
+#zpet-root, #zpet-root main, #zpet-root .zpet-content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
