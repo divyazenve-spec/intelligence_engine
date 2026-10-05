@@ -162,10 +162,10 @@
                 PRODUCTS.slice(0, 5).map(function (p) {
                   return '<tr>' +
                     '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
-                    '<td style="font-weight:600;color:#fff;">' + esc(p.name) + '</td>' +
-                    '<td style="color:#94a3b8;">' + esc(p.cat) + '</td>' +
+                    '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
+                    '<td style="color:var(--muted-foreground,#64748b);">' + esc(p.cat) + '</td>' +
                     '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(p.price) + '</td>' +
-                    '<td style="color:#cbd5e1;">' + esc(p.stock) + '</td>' +
+                    '<td style="color:var(--foreground,#334155);">' + esc(p.stock) + '</td>' +
                     '<td style="font-weight:700;color:#a78bfa;">' + esc(p.margin) + '</td>' +
                     '<td><span class="zfsh-tag green">' + esc(p.status) + '</span></td>' +
                   '</tr>';
@@ -187,11 +187,11 @@
             SHOWROOMS.map(function (s) {
               return '<div style="background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
-                  '<strong style="font-size:13px;color:#fff;">' + esc(s.name) + '</strong>' +
+                  '<strong style="font-size:13px;color:var(--foreground,#0f172a);">' + esc(s.name) + '</strong>' +
                   '<span style="padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(251,191,36,0.15);color:#fbbf24;">' + esc(s.rating) + '</span>' +
                 '</div>' +
                 '<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;font-size:11px;">' +
-                  '<div><span style="color:#64748b;">Footfall:</span> <strong style="color:#cbd5e1;">' + esc(s.footfall) + '</strong></div>' +
+                  '<div><span style="color:#64748b;">Footfall:</span> <strong style="color:var(--foreground,#334155);">' + esc(s.footfall) + '</strong></div>' +
                   '<div><span style="color:#64748b;">Sales:</span> <strong style="color:#34d399;font-family:monospace;">' + esc(s.sales) + '</strong></div>' +
                   '<div><span style="color:#64748b;">Conversion:</span> <strong style="color:#38bdf8;">' + esc(s.conversion) + '</strong></div>' +
                 '</div>' +
@@ -230,13 +230,13 @@
               PRODUCTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(p.name) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(p.cat) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(p.petType) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(p.cat) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(p.petType) + '</td>' +
                   '<td style="color:#a78bfa;">' + esc(p.sizes) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(p.price) + '</td>' +
                   '<td style="color:#64748b;">' + esc(p.cost) + '</td>' +
-                  '<td style="color:#fff;font-weight:600;">' + esc(p.stock) + '</td>' +
+                  '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(p.stock) + '</td>' +
                   '<td style="font-weight:700;color:#a78bfa;">' + esc(p.margin) + '</td>' +
                   '<td><span class="zfsh-tag ' + (p.status === 'In Stock' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
@@ -275,13 +275,13 @@
               ORDERS.map(function (o) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;font-weight:600;">' + esc(o.orderId) + '</td>' +
-                  '<td style="color:#fff;font-weight:600;">' + esc(o.customer) + '<br/><span style="font-size:11px;color:#38bdf8;">' + esc(o.pet) + '</span></td>' +
-                  '<td style="color:#cbd5e1;">' + esc(o.items) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(o.channel) + '</td>' +
+                  '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(o.customer) + '<br/><span style="font-size:11px;color:#38bdf8;">' + esc(o.pet) + '</span></td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(o.items) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(o.channel) + '</td>' +
                   '<td style="color:#a78bfa;font-size:11px;">' + esc(o.customDetails) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(o.value) + '</td>' +
                   '<td style="color:#64748b;font-size:11px;">' + esc(o.date) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(o.payment) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(o.payment) + '</td>' +
                   '<td><span class="zfsh-tag ' + (o.status === 'Delivered' ? 'green' : o.status === 'Dispatched' ? 'blue' : 'pink') + '">' + esc(o.status) + '</span></td>' +
                 '</tr>';
               }).join(''),
@@ -326,10 +326,10 @@
               vips.map(function (v) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(v.id) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(v.name) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(v.pet) + ' (' + esc(v.breed) + ')</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(v.pet) + ' (' + esc(v.breed) + ')</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(v.ltv) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(v.orders) + ' orders</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(v.orders) + ' orders</td>' +
                   '<td><span class="zfsh-tag ' + (v.tier === 'Platinum Atelier' ? 'pink' : 'amber') + '">' + esc(v.tier) + '</span></td>' +
                   '<td><button class="zfsh-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Opening 3D sizing profile for ' + esc(v.pet) + '.\')">View Measurements</button></td>' +
                 '</tr>';
@@ -368,10 +368,10 @@
               PRODUCTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(p.name) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(p.cat) + '</td>' +
-                  '<td style="color:#cbd5e1;">15</td><td style="color:#cbd5e1;">40</td><td style="color:#cbd5e1;">60</td><td style="color:#cbd5e1;">45</td><td style="color:#cbd5e1;">24</td>' +
-                  '<td style="font-weight:700;color:#fff;">' + esc(p.stock) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(p.cat) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">15</td><td style="color:var(--foreground,#334155);">40</td><td style="color:var(--foreground,#334155);">60</td><td style="color:var(--foreground,#334155);">45</td><td style="color:var(--foreground,#334155);">24</td>' +
+                  '<td style="font-weight:700;color:var(--foreground,#0f172a);">' + esc(p.stock) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹' + (p.stock * 2200).toLocaleString('en-IN') + '</td>' +
                   '<td><span class="zfsh-tag ' + (p.status === 'In Stock' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
@@ -410,15 +410,15 @@
               SHOWROOMS.map(function (s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(s.id) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(s.name) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.area) + ', ' + esc(s.city) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(s.sqft) + ' sqft</td>' +
-                  '<td style="color:#fff;font-weight:600;">' + esc(s.footfall) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(s.name) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.area) + ', ' + esc(s.city) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(s.sqft) + ' sqft</td>' +
+                  '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(s.footfall) + '</td>' +
                   '<td style="color:#a78bfa;">' + esc(s.trials) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(s.sales) + '</td>' +
                   '<td style="color:#38bdf8;font-weight:600;">' + esc(s.revPerSqft) + '</td>' +
                   '<td style="color:#34d399;font-weight:700;">' + esc(s.conversion) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.avgTicket) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.avgTicket) + '</td>' +
                   '<td><span class="zfsh-tag amber">' + esc(s.rating) + '</span></td>' +
                 '</tr>';
               }).join(''),
@@ -460,11 +460,11 @@
                 { ch: 'Instagram Shop & Social Drops', sess: '18,900', ord: 122, conv: '2.95%', aov: '₹3,450', rev: '₹4,20,900', share: '14.8%' }
               ].map(function (c) {
                 return '<tr>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(c.ch) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(c.sess) + '</td>' +
-                  '<td style="color:#fff;font-weight:600;">' + esc(c.ord) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.ch) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(c.sess) + '</td>' +
+                  '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(c.ord) + '</td>' +
                   '<td style="color:#38bdf8;font-weight:700;">' + esc(c.conv) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(c.aov) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(c.aov) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(c.rev) + '</td>' +
                   '<td style="color:#a78bfa;font-weight:700;">' + esc(c.share) + '</td>' +
                 '</tr>';
@@ -501,11 +501,11 @@
                 { cat: 'Collars, Bandanas & Accessories', rev: '₹5.20 L', share: '11.4%', growth: '+22.6%', aov: '₹1,240' }
               ].map(function (c) {
                 return '<tr>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(c.cat) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.cat) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(c.rev) + '</td>' +
                   '<td style="color:#a78bfa;font-weight:600;">' + esc(c.share) + '</td>' +
                   '<td style="color:#34d399;font-weight:700;">' + esc(c.growth) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(c.aov) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(c.aov) + '</td>' +
                 '</tr>';
               }).join(''),
             '</tbody>',
@@ -534,9 +534,9 @@
             '<tbody>',
               PRODUCTS.map(function (p) {
                 return '<tr>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(p.name) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(p.price) + '</td>' +
-                  '<td style="color:#94a3b8;">₹580</td><td style="color:#94a3b8;">₹320</td><td style="color:#94a3b8;">₹190</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(p.price) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">₹580</td><td style="color:var(--muted-foreground,#64748b);">₹320</td><td style="color:var(--muted-foreground,#64748b);">₹190</td>' +
                   '<td style="color:#f87171;">' + esc(p.cost) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹' + (parseInt(p.price.replace(/[^\d]/g, '')) - parseInt(p.cost.replace(/[^\d]/g, ''))).toLocaleString('en-IN') + '</td>' +
                   '<td style="font-weight:800;color:#a78bfa;">' + esc(p.margin) + '</td>' +
@@ -583,9 +583,9 @@
               cols.map(function (c) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(c.id) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(c.name) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(c.season) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(c.styles) + ' styles</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.name) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(c.season) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(c.styles) + ' styles</td>' +
                   '<td style="font-weight:700;color:#34d399;">' + esc(c.sellThrough) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#38bdf8;">' + esc(c.rev) + '</td>' +
                   '<td style="color:#a78bfa;">' + esc(c.designer) + '</td>' +

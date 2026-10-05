@@ -27,14 +27,14 @@ export default function ProcurementSavings() {
     return true;
   });
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   const getStatusBadge = (status) => {
     switch (status) {
       case 'Realized': return { bg: 'rgba(52,211,153,0.15)', color: '#34d399' };
       case 'In Progress': return { bg: 'rgba(56,189,248,0.15)', color: '#38bdf8' };
       case 'Pipeline': return { bg: 'rgba(251,191,36,0.15)', color: '#fbbf24' };
-      default: return { bg: 'rgba(148,163,184,0.15)', color: '#94a3b8' };
+      default: return { bg: 'rgba(148,163,184,0.15)', color: 'var(--muted-foreground, #64748b)' };
     }
   };
 
@@ -63,19 +63,19 @@ export default function ProcurementSavings() {
 
       {/* Savings Levers Progress */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>🎯 Procurement Savings by Strategic Lever</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🎯 Procurement Savings by Strategic Lever</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
           {savingsLevers.map((sl, i) => (
-            <div key={i} style={{ background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
+            <div key={i} style={{ background: 'var(--muted, #f8fafc)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, color: '#fff' }}>{sl.lever}</span>
+                <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>{sl.lever}</span>
                 <span style={{ fontSize: '11px', fontWeight: 700, color: sl.color }}>{sl.achievement}% Target</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
                 <span style={{ fontSize: '20px', fontWeight: 800, color: sl.color }}>{sl.realized}</span>
                 <span style={{ fontSize: '11px', color: '#64748b' }}>Target: {sl.target}</span>
               </div>
-              <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>{sl.desc}</p>
+              <p style={{ margin: 0, fontSize: '11px', color: 'var(--muted-foreground, #64748b)', lineHeight: 1.4 }}>{sl.desc}</p>
             </div>
           ))}
         </div>
@@ -85,14 +85,14 @@ export default function ProcurementSavings() {
       <div style={card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>📋 Strategic Savings Projects & Initiatives Ledger</h3>
-            <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Tracking baseline spend against negotiated contracts and realized financial value</p>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📋 Strategic Savings Projects & Initiatives Ledger</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Tracking baseline spend against negotiated contracts and realized financial value</p>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <select
               value={selectedLever}
               onChange={e => setSelectedLever(e.target.value)}
-              style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 10px', color: '#fff', fontSize: '12px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 10px', color: 'var(--foreground, #0f172a)', fontSize: '12px' }}
             >
               <option value="ALL">All Savings Levers</option>
               <option value="Volume Aggregation">Volume Aggregation</option>
@@ -106,9 +106,9 @@ export default function ProcurementSavings() {
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['ID', 'Initiative Name', 'Category', 'Strategic Partner', 'Savings Lever', 'Baseline Spend', 'Contracted Spend', 'Net Savings', 'Status'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -116,14 +116,14 @@ export default function ProcurementSavings() {
               {filteredInitiatives.map((item, i) => {
                 const badge = getStatusBadge(item.status);
                 return (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px' }}>{item.id}</td>
-                    <td style={{ padding: '11px 12px', color: '#fff', fontWeight: 600 }}>{item.initiative}</td>
-                    <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{item.category}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{item.leadPartner}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{item.initiative}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{item.category}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{item.leadPartner}</td>
                     <td style={{ padding: '11px 12px', color: '#a78bfa', fontWeight: 500 }}>{item.lever}</td>
                     <td style={{ padding: '11px 12px', color: '#64748b', textDecoration: 'line-through' }}>{item.baselineSpend}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{item.negotiatedSpend}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{item.negotiatedSpend}</td>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{item.netSavings}</td>
                     <td style={{ padding: '11px 12px' }}>
                       <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: badge.bg, color: badge.color }}>

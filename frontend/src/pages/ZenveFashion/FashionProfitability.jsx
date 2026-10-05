@@ -19,7 +19,7 @@ export default function FashionProfitability() {
     { channel: 'Concierge VIP Atelier & Events', rev: '₹3.85 L', cogs: '₹1.15 L', stylistTravel: '₹0.45 L', netContribution: '₹2.25 L', margin: '58.4%' }
   ];
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -46,24 +46,24 @@ export default function FashionProfitability() {
 
       {/* Unit Economics Breakdown */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>💎 Core SKU Unit Economics & Margin Matrix</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>💎 Core SKU Unit Economics & Margin Matrix</h3>
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['Apparel Product', 'Retail ASP', 'Fabric Cost', 'Artisan Labor', 'Hardware & Pkg', 'Total COGS', 'Gross Profit', 'Gross Margin'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {unitEconomics.map((u, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{u.product}</td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{u.asp}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{u.fabricCost}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{u.artisanLabor}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{u.packagingHardware}</td>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{u.product}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{u.asp}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{u.fabricCost}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{u.artisanLabor}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{u.packagingHardware}</td>
                   <td style={{ padding: '11px 12px', color: '#f87171' }}>{u.totalCogs}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{u.grossProfit}</td>
                   <td style={{ padding: '11px 12px', fontWeight: 800, color: '#a78bfa' }}>{u.margin}</td>
@@ -76,23 +76,23 @@ export default function FashionProfitability() {
 
       {/* Channel Contribution */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>📊 Channel Contribution & Operating Margins</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📊 Channel Contribution & Operating Margins</h3>
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['Channel', 'Gross Revenue', 'Direct COGS', 'Channel OPEX / Fulfillment', 'Net Contribution', 'Contribution %'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {channelProfitability.map((cp, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{cp.channel}</td>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{cp.channel}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{cp.rev}</td>
                   <td style={{ padding: '11px 12px', color: '#f87171' }}>{cp.cogs}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{cp.storeOpex || cp.fulfillment || cp.stylistTravel}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{cp.storeOpex || cp.fulfillment || cp.stylistTravel}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#38bdf8' }}>{cp.netContribution}</td>
                   <td style={{ padding: '11px 12px', fontWeight: 800, color: '#34d399' }}>{cp.margin}</td>
                 </tr>

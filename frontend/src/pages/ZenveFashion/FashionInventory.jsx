@@ -33,7 +33,7 @@ export default function FashionInventory() {
     return true;
   });
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -60,13 +60,13 @@ export default function FashionInventory() {
 
       {/* Raw Materials Highlight */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>🧵 Atelier Raw Fabric & Hardware Reserves</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🧵 Atelier Raw Fabric & Hardware Reserves</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
           {rawMaterials.map((rm, idx) => (
             <div key={idx} style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#f472b6', marginBottom: '6px' }}>{rm.fabric}</div>
-              <div style={{ fontSize: '18px', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>{rm.stock}</div>
-              <div style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>Allocated to: <strong style={{ color: '#cbd5e1' }}>{rm.allocated}</strong></div>
+              <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--foreground, #0f172a)', marginBottom: '8px' }}>{rm.stock}</div>
+              <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', lineHeight: 1.4 }}>Allocated to: <strong style={{ color: 'var(--foreground, #334155)' }}>{rm.allocated}</strong></div>
               <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
                 <span style={{ color: '#64748b' }}>Lead time: {rm.leadTime}</span>
                 <span style={{ color: rm.reorder === 'Safe' ? '#34d399' : '#fbbf24', fontWeight: 700 }}>{rm.reorder}</span>
@@ -80,8 +80,8 @@ export default function FashionInventory() {
       <div style={card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>📦 Finished Garment Stock by Size Breakdown</h3>
-            <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Unit counts per size tier, hub location, and total inventory value</p>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📦 Finished Garment Stock by Size Breakdown</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Unit counts per size tier, hub location, and total inventory value</p>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <input
@@ -89,12 +89,12 @@ export default function FashionInventory() {
               placeholder="Search style, SKU, category..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 12px', color: '#fff', fontSize: '12px', minWidth: '220px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 12px', color: 'var(--foreground, #0f172a)', fontSize: '12px', minWidth: '220px' }}
             />
             <select
               value={selectedLocation}
               onChange={e => setSelectedLocation(e.target.value)}
-              style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 10px', color: '#fff', fontSize: '12px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 10px', color: 'var(--foreground, #0f172a)', fontSize: '12px' }}
             >
               <option value="ALL">All Locations</option>
               <option value="Central Fashion Hub">Central Fashion Hub</option>
@@ -107,26 +107,26 @@ export default function FashionInventory() {
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['SKU Code', 'Product Name', 'Category', 'XS', 'S', 'M', 'L', 'XL', 'Total Stock', 'Valuation', 'Location', 'Status'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((item, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#f472b6', fontSize: '11px' }}>{item.sku}</td>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{item.name}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{item.cat}</td>
+                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{item.name}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{item.cat}</td>
                   <td style={{ padding: '11px 12px', color: item.xs === 0 ? '#64748b' : '#cbd5e1' }}>{item.xs}</td>
                   <td style={{ padding: '11px 12px', color: item.s === 0 ? '#64748b' : '#cbd5e1' }}>{item.s}</td>
                   <td style={{ padding: '11px 12px', color: item.m === 0 ? '#64748b' : '#cbd5e1' }}>{item.m}</td>
                   <td style={{ padding: '11px 12px', color: item.l === 0 ? '#64748b' : '#cbd5e1' }}>{item.l}</td>
                   <td style={{ padding: '11px 12px', color: item.xl === 0 ? '#64748b' : '#cbd5e1' }}>{item.xl}</td>
-                  <td style={{ padding: '11px 12px', fontWeight: 700, color: '#fff' }}>{item.total}</td>
+                  <td style={{ padding: '11px 12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>{item.total}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{item.valuation}</td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{item.location}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{item.location}</td>
                   <td style={{ padding: '11px 12px' }}>
                     <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: item.status === 'Healthy' ? 'rgba(52,211,153,0.15)' : 'rgba(251,191,36,0.15)', color: item.status === 'Healthy' ? '#34d399' : '#fbbf24' }}>
                       {item.status}

@@ -179,10 +179,10 @@
               '<tbody>',
                 VENDORS.slice(0, 5).map(function (v) {
                   return '<tr>' +
-                    '<td style="font-weight:600;color:#fff;">' + esc(v.name) + '</td>' +
-                    '<td style="color:#94a3b8;">' + esc(v.category) + '</td>' +
+                    '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
+                    '<td style="color:var(--muted-foreground,#64748b);">' + esc(v.category) + '</td>' +
                     '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(v.spend) + '</td>' +
-                    '<td style="color:#cbd5e1;">' + esc(v.pos) + ' POs</td>' +
+                    '<td style="color:var(--foreground,#334155);">' + esc(v.pos) + ' POs</td>' +
                     '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                     '<td><span class="zvp-tag green">' + esc(v.status) + '</span></td>' +
                   '</tr>';
@@ -203,15 +203,15 @@
           '<div style="display:grid;gap:10px;">',
             '<div class="zvp-pipeline-stage" style="border-left-color:#a78bfa;">',
               '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 1: Requisitions</strong><span style="color:#a78bfa;font-weight:700;">12 Requests · ₹18.4 L</span></div>',
-              '<div style="font-size:11px;color:#94a3b8;">Surgery OT, Koramangala 24x7, and Central Hub approvals pending</div>',
+              '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Surgery OT, Koramangala 24x7, and Central Hub approvals pending</div>',
             '</div>',
             '<div class="zvp-pipeline-stage" style="border-left-color:#38bdf8;">',
               '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 2: POs Issued & Dispatched</strong><span style="color:#38bdf8;font-weight:700;">18 POs · ₹34.8 L</span></div>',
-              '<div style="font-size:11px;color:#94a3b8;">Direct-to-hub shipments in transit from Mumbai, Bengaluru, and Hyderabad</div>',
+              '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Direct-to-hub shipments in transit from Mumbai, Bengaluru, and Hyderabad</div>',
             '</div>',
             '<div class="zvp-pipeline-stage" style="border-left-color:#34d399;">',
               '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 3: GRN Verification & 3-Way Match</strong><span style="color:#34d399;font-weight:700;">14 POs · ₹28.4 L</span></div>',
-              '<div style="font-size:11px;color:#94a3b8;">Barcode scanned, cold chain integrity verified (2°C - 8°C), invoice matched</div>',
+              '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Barcode scanned, cold chain integrity verified (2°C - 8°C), invoice matched</div>',
             '</div>',
           '</div>',
         '</div>',
@@ -259,11 +259,11 @@
               filtered.map(function (v) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(v.id) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(v.name) + '</td>' +
-                  '<td style="font-family:monospace;color:#94a3b8;font-size:11px;">' + esc(v.gstin) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(v.category) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(v.contact) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(v.city) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
+                  '<td style="font-family:monospace;color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(v.gstin) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(v.category) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(v.contact) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(v.city) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(v.spend) + '</td>' +
                   '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                   '<td><span class="zvp-tag ' + (v.status === 'Preferred' ? 'green' : 'blue') + '">' + esc(v.status) + '</span></td>' +
@@ -298,7 +298,7 @@
             '<p class="zvp-card-sub">Composite Score = On-Time Delivery (35%) + Quality (30%) + Fill Rate (25%) + Regulatory Compliance (10%)</p>',
           '</div>',
           '<div class="zvp-filter-row">',
-            '<span style="font-size:12px;color:#94a3b8;">Sort by:</span>',
+            '<span style="font-size:12px;color:var(--muted-foreground,#64748b);">Sort by:</span>',
             '<button class="zvp-btn ' + (S.perfSort === 'score' ? 'primary' : '') + '" onclick="ZenveVendorsDashboard.setPerfSort(\'score\')">Composite Score</button>',
             '<button class="zvp-btn ' + (S.perfSort === 'onTime' ? 'primary' : '') + '" onclick="ZenveVendorsDashboard.setPerfSort(\'onTime\')">On-Time %</button>',
             '<button class="zvp-btn ' + (S.perfSort === 'quality' ? 'primary' : '') + '" onclick="ZenveVendorsDashboard.setPerfSort(\'quality\')">Quality %</button>',
@@ -313,11 +313,11 @@
               sorted.map(function (v) {
                 var scoreColor = v.score >= 98 ? '#34d399' : v.score >= 95 ? '#38bdf8' : '#fbbf24';
                 return '<tr>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(v.name) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(v.category) + '</td>' +
-                  '<td style="font-weight:700;color:#cbd5e1;">' + esc(v.onTime) + '%</td>' +
-                  '<td style="font-weight:700;color:#cbd5e1;">' + esc(v.quality) + '%</td>' +
-                  '<td style="font-weight:700;color:#cbd5e1;">' + esc(v.fillRate) + '%</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(v.category) + '</td>' +
+                  '<td style="font-weight:700;color:var(--foreground,#334155);">' + esc(v.onTime) + '%</td>' +
+                  '<td style="font-weight:700;color:var(--foreground,#334155);">' + esc(v.quality) + '%</td>' +
+                  '<td style="font-weight:700;color:var(--foreground,#334155);">' + esc(v.fillRate) + '%</td>' +
                   '<td style="font-family:monospace;font-size:13px;font-weight:800;color:' + scoreColor + ';">' + esc(v.score) + ' / 100</td>' +
                   '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                   '<td><button class="zvp-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Detailed scorecard audit for ' + esc(v.name) + ' generated.\')">Audit Review</button></td>' +
@@ -357,12 +357,12 @@
               PAYMENTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(p.invoiceNo) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(p.vendor) + '</td>' +
-                  '<td style="font-family:monospace;color:#94a3b8;font-size:11px;">' + esc(p.poRef) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#fff;">' + esc(p.amount) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(p.dueDate) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.vendor) + '</td>' +
+                  '<td style="font-family:monospace;color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(p.poRef) + '</td>' +
+                  '<td style="font-family:monospace;font-weight:700;color:var(--foreground,#0f172a);">' + esc(p.amount) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(p.dueDate) + '</td>' +
                   '<td style="color:#34d399;font-weight:600;">' + esc(p.cashDiscount) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(p.terms) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(p.terms) + '</td>' +
                   '<td style="font-family:monospace;color:#a78bfa;font-size:11px;">' + esc(p.bankRef) + '</td>' +
                   '<td><span class="zvp-tag ' + (p.status === 'Scheduled' ? 'blue' : p.status === 'Approved' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
@@ -420,12 +420,12 @@
                 var statColor = po.status === 'Fulfilled' ? 'green' : po.status === 'Dispatched' ? 'blue' : po.status === 'GRN Verified' ? 'purple' : 'amber';
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(po.poNumber) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(po.vendor) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(po.items) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(po.vendor) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(po.items) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(po.amount) + '</td>' +
-                  '<td style="color:#94a3b8;font-size:11px;">' + esc(po.createdDate) + '</td>' +
-                  '<td style="color:#cbd5e1;font-weight:500;">' + esc(po.deliveryEta) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(po.clinicHub) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(po.createdDate) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);font-weight:500;">' + esc(po.deliveryEta) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(po.clinicHub) + '</td>' +
                   '<td><span class="zvp-tag ' + priColor + '">' + esc(po.priority) + '</span></td>' +
                   '<td><span class="zvp-tag ' + statColor + '">' + esc(po.status) + '</span></td>' +
                 '</tr>';
@@ -465,12 +465,12 @@
                 var urgClass = r.urgency === 'Critical' ? 'red' : r.urgency === 'High' ? 'amber' : r.urgency === 'Medium' ? 'blue' : 'gray';
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(r.id) + '</td>' +
-                  '<td style="font-weight:500;color:#cbd5e1;">' + esc(r.department) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(r.item) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(r.qty) + '</td>' +
+                  '<td style="font-weight:500;color:var(--foreground,#334155);">' + esc(r.department) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(r.item) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(r.qty) + '</td>' +
                   '<td><span class="zvp-tag ' + urgClass + '">' + esc(r.urgency) + '</span></td>' +
-                  '<td style="color:#cbd5e1;">' + esc(r.requestedBy) + '</td>' +
-                  '<td style="color:#94a3b8;font-size:11px;">' + esc(r.created) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(r.requestedBy) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(r.created) + '</td>' +
                   '<td><span class="zvp-tag ' + (r.status === 'Received' ? 'green' : r.status === 'PO Raised' ? 'blue' : 'purple') + '">' + esc(r.status) + '</span></td>' +
                   '<td><button class="zvp-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Requisition ' + esc(r.id) + ' approved and routed to PO creation.\')">Approve</button></td>' +
                 '</tr>';
@@ -517,11 +517,11 @@
               ].map(function (h) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(h.po) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(h.v) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(h.cat) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(h.v) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(h.cat) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(h.val) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(h.del) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(h.hub) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(h.del) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(h.hub) + '</td>' +
                   '<td style="font-family:monospace;color:#a78bfa;font-size:11px;">' + esc(h.inv) + '</td>' +
                   '<td style="color:#64748b;font-size:11px;">' + esc(h.paid) + '</td>' +
                   '<td><span class="zvp-tag green">Fulfilled</span></td>' +
@@ -572,13 +572,13 @@
                 var pColor = s.parity === 'Best Price' ? 'green' : s.parity === 'Exclusive' ? 'purple' : s.parity === 'Review Due' ? 'amber' : 'blue';
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(s.sku) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(s.name) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.vendor) + '</td>' +
-                  '<td style="color:#94a3b8;">' + esc(s.cat) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(s.name) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.vendor) + '</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(s.cat) + '</td>' +
                   '<td style="color:#64748b;text-decoration:line-through;">' + esc(s.msrp) + '</td>' +
                   '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(s.contracted) + '</td>' +
                   '<td style="font-weight:700;color:#a78bfa;">-' + esc(s.disc) + '</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.moq) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.moq) + '</td>' +
                   '<td style="color:#64748b;font-size:11px;">' + esc(s.lock) + '</td>' +
                   '<td><span class="zvp-tag ' + pColor + '">' + esc(s.parity) + '</span></td>' +
                 '</tr>';
@@ -628,14 +628,14 @@
               supList.map(function (s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(s.id) + '</td>' +
-                  '<td style="font-weight:600;color:#fff;">' + esc(s.name) + '</td>' +
+                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(s.name) + '</td>' +
                   '<td style="color:#a78bfa;font-weight:600;">' + esc(s.tier) + '</td>' +
                   '<td style="font-weight:700;color:#34d399;">' + esc(s.otif) + '%</td>' +
                   '<td style="color:#38bdf8;">' + esc(s.coldChain) + '%</td>' +
                   '<td style="font-family:monospace;color:#34d399;">' + esc(s.ppm) + ' PPM</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.invAcc) + '%</td>' +
-                  '<td style="color:#cbd5e1;">' + esc(s.lead) + ' days</td>' +
-                  '<td style="color:#94a3b8;font-size:11px;">' + esc(s.cert) + '</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.invAcc) + '%</td>' +
+                  '<td style="color:var(--foreground,#334155);">' + esc(s.lead) + ' days</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(s.cert) + '</td>' +
                   '<td><span class="zvp-tag ' + (s.status === 'Excellent' ? 'green' : s.status === 'Good' ? 'blue' : 'amber') + '">' + esc(s.status) + '</span></td>' +
                 '</tr>';
               }).join(''),
@@ -671,14 +671,14 @@
           levers.map(function (l) {
             return '<div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px;">' +
               '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
-                '<strong style="font-size:13px;color:#fff;">' + esc(l.lever) + '</strong>' +
+                '<strong style="font-size:13px;color:var(--foreground,#0f172a);">' + esc(l.lever) + '</strong>' +
                 '<span style="font-size:11px;font-weight:700;color:' + l.color + ';">' + esc(l.achievement) + '</span>' +
               '</div>' +
               '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">' +
                 '<span style="font-size:20px;font-weight:800;color:' + l.color + ';">' + esc(l.realized) + '</span>' +
                 '<span style="font-size:11px;color:#64748b;">Target: ' + esc(l.target) + '</span>' +
               '</div>' +
-              '<p style="margin:0;font-size:11px;color:#94a3b8;line-height:1.4;">' + esc(l.desc) + '</p>' +
+              '<p style="margin:0;font-size:11px;color:var(--muted-foreground,#64748b);line-height:1.4;">' + esc(l.desc) + '</p>' +
             '</div>';
           }).join(''),
         '</div>',

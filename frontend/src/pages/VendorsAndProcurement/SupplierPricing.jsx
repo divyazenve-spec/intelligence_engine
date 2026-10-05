@@ -36,7 +36,7 @@ export default function SupplierPricing() {
     return true;
   });
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   const getParityBadge = (status) => {
     switch (status) {
@@ -44,7 +44,7 @@ export default function SupplierPricing() {
       case 'Exclusive': return { bg: 'rgba(167,139,250,0.15)', color: '#a78bfa' };
       case 'Negotiated': return { bg: 'rgba(56,189,248,0.15)', color: '#38bdf8' };
       case 'Review Due': return { bg: 'rgba(251,191,36,0.15)', color: '#fbbf24' };
-      default: return { bg: 'rgba(148,163,184,0.15)', color: '#94a3b8' };
+      default: return { bg: 'rgba(148,163,184,0.15)', color: 'var(--muted-foreground, #64748b)' };
     }
   };
 
@@ -73,12 +73,12 @@ export default function SupplierPricing() {
 
       {/* Volume Tier Matrix */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>📦 Volume Discount & Rebate Matrix</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📦 Volume Discount & Rebate Matrix</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
           {volumeTiers.map((vt, i) => (
-            <div key={i} style={{ background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
+            <div key={i} style={{ background: 'var(--muted, #f8fafc)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#38bdf8', marginBottom: '4px' }}>{vt.tier}</div>
-              <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '8px' }}>MOQ Bracket: <strong style={{ color: '#fff' }}>{vt.qtyRange}</strong></div>
+              <div style={{ fontSize: '12px', color: 'var(--muted-foreground, #64748b)', marginBottom: '8px' }}>MOQ Bracket: <strong style={{ color: 'var(--foreground, #0f172a)' }}>{vt.qtyRange}</strong></div>
               <div style={{ fontSize: '13px', fontWeight: 600, color: '#34d399', marginBottom: '6px' }}>{vt.discount}</div>
               <div style={{ fontSize: '11px', color: '#64748b' }}>Terms: {vt.paymentTerms}</div>
             </div>
@@ -90,8 +90,8 @@ export default function SupplierPricing() {
       <div style={card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>🏷️ Master SKU Price Schedule</h3>
-            <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Real-time rate cards, MSRP benchmark comparison, and contractual price locks</p>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🏷️ Master SKU Price Schedule</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Real-time rate cards, MSRP benchmark comparison, and contractual price locks</p>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <input
@@ -99,12 +99,12 @@ export default function SupplierPricing() {
               placeholder="Search SKU, medication, vendor..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 12px', color: '#fff', fontSize: '12px', minWidth: '220px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 12px', color: 'var(--foreground, #0f172a)', fontSize: '12px', minWidth: '220px' }}
             />
             <select
               value={selectedCategory}
               onChange={e => setSelectedCategory(e.target.value)}
-              style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 10px', color: '#fff', fontSize: '12px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 10px', color: 'var(--foreground, #0f172a)', fontSize: '12px' }}
             >
               <option value="ALL">All Product Categories</option>
               <option value="Vaccines & Biologics">Vaccines & Biologics</option>
@@ -120,9 +120,9 @@ export default function SupplierPricing() {
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['SKU Code', 'Product Description', 'Contracted Vendor', 'Category', 'MSRP (List)', 'Contracted Rate', 'Discount %', 'Min Order Qty', 'Price Lock Until', 'Parity Status'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -130,15 +130,15 @@ export default function SupplierPricing() {
               {filtered.map((item, i) => {
                 const badge = getParityBadge(item.parityStatus);
                 return (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px' }}>{item.sku}</td>
-                    <td style={{ padding: '11px 12px', color: '#fff', fontWeight: 600 }}>{item.name}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{item.vendor}</td>
-                    <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{item.category}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{item.name}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{item.vendor}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{item.category}</td>
                     <td style={{ padding: '11px 12px', color: '#64748b', textDecoration: 'line-through' }}>{item.msrp}</td>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{item.contractedPrice}</td>
                     <td style={{ padding: '11px 12px', fontWeight: 700, color: '#a78bfa' }}>-{item.discountPct}%</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{item.minOrderQty}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{item.minOrderQty}</td>
                     <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{item.priceLockUntil}</td>
                     <td style={{ padding: '11px 12px' }}>
                       <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: badge.bg, color: badge.color }}>

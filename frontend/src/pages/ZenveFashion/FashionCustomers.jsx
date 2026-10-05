@@ -26,7 +26,7 @@ export default function FashionCustomers() {
     return true;
   });
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -54,8 +54,8 @@ export default function FashionCustomers() {
       <div style={card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>👑 VIP Pet Couture Clientele Roster</h3>
-            <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Comprehensive customer measurement profiles, preferred aesthetics, and lifetime purchasing volume</p>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>👑 VIP Pet Couture Clientele Roster</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Comprehensive customer measurement profiles, preferred aesthetics, and lifetime purchasing volume</p>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <input
@@ -63,12 +63,12 @@ export default function FashionCustomers() {
               placeholder="Search parent, pet, breed, city..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 12px', color: '#fff', fontSize: '12px', minWidth: '220px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 12px', color: 'var(--foreground, #0f172a)', fontSize: '12px', minWidth: '220px' }}
             />
             <select
               value={selectedTier}
               onChange={e => setSelectedTier(e.target.value)}
-              style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 10px', color: '#fff', fontSize: '12px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 10px', color: 'var(--foreground, #0f172a)', fontSize: '12px' }}
             >
               <option value="ALL">All VIP Tiers</option>
               <option value="Platinum Atelier">Platinum Atelier</option>
@@ -81,31 +81,31 @@ export default function FashionCustomers() {
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['Client ID', 'Pet Parent Name', 'Location', 'Pet & Breed', 'Sizing Metrics', 'Total LTV', 'Orders', 'VIP Tier', 'Preferred Style', 'Last Order'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((c, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#f472b6', fontSize: '11px' }}>{c.id}</td>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{c.name}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{c.city}</td>
+                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{c.name}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{c.city}</td>
                   <td style={{ padding: '11px 12px' }}>
                     <div style={{ fontWeight: 600, color: '#38bdf8' }}>{c.pet}</div>
-                    <div style={{ fontSize: '11px', color: '#cbd5e1' }}>{c.breed}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--foreground, #334155)' }}>{c.breed}</div>
                   </td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#a78bfa' }}>{c.sizeProfile}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{c.ltv}</td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{c.orders} orders</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{c.orders} orders</td>
                   <td style={{ padding: '11px 12px' }}>
                     <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: c.vipTier === 'Platinum Atelier' ? 'rgba(236,72,153,0.15)' : c.vipTier === 'Gold Couture' ? 'rgba(251,191,36,0.15)' : 'rgba(56,189,248,0.15)', color: c.vipTier === 'Platinum Atelier' ? '#f472b6' : c.vipTier === 'Gold Couture' ? '#fbbf24' : '#38bdf8' }}>
                       {c.vipTier}
                     </span>
                   </td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{c.favCategory}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{c.favCategory}</td>
                   <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{c.lastOrder}</td>
                 </tr>
               ))}

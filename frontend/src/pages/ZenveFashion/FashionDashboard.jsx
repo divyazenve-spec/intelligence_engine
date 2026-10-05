@@ -17,7 +17,7 @@ export default function FashionDashboard() {
     { name: 'Koramangala Pet Styling Lounge', footfall: '480 visitors', sales: '₹3.95 L', conversion: '34.8%', avgTicket: '₹2,360', rating: '4.8 ★' },
   ];
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -47,27 +47,27 @@ export default function FashionDashboard() {
         <div style={card}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>👗 Best-Selling Couture Lines</h3>
-              <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>High-velocity pet apparel, weatherwear, and artisan accessories</p>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>👗 Best-Selling Couture Lines</h3>
+              <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>High-velocity pet apparel, weatherwear, and artisan accessories</p>
             </div>
           </div>
           <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
               <thead>
-                <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                   {['SKU', 'Product Name', 'Category', 'Price', 'Units Sold', 'Revenue', 'Margin', 'Growth'].map(h => (
-                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {topProducts.map((p, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#f472b6', fontSize: '11px' }}>{p.sku}</td>
-                    <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{p.name}</td>
-                    <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{p.category}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{p.price}</td>
-                    <td style={{ padding: '11px 12px', color: '#fff', fontWeight: 600 }}>{p.unitsSold}</td>
+                    <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{p.name}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{p.category}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{p.price}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{p.unitsSold}</td>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{p.revenue}</td>
                     <td style={{ padding: '11px 12px', fontWeight: 700, color: '#a78bfa' }}>{p.margin}</td>
                     <td style={{ padding: '11px 12px', color: '#34d399', fontWeight: 600 }}>{p.trend}</td>
@@ -82,15 +82,15 @@ export default function FashionDashboard() {
         <div style={card}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>🛍️ Flagship Pet Boutiques & Styling Lounges</h3>
-              <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>In-store pet trial rooms, custom embroidery lounges, and footfall conversions</p>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🛍️ Flagship Pet Boutiques & Styling Lounges</h3>
+              <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>In-store pet trial rooms, custom embroidery lounges, and footfall conversions</p>
             </div>
           </div>
           <div style={{ display: 'grid', gap: '12px' }}>
             {showroomPerformance.map((s, idx) => (
               <div key={idx} style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>{s.name}</span>
+                  <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>{s.name}</span>
                   <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, background: 'rgba(251,191,36,0.15)', color: '#fbbf24' }}>{s.rating}</span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', fontSize: '12px' }}>
