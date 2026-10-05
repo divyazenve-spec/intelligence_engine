@@ -1,0 +1,530 @@
+/* =====================================================================
+   Zenve BI — Logistics & Delivery Executive Control Center
+   Sidebar: Logistics & Delivery Suite (9 Subcategories)
+   Pure Light Executive Design System
+   ===================================================================== */
+
+#zlog-dashboard-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 60 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zlog-dashboard-root.zpanel-open {
+  display: block !important;
+}
+
+#zlog-dashboard-root::-webkit-scrollbar {
+  width: 6px;
+}
+
+#zlog-dashboard-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+#zlog-dashboard-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+
+#zlog-dashboard-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+#zlog-dashboard-root,
+#zlog-dashboard-root * {
+  box-sizing: border-box !important;
+}
+
+/* ── Top Executive Header ─────────────────────────────────────────── */
+.zlog-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zlog-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zlog-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe) !important;
+  border: 1px solid #bfdbfe !important;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.zlog-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zlog-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zlog-main-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.zlog-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zlog-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: zlogPulse 2s infinite;
+}
+
+@keyframes zlogPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.zlog-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zlog-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.zlog-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.zlog-btn-secondary {
+  background: #ffffff;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.zlog-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.zlog-btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+}
+
+.zlog-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.zlog-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.zlog-btn-close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+/* ── Subcategory Chip Navigator ───────────────────────────────────── */
+.zlog-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.zlog-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zlog-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.zlog-chip:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.zlog-chip.active {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  font-weight: 600;
+}
+
+.zlog-chip-count {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* ── Main Content Body ────────────────────────────────────────────── */
+.zlog-content {
+  padding: 24px 32px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── KPI Grid ─────────────────────────────────────────────────────── */
+.zlog-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.zlog-kpi {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.zlog-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zlog-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.zlog-kpi-icon {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.zlog-kpi-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  margin-top: 2px;
+}
+
+.zlog-kpi-bottom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.zlog-delta {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.zlog-delta.up { color: #16a34a; }
+.zlog-delta.down { color: #dc2626; }
+.zlog-delta.neutral { color: #64748b; }
+
+.zlog-subtext {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ── Layout Cards & Grids ─────────────────────────────────────────── */
+.zlog-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 18px;
+}
+
+.zlog-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.zlog-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.zlog-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.zlog-card-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+/* ── Interactive Tables ───────────────────────────────────────────── */
+.zlog-table-wrap {
+  overflow-x: auto;
+}
+
+.zlog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.zlog-table th {
+  padding: 10px 12px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.zlog-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.zlog-table tr:hover td {
+  background: #f8fafc;
+}
+
+.zlog-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.zlog-tag.green { background: #dcfce7; color: #15803d; }
+.zlog-tag.blue { background: #eff6ff; color: #1d4ed8; }
+.zlog-tag.yellow { background: #fef9c3; color: #854d0e; }
+.zlog-tag.red { background: #fee2e2; color: #b91c1c; }
+.zlog-tag.cyan { background: #ecfeff; color: #0891b2; border: 1px solid #a5f3fc; }
+.zlog-tag.purple { background: #f3e8ff; color: #7e22ce; }
+
+/* ── Modals & Backdrop ────────────────────────────────────────────── */
+.zlog-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.zlog-modal-box {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 480px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  animation: zlogPop 0.15s ease-out;
+}
+
+@keyframes zlogPop {
+  0% { transform: scale(0.96); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.zlog-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.zlog-modal-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zlog-form-group {
+  margin-bottom: 14px;
+}
+
+.zlog-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.zlog-input, .zlog-select {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+  font-family: inherit;
+}
+
+.zlog-input:focus, .zlog-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.zlog-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ── Toast Notification ───────────────────────────────────────────── */
+.zlog-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: zlogSlideUp 0.2s ease-out;
+}
+
+@keyframes zlogSlideUp {
+  0% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}

@@ -189,18 +189,36 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
+    // Exclude Logistics & Delivery subcategories completely
+    if (s.indexOf('logistics') >= 0 ||
+        s.indexOf('delivery order') >= 0 ||
+        s.indexOf('delivery partner') >= 0 ||
+        s.indexOf('delivery tracking') >= 0 ||
+        s.indexOf('delivery sla') >= 0 ||
+        s.indexOf('delivery cost') >= 0 ||
+        s.indexOf('failed deliver') >= 0) return null;
+
     if (s.indexOf('operations dashboard') >= 0 || s === 'operations' || s.indexOf('ceo control center') >= 0) return 'overview';
     if (s.indexOf('order management') >= 0 || s === 'orders management' || s === 'manage orders' || s === 'all orders') return 'management';
     if (s.indexOf('order status') >= 0 || s.indexOf('track order') >= 0 || s === 'tracking') return 'status';
     if (s.indexOf('returns & refunds') >= 0 || s.indexOf('returns') >= 0 || s.indexOf('refunds') >= 0) return 'returns';
     if (s.indexOf('cancellations') >= 0 || s.indexOf('cancellation') >= 0) return 'cancellations';
-    if (s.indexOf('delivery performance') >= 0 || s.indexOf('logistics performance') >= 0 || s.indexOf('delivery') >= 0) return 'delivery';
-    if (s.indexOf('60-minute delivery') >= 0 || s.indexOf('60 min delivery') >= 0 || s.indexOf('60 minute') >= 0 || s.indexOf('express delivery') >= 0) return 'express';
+    // Match only if specifically under Orders context
+    if (s === 'delivery performance' || s === 'ops delivery performance') return 'delivery';
+    if (s === '60-minute delivery' || s === '60 min delivery' || s === 'express delivery') return 'express';
     return null;
   }
 
   function tabFromHash(hash) {
     if (!hash) return null;
+    if (hash.indexOf('logistics') >= 0 ||
+        hash.indexOf('delivery-orders') >= 0 ||
+        hash.indexOf('delivery-partners') >= 0 ||
+        hash.indexOf('delivery-tracking') >= 0 ||
+        hash.indexOf('delivery-sla') >= 0 ||
+        hash.indexOf('delivery-cost') >= 0 ||
+        hash.indexOf('failed-deliveries') >= 0) return null;
+
     if (hash === '#operations-dashboard' || hash === '#operations' || hash === '#ops') return 'overview';
     if (hash === '#order-management' || hash === '#all-orders' || hash === '#orders') return 'management';
     if (hash === '#order-status' || hash === '#tracking') return 'status';

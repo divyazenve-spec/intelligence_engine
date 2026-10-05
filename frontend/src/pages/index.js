@@ -142,7 +142,17 @@ export {
 } from './VendorsAndProcurement';
 
 // 15. Logistics & Delivery
-export { default as LogisticsDashboard } from './LogisticsAndDelivery/LogisticsDashboard';
+export {
+  LogisticsDashboard,
+  DeliveryOrders,
+  DeliveryPartners,
+  DeliveryTracking,
+  SixtyMinuteDelivery,
+  DeliverySLA,
+  DeliveryCost,
+  FailedDeliveries,
+  DeliveryPerformance
+} from './LogisticsAndDelivery';
 
 // 16. Zenve Fashion
 export { default as FashionDashboard } from './ZenveFashion/FashionDashboard';
@@ -396,7 +406,17 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Logistics & Delivery',
     icon: '⚡',
-    items: ['Logistics Dashboard', 'Delivery Orders', 'Delivery Partners', 'Delivery Tracking', '60-Minute Delivery', 'Delivery SLA'],
+    items: [
+      'Logistics Dashboard',
+      'Delivery Orders',
+      'Delivery Partners',
+      'Delivery Tracking',
+      '60-Minute Delivery',
+      'Delivery SLA',
+      'Delivery Cost',
+      'Failed Deliveries',
+      'Delivery Performance'
+    ],
     defaultPath: '/logistics'
   },
   {
