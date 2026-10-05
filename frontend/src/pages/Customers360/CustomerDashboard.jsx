@@ -1,34 +1,167 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CustomerDashboard() {
+  const [segmentFilter, setSegmentFilter] = useState('ALL');
+  const [search, setSearch] = useState('');
+
+  const customers = [
+    { id: 'CUST-8401', name: 'Aarav & Tanya Sharma', pets: 'Bruno (Golden Retriever) + Milo (Cat)', tier: 'VIP Elite', ltv: '₹1,48,000', ordersCount: 42, lastOrder: '2026-10-04', mtdSpend: '₹14,200', churnRisk: 'Very Low', status: 'Active' },
+    { id: 'CUST-8402', name: 'Vikram & Ananya Malhotra', pets: 'Leo (German Shepherd)', tier: 'VIP Elite', ltv: '₹1,24,000', ordersCount: 36, lastOrder: '2026-10-05', mtdSpend: '₹18,500', churnRisk: 'Very Low', status: 'Active' },
+    { id: 'CUST-8403', name: 'Priya Sundaram', pets: 'Bella & Coco (Persian Cats)', tier: 'Loyal Gold', ltv: '₹84,000', ordersCount: 24, lastOrder: '2026-10-01', mtdSpend: '₹7,800', churnRisk: 'Low', status: 'Active' },
+    { id: 'CUST-8404', name: 'Rahul & Meera Nambiar', pets: 'Simba (Beagle Pup)', tier: 'New Subscriber', ltv: '₹32,000', ordersCount: 8, lastOrder: '2026-10-03', mtdSpend: '₹6,400', churnRisk: 'Low', status: 'Active' },
+    { id: 'CUST-8405', name: 'Sneha Kulkarni', pets: 'Whiskey (Shih Tzu)', tier: 'Occasional Silver', ltv: '₹48,000', ordersCount: 14, lastOrder: '2026-09-18', mtdSpend: '₹0', churnRisk: 'Medium', status: 'At Risk' },
+    { id: 'CUST-8406', name: 'Karthik & Pooja Sen', pets: 'Rocky (Siberian Husky)', tier: 'Loyal Gold', ltv: '₹92,000', ordersCount: 28, lastOrder: '2026-10-02', mtdSpend: '₹9,200', churnRisk: 'Very Low', status: 'Active' }
+  ];
+
+  const filtered = customers.filter(c => {
+    if (segmentFilter !== 'ALL' && c.tier !== segmentFilter) return false;
+    if (search) {
+      const q = search.toLowerCase();
+      return c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q) || c.pets.toLowerCase().includes(q);
+    }
+    return true;
+  });
+
+  const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
+
   return (
     <DashboardLayout
       category="Customers 360°"
-      subcategory="Customer Lifetime Value & Churn"
-      title="Customer Intelligence 360°"
-      subtitle="Pet parent lifetime value, retention cohorts, order frequency, and support complaints"
+      subcategory="Customer Intelligence & Command"
+      title="Unified Customer 360° Command Center"
+      subtitle="Holistic pet parent profiles, omni-channel engagement, Customer Lifetime Value (LTV), and automated retention telemetry"
       icon="👥"
-      badge="894 Active Accounts"
+      badge="12,480 Active Pet Parents"
+      actions={
+        <button
+          onClick={() => alert('New Customer Profile creation modal initiated...')}
+          style={{
+            padding: '6px 14px',
+            borderRadius: '8px',
+            border: '1px solid #2563eb',
+            background: 'rgba(37,99,235,0.12)',
+            color: '#1d4ed8',
+            fontSize: '12px',
+            fontWeight: 600,
+            cursor: 'pointer'
+          }}
+        >
+          + Create Customer Profile
+        </button>
+      }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Customer Base" value="894 Parents" delta="+18.4%" trend="up" subtext="Registered accounts" icon="👥" />
-        <KpiCard label="Average CLV" value="₹14,280" delta="+12.1%" trend="up" subtext="Per pet parent" icon="💎" />
-        <KpiCard label="Monthly Churn Rate" value="1.8%" delta="-0.4%" trend="up" subtext="Low attrition" icon="🛡️" />
-        <KpiCard label="Net Promoter Score" value="78 NPS" delta="World Class" trend="up" subtext="Verified pet parents" icon="⭐" />
+        <KpiCard label="Total Customer Base" value="12,480 Families" delta="+1,120 MTD" trend="up" subtext="18,650 registered pets" icon="👥" />
+        <KpiCard label="Active 30-Day Transactors" value="8,420 Users" delta="67.5% engagement" trend="up" subtext="Purchased or visited clinic" icon="⚡" />
+        <KpiCard label="Avg. Lifetime Value (LTV)" value="₹68,400" delta="+14.2% YoY" trend="up" subtext="Calculated across all cohorts" icon="💎" />
+        <KpiCard label="Repeat Purchase Rate" value="78.4%" delta="+2.6% vs Q2" trend="up" subtext="High loyalty stickiness" icon="🔄" />
+        <KpiCard label="Customer Satisfaction Score" value="96.2%" delta="CSAT 4.9/5" trend="up" subtext="Over 4,800 survey responses" icon="⭐" />
+        <KpiCard label="Net Churn Rate" value="1.18%" delta="-0.32% MoM" trend="up" subtext="Industry leading retention" icon="📉" />
       </div>
 
-      <div style={{
-        background: 'var(--card, #1e293b)',
-        border: '1px solid var(--border, rgba(255,255,255,0.08))',
-        borderRadius: '12px',
-        padding: '20px'
-      }}>
-        <h3 style={{ margin: '0 0 12px', fontSize: '15px', fontWeight: 700 }}>Parent Retention Cohort Matrix</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Month 1 (100%), Month 3 (78%), Month 6 (64%), Month 12 (52%) recurring engagement</p>
-        <div style={{ height: '140px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', display: 'grid', placeItems: 'center', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>
-          Customer Retention Cohorts & Sentiment Index
+      <div style={cardStyle}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+          <div>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>👥 Unified Customer Roster & Relationship Matrix</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Real-time pet ownership mapping, historical spend, loyalty tiers, and churn risk radar</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <input
+              type="text"
+              placeholder="Search parent, ID, or pet..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{ padding: '6px 12px', borderRadius: '8px', border: '1px solid var(--border, #cbd5e1)', fontSize: '12px', background: '#f8fafc', color: '#0f172a', width: '220px' }}
+            />
+            {['ALL', 'VIP Elite', 'Loyal Gold', 'New Subscriber', 'Occasional Silver'].map(s => (
+              <button
+                key={s}
+                onClick={() => setSegmentFilter(s)}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  border: segmentFilter === s ? '1px solid #2563eb' : '1px solid var(--border, #cbd5e1)',
+                  background: segmentFilter === s ? '#2563eb' : '#ffffff',
+                  color: segmentFilter === s ? '#ffffff' : '#334155',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border, #e2e8f0)', textAlign: 'left', color: 'var(--muted-foreground, #475569)' }}>
+                <th style={{ padding: '10px' }}>Customer ID</th>
+                <th style={{ padding: '10px' }}>Pet Parent Name</th>
+                <th style={{ padding: '10px' }}>Registered Pets</th>
+                <th style={{ padding: '10px' }}>Loyalty Tier</th>
+                <th style={{ padding: '10px' }}>Lifetime Value</th>
+                <th style={{ padding: '10px' }}>Total Orders</th>
+                <th style={{ padding: '10px' }}>MTD Spend</th>
+                <th style={{ padding: '10px' }}>Last Touch</th>
+                <th style={{ padding: '10px' }}>Churn Risk</th>
+                <th style={{ padding: '10px' }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(c => (
+                <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                  <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
+                  <td style={{ padding: '10px', fontWeight: 600 }}>{c.name}</td>
+                  <td style={{ padding: '10px', color: '#475569' }}>{c.pets}</td>
+                  <td style={{ padding: '10px' }}>
+                    <span style={{
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      background: c.tier.includes('VIP') ? '#eff6ff' : c.tier.includes('Gold') ? '#fef3c7' : '#f1f5f9',
+                      color: c.tier.includes('VIP') ? '#1d4ed8' : c.tier.includes('Gold') ? '#b45309' : '#475569'
+                    }}>
+                      {c.tier}
+                    </span>
+                  </td>
+                  <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{c.ltv}</td>
+                  <td style={{ padding: '10px', fontWeight: 600 }}>{c.ordersCount}</td>
+                  <td style={{ padding: '10px', fontWeight: 600 }}>{c.mtdSpend}</td>
+                  <td style={{ padding: '10px', color: '#64748b' }}>{c.lastOrder}</td>
+                  <td style={{ padding: '10px' }}>
+                    <span style={{
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      background: c.churnRisk === 'Very Low' ? '#f0fdf4' : c.churnRisk === 'Low' ? '#f0fdf4' : '#fef2f2',
+                      color: c.churnRisk === 'Very Low' || c.churnRisk === 'Low' ? '#16a34a' : '#b91c1c'
+                    }}>
+                      {c.churnRisk}
+                    </span>
+                  </td>
+                  <td style={{ padding: '10px' }}>
+                    <span style={{
+                      padding: '3px 8px',
+                      borderRadius: '6px',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      background: c.status === 'Active' ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.12)',
+                      color: c.status === 'Active' ? '#047857' : '#b91c1c'
+                    }}>
+                      {c.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </DashboardLayout>

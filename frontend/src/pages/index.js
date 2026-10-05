@@ -59,7 +59,17 @@ export {
 } from './VeterinaryServices';
 
 // 7. Doctors
-export { default as DoctorsDashboard } from './Doctors/DoctorsDashboard';
+export {
+  DoctorsDashboard,
+  AllDoctors,
+  DoctorPerformance,
+  DoctorRevenue,
+  DoctorPatients,
+  DoctorOrders,
+  DoctorCommissions,
+  DoctorActivity,
+  DoctorNetwork
+} from './Doctors';
 
 // 8. Clinics & Hospitals
 export {
@@ -76,7 +86,19 @@ export {
 } from './ClinicsAndHospitals';
 
 // 9. Customers 360°
-export { default as CustomerDashboard } from './Customers360/CustomerDashboard';
+export {
+  CustomerDashboard,
+  AllCustomers,
+  NewCustomers,
+  ActiveCustomers,
+  RepeatCustomers,
+  CustomerLifetimeValue,
+  CustomerSegmentation,
+  CustomerOrders,
+  CustomerRevenue,
+  CustomerRetention,
+  CustomerComplaints
+} from './Customers360';
 
 // 10. Pets 360°
 export { default as PetsDashboard } from './Pets360/PetsDashboard';
@@ -362,7 +384,17 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Doctors',
     icon: '👨‍⚕️',
-    items: ['Doctors Dashboard', 'All Doctors', 'Doctor Performance', 'Doctor Revenue', 'Doctor Patients', 'Doctor Orders', 'Doctor Commissions'],
+    items: [
+      'Doctors Dashboard',
+      'All Doctors',
+      'Doctor Performance',
+      'Doctor Revenue',
+      'Doctor Patients',
+      'Doctor Orders',
+      'Doctor Commissions',
+      'Doctor Activity',
+      'Doctor Network'
+    ],
     defaultPath: '/doctors'
   },
   {
@@ -385,7 +417,19 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Customers 360°',
     icon: '👥',
-    items: ['Customer Dashboard', 'All Customers', 'New Customers', 'Active Customers', 'Repeat Customers', 'Customer Lifetime Value', 'Customer Segmentation'],
+    items: [
+      'Customer Dashboard',
+      'All Customers',
+      'New Customers',
+      'Active Customers',
+      'Repeat Customers',
+      'Customer Lifetime Value',
+      'Customer Segmentation',
+      'Customer Orders',
+      'Customer Revenue',
+      'Customer Retention',
+      'Customer Complaints'
+    ],
     defaultPath: '/customers'
   },
   {

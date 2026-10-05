@@ -1,0 +1,9 @@
+export { default as DoctorsDashboard } from './DoctorsDashboard';
+export { default as AllDoctors } from './AllDoctors';
+export { default as DoctorPerformance } from './DoctorPerformance';
+export { default as DoctorRevenue } from './DoctorRevenue';
+export { default as DoctorPatients } from './DoctorPatients';
+export { default as DoctorOrders } from './DoctorOrders';
+export { default as DoctorCommissions } from './DoctorCommissions';
+export { default as DoctorActivity } from './DoctorActivity';
+export { default as DoctorNetwork } from './DoctorNetwork';

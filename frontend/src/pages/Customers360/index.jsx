@@ -1,0 +1,11 @@
+export { default as CustomerDashboard } from './CustomerDashboard';
+export { default as AllCustomers } from './AllCustomers';
+export { default as NewCustomers } from './NewCustomers';
+export { default as ActiveCustomers } from './ActiveCustomers';
+export { default as RepeatCustomers } from './RepeatCustomers';
+export { default as CustomerLifetimeValue } from './CustomerLifetimeValue';
+export { default as CustomerSegmentation } from './CustomerSegmentation';
+export { default as CustomerOrders } from './CustomerOrders';
+export { default as CustomerRevenue } from './CustomerRevenue';
+export { default as CustomerRetention } from './CustomerRetention';
+export { default as CustomerComplaints } from './CustomerComplaints';

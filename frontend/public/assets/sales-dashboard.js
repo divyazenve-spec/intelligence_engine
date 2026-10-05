@@ -2434,8 +2434,8 @@
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('pharmacy') >= 0) return null;
-    if (h === 'revenue-by-doctor' || h === 'sales-by-doctor' || h === 'doctor-revenue') return 'doctor';
+    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('pharmacy') >= 0 || h.startsWith('doctor-') || h.startsWith('customer-')) return null;
+    if (h === 'revenue-by-doctor' || h === 'sales-by-doctor') return 'doctor';
     if (h === 'revenue-by-channel' || h === 'sales-by-channel') return 'channel';
     if (h === 'revenue-by-location' || h === 'sales-by-location') return 'location';
     if (h === 'revenue-by-product' || h === 'sales-by-product') return 'product';
