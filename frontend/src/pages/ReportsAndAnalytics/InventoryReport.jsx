@@ -103,8 +103,8 @@ export default function InventoryReport() {
                 <th style={{ padding: '10px 12px', textAlign: 'right' }}>Active SKUs</th>
                 <th style={{ padding: '10px 12px', textAlign: 'right' }}>Total Stock Valuation</th>
                 <th style={{ padding: '10px 12px', textAlign: 'right' }}>DSI Cover</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Near Expiry (<60d)</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Aging (>90d)</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Near Expiry (&lt;60d)</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Aging (&gt;90d)</th>
               </tr>
             </thead>
             <tbody>

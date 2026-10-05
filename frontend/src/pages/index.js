@@ -127,7 +127,19 @@ export {
 } from './Marketing';
 
 // 14. Vendors & Procurement
-export { default as VendorsDashboard } from './VendorsAndProcurement/VendorsDashboard';
+export {
+  VendorDashboard,
+  AllVendors,
+  VendorPerformance,
+  VendorPayments,
+  PurchaseOrders,
+  Procurement,
+  PurchaseHistory,
+  SupplierPricing,
+  SupplierPerformance,
+  ProcurementSavings,
+  VendorsDashboard
+} from './VendorsAndProcurement';
 
 // 15. Logistics & Delivery
 export { default as LogisticsDashboard } from './LogisticsAndDelivery/LogisticsDashboard';
