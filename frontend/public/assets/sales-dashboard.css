@@ -1,8 +1,7 @@
 /* Sales Dashboard — opens from sidebar: Revenue & Sales > Sales Dashboard */
-#zsd-root{position:fixed;top:0;right:0;bottom:0;left:0;z-index:50;overflow-y:auto;background:var(--background);color:var(--foreground);font-family:var(--font-sans,"Manrope",sans-serif);display:none;animation:zsdFadeIn .18s ease-out}
-#zsd-root.zsd-open{display:block}
+#zsd-root{position:fixed !important;top:0 !important;right:0 !important;bottom:0 !important;left:224px !important;width:calc(100vw - 224px) !important;max-width:calc(100vw - 224px) !important;z-index:50 !important;overflow-y:auto !important;overflow-x:hidden !important;background:var(--background);color:var(--foreground);font-family:var(--font-sans,"Manrope",sans-serif);display:none;animation:zsdFadeIn .18s ease-out;box-sizing:border-box !important}
+#zsd-root.zsd-open{display:block !important}
 @keyframes zsdFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@media (min-width:1024px){#zsd-root{left:224px}}
 #zsd-root *{box-sizing:border-box}
 #zsd-root button,#zsd-root input,#zsd-root select{font-family:inherit;color:inherit}
 .zsd-head{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;background:color-mix(in oklab,var(--background) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
