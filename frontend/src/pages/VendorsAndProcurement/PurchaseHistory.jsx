@@ -35,7 +35,7 @@ export default function PurchaseHistory() {
     return true;
   });
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -62,12 +62,12 @@ export default function PurchaseHistory() {
 
       {/* Quarterly Spend Overview */}
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>📅 Quarterly Purchase Spend & Performance Breakdown</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📅 Quarterly Purchase Spend & Performance Breakdown</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
           {quarterlySpend.map((q, idx) => (
             <div key={idx} style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#38bdf8', marginBottom: '8px' }}>{q.quarter}</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: '#fff', marginBottom: '12px' }}>{q.totalSpend}</div>
+              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--foreground, #0f172a)', marginBottom: '12px' }}>{q.totalSpend}</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px' }}>
                 <div><span style={{ color: '#64748b' }}>Fulfilled POs:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.ordersCount}</span></div>
                 <div><span style={{ color: '#64748b' }}>Avg. Ticket:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.avgTicket}</span></div>
@@ -82,8 +82,8 @@ export default function PurchaseHistory() {
       <div style={card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>📑 Fulfilled Purchase Ledger</h3>
-            <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Archived PO records with invoice references, delivery destination, and settlement audit dates</p>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📑 Fulfilled Purchase Ledger</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Archived PO records with invoice references, delivery destination, and settlement audit dates</p>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             <input
@@ -91,12 +91,12 @@ export default function PurchaseHistory() {
               placeholder="Search PO, vendor, hub, inv..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 12px', color: '#fff', fontSize: '12px', minWidth: '220px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 12px', color: 'var(--foreground, #0f172a)', fontSize: '12px', minWidth: '220px' }}
             />
             <select
               value={filterCategory}
               onChange={e => setFilterCategory(e.target.value)}
-              style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '6px', padding: '6px 10px', color: '#fff', fontSize: '12px' }}
+              style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.15))', borderRadius: '6px', padding: '6px 10px', color: 'var(--foreground, #0f172a)', fontSize: '12px' }}
             >
               <option value="ALL">All Categories</option>
               <option value="Vaccines & Biologics">Vaccines & Biologics</option>
@@ -112,22 +112,22 @@ export default function PurchaseHistory() {
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['PO Number', 'Vendor Name', 'Category', 'Items', 'Order Value', 'Delivered Date', 'Receiving Location', 'Invoice Ref', 'Paid Date', 'Status'].map(h => (
-                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((r, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px', fontWeight: 600 }}>{r.poNumber}</td>
-                  <td style={{ padding: '11px 12px', color: '#fff', fontWeight: 600 }}>{r.vendor}</td>
-                  <td style={{ padding: '11px 12px', color: '#94a3b8' }}>{r.category}</td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{r.itemsCount} SKUs</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{r.vendor}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{r.category}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.itemsCount} SKUs</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{r.orderValue}</td>
                   <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.deliveredDate}</td>
-                  <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{r.location}</td>
+                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.location}</td>
                   <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#a78bfa', fontSize: '11px' }}>{r.invoiceRef}</td>
                   <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.paidDate}</td>
                   <td style={{ padding: '11px 12px' }}>

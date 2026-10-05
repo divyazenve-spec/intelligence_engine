@@ -29,7 +29,7 @@ export default function VendorDashboard() {
     { month: 'Oct 2026', spend: '₹12.8 L', pct: 100 },
   ];
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -61,13 +61,13 @@ export default function VendorDashboard() {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
         <div style={card}>
-          <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>📊 Spend by Category</h3>
+          <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📊 Spend by Category</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {categories.map((c, i) => (
               <div key={i}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                  <span style={{ color: '#94a3b8' }}>{c.label}</span>
-                  <span style={{ color: '#fff', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.value}</span>
+                  <span style={{ color: 'var(--muted-foreground, #64748b)' }}>{c.label}</span>
+                  <span style={{ color: 'var(--foreground, #0f172a)', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.value}</span>
                 </div>
                 <div style={{ height: '5px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px' }}>
                   <div style={{ width: `${c.pct}%`, height: '100%', background: c.color, borderRadius: '3px', opacity: 0.8 }} />
@@ -78,13 +78,13 @@ export default function VendorDashboard() {
         </div>
 
         <div style={card}>
-          <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>📈 Monthly Procurement Trend</h3>
+          <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📈 Monthly Procurement Trend</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {months.map((m, i) => (
               <div key={i}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                  <span style={{ color: '#94a3b8' }}>{m.month}</span>
-                  <span style={{ color: '#fff', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{m.spend}</span>
+                  <span style={{ color: 'var(--muted-foreground, #64748b)' }}>{m.month}</span>
+                  <span style={{ color: 'var(--foreground, #0f172a)', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{m.spend}</span>
                 </div>
                 <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px' }}>
                   <div style={{ width: `${m.pct}%`, height: '100%', background: 'linear-gradient(90deg, #3b82f6, #06b6d4)', borderRadius: '3px' }} />
@@ -96,24 +96,24 @@ export default function VendorDashboard() {
       </div>
 
       <div style={card}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: '#fff' }}>🏭 Top Vendor Scorecard — FY 2026</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🏭 Top Vendor Scorecard — FY 2026</h3>
         <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                 {['Rank', 'Vendor Name', 'Category', 'Annual Spend', 'Open POs', 'On-Time SLA', 'Quality', 'Status'].map(h => (
-                  <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                  <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {topVendors.map((v, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
                   <td style={{ padding: '11px 14px', color: '#fbbf24', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>#{v.rank}</td>
-                  <td style={{ padding: '11px 14px', fontWeight: 600, color: '#fff' }}>{v.name}</td>
-                  <td style={{ padding: '11px 14px', color: '#94a3b8' }}>{v.category}</td>
+                  <td style={{ padding: '11px 14px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{v.name}</td>
+                  <td style={{ padding: '11px 14px', color: 'var(--muted-foreground, #64748b)' }}>{v.category}</td>
                   <td style={{ padding: '11px 14px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontWeight: 600 }}>{v.spend}</td>
-                  <td style={{ padding: '11px 14px', textAlign: 'center', color: '#cbd5e1' }}>{v.pos}</td>
+                  <td style={{ padding: '11px 14px', textAlign: 'center', color: 'var(--foreground, #334155)' }}>{v.pos}</td>
                   <td style={{ padding: '11px 14px', color: Number(v.onTime) > 97 ? '#34d399' : '#fbbf24', fontWeight: 600 }}>{v.onTime}%</td>
                   <td style={{ padding: '11px 14px' }}>
                     <span style={{ padding: '2px 8px', borderRadius: '4px', background: 'rgba(59,130,246,0.12)', color: '#60a5fa', fontSize: '10px', fontWeight: 700 }}>{v.quality}</span>

@@ -20,7 +20,7 @@ export default function FashionRevenue() {
     { city: 'Hyderabad (Jubilee Hills)', rev: '₹3.80 L', share: '8.4%', stores: '1 Studio + Online', topCategory: 'Festive Brocade & Collars' }
   ];
 
-  const card = { background: 'var(--card, #131d2e)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
   return (
     <DashboardLayout
@@ -50,27 +50,27 @@ export default function FashionRevenue() {
         <div style={card}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>👗 Revenue by Product Category</h3>
-              <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Category sales contribution, year-on-year growth, and average ticket</p>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>👗 Revenue by Product Category</h3>
+              <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Category sales contribution, year-on-year growth, and average ticket</p>
             </div>
           </div>
           <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
               <thead>
-                <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                   {['Apparel Category', 'Revenue FYTD', 'Share %', 'Growth YoY', 'Avg Order Value'].map(h => (
-                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {categoryRevenue.map((c, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{c.cat}</td>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                    <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{c.cat}</td>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{c.rev}</td>
                     <td style={{ padding: '11px 12px', color: '#a78bfa', fontWeight: 600 }}>{c.share}</td>
                     <td style={{ padding: '11px 12px', color: '#34d399', fontWeight: 700 }}>{c.growth}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{c.aov}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{c.aov}</td>
                   </tr>
                 ))}
               </tbody>
@@ -82,26 +82,26 @@ export default function FashionRevenue() {
         <div style={card}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#fff' }}>📍 Regional Revenue Distribution</h3>
-              <p style={{ margin: '3px 0 0', fontSize: '12px', color: '#94a3b8' }}>Geographic luxury metro contribution and dominant wardrobe styles</p>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📍 Regional Revenue Distribution</h3>
+              <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Geographic luxury metro contribution and dominant wardrobe styles</p>
             </div>
           </div>
           <div style={{ overflowX: 'auto', margin: '0 -24px -22px' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
               <thead>
-                <tr style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                <tr style={{ background: 'var(--muted, #f8fafc)', borderBottom: '1px solid var(--border, rgba(0,0,0,0.08))' }}>
                   {['Metro Market', 'Revenue', 'Share %', 'Store Presence', 'Top Category'].map(h => (
-                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                    <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: 'var(--muted-foreground, #64748b)', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {cityRevenue.map((c, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '11px 12px', fontWeight: 600, color: '#fff' }}>{c.city}</td>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                    <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{c.city}</td>
                     <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{c.rev}</td>
                     <td style={{ padding: '11px 12px', color: '#38bdf8', fontWeight: 600 }}>{c.share}</td>
-                    <td style={{ padding: '11px 12px', color: '#cbd5e1' }}>{c.stores}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{c.stores}</td>
                     <td style={{ padding: '11px 12px', color: '#f472b6', fontSize: '11px' }}>{c.topCategory}</td>
                   </tr>
                 ))}
