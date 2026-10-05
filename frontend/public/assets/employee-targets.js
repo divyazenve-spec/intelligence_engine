@@ -1,0 +1,133 @@
+/* =====================================================================
+   Zenve BI — Employee Targets Dashboard
+   Sidebar Subcategory: Employees & HR > Employee Targets
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = null;
+  var isOpen = false;
+
+  var targets = [
+    { name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', metric: 'Consultation Revenue', target: '₹8,00,000', achieved: '₹8,40,000', pct: 105.0, status: 'Surplus (+5%)', tier: 'Diamond 💎' },
+    { name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', metric: 'Surgical Procedures', target: '₹6,50,000', achieved: '₹6,80,000', pct: 104.6, status: 'Surplus (+4.6%)', tier: 'Diamond 💎' },
+    { name: 'Rohan Deshmukh', role: 'Head Pharmacist', metric: 'Rx Dispensing', target: '1,300 Rx', achieved: '1,420 Rx', pct: 109.2, status: 'Surplus (+9.2%)', tier: 'Platinum 🏆' },
+    { name: 'Manish Rawat', role: 'Express Rider', metric: 'On-Time Deliveries', target: '550 Orders', achieved: '612 Orders', pct: 111.3, status: 'Surplus (+11.3%)', tier: 'Platinum 🏆' },
+    { name: 'Sneha Chawla', role: 'Senior AI Engineer', metric: 'Sprint Velocity & Models', target: '20 Tasks', achieved: '24 Tasks', pct: 120.0, status: 'Surplus (+20%)', tier: 'Diamond 💎' },
+    { name: 'Pooja Hegde', role: 'Support Team Lead', metric: 'Tickets SLA & Resolution', target: '800 Solved', achieved: '792 Solved', pct: 99.0, status: 'On Track (99%)', tier: 'Gold 🥇' },
+    { name: 'Ananya Verma', role: 'Warehouse Ops Manager', metric: 'Outbound Dispatch SLA', target: '98.0%', achieved: '96.8%', pct: 98.7, status: 'On Track (98.7%)', tier: 'Gold 🥇' },
+    { name: 'Kunal Sen', role: 'Inventory Controller', metric: 'Stock Reconciliation', target: '100% SKU', achieved: '94.2%', pct: 94.2, status: 'Gap (-5.8%)', tier: 'Silver 🥈' }
+  ];
+
+  function closeOthers() {
+    document.querySelectorAll('.zpanel-root').forEach(function (el) {
+      el.classList.remove('zpanel-open');
+    });
+  }
+
+  function render() {
+    if (!root) return;
+    var rows = targets.map(function (t) {
+      var isOver = t.pct >= 100;
+      return [
+        '<tr>',
+        '  <td><div style="font-weight:600;color:#f8fafc;">' + t.name + '</div><div style="font-size:11px;color:#94a3b8;">' + t.role + '</div></td>',
+        '  <td style="color:#cbd5e1;">' + t.metric + '</td>',
+        '  <td style="font-family:monospace;color:#94a3b8;">' + t.target + '</td>',
+        '  <td style="font-family:monospace;font-weight:600;color:#f8fafc;">' + t.achieved + '</td>',
+        '  <td>',
+        '    <div style="display:flex;align-items:center;gap:8px;">',
+        '      <div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;"><div style="width:' + Math.min(100, t.pct) + '%;height:100%;background:' + (isOver ? '#10b981' : '#f59e0b') + ';"></div></div>',
+        '      <span style="font-family:monospace;font-weight:700;color:' + (isOver ? '#10b981' : '#f59e0b') + ';">' + t.pct + '%</span>',
+        '    </div>',
+        '  </td>',
+        '  <td><span class="zhr-badge ' + (isOver ? 'zhr-badge-success' : 'zhr-badge-warning') + '">● ' + t.status + '</span></td>',
+        '  <td style="text-align:right;font-weight:600;color:#93c5fd;">' + t.tier + '</td>',
+        '</tr>'
+      ].join('');
+    }).join('');
+
+    root.innerHTML = [
+      '<div class="zhr-head">',
+      '  <div class="zhr-head-left">',
+      '    <h1 class="zhr-title"><span>🎯</span> Employee Quota & Targets Leaderboard</h1>',
+      '    <div class="zhr-sub">Monthly and quarterly revenue quotas, clinical case targets, operational delivery SLAs, and incentive tiers</div>',
+      '  </div>',
+      '  <div style="display:flex;align-items:center;gap:10px;">',
+      '    <span class="zhr-badge zhr-badge-success">● 106.8% Quota Attainment</span>',
+      '    <button class="zhr-btn" id="zhr-close-btn">✕ Close</button>',
+      '  </div>',
+      '</div>',
+      '<div class="zhr-body">',
+      '  <div class="zhr-kpi-grid">',
+      '    <div class="zhr-card"><div class="zhr-card-label">Blended Attainment</div><div class="zhr-card-value">106.8%</div><div class="zhr-card-sub" style="color:#34d399;">+6.8% over plan</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Exceeding Target</div><div class="zhr-card-value">142 Staff</div><div class="zhr-card-sub">68.2% of cohort</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Incentive Pool</div><div class="zhr-card-value">₹18.40 L</div><div class="zhr-card-sub" style="color:#34d399;">Fully provisioned</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Deficit Attainment</div><div class="zhr-card-value">8 Staff</div><div class="zhr-card-sub" style="color:#f59e0b;">Coaching initiated</div></div>',
+      '  </div>',
+      '  <div class="zhr-table-container">',
+      '    <div class="zhr-table-head">',
+      '      <h3 style="margin:0;font-size:14px;font-weight:700;">Quota Delivery Matrix</h3>',
+      '      <span style="font-size:11px;color:#94a3b8;">October 2026 Target Cycle</span>',
+      '    </div>',
+      '    <table class="zhr-table">',
+      '      <thead><tr><th>Team Member</th><th>Target Metric</th><th>Set Quota</th><th>Achieved</th><th>Attainment %</th><th>Status</th><th style="text-align:right;">Incentive Tier</th></tr></thead>',
+      '      <tbody>' + rows + '</tbody>',
+      '    </table>',
+      '  </div>',
+      '</div>'
+    ].join('');
+
+    var closeBtn = root.querySelector('#zhr-close-btn');
+    if (closeBtn) closeBtn.onclick = close;
+  }
+
+  function open() {
+    closeOthers();
+    init();
+    render();
+    root.classList.add('zpanel-open');
+    isOpen = true;
+    window.location.hash = '#employee-targets';
+  }
+
+  function close() {
+    if (root) root.classList.remove('zpanel-open');
+    isOpen = false;
+    if (window.location.hash === '#employee-targets') {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  }
+
+  function init() {
+    root = document.getElementById('zhr-targets-root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'zhr-targets-root';
+      root.className = 'zpanel-root zhr-root';
+      document.body.appendChild(root);
+    }
+  }
+
+  window.ZenveEmployeeTargets = { open: open, close: close };
+
+  document.addEventListener('click', function (e) {
+    var it = e.target.closest('button, a, li');
+    if (it && it.textContent && it.textContent.trim().toLowerCase() === 'employee targets') {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      open();
+    }
+  }, true);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      init();
+      if (window.location.hash === '#employee-targets') setTimeout(open, 150);
+    });
+  } else {
+    init();
+    if (window.location.hash === '#employee-targets') setTimeout(open, 150);
+  }
+})();

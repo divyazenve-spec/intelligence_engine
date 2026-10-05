@@ -253,22 +253,13 @@
 
   function tabFromHash(hash) {
     if (!hash) return null;
-    var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('company') >= 0) return 'company';
-    if (h.indexOf('unit') >= 0) return 'units';
-    if (h.indexOf('location') >= 0) return 'locations';
-    if (h.indexOf('user') >= 0) return 'users';
-    if (h.indexOf('role') >= 0 || h.indexOf('perm') >= 0) return 'roles';
-    if (h.indexOf('workflow') >= 0 || h.indexOf('approval') >= 0) return 'workflows';
-    if (h.indexOf('notification') >= 0) return 'notifications';
-    if (h.indexOf('dashboard') >= 0) return 'dashboard-settings';
-    if (h.indexOf('tax') >= 0) return 'tax';
-    if (h.indexOf('payment') >= 0) return 'payments';
-    if (h.indexOf('delivery') >= 0) return 'delivery';
-    if (h.indexOf('integration') >= 0 || h.indexOf('api') >= 0) return 'integrations';
-    if (h.indexOf('security') >= 0) return 'security';
-    if (h.indexOf('backup') >= 0 || h.indexOf('recovery') >= 0) return 'backup';
-    if (h === 'settings') return 'company';
+    var clean = (hash.startsWith('#') ? hash : '#' + hash).toLowerCase().trim();
+    for (var i = 0; i < MODULES.length; i++) {
+      if (MODULES[i].hash === clean || clean === '#' + MODULES[i].id) {
+        return MODULES[i].id;
+      }
+    }
+    if (clean === '#settings' || clean === '#settings-dashboard') return 'company';
     return null;
   }
 

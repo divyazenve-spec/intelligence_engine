@@ -1,0 +1,13 @@
+export { default as HRDashboard } from './HRDashboard';
+export { default as AllEmployees } from './AllEmployees';
+export { default as Departments } from './Departments';
+export { default as EmployeePerformance } from './EmployeePerformance';
+export { default as EmployeeTargets } from './EmployeeTargets';
+export { default as EmployeeProductivity } from './EmployeeProductivity';
+export { default as Attendance } from './Attendance';
+export { default as LeaveManagement } from './LeaveManagement';
+export { default as Payroll } from './Payroll';
+export { default as SalaryCost } from './SalaryCost';
+export { default as Recruitment } from './Recruitment';
+export { default as Onboarding } from './Onboarding';
+export { default as EmployeeExpenses } from './EmployeeExpenses';

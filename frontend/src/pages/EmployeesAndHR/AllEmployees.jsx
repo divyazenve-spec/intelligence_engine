@@ -1,0 +1,359 @@
+import React, { useState } from 'react';
+import DashboardLayout from '../shared/DashboardLayout';
+import KpiCard from '../shared/KpiCard';
+
+export default function AllEmployees() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [deptFilter, setDeptFilter] = useState('ALL');
+  const [statusFilter, setStatusFilter] = useState('ALL');
+  const [selectedEmp, setSelectedEmp] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  const [employees, setEmployees] = useState([
+    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', location: 'Bengaluru Flagship', email: 'priya.s@zenve.in', phone: '+91 98450 11201', joined: '15 Jan 2023', status: 'Active', type: 'Full-time', salary: '₹2,40,000/mo' },
+    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', location: 'Mumbai Center', email: 'rahul.m@zenve.in', phone: '+91 98200 44312', joined: '10 Mar 2023', status: 'Active', type: 'Full-time', salary: '₹1,95,000/mo' },
+    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', location: 'Bengaluru Hub', email: 'rohan.d@zenve.in', phone: '+91 97401 88392', joined: '01 Jun 2023', status: 'Active', type: 'Full-time', salary: '₹1,45,000/mo' },
+    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', location: 'Remote / HQ', email: 'sneha.c@zenve.in', phone: '+91 99102 77314', joined: '28 Sep 2026', status: 'Probation', type: 'Full-time', salary: '₹1,80,000/mo' },
+    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet & Logistics Lead', dept: 'Logistics', location: 'Bengaluru South', email: 'vikram.j@zenve.in', phone: '+91 98860 12093', joined: '12 Aug 2023', status: 'Active', type: 'Full-time', salary: '₹95,000/mo' },
+    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', location: 'Bhiwandi Hub', email: 'ananya.v@zenve.in', phone: '+91 98211 40592', joined: '05 Feb 2024', status: 'Active', type: 'Full-time', salary: '₹1,10,000/mo' },
+    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', location: 'Mumbai Bandra', email: 'manish.r@zenve.in', phone: '+91 98330 67123', joined: '25 Sep 2026', status: 'Active', type: 'Contract', salary: '₹32,000/mo' },
+    { id: 'EMP-1008', name: 'Dr. Aisha Khan', role: 'Consultant Dermatologist', dept: 'Clinical', location: 'Delhi NCR Clinic', email: 'aisha.k@zenve.in', phone: '+91 98110 55421', joined: '14 Apr 2024', status: 'On Leave', type: 'Part-time', salary: '₹1,15,000/mo' },
+    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', location: 'Bengaluru HQ', email: 'pooja.h@zenve.in', phone: '+91 99001 22894', joined: '01 Nov 2023', status: 'Active', type: 'Full-time', salary: '₹75,000/mo' },
+    { id: 'EMP-1010', name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', location: 'Bengaluru Hub', email: 'kunal.s@zenve.in', phone: '+91 96190 33412', joined: '18 Sep 2026', status: 'Active', type: 'Full-time', salary: '₹65,000/mo' }
+  ]);
+
+  const filtered = employees.filter(e => {
+    const matchSearch = (e.name + ' ' + e.role + ' ' + e.id + ' ' + e.email + ' ' + e.location).toLowerCase().includes(searchTerm.toLowerCase());
+    const matchDept = deptFilter === 'ALL' || e.dept === deptFilter;
+    const matchStatus = statusFilter === 'ALL' || e.status === statusFilter;
+    return matchSearch && matchDept && matchStatus;
+  });
+
+  return (
+    <DashboardLayout
+      category="Employees & HR"
+      subcategory="All Employees"
+      title="Employee Directory & Workforce Master"
+      subtitle="Complete centralized registry of clinical specialists, field logistics, pharmacy, and engineering staff"
+      icon="👥"
+      badge={`${employees.length} Registered Staff · 95% Active`}
+      actions={
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => setShowAddModal(true)}
+            style={{
+              padding: '6px 14px',
+              borderRadius: '8px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: 'none',
+              background: '#3b82f6',
+              color: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <span>➕</span> Add New Employee
+          </button>
+        </div>
+      }
+    >
+      {/* Top Level KPIs */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <KpiCard label="Total Staff Members" value="208 Personnel" delta="+6 this month" trend="up" subtext="6 divisions nationwide" icon="👥" />
+        <KpiCard label="Active on Duty" value="198 Staff" delta="95.2% active" trend="up" subtext="In clinic, warehouse & field" icon="🟢" />
+        <KpiCard label="On Approved Leave" value="6 Personnel" delta="3 PTO · 3 Sick" trend="neutral" subtext="Adequately backed up" icon="🏖️" />
+        <KpiCard label="Probation / Onboarding" value="4 Recruits" delta="30-day review cycle" trend="neutral" subtext="All mentoring on track" icon="🐣" />
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div style={{
+        background: 'var(--card, #1e293b)',
+        border: '1px solid var(--border, rgba(255,255,255,0.08))',
+        borderRadius: '12px',
+        padding: '16px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        <div style={{ display: 'flex', flex: '1 1 300px', gap: '10px' }}>
+          <input
+            type="text"
+            placeholder="Search by name, role, ID, email, location..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '8px 14px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(0,0,0,0.25)',
+              color: '#fff',
+              fontSize: '13px'
+            }}
+          />
+        </div>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <select
+            value={deptFilter}
+            onChange={(e) => setDeptFilter(e.target.value)}
+            style={{
+              padding: '8px 12px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.12)',
+              background: '#0f172a',
+              color: '#fff',
+              fontSize: '12px'
+            }}
+          >
+            <option value="ALL">All Departments</option>
+            <option value="Clinical">Clinical Services</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Logistics">Logistics & Delivery</option>
+            <option value="Warehouse">Warehouse Ops</option>
+            <option value="Technology">Technology & AI</option>
+            <option value="Customer Delight">Customer Delight</option>
+          </select>
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            style={{
+              padding: '8px 12px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.12)',
+              background: '#0f172a',
+              color: '#fff',
+              fontSize: '12px'
+            }}
+          >
+            <option value="ALL">All Statuses</option>
+            <option value="Active">Active</option>
+            <option value="On Leave">On Leave</option>
+            <option value="Probation">Probation</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Employees Table */}
+      <div style={{
+        background: 'var(--card, #1e293b)',
+        border: '1px solid var(--border, rgba(255,255,255,0.08))',
+        borderRadius: '12px',
+        overflow: 'hidden'
+      }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Staff Members Directory ({filtered.length})</h3>
+          <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>Showing matching roster entries</span>
+        </div>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)', color: 'var(--muted-foreground, #94a3b8)' }}>
+                <th style={{ padding: '12px 16px' }}>Employee</th>
+                <th style={{ padding: '12px 16px' }}>Department</th>
+                <th style={{ padding: '12px 16px' }}>Location</th>
+                <th style={{ padding: '12px 16px' }}>Type</th>
+                <th style={{ padding: '12px 16px' }}>Joined Date</th>
+                <th style={{ padding: '12px 16px' }}>Status</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(emp => (
+                <tr key={emp.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <td style={{ padding: '12px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{
+                        width: '34px',
+                        height: '34px',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 700,
+                        fontSize: '12px',
+                        color: '#fff'
+                      }}>
+                        {emp.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                      </div>
+                      <div>
+                        <div style={{ fontWeight: 600, color: '#f8fafc' }}>{emp.name}</div>
+                        <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{emp.role} · <span style={{ fontFamily: '"IBM Plex Mono", monospace' }}>{emp.id}</span></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style={{ padding: '12px 16px' }}>
+                    <span style={{
+                      padding: '3px 8px',
+                      borderRadius: '6px',
+                      fontSize: '11px',
+                      background: emp.dept === 'Clinical' ? 'rgba(16,185,129,0.15)' : emp.dept === 'Pharmacy' ? 'rgba(14,165,233,0.15)' : 'rgba(139,92,246,0.15)',
+                      color: emp.dept === 'Clinical' ? '#34d399' : emp.dept === 'Pharmacy' ? '#38bdf8' : '#a78bfa',
+                      fontWeight: 600
+                    }}>
+                      {emp.dept}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{emp.location}</td>
+                  <td style={{ padding: '12px 16px', color: 'var(--muted-foreground, #94a3b8)' }}>{emp.type}</td>
+                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{emp.joined}</td>
+                  <td style={{ padding: '12px 16px' }}>
+                    <span style={{
+                      padding: '3px 8px',
+                      borderRadius: '99px',
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      background: emp.status === 'Active' ? 'rgba(16,185,129,0.15)' : emp.status === 'On Leave' ? 'rgba(245,158,11,0.15)' : 'rgba(99,102,241,0.15)',
+                      color: emp.status === 'Active' ? '#10b981' : emp.status === 'On Leave' ? '#f59e0b' : '#818cf8'
+                    }}>
+                      ● {emp.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                    <button
+                      onClick={() => setSelectedEmp(emp)}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        border: '1px solid rgba(255,255,255,0.15)',
+                        background: 'transparent',
+                        color: '#93c5fd',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      View 360°
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Selected Employee 360 View Modal */}
+      {selectedEmp && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.7)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 999
+        }}>
+          <div style={{
+            background: '#1e293b',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '14px',
+            padding: '24px',
+            maxWidth: '520px',
+            width: '90%',
+            color: '#fff'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '18px' }}>👤 Employee Profile: {selectedEmp.name}</h3>
+              <button onClick={() => setSelectedEmp(null)} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '18px', cursor: 'pointer' }}>✕</button>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '13px' }}>
+              <div><strong style={{ color: '#94a3b8' }}>Employee ID:</strong> <div style={{ fontFamily: '"IBM Plex Mono", monospace' }}>{selectedEmp.id}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Role:</strong> <div>{selectedEmp.role}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Department:</strong> <div>{selectedEmp.dept}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Work Location:</strong> <div>{selectedEmp.location}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Official Email:</strong> <div>{selectedEmp.email}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Direct Phone:</strong> <div>{selectedEmp.phone}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Joining Date:</strong> <div>{selectedEmp.joined}</div></div>
+              <div><strong style={{ color: '#94a3b8' }}>Gross CTC:</strong> <div style={{ color: '#34d399', fontWeight: 600 }}>{selectedEmp.salary}</div></div>
+            </div>
+            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <button onClick={() => setSelectedEmp(null)} style={{ padding: '8px 16px', borderRadius: '8px', background: '#3b82f6', border: 'none', color: '#fff', cursor: 'pointer', fontWeight: 600 }}>Close Profile</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add New Employee Modal */}
+      {showAddModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.7)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 999
+        }}>
+          <div style={{
+            background: '#1e293b',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '14px',
+            padding: '24px',
+            maxWidth: '500px',
+            width: '90%',
+            color: '#fff'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '18px' }}>➕ Register New Employee</h3>
+              <button onClick={() => setShowAddModal(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '18px', cursor: 'pointer' }}>✕</button>
+            </div>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const fd = new FormData(e.target);
+              const newEmp = {
+                id: `EMP-${Math.floor(1000 + Math.random() * 9000)}`,
+                name: fd.get('name'),
+                role: fd.get('role'),
+                dept: fd.get('dept'),
+                location: fd.get('location'),
+                email: fd.get('email'),
+                phone: fd.get('phone'),
+                joined: 'Today',
+                status: 'Active',
+                type: 'Full-time',
+                salary: '₹85,000/mo'
+              };
+              setEmployees([newEmp, ...employees]);
+              setShowAddModal(false);
+            }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <input required name="name" placeholder="Full Name" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.25)', color: '#fff' }} />
+                <input required name="role" placeholder="Designation / Role" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.25)', color: '#fff' }} />
+                <select name="dept" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: '#0f172a', color: '#fff' }}>
+                  <option value="Clinical">Clinical Services</option>
+                  <option value="Pharmacy">Pharmacy</option>
+                  <option value="Logistics">Logistics & Delivery</option>
+                  <option value="Warehouse">Warehouse Ops</option>
+                  <option value="Technology">Technology & AI</option>
+                  <option value="Customer Delight">Customer Delight</option>
+                </select>
+                <input required name="location" placeholder="Work Location (e.g. Bengaluru Hub)" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.25)', color: '#fff' }} />
+                <input required type="email" name="email" placeholder="Work Email" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.25)', color: '#fff' }} />
+                <input required name="phone" placeholder="Contact Number" style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(0,0,0,0.25)', color: '#fff' }} />
+              </div>
+              <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+                <button type="button" onClick={() => setShowAddModal(false)} style={{ padding: '8px 16px', borderRadius: '8px', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer' }}>Cancel</button>
+                <button type="submit" style={{ padding: '8px 16px', borderRadius: '8px', background: '#3b82f6', border: 'none', color: '#fff', cursor: 'pointer', fontWeight: 600 }}>Save &amp; Onboard</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </DashboardLayout>
+  );
+}
