@@ -102,6 +102,15 @@ export {
 
 // 10. Pets 360°
 export { default as PetsDashboard } from './Pets360/PetsDashboard';
+export { default as AllPets } from './Pets360/AllPets';
+export { default as PetProfiles } from './Pets360/PetProfiles';
+export { default as PetHealthRecords } from './Pets360/PetHealthRecords';
+export { default as VaccinationRecords } from './Pets360/VaccinationRecords';
+export { default as TreatmentHistory } from './Pets360/TreatmentHistory';
+export { default as PrescriptionHistory } from './Pets360/PrescriptionHistory';
+export { default as PurchaseHistory } from './Pets360/PurchaseHistory';
+export { default as PetAnalytics } from './Pets360/PetAnalytics';
+export { default as PetHealthInsights } from './Pets360/PetHealthInsights';
 
 // 11. Employees & HR
 export { default as HRDashboard } from './EmployeesAndHR/HRDashboard';
@@ -435,7 +444,7 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Pets 360°',
     icon: '🐾',
-    items: ['All Pets', 'Pet Profiles', 'Pet Health Records', 'Vaccination Records', 'Treatment History', 'Pet Analytics'],
+    items: ['All Pets', 'Pet Profiles', 'Pet Health Records', 'Vaccination Records', 'Treatment History', 'Prescription History', 'Purchase History', 'Pet Analytics', 'Pet Health Insights'],
     defaultPath: '/pets'
   },
   {

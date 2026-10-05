@@ -135,3 +135,12 @@ footer.flex-col.sm\:flex-row {
   box-sizing: border-box !important;
 }
 
+/* 13. Pets 360 Dashboard: Zero margin offset & padding reset */
+#zpet-root,
+#zpet-root main,
+#zpet-root .zpet-content {
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+}
+
+
