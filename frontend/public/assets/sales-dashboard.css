@@ -5,7 +5,7 @@
 @media (min-width:1024px){#zsd-root{left:224px}}
 #zsd-root *{box-sizing:border-box}
 #zsd-root button,#zsd-root input,#zsd-root select{font-family:inherit;color:inherit}
-.zsd-head{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;background:color-mix(in oklab,var(--background) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.zsd-head{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;background:color-mix(in oklab,var(--background) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .zsd-title{font-size:20px;font-weight:700;line-height:1.2;margin:0;letter-spacing:-.01em}
 .zsd-sub{font-size:11px;color:var(--muted-foreground);margin-top:3px}
 .zsd-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -16,7 +16,7 @@
 .zsd-btn:hover{background:var(--accent)}
 .zsd-btn.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-foreground)}
 .zsd-btn.primary:hover{filter:brightness(1.08)}
-.zsd-body{padding:20px 24px 40px;max-width:1500px}
+.zsd-body{padding:24px 28px 48px;width:100%;margin:0}
 .zsd-filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .zsd-filters input,.zsd-filters select{height:34px;border:1px solid var(--input);background:var(--card);border-radius:8px;padding:0 10px;font-size:12px;outline:none;transition:border-color .15s ease}
 .zsd-filters input:focus,.zsd-filters select:focus{border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in oklab,var(--ring) 35%,transparent)}

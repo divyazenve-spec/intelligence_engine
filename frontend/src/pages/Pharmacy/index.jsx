@@ -1,0 +1,10 @@
+export { default as PharmacyDashboard } from './PharmacyDashboard';
+export { default as PharmacySales } from './PharmacySales';
+export { default as Medicines } from './Medicines';
+export { default as Prescriptions } from './Prescriptions';
+export { default as PharmacyOrders } from './PharmacyOrders';
+export { default as BatchManagement } from './BatchManagement';
+export { default as ExpiryTracking } from './ExpiryTracking';
+export { default as PharmacyInventory } from './PharmacyInventory';
+export { default as PharmacyRevenue } from './PharmacyRevenue';
+export { default as PharmacyProfitability } from './PharmacyProfitability';

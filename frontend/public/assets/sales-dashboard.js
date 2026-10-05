@@ -2413,33 +2413,38 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
+    // Exclude other domains: Clinics & Hospitals, Pharmacy, Doctors domain, Products & Inventory
+    if (s.indexOf('clinic') >= 0 || s.indexOf('hospital') >= 0 || s.indexOf('pharmacy') >= 0) return null;
+    if (s === 'clinic doctors' || s === 'doctors dashboard' || s === 'all doctors' || s === 'doctor performance' || s === 'doctor patients' || s === 'doctor orders' || s === 'doctor commissions') return null;
     if (s.indexOf('revenue & sales') >= 0 || s.indexOf('revenue and sales') >= 0) return null;
-    if (s.indexOf('funnel') >= 0) return 'funnel';
-    if (s.indexOf('target') >= 0 || s.indexOf('achieve') >= 0) return 'targets';
-    if (s.indexOf('forecast') >= 0) return 'forecast';
-    if (s.indexOf('channel') >= 0) return 'channel';
-    if (s.indexOf('location') >= 0 || s.indexOf('geographic') >= 0) return 'location';
-    if (s.indexOf('product') >= 0) return 'product';
-    if (s.indexOf('employee') >= 0) return 'employee';
-    if (s.indexOf('doctor') >= 0) return 'doctor';
-    if (s.indexOf('customer') >= 0) return 'customer';
-    if (s.indexOf('sales dashboard') >= 0 || s === 'sales') return 'sales';
+
+    if (s === 'sales funnel' || s === 'funnel') return 'funnel';
+    if (s === 'targets & achievement' || s === 'targets & achievements' || s === 'targets' || s === 'achievement') return 'targets';
+    if (s === 'sales forecast' || s === 'revenue forecast' || s === 'forecast') return 'forecast';
+    if (s === 'revenue by channel' || s === 'sales by channel' || s === 'channel revenue') return 'channel';
+    if (s === 'revenue by location' || s === 'sales by location' || s === 'geographic sales' || s === 'location revenue') return 'location';
+    if (s === 'revenue by product' || s === 'sales by product' || s === 'product revenue') return 'product';
+    if (s === 'revenue by employee' || s === 'sales by employee' || s === 'employee revenue') return 'employee';
+    if (s === 'revenue by doctor' || s === 'sales by doctor' || s === 'doctor revenue') return 'doctor';
+    if (s === 'revenue by customer' || s === 'sales by customer' || s === 'customer revenue') return 'customer';
+    if (s === 'sales dashboard' || s === 'sales overview' || s === 'sales') return 'sales';
     return null;
   }
 
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('funnel') >= 0) return 'funnel';
-    if (h.indexOf('target') >= 0 || h.indexOf('achieve') >= 0) return 'targets';
-    if (h.indexOf('forecast') >= 0) return 'forecast';
-    if (h.indexOf('channel') >= 0) return 'channel';
-    if (h.indexOf('location') >= 0 || h.indexOf('geographic') >= 0) return 'location';
-    if (h.indexOf('product') >= 0) return 'product';
-    if (h.indexOf('employee') >= 0) return 'employee';
-    if (h.indexOf('doctor') >= 0) return 'doctor';
-    if (h.indexOf('customer') >= 0) return 'customer';
-    if (h.indexOf('sales') >= 0) return 'sales';
+    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('pharmacy') >= 0) return null;
+    if (h === 'revenue-by-doctor' || h === 'sales-by-doctor' || h === 'doctor-revenue') return 'doctor';
+    if (h === 'revenue-by-channel' || h === 'sales-by-channel') return 'channel';
+    if (h === 'revenue-by-location' || h === 'sales-by-location') return 'location';
+    if (h === 'revenue-by-product' || h === 'sales-by-product') return 'product';
+    if (h === 'revenue-by-employee' || h === 'sales-by-employee') return 'employee';
+    if (h === 'revenue-by-customer' || h === 'sales-by-customer') return 'customer';
+    if (h === 'sales-funnel' || h === 'funnel') return 'funnel';
+    if (h === 'targets-achievement' || h === 'targets') return 'targets';
+    if (h === 'sales-forecast' || h === 'forecast') return 'forecast';
+    if (h === 'sales-dashboard' || h === 'sales') return 'sales';
     return null;
   }
 
@@ -2479,8 +2484,14 @@
     if (window.ZenveProductsInventory && typeof window.ZenveProductsInventory.close === 'function') {
       try { window.ZenveProductsInventory.close(); } catch (e) {}
     }
+    if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.close === 'function') {
+      try { window.ZenvePharmacyDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.close === 'function') {
+      try { window.ZenveClinicsDashboard.close(); } catch (e) {}
+    }
     document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
-      if (el.id !== 'zsd-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open');
+      if (el.id !== 'zsd-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zch-open');
     });
 
     if (tab && TABS.some(function (t) { return t.id === tab; })) {

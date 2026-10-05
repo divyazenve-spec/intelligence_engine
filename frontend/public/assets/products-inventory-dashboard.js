@@ -326,9 +326,15 @@
     if (window.ZenveOperationsDashboard && typeof window.ZenveOperationsDashboard.close === 'function') {
       try { window.ZenveOperationsDashboard.close(); } catch (e) {}
     }
+    if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.close === 'function') {
+      try { window.ZenvePharmacyDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.close === 'function') {
+      try { window.ZenveClinicsDashboard.close(); } catch (e) {}
+    }
     document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
       if (el.id !== 'zpid-root') {
-        el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open');
+        el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zch-open');
       }
     });
 
