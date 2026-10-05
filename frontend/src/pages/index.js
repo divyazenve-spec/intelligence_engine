@@ -117,7 +117,19 @@ export {
 export { default as AuditDashboard } from './AuditAndCompliance/AuditDashboard';
 
 // 23. System Health
-export { default as SystemHealthDashboard } from './SystemHealth/SystemHealthDashboard';
+export {
+  SystemHealthDashboard,
+  ApplicationHealth,
+  ApiHealth,
+  DatabaseHealth,
+  PaymentGatewayHealth,
+  CrmStatus,
+  InventorySystemHealth,
+  AccountingSystemHealth,
+  MarketingIntegrations,
+  NotificationServicesHealth,
+  IntegrationLogs
+} from './SystemHealth';
 
 // 24. Settings
 export { default as SettingsDashboard } from './Settings/SettingsDashboard';
@@ -311,7 +323,18 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'System Health',
     icon: '🖥️',
-    items: ['Application Health', 'API Health', 'Database Health', 'Payment Gateway', 'CRM Status', 'Integration Logs'],
+    items: [
+      'Application Health',
+      'API Health',
+      'Database Health',
+      'Payment Gateway',
+      'CRM Status',
+      'Inventory System',
+      'Accounting System',
+      'Marketing Integrations',
+      'Notification Services',
+      'Integration Logs'
+    ],
     defaultPath: '/health'
   },
   {

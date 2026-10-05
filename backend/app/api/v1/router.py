@@ -1,12 +1,15 @@
 """API v1 router — aggregates all endpoint routers."""
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import chat, dashboard, inventory, pipeline, predict, sales
+from app.api.v1.endpoints import chat, dashboard, health, inventory, pipeline, predict, sales
 
 router = APIRouter()
 
 # Dashboard / data
 router.add_api_route("/data", dashboard.load_data, methods=["GET", "POST"], tags=["dashboard"])
+
+# Health
+router.include_router(health.router, prefix="/health", tags=["health"])
 
 # Sales
 router.add_api_route("/sales/save", sales.save_sale, methods=["POST"], tags=["sales"])

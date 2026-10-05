@@ -78,7 +78,7 @@ app.include_router(v1_router, prefix="/api/v1")
 # ---------------------------------------------------------------------------
 # These mirror the original Django legacy_patterns() so the compiled UI
 # continues to work without changes.
-from app.api.v1.endpoints import chat, dashboard, inventory, pipeline, sales
+from app.api.v1.endpoints import chat, dashboard, health, inventory, pipeline, sales
 from app.api.deps import get_db
 
 # _serverFn hashes  (same hashes as the original router.py)
@@ -96,6 +96,11 @@ for _fid, _view in _SERVER_FN.items():
 
 # Unversioned /api/* aliases
 app.add_api_route("/api/data", dashboard.load_data, methods=["GET", "POST"])
+app.add_api_route("/api/health", health.get_system_health, methods=["GET", "POST"])
+app.add_api_route("/api/health/overview", health.get_system_health, methods=["GET", "POST"])
+app.add_api_route("/api/health/apis", health.get_api_health, methods=["GET", "POST"])
+app.add_api_route("/api/health/database", health.get_database_health, methods=["GET", "POST"])
+app.add_api_route("/api/health/logs", health.get_integration_logs, methods=["GET", "POST"])
 app.add_api_route("/api/sales/save", sales.save_sale, methods=["POST"])
 app.add_api_route("/api/sales/import", sales.import_sales, methods=["POST"])
 app.add_api_route("/api/ai/brief", chat.ai_brief, methods=["GET", "POST"])
