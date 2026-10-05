@@ -145,7 +145,18 @@ export {
 export { default as LogisticsDashboard } from './LogisticsAndDelivery/LogisticsDashboard';
 
 // 16. Zenve Fashion
-export { default as FashionDashboard } from './ZenveFashion/FashionDashboard';
+export {
+  FashionDashboard,
+  FashionProducts,
+  FashionOrders,
+  FashionCustomers,
+  FashionInventory,
+  FashionShowrooms,
+  OnlineFashionSales,
+  FashionRevenue,
+  FashionProfitability,
+  FashionCollections
+} from './ZenveFashion';
 
 // 17. B2B / Enterprise
 export { default as B2BDashboard } from './B2BEnterprise/B2BDashboard';
