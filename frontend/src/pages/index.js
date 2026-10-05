@@ -46,7 +46,17 @@ export {
 } from './Pharmacy';
 
 // 6. Veterinary Services
-export { default as ServicesDashboard } from './VeterinaryServices/ServicesDashboard';
+export {
+  ServicesDashboard,
+  Consultations,
+  Appointments,
+  Treatments,
+  Vaccinations,
+  Diagnostics,
+  Procedures,
+  ServiceRevenue,
+  ServiceProfitability
+} from './VeterinaryServices';
 
 // 7. Doctors
 export { default as DoctorsDashboard } from './Doctors/DoctorsDashboard';
@@ -336,7 +346,17 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Veterinary Services',
     icon: '🩺',
-    items: ['Services Dashboard', 'Consultations', 'Appointments', 'Treatments', 'Vaccinations', 'Diagnostics', 'Procedures', 'Service Revenue'],
+    items: [
+      'Services Dashboard',
+      'Consultations',
+      'Appointments',
+      'Treatments',
+      'Vaccinations',
+      'Diagnostics',
+      'Procedures',
+      'Service Revenue',
+      'Service Profitability'
+    ],
     defaultPath: '/services'
   },
   {

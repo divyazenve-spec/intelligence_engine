@@ -126,3 +126,12 @@ footer.flex-col.sm\:flex-row {
   flex-direction: row !important;
   justify-content: space-between !important;
 }
+
+/* 12. Veterinary Services Dashboard: Zero margin offset & padding reset */
+#zvs-root,
+#zvs-root main,
+#zvs-root .zvs-content {
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+}
+

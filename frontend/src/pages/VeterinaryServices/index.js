@@ -1,0 +1,9 @@
+export { default as ServicesDashboard } from './ServicesDashboard';
+export { default as Consultations } from './Consultations';
+export { default as Appointments } from './Appointments';
+export { default as Treatments } from './Treatments';
+export { default as Vaccinations } from './Vaccinations';
+export { default as Diagnostics } from './Diagnostics';
+export { default as Procedures } from './Procedures';
+export { default as ServiceRevenue } from './ServiceRevenue';
+export { default as ServiceProfitability } from './ServiceProfitability';
