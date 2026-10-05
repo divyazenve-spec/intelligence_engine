@@ -1,0 +1,10 @@
+export { default as ClinicsDashboard } from './ClinicsDashboard';
+export { default as AllClinics } from './AllClinics';
+export { default as Hospitals } from './Hospitals';
+export { default as ClinicPerformance } from './ClinicPerformance';
+export { default as ClinicRevenue } from './ClinicRevenue';
+export { default as ClinicOrders } from './ClinicOrders';
+export { default as ClinicPatients } from './ClinicPatients';
+export { default as ClinicDoctors } from './ClinicDoctors';
+export { default as ClinicCommissions } from './ClinicCommissions';
+export { default as ClinicNetwork } from './ClinicNetwork';

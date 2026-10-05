@@ -15,10 +15,9 @@ export default function DashboardLayout({
       display: 'flex',
       flexDirection: 'column',
       gap: '20px',
-      padding: '24px',
-      maxWidth: '1600px',
-      margin: '0 auto',
+      padding: '24px 28px 48px',
       width: '100%',
+      margin: 0,
       color: 'var(--foreground, #0f172a)',
       fontFamily: 'var(--font-sans, "Manrope", sans-serif)'
     }}>

@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 24px;
+  padding: 16px 28px;
   background: color-mix(in oklab, var(--background, #090d16) 92%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -222,7 +222,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 24px;
+  padding: 8px 28px;
   background: color-mix(in oklab, var(--background, #090d16) 94%, transparent);
   border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.07));
   overflow-x: auto;
@@ -340,9 +340,9 @@
 
 /* ── Body Container ───────────────────────────────────────────────── */
 .zod-body {
-  padding: 20px 24px 60px;
-  max-width: 1600px;
-  margin: 0 auto;
+  padding: 24px 28px 60px;
+  width: 100%;
+  margin: 0;
 }
 
 /* ── Generic Cards & Panels ───────────────────────────────────────── */

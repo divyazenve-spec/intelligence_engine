@@ -32,7 +32,18 @@ export {
 } from './ProductsAndInventory';
 
 // 5. Pharmacy
-export { default as PharmacyDashboard } from './Pharmacy/PharmacyDashboard';
+export {
+  PharmacyDashboard,
+  PharmacySales,
+  Medicines,
+  Prescriptions,
+  PharmacyOrders,
+  BatchManagement,
+  ExpiryTracking,
+  PharmacyInventory,
+  PharmacyRevenue,
+  PharmacyProfitability
+} from './Pharmacy';
 
 // 6. Veterinary Services
 export { default as ServicesDashboard } from './VeterinaryServices/ServicesDashboard';
@@ -41,7 +52,18 @@ export { default as ServicesDashboard } from './VeterinaryServices/ServicesDashb
 export { default as DoctorsDashboard } from './Doctors/DoctorsDashboard';
 
 // 8. Clinics & Hospitals
-export { default as ClinicsDashboard } from './ClinicsAndHospitals/ClinicsDashboard';
+export {
+  ClinicsDashboard,
+  AllClinics,
+  Hospitals,
+  ClinicPerformance,
+  ClinicRevenue,
+  ClinicOrders,
+  ClinicPatients,
+  ClinicDoctors,
+  ClinicCommissions,
+  ClinicNetwork
+} from './ClinicsAndHospitals';
 
 // 9. Customers 360°
 export { default as CustomerDashboard } from './Customers360/CustomerDashboard';
@@ -186,7 +208,18 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Pharmacy',
     icon: '💊',
-    items: ['Pharmacy Dashboard', 'Pharmacy Sales', 'Medicines', 'Prescriptions', 'Pharmacy Orders', 'Batch Management', 'Expiry Tracking', 'Pharmacy Inventory'],
+    items: [
+      'Pharmacy Dashboard',
+      'Pharmacy Sales',
+      'Medicines',
+      'Prescriptions',
+      'Pharmacy Orders',
+      'Batch Management',
+      'Expiry Tracking',
+      'Pharmacy Inventory',
+      'Pharmacy Revenue',
+      'Pharmacy Profitability'
+    ],
     defaultPath: '/pharmacy'
   },
   {
@@ -204,7 +237,18 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Clinics & Hospitals',
     icon: '🏥',
-    items: ['Clinics Dashboard', 'All Clinics', 'Hospitals', 'Clinic Performance', 'Clinic Revenue', 'Clinic Orders', 'Clinic Network'],
+    items: [
+      'Clinics Dashboard',
+      'All Clinics',
+      'Hospitals',
+      'Clinic Performance',
+      'Clinic Revenue',
+      'Clinic Orders',
+      'Clinic Patients',
+      'Clinic Doctors',
+      'Clinic Commissions',
+      'Clinic Network'
+    ],
     defaultPath: '/clinics'
   },
   {

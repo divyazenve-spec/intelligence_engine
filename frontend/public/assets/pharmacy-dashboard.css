@@ -1,0 +1,234 @@
+/* =====================================================================
+   Zenve BI — Pharmacy Domain Control Center & Subdomain Dashboards
+   Suite:
+     1. Pharmacy Dashboard    (#pharmacy-dashboard)
+     2. Pharmacy Sales        (#pharmacy-sales)
+     3. Medicines             (#medicines)
+     4. Prescriptions         (#prescriptions)
+     5. Pharmacy Orders       (#pharmacy-orders)
+     6. Batch Management      (#batch-management)
+     7. Expiry Tracking       (#expiry-tracking)
+     8. Pharmacy Inventory    (#pharmacy-inventory)
+     9. Pharmacy Revenue      (#pharmacy-revenue)
+     10. Pharmacy Profitability (#pharmacy-profitability)
+   ===================================================================== */
+
+#zph-root {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 50;
+  overflow-y: auto;
+  background: var(--background, #090d16);
+  color: var(--foreground, #f8fafc);
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  animation: zphFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+#zph-root.zph-open { display: block; }
+
+@keyframes zphFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 1024px) {
+  #zph-root { left: 224px; }
+}
+
+#zph-root * { box-sizing: border-box; }
+#zph-root button, #zph-root input, #zph-root select {
+  font-family: inherit; color: inherit;
+}
+
+/* Header */
+.zph-head {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 28px;
+  background: color-mix(in oklab, var(--background, #090d16) 92%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  flex-wrap: wrap;
+}
+
+.zph-head-left { display: flex; flex-direction: column; min-width: 0; }
+.zph-title-row { display: flex; align-items: center; gap: 10px; }
+.zph-title { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--foreground,#fff); white-space: nowrap; }
+.zph-sub { font-size: 12px; margin: 2px 0 0; color: var(--muted-foreground,#94a3b8); }
+
+.zph-live-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.3); color: #10b981;
+  font-size: 10px; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.zph-pulse-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #10b981; box-shadow: 0 0 8px #10b981;
+  animation: zphPulse 1.8s infinite;
+}
+
+@keyframes zphPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.4); }
+}
+
+.zph-head-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.zph-btn {
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1));
+  background: rgba(255,255,255,0.04); cursor: pointer; font-size: 12px; font-weight: 600;
+  transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;
+}
+.zph-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+.zph-btn.primary { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.4); color: #34d399; }
+.zph-btn.primary:hover { background: rgba(16,185,129,0.28); }
+.zph-btn.danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #f87171; }
+
+.zph-seg { display: flex; border-radius: 8px; border: 1px solid var(--border,rgba(255,255,255,0.1)); overflow: hidden; }
+.zph-seg button { padding: 5px 10px; border: none; background: transparent; font-size: 11px; font-weight: 600; cursor: pointer; color: var(--muted-foreground,#94a3b8); transition: all 0.15s; }
+.zph-seg button.on { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+
+/* Tabs Bar */
+.zph-tabs-bar {
+  display: flex; gap: 4px; padding: 10px 28px 0;
+  border-bottom: 1px solid var(--border,rgba(255,255,255,0.08));
+  overflow-x: auto; scrollbar-width: none;
+  background: var(--background,#090d16);
+}
+.zph-tabs-bar::-webkit-scrollbar { display: none; }
+
+.zph-tab {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border: none; background: transparent;
+  color: var(--muted-foreground, #94a3b8); font-size: 12px; font-weight: 600;
+  cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.15s; margin-bottom: -1px;
+}
+.zph-tab:hover { color: var(--foreground, #f8fafc); background: rgba(255,255,255,0.03); border-radius: 6px 6px 0 0; }
+.zph-tab.active {
+  color: #34d399; border-bottom-color: #10b981;
+  background: rgba(16,185,129,0.08); border-radius: 6px 6px 0 0;
+}
+.zph-tab-badge {
+  font-size: 10px; padding: 1px 6px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); font-family: "IBM Plex Mono", monospace; font-weight: 600;
+}
+.zph-tab-badge.warn { background: rgba(245,158,11,0.2); color: #fbbf24; }
+.zph-tab-badge.danger { background: rgba(239,68,68,0.2); color: #f87171; }
+.zph-tab.active .zph-tab-badge { background: rgba(16,185,129,0.25); color: #6ee7b7; }
+
+/* Body Content — Unified 28px horizontal alignment matching header and tabs */
+.zph-body { padding: 24px 28px 48px; width: 100%; margin: 0; display: flex; flex-direction: column; gap: 20px; }
+
+/* KPI Grid */
+.zph-kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
+}
+.zph-kpi {
+  background: var(--card, #1e293b);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.zph-kpi:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.16); }
+.zph-kpi-top { display: flex; justify-content: space-between; align-items: center; }
+.zph-kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--muted-foreground,#94a3b8); letter-spacing: 0.05em; font-family: "IBM Plex Mono", monospace; }
+.zph-kpi-icon { font-size: 18px; }
+.zph-kpi-val { font-size: 24px; font-weight: 700; font-family: "IBM Plex Mono", monospace; color: var(--foreground,#f8fafc); }
+.zph-kpi-bottom { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.zph-delta { padding: 2px 7px; border-radius: 99px; font-weight: 600; }
+.zph-delta.up { color: #10b981; background: rgba(16,185,129,0.15); }
+.zph-delta.down { color: #ef4444; background: rgba(239,68,68,0.15); }
+.zph-delta.warn { color: #f59e0b; background: rgba(245,158,11,0.15); }
+.zph-subtext { color: var(--muted-foreground,#94a3b8); }
+
+/* Card Panels */
+.zph-card {
+  background: var(--card, #1e293b);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 12px; padding: 22px 24px;
+}
+.zph-card-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+}
+.zph-card-title { margin: 0; font-size: 16px; font-weight: 700; color: #fff; }
+.zph-card-sub { margin: 2px 0 0; font-size: 12px; color: var(--muted-foreground,#94a3b8); }
+
+/* Tables with Edge Alignment matching card header text */
+.zph-table-wrap {
+  overflow-x: auto;
+  margin: 0 -24px -22px;
+  border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 0 0 12px 12px;
+}
+.zph-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+.zph-table th {
+  padding: 12px 24px; color: var(--muted-foreground, #94a3b8);
+  background: rgba(0,0,0,0.18);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  font-family: "IBM Plex Mono", monospace;
+}
+.zph-table td {
+  padding: 14px 24px; border-bottom: 1px solid var(--border, rgba(255,255,255,0.04));
+  color: var(--foreground, #f8fafc); vertical-align: middle;
+}
+.zph-table tr:last-child td { border-bottom: none; }
+.zph-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* Badges */
+.zph-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 99px; font-size: 11px; font-weight: 600;
+  font-family: "IBM Plex Mono", monospace;
+}
+.zph-pill.success { background: rgba(16,185,129,0.15); color: #34d399; }
+.zph-pill.warning { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.zph-pill.danger  { background: rgba(239,68,68,0.15); color: #f87171; }
+.zph-pill.info    { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.zph-pill.cold    { background: rgba(6,182,212,0.15); color: #38bdf8; }
+
+/* Filter Controls */
+.zph-filter-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.zph-input {
+  padding: 6px 12px; border-radius: 8px; background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border, rgba(255,255,255,0.1)); color: #fff; font-size: 12px;
+  outline: none;
+}
+.zph-input:focus { border-color: #10b981; }
+.zph-select {
+  padding: 6px 10px; border-radius: 8px; background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border, rgba(255,255,255,0.1)); color: #fff; font-size: 12px;
+  outline: none; cursor: pointer;
+}
+
+/* Modals */
+.zph-modal-backdrop {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.zph-modal {
+  background: #1e293b; border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 24px; width: 90%; max-width: 600px;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.zph-modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 14px; margin-bottom: 16px;
+}
+
+/* Toasts */
+.zph-toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 120;
+  padding: 12px 18px; border-radius: 10px;
+  background: #0f172a; border: 1px solid #10b981; color: #34d399;
+  font-size: 13px; font-weight: 600; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  display: flex; align-items: center; gap: 8px; animation: zphFadeIn 0.2s ease;
+}
