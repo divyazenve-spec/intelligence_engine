@@ -11,23 +11,26 @@
    ===================================================================== */
 
 #zod-root {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 50;
-  overflow-y: auto;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  z-index: 50 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
   background: var(--background, #090d16);
   color: var(--foreground, #f8fafc);
   font-family: var(--font-sans, "Manrope", sans-serif);
   display: none;
   animation: zodFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 #zod-root.zod-open {
-  display: block;
+  display: block !important;
 }
 
 @keyframes zodFadeIn {
@@ -38,12 +41,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@media (min-width: 1024px) {
-  #zod-root {
-    left: 224px; /* match sidebar width */
   }
 }
 

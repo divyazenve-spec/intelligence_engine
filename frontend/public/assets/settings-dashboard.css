@@ -1,0 +1,970 @@
+/* =====================================================================
+   Zenve BI — Enterprise Settings & Governance Suite + Universal Light Sidebar
+   Executive-Grade Pure Light Theme Architecture
+   ===================================================================== */
+
+/* ── 1. Global Light Theme for App Sidebar ────────────────────────── */
+:root {
+  --sidebar: #ffffff !important;
+  --sidebar-foreground: #0f172a !important;
+  --sidebar-primary: #2563eb !important;
+  --sidebar-primary-foreground: #ffffff !important;
+  --sidebar-accent: #f1f5f9 !important;
+  --sidebar-accent-foreground: #0f172a !important;
+  --sidebar-border: #e2e8f0 !important;
+  --sidebar-ring: #2563eb !important;
+}
+
+aside.sidebar-scope,
+.sidebar-scope {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 224px !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: none !important;
+  translate: 0 0 !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.03) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  --sidebar: #ffffff !important;
+  --sidebar-foreground: #0f172a !important;
+  --sidebar-accent: #f1f5f9 !important;
+  --sidebar-accent-foreground: #0f172a !important;
+  --sidebar-border: #e2e8f0 !important;
+  --muted-foreground: #64748b !important;
+  --foreground: #0f172a !important;
+}
+
+/* Sidebar header / Brand logo area */
+.sidebar-scope header,
+.sidebar-scope [data-sidebar="header"],
+.sidebar-scope .sidebar-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.sidebar-scope [data-sidebar="header"] h2,
+.sidebar-scope [data-sidebar="header"] span,
+.sidebar-scope [data-sidebar="header"] a {
+  color: #0f172a !important;
+}
+
+/* Sidebar navigation buttons, links, and accordion triggers */
+.sidebar-scope button,
+.sidebar-scope a,
+.sidebar-scope [role="button"],
+.sidebar-scope li button,
+.sidebar-scope li a {
+  color: #334155 !important;
+  transition: all 0.15s ease !important;
+}
+
+.sidebar-scope button:hover,
+.sidebar-scope a:hover,
+.sidebar-scope [role="button"]:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Active navigation item in sidebar */
+.sidebar-scope button.zset-active,
+.sidebar-scope button.zsd-active,
+.sidebar-scope a.zset-active,
+.sidebar-scope [data-active="true"],
+.sidebar-scope [aria-current="page"] {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  font-weight: 600 !important;
+}
+
+/* Sidebar group headers, labels, and badges */
+.sidebar-scope [data-sidebar="group-label"],
+.sidebar-scope .text-muted-foreground,
+.sidebar-scope h3,
+.sidebar-scope h4,
+.sidebar-scope span.text-xs {
+  color: #64748b !important;
+}
+
+/* Sidebar footer / user profile */
+.sidebar-scope footer,
+.sidebar-scope [data-sidebar="footer"],
+.sidebar-scope .sidebar-footer {
+  background: #ffffff !important;
+  border-top: 1px solid #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Sidebar search input */
+.sidebar-scope input {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.sidebar-scope input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Sidebar scrollbar */
+aside.sidebar-scope::-webkit-scrollbar,
+.sidebar-scope::-webkit-scrollbar {
+  width: 5px;
+}
+
+aside.sidebar-scope::-webkit-scrollbar-thumb,
+.sidebar-scope::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+
+/* ── 2. Settings Dashboard Full-Screen Overlay ─────────────────────── */
+#zset-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 50 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zset-root.zset-open {
+  display: block !important;
+}
+
+#zset-root::-webkit-scrollbar {
+  width: 6px;
+}
+
+#zset-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+#zset-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+
+#zset-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Eliminate document background scroll when settings is open */
+html.zset-locked,
+body.zset-locked {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+#zset-root,
+#zset-root * {
+  box-sizing: border-box !important;
+}
+
+/* Neutralize global layout pollution from main tags and outer frameworks */
+#zset-root main,
+#zset-root .zset-body,
+#zset-root .zset-content-canvas,
+#zset-root #zset-pane {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  min-width: 0 !important;
+}
+
+#zset-root button,
+#zset-root input,
+#zset-root select,
+#zset-root textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+
+/* ── 3. Top Executive Header (Light Theme) ────────────────────────── */
+.zset-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zset-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zset-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #e0f2fe, #dbeafe) !important;
+  border: 1px solid #bfdbfe !important;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.zset-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zset-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zset-main-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a !important;
+  white-space: nowrap;
+}
+
+.zset-env-pill {
+  font-size: 10px;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid #86efac !important;
+}
+
+.zset-breadcrumbs {
+  font-size: 12px;
+  color: #64748b !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.zset-breadcrumbs span.active {
+  color: #2563eb !important;
+  font-weight: 600;
+}
+
+.zset-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.zset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.zset-btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.zset-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
+}
+
+.zset-btn-secondary {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.zset-btn-secondary:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+.zset-btn-danger {
+  background: #fef2f2 !important;
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+}
+
+.zset-btn-danger:hover {
+  background: #fee2e2 !important;
+}
+
+.zset-close-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.15s ease;
+}
+
+.zset-close-btn:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+
+/* ── 4. Sticky Horizontal Subnav Bar (Light Theme) ───────────────── */
+.zset-subnav-bar {
+  position: sticky;
+  top: 65px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 32px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zset-subnav-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.zset-subnav-bar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.zset-tab-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569 !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.zset-tab-chip:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.zset-tab-chip.active {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.12) !important;
+  font-weight: 700 !important;
+}
+
+.zset-tab-chip-icon {
+  font-size: 14px;
+}
+
+
+/* ── 5. Content Canvas (Full-Width, Centered, Light Theme) ───────── */
+.zset-body {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 28px 32px 80px 32px !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+}
+
+.zset-tab-header {
+  margin-bottom: 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.zset-tab-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a !important;
+}
+
+.zset-tab-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #475569 !important;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+
+/* ── 6. Cards & Panels (Crisp Pure White) ────────────────────────── */
+.zset-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zset-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.zset-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zset-card-subtitle {
+  font-size: 12px;
+  color: #64748b !important;
+  font-weight: 400;
+}
+
+
+/* ── 7. Form Grids & Form Controls ───────────────────────────────── */
+.zset-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.zset-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.zset-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+
+  .zset-grid-2,
+  .zset-grid-3,
+  .zset-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .zset-body {
+    padding: 16px 16px 60px 16px !important;
+  }
+}
+
+.zset-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zset-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zset-input,
+.zset-select,
+.zset-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.zset-input:focus,
+.zset-select:focus,
+.zset-textarea:focus {
+  background: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.zset-input:disabled {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+  cursor: not-allowed;
+}
+
+.zset-help-text {
+  font-size: 11px;
+  color: #64748b !important;
+  margin-top: 3px;
+}
+
+
+/* ── 8. Toggle Switch Rows (Light Theme) ─────────────────────────── */
+.zset-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 9px;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.zset-switch-info h5 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a !important;
+}
+
+.zset-switch-info p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #64748b !important;
+}
+
+.zset-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.zset-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.zset-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .2s;
+  border-radius: 26px;
+  border: 1px solid #cbd5e1;
+}
+
+.zset-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked+.zset-slider {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+input:checked+.zset-slider:before {
+  transform: translateX(20px);
+}
+
+
+/* ── 9. Status Badges (Light Theme) ──────────────────────────────── */
+.zset-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+.zset-badge-success {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+.zset-badge-warning {
+  background: #fef3c7 !important;
+  color: #b45309 !important;
+  border: 1px solid #fde68a !important;
+}
+
+.zset-badge-danger {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  border: 1px solid #fecaca !important;
+}
+
+.zset-badge-info {
+  background: #e0f2fe !important;
+  color: #0369a1 !important;
+  border: 1px solid #bae6fd !important;
+}
+
+.zset-badge-purple {
+  background: #f3e8ff !important;
+  color: #7e22ce !important;
+  border: 1px solid #e9d5ff !important;
+}
+
+
+/* ── 10. Tables (Executive Light Theme) ──────────────────────────── */
+.zset-table-wrap {
+  overflow-x: auto;
+  border-radius: 9px;
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+}
+
+.zset-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.zset-table th {
+  padding: 12px 16px;
+  background: #f8fafc !important;
+  color: #475569 !important;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.zset-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b !important;
+}
+
+.zset-table tr:last-child td {
+  border-bottom: none;
+}
+
+.zset-table tr:hover td {
+  background: #f8fafc !important;
+}
+
+
+/* ── 11. User Avatar Pill ────────────────────────────────────────── */
+.zset-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zset-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+/* ── 12. Permissions Matrix Grid (Light Theme) ───────────────────── */
+.zset-perm-matrix {
+  display: grid;
+  gap: 8px;
+}
+
+.zset-perm-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(6, minmax(70px, 1fr));
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  font-size: 13px;
+  color: #0f172a !important;
+  min-width: 680px;
+  transition: background 0.15s ease;
+}
+
+.zset-perm-row:hover {
+  background: #f8fafc !important;
+}
+
+.zset-perm-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zset-perm-check input {
+  accent-color: #2563eb;
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+}
+
+
+/* ── 13. Modal Dialogs (Light Theme) ─────────────────────────────── */
+.zset-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: zsetFadeIn 0.15s ease-out;
+}
+
+.zset-modal-box {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px;
+  max-width: 580px;
+  width: 100%;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 90vh;
+}
+
+.zset-modal-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zset-modal-head h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+.zset-modal-body {
+  padding: 22px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zset-modal-foot {
+  padding: 16px 24px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+
+/* ── 14. Toast Feedback ──────────────────────────────────────────── */
+.zset-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 70;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: zsetToastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zsetToastSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ── 15. KPI Metric Cards (Light Theme) ──────────────────────────── */
+.zset-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.zset-kpi-card {
+  padding: 18px 22px;
+  border-radius: 10px;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.zset-kpi-lbl {
+  font-size: 11px;
+  color: #64748b !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.zset-kpi-val {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a !important;
+  margin-top: 6px;
+  letter-spacing: -0.02em;
+}
+
+
+/* ── 16. Filter Bar (Light Theme) ────────────────────────────────── */
+.zset-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.zset-search-input {
+  max-width: 360px;
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  font-size: 13px;
+}
+
+.zset-search-input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}

@@ -27,13 +27,20 @@ aside.sidebar-scope {
   display: flex !important;
   transform: none !important;
   translate: 0 0 !important;
-  z-index: 40 !important;
+  z-index: 9999 !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-right: 1px solid #e2e8f0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 /* 2. Main content offset for sidebar */
 main {
   margin-left: 224px !important;
-  min-width: calc(1400px - 224px) !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  min-width: 0 !important;
 }
 
 /* 3. Hide mobile hamburger & overlay */
