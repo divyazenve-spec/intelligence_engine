@@ -4,7 +4,12 @@
  */
 
 // 1. Executive
-export { default as ExecutiveDashboard } from './Executive/ExecutiveDashboard';
+export {
+  ExecutiveDashboard,
+  CeoControlCenter,
+  BusinessOverview,
+  KpiDashboard
+} from './Executive';
 
 // 2. Revenue & Sales
 export {
@@ -269,7 +274,20 @@ export {
 } from './ReportsAndAnalytics';
 
 // 20. AI Assistant
-export { default as AIAssistantDashboard } from './AIAssistant/AIAssistantDashboard';
+export {
+  AIAssistantDashboard,
+  AskZenveAI,
+  BusinessInsights,
+  RevenueIntelligence,
+  SalesForecast as AISalesForecast,
+  DemandForecast,
+  InventoryPrediction,
+  CustomerPrediction,
+  ChurnPrediction,
+  ProfitPrediction,
+  AnomalyDetection,
+  AIRecommendations
+} from './AIAssistant';
 
 // 21. Alerts & Notifications
 export {
@@ -614,7 +632,19 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'AI Assistant',
     icon: '🤖',
-    items: ['Ask Zenve AI', 'Business Insights', 'Revenue Intelligence', 'Sales Forecast', 'Anomaly Detection'],
+    items: [
+      'Ask Zenve AI',
+      'Business Insights',
+      'Revenue Intelligence',
+      'Sales Forecast',
+      'Demand Forecast',
+      'Inventory Prediction',
+      'Customer Prediction',
+      'Churn Prediction',
+      'Profit Prediction',
+      'Anomaly Detection',
+      'AI Recommendations'
+    ],
     defaultPath: '/ai'
   },
   {

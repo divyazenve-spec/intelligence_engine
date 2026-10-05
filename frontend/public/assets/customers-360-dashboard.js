@@ -63,7 +63,7 @@
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('report') >= 0 || h.indexOf('alert') >= 0 || h.indexOf('vendor') >= 0 || h.indexOf('fashion') >= 0 || h.indexOf('import') >= 0 || h.indexOf('export') >= 0 || h.indexOf('subscription') >= 0 || h.indexOf('doctor') >= 0) {
+    if (h.indexOf('report') >= 0 || h.indexOf('alert') >= 0 || h.indexOf('vendor') >= 0 || h.indexOf('fashion') >= 0 || h.indexOf('import') >= 0 || h.indexOf('export') >= 0 || h.indexOf('subscription') >= 0 || h.indexOf('doctor') >= 0 || h.indexOf('prediction') >= 0 || h.indexOf('ai') >= 0) {
       return null;
     }
     if (h === 'customer-dashboard' || h === 'customers' || h === 'customers-360') return 'dashboard';
@@ -83,7 +83,7 @@
   function tabFromText(txt) {
     if (!txt) return null;
     var raw = txt.replace(/\s+/g, ' ').trim().toLowerCase();
-    if (raw.indexOf('report') >= 0 || raw.indexOf('alert') >= 0 || raw.indexOf('vendor') >= 0 || raw.indexOf('doctor') >= 0) return null;
+    if (raw.indexOf('report') >= 0 || raw.indexOf('alert') >= 0 || raw.indexOf('vendor') >= 0 || raw.indexOf('doctor') >= 0 || raw.indexOf('prediction') >= 0 || raw.indexOf('ai') >= 0) return null;
 
     if (raw === 'customer dashboard' || raw === 'customers 360°' || raw === 'customers') return 'dashboard';
     if (raw === 'all customers') return 'all-customers';

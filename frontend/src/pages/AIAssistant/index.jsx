@@ -1,0 +1,12 @@
+export { default as AIAssistantDashboard } from './AIAssistantDashboard';
+export { default as AskZenveAI } from './AskZenveAI';
+export { default as BusinessInsights } from './BusinessInsights';
+export { default as RevenueIntelligence } from './RevenueIntelligence';
+export { default as SalesForecast } from './SalesForecast';
+export { default as DemandForecast } from './DemandForecast';
+export { default as InventoryPrediction } from './InventoryPrediction';
+export { default as CustomerPrediction } from './CustomerPrediction';
+export { default as ChurnPrediction } from './ChurnPrediction';
+export { default as ProfitPrediction } from './ProfitPrediction';
+export { default as AnomalyDetection } from './AnomalyDetection';
+export { default as AIRecommendations } from './AIRecommendations';
