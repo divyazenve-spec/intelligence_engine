@@ -98,6 +98,7 @@
     q: '',
     metric: 'revenue',
     compare: true,
+    funnelStage: 'All',
     sort: { key: 'sold_at', dir: -1 },
     page: 1,
     open: false,
@@ -305,7 +306,11 @@
     if (skip !== 'status' && S.status !== 'All' && s.status !== S.status) return false;
     if (skip !== 'app' && S.app !== 'All' && s.app_source !== S.app) return false;
     if (skip !== 'category' && S.category !== 'All' && s.source !== S.category) return false;
-    if (skip !== 'city' && S.city !== 'All' && s.city !== S.city) return false;
+    if (skip !== 'city' && S.city !== 'All' && s.city !== 'All' && s.city !== S.city) return false;
+    if (skip !== 'funnelStage' && S.tab === 'funnel' && S.funnelStage && S.funnelStage !== 'All') {
+      if ((S.funnelStage === 'paid' || S.funnelStage === 'conversions') && s.status !== 'Paid') return false;
+      if ((S.funnelStage === 'checkout' || S.funnelStage === 'pending') && s.status === 'Paid') return false;
+    }
     if (S.q) {
       var q = S.q.toLowerCase();
       var hay = [s.transaction_ref, s.person, s.source, s.city, s.status, s.app_source]
@@ -542,10 +547,19 @@
       toggle(f.getAttribute('data-f'), f.getAttribute('data-v'));
       return;
     }
+    var fs = e.target.closest('[data-funnel-stage]');
+    if (fs) {
+      var stId = fs.getAttribute('data-funnel-stage');
+      S.funnelStage = (S.funnelStage === stId) ? 'All' : stId;
+      S.page = 1;
+      renderAll();
+      return;
+    }
     var m = e.target.closest('[data-metric]');
     if (m) {
       S.metric = m.getAttribute('data-metric');
-      renderTrend();
+      if (S.tab === 'funnel') renderFunnelDashboard();
+      else renderTrend();
       return;
     }
     var sc = e.target.closest('[data-scenario]');
@@ -576,13 +590,15 @@
       var k = th.getAttribute('data-sort');
       S.sort = { key: k, dir: S.sort.key === k ? -S.sort.dir : (k === 'amount' || k === 'sold_at' ? -1 : 1) };
       S.page = 1;
-      renderTable();
+      if (S.tab === 'funnel') renderFunnelDashboard();
+      else renderTable();
       return;
     }
     var pg = e.target.closest('[data-page]');
     if (pg && !pg.disabled) {
       S.page += Number(pg.getAttribute('data-page'));
-      renderTable();
+      if (S.tab === 'funnel') renderFunnelDashboard();
+      else renderTable();
     }
   }
 
@@ -632,7 +648,7 @@
   }
 
   function resetFilters() {
-    S.status = S.app = S.category = S.city = 'All';
+    S.status = S.app = S.category = S.city = S.funnelStage = 'All';
     S.q = '';
     var qi = $('#zsd-q');
     if (qi) qi.value = '';
@@ -701,14 +717,20 @@
     var sub = $('#zsd-sub');
     var filtersEl = $('.zsd-filters');
     var chipsEl = $('#zsd-chips');
-    var isSpecialized = (S.tab === 'funnel' || S.tab === 'targets' || S.tab === 'forecast');
+    var isSpecialized = (S.tab === 'targets' || S.tab === 'forecast');
 
     if (filtersEl) filtersEl.style.display = isSpecialized ? 'none' : 'flex';
     if (chipsEl) chipsEl.style.display = isSpecialized ? 'none' : 'flex';
 
     if (S.tab === 'funnel') {
       if (titleEl) titleEl.textContent = '📊 Sales Funnel & Attrition Pipeline';
-      if (sub) sub.innerHTML = 'Multi-stage customer acquisition pipeline from mobile store installs to settled healthcare payments · <span style="color:#0ea5e9;font-weight:700;">● 5-Stage Geometry</span>';
+      if (sub) {
+        sub.innerHTML = 'Multi-stage customer acquisition pipeline from mobile store installs to settled healthcare payments · ' +
+          rows(S.from, S.to).length + ' transactions' +
+          (b ? ' · ' + shortDay(S.from) + ' to ' + shortDay(S.to) : '') +
+          (S.funnelStage && S.funnelStage !== 'All' ? ' · <span style="color:#0ea5e9;font-weight:700;">Filter: Stage ' + esc(S.funnelStage) + '</span>' : ' · <span style="color:#0ea5e9;font-weight:700;">● 5-Stage Geometry</span>') +
+          (S.isLive ? ' · <span style="color:var(--success)">● Live</span>' : ' · <span style="color:var(--warning)">○ Preview</span>');
+      }
     } else if (S.tab === 'targets') {
       if (titleEl) titleEl.textContent = '🎯 Sales Targets & Quota Realization';
       if (sub) sub.innerHTML = 'Executive pacing command center, calendar elapsed tracking, and departmental quota fulfillment · <span style="color:#10b981;font-weight:700;">● Quota Pacing Mode</span>';
@@ -764,8 +786,8 @@
 
   function renderChips() {
     var out = [];
-    [['status', 'Status'], ['app', 'Channel'], ['category', 'Service'], ['city', 'City']].forEach(function (p) {
-      if (S[p[0]] !== 'All') {
+    [['status', 'Status'], ['app', 'Channel'], ['category', 'Service'], ['city', 'City'], ['funnelStage', 'Stage']].forEach(function (p) {
+      if (S[p[0]] && S[p[0]] !== 'All') {
         out.push('<button class="zsd-chip" data-clear="' + p[0] + '" title="Remove filter">' + p[1] + ': ' + esc(S[p[0]]) + ' ✕</button>');
       }
     });
@@ -1693,47 +1715,68 @@
     if (!c) return;
     c.setAttribute('data-view', 'funnel');
 
-    var list = rows(S.from, S.to);
-    var p = paid(list);
-    var totPaid = sum(p);
+    var listAll = rows(S.from, S.to, 'funnelStage');
+    var pAll = paid(listAll);
+    var totPaidAll = sum(pAll);
 
+    // Current period funnel stats
     var dl = downloads(S.from, S.to);
-    var installs = Math.max(dl > 0 ? dl : 0, Math.round(list.length * 16 + 240));
+    var installs = Math.max(dl > 0 ? dl : 0, Math.round(listAll.length * 16 + 240));
     var opens = Math.round(installs * 0.72);
-    var intent = Math.max(list.length * 2, Math.round(opens * 0.45));
-    var checkout = list.length;
-    var completed = p.length;
-    var repeat = new Set(list.filter(function (s, idx, arr) {
-      return arr.findIndex(function (x) { return x.person === s.person; }) !== idx;
-    }).map(function (s) { return s.person; })).size;
+    var intent = Math.max(listAll.length * 2, Math.round(opens * 0.45));
+    var checkout = listAll.length;
+    var completed = pAll.length;
 
     var convE2E = installs > 0 ? (completed / installs * 100) : 0;
     var convCheckout = checkout > 0 ? (completed / checkout * 100) : 0;
-    var pipelineVal = Math.round(totPaid * 3.2);
-    var lostVal = Math.round((checkout - completed) * (completed ? totPaid / completed : 1850));
+    var pipelineVal = Math.round(totPaidAll * 3.2);
+    var lostVal = Math.round((checkout - completed) * (completed ? totPaidAll / completed : 1850));
+    var aov = completed > 0 ? Math.round(totPaidAll / completed) : 0;
 
+    // Prior period comparison
+    var pr = prevRange();
+    var prevList = rows(pr.from, pr.to, 'funnelStage');
+    var prevP = paid(prevList);
+    var prevTotPaid = sum(prevP);
+    var prevDl = downloads(pr.from, pr.to);
+    var prevInstalls = Math.max(prevDl > 0 ? prevDl : 0, Math.round(prevList.length * 16 + 240));
+    var prevCheckout = prevList.length;
+    var prevCompleted = prevP.length;
+    var prevConvE2E = prevInstalls > 0 ? (prevCompleted / prevInstalls * 100) : 0;
+    var prevConvCheckout = prevCheckout > 0 ? (prevCompleted / prevCheckout * 100) : 0;
+    var prevPipelineVal = Math.round(prevTotPaid * 3.2);
+    var prevLostVal = Math.round((prevCheckout - prevCompleted) * (prevCompleted ? prevTotPaid / prevCompleted : 1850));
+    var prevAov = prevCompleted > 0 ? Math.round(prevTotPaid / prevCompleted) : 0;
+
+    // 1. Executive 6-Card KPI Grid (Matching Sales Dashboard format)
     var kpiCards = [
-      ['Pipeline Value', inr.format(pipelineVal), '<div class="zsd-delta up">Active buyer intent</div>'],
-      ['End-to-End Conversion', convE2E.toFixed(2) + '%', '<div class="zsd-delta">' + completed + ' paid / ' + installs.toLocaleString('en-IN') + ' installs</div>'],
-      ['Checkout Completion', convCheckout.toFixed(1) + '%', '<div class="zsd-delta up">' + completed + ' of ' + checkout + ' orders paid</div>'],
-      ['Realized Paid Sales', inr.format(totPaid), '<div class="zsd-delta">' + completed + ' paid transactions</div>'],
-      ['Conversion Cycle', '3.2 Days', '<div class="zsd-delta">Avg install to first order</div>'],
-      ['Lost Opportunity', inr.format(lostVal), '<div class="zsd-delta down">' + (checkout - completed) + ' unpaid / abandoned</div>']
+      ['Pipeline Inflow Potential', inr.format(pipelineVal), delta(pipelineVal, prevPipelineVal)],
+      ['Realized Paid Sales', inr.format(totPaidAll), delta(totPaidAll, prevTotPaid)],
+      ['End-to-End Conversion', convE2E.toFixed(2) + '%', delta(convE2E, prevConvE2E)],
+      ['Checkout Completion', convCheckout.toFixed(1) + '%', delta(convCheckout, prevConvCheckout)],
+      ['Avg Converted Order (AOV)', inr.format(aov), delta(aov, prevAov)],
+      ['Lost Opportunity Pipeline', inr.format(lostVal), delta(lostVal, prevLostVal, true)]
     ];
 
+    var kpisHtml = '<div class="zsd-kpis" style="margin-bottom:14px;">' + kpiCards.map(function (c) {
+      return '<div class="zsd-card zsd-kpi"><div class="zsd-lbl">' + c[0] + '</div><div class="zsd-val">' + c[1] + '</div>' + c[2] + '</div>';
+    }).join('') + '</div>';
+
+    // 2. 5-Stage Geometry Cards with click filtering
     var stages = [
       { id: 'installs', num: 1, name: 'App Installs', icon: '📲', val: installs, rev: pipelineVal, color: '#0ea5e9', source: 'Android & iOS Stores' },
-      { id: 'opens', num: 2, name: 'Active Sessions', icon: '👁️', val: opens, rev: Math.round(pipelineVal * 0.72), color: '#3b82f6', source: 'App Launches & Web Visits' },
-      { id: 'intent', num: 3, name: 'Service Inquiries', icon: '🩺', val: intent, rev: Math.round(pipelineVal * 0.48), color: '#8b5cf6', source: 'Consult & Cart Actions' },
-      { id: 'checkout', num: 4, name: 'Orders Placed', icon: '🛒', val: checkout, rev: Math.round(totPaid * 1.35), color: '#f59e0b', source: 'Checkout Initiated' },
-      { id: 'paid', num: 5, name: 'Paid Conversions', icon: '✅', val: completed, rev: totPaid, color: '#10b981', source: 'Successful Payments' }
+      { id: 'opens', num: 2, name: 'Active Sessions', icon: '👁️', val: opens, rev: Math.round(pipelineVal * 0.72), color: '#3b82f6', source: 'Launches & Visits' },
+      { id: 'intent', num: 3, name: 'Service Inquiries', icon: '🩺', val: intent, rev: Math.round(pipelineVal * 0.48), color: '#8b5cf6', source: 'Consult & Cart' },
+      { id: 'checkout', num: 4, name: 'Orders Placed', icon: '🛒', val: checkout, rev: Math.round(totPaidAll * 1.35), color: '#f59e0b', source: 'Checkout Initiated' },
+      { id: 'paid', num: 5, name: 'Paid Conversions', icon: '✅', val: completed, rev: totPaidAll, color: '#10b981', source: 'Successful Payments' }
     ];
 
     var stagesCardsHtml = '<div class="zsd-funnel-stages">' + stages.map(function (st, idx) {
       var prevVal = idx > 0 ? stages[idx - 1].val : st.val;
       var stepConv = prevVal > 0 ? (st.val / prevVal * 100).toFixed(1) : '100.0';
       var dropPct = prevVal > 0 ? ((prevVal - st.val) / prevVal * 100).toFixed(1) : '0.0';
-      return '<div class="zsd-stage-card">' +
+      var isStageActive = S.funnelStage === st.id;
+      return '<div class="zsd-stage-card" data-funnel-stage="' + st.id + '" style="cursor:pointer;' + (isStageActive ? 'border-color:#0ea5e9;box-shadow:0 0 14px rgba(14,165,233,0.35);background:rgba(14,165,233,0.08);' : '') + '">' +
         '<div class="zsd-stage-step"><span class="zsd-stage-num">0' + st.num + '</span><span>' + esc(st.source) + '</span></div>' +
         '<div class="zsd-stage-title"><span>' + st.icon + '</span> ' + esc(st.name) + '</div>' +
         '<div class="zsd-stage-val">' + st.val.toLocaleString('en-IN') + '</div>' +
@@ -1744,40 +1787,97 @@
         '</div>';
     }).join('') + '</div>';
 
-    // SVG Visual Funnel
-    var FW = 900, FH = 240, stageW = FW / stages.length;
+    // 3. SVG Geometric Funnel (Left Centerpiece)
+    var FW = 620, FH = 240, stageW = FW / stages.length;
     var svgShapes = '';
     for (var i = 0; i < stages.length; i++) {
       var x1 = i * stageW;
       var x2 = (i + 1) * stageW;
       var curRatio = stages[i].val / stages[0].val;
       var nextRatio = (i + 1 < stages.length) ? stages[i + 1].val / stages[0].val : curRatio * 0.85;
-      var yPad1 = (1 - curRatio) * (FH / 2 - 20);
-      var yPad2 = (1 - nextRatio) * (FH / 2 - 20);
+      var yPad1 = (1 - curRatio) * (FH / 2 - 22);
+      var yPad2 = (1 - nextRatio) * (FH / 2 - 22);
 
       var pTopLeft = x1 + ',' + (20 + yPad1);
       var pTopRight = x2 + ',' + (20 + yPad2);
       var pBotRight = x2 + ',' + (FH - 20 - yPad2);
       var pBotLeft = x1 + ',' + (FH - 20 - yPad1);
 
-      svgShapes += '<polygon points="' + pTopLeft + ' ' + pTopRight + ' ' + pBotRight + ' ' + pBotLeft + '" fill="' + stages[i].color + '" fill-opacity="0.18" stroke="' + stages[i].color + '" stroke-width="1.8"/>';
-      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 - 12) + '" text-anchor="middle" fill="var(--foreground)" font-weight="700" font-size="13">' + stages[i].icon + ' ' + stages[i].val.toLocaleString('en-IN') + '</text>';
-      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 + 8) + '" text-anchor="middle" fill="var(--muted-foreground)" font-size="10">' + esc(stages[i].name) + '</text>';
-      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 + 25) + '" text-anchor="middle" fill="' + stages[i].color + '" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="11">' + inrShort(stages[i].rev) + '</text>';
+      var isSelected = S.funnelStage === stages[i].id;
+      svgShapes += '<polygon points="' + pTopLeft + ' ' + pTopRight + ' ' + pBotRight + ' ' + pBotLeft + '" fill="' + stages[i].color + '" fill-opacity="' + (isSelected ? '0.38' : '0.18') + '" stroke="' + stages[i].color + '" stroke-width="' + (isSelected ? '3' : '1.8') + '" data-funnel-stage="' + stages[i].id + '" style="cursor:pointer;"/>';
+      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 - 12) + '" text-anchor="middle" fill="var(--foreground)" font-weight="700" font-size="12" pointer-events="none">' + stages[i].icon + ' ' + stages[i].val.toLocaleString('en-IN') + '</text>';
+      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 + 8) + '" text-anchor="middle" fill="var(--muted-foreground)" font-size="9" pointer-events="none">' + esc(stages[i].name) + '</text>';
+      svgShapes += '<text x="' + (x1 + stageW / 2) + '" y="' + (FH / 2 + 25) + '" text-anchor="middle" fill="' + stages[i].color + '" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="10" pointer-events="none">' + inrShort(stages[i].rev) + '</text>';
 
       if (i < stages.length - 1) {
         var dropVal = ((stages[i].val - stages[i + 1].val) / Math.max(1, stages[i].val) * 100).toFixed(0);
         svgShapes += '<line x1="' + x2 + '" x2="' + x2 + '" y1="15" y2="' + (FH - 15) + '" stroke="var(--border)" stroke-dasharray="3 3"/>';
-        svgShapes += '<rect x="' + (x2 - 32) + '" y="' + (FH - 26) + '" width="64" height="18" rx="9" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="0.8"/>';
+        svgShapes += '<rect x="' + (x2 - 28) + '" y="' + (FH - 24) + '" width="56" height="16" rx="8" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="0.8"/>';
         svgShapes += '<text x="' + x2 + '" y="' + (FH - 13) + '" text-anchor="middle" fill="#ef4444" font-size="9" font-weight="700">↓ ' + dropVal + '%</text>';
       }
     }
 
-    // Channel funnel breakdown
+    // 4. Conversion Velocity & Pipeline Cohort Trend (Right Centerpiece matching Sales Dashboard trend)
+    var curSeries = series(S.from, S.to);
+    var prevSeries = (S.compare && pr) ? series(pr.from, pr.to) : [];
+    var TW = 500, TH = 240, TL = 44, TR = 14, TT = 14, TB = 28, tiw = TW - TL - TR, tih = TH - TT - TB;
+    var tn = curSeries.length;
+    var tSvg = '';
+
+    if (tn > 0) {
+      var allTVals = curSeries.map(function (d) { return Math.round(d.orders * 2.2 + 4); }).concat(curSeries.map(function (d) { return d.orders; }));
+      if (prevSeries.length) allTVals = allTVals.concat(prevSeries.map(function (d) { return d.orders; }));
+      var tMax = niceMax(Math.max.apply(null, allTVals.length ? allTVals : [10]));
+      var tX = function (i) { return TL + (tn <= 1 ? tiw / 2 : i * tiw / (tn - 1)); };
+      var tY = function (v) { return TT + tih - (tMax > 0 ? (v / tMax * tih) : 0); };
+
+      var tGrid = '';
+      for (var k = 0; k <= 4; k++) {
+        var tv = tMax * k / 4, ty = tY(tv);
+        tGrid += '<line x1="' + TL + '" x2="' + (TW - TR) + '" y1="' + ty + '" y2="' + ty + '" stroke="var(--border)" stroke-dasharray="' + (k ? '3 4' : '0') + '"/>' +
+          '<text x="' + (TL - 6) + '" y="' + (ty + 3) + '" text-anchor="end" font-size="9" fill="var(--muted-foreground)">' + Math.round(tv) + '</text>';
+      }
+
+      var pathInflow = curSeries.map(function (d, i) {
+        var estInflow = Math.round(d.orders * 2.2 + 4);
+        return (i ? 'L' : 'M') + tX(i).toFixed(1) + ' ' + tY(estInflow).toFixed(1);
+      }).join(' ');
+
+      var pathConverted = curSeries.map(function (d, i) {
+        return (i ? 'L' : 'M') + tX(i).toFixed(1) + ' ' + tY(d.orders).toFixed(1);
+      }).join(' ');
+
+      var pathPrev = prevSeries.length ? prevSeries.map(function (d, i) {
+        return (i ? 'L' : 'M') + tX(i).toFixed(1) + ' ' + tY(d.orders).toFixed(1);
+      }).join(' ') : '';
+
+      var areaInflow = tn > 1 ? pathInflow + ' L' + tX(tn - 1).toFixed(1) + ' ' + (TT + tih) + ' L' + tX(0).toFixed(1) + ' ' + (TT + tih) + ' Z' : '';
+
+      var tStep = Math.max(1, Math.ceil(tn / 6)), tXl = '';
+      for (var ti = 0; ti < tn; ti += tStep) {
+        if (curSeries[ti]) tXl += '<text x="' + tX(ti) + '" y="' + (TH - 8) + '" text-anchor="middle" font-size="9" fill="var(--muted-foreground)">' + shortDay(curSeries[ti].day) + '</text>';
+      }
+
+      tSvg = '<svg class="zsd-svg" viewBox="0 0 ' + TW + ' ' + TH + '">' +
+        '<defs>' +
+        '<linearGradient id="zsd-funnel-inflow-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.25"/><stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.02"/></linearGradient>' +
+        '</defs>' +
+        tGrid +
+        (areaInflow ? '<path d="' + areaInflow + '" fill="url(#zsd-funnel-inflow-grad)"/>' : '') +
+        (pathPrev ? '<path d="' + pathPrev + '" fill="none" stroke="var(--muted-foreground)" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.65"/>' : '') +
+        '<path d="' + pathInflow + '" fill="none" stroke="#0ea5e9" stroke-width="2"/>' +
+        '<path d="' + pathConverted + '" fill="none" stroke="#10b981" stroke-width="2.2"/>' +
+        tXl +
+        '</svg>';
+    } else {
+      tSvg = '<div class="zsd-empty">No trend activity in selected range</div>';
+    }
+
+    // 5. Channel Conversion Breakdown
     var channels = ['Android', 'iOS', 'Web', 'Other'];
     var chCards = channels.map(function (ch) {
-      var chAll = list.filter(function (s) { return s.app_source === ch; });
-      var chPaid = p.filter(function (s) { return s.app_source === ch; });
+      var chAll = listAll.filter(function (s) { return s.app_source === ch; });
+      var chPaid = pAll.filter(function (s) { return s.app_source === ch; });
       var chRev = sum(chPaid);
       var chRate = chAll.length ? (chPaid.length / chAll.length * 100) : 0;
       var color = CH_COLORS[ch] || 'var(--primary)';
@@ -1786,19 +1886,19 @@
         '<div class="zsd-ch-title"><span style="width:10px;height:10px;border-radius:50%;background:' + color + '"></span>' + ch + ' Channel</div>' +
         '<span class="zsd-pill ' + (chRate >= 80 ? 'success' : 'info') + '">' + chRate.toFixed(1) + '% Paid</span></div>' +
         '<div class="zsd-ch-stats">' +
-        '<div><div class="zsd-ch-stat-val">' + chAll.length + '</div><div class="zsd-ch-stat-lbl">Orders Placed</div></div>' +
+        '<div><div class="zsd-ch-stat-val">' + chAll.length + '</div><div class="zsd-ch-stat-lbl">Inquiries</div></div>' +
         '<div><div class="zsd-ch-stat-val" style="color:var(--success)">' + chPaid.length + '</div><div class="zsd-ch-stat-lbl">Conversions</div></div>' +
-        '<div><div class="zsd-ch-stat-val">' + inrShort(chRev) + '</div><div class="zsd-ch-stat-lbl">Revenue</div></div>' +
+        '<div><div class="zsd-ch-stat-val">' + inrShort(chRev) + '</div><div class="zsd-ch-stat-lbl">Settled Rev</div></div>' +
         '</div>' +
         '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + chRate + '%;background:' + color + '"></div></div>' +
         '</div>';
     }).join('');
 
-    // Service bottlenecks
-    var prods = uniq(list.map(function (s) { return s.source; }));
+    // 6. Service / Specialty Bottlenecks
+    var prods = uniq(listAll.map(function (s) { return s.source; }));
     var serviceBottlenecks = prods.slice(0, 5).map(function (srv) {
-      var sAll = list.filter(function (s) { return s.source === srv; });
-      var sPaid = p.filter(function (s) { return s.source === srv; });
+      var sAll = listAll.filter(function (s) { return s.source === srv; });
+      var sPaid = pAll.filter(function (s) { return s.source === srv; });
       var sRev = sum(sPaid);
       var rate = sAll.length ? (sPaid.length / sAll.length * 100) : 0;
       var drop = 100 - rate;
@@ -1807,25 +1907,78 @@
         '<span><b>' + inr.format(sRev) + '</b> <span class="zsd-pill ' + (rate >= 85 ? 'success' : rate >= 70 ? 'warning' : 'info') + '" style="margin-left:6px;">' + rate.toFixed(1) + '% Success</span></span></div>' +
         '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + rate + '%;background:var(--primary)"></div></div>' +
         '<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted-foreground);margin-top:3px;">' +
-        '<span>Completed: ' + sPaid.length + '</span><span>Drop-off: ' + drop.toFixed(1) + '%</span></div>' +
+        '<span>Converted: ' + sPaid.length + '</span><span>Drop-off: ' + drop.toFixed(1) + '%</span></div>' +
         '</div>';
     }).join('');
 
-    // Journey table
-    var tableRows = list.slice(0, 15).map(function (it, idx) {
-      var isPaid = it.status === 'Paid';
+    // 7. City / Regional Funnel Conversion
+    var cities = groupBy(listAll, 'city', function () { return 1; }).slice(0, 5);
+    var cityCards = cities.map(function (cItem) {
+      var cAll = listAll.filter(function (s) { return s.city === cItem.k; });
+      var cPaid = pAll.filter(function (s) { return s.city === cItem.k; });
+      var cRev = sum(cPaid);
+      var cRate = cAll.length ? (cPaid.length / cAll.length * 100) : 0;
+      return '<div class="zsd-row" style="margin-bottom:8px;">' +
+        '<div class="zsd-row-top"><span>📍 <b>' + esc(cItem.k) + '</b> <small style="color:var(--muted-foreground)">(' + cAll.length + ' orders)</small></span>' +
+        '<span><b>' + inrShort(cRev) + '</b> <span class="zsd-pill ' + (cRate >= 85 ? 'success' : 'info') + '" style="margin-left:6px;">' + cRate.toFixed(1) + '%</span></span></div>' +
+        '<div class="zsd-progress"><div class="zsd-progress-fill" style="width:' + cRate + '%;background:#0ea5e9"></div></div>' +
+        '</div>';
+    }).join('');
+
+    // 8. Interactive Paginated & Sortable Customer Journey Table (Matching Sales Dashboard table)
+    var filteredList = rows(S.from, S.to);
+    var k = S.sort.key, d = S.sort.dir;
+    var sorted = filteredList.slice().sort(function (a, b) {
+      var x = a[k], y = b[k];
+      return (typeof x === 'number' ? x - y : String(x || '').localeCompare(String(y || ''))) * d || ((a.sold_at || '') < (b.sold_at || '') ? 1 : -1);
+    });
+
+    var pages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+    S.page = Math.max(1, Math.min(S.page, pages));
+    var slice = sorted.slice((S.page - 1) * PAGE_SIZE, S.page * PAGE_SIZE);
+
+    var FUNNEL_COLS = [
+      ['transaction_ref', 'Order ID'],
+      ['sold_at', 'Date'],
+      ['person', 'Customer'],
+      ['source', 'Service'],
+      ['city', 'City'],
+      ['app_source', 'Channel'],
+      ['status', 'Funnel Stage'],
+      ['amount', 'Amount']
+    ];
+
+    var thead = FUNNEL_COLS.map(function (c) {
+      var on = S.sort.key === c[0];
+      return '<th data-sort="' + c[0] + '" class="' + (c[0] === 'amount' ? 'r' : '') + '">' + c[1] + (on ? (S.sort.dir > 0 ? ' ▲' : ' ▼') : '') + '</th>';
+    }).join('');
+
+    var tbody = slice.map(function (s) {
+      var isPaid = s.status === 'Paid';
+      var stageText = isPaid ? '05 Paid Conversion' : '04 Checkout Initiated';
+      var stageClass = isPaid ? 'success' : 'warning';
       return '<tr>' +
-        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
-        '<td><b>' + esc(it.person) + '</b></td>' +
-        '<td>' + esc(it.source) + '</td>' +
-        '<td><span class="zsd-tag primary">' + esc(it.app_source) + '</span></td>' +
-        '<td>' + esc(it.city) + '</td>' +
-        '<td>' + esc(shortDay(it.sold_at)) + '</td>' +
-        '<td><span class="zsd-pill ' + (isPaid ? 'success' : 'warning') + '">' + (isPaid ? 'Stage 5: Paid Customer' : 'Stage 4: Pending Checkout') + '</span></td>' +
-        '<td class="r"><b>' + inr.format(Number(it.amount)) + '</b></td>' +
+        '<td><b>' + esc(s.transaction_ref) + '</b></td>' +
+        '<td>' + prettyStamp(s.sold_at) + '</td>' +
+        '<td>' + esc(s.person) + '</td>' +
+        '<td>' + esc(s.source) + '</td>' +
+        '<td>' + esc(s.city) + '</td>' +
+        '<td><span class="zsd-tag primary">' + esc(s.app_source) + '</span></td>' +
+        '<td><span class="zsd-pill ' + stageClass + '">' + stageText + '</span></td>' +
+        '<td class="r"><b>' + inr.format(s.amount) + '</b></td>' +
         '</tr>';
     }).join('');
 
+    var fromIdx = sorted.length ? (S.page - 1) * PAGE_SIZE + 1 : 0;
+    var toIdx = Math.min(sorted.length, S.page * PAGE_SIZE);
+
+    var tableHtml =
+      panelHead('Funnel Journey Activity Stream', sorted.length + ' matching orders · click any header to sort or select a stage to isolate') +
+      (sorted.length ? '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' + thead + '</tr></thead><tbody>' + tbody + '</tbody></table></div>' : '<div class="zsd-empty">No transactions match the selected filters or stage</div>') +
+      '<div class="zsd-pager"><span>' + fromIdx + '–' + toIdx + ' of ' + sorted.length + '</span><div><button data-page="-1" ' + (S.page <= 1 ? 'disabled' : '') + '>← Prev</button>' +
+      '<span style="align-self:center">Page ' + S.page + ' / ' + pages + '</span><button data-page="1" ' + (S.page >= pages ? 'disabled' : '') + '>Next →</button></div></div>';
+
+    // Hero banner
     var funnelHero =
       '<div class="zsd-hero-banner zsd-hero-funnel">' +
       '<div><h3 class="zsd-hero-title"><span>📊</span> Conversion Geometry & Attrition Pipeline</h3>' +
@@ -1835,29 +1988,28 @@
       '<button class="zsd-btn" id="zsd-funnel-export" type="button">⭳ Funnel CSV</button>' +
       '</div></div>';
 
-    var funnelMetrics =
-      '<div class="zsd-metric-strip">' +
-      '<div class="zsd-strip-card zsd-strip-cyan"><div class="zsd-lbl">Pipeline Potential</div><div class="zsd-val" style="color:#0ea5e9;">' + inr.format(pipelineVal) + '</div><div class="zsd-delta up">Active buyer inquiries</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-cyan"><div class="zsd-lbl">End-to-End Conversion</div><div class="zsd-val">' + convE2E.toFixed(2) + '%</div><div class="zsd-delta">' + completed + ' paid of ' + installs.toLocaleString('en-IN') + ' installs</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-cyan"><div class="zsd-lbl">Checkout Completion</div><div class="zsd-val" style="color:var(--success);">' + convCheckout.toFixed(1) + '%</div><div class="zsd-delta up">' + completed + ' of ' + checkout + ' orders paid</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-cyan"><div class="zsd-lbl">Conversion Velocity</div><div class="zsd-val">3.2 Days</div><div class="zsd-delta">Avg install to first order</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-cyan"><div class="zsd-lbl">Lost Opportunity</div><div class="zsd-val" style="color:var(--destructive);">' + inr.format(lostVal) + '</div><div class="zsd-delta down">' + (checkout - completed) + ' cart drop-offs</div></div>' +
-      '</div>';
-
     c.innerHTML =
       funnelHero +
-      funnelMetrics +
+      kpisHtml +
       stagesCardsHtml +
-      '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
-      panelHead('End-to-End Conversion Geometry', 'Multi-stage customer acquisition from app store download to settled healthcare payment') +
-      '<div class="zsd-chartwrap"><svg class="zsd-svg" viewBox="0 0 ' + FW + ' ' + FH + '">' + svgShapes + '</svg></div></div>' +
       '<div class="zsd-grid zsd-g-main" style="margin-bottom:12px;">' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('End-to-End Conversion Geometry', 'Click any stage card or polygon to isolate stage records') +
+      '<div class="zsd-chartwrap"><svg class="zsd-svg" viewBox="0 0 ' + FW + ' ' + FH + '">' + svgShapes + '</svg></div></div>' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('Funnel Conversion Velocity & Cohorts', '<span style="color:#0ea5e9;">― Inflow</span> · <span style="color:#10b981;">― Converted</span>' + (S.compare ? ' · <span style="color:var(--muted-foreground);">╌ Prior</span>' : '')) +
+      '<div class="zsd-chartwrap">' + tSvg + '</div></div>' +
+      '</div>' +
+      '<div class="zsd-grid zsd-g-3" style="margin-bottom:12px;">' +
       '<div class="zsd-card zsd-panel">' +
       panelHead('Channel Conversion Performance', 'Acquisition efficiency and completed checkout share by platform') +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">' + chCards + '</div></div>' +
       '<div class="zsd-card zsd-panel">' +
       panelHead('Service Conversion & Bottlenecks', 'Checkout completion rates across key medical specialties') +
       '<div>' + serviceBottlenecks + '</div></div>' +
+      '<div class="zsd-card zsd-panel">' +
+      panelHead('Regional Funnel Velocity', 'City conversion rates and settled sales distribution') +
+      '<div>' + cityCards + '</div></div>' +
       '</div>' +
       '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
       panelHead('Actionable AI Funnel Recommendations', 'Automated bottleneck detections and revenue optimization recommendations') +
@@ -1866,11 +2018,7 @@
       '<div class="zsd-forecast-driver"><div class="zsd-driver-icon">📱</div><div class="zsd-driver-body"><h5>Android vs iOS Velocity</h5><p>Android generates 68% of new installs, while iOS converts at 14% higher basket value. Prioritize premium specialty campaigns on iOS.</p></div></div>' +
       '<div class="zsd-forecast-driver"><div class="zsd-driver-icon">🩺</div><div class="zsd-driver-body"><h5>Consultation to Pharmacy Flywheel</h5><p>78% of completed vet consultations result in pharmacy orders within 48 hours. Bundle consultation with instant medication delivery.</p></div></div>' +
       '</div></div>' +
-      '<div class="zsd-card zsd-panel">' +
-      panelHead('Recent Conversion Activity Stream', 'Live customer journey records and funnel progression status') +
-      '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
-      '<th>#</th><th>Customer Name</th><th>Service / Product</th><th>Channel</th><th>Location</th><th>Date</th><th>Stage Reached</th><th class="r">Transaction Value</th>' +
-      '</tr></thead><tbody>' + tableRows + '</tbody></table></div></div>';
+      '<div class="zsd-card zsd-panel">' + tableHtml + '</div>';
   }
 
   /* ---------- Targets & Achievement Dashboard ---------- */
