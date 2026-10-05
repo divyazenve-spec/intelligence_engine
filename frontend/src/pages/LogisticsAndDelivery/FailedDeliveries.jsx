@@ -28,29 +28,37 @@ export default function FailedDeliveries() {
         <KpiCard label="Avg Re-attempt Speed" value="2.2 hrs" delta="Same day loop" trend="up" subtext="Automated WhatsApp bot" icon="⚡" />
       </div>
 
-      <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
-        <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Failed Delivery Root Cause Diagnostics</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Breakdown of 86 delivery exceptions recorded across 10,800 monthly dispatches</p>
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+      }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Failed Delivery Root Cause Diagnostics</h3>
+          <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Breakdown of 86 delivery exceptions recorded across 10,800 monthly dispatches</p>
+        </div>
 
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
               <tr style={{ background: '#f8fafc', color: '#64748b', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Failure Root Cause</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Incidents</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>% of Failures</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Automated SOP & Resolution</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>RTO Impact</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Failure Root Cause</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>Incidents</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>% of Failures</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Automated SOP & Resolution</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>RTO Impact</th>
               </tr>
             </thead>
             <tbody>
               {rootCauses.map(r => (
                 <tr key={r.cause} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px', fontWeight: 700, color: '#0f172a' }}>{r.cause}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{r.incidents}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#b91c1c', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.pct}</td>
-                  <td style={{ padding: '12px', color: '#334155' }}>{r.avgResolution}</td>
-                  <td style={{ padding: '12px', color: '#2563eb', fontWeight: 500 }}>{r.rtoImpact}</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{r.cause}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{r.incidents}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#b91c1c', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.pct}</td>
+                  <td style={{ padding: '12px 16px', color: '#334155' }}>{r.avgResolution}</td>
+                  <td style={{ padding: '12px 16px', color: '#2563eb', fontWeight: 500 }}>{r.rtoImpact}</td>
                 </tr>
               ))}
             </tbody>

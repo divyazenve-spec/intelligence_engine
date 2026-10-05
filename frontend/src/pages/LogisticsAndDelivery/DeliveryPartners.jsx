@@ -27,35 +27,43 @@ export default function DeliveryPartners() {
         <KpiCard label="Avg Fleet Rating" value="4.86 / 5" delta="Exceptional" trend="up" subtext="Pet parent doorstep CSAT" icon="⭐" />
       </div>
 
-      <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
-        <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Delivery Partners & Fleet Roster</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Capacity allocation, cold-chain readiness, per-drop cost efficiency, and fulfillment compliance</p>
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+      }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Delivery Partners & Fleet Roster</h3>
+          <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Capacity allocation, cold-chain readiness, per-drop cost efficiency, and fulfillment compliance</p>
+        </div>
 
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
               <tr style={{ background: '#f8fafc', color: '#64748b', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Partner Name</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Fleet Model</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Fleet Size</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Active Now</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>On-Time SLA</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Drop Cost</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Cold-Chain Ready</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>CSAT Rating</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Status</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Partner Name</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Fleet Model</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Fleet Size</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Active Now</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>On-Time SLA</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Drop Cost</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Cold-Chain Ready</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>CSAT Rating</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Status</th>
               </tr>
             </thead>
             <tbody>
               {partners.map(p => (
                 <tr key={p.name} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px', fontWeight: 700, color: '#0f172a' }}>{p.name}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{p.type}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#334155' }}>{p.fleetSize}</td>
-                  <td style={{ padding: '12px', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{p.activeNow} on road</td>
-                  <td style={{ padding: '12px', color: '#2563eb', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{p.onTimeSla}</td>
-                  <td style={{ padding: '12px', color: '#475569', fontFamily: '"IBM Plex Mono", monospace' }}>{p.avgCost}</td>
-                  <td style={{ padding: '12px' }}>
+                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{p.name}</td>
+                  <td style={{ padding: '12px 16px', color: '#64748b' }}>{p.type}</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#334155' }}>{p.fleetSize}</td>
+                  <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{p.activeNow} on road</td>
+                  <td style={{ padding: '12px 16px', color: '#2563eb', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{p.onTimeSla}</td>
+                  <td style={{ padding: '12px 16px', color: '#475569', fontFamily: '"IBM Plex Mono", monospace' }}>{p.avgCost}</td>
+                  <td style={{ padding: '12px 16px' }}>
                     <span style={{
                       padding: '3px 8px',
                       borderRadius: '6px',
@@ -67,8 +75,8 @@ export default function DeliveryPartners() {
                       {p.coldChainReady}
                     </span>
                   </td>
-                  <td style={{ padding: '12px', color: '#d97706', fontWeight: 600 }}>{p.rating}</td>
-                  <td style={{ padding: '12px' }}>
+                  <td style={{ padding: '12px 16px', color: '#d97706', fontWeight: 600 }}>{p.rating}</td>
+                  <td style={{ padding: '12px 16px' }}>
                     <span style={{
                       padding: '4px 9px',
                       borderRadius: '12px',

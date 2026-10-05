@@ -263,11 +263,19 @@
 }
 
 /* ── Main Content Body ────────────────────────────────────────────── */
-.zlog-content {
-  padding: 24px 32px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.zlog-content,
+#zlog-dashboard-root main,
+#zlog-dashboard-root .zlog-content {
+  padding: 24px 32px 64px 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* ── KPI Grid ─────────────────────────────────────────────────────── */
@@ -350,7 +358,8 @@
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 20px;
+  padding: 0 !important;
+  overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
@@ -358,7 +367,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -527,4 +537,18 @@
 @keyframes zlogSlideUp {
   0% { transform: translateY(12px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Sidebar Navigator Subcategory Padding & Alignment ───────────── */
+.sidebar-scope ul li button {
+  padding: 4px 8px !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+.sidebar-scope li button.zpanel-active,
+.sidebar-scope li button.zsd-active {
+  background: var(--sidebar-accent, #eff6ff) !important;
+  color: var(--primary, #2563eb) !important;
+  font-weight: 600 !important;
 }

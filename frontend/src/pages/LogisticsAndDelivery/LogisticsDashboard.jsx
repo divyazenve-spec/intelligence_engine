@@ -92,14 +92,16 @@ export default function LogisticsDashboard() {
           background: '#ffffff',
           border: '1px solid #e2e8f0',
           borderRadius: '12px',
-          padding: '20px'
+          overflow: 'hidden',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
         }}>
-          <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Dispatch Heatmap & Real-Time Urban Hubs</h3>
-          <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Fulfillment speed and active courier density across urban clusters</p>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0' }}>
+            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Dispatch Heatmap & Real-Time Urban Hubs</h3>
+            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Fulfillment speed and active courier density across urban clusters</p>
+          </div>
           <div style={{
             height: '180px',
             background: 'linear-gradient(135deg, #0f172a, #1e293b)',
-            borderRadius: '8px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -117,11 +119,14 @@ export default function LogisticsDashboard() {
           background: '#ffffff',
           border: '1px solid #e2e8f0',
           borderRadius: '12px',
-          padding: '20px'
+          overflow: 'hidden',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
         }}>
-          <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Logistics Subcategories Overview</h3>
-          <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Quick access to domain management suites</p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0' }}>
+            <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Logistics Subcategories Overview</h3>
+            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Quick access to domain management suites</p>
+          </div>
+          <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             {subcategories.slice(1).map(item => (
               <button
                 key={item.id}

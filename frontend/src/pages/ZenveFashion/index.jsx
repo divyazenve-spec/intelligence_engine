@@ -1,0 +1,10 @@
+export { default as FashionDashboard } from './FashionDashboard';
+export { default as FashionProducts } from './FashionProducts';
+export { default as FashionOrders } from './FashionOrders';
+export { default as FashionCustomers } from './FashionCustomers';
+export { default as FashionInventory } from './FashionInventory';
+export { default as FashionShowrooms } from './FashionShowrooms';
+export { default as OnlineFashionSales } from './OnlineFashionSales';
+export { default as FashionRevenue } from './FashionRevenue';
+export { default as FashionProfitability } from './FashionProfitability';
+export { default as FashionCollections } from './FashionCollections';

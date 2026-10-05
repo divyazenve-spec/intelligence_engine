@@ -28,29 +28,37 @@ export default function DeliveryCost() {
         <KpiCard label="Monthly Fleet Spend" value="₹11.15 L" delta="-8.4% vs Budget" trend="up" subtext="26,600 deliveries" icon="📉" />
       </div>
 
-      <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
-        <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Delivery Cost Component Breakdown</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Granular per-delivery line items: Internal EV Fleet vs Partner 3PL comparison</p>
+      <div style={{
+        background: '#ffffff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+      }}>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Delivery Cost Component Breakdown</h3>
+          <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Granular per-delivery line items: Internal EV Fleet vs Partner 3PL comparison</p>
+        </div>
 
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
               <tr style={{ background: '#f8fafc', color: '#64748b', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Cost Component</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Internal EV Fleet</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Partner 3PL</th>
-                <th style={{ padding: '10px 12px', textAlign: 'left' }}>Variance (EV Advantage)</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Share of Cost</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Cost Component</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>Internal EV Fleet</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>Partner 3PL</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Variance (EV Advantage)</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right' }}>Share of Cost</th>
               </tr>
             </thead>
             <tbody>
               {costLines.map(c => (
                 <tr key={c.component} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#0f172a' }}>{c.component}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.internalEv}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#64748b', fontFamily: '"IBM Plex Mono", monospace' }}>{c.partner3pl}</td>
-                  <td style={{ padding: '12px', color: '#2563eb', fontWeight: 600 }}>{c.variance}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#475569', fontWeight: 600 }}>{c.shareOfCost}</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{c.component}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 700, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.internalEv}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, color: '#64748b', fontFamily: '"IBM Plex Mono", monospace' }}>{c.partner3pl}</td>
+                  <td style={{ padding: '12px 16px', color: '#2563eb', fontWeight: 600 }}>{c.variance}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#475569', fontWeight: 600 }}>{c.shareOfCost}</td>
                 </tr>
               ))}
             </tbody>

@@ -49,7 +49,11 @@ main {
 #zpid-root main,
 #zrep-root main,
 #zalt-root main,
-#zset-root main {
+#zset-root main,
+#zlog-dashboard-root main,
+#zmkt-dashboard-root main,
+#zhr-dashboard-root main,
+#zlog-dashboard-root .zlog-content {
   margin: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;

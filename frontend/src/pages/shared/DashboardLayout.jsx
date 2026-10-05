@@ -8,14 +8,17 @@ export default function DashboardLayout({
   icon,
   badge,
   actions,
+  noPadding,
   children
 }) {
+  const containerPadding = noPadding ? 0 : '24px 28px 48px';
+
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
       gap: '20px',
-      padding: '24px 28px 48px',
+      padding: containerPadding,
       width: '100%',
       margin: 0,
       color: 'var(--foreground, #0f172a)',

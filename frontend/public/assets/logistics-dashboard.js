@@ -205,7 +205,7 @@
       '  </div>',
       '</header>',
       '<nav class="zlog-nav-bar">' + chipsHtml + '</nav>',
-      '<main class="zlog-content" id="zlog-body-content"></main>'
+      '<div class="zlog-content" id="zlog-body-content"></div>'
     ].join('');
 
     wireHeaderEvents();
@@ -314,7 +314,7 @@
       '        <p class="zlog-card-sub">Access dedicated dashboards across the delivery lifecycle</p>',
       '      </div>',
       '    </div>',
-      '    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">',
+      '    <div style="padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">',
       MODULES.slice(1).map(function (m) {
         return [
           '<button type="button" class="zlog-chip" style="justify-content:flex-start;padding:10px 12px;" onclick="ZenveLogisticsDashboard.switchTab(\'' + m.id + '\')">',
@@ -872,15 +872,29 @@
     S.open = true;
     render();
     root.classList.add('zpanel-open');
+    markSidebar(true, S.tab);
     var targetHash = (MODULES.find(function(m){ return m.id === S.tab; }) || {}).hash || '#logistics-dashboard';
     if (window.location.hash !== targetHash) {
       try { history.pushState(null, '', targetHash); } catch (e) { window.location.hash = targetHash; }
     }
   }
 
+  function markSidebar(on, tab) {
+    var targetTab = tab || S.tab || 'overview';
+    document.querySelectorAll('.sidebar-scope li button, .sidebar-scope button, .sidebar-scope a').forEach(function (b) {
+      var txt = b.textContent ? b.textContent.trim() : '';
+      var bTab = tabFromText(txt);
+      if (bTab) {
+        b.classList.toggle('zpanel-active', on && bTab === targetTab);
+        b.classList.toggle('zsd-active', on && bTab === targetTab);
+      }
+    });
+  }
+
   function close() {
     if (root) root.classList.remove('zpanel-open');
     S.open = false;
+    markSidebar(false);
     var h = window.location.hash;
     if (h.startsWith('#logistics') || h.startsWith('#delivery') || h.startsWith('#60-minute') || h.startsWith('#failed')) {
       try { history.pushState(null, '', window.location.pathname + window.location.search); } catch (e) {}
@@ -890,6 +904,7 @@
   function switchTab(tab) {
     if (!tab) return;
     S.tab = tab;
+    markSidebar(true, tab);
     var targetHash = (MODULES.find(function(m){ return m.id === tab; }) || {}).hash || '#logistics-dashboard';
     if (window.location.hash !== targetHash) {
       try { history.pushState(null, '', targetHash); } catch (e) { window.location.hash = targetHash; }
