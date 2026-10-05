@@ -1961,6 +1961,18 @@
     S.open = true;
     if (tab) S.activeTab = tab;
 
+    if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.close === 'function') {
+      try { window.ZenvePharmacyDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.close === 'function') {
+      try { window.ZenveClinicsDashboard.close(); } catch (e) {}
+    }
+    document.querySelectorAll('.zpanel-root, #zod-root, #zsd-root, #zset-root, #zph-root, #zch-root, #zalt-root').forEach(function (el) {
+      if (el !== root) {
+        el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zset-open', 'zph-open', 'zch-open', 'zalt-open');
+      }
+    });
+
     root.classList.add('zrep-open');
     try {
       document.documentElement.classList.add('zrep-locked');

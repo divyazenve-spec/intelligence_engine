@@ -124,30 +124,41 @@
   /* ── Tab resolution from Hash and Sidebar Text ──────────────────── */
   function tabFromHash(hash) {
     if (!hash) return null;
-    var t = TABS.find(function (it) { return it.hash === hash; });
-    return t ? t.id : null;
+    var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
+    if (h.indexOf('pharmacy') >= 0 || h.indexOf('medicines') >= 0 || h.indexOf('prescriptions') >= 0) return null;
+    if (h === 'clinics-dashboard' || h === 'clinics') return 'dashboard';
+    if (h === 'all-clinics') return 'all-clinics';
+    if (h === 'hospitals') return 'hospitals';
+    if (h === 'clinic-performance') return 'performance';
+    if (h === 'clinic-revenue') return 'revenue';
+    if (h === 'clinic-orders') return 'orders';
+    if (h === 'clinic-patients') return 'patients';
+    if (h === 'clinic-doctors') return 'doctors';
+    if (h === 'clinic-commissions') return 'commissions';
+    if (h === 'clinic-network') return 'network';
+    return null;
   }
 
   function tabFromText(txt) {
     if (!txt) return null;
     var raw = txt.replace(/\s+/g, ' ').trim().toLowerCase();
     // Exclude other domains
-    if (raw.indexOf('pharmacy') !== -1 || raw.indexOf('medicines') !== -1 || raw.indexOf('prescriptions') !== -1 || raw.indexOf('batch') !== -1 || raw.indexOf('expiry') !== -1) {
+    if (raw.indexOf('pharmacy') !== -1 || raw.indexOf('medicines') !== -1 || raw.indexOf('prescriptions') !== -1 || raw.indexOf('batch') !== -1 || raw.indexOf('expiry') !== -1 || raw.indexOf('report') !== -1 || raw.indexOf('alert') !== -1) {
       return null;
     }
     if (raw.indexOf('revenue by') !== -1 || raw.indexOf('sales by') !== -1 || raw === 'doctors dashboard' || raw === 'all doctors' || raw === 'doctor performance' || raw === 'doctor revenue' || raw === 'doctor patients' || raw === 'doctor orders' || raw === 'doctor commissions') {
       return null;
     }
-    if (raw === 'clinics dashboard' || raw === 'clinics & hospitals' || raw === 'clinics' || raw === 'hospital command center') return 'dashboard';
-    if (raw === 'all clinics' || raw === 'outpatient clinics') return 'all-clinics';
-    if (raw === 'hospitals' || raw === 'tertiary hospitals' || raw === '24x7 hospitals') return 'hospitals';
-    if (raw === 'clinic performance' || raw === 'performance') return 'performance';
-    if (raw === 'clinic revenue' || raw === 'hospital revenue') return 'revenue';
-    if (raw === 'clinic orders' || raw === 'clinical orders') return 'orders';
-    if (raw === 'clinic patients' || raw === 'inpatients' || raw === 'ward patients') return 'patients';
-    if (raw === 'clinic doctors' || raw === 'veterinarians' || raw === 'clinicians' || raw === 'hospital doctors') return 'doctors';
-    if (raw === 'clinic commissions' || raw === 'commissions' || raw === 'referrals') return 'commissions';
-    if (raw === 'clinic network' || raw === 'network' || raw === 'facilities network') return 'network';
+    if (raw === 'clinics dashboard' || raw.indexOf('clinics dashboard') >= 0 || raw === 'clinics & hospitals' || raw === 'clinics' || raw === 'hospital command center') return 'dashboard';
+    if (raw === 'all clinics' || raw.indexOf('all clinics') >= 0 || raw === 'outpatient clinics') return 'all-clinics';
+    if (raw === 'hospitals' || raw.indexOf('hospitals') >= 0 || raw === 'tertiary hospitals' || raw === '24x7 hospitals') return 'hospitals';
+    if (raw === 'clinic performance' || raw.indexOf('clinic performance') >= 0) return 'performance';
+    if (raw === 'clinic revenue' || raw.indexOf('clinic revenue') >= 0 || raw === 'hospital revenue') return 'revenue';
+    if (raw === 'clinic orders' || raw.indexOf('clinic orders') >= 0 || raw === 'clinical orders') return 'orders';
+    if (raw === 'clinic patients' || raw.indexOf('clinic patients') >= 0 || raw === 'inpatients' || raw === 'ward patients') return 'patients';
+    if (raw === 'clinic doctors' || raw.indexOf('clinic doctors') >= 0 || raw === 'clinicians' || raw === 'hospital doctors') return 'doctors';
+    if (raw === 'clinic commissions' || raw.indexOf('clinic commissions') >= 0 || raw === 'commissions' || raw === 'referrals') return 'commissions';
+    if (raw === 'clinic network' || raw.indexOf('clinic network') >= 0 || raw === 'facilities network') return 'network';
     return null;
   }
 
@@ -885,10 +896,28 @@
     if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.close === 'function') {
       try { window.ZenvePharmacyDashboard.close(); } catch (e) {}
     }
+    if (window.ZenveReportsDashboard && typeof window.ZenveReportsDashboard.close === 'function') {
+      try { window.ZenveReportsDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveAlertsDashboard && typeof window.ZenveAlertsDashboard.close === 'function') {
+      try { window.ZenveAlertsDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveSettingsDashboard && typeof window.ZenveSettingsDashboard.close === 'function') {
+      try { window.ZenveSettingsDashboard.close(); } catch (e) {}
+    }
 
     document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
-      if (el.id !== 'zch-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open');
+      if (el.id !== 'zch-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zph-open', 'zrep-open', 'zalt-open', 'zset-open');
     });
+
+    // Dismiss any Radix placeholder dialog
+    try {
+      document.querySelectorAll('[role="dialog"]').forEach(function (d) {
+        if (d.closest('#zch-root')) return;
+        var btn = d.querySelector('button[aria-label*="close" i], button:last-child');
+        if (btn) btn.click();
+      });
+    } catch (e) {}
 
     if (tab && TABS.some(function (t) { return t.id === tab; })) {
       S.tab = tab;
@@ -1198,6 +1227,9 @@
     var t = e.target;
     if (!t || !t.closest) return;
 
+    // Never intercept accordion group toggles or search bar
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
+
     var item = t.closest('button, [data-go], a, [role="button"], li');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());
@@ -1227,6 +1259,9 @@
   document.addEventListener('pointerdown', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
+
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
+
     var item = t.closest('.sidebar-scope button, .sidebar-scope a, nav button, nav a, aside button, aside a');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());

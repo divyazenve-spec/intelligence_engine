@@ -113,25 +113,35 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
-    if (s.indexOf('pharmacy dashboard') >= 0 || s === 'pharmacy') return 'dashboard';
+    // Exclude other domains: Clinics & Hospitals, Doctors, Products, Reports
+    if (s.indexOf('clinic') >= 0 || s.indexOf('hospital') >= 0 || s.indexOf('doctor') >= 0 || s.indexOf('report') >= 0 || s.indexOf('alert') >= 0) return null;
+    if (s === 'pharmacy' || s.indexOf('pharmacy dashboard') >= 0) return 'dashboard';
     if (s.indexOf('pharmacy sales') >= 0) return 'sales';
-    if (s.indexOf('medicines') >= 0) return 'medicines';
-    if (s.indexOf('prescriptions') >= 0) return 'prescriptions';
+    if (s === 'medicines' || s.indexOf('medicines') >= 0) return 'medicines';
+    if (s === 'prescriptions' || s.indexOf('prescriptions') >= 0) return 'prescriptions';
     if (s.indexOf('pharmacy orders') >= 0) return 'orders';
-    if (s.indexOf('batch management') >= 0) return 'batches';
-    if (s.indexOf('expiry tracking') >= 0) return 'expiry';
+    if (s.indexOf('batch management') >= 0 || s === 'batches') return 'batches';
+    if (s.indexOf('expiry tracking') >= 0 || s === 'expiry') return 'expiry';
     if (s.indexOf('pharmacy inventory') >= 0) return 'inventory';
     if (s.indexOf('pharmacy revenue') >= 0) return 'revenue';
-    if (s.indexOf('pharmacy profitability') >= 0) return 'profitability';
+    if (s.indexOf('pharmacy profitability') >= 0 || s.indexOf('pharmacy margins') >= 0) return 'profitability';
     return null;
   }
 
   function tabFromHash(hash) {
     if (!hash) return null;
-    var h = hash.toLowerCase();
-    for (var i = 0; i < TABS.length; i++) {
-      if (h === TABS[i].hash.toLowerCase()) return TABS[i].id;
-    }
+    var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
+    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('doctor') >= 0) return null;
+    if (h === 'pharmacy-dashboard' || h === 'pharmacy') return 'dashboard';
+    if (h === 'pharmacy-sales') return 'sales';
+    if (h === 'medicines') return 'medicines';
+    if (h === 'prescriptions') return 'prescriptions';
+    if (h === 'pharmacy-orders') return 'orders';
+    if (h === 'batch-management' || h === 'batches') return 'batches';
+    if (h === 'expiry-tracking' || h === 'expiry') return 'expiry';
+    if (h === 'pharmacy-inventory') return 'inventory';
+    if (h === 'pharmacy-revenue') return 'revenue';
+    if (h === 'pharmacy-profitability' || h === 'pharmacy-margins') return 'profitability';
     return null;
   }
 
@@ -672,9 +682,27 @@
     if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.close === 'function') {
       try { window.ZenveClinicsDashboard.close(); } catch (e) {}
     }
+    if (window.ZenveReportsDashboard && typeof window.ZenveReportsDashboard.close === 'function') {
+      try { window.ZenveReportsDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveAlertsDashboard && typeof window.ZenveAlertsDashboard.close === 'function') {
+      try { window.ZenveAlertsDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveSettingsDashboard && typeof window.ZenveSettingsDashboard.close === 'function') {
+      try { window.ZenveSettingsDashboard.close(); } catch (e) {}
+    }
     document.querySelectorAll('.zpanel-root, [id$="-root"]').forEach(function (el) {
-      if (el.id !== 'zph-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zch-open');
+      if (el.id !== 'zph-root') el.classList.remove('zpanel-open', 'zod-open', 'zsd-open', 'zpid-open', 'zch-open', 'zrep-open', 'zalt-open', 'zset-open');
     });
+
+    // Dismiss any Radix placeholder dialog
+    try {
+      document.querySelectorAll('[role="dialog"]').forEach(function (d) {
+        if (d.closest('#zph-root')) return;
+        var btn = d.querySelector('button[aria-label*="close" i], button:last-child');
+        if (btn) btn.click();
+      });
+    } catch (e) {}
 
     if (tab && TABS.some(function (t) { return t.id === tab; })) {
       S.tab = tab;
@@ -873,6 +901,9 @@
     var t = e.target;
     if (!t || !t.closest) return;
 
+    // Never intercept accordion group toggles or search bar
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
+
     var item = t.closest('button, [data-go], a, [role="button"], li');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());
@@ -902,6 +933,9 @@
   document.addEventListener('pointerdown', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
+
+    if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
+
     var item = t.closest('.sidebar-scope button, .sidebar-scope a, nav button, nav a, aside button, aside a');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());

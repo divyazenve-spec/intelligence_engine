@@ -756,15 +756,16 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
+    if (s.indexOf('pharmacy') >= 0 || s.indexOf('clinic') >= 0 || s.indexOf('hospital') >= 0) return null;
     if (s.indexOf('critical alert') >= 0 || s === 'critical') return 'critical';
-    if (s.indexOf('revenue alert') >= 0 || s === 'revenue') return 'revenue';
-    if (s.indexOf('inventory alert') >= 0 || s === 'inventory') return 'inventory';
-    if (s.indexOf('payment alert') >= 0 || s === 'payment') return 'payment';
-    if (s.indexOf('order alert') >= 0 || s === 'order') return 'order';
-    if (s.indexOf('delivery alert') >= 0 || s === 'delivery') return 'delivery';
-    if (s.indexOf('finance alert') >= 0 || s === 'finance') return 'finance';
-    if (s.indexOf('hr alert') >= 0 || s === 'hr') return 'hr';
-    if (s.indexOf('system alert') >= 0 || s === 'system') return 'system';
+    if (s.indexOf('revenue alert') >= 0 || s === 'revenue alerts') return 'revenue';
+    if (s.indexOf('inventory alert') >= 0 || s === 'inventory alerts') return 'inventory';
+    if (s.indexOf('payment alert') >= 0 || s === 'payment alerts') return 'payment';
+    if (s.indexOf('order alert') >= 0 || s === 'order alerts') return 'order';
+    if (s.indexOf('delivery alert') >= 0 || s === 'delivery alerts') return 'delivery';
+    if (s.indexOf('finance alert') >= 0 || s === 'finance alerts') return 'finance';
+    if (s.indexOf('hr alert') >= 0 || s === 'hr alerts') return 'hr';
+    if (s.indexOf('system alert') >= 0 || s === 'system alerts') return 'system';
     if (s.indexOf('alert rule') >= 0 || s === 'rules' || s === 'alert rules') return 'rules';
     if (s.indexOf('notification center') >= 0 || s === 'notification' || s === 'notifications' || s === 'notification settings') return 'notifs';
     if (s === 'alerts & notifications' || s === 'alerts and notifications' || s === 'alerts' || s === 'alert center') return 'critical';
@@ -774,17 +775,18 @@
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('critical') >= 0) return 'critical';
-    if (h.indexOf('revenue') >= 0) return 'revenue';
-    if (h.indexOf('inventory') >= 0) return 'inventory';
-    if (h.indexOf('payment') >= 0) return 'payment';
-    if (h.indexOf('order') >= 0) return 'order';
-    if (h.indexOf('delivery') >= 0) return 'delivery';
-    if (h.indexOf('finance') >= 0) return 'finance';
-    if (h.indexOf('hr') >= 0) return 'hr';
-    if (h.indexOf('system') >= 0) return 'system';
-    if (h.indexOf('rule') >= 0) return 'rules';
-    if (h.indexOf('notif') >= 0) return 'notifs';
+    if (h.indexOf('pharmacy') >= 0 || h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0) return null;
+    if (h === 'critical-alerts' || h === 'critical') return 'critical';
+    if (h === 'revenue-alerts') return 'revenue';
+    if (h === 'inventory-alerts') return 'inventory';
+    if (h === 'payment-alerts') return 'payment';
+    if (h === 'order-alerts') return 'order';
+    if (h === 'delivery-alerts') return 'delivery';
+    if (h === 'finance-alerts') return 'finance';
+    if (h === 'hr-alerts') return 'hr';
+    if (h === 'system-alerts') return 'system';
+    if (h === 'alert-rules' || h === 'rules') return 'rules';
+    if (h === 'notification-center' || h === 'notifications' || h === 'notifs') return 'notifs';
     if (h === 'alerts') return 'critical';
     return null;
   }
@@ -1997,12 +1999,21 @@
     renderShell();
 
     // Close any other open control centers
-    document.querySelectorAll('.zpanel-root, #zod-root, #zsd-root, #zset-root').forEach(function (el) {
+    if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.close === 'function') {
+      try { window.ZenvePharmacyDashboard.close(); } catch (e) {}
+    }
+    if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.close === 'function') {
+      try { window.ZenveClinicsDashboard.close(); } catch (e) {}
+    }
+    document.querySelectorAll('.zpanel-root, #zod-root, #zsd-root, #zset-root, #zph-root, #zch-root, #zrep-root').forEach(function (el) {
       if (el !== root) {
         el.classList.remove('zpanel-open');
         el.classList.remove('zod-open');
         el.classList.remove('zsd-open');
         el.classList.remove('zset-open');
+        el.classList.remove('zph-open');
+        el.classList.remove('zch-open');
+        el.classList.remove('zrep-open');
       }
     });
 
