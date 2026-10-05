@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import DashboardLayout from '../shared/DashboardLayout';
+import KpiCard from '../shared/KpiCard';
+
+export default function ClinicReport() {
+  const [toast, setToast] = useState('');
+
+  const triggerToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(''), 3000);
+  };
+
+  const clinics = [
+    { name: 'Bengaluru Flagship Hospital & ICU', city: 'Bengaluru', beds: 24, occupancy: '91.6%', opdFootfall: 1420, labScans: 840, revenue: 5840000, margin: '41.2%' },
+    { name: 'Mumbai Surgical Center (Bandra West)', city: 'Mumbai', beds: 18, occupancy: '88.8%', opdFootfall: 1180, labScans: 690, revenue: 4720000, margin: '43.5%' },
+    { name: 'Delhi NCR Super-Specialty Clinic', city: 'Delhi NCR', beds: 16, occupancy: '84.2%', opdFootfall: 990, labScans: 540, revenue: 3850000, margin: '38.6%' },
+    { name: 'Hyderabad Diagnostics & Outpatient', city: 'Hyderabad', beds: 10, occupancy: '78.5%', opdFootfall: 840, labScans: 720, revenue: 2950000, margin: '44.8%' },
+    { name: 'Chennai Outpatient & Pharmacy Node', city: 'Chennai', beds: 8, occupancy: '75.0%', opdFootfall: 680, labScans: 410, revenue: 2150000, margin: '39.0%' }
+  ];
+
+  const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
+
+  const downloadCSV = () => {
+    const rows = [
+      ['Clinic / Hospital Facility', 'Metro City', 'Total Inpatient Beds', 'Bed Occupancy Rate', 'Monthly OPD Footfall', 'Lab Tests Conducted', 'Gross Revenue (INR)', 'Net Margin'],
+      ...clinics.map(c => [c.name, c.city, c.beds, c.occupancy, c.opdFootfall, c.labScans, c.revenue, c.margin])
+    ];
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\n');
+    const link = document.createElement('a');
+    link.setAttribute('href', encodeURI(csvContent));
+    link.setAttribute('download', `zenve_clinic_facility_report.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    triggerToast('Clinic Facility Report CSV downloaded.');
+  };
+
+  return (
+    <DashboardLayout
+      category="Reports & Analytics"
+      subcategory="Clinic Reports"
+      title="Clinic Network & Hospital Facility Utilization Report"
+      subtitle="Operational performance across 5 metropolitan hospitals and surgical centers, ICU bed occupancy, OPD throughput, and clinical margins"
+      icon="🏥"
+      badge="5 Hospital Nodes"
+      actions={
+        <button
+          onClick={downloadCSV}
+          style={{
+            padding: '8px 14px',
+            borderRadius: '8px',
+            background: 'var(--primary, #3b82f6)',
+            color: '#ffffff',
+            border: 'none',
+            fontWeight: 600,
+            fontSize: '12px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          <span>📥</span> Export Clinic CSV
+        </button>
+      }
+    >
+      {toast && (
+        <div style={{
+          padding: '10px 16px',
+          background: 'rgba(59,130,246,0.15)',
+          border: '1px solid #3b82f6',
+          borderRadius: '8px',
+          color: '#60a5fa',
+          fontSize: '13px',
+          fontWeight: 600
+        }}>
+          ⚡ {toast}
+        </div>
+      )}
+
+      {/* KPI Cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <KpiCard label="Total Inpatient Beds" value="76 Beds" delta="85.4% Blended Occupancy" trend="up" subtext="Across 5 metro centers" icon="🛏️" />
+        <KpiCard label="Monthly OPD Footfall" value="5,110 Visits" delta="+14.8% vs last month" trend="up" subtext="Consultations & checkups" icon="🚶‍♂️" />
+        <KpiCard label="Diagnostic Lab Scans" value="3,200 Tests" delta="Hematology & X-Ray" trend="up" subtext="LIMS integrated" icon="🔬" />
+        <KpiCard label="Consolidated Clinical GMV" value="₹1.95 Crores" delta="41.8% Net Margin" trend="up" subtext="High contribution" icon="💼" />
+      </div>
+
+      {/* Table Section */}
+      <div style={{
+        background: 'var(--card, #1e293b)',
+        border: '1px solid var(--border, rgba(255,255,255,0.08))',
+        borderRadius: '12px',
+        padding: '20px'
+      }}>
+        <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: 700 }}>Hospital Node Utilization & Revenue Contribution Matrix</h3>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))', color: 'var(--muted-foreground, #94a3b8)' }}>
+                <th style={{ padding: '10px 12px' }}>Facility Name</th>
+                <th style={{ padding: '10px 12px' }}>Metro City</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Total Beds</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Bed Occupancy</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>OPD Footfall</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Lab Tests</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Gross Revenue</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Net Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clinics.map((c) => (
+                <tr key={c.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                  <td style={{ padding: '12px', fontWeight: 600 }}>{c.name}</td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{c.city}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.beds}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{c.occupancy}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.opdFootfall.toLocaleString('en-IN')}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.labScans.toLocaleString('en-IN')}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.revenue)}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.margin}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}

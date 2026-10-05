@@ -1,0 +1,815 @@
+/* =====================================================================
+   Zenve BI — Alerts & Notifications Executive Control Center
+   Enterprise Real-Time Alert Management Suite for All 11 Modules
+   ===================================================================== */
+
+/* ── 1. Root Overlay Canvas ────────────────────────────────────────── */
+#zalt-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 50 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zalt-root.zalt-open {
+  display: block !important;
+}
+
+#zalt-root::-webkit-scrollbar {
+  width: 6px;
+}
+#zalt-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+#zalt-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+#zalt-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.zalt-locked,
+body.zalt-locked {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+#zalt-root,
+#zalt-root * {
+  box-sizing: border-box !important;
+}
+
+/* ── 2. Top Executive Header ───────────────────────────────────────── */
+.zalt-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 28px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zalt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zalt-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fee2e2, #fecaca) !important;
+  border: 1px solid #fca5a5 !important;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.15);
+}
+
+.zalt-brand-badge.pulse {
+  animation: zalt-pulse 2s infinite ease-in-out;
+}
+
+@keyframes zalt-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+.zalt-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.zalt-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zalt-main-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a !important;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.zalt-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  background: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+  color: #b91c1c !important;
+}
+
+.zalt-status-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: zalt-dot-blink 1.2s infinite ease-in-out;
+}
+
+@keyframes zalt-dot-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+.zalt-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b !important;
+  margin-top: 2px;
+}
+
+.zalt-breadcrumbs span.active {
+  color: #2563eb !important;
+  font-weight: 600;
+}
+
+.zalt-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.zalt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.zalt-btn-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+.zalt-btn-primary:hover {
+  background: #1d4ed8 !important;
+}
+
+.zalt-btn-danger {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+.zalt-btn-danger:hover {
+  background: #dc2626 !important;
+}
+
+.zalt-btn-outline {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+.zalt-btn-outline:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.zalt-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.zalt-close-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+/* ── 3. Sticky Horizontal Subnav Bar (11 Chips) ───────────────────── */
+.zalt-subnav-bar {
+  position: sticky;
+  top: 67px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 28px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.zalt-subnav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zalt-tab-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.zalt-tab-chip:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.zalt-tab-chip.active {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: #bfdbfe !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.08);
+}
+
+.zalt-tab-chip-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 700;
+}
+
+.zalt-tab-chip.active .zalt-tab-chip-badge {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.zalt-tab-chip-badge.critical {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.zalt-tab-chip.active .zalt-tab-chip-badge.critical {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ── 4. Main Body Canvas & Sections ───────────────────────────────── */
+.zalt-body {
+  padding: 24px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.zalt-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.zalt-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.zalt-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.zalt-kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zalt-kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.zalt-kpi-icon {
+  font-size: 18px;
+}
+
+.zalt-kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  letter-spacing: -0.02em;
+}
+
+.zalt-kpi-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.zalt-kpi-pill {
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.zalt-kpi-pill.danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.zalt-kpi-pill.warning {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.zalt-kpi-pill.success {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.zalt-kpi-pill.info {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.zalt-kpi-subtext {
+  color: #64748b;
+}
+
+/* ── 5. Standard Content Cards ────────────────────────────────────── */
+.zalt-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.zalt-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zalt-card-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zalt-card-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin: 4px 0 0;
+}
+
+/* ── 6. Alert Stream Cards ────────────────────────────────────────── */
+.zalt-stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zalt-alert-item {
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.15s ease;
+}
+.zalt-alert-item:hover {
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.zalt-alert-item.sev-1 {
+  border-left: 4px solid #ef4444;
+  background: #fff5f5;
+  border-color: #fecaca;
+}
+.zalt-alert-item.sev-1:hover {
+  background: #ffffff;
+  border-color: #f87171;
+}
+
+.zalt-alert-item.sev-2 {
+  border-left: 4px solid #f59e0b;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+.zalt-alert-item.sev-2:hover {
+  background: #ffffff;
+  border-color: #fbbf24;
+}
+
+.zalt-alert-item.sev-3 {
+  border-left: 4px solid #3b82f6;
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+.zalt-alert-item.sev-3:hover {
+  background: #ffffff;
+  border-color: #60a5fa;
+}
+
+.zalt-alert-item.resolved {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  opacity: 0.75;
+}
+
+.zalt-alert-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zalt-alert-id-tag {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.zalt-alert-item.sev-1 .zalt-alert-id-tag {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.zalt-alert-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zalt-badge-sev1 {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #fee2e2;
+  color: #dc2626;
+  font-weight: 700;
+  border: 1px solid #fecaca;
+}
+
+.zalt-badge-sev2 {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #fef3c7;
+  color: #b45309;
+  font-weight: 700;
+  border: 1px solid #fde68a;
+}
+
+.zalt-badge-sev3 {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-weight: 700;
+  border: 1px solid #bae6fd;
+}
+
+.zalt-badge-resolved {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 700;
+  border: 1px solid #bbf7d0;
+}
+
+.zalt-alert-meta {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.zalt-alert-meta strong {
+  color: #1e293b;
+}
+
+.zalt-alert-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.zalt-alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+/* ── 7. Rules Table & Engine Styling ──────────────────────────────── */
+.zalt-rule-item {
+  padding: 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.zalt-rule-item.disabled {
+  opacity: 0.6;
+  background: #f8fafc;
+}
+
+.zalt-rule-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.zalt-rule-condition {
+  font-size: 12px;
+  color: #475569;
+}
+.zalt-rule-condition strong {
+  color: #0f172a;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.zalt-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+}
+.zalt-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.zalt-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.2s ease;
+  border-radius: 22px;
+}
+.zalt-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s ease;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+input:checked + .zalt-slider {
+  background-color: #2563eb;
+}
+input:checked + .zalt-slider:before {
+  transform: translateX(16px);
+}
+
+/* ── 8. Notification Center Feed ──────────────────────────────────── */
+.zalt-notif-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.zalt-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.zalt-fchip {
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.zalt-fchip:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+.zalt-fchip.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.zalt-search-box {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  color: #0f172a;
+  outline: none;
+  min-width: 260px;
+}
+.zalt-search-box:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.zalt-notif-card {
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.zalt-notif-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.zalt-notif-card.unread {
+  background: #f0f7ff;
+  border-color: #bfdbfe;
+}
+
+/* ── 9. Interactive Modal & Toast ─────────────────────────────────── */
+.zalt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.zalt-modal {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zalt-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zalt-modal-title {
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.zalt-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 28px;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid #334155;
+  animation: zalt-toast-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zalt-toast-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  #zalt-root {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
