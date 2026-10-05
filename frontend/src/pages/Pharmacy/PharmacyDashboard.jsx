@@ -8,7 +8,11 @@ export default function PharmacyDashboard() {
 
   const categories = [
     { name: 'Antiparasitics & Dewormers', revenue: '₹4,12,000', margin: '42.5%', share: '32.8%', trend: '+14.2%', icon: '🪱' },
-    { name: 'Antibiotics & Anti-Infectives', revenue: '₹2,84,500', margin: '38.0%', share: '22.6%', trend: '+9.4%', icon: '💊' },
+    {
+      name: 'Antibiotics & Anti-Infectives', revenue: '₹2,84,500', margin: '38.0%',
+
+      share: '22.6%', trend: '+9.4%', icon: '💊'
+    },
     { name: 'Chronic Wellness & Cardiac', revenue: '₹2,35,000', margin: '48.2%', share: '18.7%', trend: '+21.0%', icon: '❤️' },
     { name: 'Veterinary Vaccines & Cold Chain', revenue: '₹1,64,000', margin: '35.0%', share: '13.0%', trend: '+8.1%', icon: '❄️' },
     { name: 'Dermatologicals & Shampoos', revenue: '₹1,02,500', margin: '45.0%', share: '8.1%', trend: '+12.5%', icon: '🧴' },
