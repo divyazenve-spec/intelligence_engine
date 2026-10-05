@@ -42,6 +42,20 @@ main {
   max-width: calc(100vw - 224px) !important;
   min-width: 0 !important;
 }
+#zch-root main,
+#zph-root main,
+#zsd-root main,
+#zod-root main,
+#zpid-root main,
+#zrep-root main,
+#zalt-root main,
+#zset-root main {
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
 
 /* 3. Hide mobile hamburger & overlay */
 button[aria-label="Open menu"],

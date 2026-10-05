@@ -876,7 +876,7 @@
         '</div>',
       '</header>',
       '<nav class="zch-tabs-bar" aria-label="Clinics & Hospitals Subdomains"></nav>',
-      '<main class="zch-body"></main>'
+      '<div class="zch-body"></div>'
     ].join('');
     document.body.appendChild(root);
   }
