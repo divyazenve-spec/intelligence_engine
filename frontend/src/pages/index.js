@@ -169,10 +169,42 @@ export {
 } from './ZenveFashion';
 
 // 17. B2B / Enterprise
-export { default as B2BDashboard } from './B2BEnterprise/B2BDashboard';
+export {
+  B2BDashboard,
+  EnterpriseCustomers,
+  CorporateAccounts,
+  B2BOrders,
+  B2BSales,
+  B2BRevenue,
+  Contracts,
+  EnterprisePricing,
+  B2BReceivables
+} from './B2BEnterprise';
 
-// 18. Subscriptions
-export { default as SubscriptionsDashboard } from './Subscriptions/SubscriptionsDashboard';
+// 18. Import & Export
+export {
+  ImportDashboard,
+  ExportDashboard,
+  ImportOrders,
+  ExportOrders,
+  Suppliers,
+  Buyers,
+  CustomsDocumentation,
+  TradeLogistics,
+  ImportExportProfitability
+} from './ImportAndExport';
+
+// 19. Subscriptions
+export {
+  SubscriptionsDashboard,
+  ActiveSubscriptions,
+  NewSubscriptions,
+  Renewals,
+  ExpiringSubscriptions,
+  Churn,
+  SubscriptionRevenue,
+  SubscriptionAnalytics
+} from './Subscriptions';
 
 // 19. Reports & Analytics
 export {
@@ -439,13 +471,48 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'B2B / Enterprise',
     icon: '🏢',
-    items: ['B2B Dashboard', 'Enterprise Customers', 'Corporate Accounts', 'B2B Orders', 'B2B Sales', 'B2B Revenue', 'Contracts'],
+    items: [
+      'B2B Dashboard',
+      'Enterprise Customers',
+      'Corporate Accounts',
+      'B2B Orders',
+      'B2B Sales',
+      'B2B Revenue',
+      'Contracts',
+      'Enterprise Pricing',
+      'B2B Receivables'
+    ],
     defaultPath: '/b2b'
+  },
+  {
+    category: 'Import & Export',
+    icon: '🌐',
+    items: [
+      'Import Dashboard',
+      'Export Dashboard',
+      'Import Orders',
+      'Export Orders',
+      'Suppliers',
+      'Buyers',
+      'Customs & Documentation',
+      'Logistics',
+      'Import/Export Profitability'
+    ],
+    defaultPath: '/import-export'
   },
   {
     category: 'Subscriptions',
     icon: '🔄',
-    items: ['Subscription Dashboard', 'Active Subscriptions', 'New Subscriptions', 'Renewals', 'Expiring Subscriptions', 'Churn'],
+    items: [
+      'Subscription Dashboard',
+      'Active Subscriptions',
+      'New Subscriptions',
+      'Renewals',
+      'Expiring Subscriptions',
+      'Churn',
+      'Subscription Revenue',
+      'Subscription Analytics'
+    ],
     defaultPath: '/subscriptions'
   },
   {

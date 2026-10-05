@@ -1,0 +1,280 @@
+/* =====================================================================
+   Zenve BI — Subscriptions Executive Control Center & Dashboards
+   Suite (8 Subdomains):
+     1. Subscription Dashboard    (#subscription-dashboard / #subscriptions)
+     2. Active Subscriptions      (#active-subscriptions)
+     3. New Subscriptions         (#new-subscriptions)
+     4. Renewals                  (#renewals / #subscription-renewals)
+     5. Expiring Subscriptions    (#expiring-subscriptions)
+     6. Churn                     (#churn / #subscription-churn)
+     7. Subscription Revenue      (#subscription-revenue)
+     8. Subscription Analytics    (#subscription-analytics)
+   ===================================================================== */
+
+html.zsub-locked,
+body.zsub-locked {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+#zsub-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  z-index: 60 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
+  background: var(--background, #f8fafc) !important;
+  color: var(--foreground, #0f172a) !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  animation: zsubFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #cbd5e1 #f8fafc !important;
+}
+
+#zsub-root.zsub-open,
+#zsub-root.zpanel-open {
+  display: block !important;
+}
+
+#zsub-root::-webkit-scrollbar {
+  width: 8px !important;
+}
+#zsub-root::-webkit-scrollbar-track {
+  background: #f8fafc !important;
+}
+#zsub-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 6px !important;
+}
+#zsub-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+@keyframes zsubFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1023px) {
+  #zsub-root {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
+
+#zsub-root * { box-sizing: border-box; }
+#zsub-root button, #zsub-root input, #zsub-root select {
+  font-family: inherit; color: inherit;
+}
+
+/* Header */
+.zsub-head {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 28px;
+  background: color-mix(in oklab, var(--background, #ffffff) 96%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border, rgba(0,0,0,0.08));
+  flex-wrap: wrap;
+}
+
+.zsub-head-left { display: flex; flex-direction: column; min-width: 0; gap: 3px; }
+.zsub-title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.zsub-title { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.015em; color: var(--foreground, #0f172a); white-space: nowrap; }
+.zsub-sub { font-size: 12px; margin: 0; color: var(--muted-foreground, #64748b); line-height: 1.4; }
+
+.zsub-live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px;
+  background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.3); color: #6d28d9;
+  font-size: 11px; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.zsub-pulse-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #7c3aed; box-shadow: 0 0 8px #7c3aed;
+  animation: zsubPulse 1.8s infinite;
+}
+
+@keyframes zsubPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.4); }
+}
+
+.zsub-head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.zsub-btn {
+  padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border, rgba(0,0,0,0.12));
+  background: var(--card, #ffffff); cursor: pointer; font-size: 12px; font-weight: 600;
+  color: var(--foreground, #0f172a);
+  transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; white-space: nowrap;
+}
+.zsub-btn:hover { background: var(--accent, #f1f5f9); border-color: rgba(0,0,0,0.2); }
+.zsub-btn.primary { background: rgba(124,58,237,0.14); border-color: rgba(124,58,237,0.5); color: #6d28d9; }
+.zsub-btn.primary:hover { background: rgba(124,58,237,0.22); color: #5b21b6; }
+.zsub-btn.success { background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.4); color: #059669; }
+.zsub-btn.danger { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.35); color: #dc2626; }
+
+/* Tabs Bar (8 Subdomains) */
+.zsub-tabs-bar {
+  display: flex; gap: 4px; padding: 10px 28px 0;
+  border-bottom: 1px solid var(--border, rgba(0,0,0,0.08));
+  overflow-x: auto; scrollbar-width: none;
+  background: var(--background, #ffffff);
+}
+.zsub-tabs-bar::-webkit-scrollbar { display: none; }
+
+.zsub-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px; border: none; background: transparent;
+  color: var(--muted-foreground, #64748b); font-size: 11px; font-weight: 600;
+  cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.15s ease; margin-bottom: -1px;
+}
+.zsub-tab:hover { color: var(--foreground, #0f172a); background: rgba(0,0,0,0.04); border-radius: 6px 6px 0 0; }
+.zsub-tab.active {
+  color: #6d28d9; border-bottom-color: #7c3aed;
+  background: rgba(124,58,237,0.08); border-radius: 6px 6px 0 0;
+}
+.zsub-tab-badge {
+  font-size: 9px; padding: 1px 6px; border-radius: 999px;
+  background: rgba(0,0,0,0.06); font-family: "IBM Plex Mono", monospace; font-weight: 600; color: #475569;
+}
+.zsub-tab-badge.warn { background: rgba(245,158,11,0.18); color: #d97706; }
+.zsub-tab-badge.danger { background: rgba(239,68,68,0.15); color: #dc2626; }
+.zsub-tab.active .zsub-tab-badge { background: rgba(124,58,237,0.18); color: #5b21b6; }
+
+/* Body Content */
+.zsub-body,
+#zsub-root .zsub-body,
+#zsub-root div.zsub-body,
+#zsub-root main.zsub-body {
+  padding: 24px 28px 64px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* KPI Grid */
+.zsub-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.zsub-kpi {
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, rgba(0,0,0,0.08));
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.zsub-kpi:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124,58,237,0.3);
+  box-shadow: 0 4px 12px rgba(124,58,237,0.06);
+}
+
+.zsub-kpi-top { display: flex; align-items: center; justify-content: space-between; }
+.zsub-kpi-label { font-size: 11px; font-weight: 600; color: var(--muted-foreground, #64748b); text-transform: uppercase; letter-spacing: 0.04em; }
+.zsub-kpi-icon { font-size: 16px; }
+.zsub-kpi-val { font-size: 22px; font-weight: 700; color: var(--foreground, #0f172a); font-family: "Sora", sans-serif; letter-spacing: -0.02em; }
+.zsub-kpi-bottom { display: flex; align-items: center; gap: 8px; font-size: 11px; flex-wrap: wrap; }
+.zsub-delta { font-weight: 700; font-family: "IBM Plex Mono", monospace; }
+.zsub-delta.up { color: #059669; }
+.zsub-delta.down { color: #dc2626; }
+.zsub-delta.warn { color: #d97706; }
+.zsub-subtext { color: var(--muted-foreground, #64748b); font-size: 11px; }
+
+/* Cards & Grids */
+.zsub-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.zsub-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 1100px) {
+  .zsub-grid-2, .zsub-grid-3 { grid-template-columns: 1fr; }
+}
+
+.zsub-card {
+  background: var(--card, #ffffff);
+  border: 1px solid var(--border, rgba(0,0,0,0.08));
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex; flex-direction: column; gap: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.zsub-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.zsub-card-title { font-size: 14px; font-weight: 700; margin: 0; color: var(--foreground, #0f172a); letter-spacing: -0.01em; }
+.zsub-card-sub { font-size: 11px; margin: 2px 0 0; color: var(--muted-foreground, #64748b); }
+
+/* Tables */
+.zsub-table-wrap { overflow-x: auto; width: 100%; }
+.zsub-table {
+  width: 100%; border-collapse: collapse; text-align: left; font-size: 12px;
+}
+.zsub-table th {
+  padding: 10px 12px; color: var(--muted-foreground, #64748b);
+  border-bottom: 1px solid var(--border, rgba(0,0,0,0.08));
+  font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em;
+  background: var(--background, #f8fafc);
+}
+.zsub-table td {
+  padding: 11px 12px; border-bottom: 1px solid var(--border, rgba(0,0,0,0.05));
+  color: var(--foreground, #0f172a);
+}
+.zsub-table tr:hover td { background: rgba(124,58,237,0.03); }
+
+/* Pills & Badges */
+.zsub-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 600;
+  text-transform: capitalize;
+}
+.zsub-pill.active, .zsub-pill.healthy, .zsub-pill.confirmed { background: rgba(16,185,129,0.14); color: #059669; }
+.zsub-pill.pending, .zsub-pill.retry, .zsub-pill.warning { background: rgba(245,158,11,0.15); color: #d97706; }
+.zsub-pill.critical, .zsub-pill.churn, .zsub-pill.failed { background: rgba(239,68,68,0.14); color: #dc2626; }
+.zsub-pill.sub { background: rgba(124,58,237,0.12); color: #6d28d9; }
+
+/* Modals */
+.zsub-modal-backdrop {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(15,23,42,0.45); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.zsub-modal {
+  background: #ffffff; border-radius: 14px; width: 100%; max-width: 580px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.1);
+  padding: 24px; display: flex; flex-direction: column; gap: 16px;
+  max-height: 90vh; overflow-y: auto; color: #0f172a;
+}
+.zsub-modal-head { display: flex; align-items: center; justify-content: space-between; }
+.zsub-modal-title { font-size: 16px; font-weight: 700; margin: 0; color: #0f172a; }
+
+.zsub-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.zsub-form-group label { font-size: 11px; font-weight: 600; color: #475569; }
+.zsub-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.zsub-input, .zsub-select {
+  padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;
+  font-size: 12px; background: #ffffff; color: #0f172a; outline: none;
+}
+.zsub-input:focus, .zsub-select:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124,58,237,0.12); }

@@ -1,34 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function SubscriptionsDashboard() {
+  const [filter, setFilter] = useState('ALL');
+
+  const plans = [
+    { id: 'SUB-PLN-101', name: 'Comprehensive Puppy Preventive Care Suite', price: '₹1,499 / mo', activeSubscribers: 184, mrr: '₹2,75,816', renewalRate: '96.2%', churn: '0.8%', benefits: 'Unlimited Vet Consults + Vaccines + Flea/Tick' },
+    { id: 'SUB-PLN-102', name: 'Monthly Nutrition & Prescription Auto-Ship', price: '₹2,850 / mo', activeSubscribers: 142, mrr: '₹4,04,700', renewalRate: '94.5%', churn: '1.2%', benefits: 'Scheduled Royal Canin / Farmina Doorstep' },
+    { id: 'SUB-PLN-103', name: 'Senior Pet Geriatric Vitality & Arthritis Care', price: '₹1,850 / mo', activeSubscribers: 98, mrr: '₹1,81,300', renewalRate: '97.4%', churn: '0.6%', benefits: 'Joint Injections + Monthly Blood Chemistries' },
+    { id: 'SUB-PLN-104', name: 'Feline Holistic Wellness & Grooming Spa Plan', price: '₹1,250 / mo', activeSubscribers: 120, mrr: '₹1,50,000', renewalRate: '93.8%', churn: '1.5%', benefits: 'Deworming + Spa Bath + Dental Cleans' },
+    { id: 'SUB-PLN-105', name: 'Zenve 24x7 Emergency Telehealth Unlimited', price: '₹499 / mo', activeSubscribers: 280, mrr: '₹1,39,720', renewalRate: '91.2%', churn: '2.1%', benefits: 'Instant Video Vet in < 60 seconds' }
+  ];
+
+  const filtered = filter === 'ALL' ? plans : plans.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()));
+
+  const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
+
   return (
     <DashboardLayout
       category="Subscriptions"
-      subcategory="Active Plans & Recurring Revenue"
-      title="Recurring Subscriptions & Wellness Plans"
-      subtitle="Monthly nutrition deliveries, recurring preventive wellness memberships, and MRR retention"
+      subcategory="Command Center"
+      title="Recurring Subscriptions & Pet Wellness Memberships"
+      subtitle="Monthly recurring revenue (MRR), automated doorstep auto-shipments, preventive wellness plans, and subscriber cohorts"
       icon="🔄"
-      badge="MRR: ₹2.10 Lakh"
+      badge="₹11.5L MRR"
+      actions={
+        <button onClick={() => alert('Creating New Recurring Membership Plan...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #7c3aed', background: 'rgba(124,58,237,0.12)', color: '#6d28d9', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
+          + Create Subscription Plan
+        </button>
+      }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Recurring Revenue" value="₹2,09,600" delta="+22.4%" trend="up" subtext="Automated billing" icon="🔄" />
-        <KpiCard label="Active Subscribers" value="412 Plans" delta="+38 net new" trend="up" subtext="Pet wellness plans" icon="👥" />
-        <KpiCard label="Renewal Rate" value="94.8%" delta="High retention" trend="up" subtext="Low cancellation" icon="🛡️" />
-        <KpiCard label="Subscriber Churn" value="1.2%" delta="-0.3%" trend="up" subtext="Monthly drop-off" icon="📉" />
+        <KpiCard label="Monthly Recurring Revenue (MRR)" value="₹11.51 Lakh" delta="+24.8% MoM" trend="up" subtext="Annualized ARR: ₹1.38 Cr" icon="🔄" />
+        <KpiCard label="Active Paying Subscribers" value="824 Pets" delta="+68 net new this month" trend="up" subtext="Across 5 recurring plans" icon="👥" />
+        <KpiCard label="Subscriber Renewal Rate" value="95.4%" delta="+1.2% improvement" trend="up" subtext="Auto-debit UPI / Cards" icon="🛡️" />
+        <KpiCard label="Gross Monthly Churn" value="1.18%" delta="-0.3% reduction" trend="up" subtext="Industry benchmark 3.5%" icon="📉" />
+        <KpiCard label="Average Revenue Per User (ARPU)" value="₹1,397 / mo" delta="+8.5% YoY" trend="up" subtext="Multi-tier add-ons" icon="💎" />
+        <KpiCard label="Customer Lifetime Value (LTV)" value="₹24,800" delta="17.8 months avg tenure" trend="up" subtext="LTV/CAC ratio: 5.4x" icon="⭐" />
       </div>
 
-      <div style={{
-        background: 'var(--card, #1e293b)',
-        border: '1px solid var(--border, rgba(255,255,255,0.08))',
-        borderRadius: '12px',
-        padding: '20px'
-      }}>
-        <h3 style={{ margin: '0 0 12px', fontSize: '15px', fontWeight: 700 }}>Subscription Plan Tier Distribution</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Complete Preventive Care (42%), Monthly Nutrition Auto-Ship (36%), Telehealth Unlimited (22%)</p>
-        <div style={{ height: '140px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', display: 'grid', placeItems: 'center', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>
-          Recurring Membership Growth & Churn Cohorts
+      <div style={card}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+          <div>
+            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>🔄 Recurring Membership Plans & MRR Performance</h3>
+            <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>Active subscriber counts, recurring revenue contribution, and plan benefits</p>
+          </div>
+        </div>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border, #e2e8f0)', color: 'var(--muted-foreground, #64748b)' }}>
+                <th style={{ padding: '10px 12px' }}>Plan Code</th>
+                <th style={{ padding: '10px 12px' }}>Subscription Plan Name</th>
+                <th style={{ padding: '10px 12px' }}>Monthly Price</th>
+                <th style={{ padding: '10px 12px' }}>Active Pets</th>
+                <th style={{ padding: '10px 12px' }}>Monthly Run Rate (MRR)</th>
+                <th style={{ padding: '10px 12px' }}>Renewal Rate</th>
+                <th style={{ padding: '10px 12px' }}>Monthly Churn</th>
+                <th style={{ padding: '10px 12px' }}>Included Core Benefits</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(p => (
+                <tr key={p.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{p.id}</td>
+                  <td style={{ padding: '12px', fontWeight: 600 }}>{p.name}</td>
+                  <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{p.price}</td>
+                  <td style={{ padding: '12px', fontWeight: 600 }}>{p.activeSubscribers} Pets</td>
+                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{p.mrr}</td>
+                  <td style={{ padding: '12px' }}>{p.renewalRate}</td>
+                  <td style={{ padding: '12px' }}>
+                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                      {p.churn}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', color: '#64748b' }}>{p.benefits}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </DashboardLayout>
