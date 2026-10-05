@@ -73,6 +73,18 @@ export { default as PetsDashboard } from './Pets360/PetsDashboard';
 
 // 11. Employees & HR
 export { default as HRDashboard } from './EmployeesAndHR/HRDashboard';
+export { default as AllEmployees } from './EmployeesAndHR/AllEmployees';
+export { default as Departments } from './EmployeesAndHR/Departments';
+export { default as EmployeePerformance } from './EmployeesAndHR/EmployeePerformance';
+export { default as EmployeeTargets } from './EmployeesAndHR/EmployeeTargets';
+export { default as EmployeeProductivity } from './EmployeesAndHR/EmployeeProductivity';
+export { default as Attendance } from './EmployeesAndHR/Attendance';
+export { default as LeaveManagement } from './EmployeesAndHR/LeaveManagement';
+export { default as Payroll } from './EmployeesAndHR/Payroll';
+export { default as SalaryCost } from './EmployeesAndHR/SalaryCost';
+export { default as Recruitment } from './EmployeesAndHR/Recruitment';
+export { default as Onboarding } from './EmployeesAndHR/Onboarding';
+export { default as EmployeeExpenses } from './EmployeesAndHR/EmployeeExpenses';
 
 // 12. Finance & Accounting
 export { default as FinanceDashboard } from './FinanceAndAccounting/FinanceDashboard';
@@ -266,7 +278,21 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Employees & HR',
     icon: '🧑‍💼',
-    items: ['HR Dashboard', 'All Employees', 'Departments', 'Employee Performance', 'Employee Targets', 'Payroll', 'Salary Cost'],
+    items: [
+      'HR Dashboard',
+      'All Employees',
+      'Departments',
+      'Employee Performance',
+      'Employee Targets',
+      'Employee Productivity',
+      'Attendance',
+      'Leave Management',
+      'Payroll',
+      'Salary Cost',
+      'Recruitment',
+      'Onboarding',
+      'Employee Expenses'
+    ],
     defaultPath: '/hr'
   },
   {
