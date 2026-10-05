@@ -24,7 +24,12 @@ export {
 export { default as OrdersDashboard } from './OrdersAndOperations/OrdersDashboard';
 
 // 4. Products & Inventory
-export { default as InventoryDashboard } from './ProductsAndInventory/InventoryDashboard';
+export {
+  InventoryDashboard,
+  InventoryMovement,
+  InventoryValuation,
+  StockTransfers
+} from './ProductsAndInventory';
 
 // 5. Pharmacy
 export { default as PharmacyDashboard } from './Pharmacy/PharmacyDashboard';
@@ -120,7 +125,19 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Products & Inventory',
     icon: '📦',
-    items: ['Product Catalog', 'SKU Management', 'Inventory Dashboard', 'Stock Management', 'Low Stock', 'Out of Stock', 'Expiry Management', 'Warehouse Management'],
+    items: [
+      'Product Catalog',
+      'SKU Management',
+      'Inventory Dashboard',
+      'Stock Management',
+      'Low Stock',
+      'Out of Stock',
+      'Expiry Management',
+      'Warehouse Management',
+      'Stock Transfers',
+      'Inventory Valuation',
+      'Inventory Movement'
+    ],
     defaultPath: '/inventory'
   },
   {
