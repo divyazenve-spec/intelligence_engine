@@ -18,7 +18,7 @@ export default function DashboardLayout({
       padding: '24px 28px 48px',
       width: '100%',
       margin: 0,
-      color: 'var(--foreground, #f8fafc)',
+      color: 'var(--foreground, #0f172a)',
       fontFamily: 'var(--font-sans, "Manrope", sans-serif)'
     }}>
       {/* Header section */}
@@ -28,7 +28,7 @@ export default function DashboardLayout({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         gap: '16px',
-        borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))',
+        borderBottom: '1px solid var(--border, #e2e8f0)',
         paddingBottom: '16px'
       }}>
         <div>
@@ -37,21 +37,23 @@ export default function DashboardLayout({
             alignItems: 'center',
             gap: '8px',
             fontSize: '11px',
-            color: 'var(--muted-foreground, #94a3b8)',
+            color: 'var(--muted-foreground, #64748b)',
             marginBottom: '4px',
             fontFamily: '"IBM Plex Mono", monospace'
           }}>
             <span>{category}</span>
             <span>›</span>
-            <span style={{ color: 'var(--primary, #3b82f6)', fontWeight: 600 }}>{subcategory || title}</span>
+            <span style={{ color: 'var(--primary, #2563eb)', fontWeight: 600 }}>{subcategory || title}</span>
           </div>
           <h1 style={{
-            fontSize: '24px',
+            fontSize: '22px',
             fontWeight: 700,
             margin: 0,
             display: 'flex',
             alignItems: 'center',
-            gap: '10px'
+            gap: '10px',
+            color: 'var(--foreground, #0f172a)',
+            fontFamily: 'var(--font-display, "Sora", sans-serif)'
           }}>
             {icon && <span>{icon}</span>}
             {title}
@@ -59,10 +61,11 @@ export default function DashboardLayout({
               <span style={{
                 fontSize: '11px',
                 fontWeight: 600,
-                padding: '3px 8px',
-                borderRadius: '99px',
-                background: 'color-mix(in oklab, var(--primary, #3b82f6) 18%, transparent)',
-                color: 'var(--primary, #3b82f6)'
+                padding: '3px 9px',
+                borderRadius: '9999px',
+                background: '#f0fdf4',
+                color: '#166534',
+                border: '1px solid #bbf7d0'
               }}>
                 {badge}
               </span>
@@ -72,7 +75,7 @@ export default function DashboardLayout({
             <p style={{
               margin: '4px 0 0',
               fontSize: '13px',
-              color: 'var(--muted-foreground, #94a3b8)'
+              color: 'var(--muted-foreground, #64748b)'
             }}>
               {subtitle}
             </p>
