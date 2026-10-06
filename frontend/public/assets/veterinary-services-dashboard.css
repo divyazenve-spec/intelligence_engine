@@ -561,7 +561,7 @@
 
 /* ── Sidebar Active Sync ──────────────────────────────────────────── */
 .sidebar-scope li button.zvs-active {
-  background: var(--sidebar-accent, #eff6ff) !important;
-  color: var(--primary, #2563eb) !important;
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: #38bdf8 !important;
   font-weight: 600 !important;
 }
