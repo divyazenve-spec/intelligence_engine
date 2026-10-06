@@ -306,7 +306,18 @@ export {
 } from './AlertsAndNotifications';
 
 // 22. Audit & Compliance
-export { default as AuditDashboard } from './AuditAndCompliance/AuditDashboard';
+export {
+  AuditDashboard,
+  AuditLog,
+  UserActivity,
+  LoginHistory,
+  DataChanges,
+  FinancialAuditTrail,
+  OrderAuditTrail,
+  InventoryAuditTrail,
+  ApprovalHistory,
+  ComplianceDashboard
+} from './AuditAndCompliance';
 
 // 23. System Health
 export {
@@ -668,7 +679,17 @@ export const CATEGORIES_NAVIGATOR = [
   {
     category: 'Audit & Compliance',
     icon: '🛡️',
-    items: ['Audit Log', 'User Activity', 'Login History', 'Data Changes', 'Financial Audit Trail', 'Compliance Dashboard'],
+    items: [
+      'Audit Log',
+      'User Activity',
+      'Login History',
+      'Data Changes',
+      'Financial Audit Trail',
+      'Order Audit Trail',
+      'Inventory Audit Trail',
+      'Approval History',
+      'Compliance Dashboard'
+    ],
     defaultPath: '/audit'
   },
   {

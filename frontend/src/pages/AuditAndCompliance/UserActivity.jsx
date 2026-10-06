@@ -1,0 +1,66 @@
+import React from 'react';
+import DashboardLayout from '../shared/DashboardLayout';
+import KpiCard from '../shared/KpiCard';
+
+export default function UserActivity() {
+  const users = [
+    { name: 'Dr. Priya Sharma', dept: 'Veterinary / Clinical', role: 'Chief Medical Officer', actionsToday: 64, activeHours: '6.4h', lastActive: '3 mins ago', status: 'Online' },
+    { name: 'Rajesh Verma', dept: 'Pharmacy Operations', role: 'Head Pharmacist', actionsToday: 92, activeHours: '7.8h', lastActive: '12 mins ago', status: 'Online' },
+    { name: 'Sneha Rao', dept: 'Finance & Accounts', role: 'Lead Accountant', actionsToday: 38, activeHours: '5.2h', lastActive: '18 mins ago', status: 'Online' },
+    { name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Senior Pathologist', actionsToday: 45, activeHours: '6.1h', lastActive: '45 mins ago', status: 'Online' },
+    { name: 'Arjun Nair', dept: 'Logistics & 60-Min', role: 'Fleet Controller', actionsToday: 118, activeHours: '8.4h', lastActive: '1 min ago', status: 'Online' },
+    { name: 'Pooja Kapoor', dept: 'Customer Support', role: 'Care Specialist', actionsToday: 87, activeHours: '7.0h', lastActive: '5 mins ago', status: 'Online' }
+  ];
+
+  return (
+    <DashboardLayout
+      category="Audit & Compliance"
+      subcategory="User Activity & Telemetry"
+      title="User Activity & Staff Telemetry"
+      subtitle="Real-time session time, operation volume, and privilege utilization per staff member"
+      icon="👥"
+      badge="48 Active Sessions"
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <KpiCard label="Active Staff Today" value="48 / 52 Staff" delta="92% Active" trend="up" subtext="Role-based access" icon="🧑‍💼" />
+        <KpiCard label="Avg Actions / User" value="71.4 Actions" delta="+8.2% vs avg" trend="up" subtext="High productivity" icon="⚡" />
+        <KpiCard label="Peak Activity Window" value="11 AM - 3 PM" delta="IST" trend="neutral" subtext="Peak clinic consults" icon="⏰" />
+        <KpiCard label="Suspicious Activity" value="Zero Flagged" delta="100% Cleared" trend="up" subtext="Normal telemetry" icon="🛡️" />
+      </div>
+
+      <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
+        <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: 700 }}>Staff Activity Telemetry Matrix</h3>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border, #e2e8f0)', color: 'var(--muted-foreground, #64748b)', fontSize: '11px', textTransform: 'uppercase' }}>
+                <th style={{ padding: '10px 12px' }}>Staff Member</th>
+                <th style={{ padding: '10px 12px' }}>Department</th>
+                <th style={{ padding: '10px 12px' }}>Role</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Actions Today</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Active Time</th>
+                <th style={{ padding: '10px 12px' }}>Last Heartbeat</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((u, idx) => (
+                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700 }}>{u.name}</td>
+                  <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dbeafe', color: '#1d4ed8', fontSize: '11px', fontWeight: 600 }}>{u.dept}</span></td>
+                  <td style={{ padding: '12px', color: '#64748b' }}>{u.role}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{u.actionsToday}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{u.activeHours}</td>
+                  <td style={{ padding: '12px', fontSize: '12px' }}>{u.lastActive}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontWeight: 600, fontSize: '11px' }}>● {u.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}

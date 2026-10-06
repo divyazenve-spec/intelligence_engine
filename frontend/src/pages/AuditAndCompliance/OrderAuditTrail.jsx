@@ -1,0 +1,63 @@
+import React from 'react';
+import DashboardLayout from '../shared/DashboardLayout';
+import KpiCard from '../shared/KpiCard';
+
+export default function OrderAuditTrail() {
+  const orders = [
+    { orderId: 'ORD-2026-8819', customer: 'Kavita Menon (Indiranagar)', event: 'Prescription Schedule H Verified', prevStatus: 'Under Review', newStatus: 'Ready for Dispatch', officer: 'Dr. Priya Sharma', time: '14:20 Today' },
+    { orderId: 'ORD-2026-8818', customer: 'Rohan Gupta (Koramangala)', event: 'Dispatched via 60-Min Rider', prevStatus: 'Packed', newStatus: 'Out for Delivery (Rider #14)', officer: 'Arjun Nair (Logistics)', time: '14:05 Today' },
+    { orderId: 'ORD-2026-8817', customer: 'Deepak Patel (Whitefield)', event: 'Special Discount Override (10% Code)', prevStatus: 'Cart Review', newStatus: 'Payment Cleared', officer: 'Executive Admin', time: '13:48 Today' },
+    { orderId: 'ORD-2026-8816', customer: 'Ananya Deshmukh (HSR)', event: 'Customer Initiated Cancellation', prevStatus: 'Processing', newStatus: 'Refund Pending', officer: 'Customer Portal Self-Service', time: '12:30 Today' },
+    { orderId: 'ORD-2026-8815', customer: 'Vikram Sethi (Jayanagar)', event: 'Order Successfully Delivered & OTP Verified', prevStatus: 'Out for Delivery', newStatus: 'Delivered (Signed OTP)', officer: 'Rider Mahesh K.', time: '11:50 Today' }
+  ];
+
+  return (
+    <DashboardLayout
+      category="Audit & Compliance"
+      subcategory="Order State Transitions & Overrides"
+      title="Order State & Fulfillment Audit Trail"
+      subtitle="State transitions, doctor verifications, price override logs, and courier handover receipts"
+      icon="📦"
+      badge="100% Chain of Custody"
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <KpiCard label="Audited Orders Today" value="184 Orders" delta="100% Tracked" trend="up" subtext="End-to-end chain of custody" icon="📦" />
+        <KpiCard label="OTP Delivery Validation" value="99.4%" delta="Verified" trend="up" subtext="Contactless signed handover" icon="📱" />
+        <KpiCard label="Price / Discount Overrides" value="3 Logged" delta="All Approved" trend="neutral" subtext="Manager authorization valid" icon="🏷️" />
+        <KpiCard label="Prescription Match SLA" value="4.2 Mins" delta="MCI Guidelines" trend="up" subtext="Verified by licensed doctor" icon="🩺" />
+      </div>
+
+      <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
+        <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: 700 }}>Order Lifecycle State Audit</h3>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border, #e2e8f0)', color: 'var(--muted-foreground, #64748b)', fontSize: '11px', textTransform: 'uppercase' }}>
+                <th style={{ padding: '10px 12px' }}>Order ID</th>
+                <th style={{ padding: '10px 12px' }}>Customer & Location</th>
+                <th style={{ padding: '10px 12px' }}>Lifecycle Event</th>
+                <th style={{ padding: '10px 12px' }}>Previous State</th>
+                <th style={{ padding: '10px 12px' }}>New State</th>
+                <th style={{ padding: '10px 12px' }}>Authorizing Officer</th>
+                <th style={{ padding: '10px 12px' }}>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((o, idx) => (
+                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{o.orderId}</td>
+                  <td style={{ padding: '12px', fontWeight: 700 }}>{o.customer}</td>
+                  <td style={{ padding: '12px' }}>{o.event}</td>
+                  <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#fef3c7', color: '#b45309', fontSize: '11px', fontWeight: 600 }}>{o.prevStatus}</span></td>
+                  <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontSize: '11px', fontWeight: 600 }}>{o.newStatus}</span></td>
+                  <td style={{ padding: '12px', color: '#64748b' }}>{o.officer}</td>
+                  <td style={{ padding: '12px', fontSize: '12px' }}>{o.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}

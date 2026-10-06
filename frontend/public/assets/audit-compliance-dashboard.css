@@ -1,0 +1,589 @@
+/* =====================================================================
+   Zenve BI — Audit & Compliance Command Suite CSS
+   Theme: Pure Executive Light Theme Architecture
+   ===================================================================== */
+
+/* ── 1. Root Full-Screen Overlay Canvas ────────────────────────────── */
+#zaud-root {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 224px !important;
+  width: calc(100vw - 224px) !important;
+  max-width: calc(100vw - 224px) !important;
+  height: 100vh !important;
+  z-index: 50 !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--font-sans, "Manrope", sans-serif);
+  display: none;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+#zaud-root.zaud-open {
+  display: block !important;
+}
+
+#zaud-root::-webkit-scrollbar {
+  width: 6px;
+}
+#zaud-root::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+#zaud-root::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+#zaud-root::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.zaud-locked,
+body.zaud-locked {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+#zaud-root,
+#zaud-root * {
+  box-sizing: border-box !important;
+}
+
+/* ── 2. Top Executive Header ───────────────────────────────────────── */
+.zaud-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 28px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.zaud-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.zaud-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+  border: 1px solid #a7f3d0 !important;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.18);
+}
+
+.zaud-brand-badge.pulse {
+  animation: zaud-pulse 2s infinite ease-in-out;
+}
+
+@keyframes zaud-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+}
+
+.zaud-header-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zaud-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f0fdf4 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+.zaud-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.zaud-header-subtitle {
+  margin: 3px 0 0 0;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.zaud-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── 3. Action Buttons ─────────────────────────────────────────────── */
+.zaud-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.zaud-btn-primary {
+  background: #059669 !important;
+  color: #ffffff !important;
+  border: 1px solid #047857 !important;
+  box-shadow: 0 1px 2px rgba(5, 150, 105, 0.2);
+}
+.zaud-btn-primary:hover {
+  background: #047857 !important;
+  transform: translateY(-1px);
+}
+
+.zaud-btn-secondary {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+.zaud-btn-secondary:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+
+.zaud-btn-close {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 8px;
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  border: 1px solid #e2e8f0 !important;
+  font-size: 15px;
+}
+.zaud-btn-close:hover {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+}
+
+/* ── 4. Horizontal Navigation Tabs Bar ─────────────────────────────── */
+.zaud-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 28px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.zaud-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.zaud-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.zaud-tab-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+.zaud-tab-btn.active {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+  box-shadow: 0 1px 2px rgba(16, 185, 129, 0.08);
+}
+
+.zaud-tab-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  color: #475569;
+}
+.zaud-tab-btn.active .zaud-tab-badge {
+  background: #059669;
+  color: #ffffff;
+}
+
+/* ── 5. Main Canvas Body ───────────────────────────────────────────── */
+.zaud-body {
+  padding: 24px 28px 48px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ── 6. KPI Metrics Row ────────────────────────────────────────────── */
+.zaud-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.zaud-kpi-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.zaud-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.zaud-kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.zaud-kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-family: "IBM Plex Mono", monospace;
+}
+.zaud-kpi-icon {
+  font-size: 18px;
+}
+.zaud-kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.zaud-kpi-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.zaud-kpi-delta {
+  font-weight: 700;
+  font-family: "IBM Plex Mono", monospace;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.zaud-kpi-delta.up {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.zaud-kpi-delta.blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.zaud-kpi-delta.warn {
+  background: #fef3c7;
+  color: #d97706;
+}
+.zaud-kpi-subtext {
+  color: #94a3b8;
+}
+
+/* ── 7. Panel Container ────────────────────────────────────────────── */
+.zaud-panel {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.zaud-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.zaud-panel-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.zaud-panel-desc {
+  margin: 3px 0 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ── 8. Search & Filters Toolbar ───────────────────────────────────── */
+.zaud-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.zaud-search-box {
+  position: relative;
+  min-width: 260px;
+  flex: 1;
+  max-width: 420px;
+}
+.zaud-search-input {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px 0 32px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.zaud-search-input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+.zaud-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 9px;
+  font-size: 13px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.zaud-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.zaud-select {
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+  outline: none;
+  cursor: pointer;
+}
+.zaud-select:focus {
+  border-color: #059669;
+}
+
+/* ── 9. Tables & Monospace Cells ───────────────────────────────────── */
+.zaud-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.zaud-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+.zaud-table th {
+  padding: 10px 14px;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e2e8f0;
+}
+.zaud-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+  vertical-align: middle;
+}
+.zaud-table tr:last-child td {
+  border-bottom: none;
+}
+.zaud-table tr:hover td {
+  background: #f8fafc;
+}
+
+.zaud-mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+}
+
+/* ── 10. Status Badges & Hash Tokens ───────────────────────────────── */
+.zaud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.zaud-badge-green { background: #dcfce7; color: #15803d; }
+.zaud-badge-blue  { background: #dbeafe; color: #1d4ed8; }
+.zaud-badge-amber { background: #fef3c7; color: #b45309; }
+.zaud-badge-red   { background: #fee2e2; color: #b91c1c; }
+.zaud-badge-purple{ background: #f3e8ff; color: #7e22ce; }
+
+.zaud-hash {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  border: 1px solid #e2e8f0;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── 11. Code / Diffs Inspector Box ────────────────────────────────── */
+.zaud-diff-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+}
+.zaud-diff-old {
+  color: #dc2626;
+  background: #fef2f2;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-decoration: line-through;
+}
+.zaud-diff-new {
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ── 12. Modal Inspector ───────────────────────────────────────────── */
+.zaud-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: zaudFadeIn 0.15s ease-out;
+}
+
+.zaud-modal-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+@keyframes zaudFadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ── 13. Toast Notification ────────────────────────────────────────── */
+#zaud-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  animation: zaudSlideUp 0.2s ease-out;
+}
+
+@keyframes zaudSlideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── 14. Responsive Layout Adjustments ─────────────────────────────── */
+@media (max-width: 1024px) {
+  #zaud-root {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
