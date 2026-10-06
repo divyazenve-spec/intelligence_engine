@@ -149,15 +149,19 @@
     if (raw.indexOf('revenue by') !== -1 || raw.indexOf('sales by') !== -1 || raw === 'doctors dashboard' || raw === 'all doctors' || raw === 'doctor performance' || raw === 'doctor revenue' || raw === 'doctor patients' || raw === 'doctor orders' || raw === 'doctor commissions') {
       return null;
     }
-    if (raw === 'clinics dashboard' || raw.indexOf('clinics dashboard') >= 0 || raw === 'clinics & hospitals' || raw === 'clinics' || raw === 'hospital command center') return 'dashboard';
+    // Never match the parent category / domain accordion header ("Clinics & Hospitals", etc.)
+    if (raw.indexOf('clinics & hospitals') !== -1 || raw.indexOf('clinics & hospit') !== -1 || raw.indexOf('clinics and hospitals') !== -1 || raw.startsWith('clinics &') || raw.startsWith('clinics and')) {
+      return null;
+    }
+    if (raw === 'clinics dashboard' || raw.indexOf('clinics dashboard') >= 0 || raw === 'hospital command center') return 'dashboard';
     if (raw === 'all clinics' || raw.indexOf('all clinics') >= 0 || raw === 'outpatient clinics') return 'all-clinics';
-    if (raw === 'hospitals' || raw.indexOf('hospitals') >= 0 || raw === 'tertiary hospitals' || raw === '24x7 hospitals') return 'hospitals';
+    if (raw === 'hospitals' || raw === 'tertiary hospitals' || raw === '24x7 hospitals' || (raw.indexOf('hospitals') >= 0 && raw.indexOf('clinic') === -1 && raw.indexOf('&') === -1)) return 'hospitals';
     if (raw === 'clinic performance' || raw.indexOf('clinic performance') >= 0) return 'performance';
     if (raw === 'clinic revenue' || raw.indexOf('clinic revenue') >= 0 || raw === 'hospital revenue') return 'revenue';
     if (raw === 'clinic orders' || raw.indexOf('clinic orders') >= 0 || raw === 'clinical orders') return 'orders';
     if (raw === 'clinic patients' || raw.indexOf('clinic patients') >= 0 || raw === 'inpatients' || raw === 'ward patients') return 'patients';
     if (raw === 'clinic doctors' || raw.indexOf('clinic doctors') >= 0 || raw === 'clinicians' || raw === 'hospital doctors') return 'doctors';
-    if (raw === 'clinic commissions' || raw.indexOf('clinic commissions') >= 0 || raw === 'commissions' || raw === 'referrals') return 'commissions';
+    if (raw === 'clinic commissions' || raw.indexOf('clinic commissions') >= 0) return 'commissions';
     if (raw === 'clinic network' || raw.indexOf('clinic network') >= 0 || raw === 'facilities network') return 'network';
     return null;
   }
@@ -1265,7 +1269,7 @@
 
     if (t.closest('[aria-expanded]') || t.closest('button[aria-expanded]') || t.closest('[aria-label="Search menu"]')) return;
 
-    var item = t.closest('.sidebar-scope button, .sidebar-scope a, nav button, nav a, aside button, aside a');
+    var item = t.closest('.sidebar-scope li button, .sidebar-scope li a, nav li button, nav li a');
     if (item && item.textContent) {
       var tab = tabFromText(item.textContent.trim());
       if (tab) {
@@ -1280,14 +1284,26 @@
     }
   });
 
+  /* ── Hashchange Listener ───────────────────────────────────────── */
+  window.addEventListener('hashchange', function () {
+    var tab = tabFromHash(location.hash);
+    if (tab) {
+      open(tab);
+    } else if (S.open && location.hash && !location.hash.startsWith('#clinic') && !location.hash.startsWith('#all-clinic') && !location.hash.startsWith('#hospital')) {
+      close();
+    }
+  });
+
   function wireSidebar() {
     document.querySelectorAll(
-      '.sidebar-scope li button, .sidebar-scope button, .sidebar-scope a, ' +
-      '[data-sidebar] button, [data-sidebar] a, nav button, nav a, aside button, aside a'
+      '.sidebar-scope li button, .sidebar-scope li a, ' +
+      '[data-sidebar] li button, [data-sidebar] li a, nav li button, nav li a'
     ).forEach(function (btn) {
+      if (btn.getAttribute('aria-expanded') !== null || btn.closest('[aria-expanded]') || btn.closest('button[aria-expanded]')) return;
       if (btn._zchWired) return;
       btn._zchWired = true;
       btn.addEventListener('click', function (e) {
+        if (btn.getAttribute('aria-expanded') !== null || btn.closest('[aria-expanded]') || btn.closest('button[aria-expanded]')) return;
         var tab = tabFromText(btn.textContent ? btn.textContent.trim() : '');
         if (tab) {
           e.preventDefault();
