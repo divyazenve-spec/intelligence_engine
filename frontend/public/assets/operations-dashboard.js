@@ -198,7 +198,7 @@
         s.indexOf('delivery cost') >= 0 ||
         s.indexOf('failed deliver') >= 0) return null;
 
-    if (s.indexOf('operations dashboard') >= 0 || s === 'operations' || s.indexOf('ceo control center') >= 0) return 'overview';
+    if (s.indexOf('operations dashboard') >= 0 || s === 'operations') return 'overview';
     if (s.indexOf('order management') >= 0 || s === 'orders management' || s === 'manage orders' || s === 'all orders') return 'management';
     if (s.indexOf('order status') >= 0 || s.indexOf('track order') >= 0 || s === 'tracking') return 'status';
     if (s.indexOf('returns & refunds') >= 0 || s.indexOf('returns') >= 0 || s.indexOf('refunds') >= 0) return 'returns';
