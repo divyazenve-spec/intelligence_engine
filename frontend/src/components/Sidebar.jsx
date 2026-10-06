@@ -539,8 +539,14 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                         <button
                           type="button"
                           onClick={() => {
-                            if (onNavigate) onNavigate(item);
-                            else window.location.hash = `#${item.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                            if (item === 'Executive Dashboard') {
+                              window.location.hash = '#overview';
+                              document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' });
+                            } else if (onNavigate) {
+                              onNavigate(item);
+                            } else {
+                              window.location.hash = `#${item.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                            }
                           }}
                           className={`sidebar-sub-item ${isActive ? 'sidebar-sub-item-active' : ''}`}
                           style={{
