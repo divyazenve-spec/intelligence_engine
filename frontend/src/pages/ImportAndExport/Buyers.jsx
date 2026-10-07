@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Buyers() {
-  const buyers = [
-    { code: 'BYR-INT-01', name: 'Royal Pets Veterinary Hospital LLC', country: 'United Arab Emirates (Dubai)', type: 'Hospital & Luxury Clinic Chain', contractVal: '$180,000 / yr', paymentTerms: 'Sight LC (Confirmed)', rep: 'Vikram Mehta', status: 'Active (VIP)' },
-    { code: 'BYR-INT-02', name: 'PetLovers Centre APAC Pte Ltd', country: 'Singapore & Malaysia', type: 'Regional Retail Superstore', contractVal: '$340,000 / yr', paymentTerms: 'TT Wire (30D)', rep: 'Vikram Mehta', status: 'Active (Strategic)' },
-    { code: 'BYR-INT-03', name: 'Mayfair Canine Atelier Ltd', country: 'United Kingdom (London)', type: 'Bespoke Haute Couture Boutique', contractVal: '£120,000 / yr', paymentTerms: 'Card & Advance Wire', rep: 'Sneha Rao', status: 'Active (Haute)' },
-    { code: 'BYR-INT-04', name: 'Arabian Falcon & Pet Healthcare Co', country: 'Saudi Arabia (Riyadh)', type: 'Veterinary Specialty Distributor', contractVal: '$220,000 / yr', paymentTerms: 'LC 60 Days', rep: 'Vikram Mehta', status: 'Active (VIP)' }
-  ];
+  const buyers = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,11 +14,11 @@ export default function Buyers() {
       title="International Buyers & Distribution Partners"
       subtitle="Overseas retail chains, international veterinary hospital groups, luxury boutique distributors, and credit limits"
       icon="🤝"
-      badge="8 Global Buyers"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Global Buyers" value="8 Overseas Accounts" delta="Across 7 countries" trend="up" subtext="Direct export agreements" icon="🤝" />
-        <KpiCard label="Annual Contracted Demand" value="$860,000 USD" delta="+38.4% YoY" trend="up" subtext="₹7.18 Cr INR equivalent" icon="💰" />
+        <KpiCard label="Annual Contracted Demand" value="$860,000 USD" delta="+38.4% YoY" trend="up" subtext="₹0 INR equivalent" icon="💰" />
         <KpiCard label="Buyer Payment Track Record" value="100% On-Time" delta="Zero default history" trend="up" subtext="Bank LC backed" icon="🛡️" />
         <KpiCard label="Export Territory Expansion" value="3 New Countries" delta="Japan, Germany, Qatar" trend="up" subtext="Regulatory clearance underway" icon="🌍" />
       </div>

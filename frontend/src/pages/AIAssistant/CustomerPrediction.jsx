@@ -11,12 +11,7 @@ export default function CustomerPrediction() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const nextActions = [
-    { petParent: 'Vikram Malhotra (Bruno - 4yo Golden)', propensity: 'Next Nutrition Re-order in 4 Days', prob: '96.2%', affinity: 'Royal Canin Maxi Adult (15kg)', estRev: '₹7,200', action: 'Send 1-Click WhatsApp Reorder' },
-    { petParent: 'Shweta Kulkarni (Milo - 6mo Beagle)', propensity: 'Rabies Booster Vaccination Due', prob: '94.8%', affinity: 'Annual Booster + Deworming', estRev: '₹1,450', action: 'Slot Clinic OPD Appointment' },
-    { petParent: 'Anand Chandrasekar (Bella - Persian Cat)', propensity: 'Renal Preventive Screening', prob: '89.4%', affinity: 'Feline Geriatric Blood Profile', estRev: '₹2,800', action: 'Schedule Teleconsult Review' },
-    { petParent: 'Neha Kapoor (Simba - 2yo Labrador)', propensity: 'Monsoon Tick Collar Replacement', prob: '92.1%', affinity: 'Seresto Tick Collar 8-Month', estRev: '₹3,400', action: 'Send 60-Minute Fast Delivery Link' }
-  ];
+  const nextActions = [];
 
   return (
     <DashboardLayout
@@ -28,10 +23,10 @@ export default function CustomerPrediction() {
       badge="NBA Predictor Online"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next-Best-Action Accuracy" value="92.6%" delta="+4.2% Lift" trend="up" subtext="Conversion probability" icon="🎯" />
-        <KpiCard label="Predicted Repurchase Pipeline" value="₹14.20L" delta="Next 14 Days" trend="up" subtext="840 Pet parents" icon="💰" />
-        <KpiCard label="Vaccination Recall Accuracy" value="98.1%" delta="100% On-time" trend="up" subtext="Preventive schedule" icon="💉" />
-        <KpiCard label="Cross-Sell Conversion Rate" value="38.4%" delta="+12.4% vs Generic" trend="up" subtext="AI tailored nudges" icon="🚀" />
+        <KpiCard label="Next-Best-Action Accuracy" value="0.0%" delta="+4.2% Lift" trend="up" subtext="Conversion probability" icon="🎯" />
+        <KpiCard label="Predicted Repurchase Pipeline" value="₹0" delta="Next 14 Days" trend="up" subtext="840 Pet parents" icon="💰" />
+        <KpiCard label="Vaccination Recall Accuracy" value="0.0%" delta="100% On-time" trend="up" subtext="Preventive schedule" icon="💉" />
+        <KpiCard label="Cross-Sell Conversion Rate" value="0.0%" delta="+12.4% vs Generic" trend="up" subtext="AI tailored nudges" icon="🚀" />
       </div>
 
       <div style={cardStyle}>

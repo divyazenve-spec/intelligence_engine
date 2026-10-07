@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CAC() {
-  const cityCAC = [
-    { city: 'Bengaluru Flagship Metro', blendedCAC: '₹340', paidCAC: '₹480', organicCAC: '₹95', newCustomers: '1,420', ltvRatio: '4.2x', status: 'Excellent' },
-    { city: 'Mumbai MMR & Thane', blendedCAC: '₹390', paidCAC: '₹560', organicCAC: '₹110', newCustomers: '980', ltvRatio: '3.9x', status: 'Healthy' },
-    { city: 'Delhi-NCR (Gurgaon & Noida)', blendedCAC: '₹410', paidCAC: '₹590', organicCAC: '₹125', newCustomers: '720', ltvRatio: '3.6x', status: 'Healthy' },
-    { city: 'Hyderabad & Secunderabad', blendedCAC: '₹320', paidCAC: '₹440', organicCAC: '₹85', newCustomers: '540', ltvRatio: '4.4x', status: 'Excellent' },
-    { city: 'Pune & Pimpri', blendedCAC: '₹295', paidCAC: '₹390', organicCAC: '₹70', newCustomers: '380', ltvRatio: '4.8x', status: 'Top Efficiency' }
-  ];
+  const cityCAC = [];
 
   return (
     <DashboardLayout
@@ -18,12 +12,12 @@ export default function CAC() {
       title="Customer Acquisition Cost (CAC) Intelligence"
       subtitle="Blended CAC, paid vs organic acquisition cost, payback window, and LTV-to-CAC health ratio"
       icon="🎯"
-      badge="₹365 Blended CAC"
+      badge="₹0 CAC"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended CAC" value="₹365" delta="-8.4%" trend="up" subtext="Across all acquisition channels" icon="🎯" />
-        <KpiCard label="Paid Only CAC" value="₹512" delta="-6.2%" trend="up" subtext="Meta & Google ad spend" icon="💳" />
-        <KpiCard label="Organic / Referral CAC" value="₹92" delta="-12.1%" trend="up" subtext="Viral invite & SEO" icon="🌱" />
+        <KpiCard label="Blended CAC" value="₹0" delta="-8.4%" trend="up" subtext="Across all acquisition channels" icon="🎯" />
+        <KpiCard label="Paid Only CAC" value="₹0" delta="-6.2%" trend="up" subtext="Meta & Google ad spend" icon="💳" />
+        <KpiCard label="Organic / Referral CAC" value="₹0" delta="-12.1%" trend="up" subtext="Viral invite & SEO" icon="🌱" />
         <KpiCard label="LTV to CAC Ratio" value="3.82x" delta="+0.45x" trend="up" subtext="Target healthy band > 3.0x" icon="⚖️" />
       </div>
 

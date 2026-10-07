@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ScheduledReports() {
-  const [schedules, setSchedules] = useState([
-    { id: 'SCH-101', name: 'Executive Daily Flash GMV & Pacing Digest', freq: 'Daily at 07:00 AM', format: 'PDF & CSV', recipients: 'Board of Directors, CEO, CMO', channel: 'Email + Slack #exec-pulse', status: 'Active', lastRun: 'Today, 07:00 AM' },
-    { id: 'SCH-102', name: 'Veterinary Doctor Weekly Commission Statements', freq: 'Weekly on Monday', format: 'CSV Ledger', recipients: 'Finance Controller, 18 Consulting Doctors', channel: 'Encrypted Email', status: 'Active', lastRun: 'Oct 02, 09:00 AM' },
-    { id: 'SCH-103', name: 'Warehouse Batch Valuation & Near-Expiry Audit', freq: 'Weekly on Sunday', format: 'Excel (.xlsx)', recipients: 'Chief Pharmacist, Warehouse Leads', channel: 'Email + ERP Webhook', status: 'Active', lastRun: 'Oct 01, 11:00 PM' },
-    { id: 'SCH-104', name: '60-Minute Express Delivery SLA & Fleet Scorecard', freq: 'Daily at 11:30 PM', format: 'PDF Summary', recipients: 'Logistics VP, 5 Metro Hub Managers', channel: 'Slack #fleet-leadership', status: 'Active', lastRun: 'Yesterday, 11:30 PM' },
-    { id: 'SCH-105', name: 'B2B Overdue Invoicing & Dunning Aging Schedule', freq: 'Bi-Weekly', format: 'CSV', recipients: 'Accounts Receivable Lead, Credit Ops', channel: 'Email', status: 'Active', lastRun: 'Oct 01, 10:00 AM' },
-    { id: 'SCH-106', name: 'Monthly Audited GAAP P&L & Balance Sheet Pack', freq: '1st of every Month', format: 'Audited PDF + XLSX', recipients: 'Statutory Auditors, CFO, Board', channel: 'Secure Data Room Portal', status: 'Active', lastRun: 'Oct 01, 00:01 AM' }
-  ]);
+  const [schedules, setSchedules] = useState([]);
 
   const [toast, setToast] = useState('');
   const [modalOpen, setModalOpen] = useState(false);

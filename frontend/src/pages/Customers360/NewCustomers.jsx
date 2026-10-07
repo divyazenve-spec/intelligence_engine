@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function NewCustomers() {
-  const newSignups = [
-    { id: 'CUST-8441', name: 'Varun Grover', pet: 'Koko (Pug Pup)', channel: 'Instagram Ads', date: '2026-10-05', firstOrder: '₹3,400 (Puppy Starter Kit)', cac: '₹420', status: 'Converted' },
-    { id: 'CUST-8442', name: 'Dr. Shalini Mehta', pet: 'Oliver (British Shorthair)', channel: 'Veterinary Referral', date: '2026-10-04', firstOrder: '₹5,800 (Rx Renal Care)', cac: '₹180', status: 'Converted' },
-    { id: 'CUST-8443', name: 'Rohan Sethi', pet: 'Cooper (Labrador)', channel: 'Google Search (Organic)', date: '2026-10-04', firstOrder: '₹2,600 (Dewormer & Treats)', cac: '₹0', status: 'Converted' },
-    { id: 'CUST-8444', name: 'Deepika Rao', pet: 'Zoe (Indie Kitten)', channel: 'Adoption Drive Partner', date: '2026-10-03', firstOrder: '₹1,950 (Feline Vaccines)', cac: '₹120', status: 'Converted' },
-    { id: 'CUST-8445', name: 'Alok Bhattacharya', pet: 'Max (German Shepherd)', channel: 'Influencer Referral', date: '2026-10-02', firstOrder: '₹7,200 (Orthopedic Bed + Food)', cac: '₹540', status: 'Converted' },
-    { id: 'CUST-8446', name: 'Pooja Hegde', pet: 'Bella (Golden Retriever)', channel: 'Walk-in (Indiranagar)', date: '2026-10-01', firstOrder: '₹4,100 (Full Grooming + Toys)', cac: '₹90', status: 'Converted' }
-  ];
+  const newSignups = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -25,9 +18,9 @@ export default function NewCustomers() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="New Customers (MTD)" value="1,120 Pet Parents" delta="+22.4% MoM" trend="up" subtext="Target: 950 accounts" icon="✨" />
-        <KpiCard label="Blended CAC" value="₹284 / Acq" delta="-14.2% YoY" trend="up" subtext="High organic referral mix" icon="📉" />
-        <KpiCard label="Day 1 Activation Rate" value="84.2%" delta="Immediate first purchase" trend="up" subtext="Within 24 hours of install" icon="⚡" />
-        <KpiCard label="First Order Avg. Basket" value="₹3,480" delta="+8.6% vs FY25" trend="up" subtext="Welcome bundle attach" icon="🛒" />
+        <KpiCard label="Blended CAC" value="₹0 / Acq" delta="-14.2% YoY" trend="up" subtext="High organic referral mix" icon="📉" />
+        <KpiCard label="Day 1 Activation Rate" value="0.0%" delta="Immediate first purchase" trend="up" subtext="Within 24 hours of install" icon="⚡" />
+        <KpiCard label="First Order Avg. Basket" value="₹0" delta="+8.6% vs FY25" trend="up" subtext="Welcome bundle attach" icon="🛒" />
       </div>
 
       <div style={cardStyle}>

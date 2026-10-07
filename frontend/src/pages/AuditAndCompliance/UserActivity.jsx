@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function UserActivity() {
-  const users = [
-    { name: 'Dr. Priya Sharma', dept: 'Veterinary / Clinical', role: 'Chief Medical Officer', actionsToday: 64, activeHours: '6.4h', lastActive: '3 mins ago', status: 'Online' },
-    { name: 'Rajesh Verma', dept: 'Pharmacy Operations', role: 'Head Pharmacist', actionsToday: 92, activeHours: '7.8h', lastActive: '12 mins ago', status: 'Online' },
-    { name: 'Sneha Rao', dept: 'Finance & Accounts', role: 'Lead Accountant', actionsToday: 38, activeHours: '5.2h', lastActive: '18 mins ago', status: 'Online' },
-    { name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Senior Pathologist', actionsToday: 45, activeHours: '6.1h', lastActive: '45 mins ago', status: 'Online' },
-    { name: 'Arjun Nair', dept: 'Logistics & 60-Min', role: 'Fleet Controller', actionsToday: 118, activeHours: '8.4h', lastActive: '1 min ago', status: 'Online' },
-    { name: 'Pooja Kapoor', dept: 'Customer Support', role: 'Care Specialist', actionsToday: 87, activeHours: '7.0h', lastActive: '5 mins ago', status: 'Online' }
-  ];
+  const users = [];
 
   return (
     <DashboardLayout
@@ -19,7 +12,7 @@ export default function UserActivity() {
       title="User Activity & Staff Telemetry"
       subtitle="Real-time session time, operation volume, and privilege utilization per staff member"
       icon="👥"
-      badge="48 Active Sessions"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Staff Today" value="48 / 52 Staff" delta="92% Active" trend="up" subtext="Role-based access" icon="🧑‍💼" />

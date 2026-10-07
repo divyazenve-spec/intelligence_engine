@@ -30,76 +30,21 @@
   ];
 
   /* ── Master Datasets ──────────────────────────────────────────────── */
-  var ORDERS = [
-    { id: 'ORD-DL-9821', customer: 'Ananya Deshmukh', pet: 'Golden Retriever (Max)', hub: 'Koramangala Hub (BLR)', rider: 'Kiran Kumar (EV-44)', items: 'Nobivac DHPPi + Royal Canin Hepatic', time: '14 mins ago', eta: '18 mins', type: '60-Min Express', temp: '3.4°C', status: 'In Transit' },
-    { id: 'ORD-DL-9820', customer: 'Rajesh Subramaniam', pet: 'Beagle (Rocky)', hub: 'Indiranagar Hub (BLR)', rider: 'Arun Varma (EV-12)', items: 'NexGard Chewables + Ear Cleanser', time: '22 mins ago', eta: '8 mins', type: '60-Min Express', temp: 'Ambient', status: 'Out for Delivery' },
-    { id: 'ORD-DL-9819', customer: 'Meera Chawla', pet: 'Persian Cat (Snowy)', hub: 'Bandra West Hub (BOM)', rider: 'Sunil Jadhav (EV-88)', items: 'Renal Liquid Diet + Syringes', time: '35 mins ago', eta: 'Delivered', type: 'Same Day', temp: '4.1°C', status: 'Delivered' },
-    { id: 'ORD-DL-9818', customer: 'Vikramaditya Rao', pet: 'German Shepherd (Tiger)', hub: 'Whitefield Hub (BLR)', rider: 'Praveen Gowda (EV-23)', items: 'Post-op Antibiotics + Collar', time: '41 mins ago', eta: '24 mins', type: '60-Min Express', temp: 'Ambient', status: 'In Transit' },
-    { id: 'ORD-DL-9817', customer: 'Pooja Agarwal', pet: 'Shih Tzu (Coco)', hub: 'Andheri East Hub (BOM)', rider: 'Ramesh Sawant (EV-31)', items: 'Puppy Starter Pack + Tick Shield', time: '55 mins ago', eta: 'Delivered', type: 'Same Day', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9816', customer: 'Nikhil Kashyap', pet: 'Labrador (Cooper)', hub: 'Gurugram Sec 29 (DEL)', rider: 'Mohit Sharma (EV-09)', items: 'Rabies Booster + Calcium Chewables', time: '1 hr ago', eta: 'Scheduled', type: 'Scheduled Slot', temp: '3.8°C', status: 'Dispatched' },
-    { id: 'ORD-DL-9815', customer: 'Sonalika Sen', pet: 'Indie Puppy (Chutki)', hub: 'Jubilee Hills Hub (HYD)', rider: 'Venkatesh R (EV-55)', items: 'Emergency Deworming Suspension', time: '1 hr ago', eta: 'Delivered', type: '60-Min Express', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9814', customer: 'Harish Mehta', pet: 'Rottweiler (Bruno)', hub: 'Koramangala Hub (BLR)', rider: 'Dinesh Patil (EV-19)', items: 'Prescription Joint Supplements', time: '2 hrs ago', eta: 'Rescheduled', type: 'Same Day', temp: 'Ambient', status: 'Failed Attempt' }
-  ];
+  var ORDERS = [];
 
-  var PARTNERS = [
-    { name: 'Zenve Internal EV Fleet', type: 'Dedicated Electric 2-Wheeler', fleetSize: '76 Riders', activeNow: 62, onTimeSla: '99.4%', avgCost: '₹38 / drop', rating: '4.95 / 5.0', coldChainReady: 'Yes (Insulated Boxes)', status: 'Primary' },
-    { name: 'Shadowfax Quick Delivery', type: 'On-Demand Hyperlocal 3PL', fleetSize: 'Flex Pool (BLR/BOM)', activeNow: 28, onTimeSla: '96.2%', avgCost: '₹46 / drop', rating: '4.78 / 5.0', coldChainReady: 'Partial', status: 'Active 3PL' },
-    { name: 'Dunzo for Business', type: 'Instant Hyperlocal 3PL', fleetSize: 'Flex Pool (BLR)', activeNow: 14, onTimeSla: '95.8%', avgCost: '₹48 / drop', rating: '4.72 / 5.0', coldChainReady: 'No (Dry goods only)', status: 'Active 3PL' },
-    { name: 'Porter Enterprise', type: '4-Wheeler & Bulk Hub Transfer', fleetSize: '12 Vans', activeNow: 9, onTimeSla: '98.1%', avgCost: '₹340 / trip', rating: '4.88 / 5.0', coldChainReady: 'Yes (Reefer Vans)', status: 'Bulk & Hubs' },
-    { name: 'Delhivery Surface Direct', type: 'Inter-City & Regional Courier', fleetSize: 'National Network', activeNow: 4, onTimeSla: '94.5%', avgCost: '₹85 / parcel', rating: '4.65 / 5.0', coldChainReady: 'Dry Ice Verified', status: 'Inter-City' }
-  ];
+  var PARTNERS = [];
 
-  var TRACKING_STREAMS = [
-    { trackerId: 'TRK-901', rider: 'Kiran Kumar (EV-44)', location: '100ft Road, Indiranagar', dest: 'Koramangala 4th Block', speed: '32 km/h', battery: '82%', temp: '3.4°C', signal: 'Strong (5G)', eta: '12 mins', status: 'En Route' },
-    { trackerId: 'TRK-902', rider: 'Arun Varma (EV-12)', location: 'HSR 27th Main', dest: 'HSR Layout Sector 1', speed: '24 km/h', battery: '68%', temp: 'Ambient', signal: 'Strong (5G)', eta: '6 mins', status: 'En Route' },
-    { trackerId: 'TRK-903', rider: 'Praveen Gowda (EV-23)', location: 'ITPL Main Rd, Whitefield', dest: 'Prestige Shantiniketan', speed: '28 km/h', battery: '74%', temp: '3.9°C', signal: 'Normal (4G)', eta: '18 mins', status: 'En Route' },
-    { trackerId: 'TRK-904', rider: 'Sunil Jadhav (EV-88)', location: 'Linking Road, Bandra West', dest: 'Pali Hill, Bandra', speed: '19 km/h', battery: '59%', temp: '4.2°C', signal: 'Strong (5G)', eta: '9 mins', status: 'En Route' },
-    { trackerId: 'TRK-905', rider: 'Ramesh Sawant (EV-31)', location: 'JVLR Junction, Andheri East', dest: 'Poonam Nagar', speed: '26 km/h', battery: '91%', temp: 'Ambient', signal: 'Normal (4G)', eta: '14 mins', status: 'En Route' },
-    { trackerId: 'TRK-906', rider: 'Mohit Sharma (EV-09)', location: 'Cyber City, Gurugram', dest: 'DLF Phase 2', speed: '34 km/h', battery: '64%', temp: '3.7°C', signal: 'Strong (5G)', eta: '16 mins', status: 'En Route' }
-  ];
+  var TRACKING_STREAMS = [];
 
-  var HUBS_60M = [
-    { hub: 'Koramangala Dark Store Hub', city: 'Bengaluru', orders60m: 142, avgFulfillment: '32.4 mins', dispatchTime: '6.2 mins', breachCount: 1, slaCompliance: '99.3%', peakCapacity: '28 riders' },
-    { hub: 'Indiranagar Care Hub', city: 'Bengaluru', orders60m: 118, avgFulfillment: '34.8 mins', dispatchTime: '7.1 mins', breachCount: 2, slaCompliance: '98.3%', peakCapacity: '22 riders' },
-    { hub: 'Whitefield Tech Center', city: 'Bengaluru', orders60m: 86, avgFulfillment: '38.6 mins', dispatchTime: '8.4 mins', breachCount: 3, slaCompliance: '96.5%', peakCapacity: '18 riders' },
-    { hub: 'Bandra West Specialty Hub', city: 'Mumbai', orders60m: 98, avgFulfillment: '35.1 mins', dispatchTime: '6.8 mins', breachCount: 1, slaCompliance: '99.0%', peakCapacity: '20 riders' },
-    { hub: 'Andheri East Logistics Node', city: 'Mumbai', orders60m: 84, avgFulfillment: '37.2 mins', dispatchTime: '7.9 mins', breachCount: 2, slaCompliance: '97.6%', peakCapacity: '16 riders' },
-    { hub: 'Gurugram Cyber Hub Node', city: 'Delhi-NCR', orders60m: 76, avgFulfillment: '39.0 mins', dispatchTime: '8.1 mins', breachCount: 2, slaCompliance: '97.4%', peakCapacity: '15 riders' }
-  ];
+  var HUBS_60M = [];
 
-  var SLA_DATA = [
-    { tier: '60-Minute Rapid Tier', target: '< 60 mins', actual: '36.2 mins', volume: '14,200', breaches: 24, compliance: '98.3%', benchmark: '95.0%', status: 'Exceeding' },
-    { tier: 'Same-Day Slotted Tier', target: '< 4 hours', actual: '2.8 hours', volume: '6,400', breaches: 18, compliance: '97.2%', benchmark: '95.0%', status: 'Exceeding' },
-    { tier: 'Cold-Chain Biologicals', target: '2°C to 8°C continuous', actual: '99.9% in-range', volume: '3,850', breaches: 3, compliance: '99.9%', benchmark: '99.5%', status: 'World Class' },
-    { tier: 'Next-Day Clinic Supply', target: '< 24 hours', actual: '18.4 hours', volume: '1,200', breaches: 8, compliance: '99.3%', benchmark: '98.0%', status: 'Exceeding' },
-    { tier: 'Emergency Telehealth Dispatch', target: '< 45 mins', actual: '28.1 mins', volume: '980', breaches: 4, compliance: '99.6%', benchmark: '98.0%', status: 'World Class' }
-  ];
+  var SLA_DATA = [];
 
-  var COST_DATA = [
-    { component: 'Rider Payout (Per Drop Base)', internalEv: '₹28.00', partner3pl: '₹38.50', variance: '-₹10.50 (EV Saves 27%)', shareOfCost: '54.2%' },
-    { component: 'Fuel & EV Battery Swapping', internalEv: '₹3.40', partner3pl: '₹8.20', variance: '-₹4.80 (EV Saves 58%)', shareOfCost: '12.4%' },
-    { component: 'Packaging & Thermal Cold-Box Pouches', internalEv: '₹6.20', partner3pl: '₹6.20', variance: '₹0.00 (Standardized)', shareOfCost: '14.8%' },
-    { component: 'Dispatch Telematics & SaaS Platform', internalEv: '₹1.80', partner3pl: '₹2.40', variance: '-₹0.60 (In-House)', shareOfCost: '5.1%' },
-    { component: 'Failed Attempt Re-dispatch Buffer', internalEv: '₹1.10', partner3pl: '₹2.80', variance: '-₹1.70 (Higher EV OTP rate)', shareOfCost: '3.5%' },
-    { component: 'Insurance & Transit Damage Guarantee', internalEv: '₹1.40', partner3pl: '₹1.40', variance: '₹0.00 (Shared)', shareOfCost: '10.0%' }
-  ];
+  var COST_DATA = [];
 
-  var FAILED_CAUSES = [
-    { cause: 'Pet Parent Unavailable / Phone Unreachable', incidents: 38, pct: '44.2%', avgResolution: 'Same-day re-slot via WhatsApp', rtoImpact: 'Low (92% re-delivered)' },
-    { cause: 'Gated Society Entry Delayed / Denied', incidents: 19, pct: '22.1%', avgResolution: 'Security gate handover OTP', rtoImpact: 'Minimal (96% re-delivered)' },
-    { cause: 'Address Incomplete / Incorrect Landmark', incidents: 14, pct: '16.3%', avgResolution: 'Google Maps pin sharing with rider', rtoImpact: 'Medium (88% re-delivered)' },
-    { cause: 'Customer Cancelled at Doorstep', incidents: 8, pct: '9.3%', avgResolution: 'Immediate dark store restock', rtoImpact: 'Definite RTO (Refund initiated)' },
-    { cause: 'Severe Monsoon Waterlogging / Roadblock', incidents: 5, pct: '5.8%', avgResolution: 'Alternate rider re-routing', rtoImpact: 'Low (Delivered within 3 hrs)' },
-    { cause: 'Cold-Chain Temperature Warning Excursion', incidents: 2, pct: '2.3%', avgResolution: 'Fresh vial dispatched immediately from hub', rtoImpact: 'Zero cost to customer' }
-  ];
+  var FAILED_CAUSES = [];
 
-  var TOP_RIDERS = [
-    { rank: 1, name: 'Kiran Kumar', vehicleId: 'EV-BLR-044', hub: 'Koramangala Hub', deliveries: 312, onTime: '99.7%', avgSpeed: '27.4 km/h', csat: '4.98 / 5.0', coldChainAudits: '100% Pass', badge: 'Star Rider of Month' },
-    { rank: 2, name: 'Arun Varma', vehicleId: 'EV-BLR-012', hub: 'Indiranagar Hub', deliveries: 294, onTime: '99.3%', avgSpeed: '26.8 km/h', csat: '4.95 / 5.0', coldChainAudits: '100% Pass', badge: 'Top CSAT' },
-    { rank: 3, name: 'Sunil Jadhav', vehicleId: 'EV-BOM-088', hub: 'Bandra West Hub', deliveries: 288, onTime: '98.9%', avgSpeed: '22.1 km/h', csat: '4.94 / 5.0', coldChainAudits: '100% Pass', badge: 'Rapid City Master' },
-    { rank: 4, name: 'Praveen Gowda', vehicleId: 'EV-BLR-023', hub: 'Whitefield Hub', deliveries: 276, onTime: '98.6%', avgSpeed: '28.2 km/h', csat: '4.91 / 5.0', coldChainAudits: '100% Pass', badge: 'Long-Range Ace' },
-    { rank: 5, name: 'Mohit Sharma', vehicleId: 'EV-DEL-009', hub: 'Gurugram Hub', deliveries: 264, onTime: '98.4%', avgSpeed: '29.5 km/h', csat: '4.89 / 5.0', coldChainAudits: '100% Pass', badge: 'High-Volume Pro' }
-  ];
+  var TOP_RIDERS = [];
 
   /* ── Helpers ──────────────────────────────────────────────────────── */
   function showToast(msg) {

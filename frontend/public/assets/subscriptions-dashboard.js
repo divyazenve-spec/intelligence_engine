@@ -23,32 +23,20 @@
 
   /* ── 8 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',   label: 'Subscription Dashboard', icon: '🔄', hash: '#subscription-dashboard', badge: '₹11.5L MRR',  title: 'Recurring Subscriptions & Pet Wellness Memberships', sub: 'Monthly recurring revenue (MRR), automated doorstep auto-shipments, preventive wellness plans, and subscriber cohorts' },
-    { id: 'active',      label: 'Active Subscriptions',   icon: '✅', hash: '#active-subscriptions',   badge: '824 Pets',     title: 'Active Member Roster & Auto-Debit Mandates', sub: 'Live subscriber cohort, e-mandate banking authorizations, recurring fulfillment status, and pet health profiles' },
-    { id: 'new',         label: 'New Subscriptions',      icon: '✨', hash: '#new-subscriptions',      badge: '+108 MTD',     title: 'New Subscriber Acquisition & Channel Velocity', sub: 'Monthly new subscriber signups, acquisition channel conversion, customer acquisition cost (CAC), and payback period' },
-    { id: 'renewals',    label: 'Renewals',               icon: '🔄', hash: '#renewals',               badge: '96.1% Rate',   title: 'Automated Billing Cycles & Renewal Rates', sub: 'Monthly automated debit execution, dunning management, card & UPI retry algorithms, and successful collection velocity' },
-    { id: 'expiring',    label: 'Expiring Subscriptions', icon: '⏳', hash: '#expiring-subscriptions', badge: '14 in 30D',    title: 'Upcoming Expiries & Proactive Retention Alerts', sub: 'Annual membership renewals due in 30 days, token expiration mitigation, and concierge outreach pipeline' },
-    { id: 'churn',       label: 'Churn',                  icon: '📉', hash: '#churn',                  badge: '1.18% Churn',  title: 'Subscriber Churn Analytics & Root Cause Mitigation', sub: 'Voluntary and involuntary churn analysis, exit survey insights, revenue attrition, and win-back campaigns' },
-    { id: 'revenue',     label: 'Subscription Revenue',   icon: '💵', hash: '#subscription-revenue',   badge: '₹1.38 Cr ARR', title: 'Recurring Revenue (MRR / ARR) Trajectory', sub: 'Monthly recurring revenue breakdown, annualized contract run rates, expansion revenue, and gross margins' },
-    { id: 'analytics',   label: 'Subscription Analytics', icon: '📊', hash: '#subscription-analytics', badge: '5.4x LTV/CAC', title: 'Cohort Retention & Lifetime Value (LTV) Deep-Dive', sub: 'Multi-month retention heatmaps, customer lifetime value expansion, payback velocity, and subscriber health scores' }
+    { id: 'dashboard',   label: 'Subscription Dashboard', icon: '🔄', hash: '#subscription-dashboard', badge: '',  title: 'Recurring Subscriptions & Pet Wellness Memberships', sub: 'Monthly recurring revenue (MRR), automated doorstep auto-shipments, preventive wellness plans, and subscriber cohorts' },
+    { id: 'active',      label: 'Active Subscriptions',   icon: '✅', hash: '#active-subscriptions',   badge: '',     title: 'Active Member Roster & Auto-Debit Mandates', sub: 'Live subscriber cohort, e-mandate banking authorizations, recurring fulfillment status, and pet health profiles' },
+    { id: 'new',         label: 'New Subscriptions',      icon: '✨', hash: '#new-subscriptions',      badge: '',     title: 'New Subscriber Acquisition & Channel Velocity', sub: 'Monthly new subscriber signups, acquisition channel conversion, customer acquisition cost (CAC), and payback period' },
+    { id: 'renewals',    label: 'Renewals',               icon: '🔄', hash: '#renewals',               badge: '',   title: 'Automated Billing Cycles & Renewal Rates', sub: 'Monthly automated debit execution, dunning management, card & UPI retry algorithms, and successful collection velocity' },
+    { id: 'expiring',    label: 'Expiring Subscriptions', icon: '⏳', hash: '#expiring-subscriptions', badge: '',    title: 'Upcoming Expiries & Proactive Retention Alerts', sub: 'Annual membership renewals due in 30 days, token expiration mitigation, and concierge outreach pipeline' },
+    { id: 'churn',       label: 'Churn',                  icon: '📉', hash: '#churn',                  badge: '',  title: 'Subscriber Churn Analytics & Root Cause Mitigation', sub: 'Voluntary and involuntary churn analysis, exit survey insights, revenue attrition, and win-back campaigns' },
+    { id: 'revenue',     label: 'Subscription Revenue',   icon: '💵', hash: '#subscription-revenue',   badge: '', title: 'Recurring Revenue (MRR / ARR) Trajectory', sub: 'Monthly recurring revenue breakdown, annualized contract run rates, expansion revenue, and gross margins' },
+    { id: 'analytics',   label: 'Subscription Analytics', icon: '📊', hash: '#subscription-analytics', badge: '', title: 'Cohort Retention & Lifetime Value (LTV) Deep-Dive', sub: 'Multi-month retention heatmaps, customer lifetime value expansion, payback velocity, and subscriber health scores' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var PLANS = [
-    { id: 'SUB-PLN-101', name: 'Comprehensive Puppy Preventive Care Suite', price: '₹1,499 / mo', activeSubscribers: 184, mrr: '₹2,75,816', renewalRate: '96.2%', churn: '0.8%', benefits: 'Unlimited Vet Consults + Vaccines' },
-    { id: 'SUB-PLN-102', name: 'Monthly Nutrition & Prescription Auto-Ship', price: '₹2,850 / mo', activeSubscribers: 142, mrr: '₹4,04,700', renewalRate: '94.5%', churn: '1.2%', benefits: 'Scheduled Royal Canin Doorstep' },
-    { id: 'SUB-PLN-103', name: 'Senior Pet Geriatric Vitality & Arthritis Care', price: '₹1,850 / mo', activeSubscribers: 98, mrr: '₹1,81,300', renewalRate: '97.4%', churn: '0.6%', benefits: 'Joint Injections + Monthly Bloods' },
-    { id: 'SUB-PLN-104', name: 'Feline Holistic Wellness & Grooming Spa Plan', price: '₹1,250 / mo', activeSubscribers: 120, mrr: '₹1,50,000', renewalRate: '93.8%', churn: '1.5%', benefits: 'Deworming + Spa Grooming' },
-    { id: 'SUB-PLN-105', name: 'Zenve 24x7 Emergency Telehealth Unlimited', price: '₹499 / mo', activeSubscribers: 280, mrr: '₹1,39,720', renewalRate: '91.2%', churn: '2.1%', benefits: 'Instant Video Vet in < 60s' }
-  ];
+  var PLANS = [];
 
-  var SUBSCRIBERS = [
-    { subId: 'SUB-ACT-8801', petName: 'Simba (Golden Retriever)', parent: 'Vikramaditya Singhania', plan: 'Puppy Preventive Care', autoDebit: 'UPI AutoPay (HDFC)', monthlyFee: '₹1,499', nextRenewal: '2026-10-12', status: 'Active' },
-    { subId: 'SUB-ACT-8802', petName: 'Bella (Shih Tzu)', parent: 'Pooja Bhattacharya', plan: 'Nutrition Auto-Ship', autoDebit: 'Credit Card (ICICI)', monthlyFee: '₹2,850', nextRenewal: '2026-10-18', status: 'Active' },
-    { subId: 'SUB-ACT-8803', petName: 'Bruno (Rottweiler)', parent: 'Harish Mehta', plan: 'Senior Pet Geriatric', autoDebit: 'UPI AutoPay (SBI)', monthlyFee: '₹1,850', nextRenewal: '2026-11-05', status: 'Active' },
-    { subId: 'SUB-ACT-8804', petName: 'Milo (Persian Cat)', parent: 'Dr. Shruti Nair', plan: 'Feline Wellness & Spa', autoDebit: 'Debit Card (Axis)', monthlyFee: '₹1,250', nextRenewal: '2026-10-20', status: 'Active' },
-    { subId: 'SUB-ACT-8805', petName: 'Koko (French Bulldog)', parent: 'Ananya Deshmukh', plan: 'Emergency Telehealth', autoDebit: 'UPI AutoPay (Paytm)', monthlyFee: '₹499', nextRenewal: '2026-10-10', status: 'Active' }
-  ];
+  var SUBSCRIBERS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

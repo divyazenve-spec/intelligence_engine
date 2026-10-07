@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function FashionCollections() {
-  const collections = [
-    { id: 'COL-2026-03', name: 'Monsoon Canine Splash Capsule', season: 'Monsoon 2026', styles: 12, launchDate: '2026-08-15', sellThrough: '94.2%', revenue: '₹8,45,000', leadDesigner: 'Aarushi Mehta', status: 'Archive' },
-    { id: 'COL-2026-04', name: 'Royal Velvet & Zari Festive Collection', season: 'Festive / Diwali 2026', styles: 18, launchDate: '2026-09-20', sellThrough: '82.5%', revenue: '₹14,20,000', leadDesigner: 'Zoya Qureshi', status: 'Active Drop' },
-    { id: 'COL-2026-05', name: 'Alpine Cashmere Winter Luxe', season: 'Winter 2026-27', styles: 14, launchDate: '2026-10-01', sellThrough: '48.6%', revenue: '₹6,80,000', leadDesigner: 'Karan Sen', status: 'Active Drop' },
-    { id: 'COL-2026-06', name: 'Bespoke Pet Wedding & Gala Runway', season: 'Annual Signature Line', styles: 8, launchDate: '2026-06-10', sellThrough: '91.0%', revenue: '₹9,60,000', leadDesigner: 'Pravin Varma', status: 'Permanent Line' },
-    { id: 'COL-2027-01', name: 'Riviera Resort Breathable Linen Drop', season: 'Spring/Summer 2027', styles: 16, launchDate: '2027-02-15', sellThrough: '0.0%', revenue: '₹0 (In Sampling)', leadDesigner: 'Aarushi Mehta', status: 'In Atelier Production' }
-  ];
+  const collections = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -29,10 +23,10 @@ export default function FashionCollections() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Capsule Collections" value="3 Live Drops" delta="Festive + Winter + Gala" trend="up" subtext="Current retail circulation" icon="✨" />
-        <KpiCard label="Avg. Drop Sell-Through" value="86.8%" delta="+5.4% YoY" trend="up" subtext="Zero deadstock policy" icon="🎯" />
-        <KpiCard label="Highest Grossing Drop" value="₹14.20 L" delta="Royal Velvet Festive" trend="up" subtext="Sold out in 22 days" icon="👑" />
+        <KpiCard label="Avg. Drop Sell-Through" value="0.0%" delta="+5.4% YoY" trend="up" subtext="Zero deadstock policy" icon="🎯" />
+        <KpiCard label="Highest Grossing Drop" value="₹0" delta="Royal Velvet Festive" trend="up" subtext="Sold out in 22 days" icon="👑" />
         <KpiCard label="Design-to-Rack Lead Time" value="28 Days" delta="-8 days faster" trend="up" subtext="In-house artisan studio" icon="⏱️" />
-        <KpiCard label="VIP Pre-Order Conversion" value="44.2%" delta="Platinum member reserve" trend="up" subtext="Sold prior to public launch" icon="💎" />
+        <KpiCard label="VIP Pre-Order Conversion" value="0.0%" delta="Platinum member reserve" trend="up" subtext="Sold prior to public launch" icon="💎" />
         <KpiCard label="Runway Pet Models" value="36 Verified" delta="Brand ambassador pets" trend="up" subtext="Instagram campaign reach" icon="📸" />
       </div>
 

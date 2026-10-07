@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliveryTracking() {
-  const activeStreams = [
-    { trackerId: 'TRK-901', rider: 'Kiran Kumar (EV-44)', location: '100ft Road, Indiranagar', dest: 'Koramangala 4th Block', speed: '32 km/h', battery: '82%', temp: '3.4°C', signal: 'Strong (5G)', eta: '12 mins', status: 'En Route' },
-    { trackerId: 'TRK-902', rider: 'Arun Varma (EV-12)', location: 'HSR 27th Main', dest: 'HSR Layout Sector 1', speed: '24 km/h', battery: '68%', temp: 'Ambient', signal: 'Strong (5G)', eta: '6 mins', status: 'En Route' },
-    { trackerId: 'TRK-903', rider: 'Praveen Gowda (EV-23)', location: 'ITPL Main Rd, Whitefield', dest: 'Prestige Shantiniketan', speed: '28 km/h', battery: '74%', temp: '3.9°C', signal: 'Normal (4G)', eta: '18 mins', status: 'En Route' },
-    { trackerId: 'TRK-904', rider: 'Sunil Jadhav (EV-88)', location: 'Linking Road, Bandra West', dest: 'Pali Hill, Bandra', speed: '19 km/h', battery: '59%', temp: '4.2°C', signal: 'Strong (5G)', eta: '9 mins', status: 'En Route' },
-    { trackerId: 'TRK-905', rider: 'Ramesh Sawant (EV-31)', location: 'JVLR Junction, Andheri East', dest: 'Poonam Nagar', speed: '26 km/h', battery: '91%', temp: 'Ambient', signal: 'Normal (4G)', eta: '14 mins', status: 'En Route' },
-    { trackerId: 'TRK-906', rider: 'Mohit Sharma (EV-09)', location: 'Cyber City, Gurugram', dest: 'DLF Phase 2', speed: '34 km/h', battery: '64%', temp: '3.7°C', signal: 'Strong (5G)', eta: '16 mins', status: 'En Route' }
-  ];
+  const activeStreams = [];
 
   return (
     <DashboardLayout
@@ -19,7 +12,7 @@ export default function DeliveryTracking() {
       title="Live GPS Fleet Telematics & Cold-Chain Tracking"
       subtitle="Real-time rider coordinates, digital cold-box temperature telemetry, EV battery state, and route milestones"
       icon="📍"
-      badge="6 Active Telematics Streams"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Live Tracked Riders" value="38 Active" delta="100% Signal lock" trend="up" subtext="Sub-second GPS updates" icon="📡" />

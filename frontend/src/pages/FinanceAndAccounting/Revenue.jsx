@@ -5,21 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function Revenue() {
   const [streamFilter, setStreamFilter] = useState('ALL');
 
-  const streams = [
-    { id: 'STR-01', stream: 'Outpatient Consultations & Preventative Vaccines', type: 'Clinical OPD', rev: '₹28,40,000', txns: '4,820 visits', avgTxn: '₹589', share: '36.2%', mom: '+12.4%', color: '#38bdf8' },
-    { id: 'STR-02', stream: 'Modular OT Surgeries & Critical Care Inpatients', type: 'Surgical IPD', rev: '₹24,80,000', txns: '142 surgeries', avgTxn: '₹17,465', share: '31.6%', mom: '+18.6%', color: '#34d399' },
-    { id: 'STR-03', stream: 'Prescription Drugs & Pharmacy Dispensing', type: 'Pharma Retail', rev: '₹14,20,000', txns: '6,450 orders', avgTxn: '₹220', share: '18.1%', mom: '+8.2%', color: '#fbbf24' },
-    { id: 'STR-04', stream: 'Direct Pet Care E-Commerce & Rapid Delivery', type: 'Digital E-Com', rev: '₹6,80,000', txns: '2,980 baskets', avgTxn: '₹228', share: '8.7%', mom: '+4.5%', color: '#c084fc' },
-    { id: 'STR-05', stream: 'B2B Corporate Wellness & Referral Partnerships', type: 'B2B Contracts', rev: '₹4,20,000', txns: '18 partners', avgTxn: '₹23,333', share: '5.4%', mom: '+24.0%', color: '#f87171' }
-  ];
+  const streams = [];
 
-  const cityRevenue = [
-    { city: 'Bengaluru Metros (5 Facilities)', rev: '₹34,20,000', pct: '43.6%', growth: '+16.2%', lead: 'Koramangala 24x7 Flagship' },
-    { city: 'Mumbai Metros (3 Facilities)', rev: '₹21,80,000', pct: '27.8%', growth: '+18.4%', lead: 'Bandra Multi-Specialty' },
-    { city: 'Delhi NCR Hubs (3 Facilities)', rev: '₹12,40,000', pct: '15.8%', growth: '+12.1%', lead: 'Okhla Animal Hospital' },
-    { city: 'Hyderabad & Secunderabad (2 Facilities)', rev: '₹6,20,000', pct: '7.9%', growth: '+22.5%', lead: 'Jubilee Hills Specialty' },
-    { city: 'Pune Hubs (1 Facility)', rev: '₹3,80,000', pct: '4.9%', growth: '+9.8%', lead: 'Koregaon Park Care Center' }
-  ];
+  const cityRevenue = [];
 
   const filteredStreams = streamFilter === 'ALL' ? streams : streams.filter(s => s.type === streamFilter);
 
@@ -30,7 +18,7 @@ export default function Revenue() {
       title="Revenue Intelligence & Commercial Inflow"
       subtitle="Multi-channel revenue recognition, annual recurring run-rate (ARR), clinical stream mix, and metro city contribution"
       icon="💰"
-      badge="ARR: ₹9.40 Crore"
+      badge="ARR: ₹0"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -52,12 +40,12 @@ export default function Revenue() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Run-Rate (MRR)" value="₹78.40 Lakh" delta="+18.4% YoY" trend="up" subtext="Current monthly intake" icon="💰" />
-        <KpiCard label="Annualized Run-Rate (ARR)" value="₹9.40 Crore" delta="+22.1% YoY" trend="up" subtext="14 Network Facilities" icon="🌐" />
-        <KpiCard label="Avg Revenue / Consultation" value="₹1,626" delta="+8.4% ticket size" trend="up" subtext="Diagnosis + Rx add-on" icon="🐾" />
-        <KpiCard label="Surgical Revenue / Case" value="₹17,465" delta="High-margin neuro/ortho" trend="up" subtext="90% OT utilization" icon="🩺" />
-        <KpiCard label="Pharmacy Attachment Rate" value="78.2%" delta="+4.2% MoM" trend="up" subtext="Inpatient & OPD Rx" icon="💊" />
-        <KpiCard label="Recognized Under ASC 606" value="100.0%" delta="Audited Ind-AS 115" trend="up" subtext="Zero revenue leakage" icon="🛡️" />
+        <KpiCard label="Monthly Run-Rate (MRR)" value="₹0" delta="+18.4% YoY" trend="up" subtext="Current monthly intake" icon="💰" />
+        <KpiCard label="Annualized Run-Rate (ARR)" value="₹0" delta="+22.1% YoY" trend="up" subtext="14 Network Facilities" icon="🌐" />
+        <KpiCard label="Avg Revenue / Consultation" value="₹0" delta="+8.4% ticket size" trend="up" subtext="Diagnosis + Rx add-on" icon="🐾" />
+        <KpiCard label="Surgical Revenue / Case" value="₹0" delta="High-margin neuro/ortho" trend="up" subtext="90% OT utilization" icon="🩺" />
+        <KpiCard label="Pharmacy Attachment Rate" value="0.0%" delta="+4.2% MoM" trend="up" subtext="Inpatient & OPD Rx" icon="💊" />
+        <KpiCard label="Recognized Under ASC 606" value="0.0%" delta="Audited Ind-AS 115" trend="up" subtext="Zero revenue leakage" icon="🛡️" />
       </div>
 
       <div style={{

@@ -3,80 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ApplicationHealth() {
-  const [apps, setApps] = useState([
-    {
-      name: 'Vite React Frontend Web App',
-      type: 'Single Page Application (SPA)',
-      environment: 'Production / Local',
-      port: '3001',
-      status: 'Healthy',
-      uptime: '99.99%',
-      memory: '42 MB',
-      cpu: '0.4%',
-      requestsPerMin: '142 rpm',
-      version: 'v2.4.0'
-    },
-    {
-      name: 'FastAPI REST Microservice',
-      type: 'Python ASGI (Uvicorn Workers)',
-      environment: 'Production / Local',
-      port: '8000',
-      status: 'Healthy',
-      uptime: '99.98%',
-      memory: '78 MB',
-      cpu: '1.2%',
-      requestsPerMin: '380 rpm',
-      version: 'v1.0.0'
-    },
-    {
-      name: 'Background Worker Daemon',
-      type: 'Asyncio Task Queue',
-      environment: 'Internal Node',
-      port: 'Internal',
-      status: 'Healthy',
-      uptime: '99.95%',
-      memory: '34 MB',
-      cpu: '0.8%',
-      requestsPerMin: '60 jobs/min',
-      version: 'v1.1.2'
-    },
-    {
-      name: 'Zenve Pet Mobile App (Android)',
-      type: 'React Native / Android 14',
-      environment: 'Google Play Store',
-      port: 'HTTPS',
-      status: 'Healthy',
-      uptime: '99.92%',
-      memory: 'Client',
-      cpu: 'Client',
-      requestsPerMin: '1,240 rpm',
-      version: 'v3.1.2 (Build 412)'
-    },
-    {
-      name: 'Zenve Pet Mobile App (iOS)',
-      type: 'Swift / React Native',
-      environment: 'Apple App Store',
-      port: 'HTTPS',
-      status: 'Healthy',
-      uptime: '99.94%',
-      memory: 'Client',
-      cpu: 'Client',
-      requestsPerMin: '980 rpm',
-      version: 'v3.1.0 (Build 388)'
-    },
-    {
-      name: 'In-Memory Cache & Session Layer',
-      type: 'Memory Store & LRU Cache',
-      environment: 'Internal Node',
-      port: '6379 (Virtual)',
-      status: 'Healthy',
-      uptime: '100%',
-      memory: '128 MB',
-      cpu: '0.2%',
-      requestsPerMin: '2,400 rpm',
-      version: 'v1.0.0'
-    }
-  ]);
+  const [apps, setApps] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -137,7 +64,7 @@ export default function ApplicationHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Application Uptime" value="99.98%" delta="Online" trend="up" subtext="No Sev-1 downtime" icon="🟢" />
+        <KpiCard label="Application Uptime" value="0.0%" delta="Online" trend="up" subtext="No Sev-1 downtime" icon="🟢" />
         <KpiCard label="Active Applications" value="6 / 6 Live" delta="100% Ready" trend="up" subtext="All microservices green" icon="🚀" />
         <KpiCard label="Total Process Memory" value="282 MB" delta="-4% vs peak" trend="up" subtext="Under 1GB budget" icon="💾" />
         <KpiCard label="Total Throughput" value="5,202 rpm" delta="+12% today" trend="up" subtext="Peak load handled" icon="⚡" />

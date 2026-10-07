@@ -3,17 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function AppAnalytics() {
-  const osMetrics = [
-    { platform: 'Android (Google Play)', installs: '184,200', activeInstalls: '142,500', dau: '28,400', mau: '112,000', stickiness: '25.3%', crashFree: '99.82%', rating: '4.8★ (32K reviews)' },
-    { platform: 'iOS (Apple App Store)', installs: '96,400', activeInstalls: '84,100', dau: '19,800', mau: '68,500', stickiness: '28.9%', crashFree: '99.91%', rating: '4.9★ (18K reviews)' }
-  ];
+  const osMetrics = [];
 
-  const appActions = [
-    { action: 'Pet Health Profile Created', completion: '82.4%', volume: '18,400 / mo', change: '+14.2%' },
-    { action: 'Instant Tele-Vet Call Initiated', completion: '68.9%', volume: '9,200 / mo', change: '+22.5%' },
-    { action: 'Prescription Reorder in 60 Mins', completion: '74.2%', volume: '14,800 / mo', change: '+19.1%' },
-    { action: 'Vaccination Digital Pass Download', completion: '91.0%', volume: '12,600 / mo', change: '+31.4%' }
-  ];
+  const appActions = [];
 
   return (
     <DashboardLayout
@@ -22,12 +14,12 @@ export default function AppAnalytics() {
       title="Mobile App Acquisition & Product Analytics"
       subtitle="Android & iOS store installs, daily active users (DAU/MAU), and in-app pet health actions"
       icon="📱"
-      badge="280.6K Total App Installs"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total App Downloads" value="280,600" delta="+26.8%" trend="up" subtext="Android (66%) · iOS (34%)" icon="📲" />
-        <KpiCard label="Daily Active Users" value="48,200" delta="+18.4%" trend="up" subtext="DAU / MAU ratio: 26.7%" icon="⚡" />
-        <KpiCard label="Monthly Active Users" value="180,500" delta="+21.2%" trend="up" subtext="Active pet parents" icon="🐾" />
+        <KpiCard label="Total App Downloads" value="0" delta="0.0%" trend="up" subtext="Android (66%) · iOS (34%)" icon="📲" />
+        <KpiCard label="Daily Active Users" value="0" delta="0.0%" trend="up" subtext="DAU / MAU ratio: 26.7%" icon="⚡" />
+        <KpiCard label="Monthly Active Users" value="0" delta="0.0%" trend="up" subtext="Active pet parents" icon="🐾" />
         <KpiCard label="App Store Rating" value="4.85 ★" delta="+0.12" trend="up" subtext="50K+ verified reviews" icon="⭐" />
       </div>
 

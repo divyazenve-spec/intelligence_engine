@@ -5,13 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function Refunds() {
   const [filterReason, setFilterReason] = useState('ALL');
 
-  const refunds = [
-    { id: 'REF-ZV-1041', invId: 'INV-ZV-7992', client: 'Pooja Iyer (Pet: Simba)', amt: '₹1,450', reason: 'Appointment Rescheduled / Pre-pay Cancel', rail: 'Original Source (UPI)', time: '45 mins ago', status: 'Refunded' },
-    { id: 'REF-ZV-1042', invId: 'INV-ZV-7988', client: 'Arun Varma (Pet: Bruno)', amt: '₹2,400', reason: 'Unopened Bravecto Packaging Returned', rail: 'Original Source (Card)', time: '3.2 hrs ago', status: 'Refunded' },
-    { id: 'REF-ZV-1043', invId: 'INV-ZV-7975', client: 'Deepak Rao (Pet: Shadow)', amt: '₹4,800', reason: 'Duplicate POS Terminal Authorization', rail: 'Bank Batch Reversal', time: '5.1 hrs ago', status: 'Refunded' },
-    { id: 'REF-ZV-1044', invId: 'INV-ZV-7960', client: 'Sunita Nair (Pet: Milo)', amt: '₹850', reason: 'Tele-consult Network Disconnect', rail: 'Zenve Wallet Credit', time: '1 day ago', status: 'Credit Issued' },
-    { id: 'REF-ZV-1045', invId: 'INV-ZV-7944', client: 'Rajat Kapoor (Pet: Leo)', amt: '₹3,200', reason: 'External Referral Lab Cancelled Assay', rail: 'Original Source (UPI)', time: '2 days ago', status: 'Refunded' }
-  ];
+  const refunds = [];
 
   return (
     <DashboardLayout
@@ -42,12 +36,12 @@ export default function Refunds() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Processed Refunds" value="₹84,200" delta="1.07% of Revenue" trend="up" subtext="Well below 2% target" icon="🔄" />
-        <KpiCard label="Cancelled OPD Consults" value="₹32,000" delta="38.0% of refunds" trend="up" subtext="Auto-refunded in <1h" icon="📅" />
-        <KpiCard label="Pharmacy Sealed Returns" value="₹24,500" delta="FEFO verified" trend="up" subtext="Returned to inventory" icon="💊" />
-        <KpiCard label="Duplicate POS Swipes" value="₹18,200" delta="Instant reversal" trend="up" subtext="Zero bank chargebacks" icon="💳" />
+        <KpiCard label="Total Processed Refunds" value="₹0" delta="1.07% of Revenue" trend="up" subtext="Well below 2% target" icon="🔄" />
+        <KpiCard label="Cancelled OPD Consults" value="₹0" delta="38.0% of refunds" trend="up" subtext="Auto-refunded in <1h" icon="📅" />
+        <KpiCard label="Pharmacy Sealed Returns" value="₹0" delta="FEFO verified" trend="up" subtext="Returned to inventory" icon="💊" />
+        <KpiCard label="Duplicate POS Swipes" value="₹0" delta="Instant reversal" trend="up" subtext="Zero bank chargebacks" icon="💳" />
         <KpiCard label="Avg Dispute TAT" value="3.4 Hours" delta="Fast resolution" trend="up" subtext="Target: <24 Hours" icon="⏱️" />
-        <KpiCard label="Chargeback Loss Rate" value="0.00%" delta="Zero bank penalties" trend="up" subtext="100% dispute win rate" icon="🛡️" />
+        <KpiCard label="Chargeback Loss Rate" value="0.0%" delta="Zero bank penalties" trend="up" subtext="100% dispute win rate" icon="🛡️" />
       </div>
 
       <div style={{

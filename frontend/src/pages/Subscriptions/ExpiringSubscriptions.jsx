@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ExpiringSubscriptions() {
-  const expiring = [
-    { subId: 'SUB-EXP-1101', pet: 'Rocky (Beagle)', parent: 'Rajesh Subramaniam', plan: 'Puppy Preventive Care (Annual)', expiryDate: '2026-10-12 (In 7 Days)', val: '₹14,990 / yr', status: 'Renewal Link Sent', action: 'WhatsApp Auto-Prompt Sent' },
-    { subId: 'SUB-EXP-1102', pet: 'Snowy (Persian Cat)', parent: 'Meera Chawla', plan: 'Feline Wellness & Spa (Annual)', expiryDate: '2026-10-15 (In 10 Days)', val: '₹12,500 / yr', status: 'Payment Token Expired', action: 'Card Update Prompt Triggered' },
-    { subId: 'SUB-EXP-1103', pet: 'Cooper (Labrador)', parent: 'Nikhil Kashyap', plan: 'Senior Pet Geriatric (Annual)', expiryDate: '2026-10-18 (In 13 Days)', val: '₹18,500 / yr', status: 'Clinic Review Pending', action: 'Dr. Priya Assigned for Call' },
-    { subId: 'SUB-EXP-1104', petName: 'Tiger (German Shepherd)', parent: 'Vikramaditya Rao', plan: 'Emergency Telehealth (Annual)', expiryDate: '2026-10-22 (In 17 Days)', val: '₹4,990 / yr', status: 'Auto-Renew Confirmed', action: 'Auto-Debit Ready' }
-  ];
+  const expiring = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function ExpiringSubscriptions() {
       title="Upcoming Expiries & Proactive Retention Alerts"
       subtitle="Annual membership renewals due in 30 days, token expiration mitigation, and concierge outreach pipeline"
       icon="⏳"
-      badge="14 Due in 30 Days"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Subscriptions Due in 30D" value="14 Plans" delta="₹1.84L Annualized" trend="warn" subtext="Annual membership tier" icon="⏳" />
-        <KpiCard label="Pre-Renewal Confirmation" value="71.4%" delta="10 of 14 confirmed" trend="up" subtext="Automated outreach response" icon="✅" />
+        <KpiCard label="Subscriptions Due in 30D" value="14 Plans" delta="₹0 Annualized" trend="warn" subtext="Annual membership tier" icon="⏳" />
+        <KpiCard label="Pre-Renewal Confirmation" value="0.0%" delta="10 of 14 confirmed" trend="up" subtext="Automated outreach response" icon="✅" />
         <KpiCard label="Card Token Expirations" value="2 Cards" delta="Mandate token expired" trend="warn" subtext="NPCI bank notification" icon="💳" />
-        <KpiCard label="Concierge Retention Save Rate" value="88.0%" delta="Direct vet nurse call" trend="up" subtext="Zero passive drop-off" icon="🛡️" />
+        <KpiCard label="Concierge Retention Save Rate" value="0.0%" delta="Direct vet nurse call" trend="up" subtext="Zero passive drop-off" icon="🛡️" />
       </div>
 
       <div style={card}>

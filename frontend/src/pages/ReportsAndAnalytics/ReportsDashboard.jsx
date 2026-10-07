@@ -28,32 +28,9 @@ export default function ReportsDashboard() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const tabs = [
-    { id: 'overview', label: 'Overview Hub', icon: '🎛️' },
-    { id: 'sales', label: 'Sales Reports', icon: '📊', badge: 'Live' },
-    { id: 'revenue', label: 'Revenue Reports', icon: '💼', badge: '5 BUs' },
-    { id: 'customer', label: 'Customer Reports', icon: '👥', badge: '10K Parents' },
-    { id: 'pet', label: 'Pet Reports', icon: '🐾', badge: '13.4K Pets' },
-    { id: 'doctor', label: 'Doctor Reports', icon: '👨‍⚕️', badge: '18 Vets' },
-    { id: 'clinic', label: 'Clinic Reports', icon: '🏥', badge: '5 Nodes' },
-    { id: 'product', label: 'Product Reports', icon: '🏷️', badge: '500 SKUs' },
-    { id: 'inventory', label: 'Inventory Reports', icon: '📦', badge: '₹16.6Cr' },
-    { id: 'finance', label: 'Finance Reports', icon: '💰', badge: 'Audited' },
-    { id: 'hr', label: 'HR Reports', icon: '🧑‍💼', badge: '300 Staff' },
-    { id: 'marketing', label: 'Marketing Reports', icon: '📣', badge: '4.7x ROAS' },
-    { id: 'operations', label: 'Operations Reports', icon: '🚚', badge: '96.2% SLA' },
-    { id: 'vendor', label: 'Vendor Reports', icon: '🤝', badge: '18 Suppliers' },
-    { id: 'custom', label: 'Custom Reports', icon: '🛠️', badge: 'SQL Pivot' },
-    { id: 'scheduled', label: 'Scheduled Reports', icon: '⏰', badge: '6 Active' },
-    { id: 'export', label: 'Export Center', icon: '📥', badge: 'Bulk CSV' }
-  ];
+  const tabs = [];
 
-  const quickPacks = [
-    { title: 'Executive Monthly P&L Statement', domain: 'Finance', format: 'Audited PDF + CSV', desc: 'GAAP revenue, COGS, OPEX & EBITDA breakdown' },
-    { title: 'Veterinary Doctor Commission Statements', domain: 'Clinical', format: 'CSV Ledger', desc: 'Patient caseload, surgical procedures & incentive payouts' },
-    { title: 'Warehouse Batch Valuation & Expiry Audit', domain: 'Supply Chain', format: 'Excel (.xlsx)', desc: 'Near-expiry batches (<60d) and days of inventory cover' },
-    { title: 'Omni-Channel Marketing ROAS & CAC', domain: 'Marketing', format: 'CSV Export', desc: 'Multi-touch attribution, ad spend & conversion CAC' }
-  ];
+  const quickPacks = [];
 
   const handleInstantDownload = (title) => {
     const csvContent = 'data:text/csv;charset=utf-8,Report,Timestamp,Status\n"' + title + '",' + new Date().toISOString() + ',APPROVED_DISPATCH';
@@ -159,7 +136,7 @@ export default function ReportsDashboard() {
           title="Reports & Analytics Command Center"
           subtitle="Unified intelligence suite aggregating audited financial packs, sales ledgers, customer LTV, clinical registries, and automated exports"
           icon="📑"
-          badge="16 Domain Reports Ready"
+          badge=""
           actions={
             <button
               onClick={() => setActiveTab('export')}

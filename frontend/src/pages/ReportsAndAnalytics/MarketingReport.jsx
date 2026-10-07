@@ -10,13 +10,7 @@ export default function MarketingReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const campaigns = [
-    { name: 'Puppy & Kitten Welcome Kit Promo', channel: 'Meta Ads (Insta / FB)', spend: 280000, impressions: '1.4M', clicks: 42000, newCustomers: 680, cac: 412, gmvGenerated: 1120000, roas: '4.0x' },
-    { name: 'High-Intent Sick Pet Google Search', channel: 'Google Search PPC', spend: 210000, impressions: '420K', clicks: 28000, newCustomers: 490, cac: 428, gmvGenerated: 860000, roas: '4.1x' },
-    { name: 'Influencer Vet Advice Reels & Shorts', channel: 'YouTube & Creator Collabs', spend: 90000, impressions: '2.8M', clicks: 18000, newCustomers: 260, cac: 346, gmvGenerated: 340000, roas: '3.8x' },
-    { name: 'Monsoon Flea & Tick Push Notifications', channel: 'WhatsApp / SMS CRM', spend: 35000, impressions: '38K', clicks: 8200, newCustomers: 310, cac: 112, gmvGenerated: 420000, roas: '12.0x' },
-    { name: 'Corporate Wellness B2B Campus Drives', channel: 'LinkedIn & Events', spend: 65000, impressions: '95K', clicks: 3200, newCustomers: 120, cac: 541, gmvGenerated: 480000, roas: '7.4x' }
-  ];
+  const campaigns = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -80,10 +74,10 @@ export default function MarketingReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Ad Spend MTD" value="₹6.80 Lakhs" delta="Under budget ₹7.5L" trend="up" subtext="Meta, Google, CRM" icon="💳" />
+        <KpiCard label="Total Ad Spend MTD" value="₹0" delta="Under budget ₹0" trend="up" subtext="Meta, Google, CRM" icon="💳" />
         <KpiCard label="New Pet Parents Acquired" value="1,860 Parents" delta="+22.4% vs last month" trend="up" subtext="First purchase verified" icon="👶" />
-        <KpiCard label="Blended CAC" value="₹365" delta="-₹55 improvement" trend="up" subtext="Target: < ₹450" icon="🎯" />
-        <KpiCard label="Blended ROAS" value="4.7x" delta="₹32.2L Revenue" trend="up" subtext="High efficiency" icon="🚀" />
+        <KpiCard label="Blended CAC" value="₹0" delta="-₹0" trend="up" subtext="Target: < ₹0" icon="🎯" />
+        <KpiCard label="Blended ROAS" value="4.7x" delta="₹0 Revenue" trend="up" subtext="High efficiency" icon="🚀" />
       </div>
 
       {/* Table Section */}

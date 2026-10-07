@@ -6,15 +6,7 @@ export default function Diagnostics() {
   const [modalityFilter, setModalityFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const labOrders = [
-    { id: 'LAB-5101', pet: 'Oscar (Beagle)', parent: 'Naveen Jindal', testName: 'Comprehensive 18-Parameter Biochemistry + Electrolytes', modality: 'Biochemistry', orderedBy: 'Dr. Priya Sharma', sampleType: 'Serum / EDTA', turnaroundTime: '45 mins', flag: 'High BUN / Creatinine', status: 'Result Ready', labTech: 'Kavita Pathak' },
-    { id: 'LAB-5102', pet: 'Bella (Persian Cat)', parent: 'Shreya Ghoshal', testName: 'Digital Abdominal Ultrasonography (Full Doppler)', modality: 'Ultrasound', orderedBy: 'Dr. Aisha Khan', sampleType: 'Imaging Room 2', turnaroundTime: '30 mins', flag: 'Bilateral Renal Cysts', status: 'Report Signed', labTech: 'Dr. Rajesh Nair' },
-    { id: 'LAB-5103', pet: 'Max (German Shepherd)', parent: 'Arjun Rampal', testName: 'Digital Orthopedic Radiography (Stifle / Hip Views)', modality: 'Digital X-Ray', orderedBy: 'Dr. Rahul Mehta', sampleType: 'Imaging Room 1', turnaroundTime: '20 mins', flag: 'Right Stifle Joint Effusion', status: 'Report Signed', labTech: 'Dr. Rajesh Nair' },
-    { id: 'LAB-5104', pet: 'Simba (Golden Retriever)', parent: 'Sunil Gavaskar', testName: 'Complete Blood Count (CBC) with Differential Count', modality: 'Hematology', orderedBy: 'Dr. Karan Patel', sampleType: 'Whole Blood EDTA', turnaroundTime: '25 mins', flag: 'Leukocytosis (WBC 22.4K)', status: 'Result Ready', labTech: 'Kavita Pathak' },
-    { id: 'LAB-5105', pet: 'Milo (Indie Pup)', parent: 'Pankaj Tripathi', testName: 'CPV / CCV Antigen Rapid Fluorescence Immunoassay', modality: 'Pathogen PCR', orderedBy: 'Dr. Priya Sharma', sampleType: 'Fecal Swab', turnaroundTime: '15 mins', flag: 'Parvovirus Negative', status: 'Result Ready', labTech: 'Amit Kumar' },
-    { id: 'LAB-5106', pet: 'Cleo (Siamese Cat)', parent: 'Dia Mirza', testName: 'Total Thyroxine (T4) & Free T4 Equilibrium Dialysis', modality: 'Endocrinology', orderedBy: 'Dr. Aisha Khan', sampleType: 'Serum', turnaroundTime: '90 mins', flag: 'Normal T4 (2.4 ug/dL)', status: 'Processing', labTech: 'Kavita Pathak' },
-    { id: 'LAB-5107', pet: 'Rocky (Doberman)', parent: 'Randeep Hooda', testName: 'Echocardiogram + Color Doppler + Thoracic DR', modality: 'Cardiology', orderedBy: 'Dr. Neha Singh', sampleType: 'Cardio Suite', turnaroundTime: '40 mins', flag: 'DCM Early Fractional Shortening 18%', status: 'Report Signed', labTech: 'Dr. Neha Singh' }
-  ];
+  const labOrders = [];
 
   const filtered = labOrders.filter(l => {
     const matchesFilter = modalityFilter === 'ALL' || l.modality === modalityFilter || l.status === modalityFilter;
@@ -33,7 +25,7 @@ export default function Diagnostics() {
       title="Veterinary Pathology, Clinical Lab & Advanced Imaging"
       subtitle="In-house automated hematology, dry chemistry, digital radiography, ultrasonography, and rapid biomarker assays"
       icon="🔬"
-      badge="38 mins Avg Lab Turnaround"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {['ALL', 'Biochemistry', 'Hematology', 'Digital X-Ray', 'Ultrasound', 'Result Ready', 'Report Signed'].map(m => (
@@ -59,9 +51,9 @@ export default function Diagnostics() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Lab Tests Processed" value="142 Tests" delta="+18.9% vs yday" trend="up" subtext="Across in-house lab analyzers" icon="🔬" />
-        <KpiCard label="Avg Turnaround Time" value="38.4 mins" delta="Target < 45m" trend="up" subtext="Sample collect to validated report" icon="⏱️" />
+        <KpiCard label="Avg Turnaround Time" value="0" delta="Target < 45m" trend="up" subtext="Sample collect to validated report" icon="⏱️" />
         <KpiCard label="Critical Value Alerts" value="6 Alerts" delta="Immediate vet notified" trend="neutral" subtext="Automated SMS & telemetry push" icon="⚠️" />
-        <KpiCard label="Imaging Room Utilization" value="88.2%" delta="Digital DR & Doppler" trend="up" subtext="42 scans completed today" icon="🩻" />
+        <KpiCard label="Imaging Room Utilization" value="0.0%" delta="Digital DR & Doppler" trend="up" subtext="42 scans completed today" icon="🩻" />
       </div>
 
       <div style={{

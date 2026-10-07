@@ -24,34 +24,21 @@
 
   /* ── 9 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',    label: 'B2B Dashboard',        icon: '🏢', hash: '#b2b-dashboard',       badge: '₹34.8L MTD',    title: 'B2B Enterprise & Institutional Accounts', sub: 'Corporate kennels, breeder partnerships, institutional hospital contracts, and wholesale volume receivables' },
-    { id: 'customers',    label: 'Enterprise Customers', icon: '👥', hash: '#enterprise-customers', badge: '48 Accounts',   title: 'Enterprise Key Decision Makers & Stakeholders', sub: 'Corporate buyer hierarchy, authorized procurement officers, and institutional account owners' },
-    { id: 'accounts',     label: 'Corporate Accounts',   icon: '🏛️', hash: '#corporate-accounts',   badge: '₹1.12 Cr Limit', title: 'Corporate Account Master & Credit Sanctions', sub: 'Corporate KYC compliance, GSTIN master, revolving credit sanctions, and relationship manager assignments' },
-    { id: 'orders',       label: 'B2B Orders',           icon: '📦', hash: '#b2b-orders',           badge: '148 Orders',    title: 'B2B Purchase Orders & Bulk Fulfillment', sub: 'Institutional purchase orders, batch fulfillment allocations, warehouse dispatch manifests, and invoice linking' },
-    { id: 'sales',        label: 'B2B Sales',            icon: '💼', hash: '#b2b-sales',            badge: '106% Quota',    title: 'Enterprise Sales Pipeline & Performance', sub: 'Deal stage velocity, relationship manager quotas, RFP win-loss ratios, and qualified corporate pipeline' },
-    { id: 'revenue',      label: 'B2B Revenue',          icon: '💰', hash: '#b2b-revenue',          badge: '+34.2% YoY',    title: 'B2B Revenue Trajectory & Unit Economics', sub: 'Institutional revenue breakdowns, channel contribution margins, contract run rates, and fiscal projections' },
-    { id: 'contracts',    label: 'Contracts',            icon: '📜', hash: '#contracts',            badge: '38 Active MSAs', title: 'Master Services Agreements (MSA) & Deeds', sub: 'Corporate legal master deeds, SLA penalty terms, renewal milestones, and compliance tracking' },
-    { id: 'pricing',      label: 'Enterprise Pricing',   icon: '🏷️', hash: '#enterprise-pricing',   badge: 'Tier 1-4 Rates', title: 'Enterprise Tiered Pricing & Rate Cards', sub: 'Volume discount tiers, institutional master rate cards, MOQs, and corporate price lock guarantees' },
-    { id: 'receivables',  label: 'B2B Receivables',      icon: '💳', hash: '#b2b-receivables',      badge: '₹12.4L Dues',   title: 'B2B Accounts Receivable & Aging Ledger', sub: 'Corporate invoice aging buckets, DSO tracking, collections follow-up, and institutional credit risk' }
+    { id: 'dashboard',    label: 'B2B Dashboard',        icon: '🏢', hash: '#b2b-dashboard',       badge: '',    title: 'B2B Enterprise & Institutional Accounts', sub: 'Corporate kennels, breeder partnerships, institutional hospital contracts, and wholesale volume receivables' },
+    { id: 'customers',    label: 'Enterprise Customers', icon: '👥', hash: '#enterprise-customers', badge: '',   title: 'Enterprise Key Decision Makers & Stakeholders', sub: 'Corporate buyer hierarchy, authorized procurement officers, and institutional account owners' },
+    { id: 'accounts',     label: 'Corporate Accounts',   icon: '🏛️', hash: '#corporate-accounts',   badge: '', title: 'Corporate Account Master & Credit Sanctions', sub: 'Corporate KYC compliance, GSTIN master, revolving credit sanctions, and relationship manager assignments' },
+    { id: 'orders',       label: 'B2B Orders',           icon: '📦', hash: '#b2b-orders',           badge: '',    title: 'B2B Purchase Orders & Bulk Fulfillment', sub: 'Institutional purchase orders, batch fulfillment allocations, warehouse dispatch manifests, and invoice linking' },
+    { id: 'sales',        label: 'B2B Sales',            icon: '💼', hash: '#b2b-sales',            badge: '',    title: 'Enterprise Sales Pipeline & Performance', sub: 'Deal stage velocity, relationship manager quotas, RFP win-loss ratios, and qualified corporate pipeline' },
+    { id: 'revenue',      label: 'B2B Revenue',          icon: '💰', hash: '#b2b-revenue',          badge: '',    title: 'B2B Revenue Trajectory & Unit Economics', sub: 'Institutional revenue breakdowns, channel contribution margins, contract run rates, and fiscal projections' },
+    { id: 'contracts',    label: 'Contracts',            icon: '📜', hash: '#contracts',            badge: '', title: 'Master Services Agreements (MSA) & Deeds', sub: 'Corporate legal master deeds, SLA penalty terms, renewal milestones, and compliance tracking' },
+    { id: 'pricing',      label: 'Enterprise Pricing',   icon: '🏷️', hash: '#enterprise-pricing',   badge: '', title: 'Enterprise Tiered Pricing & Rate Cards', sub: 'Volume discount tiers, institutional master rate cards, MOQs, and corporate price lock guarantees' },
+    { id: 'receivables',  label: 'B2B Receivables',      icon: '💳', hash: '#b2b-receivables',      badge: '',   title: 'B2B Accounts Receivable & Aging Ledger', sub: 'Corporate invoice aging buckets, DSO tracking, collections follow-up, and institutional credit risk' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var ACCOUNTS = [
-    { id: 'CORP-8801', name: 'K-9 National Police & Paramilitary Kennels', category: 'Security & Govt', contractVal: '₹18,50,000', mtdOrders: '₹2,40,000', terms: 'Net 60', creditLimit: '₹25,00,000', status: 'Active (Tier 1)', rm: 'Vikram Mehta' },
-    { id: 'CORP-8802', name: 'Bangalore Canine Breeding & Genetics Club', category: 'Breeder Co-op', contractVal: '₹12,80,000', mtdOrders: '₹1,95,000', terms: 'Net 45', creditLimit: '₹15,00,000', status: 'Active (Tier 1)', rm: 'Aarav Sen' },
-    { id: 'CORP-8803', name: 'Urban Mutts Luxury Daycare & Hospitality', category: 'Hospitality', contractVal: '₹8,40,000', mtdOrders: '₹1,12,000', terms: 'Net 30', creditLimit: '₹10,00,000', status: 'Active (Tier 2)', rm: 'Sneha Rao' },
-    { id: 'CORP-8804', name: 'PetCare Hospital Network (12 Centers)', category: 'Hospital Chain', contractVal: '₹24,00,000', mtdOrders: '₹3,85,000', terms: 'Net 30', creditLimit: '₹30,00,000', status: 'Active (Key Client)', rm: 'Vikram Mehta' },
-    { id: 'CORP-8805', name: 'Infosys Employee Pets Corporate Wellness', category: 'Corporate Benefits', contractVal: '₹9,60,000', mtdOrders: '₹1,40,000', terms: 'Net 30', creditLimit: '₹12,00,000', status: 'Active (Tier 2)', rm: 'Sneha Rao' },
-    { id: 'CORP-8806', name: 'Wipro Campus Canine Security Force', category: 'Security & Govt', contractVal: '₹6,50,000', mtdOrders: '₹82,000', terms: 'Net 45', creditLimit: '₹8,00,000', status: 'Renewal Due', rm: 'Vikram Mehta' }
-  ];
+  var ACCOUNTS = [];
 
-  var ORDERS = [
-    { po: 'PO-B2B-4401', client: 'PetCare Hospital Network', items: 'Nobivac Vaccines (200v) + Bravecto (80p)', val: '₹3,45,000', orderDate: '2026-10-04', dispatchDate: '2026-10-05', status: 'Dispatched', terms: 'Net 30' },
-    { po: 'PO-B2B-4402', client: 'K-9 Paramilitary Kennels', items: 'Tactical Working Dog Nutrition (1.2 Tons)', val: '₹2,80,000', orderDate: '2026-10-03', dispatchDate: '2026-10-04', status: 'Delivered', terms: 'Net 60' },
-    { po: 'PO-B2B-4403', client: 'Bangalore Canine Breeding Co-op', items: 'Puppy Starter Formula + Calcium Kits (150u)', val: '₹1,95,000', orderDate: '2026-10-04', dispatchDate: '2026-10-06', status: 'Processing', terms: 'Net 45' },
-    { po: 'PO-B2B-4404', client: 'Urban Mutts Luxury Daycare', items: 'Hypoallergenic Grooming Shampoos (400L)', val: '₹1,12,000', orderDate: '2026-10-02', dispatchDate: '2026-10-03', status: 'Delivered', terms: 'Net 30' },
-    { po: 'PO-B2B-4405', client: 'Airports Authority Canine Unit', items: 'Joint Health Chews + Dewormers (300u)', val: '₹1,65,000', orderDate: '2026-10-01', dispatchDate: '2026-10-02', status: 'Delivered', terms: 'Net 60' }
-  ];
+  var ORDERS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

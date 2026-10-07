@@ -5,22 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function ServiceRevenue() {
   const [selectedBranch, setSelectedBranch] = useState('ALL');
 
-  const specialtyRevenue = [
-    { specialty: 'Orthopedic & Soft Tissue Surgery', revenue: '₹4,85,000', cases: 38, aov: '₹12,763', share: '32.4%', growth: '+24.5% MoM', margin: '72.0%' },
-    { specialty: 'Outpatient Clinical Consultations', revenue: '₹3,42,000', cases: 342, aov: '₹1,000', share: '22.8%', growth: '+14.2% MoM', margin: '84.0%' },
-    { specialty: 'Laboratory Pathology & Diagnostics', revenue: '₹2,68,000', cases: 214, aov: '₹1,252', share: '17.9%', growth: '+18.9% MoM', margin: '68.5%' },
-    { specialty: 'Cardiology & Diagnostic Ultrasound', revenue: '₹1,84,000', cases: 68, aov: '₹2,705', share: '12.3%', growth: '+21.0% MoM', margin: '74.2%' },
-    { specialty: 'Dentistry & Ultrasonic Scaling', revenue: '₹1,22,000', cases: 46, aov: '₹2,652', share: '8.1%', growth: '+16.4% MoM', margin: '78.0%' },
-    { specialty: 'Vaccinations & Wellness Immunizations', revenue: '₹98,000', cases: 142, aov: '₹690', share: '6.5%', growth: '+12.1% MoM', margin: '58.0%' }
-  ];
+  const specialtyRevenue = [];
 
-  const branchRevenue = [
-    { branch: 'Koramangala Pet Hospital (BLR)', revenue: '₹5,42,000', share: '36.2%', cases: 284, docCount: 6, csat: '4.95' },
-    { branch: 'Bandra West Super-Clinic (BOM)', revenue: '₹3,84,000', share: '25.6%', cases: 198, docCount: 4, csat: '4.92' },
-    { branch: 'Indiranagar Care Center (BLR)', revenue: '₹2,65,000', share: '17.7%', cases: 164, docCount: 3, csat: '4.88' },
-    { branch: 'Gurugram Central Hospital (DEL)', revenue: '₹1,94,000', share: '12.9%', cases: 122, docCount: 3, csat: '4.86' },
-    { branch: 'Whitefield Specialty OT (BLR)', revenue: '₹1,14,000', share: '7.6%', cases: 82, docCount: 2, csat: '4.91' }
-  ];
+  const branchRevenue = [];
 
   return (
     <DashboardLayout
@@ -29,7 +16,7 @@ export default function ServiceRevenue() {
       title="Veterinary Services Clinical Revenue & Billings"
       subtitle="Financial performance by clinical specialty, procedure revenue streams, multi-clinic billing analytics, and doctor collections"
       icon="💰"
-      badge="₹14.99 Lakh MTD Revenue"
+      badge="₹0 MTD Revenue"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Bangalore Hubs', 'Mumbai Hubs', 'Delhi NCR'].map(b => (
@@ -54,10 +41,10 @@ export default function ServiceRevenue() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Clinical Revenue" value="₹14.99 Lakh" delta="+18.4% MoM" trend="up" subtext="18% share of Zenve Group" icon="🩺" />
-        <KpiCard label="Avg Revenue per Case" value="₹1,763" delta="+8.2% vs Plan" trend="up" subtext="Blended consult + procedure" icon="💳" />
-        <KpiCard label="Surgery Contribution" value="₹4.85 Lakh" delta="Highest grossing line" trend="up" subtext="32.4% of clinical billings" icon="✂️" />
-        <KpiCard label="Collection Realization" value="99.4%" delta="Zero bad debts" trend="up" subtext="Instant UPI / Insurance card" icon="🎯" />
+        <KpiCard label="Gross Clinical Revenue" value="₹0" delta="+18.4% MoM" trend="up" subtext="18% share of Zenve Group" icon="🩺" />
+        <KpiCard label="Avg Revenue per Case" value="₹0" delta="+8.2% vs Plan" trend="up" subtext="Blended consult + procedure" icon="💳" />
+        <KpiCard label="Surgery Contribution" value="₹0" delta="Highest grossing line" trend="up" subtext="32.4% of clinical billings" icon="✂️" />
+        <KpiCard label="Collection Realization" value="0.0%" delta="Zero bad debts" trend="up" subtext="Instant UPI / Insurance card" icon="🎯" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '16px' }}>

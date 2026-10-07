@@ -8,15 +8,7 @@ export default function ClinicDoctors() {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState('');
 
-  const doctorsList = [
-    { id: 'DOC-01', name: 'Dr. Priya Sharma', qualification: 'B.V.Sc & A.H, M.V.Sc (Surgery & Radiology)', specialty: 'Orthopedics & TPLO', facility: 'Koramangala 24x7 Hospital', vci: 'VCI-KAR-2018-842', shift: 'Morning (08:00 – 16:00)', consults: 412, surgeries: 48, rating: 4.96, status: 'On Duty' },
-    { id: 'DOC-02', name: 'Dr. Rahul Mehta', qualification: 'B.V.Sc & A.H, M.V.Sc (Veterinary Medicine)', specialty: 'Feline Medicine & Critical Care', facility: 'Bandra West Hospital', vci: 'VCI-MAH-2015-110', shift: 'Evening (14:00 – 22:00)', consults: 365, surgeries: 34, rating: 4.93, status: 'In Surgery' },
-    { id: 'DOC-03', name: 'Dr. Aisha Khan', qualification: 'B.V.Sc & A.H, M.V.Sc (Surgery)', specialty: 'Cardiology & Soft Tissue', facility: 'Delhi NCR Hospital', vci: 'VCI-DEL-2019-304', shift: 'Morning (08:00 – 16:00)', consults: 340, surgeries: 38, rating: 4.91, status: 'On Duty' },
-    { id: 'DOC-04', name: 'Dr. Arun V.', qualification: 'B.V.Sc & A.H', specialty: 'General OPD & Infectious Diseases', facility: 'Care Center Indiranagar', vci: 'VCI-KAR-2020-112', shift: 'Morning (09:00 – 17:00)', consults: 380, surgeries: 12, rating: 4.94, status: 'On Duty' },
-    { id: 'DOC-05', name: 'Dr. Lakshmi Reddy', qualification: 'B.V.Sc & A.H, M.V.Sc (Pathology)', specialty: 'Dermatology & Internal Medicine', facility: 'Jubilee Hills Specialty', vci: 'VCI-TEL-2017-488', shift: 'Morning (09:00 – 17:00)', consults: 310, surgeries: 16, rating: 4.90, status: 'On Duty' },
-    { id: 'DOC-06', name: 'Dr. Sneha Kulkarni', qualification: 'B.V.Sc & A.H, M.V.Sc (Surgery)', specialty: 'Minimally Invasive Laparoscopy', facility: 'Koregaon Park Clinic', vci: 'VCI-MAH-2018-902', shift: 'Evening (13:00 – 21:00)', consults: 290, surgeries: 22, rating: 4.88, status: 'Off Duty' },
-    { id: 'DOC-07', name: 'Dr. Karan Patel', qualification: 'B.V.Sc & A.H, PG Cert (Ophthalmology)', specialty: 'Ophthalmology & Corneal Repair', facility: 'Ahmedabad Partner Hub', vci: 'VCI-GUJ-2020-512', shift: 'Morning (09:00 – 17:00)', consults: 260, surgeries: 28, rating: 4.92, status: 'On Duty' }
-  ];
+  const doctorsList = [];
 
   const filtered = useMemo(() => {
     return doctorsList.filter(d => {
@@ -43,7 +35,7 @@ export default function ClinicDoctors() {
       title="Clinic Doctors"
       subtitle="Veterinary Clinicians, Surgeons, Specialists & Rosters — 48 registered clinicians, VCI licenses, and shifts"
       icon="👨‍⚕️"
-      badge="48 Verified Clinicians"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button

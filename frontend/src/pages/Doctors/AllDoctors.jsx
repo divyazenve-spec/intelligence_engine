@@ -6,16 +6,7 @@ export default function AllDoctors() {
   const [search, setSearch] = useState('');
   const [specFilter, setSpecFilter] = useState('ALL');
 
-  const roster = [
-    { id: 'DOC-101', name: 'Dr. Divya Ramesh', spec: 'Lead Surgeon', qual: 'MVSc (Surgery), PhD', exp: '14 Yrs', schedule: 'Mon-Fri (09:00 - 17:00)', clinic: 'Indiranagar Flagship', email: 'divya.r@zenvepets.com', phone: '+91 98451 22910', status: 'Active' },
-    { id: 'DOC-102', name: 'Dr. Arvind Swaminathan', spec: 'Cardiology', qual: 'MVSc, DACVIM', exp: '11 Yrs', schedule: 'Tue-Sat (10:00 - 18:00)', clinic: 'Koramangala Trauma', email: 'arvind.s@zenvepets.com', phone: '+91 98452 33811', status: 'Active' },
-    { id: 'DOC-103', name: 'Dr. Meera Nambiar', spec: 'Neurology', qual: 'MVSc (Orthopedics & Neuro)', exp: '12 Yrs', schedule: 'Mon-Thu (08:30 - 16:30)', clinic: 'Whitefield Specialty', email: 'meera.n@zenvepets.com', phone: '+91 98453 44712', status: 'Active' },
-    { id: 'DOC-104', name: 'Dr. Siddharth Varma', spec: 'Pediatrics', qual: 'BVSc & AH, MVSc', exp: '8 Yrs', schedule: 'Wed-Sun (11:00 - 19:00)', clinic: 'Jayanagar Wellness', email: 'siddharth.v@zenvepets.com', phone: '+91 98454 55613', status: 'Active' },
-    { id: 'DOC-105', name: 'Dr. Ananya Joshi', spec: 'Dermatology', qual: 'MVSc (Internal Medicine)', exp: '9 Yrs', schedule: 'Mon-Fri (09:30 - 17:30)', clinic: 'HSR Layout Clinic', email: 'ananya.j@zenvepets.com', phone: '+91 98455 66514', status: 'Active' },
-    { id: 'DOC-106', name: 'Dr. Rohan Deshmukh', spec: 'Exotics', qual: 'MVSc (Avian & Exotics)', exp: '10 Yrs', schedule: 'Tue-Sat (09:00 - 17:00)', clinic: 'Indiranagar Flagship', email: 'rohan.d@zenvepets.com', phone: '+91 98456 77415', status: 'Active' },
-    { id: 'DOC-107', name: 'Dr. Kavita Nair', spec: 'Dentistry', qual: 'BVSc, Cert. Vet Dentistry', exp: '7 Yrs', schedule: 'Mon-Sat (10:00 - 16:00)', clinic: 'Whitefield Specialty', email: 'kavita.n@zenvepets.com', phone: '+91 98457 88316', status: 'Active' },
-    { id: 'DOC-108', name: 'Dr. Rajesh Pillai', spec: 'Oncology', qual: 'MVSc (Pathology & Oncology)', exp: '15 Yrs', schedule: 'Thu-Mon (10:00 - 18:00)', clinic: 'Koramangala Trauma', email: 'rajesh.p@zenvepets.com', phone: '+91 98458 99217', status: 'On Leave' }
-  ];
+  const roster = [];
 
   const filtered = roster.filter(d => {
     if (specFilter !== 'ALL' && d.spec !== specFilter) return false;
@@ -35,13 +26,13 @@ export default function AllDoctors() {
       title="All Registered Veterinary Practitioners"
       subtitle="Complete clinical registry, specialty qualifications, clinic affiliations, and contact rosters"
       icon="📋"
-      badge="24 Board Certified"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Practitioners" value="24 Doctors" delta="+3 Hired Q3" trend="up" subtext="All state board registered" icon="👨‍⚕️" />
         <KpiCard label="Primary Specialties" value="8 Disciplines" delta="Surgery, Cardio, Neuro+" trend="neutral" subtext="Full tertiary care coverage" icon="🩺" />
         <KpiCard label="Avg Clinical Experience" value="10.8 Yrs" delta="Senior faculty" trend="up" subtext="Board certified clinicians" icon="🎓" />
-        <KpiCard label="Clinic Shifts Scheduled" value="98.5%" delta="Optimal roster" trend="up" subtext="Zero doctor absence backlog" icon="📅" />
+        <KpiCard label="Clinic Shifts Scheduled" value="0.0%" delta="Optimal roster" trend="up" subtext="Zero doctor absence backlog" icon="📅" />
       </div>
 
       <div style={cardStyle}>

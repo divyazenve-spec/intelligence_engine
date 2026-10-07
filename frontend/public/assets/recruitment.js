@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var jobs = [
-    { id: 'REQ-101', title: 'Emergency Veterinary Surgeon', dept: 'Clinical', loc: 'Bengaluru Flagship', openings: 2, applicants: 48, screened: 14, interview: 4, offer: 1, priority: 'Urgent', recruiter: 'Divya S.' },
-    { id: 'REQ-102', title: 'Staff Veterinarian (Outpatient)', dept: 'Clinical', loc: 'Mumbai Bandra', openings: 3, applicants: 62, screened: 18, interview: 6, offer: 2, priority: 'High', recruiter: 'Divya S.' },
-    { id: 'REQ-103', title: 'Registered Clinical Pharmacist', dept: 'Pharmacy', loc: 'Bengaluru Hub', openings: 3, applicants: 54, screened: 12, interview: 5, offer: 1, priority: 'High', recruiter: 'Ankit P.' },
-    { id: 'REQ-104', title: 'Senior AI / ML Research Engineer', dept: 'Technology', loc: 'Bengaluru / Remote', openings: 2, applicants: 85, screened: 16, interview: 4, offer: 1, priority: 'Urgent', recruiter: 'Ankit P.' },
-    { id: 'REQ-105', title: 'Hyperlocal Fleet Riders', dept: 'Logistics', loc: 'Mumbai & NCR', openings: 12, applicants: 142, screened: 45, interview: 22, offer: 8, priority: 'Normal', recruiter: 'Meera R.' },
-    { id: 'REQ-106', title: 'Warehouse Inventory Auditor', dept: 'Warehouse', loc: 'Bhiwandi Central', openings: 2, applicants: 29, screened: 8, interview: 3, offer: 0, priority: 'Normal', recruiter: 'Meera R.' }
-  ];
+  var jobs = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

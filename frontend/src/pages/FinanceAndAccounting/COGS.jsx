@@ -5,19 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function COGS() {
   const [category, setCategory] = useState('ALL');
 
-  const cogsCategories = [
-    { code: 'COG-PHR-01', name: 'Veterinary Pharma (Antibiotics, Vaccines, NSAIDs)', spend: '₹14,50,000', revLinked: '₹26,80,000', margin: '45.9%', vendor: 'Zoetis, Boehringer, Intas', status: 'Optimal' },
-    { code: 'COG-SUR-02', name: 'Surgical Titanium Implants, TPLO & Anesthetics', spend: '₹9,80,000', revLinked: '₹24,80,000', margin: '60.5%', vendor: 'DePuy Synthes Vet, Abbott', status: 'Optimal' },
-    { code: 'COG-DX-03',  name: 'Diagnostic Reagents, IDEXX Cartridges & Strips', spend: '₹5,40,000', revLinked: '₹12,40,000', margin: '56.5%', vendor: 'IDEXX India, Mindray', status: 'Favorable' },
-    { code: 'COG-CON-04', name: 'Sterile Surgical Drapes, Gowns, Gloves & Sutures', spend: '₹4,80,000', revLinked: '₹14,40,000', margin: '66.7%', vendor: 'Medline, Ethicon Sutures', status: 'Optimal' }
-  ];
+  const cogsCategories = [];
 
-  const vendorContracts = [
-    { vendor: 'Zoetis India Veterinary', category: 'Biologicals & Vaccines', volumeYTD: '₹48,20,000', rebateRate: '8.5%', earnedRebate: '₹4,09,700', contractEnd: 'Mar 2027', rating: 'Tier 1 Partner' },
-    { vendor: 'DePuy Synthes Vet Ortho', category: 'Titanium Plates & Screws', volumeYTD: '₹34,10,000', rebateRate: '12.0%', earnedRebate: '₹4,09,200', contractEnd: 'Dec 2026', rating: 'Tier 1 Partner' },
-    { vendor: 'Boehringer Ingelheim Vet', category: 'Cardiology & Parasiticides', volumeYTD: '₹28,40,000', rebateRate: '10.0%', earnedRebate: '₹2,84,000', contractEnd: 'Jun 2027', rating: 'Preferred Vendor' },
-    { vendor: 'IDEXX Laboratories India', category: 'Analyzer Cartridges & Reagents', volumeYTD: '₹18,50,000', rebateRate: '6.0%', earnedRebate: '₹1,11,000', contractEnd: 'Nov 2027', rating: 'Direct OEM' }
-  ];
+  const vendorContracts = [];
 
   return (
     <DashboardLayout
@@ -48,12 +38,12 @@ export default function COGS() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Monthly COGS" value="₹34.50 Lakh" delta="-4.2% under plan" trend="up" subtext="44.0% of revenue" icon="📦" />
-        <KpiCard label="Pharma Procurement" value="₹14.50 Lakh" delta="42.0% of COGS" trend="up" subtext="Vaccines & cold chain" icon="💊" />
-        <KpiCard label="Surgical Hardware" value="₹9.80 Lakh" delta="28.4% of COGS" trend="up" subtext="Titanium TPLO & Pins" icon="🔩" />
-        <KpiCard label="Diagnostics Consumables" value="₹5.40 Lakh" delta="15.7% of COGS" trend="up" subtext="IDEXX lab cartridges" icon="🔬" />
-        <KpiCard label="Manufacturer Rebates" value="₹12.14 Lakh" delta="Annualized pool" trend="up" subtext="Direct margin credit" icon="🎁" />
-        <KpiCard label="Inventory Waste / Spoilage" value="0.42%" delta="Industry: 1.8%" trend="up" subtext="Strict FEFO control" icon="🛡️" />
+        <KpiCard label="Total Monthly COGS" value="₹0" delta="-4.2% under plan" trend="up" subtext="44.0% of revenue" icon="📦" />
+        <KpiCard label="Pharma Procurement" value="₹0" delta="42.0% of COGS" trend="up" subtext="Vaccines & cold chain" icon="💊" />
+        <KpiCard label="Surgical Hardware" value="₹0" delta="28.4% of COGS" trend="up" subtext="Titanium TPLO & Pins" icon="🔩" />
+        <KpiCard label="Diagnostics Consumables" value="₹0" delta="15.7% of COGS" trend="up" subtext="IDEXX lab cartridges" icon="🔬" />
+        <KpiCard label="Manufacturer Rebates" value="₹0" delta="Annualized pool" trend="up" subtext="Direct margin credit" icon="🎁" />
+        <KpiCard label="Inventory Waste / Spoilage" value="0.0%" delta="Industry: 1.8%" trend="up" subtext="Strict FEFO control" icon="🛡️" />
       </div>
 
       <div style={{

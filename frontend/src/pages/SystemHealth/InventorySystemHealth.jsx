@@ -3,63 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function InventorySystemHealth() {
-  const [nodes, setNodes] = useState([
-    {
-      hub: 'Bengaluru Central Cold Depot (Koramangala)',
-      type: 'Primary Cold Chain & Central Hub',
-      ip: '10.20.1.14',
-      status: 'Healthy',
-      syncLatency: '14ms',
-      skuCount: '4,200 SKUs',
-      telemetry: 'Freezer #1: +3.8°C | Freezer #2: +4.2°C',
-      wmsConnector: 'Connected (REST v2)',
-      pendingTransfers: '0'
-    },
-    {
-      hub: 'Mumbai West Express Fulfillment (Bandra)',
-      type: '60-Min Express Hub',
-      ip: '10.20.2.22',
-      status: 'Healthy',
-      syncLatency: '24ms',
-      skuCount: '1,850 SKUs',
-      telemetry: 'Ambient: +22.4°C | Chiller: +4.0°C',
-      wmsConnector: 'Connected (MQTT)',
-      pendingTransfers: '2 in-transit'
-    },
-    {
-      hub: 'Delhi NCR Urban Node (Okhla)',
-      type: 'Regional Fulfillment Hub',
-      ip: '10.20.3.18',
-      status: 'Healthy',
-      syncLatency: '32ms',
-      skuCount: '2,400 SKUs',
-      telemetry: 'Ambient: +24.1°C | Chiller: +3.9°C',
-      wmsConnector: 'Connected (REST v2)',
-      pendingTransfers: '0'
-    },
-    {
-      hub: 'Hyderabad Central (Jubilee Hills)',
-      type: 'Express Micro-Hub',
-      ip: '10.20.4.11',
-      status: 'Healthy',
-      syncLatency: '28ms',
-      skuCount: '1,420 SKUs',
-      telemetry: 'Ambient: +23.2°C | Chiller: +4.1°C',
-      wmsConnector: 'Connected (REST v2)',
-      pendingTransfers: '1 in-transit'
-    },
-    {
-      hub: 'Pune Express Center (Koregaon)',
-      type: 'Express Micro-Hub',
-      ip: '10.20.5.09',
-      status: 'Healthy',
-      syncLatency: '26ms',
-      skuCount: '1,280 SKUs',
-      telemetry: 'Ambient: +22.8°C | Chiller: +3.7°C',
-      wmsConnector: 'Connected (MQTT)',
-      pendingTransfers: '0'
-    }
-  ]);
+  const [nodes, setNodes] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -115,7 +59,7 @@ export default function InventorySystemHealth() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Online Hubs" value="5 / 5 Hubs" delta="100% Operational" trend="up" subtext="All IoT streams green" icon="🏬" />
         <KpiCard label="Cold-Chain Sensor Heartbeat" value="3.0 s" delta="Normal: +2°C to +8°C" trend="up" subtext="0 breaches detected" icon="❄️" />
-        <KpiCard label="Total Tracked SKUs" value="4,200 SKUs" delta="Real-time sync" trend="up" subtext="Valuation: ₹16.64 Cr" icon="📦" />
+        <KpiCard label="Total Tracked SKUs" value="4,200 SKUs" delta="Real-time sync" trend="up" subtext="Valuation: ₹0" icon="📦" />
         <KpiCard label="Reorder Triggers Fired" value="14 Today" delta="Automated PO sent" trend="up" subtext="Zero manual delay" icon="⚡" />
       </div>
 

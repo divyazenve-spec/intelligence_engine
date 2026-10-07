@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByDoctor() {
-  const doctors = [
-    { name: 'Dr. Divya Balasubramanian', spec: 'Lead Physician, MBBS, MD', reg: 'MCI-62910', consults: 248, rev: '₹6,42,000', aov: '₹2,588', rating: '4.98' },
-    { name: 'Dr. Arvind Swaminathan', spec: 'Cardiologist, MD, DM', reg: 'MCI-48291', consults: 184, rev: '₹5,18,000', aov: '₹2,815', rating: '4.95' },
-    { name: 'Dr. Meera Nambiar', spec: 'Senior Neurologist, MD', reg: 'MCI-39102', consults: 162, rev: '₹4,45,000', aov: '₹2,746', rating: '4.92' },
-    { name: 'Dr. Siddharth Rao', spec: 'Pediatric Specialist, DCH', reg: 'MCI-51829', consults: 198, rev: '₹3,96,000', aov: '₹2,000', rating: '4.91' },
-    { name: 'Dr. Kavita Reddy', spec: 'Clinical Pathologist, MD', reg: 'MCI-29481', consults: 142, rev: '₹3,40,000', aov: '₹2,394', rating: '4.88' },
-    { name: 'Dr. Rohan Kulkarni', spec: 'Orthopedic Surgeon, MS', reg: 'MCI-73019', consults: 118, rev: '₹3,24,000', aov: '₹2,745', rating: '4.89' }
-  ];
+  const doctors = [];
 
   return (
     <DashboardLayout
@@ -22,9 +15,9 @@ export default function RevenueByDoctor() {
       badge="Active Medical Board"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Physician" value="Dr. Divya Balasubramanian" delta="₹6.42L billings" trend="up" subtext="248 consults" icon="🩺" />
-        <KpiCard label="Total Consultations" value="1,052" delta="+18.2%" trend="up" subtext="Across medical team" icon="📋" />
-        <KpiCard label="Avg Consult Fee" value="₹2,548" delta="+6.4%" trend="up" subtext="Per clinical session" icon="💰" />
+        <KpiCard label="Top Physician" value="Dr. Divya Balasubramanian" delta="₹0 billings" trend="up" subtext="248 consults" icon="🩺" />
+        <KpiCard label="Total Consultations" value="0" delta="0.0%" trend="up" subtext="Across medical team" icon="📋" />
+        <KpiCard label="Avg Consult Fee" value="₹0" delta="0.0%" trend="up" subtext="Per clinical session" icon="💰" />
         <KpiCard label="Medical Rating" value="4.92 / 5.0" delta="Top Tier" trend="up" subtext="Patient parent reviews" icon="⭐" />
       </div>
 

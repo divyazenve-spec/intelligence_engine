@@ -6,14 +6,7 @@ export default function B2BDashboard() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const accounts = [
-    { id: 'CORP-8801', name: 'K-9 National Police & Paramilitary Kennels', category: 'Security & Government', contractVal: '₹18,50,000', mtdOrders: '₹2,40,000', terms: 'Net 60', creditLimit: '₹25,00,000', status: 'Active (Tier 1)', health: 'Prime' },
-    { id: 'CORP-8802', name: 'Bangalore Canine Breeding & Genetics Club', category: 'Breeder Network', contractVal: '₹12,80,000', mtdOrders: '₹1,95,000', terms: 'Net 45', creditLimit: '₹15,00,000', status: 'Active (Tier 1)', health: 'Prime' },
-    { id: 'CORP-8803', name: 'Urban Mutts Premium Luxury Daycare Chain', category: 'Daycare & Hospitality', contractVal: '₹8,40,000', mtdOrders: '₹1,12,000', terms: 'Net 30', creditLimit: '₹10,00,000', status: 'Active (Tier 2)', health: 'Healthy' },
-    { id: 'CORP-8804', name: 'PetCare Hospital Network (12 Locations)', category: 'Veterinary Hospital Chain', contractVal: '₹24,00,000', mtdOrders: '₹3,85,000', terms: 'Net 30', creditLimit: '₹30,00,000', status: 'Active (Key Enterprise)', health: 'Prime' },
-    { id: 'CORP-8805', name: 'Infosys Employee Pets Corporate Wellness', category: 'Corporate Benefits', contractVal: '₹9,60,000', mtdOrders: '₹1,40,000', terms: 'Net 30', creditLimit: '₹12,00,000', status: 'Active (Tier 2)', health: 'Healthy' },
-    { id: 'CORP-8806', name: 'Wipro Campus Canine Security Force', category: 'Security & Government', contractVal: '₹6,50,000', mtdOrders: '₹82,000', terms: 'Net 45', creditLimit: '₹8,00,000', status: 'Renewal Due', health: 'Review' }
-  ];
+  const accounts = [];
 
   const filtered = accounts.filter(a => {
     if (filter !== 'ALL' && a.category !== filter) return false;
@@ -33,7 +26,7 @@ export default function B2BDashboard() {
       title="B2B Enterprise & Institutional Accounts"
       subtitle="Corporate kennels, breeder partnerships, institutional hospital contracts, and wholesale volume receivables"
       icon="🏢"
-      badge="₹34.8L MTD Rev"
+      badge="₹0 MTD Rev"
       actions={
         <button onClick={() => alert('New Enterprise Client Onboarding initiated...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #4f46e5', background: 'rgba(79,70,229,0.12)', color: '#4338ca', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Onboard Enterprise Client
@@ -41,12 +34,12 @@ export default function B2BDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="B2B Gross Revenue (MTD)" value="₹34.82 Lakh" delta="+18.4% MoM" trend="up" subtext="14.2% total company revenue" icon="🏢" />
+        <KpiCard label="B2B Gross Revenue (MTD)" value="₹0" delta="+18.4% MoM" trend="up" subtext="14.2% total company revenue" icon="🏢" />
         <KpiCard label="Active Corporate Clients" value="48 Accounts" delta="6 enterprise tiers" trend="up" subtext="Key accounts: 14" icon="📑" />
-        <KpiCard label="Avg. Contract Value (ACV)" value="₹14.5 Lakh" delta="+8.2% YoY" trend="up" subtext="Multi-year agreements" icon="💼" />
-        <KpiCard label="B2B Outstanding Receivables" value="₹12.40 Lakh" delta="88% under 30 days" trend="up" subtext="Low delinquency risk" icon="💰" />
-        <KpiCard label="Wholesale Gross Margin" value="38.4%" delta="+1.8% vs FY25" trend="up" subtext="Volume-tier protected" icon="📈" />
-        <KpiCard label="Contract Renewal Rate" value="96.2%" delta="High enterprise loyalty" trend="up" subtext="Only 1 churn YTD" icon="🛡️" />
+        <KpiCard label="Avg. Contract Value (ACV)" value="₹0" delta="+8.2% YoY" trend="up" subtext="Multi-year agreements" icon="💼" />
+        <KpiCard label="B2B Outstanding Receivables" value="₹0" delta="88% under 30 days" trend="up" subtext="Low delinquency risk" icon="💰" />
+        <KpiCard label="Wholesale Gross Margin" value="0.0%" delta="+1.8% vs FY25" trend="up" subtext="Volume-tier protected" icon="📈" />
+        <KpiCard label="Contract Renewal Rate" value="0.0%" delta="High enterprise loyalty" trend="up" subtext="Only 1 churn YTD" icon="🛡️" />
       </div>
 
       <div style={card}>

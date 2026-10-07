@@ -64,34 +64,9 @@
       vciAccreditation: 'VCI-2024-TN884 (Telemedicine Certified)',
       bioWasteAuth: 'KSPCB/BMW/2023/8821'
     },
-    units: [
-      { id: 'BU-01', name: 'Zenve Clinical & Surgical Hospitals', lead: 'Dr. Priya Sharma (CMO)', staff: 84, revenue: '₹48.5L/mo', status: 'Active', code: 'CC-HOSP-BLR' },
-      { id: 'BU-02', name: 'Zenve Digital Tele-Health & Home Visits', lead: 'Dr. Arvind Swaminathan', staff: 42, revenue: '₹32.8L/mo', status: 'Active', code: 'CC-TELE-IND' },
-      { id: 'BU-03', name: 'Zenve Pharmacy & Diagnostics Network', lead: 'Sneha Patel (Head Pharmacist)', staff: 65, revenue: '₹64.2L/mo', status: 'Active', code: 'CC-PHAR-NAT' },
-      { id: 'BU-04', name: 'Zenve Pet Nutrition & Lifestyle', lead: 'Rajesh Verma', staff: 38, revenue: '₹41.6L/mo', status: 'Active', code: 'CC-RET-ECOM' },
-      { id: 'BU-05', name: 'Zenve B2B & Corporate Wellness', lead: 'Vikram Mehta', staff: 16, revenue: '₹18.4L/mo', status: 'Active', code: 'CC-B2B-CORP' }
-    ],
-    locations: [
-      { id: 'LOC-01', name: 'Bengaluru Flagship Hospital & ICU', city: 'Bengaluru', type: 'Super-Specialty Hospital', area: 'Koramangala 4th Block', radius: '25 km', manager: 'Dr. Priya Sharma', phone: '+91 80 4719 3201', status: 'Active' },
-      { id: 'LOC-02', name: 'Indiranagar 60-Min Express Dark Store', city: 'Bengaluru', type: 'Micro-Fulfillment Hub', area: '100ft Road Indiranagar', radius: '5.0 km', manager: 'Vikram Mehta', phone: '+91 80 4719 3205', status: 'Active' },
-      { id: 'LOC-03', name: 'Mumbai Surgical Center & Diagnostics', city: 'Mumbai', type: 'Specialty Surgical Center', area: 'Bandra West (Linking Rd)', radius: '18 km', manager: 'Dr. Arvind Swaminathan', phone: '+91 22 6812 4401', status: 'Active' },
-      { id: 'LOC-04', name: 'Bhiwandi Central Distribution Hub', city: 'Mumbai', type: 'Central Cold-Chain Warehouse', area: 'Bhiwandi Logistics Park', radius: 'Statewide', manager: 'Suresh Patil', phone: '+91 22 6812 4499', status: 'Active' },
-      { id: 'LOC-05', name: 'Delhi NCR Super-Specialty Clinic', city: 'Delhi NCR', type: 'Outpatient & Surgical Node', area: 'Sector 29, Gurugram', radius: '20 km', manager: 'Ananya Deshmukh', phone: '+91 124 492 8100', status: 'Active' },
-      { id: 'LOC-06', name: 'Hyderabad Telemedicine & Lab Hub', city: 'Hyderabad', type: 'Clinical Diagnostics & Telehealth', area: 'Hitec City, Madhapur', radius: '15 km', manager: 'Dr. Kavita Reddy', phone: '+91 40 4819 2200', status: 'Active' },
-      { id: 'LOC-07', name: 'Chennai Outpatient & Pharmacy Node', city: 'Chennai', type: 'Clinic & Express Pharmacy', area: 'Adyar 2nd Main Road', radius: '12 km', manager: 'Dr. Siddharth Rao', phone: '+91 44 4920 1100', status: 'Active' }
-    ],
-    users: [
-      { id: 'USR-101', name: 'Dr. Priya Sharma', email: 'priya.sharma@zenve.in', role: 'Clinical Director & CMO', unit: 'Clinical Hospitals', location: 'Bengaluru Hospital', mfa: 'Enforced', status: 'Active' },
-      { id: 'USR-102', name: 'Dr. Arvind Swaminathan', email: 'arvind.s@zenve.in', role: 'Senior Veterinary Surgeon', unit: 'Clinical Hospitals', location: 'Mumbai Surgical', mfa: 'Enforced', status: 'Active' },
-      { id: 'USR-103', name: 'Rajesh Verma', email: 'rajesh.v@zenve.in', role: 'Care Operations Lead', unit: 'Digital Tele-Health', location: 'Bengaluru HQ', mfa: 'Enabled', status: 'Active' },
-      { id: 'USR-104', name: 'Sneha Patel', email: 'sneha.p@zenve.in', role: 'Head Pharmacist', unit: 'Pharmacy & Diagnostics', location: 'Indiranagar Hub', mfa: 'Enforced', status: 'Active' },
-      { id: 'USR-105', name: 'Vikram Mehta', email: 'vikram.m@zenve.in', role: 'Logistics & 60-Min Dispatch Lead', unit: 'Supply Chain', location: 'Koramangala Hub', mfa: 'Enabled', status: 'Active' },
-      { id: 'USR-106', name: 'Arjun Nair', email: 'arjun.n@zenve.in', role: 'Financial Controller', unit: 'Finance & Audit', location: 'Bengaluru HQ', mfa: 'Enforced', status: 'Active' },
-      { id: 'USR-107', name: 'Dr. Kavita Reddy', email: 'kavita.r@zenve.in', role: 'Head Clinical Pathologist', unit: 'Pharmacy & Diagnostics', location: 'Hyderabad Hub', mfa: 'Enforced', status: 'Active' },
-      { id: 'USR-108', name: 'Ananya Deshmukh', email: 'ananya.d@zenve.in', role: 'Outpatient Services Lead', unit: 'Digital Tele-Health', location: 'Delhi NCR Clinic', mfa: 'Enabled', status: 'Active' },
-      { id: 'USR-109', name: 'Rohan Kulkarni', email: 'rohan.k@zenve.in', role: 'Emergency Dispatcher', unit: 'Supply Chain', location: 'Mumbai Surgical', mfa: 'Enabled', status: 'Active' },
-      { id: 'USR-110', name: 'Sunita Sen', email: 'sunita.s@zenve.in', role: 'Customer Escalations Manager', unit: 'Customer Experience', location: 'Bengaluru HQ', mfa: 'Enabled', status: 'Active' }
-    ],
+    units: [],
+    locations: [],
+    users: [],
     roles: [
       { name: 'Super Administrator', desc: 'Full root access to all system configurations and clinical logs', users: 3 },
       { name: 'Clinical Director & CMO', desc: 'Medical governance, prescription approval, surgical scheduling, clinical audits', users: 2 },
@@ -116,11 +91,7 @@
       { id: 'WF-04', name: 'Cold-Chain Spoilage / Expired Stock Write-off', trigger: 'Quality Breach', steps: 'Warehouse Manager → QA Lead → CFO', timeout: '6 Hours', status: 'Active' },
       { id: 'WF-05', name: 'Breeder / Commercial VIP Discount (> 20%)', trigger: 'Cart Override', steps: 'Sales Manager → Head of Commercial', timeout: '2 Hours', status: 'Active' }
     ],
-    pendingApprovals: [
-      { id: 'REQ-8821', title: 'Refund Request for Orthopedic Bed Damage', orderId: 'ORD-2024-9182', amount: '₹7,450', requester: 'Sunita Sen', date: 'Today, 10:14 AM' },
-      { id: 'REQ-8822', title: 'Antibiotic Bulk Stock Reorder (Zoetis 500 vials)', orderId: 'PO-2024-0419', amount: '₹1,42,000', requester: 'Sneha Patel', date: 'Today, 09:30 AM' },
-      { id: 'REQ-8823', title: 'Canine Hydrotherapy Package 25% VIP Discount', orderId: 'DISC-2024-0012', amount: '₹6,250', requester: 'Rajesh Verma', date: 'Yesterday, 06:45 PM' }
-    ],
+    pendingApprovals: [],
     notifications: {
       whatsapp: true,
       sms: true,

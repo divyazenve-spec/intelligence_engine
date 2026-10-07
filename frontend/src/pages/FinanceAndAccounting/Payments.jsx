@@ -5,20 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function Payments() {
   const [gatewayFilter, setGatewayFilter] = useState('ALL');
 
-  const gateways = [
-    { name: 'Razorpay UPI & Smart Collect', processed: '₹36,20,000', txns: '4,120 txns', mdrRate: '0.00%', mdrCost: '₹0', netSettled: '₹36,20,000', rail: 'UPI 2.0 Auto-Sweep', status: 'Settled (T+1)' },
-    { name: 'Pine Labs Hospital POS Terminals', processed: '₹21,72,000', txns: '1,450 txns', mdrRate: '0.90%', mdrCost: '₹19,548', netSettled: '₹21,52,452', rail: 'RuPay/Visa/MC Chip', status: 'Settled (T+1)' },
-    { name: 'HDFC Corporate CMS / NetBanking', processed: '₹10,86,000', txns: '64 txns', mdrRate: '₹5 / txn', mdrCost: '₹320', netSettled: '₹10,85,680', rail: 'Corporate NEFT/RTGS', status: 'Cleared / Instant' },
-    { name: 'Clinical Desk Cash at Reception', processed: '₹3,62,000', txns: '420 txns', mdrRate: '0.00%', mdrCost: '₹0', netSettled: '₹3,62,000', rail: 'Daily Cash In Vault', status: 'Bank Deposited' }
-  ];
+  const gateways = [];
 
-  const recentReceipts = [
-    { txnId: 'PAY-RZP-9041', pet: 'Max (Golden Retriever)', client: 'Kunal Verma', facility: 'Koramangala 24x7', amt: '₹4,800', channel: 'Google Pay UPI', time: '12 mins ago', status: 'Success' },
-    { txnId: 'PAY-POS-4122', pet: 'Simba (Persian Cat)', client: 'Neha Kapoor', facility: 'Bandra Multi-Specialty', amt: '₹18,500', channel: 'Pine Labs HDFC Card', time: '28 mins ago', status: 'Success' },
-    { txnId: 'PAY-RZP-9040', pet: 'Rocky (Rottweiler)', client: 'Rohan Mehra', facility: 'Okhla Animal Hospital', amt: '₹32,000', channel: 'PhonePe QR', time: '1.1 hrs ago', status: 'Success' },
-    { txnId: 'PAY-ACH-1102', pet: 'Corporate Wellness', client: 'Infosys B2B Retainer', facility: 'Headquarters Treasury', amt: '₹4,20,000', channel: 'Corporate NEFT', time: '2.5 hrs ago', status: 'Success' },
-    { txnId: 'PAY-POS-4121', pet: 'Coco (Shih Tzu)', client: 'Pooja Reddy', facility: 'Jubilee Hills Clinic', amt: '₹2,650', channel: 'Apple Pay POS', time: '3.4 hrs ago', status: 'Success' }
-  ];
+  const recentReceipts = [];
 
   return (
     <DashboardLayout
@@ -49,11 +38,11 @@ export default function Payments() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Digital Collections" value="₹72.40 Lakh" delta="+18.2% MoM" trend="up" subtext="Inbound MTD flow" icon="💳" />
-        <KpiCard label="UPI Payment Share" value="50.0%" delta="Zero MDR rate" trend="up" subtext="4,120 instant scans" icon="📱" />
-        <KpiCard label="Card & POS Volume" value="₹21.72 Lakh" delta="30.0% of total" trend="up" subtext="Pine Labs smart terminals" icon="🏧" />
-        <KpiCard label="Blended MDR Cost" value="0.27%" delta="-0.08% pts YoY" trend="up" subtext="Minimal fee leakage" icon="💰" />
-        <KpiCard label="Failed / Dropped Txns" value="0.32%" delta="99.68% Success" trend="up" subtext="High gateway uptime" icon="🛡️" />
+        <KpiCard label="Gross Digital Collections" value="₹0" delta="+18.2% MoM" trend="up" subtext="Inbound MTD flow" icon="💳" />
+        <KpiCard label="UPI Payment Share" value="0.0%" delta="Zero MDR rate" trend="up" subtext="4,120 instant scans" icon="📱" />
+        <KpiCard label="Card & POS Volume" value="₹0" delta="30.0% of total" trend="up" subtext="Pine Labs smart terminals" icon="🏧" />
+        <KpiCard label="Blended MDR Cost" value="0.0%" delta="-0.08% pts YoY" trend="up" subtext="Minimal fee leakage" icon="💰" />
+        <KpiCard label="Failed / Dropped Txns" value="0.0%" delta="99.68% Success" trend="up" subtext="High gateway uptime" icon="🛡️" />
         <KpiCard label="Settlement Window" value="T+1 Morning" delta="Auto-cleared" trend="up" subtext="Direct HDFC sweep" icon="⚡" />
       </div>
 

@@ -6,26 +6,9 @@ export default function PharmacyDashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState('Today');
   const [activeTab, setActiveTab] = useState('overview');
 
-  const categories = [
-    { name: 'Antiparasitics & Dewormers', revenue: '₹4,12,000', margin: '42.5%', share: '32.8%', trend: '+14.2%', icon: '🪱' },
-    {
-      name: 'Antibiotics & Anti-Infectives', revenue: '₹2,84,500', margin: '38.0%',
+  const categories = [];
 
-      share: '22.6%', trend: '+9.4%', icon: '💊'
-    },
-    { name: 'Chronic Wellness & Cardiac', revenue: '₹2,35,000', margin: '48.2%', share: '18.7%', trend: '+21.0%', icon: '❤️' },
-    { name: 'Veterinary Vaccines & Cold Chain', revenue: '₹1,64,000', margin: '35.0%', share: '13.0%', trend: '+8.1%', icon: '❄️' },
-    { name: 'Dermatologicals & Shampoos', revenue: '₹1,02,500', margin: '45.0%', share: '8.1%', trend: '+12.5%', icon: '🧴' },
-    { name: 'Nutraceuticals & Joint Care', revenue: '₹60,000', margin: '47.5%', share: '4.8%', trend: '+16.2%', icon: '🦴' }
-  ];
-
-  const recentDispensed = [
-    { rxId: 'RX-2026-9041', pet: 'Bruno (Golden Retriever)', vet: 'Dr. Priya Sharma', drug: 'Bravecto 20-40kg + Amoxiclav 625', qty: '1 tab + 10 tabs', schedule: 'Schedule H', status: 'Dispensed', time: '12 mins ago' },
-    { rxId: 'RX-2026-9040', pet: 'Milo (Persian Cat)', vet: 'Dr. Rahul Mehta', drug: 'Zoetis Revolution Spot-On + Gabapentin', qty: '1 tube + 6 caps', schedule: 'Schedule H', status: 'Dispensed', time: '28 mins ago' },
-    { rxId: 'RX-2026-9039', pet: 'Simba (German Shepherd)', vet: 'Dr. Aisha Khan', drug: 'Cardisure 5mg (Pimobendan)', qty: '60 tablets', schedule: 'Schedule H', status: 'Ready for Pickup', time: '45 mins ago' },
-    { rxId: 'RX-2026-9038', pet: 'Bella (Beagle)', vet: 'Dr. Karan Patel', drug: 'Nobivac DHPPi Core Vaccine 1D', qty: '1 vial (Cold Chain)', schedule: 'Schedule H', status: 'Administered', time: '1 hour ago' },
-    { rxId: 'RX-2026-9037', pet: 'Leo (Shih Tzu)', vet: 'Dr. Neha Singh', drug: 'Malaseb Medicated Shampoo 250ml', qty: '1 bottle', schedule: 'OTC', status: 'Dispensed', time: '1.5 hours ago' }
-  ];
+  const recentDispensed = [];
 
   return (
     <DashboardLayout
@@ -93,12 +76,12 @@ export default function PharmacyDashboard() {
     >
       {/* KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Pharmacy Revenue" value="₹12.58 Lakh" delta="+18.4% vs last period" trend="up" subtext="24% of total Zenve revenue" icon="💊" />
+        <KpiCard label="Pharmacy Revenue" value="₹0" delta="+18.4% vs last period" trend="up" subtext="24% of total Zenve revenue" icon="💊" />
         <KpiCard label="Prescriptions Filled" value="1,840 Rx" delta="100% Doctor Signed" trend="up" subtext="0 Schedule H violations" icon="📋" />
-        <KpiCard label="Average Rx Basket" value="₹1,248" delta="+6.2% YoY" trend="up" subtext="2.8 medicines / ticket" icon="💰" />
+        <KpiCard label="Average Rx Basket" value="₹0" delta="+6.2% YoY" trend="up" subtext="2.8 medicines / ticket" icon="💰" />
         <KpiCard label="Active Stocked Drugs" value="642 SKUs" delta="98.2% In-Stock SLA" trend="up" subtext="12 warehouses & clinics" icon="📦" />
-        <KpiCard label="Near-Expiry Batches" value="4 Batches" delta="Under 60 Days" trend="down" subtext="₹48,200 salvage value" icon="⏳" />
-        <KpiCard label="Cold Chain Integrity" value="100.0%" delta="3.4°C Mean Temp" trend="up" subtext="IoT telemetry verified" icon="❄️" />
+        <KpiCard label="Near-Expiry Batches" value="4 Batches" delta="Under 60 Days" trend="down" subtext="₹0 value" icon="⏳" />
+        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="3.4°C Mean Temp" trend="up" subtext="IoT telemetry verified" icon="❄️" />
       </div>
 
       {/* Main Grid: Categories & Compliance Radar */}

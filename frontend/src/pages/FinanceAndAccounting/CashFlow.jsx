@@ -5,31 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function CashFlow() {
   const [period, setPeriod] = useState('Current Quarter');
 
-  const cashFlowLines = [
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Cash Received from Consultations & Surgeries', amt: '₹53,20,000', type: 'inflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Cash Collections from Pharmacy Sales & E-Com', amt: '₹21,00,000', type: 'inflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Cash Paid to Pharmaceutical & Surgical Suppliers', amt: '-₹31,40,000', type: 'outflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Salaries Paid to Surgeons, Nurses & Support Staff', amt: '-₹15,20,000', type: 'outflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Hospital Utilities, Oxygen, Waste Disposal & Admin', amt: '-₹4,80,000', type: 'outflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'Direct Taxes & Statutory GST Net Remittance', amt: '-₹6,50,000', type: 'outflow' },
-    { section: 'Cash Flow from Operating Activities (CFO)', item: 'NET CASH FROM OPERATING ACTIVITIES (CFO)', amt: '₹16,30,000', type: 'subtotal' },
-    { section: 'Cash Flow from Investing Activities (CFI)', item: 'Purchase of Advanced Surgical Video Laparoscopy Rig', amt: '-₹5,80,000', type: 'outflow' },
-    { section: 'Cash Flow from Investing Activities (CFI)', item: 'Down Payment on 2 New Mobile ALS Pet Ambulances', amt: '-₹3,20,000', type: 'outflow' },
-    { section: 'Cash Flow from Investing Activities (CFI)', item: 'Clinical Cloud EMR & Tele-radiology Software Build', amt: '-₹1,50,000', type: 'outflow' },
-    { section: 'Cash Flow from Investing Activities (CFI)', item: 'NET CASH USED IN INVESTING ACTIVITIES (CFI)', amt: '-₹10,50,000', type: 'subtotal' },
-    { section: 'Cash Flow from Financing Activities (CFF)', item: 'Principal Repayment on SIDBI Equipment Loan', amt: '-₹2,40,000', type: 'outflow' },
-    { section: 'Cash Flow from Financing Activities (CFF)', item: 'Equipment Lease Interest & Bank Facility Fees', amt: '-₹95,000', type: 'outflow' },
-    { section: 'Cash Flow from Financing Activities (CFF)', item: 'NET CASH USED IN FINANCING ACTIVITIES (CFF)', amt: '-₹3,35,000', type: 'subtotal' },
-    { section: 'Summary', item: 'NET INCREASE IN CASH AND CASH EQUIVALENTS', amt: '₹2,45,000', type: 'total' },
-    { section: 'Summary', item: 'Cash and Cash Equivalents at Beginning of Period', amt: '₹1,45,75,000', type: 'neutral' },
-    { section: 'Summary', item: 'Cash and Cash Equivalents at End of Period', amt: '₹1,48,20,000', type: 'total' }
-  ];
+  const cashFlowLines = [];
 
-  const bankAccounts = [
-    { bank: 'HDFC Bank - Commercial Banking', acc: '5020-0081-9921', type: 'Primary Operating Account', bal: '₹84,50,000', status: 'Active / Live RTGS' },
-    { bank: 'ICICI Bank - Cash Management', acc: '0012-0501-4432', type: 'Payment Gateway Escrow Pool', bal: '₹42,30,000', status: 'Auto-Sweep Active' },
-    { bank: 'Axis Bank - Corporate Treasury', acc: '9180-2004-1189', type: 'Statutory Taxes & Payroll Pool', bal: '₹21,40,000', status: 'Secured Tier 1' }
-  ];
+  const bankAccounts = [];
 
   return (
     <DashboardLayout
@@ -60,9 +38,9 @@ export default function CashFlow() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Closing Cash Balance" value="₹1.48 Crore" delta="+₹2.45L MTD" trend="up" subtext="HDFC + ICICI + Axis" icon="🏦" />
-        <KpiCard label="Operating Cash (CFO)" value="+₹16.30 Lakh" delta="Positive OCF" trend="up" subtext="Strong cash conversion" icon="⚡" />
-        <KpiCard label="Free Cash Flow (FCF)" value="+₹5.80 Lakh" delta="CFO - CAPEX" trend="up" subtext="Self-funding expansion" icon="💎" />
+        <KpiCard label="Closing Cash Balance" value="₹0" delta="+₹0 MTD" trend="up" subtext="HDFC + ICICI + Axis" icon="🏦" />
+        <KpiCard label="Operating Cash (CFO)" value="+₹0" delta="Positive OCF" trend="up" subtext="Strong cash conversion" icon="⚡" />
+        <KpiCard label="Free Cash Flow (FCF)" value="+₹0" delta="CFO - CAPEX" trend="up" subtext="Self-funding expansion" icon="💎" />
         <KpiCard label="Monthly Net Burn" value="₹0 (Profitable)" delta="Net Cash Flow +" trend="up" subtext="Self-sustaining" icon="🛡️" />
         <KpiCard label="Cash Runway" value="14.2 Months" delta="Zero dilution needed" trend="up" subtext="Conservative buffer" icon="⏳" />
         <KpiCard label="Operating Cash Ratio" value="2.98x" delta="High coverage" trend="up" subtext="CFO / Current Liab" icon="📈" />

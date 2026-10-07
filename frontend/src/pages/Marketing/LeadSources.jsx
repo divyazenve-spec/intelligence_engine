@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function LeadSources() {
-  const sources = [
-    { name: 'Google Search (High Intent)', visitors: '68,400', leads: '6,420', convRate: '9.38%', spend: '₹2,10,000', cac: '₹140', quality: '9.6/10', share: '34.8%' },
-    { name: 'Meta Instagram (Visual & Reels)', visitors: '54,200', leads: '4,180', convRate: '7.71%', spend: '₹1,85,000', cac: '₹165', quality: '8.8/10', share: '22.7%' },
-    { name: 'Partner Vet Clinics & Hospitals', visitors: '14,800', leads: '2,940', convRate: '19.86%', spend: '₹84,000', cac: '₹85', quality: '9.9/10', share: '16.0%' },
-    { name: 'In-App Referral & Invite Pet Friend', visitors: '19,500', leads: '2,450', convRate: '12.56%', spend: '₹35,000', cac: '₹32', quality: '9.4/10', share: '13.3%' },
-    { name: 'Organic SEO & Pet Health Guides', visitors: '42,000', leads: '1,650', convRate: '3.93%', spend: '₹40,000', cac: '₹24', quality: '9.1/10', share: '9.0%' },
-    { name: 'Local Pet Events & Adoption Drives', visitors: '6,400', leads: '760', convRate: '11.88%', spend: '₹28,000', cac: '₹110', quality: '8.9/10', share: '4.2%' }
-  ];
+  const sources = [];
 
   return (
     <DashboardLayout
@@ -19,13 +12,13 @@ export default function LeadSources() {
       title="Acquisition Lead Sources & Channel Attribution"
       subtitle="Source performance, attribution efficiency, channel quality index, and lead volume share"
       icon="🌐"
-      badge="6 Attributed Channels"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Top Lead Channel" value="Google Search" delta="34.8% Share" trend="up" subtext="6,420 pet leads" icon="🔍" />
         <KpiCard label="Highest Quality Score" value="Vet Clinic Network" delta="9.9 / 10" trend="up" subtext="19.8% conversion rate" icon="🩺" />
-        <KpiCard label="Lowest CAC Channel" value="In-App Referrals" delta="₹32 / Lead" trend="up" subtext="₹35K viral budget" icon="👥" />
-        <KpiCard label="Blended Channel Conv" value="9.1%" delta="+1.4%" trend="up" subtext="Across all 6 touchpoints" icon="⚡" />
+        <KpiCard label="Lowest CAC Channel" value="In-App Referrals" delta="₹0 / Lead" trend="up" subtext="₹0 viral budget" icon="👥" />
+        <KpiCard label="Blended Channel Conv" value="0.0%" delta="0.0%" trend="up" subtext="Across all 6 touchpoints" icon="⚡" />
       </div>
 
       <div style={{

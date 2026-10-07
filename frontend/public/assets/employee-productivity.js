@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var teams = [
-    { team: 'Clinical Surgery & Consults', activeHours: '7.8 hrs/day', efficiency: '96.2%', tasksDone: '38 cases/day', turnaround: '22 mins/pet', idlePct: '4.8%', status: 'Optimal' },
-    { team: 'Pharmacy Dispensing & Cold Chain', activeHours: '8.1 hrs/day', efficiency: '97.5%', tasksDone: '240 Rx/day', turnaround: '4.2 mins/Rx', idlePct: '3.1%', status: 'High Velocity' },
-    { team: 'Hyperlocal 60-Min Riders', activeHours: '8.4 hrs/day', efficiency: '94.8%', tasksDone: '22 drops/rider', turnaround: '34 mins/trip', idlePct: '6.2%', status: 'Optimal' },
-    { team: 'Warehouse Picking & Sorting', activeHours: '7.9 hrs/day', efficiency: '95.1%', tasksDone: '180 bins/day', turnaround: '1.8 mins/item', idlePct: '5.4%', status: 'Optimal' },
-    { team: 'AI & Full-Stack Engineering', activeHours: '7.6 hrs/day', efficiency: '98.0%', tasksDone: '18 PRs/wk', turnaround: '4.5 hrs/review', idlePct: '3.0%', status: 'High Velocity' },
-    { team: 'Customer Support & Pet Helpline', activeHours: '8.0 hrs/day', efficiency: '93.4%', tasksDone: '110 calls/rep', turnaround: '3.8 mins/call', idlePct: '7.1%', status: 'Balanced' }
-  ];
+  var teams = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

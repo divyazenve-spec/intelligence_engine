@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DataChanges() {
-  const changes = [
-    { id: 'DC-409', table: 'inventory_items', record: 'SKU-MED-049', field: 'reorder_level', oldVal: '15 units', newVal: '30 units', changedBy: 'Rajesh Verma (Pharmacist)', time: '13:40 Today', reason: 'Anticipated weekend spike' },
-    { id: 'DC-408', table: 'clinic_doctors', record: 'DOC-102 (Dr. Mehta)', field: 'consultation_fee', oldVal: '₹600.00', newVal: '₹650.00', changedBy: 'Executive Admin', time: '11:22 Today', reason: 'Annual tariff update' },
-    { id: 'DC-407', table: 'pet_health_records', record: 'PET-8201', field: 'vaccination_status', oldVal: 'Pending Booster', newVal: 'DHPPiL Administered', changedBy: 'Dr. Priya Sharma', time: '10:15 Today', reason: 'Vaccine batch #VAC-99' },
-    { id: 'DC-406', table: 'vendor_contracts', record: 'VEN-018 (Zoetis)', field: 'payment_terms', oldVal: 'Net 30', newVal: 'Net 45 (5% Rebate)', changedBy: 'Sneha Rao (Accounts)', time: 'Yesterday 16:20', reason: 'Quarterly volume agreement' },
-    { id: 'DC-405', table: 'delivery_partners', record: 'PART-04 (Dunzo API)', field: 'max_distance_km', oldVal: '8.0 km', newVal: '12.0 km', changedBy: 'Arjun Nair (Logistics)', time: 'Yesterday 14:05', reason: '60-min zone expansion' }
-  ];
+  const changes = [];
 
   return (
     <DashboardLayout
@@ -21,7 +15,7 @@ export default function DataChanges() {
       badge="Point-in-Time Rollback Ready"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Field-Level Mutations" value="284" delta="Last 7 Days" trend="up" subtext="Every column change tracked" icon="🔄" />
+        <KpiCard label="Field-Level Mutations" value="0" delta="Last 7 Days" trend="up" subtext="Every column change tracked" icon="🔄" />
         <KpiCard label="Rollback Readiness" value="100% Snapshot" delta="Point-in-Time" trend="up" subtext="Instant point rollback" icon="⏪" />
         <KpiCard label="Schema Migrations" value="v2.4.0 Live" delta="Clean State" trend="up" subtext="Zero schema drift" icon="🗄️" />
         <KpiCard label="Critical Overrides" value="0 Flagged" delta="All Approved" trend="up" subtext="Change approval valid" icon="🛡️" />

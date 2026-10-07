@@ -8,16 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var targets = [
-    { name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', metric: 'Consultation Revenue', target: '₹8,00,000', achieved: '₹8,40,000', pct: 105.0, status: 'Surplus (+5%)', tier: 'Diamond 💎' },
-    { name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', metric: 'Surgical Procedures', target: '₹6,50,000', achieved: '₹6,80,000', pct: 104.6, status: 'Surplus (+4.6%)', tier: 'Diamond 💎' },
-    { name: 'Rohan Deshmukh', role: 'Head Pharmacist', metric: 'Rx Dispensing', target: '1,300 Rx', achieved: '1,420 Rx', pct: 109.2, status: 'Surplus (+9.2%)', tier: 'Platinum 🏆' },
-    { name: 'Manish Rawat', role: 'Express Rider', metric: 'On-Time Deliveries', target: '550 Orders', achieved: '612 Orders', pct: 111.3, status: 'Surplus (+11.3%)', tier: 'Platinum 🏆' },
-    { name: 'Sneha Chawla', role: 'Senior AI Engineer', metric: 'Sprint Velocity & Models', target: '20 Tasks', achieved: '24 Tasks', pct: 120.0, status: 'Surplus (+20%)', tier: 'Diamond 💎' },
-    { name: 'Pooja Hegde', role: 'Support Team Lead', metric: 'Tickets SLA & Resolution', target: '800 Solved', achieved: '792 Solved', pct: 99.0, status: 'On Track (99%)', tier: 'Gold 🥇' },
-    { name: 'Ananya Verma', role: 'Warehouse Ops Manager', metric: 'Outbound Dispatch SLA', target: '98.0%', achieved: '96.8%', pct: 98.7, status: 'On Track (98.7%)', tier: 'Gold 🥇' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', metric: 'Stock Reconciliation', target: '100% SKU', achieved: '94.2%', pct: 94.2, status: 'Gap (-5.8%)', tier: 'Silver 🥈' }
-  ];
+  var targets = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

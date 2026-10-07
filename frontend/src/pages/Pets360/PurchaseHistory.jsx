@@ -6,14 +6,7 @@ export default function PurchaseHistory() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const purchases = [
-    { id: 'ORD-9801', pet: 'Bruno (Golden Retriever)', date: '02-Oct-2026', item: 'Royal Canin Maxi Adult Dry Food (15kg)', category: 'Food & Nutrition', channel: 'Zenve 60-Min Express', amount: '₹7,450', parent: 'Vikram Singhania', status: 'Delivered' },
-    { id: 'ORD-9802', pet: 'Milo (Persian Cat)', date: '29-Sep-2026', item: 'Royal Canin Urinary S/O Feline (3.5kg) + Inaba Churu', category: 'Prescription Diet', channel: 'In-Clinic Pharmacy', amount: '₹3,200', parent: 'Ananya Deshmukh', status: 'Fulfilled' },
-    { id: 'ORD-9803', pet: 'Rocky (German Shepherd)', date: '25-Sep-2026', item: 'Orthopedic Memory Foam Pet Bed (XXL) + Ruffwear Harness', category: 'Accessories & Comfort', channel: 'Zenve E-Commerce', amount: '₹9,800', parent: 'Rohan Mehta', status: 'Delivered' },
-    { id: 'ORD-9804', pet: 'Simba (Beagle)', date: '21-Sep-2026', item: 'Bravecto Chewable (10-20kg) + TropiClean Ear Wash', category: 'Pharmacy & Wellness', channel: 'Zenve 60-Min Express', amount: '₹2,650', parent: 'Pooja Nair', status: 'Delivered' },
-    { id: 'ORD-9805', pet: 'Bella (Shih Tzu)', date: '16-Sep-2026', item: 'Vetmedin Pimobendan 1.25mg (100 Tabs) Monthly Subscription', category: 'Chronic Rx Supply', channel: 'Subscription Auto-Ship', amount: '₹3,900', parent: 'Kavita Rao', status: 'Active Recurring' },
-    { id: 'ORD-9806', pet: 'Max (Labrador)', date: '11-Sep-2026', item: 'Orijen Original Dog Food (11.4kg) + Dental Bone Chew', category: 'Food & Nutrition', channel: 'Zenve E-Commerce', amount: '₹8,900', parent: 'Siddharth Roy', status: 'Delivered' }
-  ];
+  const purchases = [];
 
   const filtered = purchases.filter(p => {
     const matchesFilter = filter === 'ALL' || p.category === filter || p.status === filter;
@@ -31,7 +24,7 @@ export default function PurchaseHistory() {
       title="Pet Nutrition, Pharmacy & Merchandise Purchases"
       subtitle="Complete ledger of food, prescription diets, tick & flea treatments, and accessories purchased across omni-channels"
       icon="🐾"
-      badge="₹18.4L LTV Tracked"
+      badge="₹0 LTV Tracked"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Food & Nutrition', 'Prescription Diet', 'Pharmacy & Wellness', 'Delivered'].map(f => (
@@ -56,10 +49,10 @@ export default function PurchaseHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Pet Orders" value="4,820" delta="+28.4%" trend="up" subtext="All categories" icon="📦" />
-        <KpiCard label="Average Pet Spend / Yr" value="₹32,400" delta="+14.2%" trend="up" subtext="Annualized LTV" icon="💰" />
-        <KpiCard label="Prescription Diet Share" value="34.2%" delta="Clinical nutrition" trend="neutral" subtext="High margin" icon="🥗" />
-        <KpiCard label="Auto-Ship Recurring" value="41.5%" delta="514 Pets" trend="up" subtext="High retention" icon="🔄" />
+        <KpiCard label="Total Pet Orders" value="0" delta="0.0%" trend="up" subtext="All categories" icon="📦" />
+        <KpiCard label="Average Pet Spend / Yr" value="₹0" delta="0.0%" trend="up" subtext="Annualized LTV" icon="💰" />
+        <KpiCard label="Prescription Diet Share" value="0.0%" delta="Clinical nutrition" trend="neutral" subtext="High margin" icon="🥗" />
+        <KpiCard label="Auto-Ship Recurring" value="0.0%" delta="514 Pets" trend="up" subtext="High retention" icon="🔄" />
       </div>
 
       <div style={{

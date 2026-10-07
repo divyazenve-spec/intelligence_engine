@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function FinancialAuditTrail() {
-  const financial = [
-    { ref: 'FIN-TX-8921', type: 'General Ledger Adjustment', debit: '₹45,000.00', credit: '₹45,000.00', account: 'Inventory Write-down vs COGS', approver: 'Sneha Rao (Controller)', time: '12:40 Today', status: 'Reconciled' },
-    { ref: 'FIN-TX-8920', type: 'Customer Refund Clearance', debit: '₹2,450.00', credit: '₹0.00', account: 'Razorpay UPI Gateway #REF-82', approver: 'Executive Admin', time: '11:15 Today', status: 'Reconciled' },
-    { ref: 'FIN-TX-8919', type: 'Doctor Commission Payout', debit: '₹84,000.00', credit: '₹84,000.00', account: 'Dr. Priya Sharma (58 Consults)', approver: 'Executive Admin', time: '09:00 Today', status: 'Reconciled' },
-    { ref: 'FIN-TX-8918', type: 'GST ITC Reconciliation', debit: '₹1,24,500.00', credit: '₹1,24,500.00', account: 'Input Tax Credit (GSTR-2B)', approver: 'CA External Auditor', time: 'Yesterday 17:30', status: 'Reconciled' },
-    { ref: 'FIN-TX-8917', type: 'Vendor Invoice Settlement', debit: '₹3,20,000.00', credit: '₹3,20,000.00', account: 'Royal Canin India Pvt Ltd', approver: 'Sneha Rao (Controller)', time: 'Yesterday 15:10', status: 'Reconciled' }
-  ];
+  const financial = [];
 
   return (
     <DashboardLayout
@@ -18,12 +12,12 @@ export default function FinancialAuditTrail() {
       title="Financial Ledger & Journal Audit Trail"
       subtitle="Double-entry accounting validation, refund authorizations, and tax compliance trails"
       icon="💰"
-      badge="₹0.00 Variance"
+      badge="₹0"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Reconciliation Variance" value="₹0.00" delta="Perfect Match" trend="up" subtext="Tally & Zoho Books matched" icon="⚖️" />
-        <KpiCard label="Total Audited Ledger" value="₹54.80 L" delta="MTD Volume" trend="up" subtext="Zero unapproved journal entries" icon="💰" />
-        <KpiCard label="GST Input Tax Credit" value="₹1.24 L" delta="100% Validated" trend="up" subtext="GSTR-2B automated match" icon="🧾" />
+        <KpiCard label="Reconciliation Variance" value="₹0" delta="Perfect Match" trend="up" subtext="Tally & Zoho Books matched" icon="⚖️" />
+        <KpiCard label="Total Audited Ledger" value="₹0" delta="MTD Volume" trend="up" subtext="Zero unapproved journal entries" icon="💰" />
+        <KpiCard label="GST Input Tax Credit" value="₹0" delta="100% Validated" trend="up" subtext="GSTR-2B automated match" icon="🧾" />
         <KpiCard label="Audit Sign-off" value="Unqualified" delta="Clean Opinion" trend="up" subtext="Deloitte standard practices" icon="🛡️" />
       </div>
 

@@ -8,19 +8,7 @@ export default function PharmacyInventory() {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState('');
 
-  const inventoryStock = [
-    { sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', zone: 'Fast Dispensary Rack', stock: 142, safety: 40, rop: 50, costVal: 173240, mrpVal: 298200, dos: '32 Days', turnover: '14.2x', status: 'Healthy' },
-    { sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine 1D', zone: 'Cold Chain (3.8°C)', stock: 86, safety: 30, rop: 40, costVal: 36120, mrpVal: 81700, dos: '21 Days', turnover: '18.4x', status: 'Healthy' },
-    { sku: 'DRG-VET-002', name: 'NexGard Spectra (7.5-15kg)', zone: 'Fast Dispensary Rack', stock: 42, safety: 15, rop: 25, costVal: 41580, mrpVal: 69300, dos: '18 Days', turnover: '12.0x', status: 'Healthy' },
-    { sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg (Pimobendan)', zone: 'Schedule H Safe Vault', stock: 35, safety: 15, rop: 20, costVal: 47250, mrpVal: 84000, dos: '28 Days', turnover: '11.5x', status: 'Healthy' },
-    { sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', zone: 'Schedule H Safe Vault', stock: 120, safety: 40, rop: 60, costVal: 25200, mrpVal: 45600, dos: '42 Days', turnover: '16.0x', status: 'Healthy' },
-    { sku: 'DRG-VET-006', name: 'Malaseb Medicated Shampoo 250ml', zone: 'Topicals & Derm Bay', stock: 18, safety: 15, rop: 20, costVal: 7020, mrpVal: 12960, dos: '11 Days', turnover: '9.2x', status: 'Low Stock' },
-    { sku: 'DRG-VET-007', name: 'Zoetis Revolution Spot-On (Cat)', zone: 'Fast Dispensary Rack', stock: 28, safety: 10, rop: 15, costVal: 24640, mrpVal: 40600, dos: '24 Days', turnover: '13.8x', status: 'Healthy' },
-    { sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', zone: 'Cold Chain (3.8°C)', stock: 6, safety: 20, rop: 30, costVal: 960, mrpVal: 2280, dos: '4 Days', turnover: '22.0x', status: 'Critical' },
-    { sku: 'DRG-VET-009', name: 'Carprovet 50mg (Carprofen)', zone: 'Schedule H Safe Vault', stock: 55, safety: 20, rop: 25, costVal: 17050, mrpVal: 29700, dos: '35 Days', turnover: '8.4x', status: 'Healthy' },
-    { sku: 'DRG-VET-012', name: 'Enrofloxacin 100mg (Baytril)', zone: 'Schedule H Safe Vault', stock: 4, safety: 15, rop: 20, costVal: 720, mrpVal: 1280, dos: '3 Days', turnover: '15.4x', status: 'Critical' },
-    { sku: 'DRG-VET-011', name: 'Drontal Plus Puppy Suspension', zone: 'Pediatric Rx Bay', stock: 32, safety: 15, rop: 20, costVal: 8320, mrpVal: 14400, dos: '26 Days', turnover: '10.1x', status: 'Healthy' }
-  ];
+  const inventoryStock = [];
 
   const filtered = useMemo(() => {
     return inventoryStock.filter(item => {
@@ -46,7 +34,7 @@ export default function PharmacyInventory() {
       title="Veterinary Pharmacy Stock & Buffer Optimization"
       subtitle="Perpetual stock valuation, cold-chain temperature telemetry, reorder automation, and safety buffer monitoring"
       icon="📦"
-      badge="₹28.40 Lakh Cost Stock"
+      badge="₹0 Cost Stock"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -83,8 +71,8 @@ export default function PharmacyInventory() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Inventory at Cost" value="₹28.40 Lakh" delta="+6.4% MoM" trend="up" subtext="Current asset valuation" icon="💰" />
-        <KpiCard label="Valuation at Retail (MRP)" value="₹48.20 Lakh" delta="41.1% unrealized margin" trend="up" subtext="Expected realization" icon="💎" />
+        <KpiCard label="Inventory at Cost" value="₹0" delta="+6.4% MoM" trend="up" subtext="Current asset valuation" icon="💰" />
+        <KpiCard label="Valuation at Retail (MRP)" value="₹0" delta="41.1% unrealized margin" trend="up" subtext="Expected realization" icon="💎" />
         <KpiCard label="Active Cold Chain Items" value="86 SKUs" delta="100% 2°C–8°C Logged" trend="up" subtext="14 IoT refrigeration probes" icon="❄️" />
         <KpiCard label="Inventory Turnover Ratio" value="12.4x / yr" delta="+1.8x YoY" trend="up" subtext="High capital velocity" icon="⚡" />
         <KpiCard label="Critical Stockout Risk" value="2 SKUs" delta="Baytril & Rabisin" trend="down" subtext="Expedited PO dispatched" icon="⚠️" />
@@ -102,7 +90,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#38bdf8' }}>Cold Chain Storage (2°C–8°C)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(6,182,212,0.2)', color: '#38bdf8' }}>Telemetry Normal</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>86 SKUs · ₹6.45 Lakh Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>86 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Core vaccines, rabies biologics, and feline interferons. Continuous probe logging.</p>
         </div>
 
@@ -111,7 +99,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#c084fc' }}>Schedule H Controlled Vault</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(168,85,247,0.2)', color: '#c084fc' }}>Biometric Access</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>284 SKUs · ₹14.80 Lakh Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>284 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Antibiotics, cardiac, chemotherapy, and pain management pharmaceuticals.</p>
         </div>
 
@@ -120,7 +108,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#34d399' }}>Fast-Dispensary Ambient Bay</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(16,185,129,0.2)', color: '#34d399' }}>High Turnover</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>272 SKUs · ₹7.15 Lakh Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>272 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Antiparasitics, topical medicated shampoos, supplements, and dental care.</p>
         </div>
       </div>

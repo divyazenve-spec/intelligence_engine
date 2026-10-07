@@ -8,18 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var punches = [
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', shift: 'Morning Clinical (08:00 - 16:30)', punchIn: '07:54 AM', punchOut: 'Pending', status: 'On Time', loc: 'Bengaluru Flagship (Biometric)', ot: '0.0h' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', shift: 'Morning Clinical (08:00 - 16:30)', punchIn: '07:58 AM', punchOut: 'Pending', status: 'On Time', loc: 'Mumbai Center (Biometric)', ot: '0.0h' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:52 AM', punchOut: 'Pending', status: 'On Time', loc: 'Bengaluru Hub (RFID)', ot: '0.0h' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', shift: 'Flexible Tech (09:30 - 18:30)', punchIn: '09:28 AM', punchOut: 'Pending', status: 'On Time', loc: 'Remote (Geo-Mobile)', ot: '0.0h' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:45 AM', punchOut: 'Pending', status: 'On Time', loc: 'Bengaluru South (RFID)', ot: '0.0h' },
-    { id: 'EMP-1006', name: 'Ananya Verma', shift: 'Early Warehouse (06:00 - 14:30)', punchIn: '05:50 AM', punchOut: '02:35 PM', status: 'On Time', loc: 'Bhiwandi Hub (Biometric)', ot: '0.5h' },
-    { id: 'EMP-1007', name: 'Manish Rawat', shift: 'Afternoon Express (12:00 - 21:00)', punchIn: '12:12 PM', punchOut: 'Pending', status: 'Late Mark', loc: 'Mumbai Bandra (Mobile App)', ot: '0.0h' },
-    { id: 'EMP-1008', name: 'Dr. Aisha Khan', shift: 'On Approved Leave', punchIn: '—', punchOut: '—', status: 'On Leave', loc: 'Delhi NCR Clinic', ot: '0.0h' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:55 AM', punchOut: 'Pending', status: 'On Time', loc: 'Bengaluru HQ (Biometric)', ot: '0.0h' },
-    { id: 'EMP-1010', name: 'Kunal Sen', shift: 'Early Warehouse (06:00 - 14:30)', punchIn: '05:58 AM', punchOut: '02:30 PM', status: 'On Time', loc: 'Bengaluru Hub (Biometric)', ot: '0.0h' }
-  ];
+  var punches = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

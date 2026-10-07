@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByLocation() {
-  const cities = [
-    { city: 'Bengaluru', state: 'Karnataka', share: '32.4%', rev: '₹5,78,000', orders: 412, growth: '+18.4%' },
-    { city: 'Mumbai', state: 'Maharashtra', share: '24.2%', rev: '₹4,31,700', orders: 298, growth: '+14.1%' },
-    { city: 'Delhi NCR', state: 'Delhi', share: '18.6%', rev: '₹3,31,800', orders: 234, growth: '+9.8%' },
-    { city: 'Chennai', state: 'Tamil Nadu', share: '12.8%', rev: '₹2,28,300', orders: 164, growth: '+11.2%' },
-    { city: 'Hyderabad', state: 'Telangana', share: '8.4%', rev: '₹1,49,800', orders: 104, growth: '+15.6%' },
-    { city: 'Pune', state: 'Maharashtra', share: '3.6%', rev: '₹64,200', orders: 48, growth: '+7.4%' }
-  ];
+  const cities = [];
 
   return (
     <DashboardLayout
@@ -19,13 +12,13 @@ export default function RevenueByLocation() {
       title="Geographic Sales & Territory Intelligence"
       subtitle="Regional market penetration, city-level demand, and rapid delivery territory breakdown"
       icon="📍"
-      badge="6 Metro Territories"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Market" value="Bengaluru" delta="32.4% share" trend="up" subtext="₹5.78L volume" icon="🏙️" />
+        <KpiCard label="Top Market" value="Bengaluru" delta="32.4% share" trend="up" subtext="₹0 volume" icon="🏙️" />
         <KpiCard label="Fastest Growing" value="Bengaluru" delta="+18.4% MoM" trend="up" subtext="Hub territory" icon="🚀" />
         <KpiCard label="Active Regions" value="6 Metros" delta="100% coverage" trend="neutral" subtext="Tier-1 cities" icon="📍" />
-        <KpiCard label="Territory Revenue" value="₹17,83,800" delta="+14.2%" trend="up" subtext="Total regional sales" icon="💼" />
+        <KpiCard label="Territory Revenue" value="₹0" delta="0.0%" trend="up" subtext="Total regional sales" icon="💼" />
       </div>
 
       <div style={{

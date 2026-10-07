@@ -5,22 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function ProcurementSavings() {
   const [selectedLever, setSelectedLever] = useState('ALL');
 
-  const savingsLevers = [
-    { lever: 'Volume Aggregation & Bulk POs', realized: '₹6.80 L', target: '₹6.00 L', achievement: 113.3, color: '#38bdf8', desc: 'Centralized ordering across Koramangala, Bandra, Okhla and Whitefield clinics.' },
-    { lever: 'Generic Medication Substitution', realized: '₹4.90 L', target: '₹4.50 L', achievement: 108.9, color: '#34d399', desc: 'Switching select NSAIDs and broad-spectrum antibiotics to certified high-potency generics.' },
-    { lever: 'Contract Renegotiations & Price Locks', realized: '₹3.65 L', target: '₹3.50 L', achievement: 104.3, color: '#a78bfa', desc: 'Annual master purchasing agreements with MSD Animal Health, Zoetis, and Synthes Vet.' },
-    { lever: 'Early Settlement Cash Discounts (2/10 Net 30)', realized: '₹1.85 L', target: '₹2.00 L', achievement: 92.5, color: '#fbbf24', desc: 'Capturing 2% cash discount on invoices settled within 10 days of verified GRN.' },
-    { lever: 'Freight & Route Consolidation', realized: '₹1.20 L', target: '₹1.00 L', achievement: 120.0, color: '#10b981', desc: 'Direct-to-hub deliveries eliminating local middle-mile distributor handling markups.' }
-  ];
+  const savingsLevers = [];
 
-  const initiatives = [
-    { id: 'SAV-01', initiative: 'Multi-Clinic Vaccine Bulk Tender (FY26-27)', category: 'Vaccines & Biologics', leadPartner: 'MSD Animal Health', baselineSpend: '₹32.0 L', negotiatedSpend: '₹25.6 L', netSavings: '₹6.40 L', status: 'Realized', lever: 'Volume Aggregation' },
-    { id: 'SAV-02', initiative: 'Titanium Orthopedic Plates Master Contract', category: 'Surgical Implants', leadPartner: 'Synthes Vet India', baselineSpend: '₹18.0 L', negotiatedSpend: '₹14.4 L', netSavings: '₹3.60 L', status: 'Realized', lever: 'Contract Renegotiation' },
-    { id: 'SAV-03', initiative: 'Active Generic NSAID Transition', category: 'Generic APIs & NSAID', leadPartner: 'Intas Pharmaceuticals', baselineSpend: '₹11.5 L', negotiatedSpend: '₹7.8 L', netSavings: '₹3.70 L', status: 'Realized', lever: 'Generic Substitution' },
-    { id: 'SAV-04', initiative: 'Prescription Renal & GI Diet Rebates', category: 'Veterinary Nutrition', leadPartner: 'Royal Canin India', baselineSpend: '₹22.0 L', negotiatedSpend: '₹19.2 L', netSavings: '₹2.80 L', status: 'In Progress', lever: 'Volume Aggregation' },
-    { id: 'SAV-05', initiative: '2% 10-Day Accelerated Cash Settlement Program', category: 'Multi-Category Invoices', leadPartner: 'Top 8 Tier-1 Vendors', baselineSpend: '₹92.5 L', negotiatedSpend: '₹90.65 L', netSavings: '₹1.85 L', status: 'Realized', lever: 'Cash Discounts' },
-    { id: 'SAV-06', initiative: 'Dermatology & Topical Antifungal Sourcing', category: 'Dermatology & Topicals', leadPartner: 'Dechra Veterinary', baselineSpend: '₹8.4 L', negotiatedSpend: '₹7.1 L', netSavings: '₹1.30 L', status: 'Pipeline', lever: 'Contract Renegotiation' }
-  ];
+  const initiatives = [];
 
   const filteredInitiatives = initiatives.filter(init => {
     if (selectedLever !== 'ALL' && init.lever !== selectedLever) return false;
@@ -53,12 +40,12 @@ export default function ProcurementSavings() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Realized Savings (FYTD)" value="₹18.40 L" delta="+108.2% vs target" trend="up" subtext="Across all 5 levers" icon="💰" />
-        <KpiCard label="Savings % of Addressable Spend" value="16.8%" delta="+2.3% YoY" trend="up" subtext="Total addressable spend" icon="📉" />
-        <KpiCard label="Cost Avoidance (Inflation)" value="₹4.60 L" delta="Price locks preserved" trend="up" subtext="Market inflation hedge" icon="🛡️" />
-        <KpiCard label="Generic Substitution Arbitrage" value="₹4.90 L" delta="33.4% lower unit cost" trend="up" subtext="Pharma & antibiotics" icon="💊" />
-        <KpiCard label="Early Pay Discounts Captured" value="₹1.85 L" delta="92.5% capture rate" trend="up" subtext="2/10 Net 30 terms" icon="⚡" />
-        <KpiCard label="Savings in Pipeline (H2)" value="₹5.80 L" delta="3 major RFPs active" trend="up" subtext="Targeted for closure" icon="🎯" />
+        <KpiCard label="Realized Savings (FYTD)" value="₹0" delta="+108.2% vs target" trend="up" subtext="Across all 5 levers" icon="💰" />
+        <KpiCard label="Savings % of Addressable Spend" value="0.0%" delta="+2.3% YoY" trend="up" subtext="Total addressable spend" icon="📉" />
+        <KpiCard label="Cost Avoidance (Inflation)" value="₹0" delta="Price locks preserved" trend="up" subtext="Market inflation hedge" icon="🛡️" />
+        <KpiCard label="Generic Substitution Arbitrage" value="₹0" delta="33.4% lower unit cost" trend="up" subtext="Pharma & antibiotics" icon="💊" />
+        <KpiCard label="Early Pay Discounts Captured" value="₹0" delta="92.5% capture rate" trend="up" subtext="2/10 Net 30 terms" icon="⚡" />
+        <KpiCard label="Savings in Pipeline (H2)" value="₹0" delta="3 major RFPs active" trend="up" subtext="Targeted for closure" icon="🎯" />
       </div>
 
       {/* Savings Levers Progress */}

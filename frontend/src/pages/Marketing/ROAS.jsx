@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ROAS() {
-  const categoryROAS = [
-    { category: 'Puppy Vaccines & Health Packages', spend: '₹1,80,000', revenue: '₹9,72,000', roas: '5.4x', target: '4.0x', status: 'Exceeding' },
-    { category: 'Veterinary Prescription Drugs (Rx)', spend: '₹1,40,000', revenue: '₹7,14,000', roas: '5.1x', target: '4.2x', status: 'Exceeding' },
-    { category: 'Tick & Flea Prevention Treatments', spend: '₹1,20,000', revenue: '₹4,92,000', roas: '4.1x', target: '3.8x', status: 'Exceeding' },
-    { category: 'Super Premium Dry Pet Food', spend: '₹95,000', revenue: '₹3,42,000', roas: '3.6x', target: '3.2x', status: 'On Target' },
-    { category: 'Zenve Fashion Harness & Apparel', spend: '₹75,000', revenue: '₹2,40,000', roas: '3.2x', target: '3.0x', status: 'On Target' }
-  ];
+  const categoryROAS = [];
 
   return (
     <DashboardLayout
@@ -18,10 +12,10 @@ export default function ROAS() {
       title="Return on Ad Spend (ROAS) Multipliers"
       subtitle="Direct revenue generated per rupee of ad spend by product lines and marketing channels"
       icon="🚀"
-      badge="4.45x Blended ROAS"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Marketing ROAS" value="4.45x" delta="+0.65x" trend="up" subtext="₹27.60L attributed GMV" icon="🚀" />
+        <KpiCard label="Blended Marketing ROAS" value="4.45x" delta="+0.65x" trend="up" subtext="₹0 attributed GMV" icon="🚀" />
         <KpiCard label="Search Ads ROAS" value="5.20x" delta="+0.40x" trend="up" subtext="Google high-intent queries" icon="🔍" />
         <KpiCard label="Social Ads ROAS" value="4.12x" delta="+0.32x" trend="up" subtext="Meta Instagram & FB Reels" icon="📸" />
         <KpiCard label="Incremental ROAS (iROAS)" value="3.68x" delta="+0.24x" trend="up" subtext="Net lift over baseline" icon="📈" />

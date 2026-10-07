@@ -6,23 +6,9 @@ export default function FashionInventory() {
   const [selectedLocation, setSelectedLocation] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const inventoryItems = [
-    { sku: 'ZVF-HARN-01', name: 'Italian Leather Harness', cat: 'Harnesses', xs: 15, s: 42, m: 58, l: 45, xl: 24, total: 184, valuation: '₹6,34,800', location: 'Central Fashion Hub', status: 'Healthy' },
-    { sku: 'ZVF-COAT-04', name: 'Monsoon Waterproof Parka', cat: 'Weatherwear', xs: 0, s: 28, m: 72, l: 84, xl: 56, total: 240, valuation: '₹6,84,000', location: 'Central Fashion Hub', status: 'Healthy' },
-    { sku: 'ZVF-KNIT-09', name: 'Cashmere Cable Knit Sweater', cat: 'Winter Knits', xs: 12, s: 34, m: 42, l: 24, xl: 0, total: 112, valuation: '₹2,68,800', location: 'Indiranagar Studio', status: 'Low Stock' },
-    { sku: 'ZVF-COLL-02', name: 'Velvet Midnight Rose Gold Collar', cat: 'Collars', xs: 45, s: 92, m: 115, l: 68, xl: 0, total: 320, valuation: '₹5,28,000', location: 'Bandra Boutique', status: 'Healthy' },
-    { sku: 'ZVF-BAND-05', name: 'Festive Silk Brocade Bandana', cat: 'Accessories', xs: 80, s: 120, m: 150, l: 100, xl: 0, total: 450, valuation: '₹3,82,500', location: 'Central Fashion Hub', status: 'Healthy' },
-    { sku: 'ZVF-BOOT-03', name: 'All-Terrain Protective Paw Boots', cat: 'Footwear', xs: 0, s: 18, m: 28, l: 24, xl: 15, total: 85, valuation: '₹1,65,750', location: 'Bandra Boutique', status: 'Low Stock' },
-    { sku: 'ZVF-ROBE-07', name: 'Microfiber Spa Bathrobe', cat: 'Loungewear', xs: 20, s: 45, m: 55, l: 40, xl: 0, total: 160, valuation: '₹2,32,000', location: 'Indiranagar Studio', status: 'Healthy' },
-    { sku: 'ZVF-COOL-08', name: 'Hydro-Active Cooling Vest', cat: 'Weatherwear', xs: 15, s: 50, m: 65, l: 45, xl: 20, total: 195, valuation: '₹4,19,250', location: 'Central Fashion Hub', status: 'Healthy' }
-  ];
+  const inventoryItems = [];
 
-  const rawMaterials = [
-    { fabric: 'Full-Grain Italian Nappa Leather (Tan & Black)', stock: '320 sq meters', leadTime: '12 days', allocated: 'Harnesses & Leashes', reorder: 'Safe' },
-    { fabric: '3-Ply Breathable Ripstop Waterproof Nylon', stock: '580 meters', leadTime: '8 days', allocated: 'Monsoon Parkas & Vests', reorder: 'Safe' },
-    { fabric: 'Organic Mongolian Cashmere-Merino Yarn', stock: '140 kg spools', leadTime: '18 days', allocated: 'Winter Knit Collection', reorder: 'Reorder Due' },
-    { fabric: 'Pure Banarasi Zari Brocade & Silk', stock: '210 meters', leadTime: '6 days', allocated: 'Festive Bandanas & Bows', reorder: 'Safe' }
-  ];
+  const rawMaterials = [];
 
   const filtered = inventoryItems.filter(item => {
     if (selectedLocation !== 'ALL' && item.location !== selectedLocation) return false;
@@ -50,11 +36,11 @@ export default function FashionInventory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Finished Apparel Valuation" value="₹33.15 L" delta="1,746 Units" trend="up" subtext="Across all 3 locations" icon="💎" />
-        <KpiCard label="Raw Fabric Inventory" value="₹8.40 L" delta="Premium certified rolls" trend="up" subtext="Italian leather & cashmere" icon="🧵" />
-        <KpiCard label="Sizing Completeness Rate" value="94.2%" delta="XS - XXL coverage" trend="up" subtext="Zero stockouts on core sizes" icon="📐" />
+        <KpiCard label="Finished Apparel Valuation" value="₹0" delta="1,746 Units" trend="up" subtext="Across all 3 locations" icon="💎" />
+        <KpiCard label="Raw Fabric Inventory" value="₹0" delta="Premium certified rolls" trend="up" subtext="Italian leather & cashmere" icon="🧵" />
+        <KpiCard label="Sizing Completeness Rate" value="0.0%" delta="XS - XXL coverage" trend="up" subtext="Zero stockouts on core sizes" icon="📐" />
         <KpiCard label="Low Stock Styles (<20u)" value="2 Styles" delta="Knit & Boots" trend="warn" subtext="Replenishment in progress" icon="⚠️" />
-        <KpiCard label="Showroom Display Stock" value="₹11.20 L" delta="Bandra + Indiranagar" trend="up" subtext="Trial room samples" icon="🛍️" />
+        <KpiCard label="Showroom Display Stock" value="₹0" delta="Bandra + Indiranagar" trend="up" subtext="Trial room samples" icon="🛍️" />
         <KpiCard label="Inventory Turnover Ratio" value="4.6x" delta="+0.8x vs FY25" trend="up" subtext="Rapid fashion cycles" icon="⚡" />
       </div>
 

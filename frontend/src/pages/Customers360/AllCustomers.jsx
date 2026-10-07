@@ -6,16 +6,7 @@ export default function AllCustomers() {
   const [search, setSearch] = useState('');
   const [cityFilter, setCityFilter] = useState('ALL');
 
-  const customerDirectory = [
-    { id: 'CUST-8401', name: 'Aarav Sharma', email: 'aarav.sharma@gmail.com', phone: '+91 98450 11201', location: 'Indiranagar, BLR', petSpecies: 'Canine & Feline', tier: 'VIP Elite', joinDate: '2023-04-12', totalSpend: '₹1,48,000', status: 'Active' },
-    { id: 'CUST-8402', name: 'Vikram Malhotra', email: 'v.malhotra@zenve.in', phone: '+91 98450 22302', location: 'Koramangala, BLR', petSpecies: 'Canine', tier: 'VIP Elite', joinDate: '2023-08-19', totalSpend: '₹1,24,000', status: 'Active' },
-    { id: 'CUST-8403', name: 'Priya Sundaram', email: 'priya.sundaram@yahoo.co.in', phone: '+91 98450 33403', location: 'Whitefield, BLR', petSpecies: 'Feline', tier: 'Loyal Gold', joinDate: '2024-01-10', totalSpend: '₹84,000', status: 'Active' },
-    { id: 'CUST-8404', name: 'Rahul Nambiar', email: 'rahul.n@outlook.com', phone: '+91 98450 44504', location: 'Jayanagar, BLR', petSpecies: 'Canine', tier: 'New Subscriber', joinDate: '2024-06-22', totalSpend: '₹32,000', status: 'Active' },
-    { id: 'CUST-8405', name: 'Sneha Kulkarni', email: 'sneha.k@gmail.com', phone: '+91 98450 55605', location: 'HSR Layout, BLR', petSpecies: 'Canine', tier: 'Occasional Silver', joinDate: '2023-11-05', totalSpend: '₹48,000', status: 'Dormant' },
-    { id: 'CUST-8406', name: 'Karthik Sen', email: 'karthik.sen@techcorp.com', phone: '+91 98450 66706', location: 'Indiranagar, BLR', petSpecies: 'Canine', tier: 'Loyal Gold', joinDate: '2023-09-14', totalSpend: '₹92,000', status: 'Active' },
-    { id: 'CUST-8407', name: 'Dr. Neha Kapoor', email: 'neha.kapoor@medresearch.org', phone: '+91 98450 77807', location: 'Malleshwaram, BLR', petSpecies: 'Feline & Avian', tier: 'Loyal Gold', joinDate: '2024-02-18', totalSpend: '₹68,500', status: 'Active' },
-    { id: 'CUST-8408', name: 'Aditya Deshpande', email: 'aditya.d@gmail.com', phone: '+91 98450 88908', location: 'Sarjapur, BLR', petSpecies: 'Canine', tier: 'Occasional Silver', joinDate: '2024-05-30', totalSpend: '₹24,800', status: 'Active' }
-  ];
+  const customerDirectory = [];
 
   const filtered = customerDirectory.filter(c => {
     if (cityFilter !== 'ALL' && !c.location.includes(cityFilter)) return false;
@@ -35,13 +26,13 @@ export default function AllCustomers() {
       title="All Registered Customers & Pet Parents"
       subtitle="Complete omni-channel customer master, verified contact identifiers, pet ownership profiles, and geographical distribution"
       icon="📋"
-      badge="12,480 Master Records"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Master Customer Records" value="12,480 Profiles" delta="+9.8% YoY" trend="up" subtext="100% verified mobile KYC" icon="📋" />
-        <KpiCard label="Primary Bengaluru Hub" value="84.2%" delta="10,500 accounts" trend="neutral" subtext="Expanding to Hyderabad & Pune" icon="📍" />
-        <KpiCard label="Multi-Pet Households" value="38.5%" delta="4,800 families" trend="up" subtext="High ARPU multiple" icon="🐾" />
-        <KpiCard label="Verified Email & WhatsApp" value="97.4%" delta="Opt-in compliance" trend="up" subtext="DPDP Act 2023 aligned" icon="🛡️" />
+        <KpiCard label="Primary Bengaluru Hub" value="0.0%" delta="10,500 accounts" trend="neutral" subtext="Expanding to Hyderabad & Pune" icon="📍" />
+        <KpiCard label="Multi-Pet Households" value="0.0%" delta="4,800 families" trend="up" subtext="High ARPU multiple" icon="🐾" />
+        <KpiCard label="Verified Email & WhatsApp" value="0.0%" delta="Opt-in compliance" trend="up" subtext="DPDP Act 2023 aligned" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>

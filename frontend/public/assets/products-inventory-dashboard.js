@@ -38,9 +38,9 @@
     { id: 'sku',        label: 'SKU Management',     icon: '🏷️', hash: '#sku-management',       badge: 'Live' },
     { id: 'inventory',  label: 'Inventory Dashboard',icon: '📦', hash: '#inventory-dashboard',   badge: '₹1.86 Cr' },
     { id: 'stock',      label: 'Stock Management',   icon: '🏗️', hash: '#stock-management',     badge: 'Live' },
-    { id: 'lowstock',   label: 'Low Stock',          icon: '⚠️', hash: '#low-stock',            badge: '28', warnBadge: true },
-    { id: 'outofstock', label: 'Out of Stock',       icon: '🚫', hash: '#out-of-stock',         badge: '9',  dangerBadge: true },
-    { id: 'expiry',     label: 'Expiry Management',  icon: '⏳', hash: '#expiry-management',    badge: '12 Batches', warnBadge: true },
+    { id: 'lowstock',   label: 'Low Stock',          icon: '⚠️', hash: '#low-stock',            badge: '', warnBadge: true },
+    { id: 'outofstock', label: 'Out of Stock',       icon: '🚫', hash: '#out-of-stock',         badge: '',  dangerBadge: true },
+    { id: 'expiry',     label: 'Expiry Management',  icon: '⏳', hash: '#expiry-management',    badge: '', warnBadge: true },
     { id: 'warehouse',  label: 'Warehouse Management',icon: '🏭', hash: '#warehouse-management', badge: '5 Hubs' },
     { id: 'transfers',  label: 'Stock Transfers',    icon: '🔁', hash: '#stock-transfers',      badge: '4 In Transit' },
     { id: 'valuation',  label: 'Inventory Valuation',icon: '💎', hash: '#inventory-valuation',  badge: '₹1.86 Cr' },
@@ -48,77 +48,22 @@
   ];
 
   /* ── Master Product Dataset ───────────────────────────────────── */
-  var PRODUCTS = [
-    { sku:'ZV-MED-001', name:'Bravecto Chewable Tablet (10-20kg)', cat:'Pharmacy & Meds', subcat:'Antiparasitic', brand:'MSD Animal Health', price:1950, cost:1100, mrp:2100, stock:142, reorder:30, moq:12, weight:'112g', vendor:'MSD India Pvt Ltd', warehouse:'Bengaluru Hub', expiry:'2026-08-15', batches:3, cold:false, rx:false, active:true },
-    { sku:'ZV-DIET-004', name:'Royal Canin Hepatic Veterinary Diet 3kg', cat:'Clinical Nutrition', subcat:'Prescription Food', brand:'Royal Canin', price:3400, cost:2200, mrp:3600, stock:14, reorder:25, moq:6, weight:'3kg', vendor:'Royal Canin India', warehouse:'Bengaluru Hub', expiry:'2025-12-20', batches:2, cold:false, rx:true, active:true },
-    { sku:'ZV-VAC-002', name:'Nobivac DHPPi Core Vaccine 1D', cat:'Vaccines', subcat:'Core Vaccines', brand:'MSD Animal Health', price:850, cost:420, mrp:950, stock:86, reorder:40, moq:50, weight:'1ml vial', vendor:'MSD India Pvt Ltd', warehouse:'Mumbai Hub', expiry:'2025-11-30', batches:4, cold:true, rx:true, active:true },
-    { sku:'ZV-PAR-009', name:'NexGard Spectra (3.5-7.5kg)', cat:'Pharmacy & Meds', subcat:'Antiparasitic', brand:'Boehringer Ingelheim', price:1450, cost:820, mrp:1550, stock:8, reorder:20, moq:12, weight:'2.5g', vendor:'BI India Ltd', warehouse:'Delhi Hub', expiry:'2026-03-10', batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-ACC-015', name:'Ergonomic Anti-Pull Harness (L)', cat:'Accessories', subcat:'Pet Gear', brand:'Zenve Own Label', price:1250, cost:380, mrp:1399, stock:64, reorder:15, moq:24, weight:'240g', vendor:'Nexus Pet Products', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-FOOD-022', name:'Pedigree Pro Puppy Starter 3kg', cat:'Pet Nutrition', subcat:'Puppy Food', brand:'Mars Petcare', price:780, cost:440, mrp:850, stock:210, reorder:50, moq:24, weight:'3kg', vendor:'Mars International India', warehouse:'Hyderabad Hub', expiry:'2026-01-05', batches:5, cold:false, rx:false, active:true },
-    { sku:'ZV-DERM-007', name:'Malaseb Medicated Shampoo 250ml', cat:'Dermatology', subcat:'Medicated Shampoo', brand:'Dechra', price:680, cost:310, mrp:720, stock:0, reorder:20, moq:12, weight:'250ml', vendor:'Dechra Veterinary Products', warehouse:'Bengaluru Hub', expiry:'2026-06-30', batches:0, cold:false, rx:false, active:false },
-    { sku:'ZV-VAC-011', name:'Rabisin Anti-Rabies Vaccine 1D', cat:'Vaccines', subcat:'Core Vaccines', brand:'Merial', price:320, cost:150, mrp:380, stock:0, reorder:30, moq:50, weight:'1ml vial', vendor:'Boehringer Ingelheim', warehouse:'Mumbai Hub', expiry:'2025-10-15', batches:0, cold:true, rx:true, active:false },
-    { sku:'ZV-SUP-003', name:'Himalaya Digyton Plus 200ml', cat:'Supplements', subcat:'Digestive Health', brand:'Himalaya Drug Co.', price:340, cost:180, mrp:380, stock:37, reorder:15, moq:12, weight:'200ml', vendor:'Himalaya Drug Company', warehouse:'Pune Hub', expiry:'2025-11-08', batches:2, cold:false, rx:false, active:true },
-    { sku:'ZV-FOOD-031', name:'Drools Absolute Calcium Bone (Pack 10)', cat:'Pet Nutrition', subcat:'Treats & Chews', brand:'Drools', price:220, cost:95, mrp:250, stock:318, reorder:60, moq:48, weight:'250g', vendor:'Drools Pet Foods', warehouse:'Bengaluru Hub', expiry:'2026-04-22', batches:6, cold:false, rx:false, active:true },
-    { sku:'ZV-MED-018', name:'Spotnon (Fipronil) Spot-On (2-10kg)', cat:'Pharmacy & Meds', subcat:'Topical Antiparasitic', brand:'Bayer', price:240, cost:110, mrp:280, stock:5, reorder:25, moq:24, weight:'0.67ml', vendor:'Bayer Crop Science', warehouse:'Delhi Hub', expiry:'2025-12-31', batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-TECH-044', name:'PetCube Interactive Camera + Treat Dispenser', cat:'Pet Tech', subcat:'Smart Devices', brand:'PetCube', price:8500, cost:5200, mrp:9500, stock:22, reorder:5, moq:6, weight:'580g', vendor:'PetCube Inc. (Import)', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-CLINIC-002', name:'Zoetis Cardisure (Pimobendan) 5mg x30', cat:'Pharmacy & Meds', subcat:'Cardiac Medicine', brand:'Zoetis', price:2200, cost:1350, mrp:2400, stock:3, reorder:15, moq:10, weight:'Tab x30', vendor:'Zoetis India Pvt Ltd', warehouse:'Bengaluru Hub', expiry:'2025-10-20', batches:1, cold:false, rx:true, active:true },
-    { sku:'ZV-NUTR-008', name:'Hills Science Diet Renal Care Cat 1.5kg', cat:'Clinical Nutrition', subcat:'Prescription Food', brand:'Hills', price:2100, cost:1300, mrp:2350, stock:0, reorder:20, moq:6, weight:'1.5kg', vendor:'Colgate Palmolive (Hills)', warehouse:'Mumbai Hub', expiry:'2026-02-14', batches:0, cold:false, rx:true, active:false },
-    { sku:'ZV-FASH-011', name:'Zenve Premium Dog Raincoat (M)', cat:'Fashion & Apparel', subcat:'Outerwear', brand:'Zenve Fashion', price:1800, cost:620, mrp:1999, stock:41, reorder:10, moq:12, weight:'180g', vendor:'Trendy Tails Mfg.', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true }
-  ];
+  var PRODUCTS = [];
 
   /* ── Warehouse Data ───────────────────────────────────────────── */
-  var WAREHOUSES = [
-    { id:'BLR', name:'Bengaluru Central Hub', city:'Koramangala, Bengaluru', skus:620, value:8400000, capacity:85, staff:24, zones:['Ambient Dry', 'Cold Chain 4°C', 'Fashion & Apparel', 'High-Value Secure'], manager:'Ravi Shankar K.', health:94 },
-    { id:'MUM', name:'Mumbai West Fulfillment', city:'Bandra, Mumbai', skus:310, value:4200000, capacity:72, staff:16, zones:['Ambient Dry', 'Cold Chain 4°C', 'Veterinary Rx'], manager:'Priya Joshi', health:89 },
-    { id:'DEL', name:'Delhi NCR Hub', city:'Okhla Phase 3, Delhi', skus:240, value:3100000, capacity:68, staff:14, zones:['Ambient Dry', 'Cold Chain', 'Bulk Storage'], manager:'Amit Verma', health:91 },
-    { id:'HYD', name:'Hyderabad Center', city:'Jubilee Hills, Hyderabad', skus:155, value:1950000, capacity:91, staff:10, zones:['Ambient Dry', 'Pharmacy Rx'], manager:'Lakshmi Reddy', health:96 },
-    { id:'PNE', name:'Pune Express Micro-Hub', city:'Koregaon Park, Pune', skus:95, value:1100000, capacity:60, staff:8, zones:['Ambient Dry', 'Express Dispatch'], manager:'Sneha Kulkarni', health:88 }
-  ];
+  var WAREHOUSES = [];
 
   /* ── ABC Management Dataset ───────────────────────────────────── */
-  var ABC_DATA = [
-    { sku: 'ZV-MED-001', name: 'Bravecto Chewable Tablet (10-20kg)', cat: 'Pharmacy & Meds', abc: 'A', stock: 142, eoq: 60, safety: 30, leadTime: '3 days', turn: '14.2x', policy: 'Bi-Weekly Review' },
-    { sku: 'ZV-DIET-004', name: 'Royal Canin Hepatic Veterinary 3kg', cat: 'Clinical Nutrition', abc: 'A', stock: 14, eoq: 24, safety: 25, leadTime: '5 days', turn: '11.8x', policy: 'Weekly Min-Max' },
-    { sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', cat: 'Vaccines', abc: 'A', stock: 86, eoq: 100, safety: 40, leadTime: '2 days', turn: '18.4x', policy: 'Continuous Cold Review' },
-    { sku: 'ZV-PAR-009', name: 'NexGard Spectra (3.5-7.5kg)', cat: 'Pharmacy & Meds', abc: 'B', stock: 8, eoq: 36, safety: 20, leadTime: '4 days', turn: '8.6x', policy: 'Monthly Periodic' },
-    { sku: 'ZV-ACC-015', name: 'Ergonomic Anti-Pull Harness (L)', cat: 'Accessories', abc: 'C', stock: 64, eoq: 48, safety: 15, leadTime: '7 days', turn: '4.2x', policy: 'Quarterly Reorder' },
-    { sku: 'ZV-FOOD-022', name: 'Pedigree Pro Puppy Starter 3kg', cat: 'Pet Nutrition', abc: 'B', stock: 210, eoq: 120, safety: 50, leadTime: '3 days', turn: '9.8x', policy: 'Bi-Weekly Review' },
-    { sku: 'ZV-DERM-007', name: 'Malaseb Medicated Shampoo 250ml', cat: 'Dermatology', abc: 'B', stock: 0, eoq: 30, safety: 20, leadTime: '4 days', turn: '7.5x', policy: 'Stockout Priority' },
-    { sku: 'ZV-SUP-003', name: 'Himalaya Digyton Plus 200ml', cat: 'Supplements', abc: 'B', stock: 37, eoq: 36, safety: 15, leadTime: '4 days', turn: '6.4x', policy: 'Monthly Periodic' },
-    { sku: 'ZV-TECH-044', name: 'PetCube Interactive Camera + Treats', cat: 'Pet Tech', abc: 'C', stock: 22, eoq: 12, safety: 5, leadTime: '10 days', turn: '3.1x', policy: 'Demand Pull Only' }
-  ];
+  var ABC_DATA = [];
 
   /* ── Valuation Dataset ────────────────────────────────────────── */
-  var VALUATION_CATS = [
-    { name: 'Pharmacy & Meds', costVal: 5420000, retailVal: 8450000, margin: '35.8%', share: 29.1, color: '#10b981' },
-    { name: 'Clinical Nutrition', costVal: 4280000, retailVal: 6820000, margin: '37.2%', share: 23.0, color: '#0ea5e9' },
-    { name: 'Vaccines & Cold Chain', costVal: 3460000, retailVal: 5240000, margin: '34.0%', share: 18.5, color: '#8b5cf6' },
-    { name: 'Pet Supplements', costVal: 2840000, retailVal: 4610000, margin: '38.4%', share: 15.2, color: '#f59e0b' },
-    { name: 'Pet Gear & Tech', costVal: 1650000, retailVal: 2780000, margin: '40.6%', share: 8.8, color: '#ec4899' },
-    { name: 'Fashion & Apparel', costVal: 1000000, retailVal: 1520000, margin: '34.2%', share: 5.4, color: '#14b8a6' }
-  ];
+  var VALUATION_CATS = [];
 
   /* ── Stock Transfers Dataset ──────────────────────────────────── */
-  var TRANSFERS = [
-    { id: 'TRF-2026-0891', origin: 'Bengaluru Central', dest: 'Mumbai West', skus: 'Royal Canin Hepatic (20 units), Bravecto (50 units)', value: 165500, carrier: 'Zenve Express Fleet (EV-04)', status: 'In Transit', temp: '4.2°C (Optimal)', eta: 'Today, 4:30 PM', cold: true },
-    { id: 'TRF-2026-0892', origin: 'Mumbai West', dest: 'Pune Express', skus: 'Nobivac Core Vaccines (100 vials)', value: 85000, carrier: 'BlueDart Cold Chain', status: 'In Transit', temp: '3.8°C (Optimal)', eta: 'Today, 2:15 PM', cold: true },
-    { id: 'TRF-2026-0893', origin: 'Delhi NCR Hub', dest: 'Bengaluru Central', skus: 'PetCube Cameras (15 units), Anti-Pull Harnesses (40 units)', value: 177500, carrier: 'Delhivery Surface Express', status: 'In Transit', temp: 'Ambient', eta: 'Tomorrow, 11:00 AM', cold: false },
-    { id: 'TRF-2026-0894', origin: 'Bengaluru Central', dest: 'Hyderabad Center', skus: 'NexGard Spectra (24 units), Drools Calcium (80 packs)', value: 52400, carrier: 'Internal Logistics (Van-02)', status: 'Pending Dispatch', temp: 'Ambient', eta: 'Tomorrow, 6:00 PM', cold: false },
-    { id: 'TRF-2026-0888', origin: 'Mumbai West', dest: 'Delhi NCR Hub', skus: 'Malaseb Medicated Shampoo (60 units)', value: 40800, carrier: 'Gati KWE Priority', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false },
-    { id: 'TRF-2026-0885', origin: 'Bengaluru Central', dest: 'Pune Express', skus: 'Himalaya Digyton Plus (120 units)', value: 40800, carrier: 'Zenve Inter-Hub Express', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false }
-  ];
+  var TRANSFERS = [];
 
   /* ── Inventory Movements Dataset ──────────────────────────────── */
-  var MOVEMENTS = [
-    { id: 'MOV-8841', time: '10 mins ago', type: 'Outbound Sale', sku: 'ZV-MED-001', name: 'Bravecto Chewable Tablet (10-20kg)', qty: -4, source: 'BLR Hub', dest: 'Order #ZV-84210', ref: 'SO-84210', value: 7800, badge: 'outbound' },
-    { id: 'MOV-8840', time: '25 mins ago', type: 'Inbound GRN', sku: 'ZV-DIET-004', name: 'Royal Canin Hepatic Veterinary 3kg', qty: 48, source: 'Royal Canin India', dest: 'BLR Hub (Bay 4)', ref: 'GRN-4910', value: 105600, badge: 'inbound' },
-    { id: 'MOV-8839', time: '1 hour ago', type: 'Transfer Out', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: -50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: 21000, badge: 'transfer' },
-    { id: 'MOV-8838', time: '1.5 hours ago', type: 'Transfer In', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: 50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: 21000, badge: 'transfer' },
-    { id: 'MOV-8837', time: '2 hours ago', type: 'Outbound Sale', sku: 'ZV-FOOD-022', name: 'Pedigree Pro Puppy Starter 3kg', qty: -12, source: 'HYD Center', dest: 'Clinic Bulk #CL-902', ref: 'SO-84198', value: 9360, badge: 'outbound' },
-    { id: 'MOV-8836', time: '3 hours ago', type: 'Stock Adjustment', sku: 'ZV-DERM-007', name: 'Malaseb Medicated Shampoo 250ml', qty: -2, source: 'BLR Hub', dest: 'Damaged / Spillage Write-off', ref: 'ADJ-0314', value: 620, badge: 'adjustment' },
-    { id: 'MOV-8835', time: '4 hours ago', type: 'Customer Return', sku: 'ZV-ACC-015', name: 'Ergonomic Anti-Pull Harness (L)', qty: 1, source: 'Customer Ret #RT-104', dest: 'BLR Hub (QC Pass)', ref: 'RET-0941', value: 1250, badge: 'return' },
-    { id: 'MOV-8834', time: '5 hours ago', type: 'Inbound GRN', sku: 'ZV-PAR-009', name: 'NexGard Spectra (3.5-7.5kg)', qty: 60, source: 'Boehringer Ingelheim', dest: 'DEL Hub', ref: 'GRN-4908', value: 49200, badge: 'inbound' }
-  ];
+  var MOVEMENTS = [];
 
   /* ── Global State ─────────────────────────────────────────────── */
   var S = {
@@ -686,7 +631,7 @@
     return [
       '<div class="zpid-kpis">',
         kpi('Total Active SKUs', '1,420', '+38 this month', 'up', '🛍️'),
-        kpi('Total SKU Value', '₹1.86 Cr', 'Warehouse valuation', 'up', '💰'),
+        kpi('Total SKU Value', '₹0', '0.0%', 'neutral', '💰'),
         kpi('Categories', '14', 'Product groups', 'neutral', '📂'),
         kpi('Avg. Gross Margin', '42.8%', '+1.2% vs last Q', 'up', '📊'),
         kpi('New Listings (MTD)', '38', 'Added this month', 'up', '✨'),
@@ -944,7 +889,7 @@
       '<div class="zpid-kpis">',
         kpi('Total Units On-Hand', '958', 'Across all warehouses', 'up', '🏗️'),
         kpi('Reorder Required', '28', 'Below minimum threshold', 'down', '🔔'),
-        kpi('Reorder Value (Est.)', '₹3.4 L', 'To replenish to safety stock', 'neutral', '💸'),
+        kpi('Reorder Value (Est.)', '₹0', '0.0%', 'neutral', '💸'),
         kpi('Avg. Days of Cover', '14.2 days', 'Before stockout at current velocity', 'warn', '📅'),
         kpi('Over-Stocked SKUs', '18', 'Above 90-day cover', 'neutral', '📦'),
         kpi('Pending POs', '7', 'Purchase orders in transit', 'neutral', '📋'),
@@ -1007,7 +952,7 @@
         kpi('Low Stock SKUs', lowItems.length, critItems.length + ' critical', 'down', '⚠️'),
         kpi('Critical (< 40% Reorder)', critItems.length, 'Immediate action needed', 'down', '🔴'),
         kpi('Est. Stockout in 7 Days', '4 SKUs', 'At current sales velocity', 'down', '📉'),
-        kpi('Reorder Value Required', '₹2.8 L', 'To restore to safety stock', 'warn', '💸'),
+        kpi('Reorder Value Required', '₹0', '0.0%', 'neutral', '💸'),
         kpi('POs Pending', '7', 'Already raised this week', 'neutral', '📋'),
         kpi('Suppliers Alerted', '5', 'Auto-notifications sent', 'up', '📡'),
       '</div>',
@@ -1083,7 +1028,7 @@
     return [
       '<div class="zpid-kpis">',
         kpi('Out of Stock SKUs', outItems.length, 'Zero inventory', 'down', '🚫'),
-        kpi('Est. Revenue Lost (MTD)', '₹1.2 L', 'Based on avg. daily demand', 'down', '📉'),
+        kpi('Est. Revenue Lost (MTD)', '₹0', '0.0%', 'neutral', '📉'),
         kpi('Orders Impacted', '34', 'Unfulfillable this week', 'down', '📦'),
         kpi('Avg. Days Out-of-Stock', '4.2 days', 'This month average', 'warn', '📅'),
         kpi('POs Placed', outItems.filter(function () { return Math.random() > 0.5; }).length || 2, 'Replenishment in progress', 'neutral', '📋'),
@@ -1296,7 +1241,7 @@
         kpi('Unrealized Gross Margin', marginPct + '%', inrShort(totalRetail - totalCost) + ' profit', 'up', '📈'),
         kpi('Holding Carrying Cost', '14.2% p.a.', '₹2.2L monthly run-rate', 'neutral', '🛡️'),
         kpi('FIFO Verified Batches', '420 Batches', '100% audit compliant', 'up', '✅'),
-        kpi('At-Risk Aging Value', '₹5.9 L', '3.1% network value', 'down', '⏳'),
+        kpi('At-Risk Aging Value', '₹0', '0.0%', 'neutral', '⏳'),
       '</div>',
 
       '<div class="zpid-grid-2">',

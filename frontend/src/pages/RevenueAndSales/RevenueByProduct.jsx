@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByProduct() {
-  const products = [
-    { name: 'Royal Canin Veterinary Diet', cat: 'Prescription Food', rev: '₹4,82,000', units: 820, margin: '38%', share: '27.0%' },
-    { name: 'Bravecto Chewable Tick/Flea', cat: 'Preventive Care', rev: '₹3,94,000', units: 580, margin: '42%', share: '22.1%' },
-    { name: 'General Vet Consultation', cat: 'Clinical Services', rev: '₹2,84,000', units: 440, margin: '68%', share: '15.9%' },
-    { name: 'Zoetis Canine Core Vaccines', cat: 'Immunization', rev: '₹2,42,000', units: 360, margin: '48%', share: '13.6%' },
-    { name: 'NexGard Spectra Antiparasitic', cat: 'Pharmacy', rev: '₹1,96,000', units: 290, margin: '40%', share: '11.0%' },
-    { name: 'Full Health Blood Screening', cat: 'Diagnostics', rev: '₹1,86,000', units: 140, margin: '58%', share: '10.4%' }
-  ];
+  const products = [];
 
   return (
     <DashboardLayout
@@ -22,10 +15,10 @@ export default function RevenueByProduct() {
       badge="Top SKUs"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Revenue SKU" value="Royal Canin Diet" delta="₹4.82L rev" trend="up" subtext="27.0% catalog share" icon="📦" />
+        <KpiCard label="Top Revenue SKU" value="Royal Canin Diet" delta="₹0 rev" trend="up" subtext="27.0% catalog share" icon="📦" />
         <KpiCard label="Highest Margin SKU" value="Vet Consultation" delta="68% margin" trend="up" subtext="Clinical procedure" icon="🩺" />
-        <KpiCard label="Total Units Moved" value="2,630" delta="+16.4%" trend="up" subtext="Across all SKUs" icon="📊" />
-        <KpiCard label="Avg Product Margin" value="48.5%" delta="+2.1%" trend="up" subtext="Blended catalog" icon="💰" />
+        <KpiCard label="Total Units Moved" value="0" delta="0.0%" trend="up" subtext="Across all SKUs" icon="📊" />
+        <KpiCard label="Avg Product Margin" value="0.0%" delta="0.0%" trend="up" subtext="Blended catalog" icon="💰" />
       </div>
 
       <div style={{

@@ -5,19 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function Taxes() {
   const [taxYear, setTaxYear] = useState('AY 2027-28');
 
-  const gstFilings = [
-    { form: 'GSTR-1 (Outward Supplies)', period: 'September 2026', due: 'Oct 11, 2026', taxable: '₹66,44,068', taxAmt: '₹11,95,932', itcOffset: '₹5,82,400', netPayable: '₹6,13,532', status: 'Filed / ARN Generated' },
-    { form: 'GSTR-3B (Summary & Payment)', period: 'September 2026', due: 'Oct 20, 2026', taxable: '₹66,44,068', taxAmt: '₹11,95,932', itcOffset: '₹5,82,400', netPayable: '₹6,13,532', status: 'Ready for Challan' },
-    { form: 'GSTR-2B (Auto-Drafted ITC)', period: 'September 2026', due: 'Oct 14, 2026', taxable: '₹32,35,556', taxAmt: '₹5,82,400', itcOffset: '₹5,82,400', netPayable: '₹0', status: 'Reconciled 100%' },
-    { form: 'GSTR-9 (Annual Return)', period: 'FY 2025-26', due: 'Dec 31, 2026', taxable: '₹6,84,20,000', taxAmt: '₹1,23,15,600', itcOffset: '₹64,20,000', netPayable: 'Settled', status: 'Audit In Progress' }
-  ];
+  const gstFilings = [];
 
-  const tdsSummary = [
-    { section: 'Section 194J (Professional Fees)', desc: '18 Consulting Surgeons & Radiologists', baseAmt: '₹11,40,000', rate: '10.0%', tdsDeducted: '₹1,14,000', due: 'Oct 07, 2026', status: 'Challan Paid' },
-    { section: 'Section 194C (Contractor Services)', desc: 'Ambulance Logistics & Facility Biohazard', baseAmt: '₹3,80,000', rate: '2.0%', tdsDeducted: '₹7,60,000', due: 'Oct 07, 2026', status: 'Challan Paid' },
-    { section: 'Section 194I (Hospital Landlord Rents)', desc: '14 Facility Clinical Leases', baseAmt: '₹6,20,000', rate: '10.0%', tdsDeducted: '₹62,000', due: 'Oct 07, 2026', status: 'Challan Paid' },
-    { section: 'Section 192 (Salaried Staff Payroll)', desc: 'Resident Nursing & Administrative Staff', baseAmt: '₹15,40,000', rate: 'Slab Avg', tdsDeducted: '₹1,26,400', due: 'Oct 07, 2026', status: 'Challan Paid' }
-  ];
+  const tdsSummary = [];
 
   return (
     <DashboardLayout
@@ -48,11 +38,11 @@ export default function Taxes() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="GST Output Liability" value="₹11.96 Lakh" delta="18% Outward GST" trend="up" subtext="Current month gross" icon="🏛️" />
-        <KpiCard label="Input Tax Credit (ITC)" value="₹5.82 Lakh" delta="100% GSTR-2B match" trend="up" subtext="Zero disputed credit" icon="📥" />
-        <KpiCard label="Net GST Cash Payable" value="₹6.14 Lakh" delta="Settled via PMT-06" trend="up" subtext="Due Oct 20, 2026" icon="💰" />
-        <KpiCard label="TDS Deducted & Deposited" value="₹3.10 Lakh" delta="100% Remitted" trend="up" subtext="Challan ITNS 281" icon="📑" />
-        <KpiCard label="Advance Income Tax" value="₹7.50 Lakh" delta="Q2 Installment Paid" trend="up" subtext="Section 115BAA rate" icon="🛡️" />
+        <KpiCard label="GST Output Liability" value="₹0" delta="18% Outward GST" trend="up" subtext="Current month gross" icon="🏛️" />
+        <KpiCard label="Input Tax Credit (ITC)" value="₹0" delta="100% GSTR-2B match" trend="up" subtext="Zero disputed credit" icon="📥" />
+        <KpiCard label="Net GST Cash Payable" value="₹0" delta="Settled via PMT-06" trend="up" subtext="Due Oct 20, 2026" icon="💰" />
+        <KpiCard label="TDS Deducted & Deposited" value="₹0" delta="100% Remitted" trend="up" subtext="Challan ITNS 281" icon="📑" />
+        <KpiCard label="Advance Income Tax" value="₹0" delta="Q2 Installment Paid" trend="up" subtext="Section 115BAA rate" icon="🛡️" />
         <KpiCard label="Statutory Compliance Score" value="100 / 100" delta="Zero penalties/notices" trend="up" subtext="Tier-1 clean audit" icon="⭐" />
       </div>
 

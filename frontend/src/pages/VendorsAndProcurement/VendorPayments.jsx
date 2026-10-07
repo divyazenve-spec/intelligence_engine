@@ -5,16 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function VendorPayments() {
   const [filterStatus, setFilterStatus] = useState('ALL');
 
-  const payments = [
-    { id: 'VP-2841', vendor: 'MSD Animal Health India', po: 'PO-7821', amount: '₹8,40,000', due: '2026-10-08', bank: 'HDFC — RTGS', status: 'Scheduled', method: 'Net 30', gst: '₹1,51,200', tds: '₹16,800' },
-    { id: 'VP-2842', vendor: 'Boehringer Ingelheim Vet', po: 'PO-7805', amount: '₹5,20,000', due: '2026-10-05', bank: 'ICICI — NEFT', status: 'Paid', method: 'Net 30', gst: '₹93,600', tds: '₹10,400' },
-    { id: 'VP-2843', vendor: 'Zoetis India Ltd.', po: 'PO-7798', amount: '₹4,80,000', due: '2026-10-04', bank: 'SBI — RTGS', status: 'Paid', method: 'Net 30', gst: '₹86,400', tds: '₹9,600' },
-    { id: 'VP-2844', vendor: 'Royal Canin India', po: 'PO-7792', amount: '₹3,20,000', due: '2026-10-12', bank: 'HDFC — NEFT', status: 'Pending', method: 'Net 45', gst: '₹57,600', tds: '₹6,400' },
-    { id: 'VP-2845', vendor: 'Synthes Vet India', po: 'PO-7785', amount: '₹6,80,000', due: '2026-10-02', bank: 'Axis — RTGS', status: 'Overdue', method: 'Net 30', gst: '₹1,22,400', tds: '₹13,600' },
-    { id: 'VP-2846', vendor: 'Virbac India Pvt. Ltd.', po: 'PO-7778', amount: '₹2,40,000', due: '2026-10-10', bank: 'ICICI — NEFT', status: 'Scheduled', method: 'Net 30', gst: '₹43,200', tds: '₹4,800' },
-    { id: 'VP-2847', vendor: "Hill's Pet Nutrition", po: 'PO-7771', amount: '₹1,80,000', due: '2026-10-01', bank: 'Kotak — NEFT', status: 'Paid', method: 'Net 45', gst: '₹32,400', tds: '₹3,600' },
-    { id: 'VP-2848', vendor: 'Intas Pharmaceuticals', po: 'PO-7764', amount: '₹1,20,000', due: '2026-10-15', bank: 'SBI — NEFT', status: 'Pending', method: 'Net 60', gst: '₹21,600', tds: '₹2,400' },
-  ];
+  const payments = [];
 
   const filtered = filterStatus === 'ALL' ? payments : payments.filter(p => p.status === filterStatus);
   const statusColor = s => ({ Paid: '#34d399', Scheduled: '#38bdf8', Pending: '#fbbf24', Overdue: '#f87171' }[s] || '#94a3b8');
@@ -37,12 +28,12 @@ export default function VendorPayments() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Payable (MTD)" value="₹33.80 L" delta="8 vendor invoices" trend="neutral" subtext="Oct 2026" icon="💳" />
-        <KpiCard label="Paid (MTD)" value="₹14.80 L" delta="3 settlements done" trend="up" subtext="On-time payments" icon="✅" />
-        <KpiCard label="Scheduled Payments" value="₹10.80 L" delta="2 upcoming" trend="neutral" subtext="Next 7 days" icon="📅" />
-        <KpiCard label="Overdue Payments" value="₹6.80 L" delta="1 vendor — action req." trend="down" subtext="Synthes Vet — Overdue" icon="⚠️" />
-        <KpiCard label="TDS Deducted (MTD)" value="₹47,200" delta="TDS @ 2% on vendor Rx" trend="neutral" subtext="Form 16B issued" icon="🧾" />
-        <KpiCard label="GST Payable (IGST)" value="₹5.07 L" delta="18% applicable" trend="neutral" subtext="GSTR-2B matched" icon="📋" />
+        <KpiCard label="Total Payable (MTD)" value="₹0" delta="8 vendor invoices" trend="neutral" subtext="Oct 2026" icon="💳" />
+        <KpiCard label="Paid (MTD)" value="₹0" delta="3 settlements done" trend="up" subtext="On-time payments" icon="✅" />
+        <KpiCard label="Scheduled Payments" value="₹0" delta="2 upcoming" trend="neutral" subtext="Next 7 days" icon="📅" />
+        <KpiCard label="Overdue Payments" value="₹0" delta="1 vendor — action req." trend="down" subtext="Synthes Vet — Overdue" icon="⚠️" />
+        <KpiCard label="TDS Deducted (MTD)" value="₹0" delta="TDS @ 2% on vendor Rx" trend="neutral" subtext="Form 16B issued" icon="🧾" />
+        <KpiCard label="GST Payable (IGST)" value="₹0" delta="18% applicable" trend="neutral" subtext="GSTR-2B matched" icon="📋" />
       </div>
 
       <div style={card}>

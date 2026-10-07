@@ -5,77 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function PetProfiles() {
   const [selectedPet, setSelectedPet] = useState('PET-101');
 
-  const profiles = [
-    {
-      id: 'PET-101',
-      name: 'Bruno',
-      species: 'Canine',
-      breed: 'Golden Retriever',
-      dob: '12-Aug-2023 (3 yrs 2 mos)',
-      gender: 'Male (Neutered)',
-      weight: '32.4 kg (Ideal)',
-      color: 'Dark Golden',
-      microchip: '981098102344120',
-      parent: 'Vikram Singhania',
-      phone: '+91 98201 44521',
-      email: 'vikram.singhania@gmail.com',
-      address: 'A-402, Raheja Palms, Powai, Mumbai - 400076',
-      clinic: 'Koramangala Super Hospital',
-      primaryVet: 'Dr. Priya Sharma (BVSc & AH)',
-      diet: 'Royal Canin Maxi Adult (380g/day) + Salmon Oil',
-      allergies: 'Chicken byproduct (mild pruritus)',
-      insurance: 'PetCover Gold (Policy #PCG-88192)',
-      vaxStatus: '100% Up to Date',
-      lastVisit: '02-Oct-2026 (Enteritis consult)',
-      notes: 'Calm temperament, microchipped at 4 months. Prone to seasonal ear moisture.'
-    },
-    {
-      id: 'PET-102',
-      name: 'Milo',
-      species: 'Feline',
-      breed: 'Persian Longhair',
-      dob: '15-Mar-2024 (2 yrs 6 mos)',
-      gender: 'Female (Spayed)',
-      weight: '4.1 kg (Normal)',
-      color: 'White & Champagne',
-      microchip: '981098102344121',
-      parent: 'Ananya Deshmukh',
-      phone: '+91 97112 55923',
-      email: 'ananya.d@outlook.com',
-      address: '74, 4th Cross, Indiranagar, Bengaluru - 560038',
-      clinic: 'Indiranagar Care Center',
-      primaryVet: 'Dr. Aisha Khan (MVSc Feline)',
-      diet: 'Royal Canin Persian Adult + Purina Pro Plan Hydra Care',
-      allergies: 'None recorded',
-      insurance: 'PawCare Plus (#PCP-11029)',
-      vaxStatus: 'Tricat Booster Due in 14d',
-      lastVisit: '28-Sep-2026 (Urinary FLUTD consult)',
-      notes: 'Indoor strictly. Requires weekly coat grooming to prevent hairballs.'
-    },
-    {
-      id: 'PET-103',
-      name: 'Rocky',
-      species: 'Canine',
-      breed: 'German Shepherd Dog',
-      dob: '05-Sep-2022 (4 yrs 1 mo)',
-      gender: 'Male',
-      weight: '38.0 kg (Athletic)',
-      color: 'Black & Tan',
-      microchip: '981098102344122',
-      parent: 'Rohan Mehta',
-      phone: '+91 98450 33812',
-      email: 'rohan.m@gmail.com',
-      address: 'B-12, Vasant Vihar, New Delhi - 110057',
-      clinic: 'Whitefield Specialty OT & Rehab',
-      primaryVet: 'Dr. Rahul Mehta (Surgeon)',
-      diet: 'Orijen Six Fish + Joint Guard Glucosamine',
-      allergies: 'Wheat gluten intolerance',
-      insurance: 'Bajaj Allianz Pet Shield',
-      vaxStatus: '100% Up to Date',
-      lastVisit: '01-Oct-2026 (CCL post-op exam)',
-      notes: 'Active working dog. Post CCL orthopedic repair rehabilitation in progress.'
-    }
-  ];
+  const profiles = [];
 
   const pet = profiles.find(p => p.id === selectedPet) || profiles[0];
 

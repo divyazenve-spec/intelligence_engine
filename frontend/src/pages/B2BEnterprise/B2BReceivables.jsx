@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function B2BReceivables() {
   const [agingFilter, setAgingFilter] = useState('ALL');
 
-  const invoices = [
-    { inv: 'INV-B2B-9101', client: 'PetCare Hospital Network', amt: '₹3,45,000', dueDate: '2026-10-25', aging: '0-30 Days', status: 'Current (Unpaid)', terms: 'Net 30' },
-    { inv: 'INV-B2B-9088', client: 'K-9 Paramilitary Kennels', amt: '₹2,80,000', dueDate: '2026-11-15', aging: '0-30 Days', status: 'Current (Govt Audit)', terms: 'Net 60' },
-    { inv: 'INV-B2B-9042', client: 'Bangalore Canine Breeding Co-op', amt: '₹1,95,000', dueDate: '2026-09-28', aging: '31-60 Days', status: 'Follow-up Sent', terms: 'Net 45' },
-    { inv: 'INV-B2B-9011', client: 'Urban Mutts Luxury Hospitality', amt: '₹1,12,000', dueDate: '2026-10-18', aging: '0-30 Days', status: 'Current (Unpaid)', terms: 'Net 30' },
-    { inv: 'INV-B2B-8994', client: 'Airports Authority Canine Unit', amt: '₹1,65,000', dueDate: '2026-10-02', aging: '0-30 Days', status: 'Processing Release', terms: 'Net 60' },
-    { inv: 'INV-B2B-8872', client: 'Western India Shelter Network', amt: '₹68,000', dueDate: '2026-08-15', aging: '61-90 Days', status: 'Escalated / Grace', terms: 'Net 30' }
-  ];
+  const invoices = [];
 
   const filtered = agingFilter === 'ALL' ? invoices : invoices.filter(i => i.aging === agingFilter);
 
@@ -25,13 +18,13 @@ export default function B2BReceivables() {
       title="B2B Accounts Receivable & Aging Ledger"
       subtitle="Corporate invoice aging buckets, DSO tracking, collections follow-up, and institutional credit risk"
       icon="💳"
-      badge="₹12.40L Outstanding"
+      badge="₹0 Outstanding"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Outstanding Receivables" value="₹12.40 Lakh" delta="6 Accounts" trend="up" subtext="All within approved limits" icon="💳" />
+        <KpiCard label="Total Outstanding Receivables" value="₹0" delta="6 Accounts" trend="up" subtext="All within approved limits" icon="💳" />
         <KpiCard label="Days Sales Outstanding (DSO)" value="34.2 Days" delta="-4.1 days improvement" trend="up" subtext="Target < 40 days" icon="⏱️" />
-        <KpiCard label="Current (0-30 Days)" value="₹9.02 Lakh" delta="72.7% of total" trend="up" subtext="Healthy debt profile" icon="✅" />
-        <KpiCard label="Overdue (> 60 Days)" value="₹68,000" delta="5.5% of total" trend="warn" subtext="1 account in grace period" icon="⚠️" />
+        <KpiCard label="Current (0-30 Days)" value="₹0" delta="72.7% of total" trend="up" subtext="Healthy debt profile" icon="✅" />
+        <KpiCard label="Overdue (> 60 Days)" value="₹0" delta="5.5% of total" trend="warn" subtext="1 account in grace period" icon="⚠️" />
       </div>
 
       <div style={card}>

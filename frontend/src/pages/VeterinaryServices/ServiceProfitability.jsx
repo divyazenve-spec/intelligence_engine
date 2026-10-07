@@ -3,23 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ServiceProfitability() {
-  const profitLines = [
-    { service: 'Outpatient Consultations', revenue: '₹3,42,000', directCost: '₹54,720', grossProfit: '₹2,87,280', margin: '84.0%', costDrivers: 'Doctor Retainer + Sterilization', status: 'Highest Margin' },
-    { service: 'Dental & Oral Surgery', revenue: '₹1,22,000', directCost: '₹26,840', grossProfit: '₹95,160', margin: '78.0%', costDrivers: 'Ultrasonic Tips, Polish Paste, Anesthesia', status: 'High Margin' },
-    { service: 'Cardiology & Diagnostic Doppler', revenue: '₹1,84,000', directCost: '₹47,472', grossProfit: '₹1,36,528', margin: '74.2%', costDrivers: 'Cardiologist Commission + Probe Wear', status: 'High Margin' },
-    { service: 'Orthopedic & Soft Tissue Surgery', revenue: '₹4,85,000', directCost: '₹1,35,800', grossProfit: '₹3,49,200', margin: '72.0%', costDrivers: 'Implants, Suture Packs, Sevoflurane, OT Nursing', status: 'High Absolute EBITDA' },
-    { service: 'In-House Laboratory Diagnostics', revenue: '₹2,68,000', directCost: '₹84,420', grossProfit: '₹1,83,580', margin: '68.5%', costDrivers: 'Dry Chemistry Cartridges, Reagents, Calibrators', status: 'Steady Margin' },
-    { service: 'Vaccinations & Biologicals', revenue: '₹98,000', directCost: '₹41,160', grossProfit: '₹56,840', margin: '58.0%', costDrivers: 'Vaccine Vials Wholesale + Cold-Chain Freight', status: 'Loss Leader / Retention' }
-  ];
+  const profitLines = [];
 
-  const costBreakdown = [
-    { category: 'Veterinary Doctor Retainers & Incentive Splits', amount: '₹2,42,000', pctOfRev: '16.1%', note: 'Performance-linked clinical commissions' },
-    { category: 'Surgical Consumables & Implants (Orthopedic / Soft Tissue)', amount: '₹94,000', pctOfRev: '6.3%', note: 'Titanium TPLO plates, sterile drapes, sutures' },
-    { category: 'Diagnostic Reagents & Biochemistry Discs', amount: '₹62,000', pctOfRev: '4.1%', note: 'Automated wet/dry hematology analyzers' },
-    { category: 'Anesthesia Gases & Pre-Medications (Iso/Sevo/Propofol)', amount: '₹34,000', pctOfRev: '2.3%', note: 'High purity medical oxygen & inhalation agents' },
-    { category: 'Clinical Paramedic & Vet Nursing Staff Payroll', amount: '₹1,10,000', pctOfRev: '7.3%', note: '14 certified veterinary technicians' },
-    { category: 'Hospital Sterilization, Autoclaves & Bio-Waste SOP', amount: '₹28,000', pctOfRev: '1.9%', note: 'Biomedical waste incinerator contracts' }
-  ];
+  const costBreakdown = [];
 
   return (
     <DashboardLayout
@@ -28,13 +14,13 @@ export default function ServiceProfitability() {
       title="Veterinary Clinical Unit Economics & Margin Diagnostics"
       subtitle="Gross profit margins, doctor compensation splits, surgical consumable expenses, diagnostic test cost-of-goods, and operating EBITDA"
       icon="📈"
-      badge="73.9% Blended Clinical Margin"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Gross Margin" value="73.9%" delta="+2.8% YoY" trend="up" subtext="Benchmark: 68.0%" icon="📈" />
-        <KpiCard label="Clinical Gross Profit" value="₹11.08 Lakh" delta="+21.4% MoM" trend="up" subtext="From ₹14.99L revenue" icon="💰" />
-        <KpiCard label="Doctor Commission Ratio" value="16.1%" delta="Target < 18.0%" trend="up" subtext="Highly accretive payout model" icon="👨‍⚕️" />
-        <KpiCard label="EBITDA Contribution" value="₹8.68 Lakh" delta="57.9% net yield" trend="up" subtext="After all hub operating overheads" icon="💎" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.8% YoY" trend="up" subtext="Benchmark: 68.0%" icon="📈" />
+        <KpiCard label="Clinical Gross Profit" value="₹0" delta="+21.4% MoM" trend="up" subtext="From ₹0 revenue" icon="💰" />
+        <KpiCard label="Doctor Commission Ratio" value="0.0%" delta="Target < 18.0%" trend="up" subtext="Highly accretive payout model" icon="👨‍⚕️" />
+        <KpiCard label="EBITDA Contribution" value="₹0" delta="57.9% net yield" trend="up" subtext="After all hub operating overheads" icon="💎" />
       </div>
 
       <div style={{

@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function Recruitment() {
   const [stageFilter, setStageFilter] = useState('ALL');
 
-  const jobs = [
-    { id: 'REQ-101', title: 'Emergency Veterinary Surgeon', dept: 'Clinical', location: 'Bengaluru Flagship', openings: 2, applicants: 48, screened: 14, interview: 4, offer: 1, priority: 'Urgent', recruiter: 'Divya S.' },
-    { id: 'REQ-102', title: 'Staff Veterinarian (Outpatient)', dept: 'Clinical', location: 'Mumbai Bandra', openings: 3, applicants: 62, screened: 18, interview: 6, offer: 2, priority: 'High', recruiter: 'Divya S.' },
-    { id: 'REQ-103', title: 'Registered Clinical Pharmacist', dept: 'Pharmacy', location: 'Bengaluru Hub', openings: 3, applicants: 54, screened: 12, interview: 5, offer: 1, priority: 'High', recruiter: 'Ankit P.' },
-    { id: 'REQ-104', title: 'Senior AI / ML Research Engineer', dept: 'Technology', location: 'Bengaluru / Remote', openings: 2, applicants: 85, screened: 16, interview: 4, offer: 1, priority: 'Urgent', recruiter: 'Ankit P.' },
-    { id: 'REQ-105', title: 'Hyperlocal Fleet Riders (Cold-Chain)', dept: 'Logistics', location: 'Mumbai & NCR', openings: 12, applicants: 142, screened: 45, interview: 22, offer: 8, priority: 'Normal', recruiter: 'Meera R.' },
-    { id: 'REQ-106', title: 'Warehouse Inventory Auditor', dept: 'Warehouse', location: 'Bhiwandi Central', openings: 2, applicants: 29, screened: 8, interview: 3, offer: 0, priority: 'Normal', recruiter: 'Meera R.' }
-  ];
+  const jobs = [];
 
   return (
     <DashboardLayout
@@ -21,7 +14,7 @@ export default function Recruitment() {
       title="Talent Acquisition & Pipeline Governance"
       subtitle="Open requisitions, applicant funnel progression, interview scheduling, offer letters, and time-to-hire telemetry"
       icon="📢"
-      badge="24 Active Vacancies · 420 Applicants"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>

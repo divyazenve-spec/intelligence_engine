@@ -6,26 +6,9 @@ export default function SupplierPricing() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const pricingData = [
-    { sku: 'MED-VACC-001', name: 'Nobivac Puppy DP Vaccine', vendor: 'MSD Animal Health India', category: 'Vaccines & Biologics', msrp: '₹420', contractedPrice: '₹315', discountPct: 25.0, minOrderQty: '50 vials', priceLockUntil: '2027-03-31', lastRevised: '2026-04-01', parityStatus: 'Best Price' },
-    { sku: 'MED-PARA-014', name: 'Bravecto Chewable 20-40kg', vendor: 'MSD Animal Health India', category: 'Antiparasitic & Rx', msrp: '₹2,450', contractedPrice: '₹1,880', discountPct: 23.3, minOrderQty: '20 packs', priceLockUntil: '2026-12-31', lastRevised: '2026-01-15', parityStatus: 'Best Price' },
-    { sku: 'MED-VACC-004', name: 'Eurican DAPPi-L Multi-Antigen', vendor: 'Boehringer Ingelheim Vet', category: 'Vaccines & Biologics', msrp: '₹480', contractedPrice: '₹375', discountPct: 21.9, minOrderQty: '40 vials', priceLockUntil: '2027-02-28', lastRevised: '2026-03-01', parityStatus: 'Negotiated' },
-    { sku: 'MED-ANTI-008', name: 'NexGard Spectra Medium (7.5-15kg)', vendor: 'Boehringer Ingelheim Vet', category: 'Antiparasitic & Rx', msrp: '₹1,980', contractedPrice: '₹1,520', discountPct: 23.2, minOrderQty: '25 boxes', priceLockUntil: '2027-01-31', lastRevised: '2026-02-10', parityStatus: 'Best Price' },
-    { sku: 'MED-SURG-022', name: 'Titanium LCP 2.4mm Recon Plate', vendor: 'Synthes Vet India', category: 'Surgical Implants', msrp: '₹8,500', contractedPrice: '₹6,400', discountPct: 24.7, minOrderQty: '5 units', priceLockUntil: '2027-06-30', lastRevised: '2026-05-15', parityStatus: 'Exclusive' },
-    { sku: 'MED-SURG-031', name: 'Self-Tapping Cortical Screws 2.7mm', vendor: 'Synthes Vet India', category: 'Surgical Implants', msrp: '₹750', contractedPrice: '₹560', discountPct: 25.3, minOrderQty: '50 units', priceLockUntil: '2027-06-30', lastRevised: '2026-05-15', parityStatus: 'Exclusive' },
-    { sku: 'NUT-DIET-005', name: 'Veterinary Diet Renal Dry 4kg', vendor: 'Royal Canin India', category: 'Veterinary Nutrition', msrp: '₹3,600', contractedPrice: '₹2,950', discountPct: 18.1, minOrderQty: '15 bags', priceLockUntil: '2026-11-30', lastRevised: '2025-12-01', parityStatus: 'Review Due' },
-    { sku: 'NUT-DIET-012', name: 'Gastrointestinal High Energy 12kg', vendor: 'Royal Canin India', category: 'Veterinary Nutrition', msrp: '₹8,900', contractedPrice: '₹7,200', discountPct: 19.1, minOrderQty: '10 bags', priceLockUntil: '2026-11-30', lastRevised: '2025-12-01', parityStatus: 'Review Due' },
-    { sku: 'NUT-PRES-008', name: "Hill's Prescription Diet k/d Canine 3.8kg", vendor: "Hill's Pet Nutrition", category: 'Veterinary Nutrition', msrp: '₹3,850', contractedPrice: '₹3,120', discountPct: 19.0, minOrderQty: '12 bags', priceLockUntil: '2027-04-30', lastRevised: '2026-04-10', parityStatus: 'Negotiated' },
-    { sku: 'MED-DERM-003', name: 'Malaseb Antifungal Medicated Shampoo 250ml', vendor: 'Dechra Veterinary Products', category: 'Dermatology & Topicals', msrp: '₹1,250', contractedPrice: '₹950', discountPct: 24.0, minOrderQty: '30 bottles', priceLockUntil: '2027-03-15', lastRevised: '2026-03-20', parityStatus: 'Best Price' },
-    { sku: 'MED-GEN-019', name: 'Meloxicam Injection 5mg/ml (100ml)', vendor: 'Intas Pharmaceuticals', category: 'Generic APIs & NSAID', msrp: '₹320', contractedPrice: '₹210', discountPct: 34.4, minOrderQty: '60 vials', priceLockUntil: '2027-05-31', lastRevised: '2026-05-01', parityStatus: 'Best Price' },
-    { sku: 'MED-GEN-024', name: 'Amoxicillin + Clavulanate 500mg (10x10)', vendor: 'Intas Pharmaceuticals', category: 'Generic APIs & NSAID', msrp: '₹680', contractedPrice: '₹460', discountPct: 32.4, minOrderQty: '40 strips', priceLockUntil: '2027-05-31', lastRevised: '2026-05-01', parityStatus: 'Best Price' }
-  ];
+  const pricingData = [];
 
-  const volumeTiers = [
-    { tier: 'Tier 1 (Standard PO)', qtyRange: '1 - 50 units', discount: 'Base Contracted (18% - 25% off MSRP)', paymentTerms: 'Net 30 Days' },
-    { tier: 'Tier 2 (Hub Restock)', qtyRange: '51 - 250 units', discount: 'Base + 3.5% Additional Volume Rebate', paymentTerms: 'Net 45 Days' },
-    { tier: 'Tier 3 (Network Master PO)', qtyRange: '251+ units', discount: 'Base + 7.0% Enterprise Rebate + Free Freight', paymentTerms: 'Net 60 Days / 2% 10-day cash discount' }
-  ];
+  const volumeTiers = [];
 
   const filtered = pricingData.filter(item => {
     if (selectedCategory !== 'ALL' && item.category !== selectedCategory) return false;
@@ -64,11 +47,11 @@ export default function SupplierPricing() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Contracted SKUs" value="1,420 Items" delta="100% price locked" trend="up" subtext="Under master agreements" icon="📋" />
-        <KpiCard label="Avg. Discount vs MSRP" value="23.6%" delta="+2.4% vs FY25" trend="up" subtext="Network-wide average" icon="🏷️" />
-        <KpiCard label="Active Price Locks" value="94.2%" delta="Protected through FY27" trend="up" subtext="Inflation hedge" icon="🔒" />
+        <KpiCard label="Avg. Discount vs MSRP" value="0.0%" delta="+2.4% vs FY25" trend="up" subtext="Network-wide average" icon="🏷️" />
+        <KpiCard label="Active Price Locks" value="0.0%" delta="Protected through FY27" trend="up" subtext="Inflation hedge" icon="🔒" />
         <KpiCard label="Price Reviews Due (<60d)" value="2 Agreements" delta="Royal Canin Nutrition" trend="neutral" subtext="Renewal negotiations scheduled" icon="⏳" />
-        <KpiCard label="Generic Arbitrage Margin" value="33.4%" delta="+12.8% vs branded" trend="up" subtext="NSAIDs & Antibiotics" icon="💊" />
-        <KpiCard label="Enterprise Volume Rebate" value="₹3.18 L" delta="Earned YTD" trend="up" subtext="Tier 2 & 3 order bonuses" icon="💵" />
+        <KpiCard label="Generic Arbitrage Margin" value="0.0%" delta="+12.8% vs branded" trend="up" subtext="NSAIDs & Antibiotics" icon="💊" />
+        <KpiCard label="Enterprise Volume Rebate" value="₹0" delta="Earned YTD" trend="up" subtext="Tier 2 & 3 order bonuses" icon="💵" />
       </div>
 
       {/* Volume Tier Matrix */}

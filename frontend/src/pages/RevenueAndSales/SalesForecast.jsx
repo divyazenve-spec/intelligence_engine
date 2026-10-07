@@ -10,30 +10,10 @@ export default function SalesForecast() {
   const mult = scenario === 'bull' ? 1.18 : scenario === 'bear' ? 0.82 : 1.0;
 
   // 6 months historical actuals
-  const actuals = [
-    { month: 'May 2026', rev: 1480000, label: 'May' },
-    { month: 'Jun 2026', rev: 1620000, label: 'Jun' },
-    { month: 'Jul 2026', rev: 1790000, label: 'Jul' },
-    { month: 'Aug 2026', rev: 1910000, label: 'Aug' },
-    { month: 'Sep 2026', rev: 2050000, label: 'Sep' },
-    { month: 'Oct 2026', rev: 2180000, label: 'Oct' }
-  ];
+  const actuals = [];
 
   // Forward months master pool
-  const masterForecast = [
-    { month: 'Nov 2026', label: 'Nov', baseRev: 2350000, baseOrders: 1540, seasonal: 'Monsoon Tick & Flea Surge (+14%)' },
-    { month: 'Dec 2026', label: 'Dec', baseRev: 2680000, baseOrders: 1780, seasonal: 'Year-End Boarding & Wellness (+18%)' },
-    { month: 'Jan 2027', label: 'Jan', baseRev: 2890000, baseOrders: 1920, seasonal: 'New Year Pet Care Subscriptions (+12%)' },
-    { month: 'Feb 2027', label: 'Feb', baseRev: 3040000, baseOrders: 2010, seasonal: 'Dental Health Awareness Month (+8%)' },
-    { month: 'Mar 2027', label: 'Mar', baseRev: 3260000, baseOrders: 2140, seasonal: 'Spring Shedding & Dermatology (+10%)' },
-    { month: 'Apr 2027', label: 'Apr', baseRev: 3480000, baseOrders: 2280, seasonal: 'Summer Hydration & Heatstroke Preps (+11%)' },
-    { month: 'May 2027', label: 'May', baseRev: 3680000, baseOrders: 2410, seasonal: 'Pre-Monsoon Deworming Drives (+9%)' },
-    { month: 'Jun 2027', label: 'Jun', baseRev: 3890000, baseOrders: 2550, seasonal: 'Monsoon Coat Protection (+12%)' },
-    { month: 'Jul 2027', label: 'Jul', baseRev: 4120000, baseOrders: 2700, seasonal: 'Vector-borne Disease Surveillance (+14%)' },
-    { month: 'Aug 2027', label: 'Aug', baseRev: 4350000, baseOrders: 2850, seasonal: 'Senior Pet Mobility & Joint Care (+10%)' },
-    { month: 'Sep 2027', label: 'Sep', baseRev: 4580000, baseOrders: 3000, seasonal: 'Festive Season Grooming Drives (+15%)' },
-    { month: 'Oct 2027', label: 'Oct', baseRev: 4850000, baseOrders: 3180, seasonal: 'Annual Pet Health Checkup Surge (+16%)' }
-  ];
+  const masterForecast = [];
 
   // Slice based on selected horizon
   const projectedMonths = masterForecast.slice(0, horizon).map((m, idx, arr) => {
@@ -75,10 +55,7 @@ export default function SalesForecast() {
   const actualPath = actuals.map((a, i) => `${i === 0 ? 'M' : 'L'} ${getX(i).toFixed(1)} ${getY(a.rev).toFixed(1)}`).join(' ');
 
   // Connect last actual to forecast points
-  const forecastCoords = [
-    { x: getX(actualCount - 1), y: getY(actuals[actualCount - 1].rev) },
-    ...projectedMonths.map((p, i) => ({ x: getX(actualCount + i), y: getY(p.rev) }))
-  ];
+  const forecastCoords = [];
   const forecastPath = forecastCoords.map((c, i) => `${i === 0 ? 'M' : 'L'} ${c.x.toFixed(1)} ${c.y.toFixed(1)}`).join(' ');
 
   // Confidence ribbon polygon
@@ -95,20 +72,10 @@ export default function SalesForecast() {
   const cutoffX = getX(actualCount - 1);
 
   // Healthcare seasonal drivers
-  const seasonalDrivers = [
-    { season: 'Monsoon Flea & Parasite Surge', months: 'Jul - Sep', surge: '+24.5%', driver: 'External antiparasitic baths, spot-on treatments, tick fever screening panels', icon: '🌧️', color: '#0ea5e9' },
-    { season: 'Festive & Travel Boarding Peak', months: 'Oct - Dec', surge: '+31.8%', driver: 'Short-stay clinic boarding, pre-travel vaccination verification certificates', icon: '🎉', color: '#8b5cf6' },
-    { season: 'Winter Orthopedic & Joint Care', months: 'Dec - Feb', surge: '+19.2%', driver: 'Arthritis laser therapy, senior dog mobility joint chews, heated orthopedic beds', icon: '❄️', color: '#3b82f6' },
-    { season: 'Summer Hydration & Heatstroke', months: 'Apr - Jun', surge: '+22.0%', driver: 'Electrolyte IV drips, coat trimming, heat rash soothing dermatological care', icon: '☀️', color: '#f59e0b' }
-  ];
+  const seasonalDrivers = [];
 
   // Channel Projections
-  const channelProjections = [
-    { name: 'Android Mobile App', icon: '📱', share: '46%', qRev: Math.round(cumulativeRev * 0.46), growth: '+24.5%', color: '#3ddc84' },
-    { name: 'iOS Mobile App', icon: '🍏', share: '28%', qRev: Math.round(cumulativeRev * 0.28), growth: '+31.2%', color: '#0071e3' },
-    { name: 'Web Direct Portal', icon: '💻', share: '18%', qRev: Math.round(cumulativeRev * 0.18), growth: '+14.8%', color: '#6366f1' },
-    { name: 'Partner Clinic Network', icon: '🏥', share: '8%', qRev: Math.round(cumulativeRev * 0.08), growth: '+19.4%', color: '#f59e0b' }
-  ];
+  const channelProjections = [];
 
   return (
     <DashboardLayout
@@ -117,7 +84,7 @@ export default function SalesForecast() {
       title="Predictive Revenue & Demand Forecast"
       subtitle="Machine learning projections with pet healthcare seasonality cycles, 90% confidence bands, and scenario modeling"
       icon="📈"
-      badge="92.8% Confidence (R²)"
+      badge=""
       actions={
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', fontWeight: 600 }}>Horizon:</span>

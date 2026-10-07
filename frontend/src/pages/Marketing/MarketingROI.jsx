@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function MarketingROI() {
-  const financialROI = [
-    { channel: 'Search Ads & SEO Hybrid', spend: '₹2,50,000', grossProfitContrib: '₹6,40,000', netProfitLift: '₹3,90,000', netROI: '156%', paybackDays: '22 Days' },
-    { channel: 'Meta Instagram & Reels Ad Suite', spend: '₹2,10,000', grossProfitContrib: '₹5,10,000', netProfitLift: '₹3,00,000', netROI: '143%', paybackDays: '28 Days' },
-    { channel: 'Partner Clinic In-Store Displays', spend: '₹84,000', grossProfitContrib: '₹2,85,000', netProfitLift: '₹2,01,000', netROI: '239%', paybackDays: '14 Days' },
-    { channel: 'Influencer & Creator Video Collabs', spend: '₹95,000', grossProfitContrib: '₹1,95,000', netProfitLift: '₹1,00,000', netROI: '105%', paybackDays: '35 Days' }
-  ];
+  const financialROI = [];
 
   return (
     <DashboardLayout
@@ -20,10 +15,10 @@ export default function MarketingROI() {
       badge="+168% Net Blended ROI"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Net Marketing ROI" value="168%" delta="+24.5%" trend="up" subtext="Net profit / Ad spend" icon="📈" />
-        <KpiCard label="Gross Profit Lift" value="₹16,30,000" delta="+21.2%" trend="up" subtext="From marketing campaigns" icon="💰" />
+        <KpiCard label="Net Marketing ROI" value="0.0%" delta="0.0%" trend="up" subtext="Net profit / Ad spend" icon="📈" />
+        <KpiCard label="Gross Profit Lift" value="₹0" delta="0.0%" trend="up" subtext="From marketing campaigns" icon="💰" />
         <KpiCard label="Avg Payback Period" value="24.8 Days" delta="-4.2 days" trend="up" subtext="Time to recoup CAC" icon="⏱️" />
-        <KpiCard label="Marketing Efficiency Ratio" value="5.24" delta="+0.42" trend="up" subtext="Total Sales ÷ Marketing Spend" icon="⚡" />
+        <KpiCard label="Marketing Efficiency Ratio" value="0" delta="+0.42" trend="up" subtext="Total Sales ÷ Marketing Spend" icon="⚡" />
       </div>
 
       <div style={{

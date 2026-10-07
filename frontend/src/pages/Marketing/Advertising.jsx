@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Advertising() {
-  const adSets = [
-    { name: 'Meta Advantage+ Dynamic Pet Pharmacy Catalog', platform: 'Meta Ads', spend: '₹1,42,000', cpm: '₹165', cpc: '₹7.80', cpa: '₹145', roas: '4.9x', health: 'Optimal' },
-    { name: 'Google Search: Urgent 24/7 Vet Near Me', platform: 'Google Ads', spend: '₹1,65,000', cpm: '₹420', cpc: '₹18.40', cpa: '₹140', roas: '5.2x', health: 'Optimal' },
-    { name: 'Instagram Video: Puppy Training & Preventive Vet Care', platform: 'Meta Ads', spend: '₹98,000', cpm: '₹140', cpc: '₹6.20', cpa: '₹180', roas: '3.8x', health: 'Creative Refresh Due' },
-    { name: 'Google Performance Max: Premium Canine Nutrition', platform: 'Google Ads', spend: '₹1,10,000', cpm: '₹280', cpc: '₹12.50', cpa: '₹165', roas: '4.2x', health: 'Optimal' },
-    { name: 'YouTube Non-Skip: Veterinary Surgery Precision', platform: 'YouTube Ads', spend: '₹85,000', cpm: '₹210', cpc: '₹16.20', cpa: '₹240', roas: '3.4x', health: 'Scaling' }
-  ];
+  const adSets = [];
 
   return (
     <DashboardLayout
@@ -18,13 +12,13 @@ export default function Advertising() {
       title="Paid Advertising Networks & Creative Efficiency"
       subtitle="Meta Ads Manager, Google Ads MCC, CPM, CPC, cost-per-acquisition, and ad creative health"
       icon="📢"
-      badge="₹6.00L Paid Ad Spend MTD"
+      badge="₹0 Paid Ad Spend MTD"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average CPM" value="₹243" delta="-8.2%" trend="up" subtext="Cost per 1,000 impressions" icon="👁️" />
-        <KpiCard label="Blended CPC" value="₹11.40" delta="-4.8%" trend="up" subtext="Cost per ad click" icon="🖱️" />
-        <KpiCard label="Target CPA Adherence" value="₹162" delta="-₹18 under cap" trend="up" subtext="Cap set at ₹180" icon="🎯" />
-        <KpiCard label="Ad Spend Efficiency" value="94.2%" delta="+3.1%" trend="up" subtext="Impression share score" icon="⚡" />
+        <KpiCard label="Average CPM" value="₹0" delta="-8.2%" trend="up" subtext="Cost per 1,000 impressions" icon="👁️" />
+        <KpiCard label="Blended CPC" value="₹0" delta="-4.8%" trend="up" subtext="Cost per ad click" icon="🖱️" />
+        <KpiCard label="Target CPA Adherence" value="₹0" delta="-₹0 cap" trend="up" subtext="Cap set at ₹0" icon="🎯" />
+        <KpiCard label="Ad Spend Efficiency" value="0.0%" delta="0.0%" trend="up" subtext="Impression share score" icon="⚡" />
       </div>
 
       <div style={{

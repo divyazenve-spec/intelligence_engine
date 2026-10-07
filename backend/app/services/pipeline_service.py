@@ -362,12 +362,8 @@ def ingest_records(records: list[dict], db: Session, mode: str = "replace") -> d
 # ---------------------------------------------------------------------------
 
 def generate_template_csv() -> str:
-    """Generate a standard CSV template with sample rows."""
+    """Generate a standard CSV template with schema headers."""
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(["Order", "Date", "Customer", "Service", "City", "Channel", "Status", "Amount"])
-    writer.writerow(["ZV-90001", "2026-10-01T09:30:00", "Rohan Mehta", "Preventive Healthcare Plan", "Bengaluru", "Android", "Paid", "6500"])
-    writer.writerow(["ZV-90002", "2026-10-01T11:15:00", "Priya Sen", "Veterinary Tele-Consult", "Mumbai", "iOS", "Paid", "2800"])
-    writer.writerow(["ZV-90003", "2026-10-01T14:40:00", "Aditya Roy", "Pet Pharmacy & Meds", "Delhi NCR", "Web", "Paid", "4200"])
-    writer.writerow(["ZV-90004", "2026-10-01T16:20:00", "Sneha Kulkarni", "Pet Grooming & Spa", "Hyderabad", "Android", "Pending", "1900"])
     return output.getvalue()

@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CustomerRetention() {
-  const retentionCohorts = [
-    { cohortMonth: 'Oct 2025', initialSize: 1050, m1: '86%', m3: '79%', m6: '74%', m12: '71%', status: 'Mature (High Retention)' },
-    { cohortMonth: 'Jan 2026', initialSize: 1180, m1: '88%', m3: '82%', m6: '77%', m12: '—', status: 'Tracking Above Benchmark' },
-    { cohortMonth: 'Apr 2026', initialSize: 1240, m1: '89%', m3: '84%', m6: '—', m12: '—', status: 'Strong Q1 Retention' },
-    { cohortMonth: 'Jul 2026', initialSize: 1390, m1: '91%', m3: '—', m6: '—', m12: '—', status: 'Highest M1 Retention Record' }
-  ];
+  const retentionCohorts = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function CustomerRetention() {
       title="Customer Retention & Cohort Decay Curves"
       subtitle="Monthly cohort retention curves, churn rate tracking, at-risk customer indicators, and automated win-back triggers"
       icon="🛡️"
-      badge="91% Month-1 Retention"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Month-1 Cohort Retention" value="91.2%" delta="+3.4% YoY" trend="up" subtext="Industry benchmark: 68%" icon="🛡️" />
-        <KpiCard label="Annual Churn Rate" value="1.18%" delta="-0.24% vs FY25" trend="up" subtext="Subscribers & repeat clients" icon="📉" />
-        <KpiCard label="Win-Back Campaign Success" value="38.4%" delta="Re-activated within 30D" trend="up" subtext="Automated reminder triggers" icon="🔄" />
-        <KpiCard label="Net Revenue Retention (NRR)" value="124.6%" delta="+6.2% YoY" trend="up" subtext="Expansion revenue from existing base" icon="💎" />
+        <KpiCard label="Month-1 Cohort Retention" value="0.0%" delta="+3.4% YoY" trend="up" subtext="Industry benchmark: 68%" icon="🛡️" />
+        <KpiCard label="Annual Churn Rate" value="0.0%" delta="-0.24% vs FY25" trend="up" subtext="Subscribers & repeat clients" icon="📉" />
+        <KpiCard label="Win-Back Campaign Success" value="0.0%" delta="Re-activated within 30D" trend="up" subtext="Automated reminder triggers" icon="🔄" />
+        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="+6.2% YoY" trend="up" subtext="Expansion revenue from existing base" icon="💎" />
       </div>
 
       <div style={cardStyle}>

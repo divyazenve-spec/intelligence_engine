@@ -6,15 +6,7 @@ export default function PetHealthRecords() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const records = [
-    { id: 'EHR-901', date: '02-Oct-2026', pet: 'Bruno (Golden Retriever)', type: 'Routine Clinical Exam', vet: 'Dr. Priya Sharma', vitals: 'Temp: 39.1°C • HR: 110bpm • Wt: 32.4kg', diagnosis: 'Dietary Indiscretion (Enteritis)', status: 'Resolved', notes: 'Hydration restored, antiemetics administered.' },
-    { id: 'EHR-902', date: '28-Sep-2026', pet: 'Milo (Persian Cat)', type: 'Urinary Diagnostic', vet: 'Dr. Aisha Khan', vitals: 'Temp: 38.6°C • Wt: 4.1kg', diagnosis: 'Feline Lower Urinary Tract Disease', status: 'Under Regimen', notes: 'Urinalysis shows struvite crystals. Prescription renal diet.' },
-    { id: 'EHR-903', date: '24-Sep-2026', pet: 'Rocky (German Shepherd)', type: 'Orthopedic Evaluation', vet: 'Dr. Rahul Mehta', vitals: 'Temp: 38.5°C • Wt: 38.0kg', diagnosis: 'CCL Ligament Laxity (Right Stifle)', status: 'Post-Op Rehab', notes: 'Surgical recovery 4 weeks post-op. Hydrotherapy approved.' },
-    { id: 'EHR-904', date: '20-Sep-2026', pet: 'Simba (Beagle)', type: 'Dermatology Cytology', vet: 'Dr. Karan Patel', vitals: 'Temp: 38.8°C • Wt: 14.2kg', diagnosis: 'Malassezia Pachydermatis Otitis', status: 'Improving', notes: 'Bilateral ear cytology shows fungal overgrowth. Posatex drops.' },
-    { id: 'EHR-905', date: '15-Sep-2026', pet: 'Bella (Shih Tzu)', type: 'Cardiology Doppler', vet: 'Dr. Neha Singh', vitals: 'Temp: 38.3°C • HR: 165bpm', diagnosis: 'Mitral Valve Insufficiency (Stage B2)', status: 'Chronic Monitoring', notes: 'Vetmedin (Pimobendan 1.25mg) daily maintenance.' },
-    { id: 'EHR-906', date: '10-Sep-2026', pet: 'Casper (Siberian Husky)', type: 'Emergency Resuscitation', vet: 'Dr. Neha Singh', vitals: 'Temp: 40.8°C (Hyperthermia)', diagnosis: 'Acute Canine Heat Exhaustion', status: 'Fully Recovered', notes: 'Active cooling protocol, IV Lactated Ringers 120ml/kg.' },
-    { id: 'EHR-907', date: '04-Sep-2026', pet: 'Oreo (Domestic Shorthair)', type: 'Oral Dental Scaling', vet: 'Dr. Aisha Khan', vitals: 'Temp: 38.7°C • Wt: 3.8kg', diagnosis: 'Periodontal Calculus Grade 2', status: 'Completed', notes: 'Ultrasonic scaling, subgingival curettage, fluoride polish.' }
-  ];
+  const records = [];
 
   const filtered = records.filter(r => {
     const matchesFilter = filter === 'ALL' || r.status === filter || r.type.includes(filter);
@@ -32,7 +24,7 @@ export default function PetHealthRecords() {
       title="Electronic Health Records (EHR) & Clinical Timeline"
       subtitle="Longitudinal medical history, physical examination findings, vital signs trends, and clinical diagnosis logs"
       icon="🐾"
-      badge="9,410 Historical Records"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Resolved', 'Under Regimen', 'Post-Op Rehab', 'Chronic Monitoring'].map(f => (
@@ -57,10 +49,10 @@ export default function PetHealthRecords() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Medical Records" value="9,410" delta="+18.5%" trend="up" subtext="All time logged" icon="📋" />
-        <KpiCard label="Records Added This Month" value="384" delta="+12.4%" trend="up" subtext="Current period" icon="📅" />
-        <KpiCard label="Active Chronic Regimens" value="142" delta="Monitored" trend="neutral" subtext="Renal, cardio, endocrine" icon="💊" />
-        <KpiCard label="Vital Signs Compliance" value="99.4%" delta="Standard" trend="up" subtext="Temp, HR, Wt recorded" icon="🩺" />
+        <KpiCard label="Total Medical Records" value="0" delta="0.0%" trend="up" subtext="All time logged" icon="📋" />
+        <KpiCard label="Records Added This Month" value="0" delta="0.0%" trend="up" subtext="Current period" icon="📅" />
+        <KpiCard label="Active Chronic Regimens" value="0" delta="Monitored" trend="neutral" subtext="Renal, cardio, endocrine" icon="💊" />
+        <KpiCard label="Vital Signs Compliance" value="0.0%" delta="Standard" trend="up" subtext="Temp, HR, Wt recorded" icon="🩺" />
       </div>
 
       <div style={{

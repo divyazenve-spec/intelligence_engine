@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ExportOrders() {
-  const orders = [
-    { expPo: 'XPO-2026-031', buyer: 'Royal Pets Hospital LLC (Dubai)', country: 'United Arab Emirates', items: 'Italian Leather Collars & Custom Harness Sets', val: '$18,500 (~₹15.5L)', terms: 'FOB Nhava Sheva (Sight LC)', dispatch: '2026-10-04', payment: 'LC Confirmed', status: 'In Transit' },
-    { expPo: 'XPO-2026-032', buyer: 'PetLovers Centre APAC (Singapore)', country: 'Singapore', items: 'Organic Neem & Aloe Herbal Pet Shampoos', val: '$28,000 (~₹23.5L)', terms: 'CIF Singapore (TT 30% Adv)', dispatch: '2026-10-01', payment: '70% Balance Due', status: 'Customs Passed (SG)' },
-    { expPo: 'XPO-2026-033', buyer: 'Mayfair Canine Atelier (London)', country: 'United Kingdom', items: 'Bespoke Satin Wedding Tuxedos & Monogrammed Vests', val: '£9,800 (~₹10.8L)', terms: 'DAP London (Card / Wire)', dispatch: '2026-09-28', payment: '100% Advance Paid', status: 'Delivered' },
-    { expPo: 'XPO-2026-034', buyer: 'Arabian Falcon & Pet Healthcare (Riyadh)', country: 'Saudi Arabia', items: 'Veterinary Titanium Orthopedic Bone Screws', val: '$16,000 (~₹13.4L)', terms: 'FOB Mumbai (LC 60D)', dispatch: '2026-10-03', payment: 'LC Confirmed', status: 'Dispatched (Air)' }
-  ];
+  const orders = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,12 +14,12 @@ export default function ExportOrders() {
       title="International Export Sales Orders & Invoicing"
       subtitle="Overseas commercial sales orders, foreign bank letters of credit, customs shipping bill filings, and cargo manifests"
       icon="📦"
-      badge="₹63.2L Active Orders"
+      badge="₹0 Active Orders"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Export Orders" value="4 Consignments" delta="$72.3K USD Value" trend="up" subtext="Middle East & APAC" icon="📦" />
         <KpiCard label="Export Order Realization" value="100% Secured" delta="LC + Advance wire" trend="up" subtext="Zero bad debt risk" icon="🛡️" />
-        <KpiCard label="Avg Export Ticket Size" value="₹15.8 Lakh" delta="+18.4% YoY" trend="up" subtext="High-value luxury apparel" icon="💰" />
+        <KpiCard label="Avg Export Ticket Size" value="₹0" delta="+18.4% YoY" trend="up" subtext="High-value luxury apparel" icon="💰" />
         <KpiCard label="Export Airway Days" value="3.2 Days" delta="Direct express flights" trend="up" subtext="BOM/BLR to DXB/SIN" icon="⚡" />
       </div>
 

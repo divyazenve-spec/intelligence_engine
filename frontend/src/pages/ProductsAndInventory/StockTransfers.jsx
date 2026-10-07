@@ -7,14 +7,7 @@ export default function StockTransfers() {
   const [modalOpen, setModalOpen] = useState(false);
   const [successToast, setSuccessToast] = useState('');
 
-  const transfers = [
-    { id: 'TRF-2026-0891', origin: 'Bengaluru Central', dest: 'Mumbai West', skus: 'Royal Canin Hepatic (20 units), Bravecto (50 units)', value: '₹1,65,500', carrier: 'Zenve Express Fleet (EV-04)', status: 'In Transit', temp: '4.2°C (Optimal)', eta: 'Today, 4:30 PM', cold: true },
-    { id: 'TRF-2026-0892', origin: 'Mumbai West', dest: 'Pune Express', skus: 'Nobivac Core Vaccines (100 vials)', value: '₹85,000', carrier: 'BlueDart Cold Chain', status: 'In Transit', temp: '3.8°C (Optimal)', eta: 'Today, 2:15 PM', cold: true },
-    { id: 'TRF-2026-0893', origin: 'Delhi NCR Hub', dest: 'Bengaluru Central', skus: 'PetCube Cameras (15 units), Anti-Pull Harnesses (40 units)', value: '₹1,77,500', carrier: 'Delhivery Surface Express', status: 'In Transit', temp: 'Ambient', eta: 'Tomorrow, 11:00 AM', cold: false },
-    { id: 'TRF-2026-0894', origin: 'Bengaluru Central', dest: 'Hyderabad Center', skus: 'NexGard Spectra (24 units), Drools Calcium (80 packs)', value: '₹52,400', carrier: 'Internal Logistics (Van-02)', status: 'Pending Dispatch', temp: 'Ambient', eta: 'Tomorrow, 6:00 PM', cold: false },
-    { id: 'TRF-2026-0888', origin: 'Mumbai West', dest: 'Delhi NCR Hub', skus: 'Malaseb Medicated Shampoo (60 units)', value: '₹40,800', carrier: 'Gati KWE Priority', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false },
-    { id: 'TRF-2026-0885', origin: 'Bengaluru Central', dest: 'Pune Express', skus: 'Himalaya Digyton Plus (120 units)', value: '₹40,800', carrier: 'Zenve Inter-Hub Express', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false }
-  ];
+  const transfers = [];
 
   const filtered = filterStatus === 'ALL' ? transfers : transfers.filter(t => t.status === filterStatus);
 
@@ -32,7 +25,7 @@ export default function StockTransfers() {
       title="Inter-Warehouse Stock Transfers"
       subtitle="Hub-to-hub inventory replenishment, dispatch manifests, linehaul tracking & cold-chain custody"
       icon="🔁"
-      badge="4 Shipments In Transit"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -74,10 +67,10 @@ export default function StockTransfers() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active In-Transit" value="4 Transfers" delta="₹4.80 L value" trend="up" subtext="Live tracking online" icon="🚚" />
+        <KpiCard label="Active In-Transit" value="4 Transfers" delta="₹0 value" trend="up" subtext="Live tracking online" icon="🚚" />
         <KpiCard label="Completed (MTD)" value="38 Transfers" delta="99.4% SLA" trend="up" subtext="On-time delivery" icon="✅" />
         <KpiCard label="Avg Transit Time" value="28.4 Hours" delta="-3.2h vs target" trend="up" subtext="Inter-city linehaul" icon="⚡" />
-        <KpiCard label="Cold Chain Integrity" value="100.0%" delta="2°C–8°C logged" trend="up" subtext="IoT data logger verified" icon="❄️" />
+        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="2°C–8°C logged" trend="up" subtext="IoT data logger verified" icon="❄️" />
       </div>
 
       {/* Transfer Pipeline Overview */}

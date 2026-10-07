@@ -6,14 +6,7 @@ export default function Procedures() {
   const [otFilter, setOtFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const procedures = [
-    { id: 'SUR-701', patient: 'Thor (Rottweiler)', parent: 'Deepak Varma', procedureName: 'Tibial Plateau Leveling Osteotomy (TPLO Left Stifle)', theater: 'OT 1 (Orthopedic Suite)', leadSurgeon: 'Dr. Rahul Mehta', anesthetist: 'Dr. Neha Singh', duration: '95 mins', anesthesiaType: 'Isoflurane + Epidural Bupivacaine', recoveryStatus: 'Extubated / Stable ICU', status: 'Completed' },
-    { id: 'SUR-702', patient: 'Daisy (Lhasa Apso)', parent: 'Nandita Bose', procedureName: 'Full Mouth Dental Prophylaxis & Ultrasonic Scaling', theater: 'Dental / Minor OT', leadSurgeon: 'Dr. Priya Sharma', anesthetist: 'Dr. Karan Patel', duration: '50 mins', anesthesiaType: 'Propofol Induction + Isoflurane', recoveryStatus: 'Discharged to Day Care', status: 'Completed' },
-    { id: 'SUR-703', patient: 'Coco (French Bulldog)', parent: 'Varun Grover', procedureName: 'BOAS Corrective Staphylectomy & Rhinoplasty', theater: 'OT 2 (Soft Tissue Suite)', leadSurgeon: 'Dr. Rahul Mehta', anesthetist: 'Dr. Neha Singh', duration: '75 mins', anesthesiaType: 'Sevoflurane + Local Infiltration', recoveryStatus: 'In Recovery Cage (O2 Hood)', status: 'In Procedure' },
-    { id: 'SUR-704', patient: 'Cleo (Persian Cat)', parent: 'Farhan Akhtar', procedureName: 'Laparoscopic Assisted Ovariohysterectomy (Spay)', theater: 'OT 2 (Soft Tissue Suite)', leadSurgeon: 'Dr. Aisha Khan', anesthetist: 'Dr. Karan Patel', duration: '40 mins', anesthesiaType: 'Alfaxalone + Isoflurane', recoveryStatus: 'Pre-Op Scrubbing', status: 'Prep / Induction' },
-    { id: 'SUR-705', patient: 'Simba (Golden Pup)', parent: 'Pooja Nair', procedureName: 'Diagnostic Gastroduodenoscopy & Foreign Body Retrieval', theater: 'Endoscopy OT', leadSurgeon: 'Dr. Priya Sharma', anesthetist: 'Dr. Neha Singh', duration: '45 mins', anesthesiaType: 'Propofol TIVA Continuous Infusion', recoveryStatus: 'Scheduled 02:30 PM', status: 'Scheduled' },
-    { id: 'SUR-706', patient: 'Rocky (Beagle)', parent: 'Vikram Singhania', procedureName: 'Bilateral Ear Canal Lateral Wall Resection (Zepp)', theater: 'OT 1 (Orthopedic Suite)', leadSurgeon: 'Dr. Karan Patel', anesthetist: 'Dr. Rahul Mehta', duration: '80 mins', anesthesiaType: 'Isoflurane + Ring Block', recoveryStatus: 'Scheduled 04:00 PM', status: 'Scheduled' }
-  ];
+  const procedures = [];
 
   const filtered = procedures.filter(p => {
     const matchesFilter = otFilter === 'ALL' || p.theater.includes(otFilter) || p.status === otFilter;
@@ -57,8 +50,8 @@ export default function Procedures() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Surgeries Today" value="14 Surgeries" delta="100% OT Sterility" trend="up" subtext="4 Orthopedic • 6 Soft Tissue • 4 Dental" icon="✂️" />
-        <KpiCard label="OT Theater Utilization" value="91.4%" delta="Optimal turnover" trend="up" subtext="Across 3 sterile surgical suites" icon="🏥" />
-        <KpiCard label="Anesthesia Safety Record" value="99.98%" delta="Multi-parameter capnography" trend="up" subtext="Continuous vitals logging" icon="🫁" />
+        <KpiCard label="OT Theater Utilization" value="0.0%" delta="Optimal turnover" trend="up" subtext="Across 3 sterile surgical suites" icon="🏥" />
+        <KpiCard label="Anesthesia Safety Record" value="0.0%" delta="Multi-parameter capnography" trend="up" subtext="Continuous vitals logging" icon="🫁" />
         <KpiCard label="Surgical Site Infection" value="0.0%" delta="Industry benchmark: 1.8%" trend="up" subtext="Autoclave spore test validated" icon="🛡️" />
       </div>
 

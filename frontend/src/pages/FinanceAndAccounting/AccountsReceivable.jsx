@@ -5,15 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function AccountsReceivable() {
   const [filterBucket, setFilterBucket] = useState('ALL');
 
-  const debtors = [
-    { id: 'AR-CLI-901', client: 'Bajaj Allianz Pet Insurance TPA', type: 'Insurance TPA', totalDue: '₹4,80,000', bucket: '0–30 Days', dso: '14 Days', creditLimit: '₹10,00,000', status: 'Current / Approved' },
-    { id: 'AR-CLI-902', client: 'Digit Pet Healthcare Claims Hub', type: 'Insurance TPA', totalDue: '₹3,60,000', bucket: '0–30 Days', dso: '18 Days', creditLimit: '₹8,00,000', status: 'Current / Approved' },
-    { id: 'AR-CLI-903', client: 'Infosys Employee Pets Wellness Benefit', type: 'Corporate B2B', totalDue: '₹4,20,000', bucket: '0–30 Days', dso: '24 Days', creditLimit: '₹6,00,000', status: 'Payment Scheduled' },
-    { id: 'AR-CLI-904', client: 'Wipro Corporate Pet Care Policy', type: 'Corporate B2B', totalDue: '₹2,40,000', bucket: '31–60 Days', dso: '38 Days', creditLimit: '₹5,00,000', status: 'Follow-Up Active' },
-    { id: 'AR-CLI-905', client: 'Paws & Claws Satellite Partner Clinic', type: 'Affiliate Clinic', totalDue: '₹1,70,000', bucket: '31–60 Days', dso: '42 Days', creditLimit: '₹3,00,000', status: 'Notice Sent' },
-    { id: 'AR-CLI-906', client: 'Dr. Oak Referral Surgical Lab Andheri', type: 'Diagnostic B2B', totalDue: '₹1,80,000', bucket: '61–90 Days', dso: '68 Days', creditLimit: '₹2,50,000', status: 'Overdue Warning' },
-    { id: 'AR-CLI-907', client: 'Canine Care Center Secunderabad', type: 'Affiliate Clinic', totalDue: '₹72,000', bucket: '90+ Days', dso: '96 Days', creditLimit: '₹1,50,000', status: 'Credit Blocked' }
-  ];
+  const debtors = [];
 
   const filteredDebtors = filterBucket === 'ALL' ? debtors : debtors.filter(d => d.bucket === filterBucket);
 
@@ -46,12 +38,12 @@ export default function AccountsReceivable() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Receivables (AR)" value="₹20.82 Lakh" delta="-8.4% MoM" trend="up" subtext="7 Institutional Debtors" icon="📥" />
+        <KpiCard label="Total Receivables (AR)" value="₹0" delta="-8.4% MoM" trend="up" subtext="7 Institutional Debtors" icon="📥" />
         <KpiCard label="Days Sales Outstanding (DSO)" value="22 Days" delta="-4 Days faster" trend="up" subtext="Industry avg: 45d" icon="⏱️" />
-        <KpiCard label="Current (0–30 Days)" value="₹14.20 Lakh" delta="68.2% of Total" trend="up" subtext="Healthy collection" icon="🛡️" />
-        <KpiCard label="31–60 Days Overdue" value="₹4.10 Lakh" delta="19.7% of Total" trend="up" subtext="Active follow-up" icon="⚡" />
-        <KpiCard label="Overdue >60 Days" value="₹2.52 Lakh" delta="12.1% of Total" trend="down" subtext="Escalated collections" icon="🚨" />
-        <KpiCard label="Bad Debt Provision" value="₹24,000" delta="0.12% write-off" trend="up" subtext="Exceptionally low risk" icon="💎" />
+        <KpiCard label="Current (0–30 Days)" value="₹0" delta="68.2% of Total" trend="up" subtext="Healthy collection" icon="🛡️" />
+        <KpiCard label="31–60 Days Overdue" value="₹0" delta="19.7% of Total" trend="up" subtext="Active follow-up" icon="⚡" />
+        <KpiCard label="Overdue >60 Days" value="₹0" delta="12.1% of Total" trend="down" subtext="Escalated collections" icon="🚨" />
+        <KpiCard label="Bad Debt Provision" value="₹0" delta="0.12% write-off" trend="up" subtext="Exceptionally low risk" icon="💎" />
       </div>
 
       <div style={{

@@ -5,86 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function Departments() {
   const [selectedDept, setSelectedDept] = useState(null);
 
-  const departments = [
-    {
-      id: 'DEP-01',
-      name: 'Veterinary Clinical Services',
-      lead: 'Dr. Priya Sharma (CMO)',
-      headcount: 48,
-      budget: '₹42,00,000',
-      avgSalary: '₹87,500',
-      openings: 5,
-      retention: '98.2%',
-      kpiHealth: 96,
-      color: '#10b981',
-      description: 'Consultations, emergency surgeries, diagnostic imaging, pathology, and vaccination drives across flagship clinics.'
-    },
-    {
-      id: 'DEP-02',
-      name: 'Pharmacy & Drug Dispensing',
-      lead: 'Rohan Deshmukh (Head Pharmacist)',
-      headcount: 32,
-      budget: '₹22,50,000',
-      avgSalary: '₹70,300',
-      openings: 3,
-      retention: '97.0%',
-      kpiHealth: 94,
-      color: '#0ea5e9',
-      description: 'Schedule-X compliance, temperature-controlled drug inventory, prescription validation, and cold-chain distribution.'
-    },
-    {
-      id: 'DEP-03',
-      name: 'Logistics & 60-Min Express Delivery',
-      lead: 'Vikram Joshi (Fleet Lead)',
-      headcount: 54,
-      budget: '₹28,80,000',
-      avgSalary: '₹53,300',
-      openings: 8,
-      retention: '94.5%',
-      kpiHealth: 92,
-      color: '#f59e0b',
-      description: 'Hyperlocal last-mile dispatch network, cold-chain medicine bike couriers, route telemetry, and delivery SLA enforcement.'
-    },
-    {
-      id: 'DEP-04',
-      name: 'Warehouse & Fulfillment Operations',
-      lead: 'Ananya Verma (Ops Manager)',
-      headcount: 28,
-      budget: '₹18,40,000',
-      avgSalary: '₹65,700',
-      openings: 2,
-      retention: '96.4%',
-      kpiHealth: 95,
-      color: '#8b5cf6',
-      description: 'Central distribution centers, bin allocation, FIFO stock picking, barcode auditing, and return logistics processing.'
-    },
-    {
-      id: 'DEP-05',
-      name: 'Technology & AI Engineering',
-      lead: 'Sameer Kulkarni (VP Engineering)',
-      headcount: 24,
-      budget: '₹38,00,000',
-      avgSalary: '₹1,58,300',
-      openings: 4,
-      retention: '98.8%',
-      kpiHealth: 98,
-      color: '#ec4899',
-      description: 'Zenve core mobile apps, AI diagnostic assistant, microservices backend, real-time telemetry, and enterprise BI analytics.'
-    },
-    {
-      id: 'DEP-06',
-      name: 'Customer Delight & Tele-Support',
-      lead: 'Pooja Hegde (CX Lead)',
-      headcount: 22,
-      budget: '₹14,20,000',
-      avgSalary: '₹64,500',
-      openings: 3,
-      retention: '95.6%',
-      kpiHealth: 93,
-      color: '#14b8a6',
-      description: '24/7 pet parent emergency hotline, post-operative followups, consultation booking assistance, and complaint resolution.'
-    }
-  ];
+  const departments = [];
 
   return (
     <DashboardLayout
@@ -93,12 +14,12 @@ export default function Departments() {
       title="Departmental Hierarchy & Resource Stratification"
       subtitle="Organizational divisions, departmental leadership, monthly payroll commitments, and headcount capacity"
       icon="🏢"
-      badge="6 Operational Divisions · 208 Headcount"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Operating Units" value="6 Core Divisions" delta="Full org coverage" trend="neutral" subtext="Clinical, logistics & tech" icon="🏛️" />
-        <KpiCard label="Total Monthly Budget" value="₹1.64 Cr / mo" delta="98.2% utilization" trend="neutral" subtext="Direct payroll & incentives" icon="💳" />
+        <KpiCard label="Total Monthly Budget" value="₹0 / mo" delta="98.2% utilization" trend="neutral" subtext="Direct payroll & incentives" icon="💳" />
         <KpiCard label="Open Requisitions" value="25 Positions" delta="Active hiring pipeline" trend="up" subtext="Across all 6 departments" icon="📢" />
         <KpiCard label="Average Org Health" value="94.7 / 100" delta="+1.8 pts QoQ" trend="up" subtext="Blended satisfaction & SLA" icon="⭐" />
       </div>

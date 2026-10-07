@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ActiveCustomers() {
-  const activeCohorts = [
-    { cohort: 'Daily Active (DAU)', count: '2,840 Users', pctTotal: '22.8%', frequency: 'App tracking, pet diary, reminders', topActivity: 'Vet chat & telemetry', trend: '+14% MoM' },
-    { cohort: 'Weekly Active (WAU)', count: '6,150 Users', pctTotal: '49.3%', frequency: 'Weekly treat & pharmacy reorders', topActivity: 'Commerce cart checkout', trend: '+18% MoM' },
-    { cohort: 'Monthly Active (MAU)', count: '8,420 Users', pctTotal: '67.5%', frequency: 'Monthly wellness subscription + OPD', topActivity: 'Clinic visits & food replenishment', trend: '+22% MoM' },
-    { cohort: 'Quarterly Active (QAU)', count: '10,850 Users', pctTotal: '86.9%', frequency: 'Periodic grooming, flea/tick cycles', topActivity: 'Spa appointments & dental', trend: '+9% YoY' }
-  ];
+  const activeCohorts = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function ActiveCustomers() {
       title="Active Customers & Omni-Channel Frequency"
       subtitle="Rolling DAU / WAU / MAU ratios, commerce order frequency, clinic visits, and mobile digital engagement"
       icon="⚡"
-      badge="8,420 Active MAU"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Monthly Active Customers" value="8,420 MAU" delta="67.5% total base" trend="up" subtext="Transacting or visiting" icon="⚡" />
-        <KpiCard label="DAU / MAU Stickiness" value="33.7%" delta="Top decile consumer app" trend="up" subtext="High daily app utility" icon="📱" />
+        <KpiCard label="DAU / MAU Stickiness" value="0.0%" delta="Top decile consumer app" trend="up" subtext="High daily app utility" icon="📱" />
         <KpiCard label="Avg Order Interval" value="18.2 Days" delta="-3.4 days vs FY25" trend="up" subtext="Faster replenishment" icon="⏱️" />
-        <KpiCard label="Omni-Channel Engaged" value="58.4%" delta="App + Physical Clinic" trend="up" subtext="Highest LTV customer bracket" icon="🏬" />
+        <KpiCard label="Omni-Channel Engaged" value="0.0%" delta="App + Physical Clinic" trend="up" subtext="Highest LTV customer bracket" icon="🏬" />
       </div>
 
       <div style={cardStyle}>

@@ -3,63 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function FinanceAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'FIN-701',
-      title: 'EBITDA Margin Compression Alert: October MTD at 14.6%',
-      category: 'Profitability & Margin',
-      metric: '14.6% vs Target 18.0% (-3.4% deficit)',
-      impact: 'Operating profit compressed by ₹1,76,000 MTD',
-      rootCause: 'Surge in digital ad spend (+22%) and 3PL spillover delivery charges',
-      severity: 'Critical',
-      time: '1h ago',
-      status: 'Active'
-    },
-    {
-      id: 'FIN-702',
-      title: 'Unallocated Bank Inflow: ₹4,85,000 in HDFC Main Corporate Account',
-      category: 'Cash & Banking Reconciliation',
-      metric: '₹4,85,000 without matching Customer/Partner Invoice ID',
-      impact: 'Bank reconciliation suspended; cannot close weekly cash ledger',
-      rootCause: 'B2B institutional client deposited RTGS without referencing PO number',
-      severity: 'High Warning',
-      time: '3h ago',
-      status: 'Action Required'
-    },
-    {
-      id: 'FIN-703',
-      title: 'Vendor Payables Aging > 45 Days: Royal Canin India Pvt Ltd',
-      category: 'Accounts Payable',
-      metric: '₹6,80,000 due in 24 hours (PO #PO-2024-0312)',
-      impact: 'Risk of vendor credit hold on critical dog food deliveries',
-      rootCause: 'Pending GRN quantity verification by Bhiwandi receiving manager',
-      severity: 'High Warning',
-      time: '5h ago',
-      status: 'Awaiting GRN Match'
-    },
-    {
-      id: 'FIN-704',
-      title: 'GST GSTR-3B Tax Filing Deadline: 3 Days Remaining',
-      category: 'Statutory Compliance',
-      metric: 'Input Tax Credit (ITC) reconciliation at 88%',
-      impact: 'Late fee & interest penalty risk across Karnataka & Maharashtra GSTINs',
-      rootCause: '14 pharmaceutical supplier invoices missing on GST portal 2B statement',
-      severity: 'Warning',
-      time: '6h ago',
-      status: 'Under Reconciliation'
-    },
-    {
-      id: 'FIN-705',
-      title: 'Clinic Consumables OPEX Surge: Koramangala ICU (+18% Budget)',
-      category: 'Departmental Budgeting',
-      metric: 'Surgical suture & anesthesia consumption exceeded allocation',
-      impact: '₹64,000 above approved October monthly OPEX cap',
-      rootCause: 'Increased emergency orthopedic surgery volume over the weekend',
-      severity: 'Info',
-      time: '9h ago',
-      status: 'Approved Variance'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -80,11 +24,11 @@ export default function FinanceAlerts() {
       title="Financial Health & Statutory Compliance Alerts"
       subtitle="Early warnings for EBITDA margin erosion, unallocated bank deposits, vendor payables aging, and GST tax filing deadlines"
       icon="💰"
-      badge="₹11.65L Impact"
+      badge="₹0 Impact"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
-            onClick={() => triggerToast('Automated AI Bank reconciliation matched ₹4.85L to PetCare Clinic network PO.')}
+            onClick={() => triggerToast('Automated AI Bank reconciliation matched ₹0 to PetCare Clinic network PO.')}
             style={{
               padding: '8px 14px',
               borderRadius: '8px',
@@ -134,7 +78,7 @@ export default function FinanceAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="October EBITDA Margin"
-          value="14.6%"
+          value="0.0%"
           delta="-3.4% vs Target"
           trend="down"
           subtext="Budget: 18.0%"
@@ -142,7 +86,7 @@ export default function FinanceAlerts() {
         />
         <KpiCard
           label="Unallocated Bank Inflow"
-          value="₹4,85,000"
+          value="₹0"
           delta="1 RTGS Deposit"
           trend="down"
           subtext="HDFC Corporate AC"
@@ -150,7 +94,7 @@ export default function FinanceAlerts() {
         />
         <KpiCard
           label="Vendor Payables Due (<24h)"
-          value="₹6,80,000"
+          value="₹0"
           delta="Royal Canin PO"
           trend="down"
           subtext="Pending GRN sign-off"
@@ -236,7 +180,7 @@ export default function FinanceAlerts() {
                 <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', paddingTop: '4px' }}>
                   {a.id === 'FIN-702' && (
                     <button
-                      onClick={() => handleAction(a.id, 'Mapped ₹4.85L to PetCare Clinic Account #CLI-102')}
+                      onClick={() => handleAction(a.id, 'Mapped ₹0 to PetCare Clinic Account #CLI-102')}
                       style={{ padding: '6px 14px', borderRadius: '6px', background: 'var(--primary, #3b82f6)', color: '#fff', border: 'none', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}
                     >
                       Assign Deposit to Invoice

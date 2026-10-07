@@ -39,16 +39,7 @@
     'Dermatology': { name: 'Dr. Alok Verma', spec: 'Consultant Dermatologist, MD', reg: 'MCI-84012', av: 'AV' },
     'Wellness': { name: 'Dr. Sunita Sen', spec: 'Wellness & Preventive Care, MD', reg: 'MCI-91823', av: 'SS' }
   };
-  var DOCTOR_LIST = [
-    { name: 'Dr. Divya Balasubramanian', spec: 'Lead Physician, MBBS, MD', reg: 'MCI-62910', av: 'DB' },
-    { name: 'Dr. Arvind Swaminathan', spec: 'Cardiologist, MD, DM', reg: 'MCI-48291', av: 'AS' },
-    { name: 'Dr. Meera Nambiar', spec: 'Senior Neurologist, MD', reg: 'MCI-39102', av: 'MN' },
-    { name: 'Dr. Siddharth Rao', spec: 'Pediatric Specialist, DCH', reg: 'MCI-51829', av: 'SR' },
-    { name: 'Dr. Kavita Reddy', spec: 'Clinical Pathologist, MD', reg: 'MCI-29481', av: 'KR' },
-    { name: 'Dr. Rohan Kulkarni', spec: 'Orthopedic Surgeon, MS', reg: 'MCI-73019', av: 'RK' },
-    { name: 'Dr. Alok Verma', spec: 'Consultant Dermatologist, MD', reg: 'MCI-84012', av: 'AV' },
-    { name: 'Dr. Sunita Sen', spec: 'Wellness & Preventive Care, MD', reg: 'MCI-91823', av: 'SS' }
-  ];
+  var DOCTOR_LIST = [];
 
   function getDoctorForSale(s) {
     if (s.doctor) {
@@ -61,17 +52,10 @@
     var str = (s.source || '') + (s.person || '');
     var h = 0;
     for (var i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i);
-    return DOCTOR_LIST[Math.abs(h) % DOCTOR_LIST.length];
+    return DOCTOR_LIST.length ? DOCTOR_LIST[Math.abs(h) % DOCTOR_LIST.length] : { name: '--', spec: '--', reg: '--', av: '--' };
   }
 
-  var EMPLOYEE_LIST = [
-    { id: 'EMP-01', name: 'Dr. Priya Sharma', dept: 'Clinical Operations', role: 'Chief Medical Officer', av: 'PS', target: 250000 },
-    { id: 'EMP-02', name: 'Rajesh Verma', dept: 'Patient Services', role: 'Senior Care Coordinator', av: 'RV', target: 180000 },
-    { id: 'EMP-03', name: 'Ananya Deshmukh', dept: 'Outpatient Care', role: 'Outpatient Services Lead', av: 'AD', target: 200000 },
-    { id: 'EMP-04', name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Lab Operations Manager', av: 'VM', target: 160000 },
-    { id: 'EMP-05', name: 'Sneha Patel', dept: 'Pharmacy & Wellness', role: 'Head Pharmacist', av: 'SP', target: 140000 },
-    { id: 'EMP-06', name: 'Arjun Nair', dept: 'Telehealth', role: 'Digital Health Consultant', av: 'AN', target: 150000 }
-  ];
+  var EMPLOYEE_LIST = [];
 
   function getEmployeeForSale(s) {
     if (s.employee) {
@@ -81,7 +65,7 @@
     var str = (s.transaction_ref || '') + (s.source || '');
     var h = 0;
     for (var i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i);
-    return EMPLOYEE_LIST[Math.abs(h) % EMPLOYEE_LIST.length];
+    return EMPLOYEE_LIST.length ? EMPLOYEE_LIST[Math.abs(h) % EMPLOYEE_LIST.length] : { id: '--', name: '--', dept: '--', role: '--', av: '--', target: 0 };
   }
 
   var S = {
@@ -2053,14 +2037,7 @@
     ];
 
     // Teams target distribution
-    var TARGET_DEPARTMENTS = [
-      { name: 'Clinical Operations', head: 'Dr. Priya Sharma', targetPct: 0.28, color: '#0ea5e9', icon: '🩺' },
-      { name: 'Patient Services', head: 'Rajesh Verma', targetPct: 0.20, color: '#10b981', icon: '👥' },
-      { name: 'Outpatient Care', head: 'Ananya Deshmukh', targetPct: 0.18, color: '#8b5cf6', icon: '🏥' },
-      { name: 'Diagnostics & Lab', head: 'Vikram Mehta', targetPct: 0.14, color: '#f59e0b', icon: '🔬' },
-      { name: 'Pharmacy & Wellness', head: 'Sneha Patel', targetPct: 0.12, color: '#ec4899', icon: '💊' },
-      { name: 'Telehealth & Digital', head: 'Arjun Nair', targetPct: 0.08, color: '#06b6d4', icon: '📱' }
-    ];
+    var TARGET_DEPARTMENTS = [];
 
     var deptCards = TARGET_DEPARTMENTS.map(function (d, idx) {
       var dTarget = Math.round(target * d.targetPct);

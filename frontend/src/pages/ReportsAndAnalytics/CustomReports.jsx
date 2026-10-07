@@ -20,24 +20,24 @@ export default function CustomReports() {
     let rows = [];
     if (dimension === 'channel') {
       rows = [
-        { dim: 'Android Quick App', val: '₹38.4L', orders: '4,280', aov: '₹897', margin: '38.2%' },
-        { dim: 'iOS Quick App', val: '₹28.9L', orders: '3,120', aov: '₹926', margin: '41.5%' },
-        { dim: 'Telehealth Direct', val: '₹18.5L', orders: '1,940', aov: '₹953', margin: '68.0%' },
-        { dim: 'Hospital Outpatient', val: '₹14.2L', orders: '1,180', aov: '₹1,203', margin: '42.0%' }
+        { dim: 'Android Quick App', val: '₹0', orders: '4,280', aov: '₹0', margin: '38.2%' },
+        { dim: 'iOS Quick App', val: '₹0', orders: '3,120', aov: '₹0', margin: '41.5%' },
+        { dim: 'Telehealth Direct', val: '₹0', orders: '1,940', aov: '₹0', margin: '68.0%' },
+        { dim: 'Hospital Outpatient', val: '₹0', orders: '1,180', aov: '₹0', margin: '42.0%' }
       ];
     } else if (dimension === 'hub') {
       rows = [
-        { dim: 'Bengaluru Koramangala Hub', val: '₹42.8L', orders: '5,120', aov: '₹835', margin: '39.4%' },
-        { dim: 'Mumbai West Bandra Hub', val: '₹34.1L', orders: '3,840', aov: '₹888', margin: '42.1%' },
-        { dim: 'Delhi NCR Okhla Hub', val: '₹22.6L', orders: '2,640', aov: '₹856', margin: '37.8%' },
-        { dim: 'Hyderabad Jubilee Hills', val: '₹16.4L', orders: '1,920', aov: '₹854', margin: '40.2%' }
+        { dim: 'Bengaluru Koramangala Hub', val: '₹0', orders: '5,120', aov: '₹0', margin: '39.4%' },
+        { dim: 'Mumbai West Bandra Hub', val: '₹0', orders: '3,840', aov: '₹0', margin: '42.1%' },
+        { dim: 'Delhi NCR Okhla Hub', val: '₹0', orders: '2,640', aov: '₹0', margin: '37.8%' },
+        { dim: 'Hyderabad Jubilee Hills', val: '₹0', orders: '1,920', aov: '₹0', margin: '40.2%' }
       ];
     } else {
       rows = [
-        { dim: 'Pet Nutrition (Dry & Wet)', val: '₹48.2L', orders: '6,420', aov: '₹750', margin: '32.4%' },
-        { dim: 'Veterinary Pharmaceuticals', val: '₹36.8L', orders: '3,890', aov: '₹946', margin: '42.5%' },
-        { dim: 'Diagnostic & Lab Scans', val: '₹18.4L', orders: '1,420', aov: '₹1,295', margin: '74.2%' },
-        { dim: 'Grooming & Wellness Retail', val: '₹12.1L', orders: '1,640', aov: '₹737', margin: '48.0%' }
+        { dim: 'Pet Nutrition (Dry & Wet)', val: '₹0', orders: '6,420', aov: '₹0', margin: '32.4%' },
+        { dim: 'Veterinary Pharmaceuticals', val: '₹0', orders: '3,890', aov: '₹0', margin: '42.5%' },
+        { dim: 'Diagnostic & Lab Scans', val: '₹0', orders: '1,420', aov: '₹0', margin: '74.2%' },
+        { dim: 'Grooming & Wellness Retail', val: '₹0', orders: '1,640', aov: '₹0', margin: '48.0%' }
       ];
     }
 
@@ -106,7 +106,7 @@ export default function CustomReports() {
         <KpiCard label="Query Execution Latency" value="42 ms" delta="FastAPI in-memory" trend="up" subtext="SQLite WAL engine" icon="⚡" />
         <KpiCard label="Supported Dimensions" value="18 Dimensions" delta="Omni-channel data" trend="neutral" subtext="Hub, SKU, Doctor, Cohort" icon="📐" />
         <KpiCard label="Saved Team Queries" value="24 Presets" delta="P&L, Cohort, Logistics" trend="up" subtext="One-click execution" icon="⭐" />
-        <KpiCard label="Max Export Rows" value="100,000" delta="Uncapped CSV stream" trend="up" subtext="Direct stream engine" icon="📊" />
+        <KpiCard label="Max Export Rows" value="0" delta="Uncapped CSV stream" trend="up" subtext="Direct stream engine" icon="📊" />
       </div>
 
       {/* Builder Form Card */}

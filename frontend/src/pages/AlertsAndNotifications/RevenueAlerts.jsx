@@ -3,63 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'REV-201',
-      title: 'Delhi NCR Weekend GMV Drop Alert (-14.2%)',
-      channel: 'Quick-Commerce Mobile Apps (Android & iOS)',
-      trigger: 'Pacing ₹3.8L below daily target of ₹26.5L',
-      cause: 'Severe waterlogging in Gurgaon Hub reducing order radius from 5km to 2km',
-      impact: '₹3,80,000 potential revenue shortfall',
-      severity: 'Warning',
-      time: '45m ago',
-      status: 'Active'
-    },
-    {
-      id: 'REV-202',
-      title: 'Bravecto Flea & Tick Return Rate Surge (5.8%)',
-      channel: 'Direct E-Commerce & Telehealth Dispatch',
-      trigger: 'Return rate crossed safety threshold of 2.5%',
-      cause: 'Pet parents selecting incorrect canine weight brackets on checkout page',
-      impact: '₹1,42,000 in reverse logistics and opened pack write-downs',
-      severity: 'High Warning',
-      time: '2h ago',
-      status: 'Action Underway'
-    },
-    {
-      id: 'REV-203',
-      title: 'Veterinary Dental & Scaling Revenue Deficit (-28%)',
-      channel: 'Clinical Outpatient Services (Bengaluru & Mumbai)',
-      trigger: 'Weekly bookings fell to 42 procedures (Target: 60)',
-      cause: 'Diagnostic ultrasound room maintenance in Koramangala block',
-      impact: '₹1,26,000 weekly high-margin clinical shortfall',
-      severity: 'Warning',
-      time: '4h ago',
-      status: 'Active'
-    },
-    {
-      id: 'REV-204',
-      title: 'Meta Ads Customer Acquisition Cost (CAC) Spike',
-      channel: 'Performance Marketing (Puppy Care Campaigns)',
-      trigger: 'Blended CAC rose from ₹420 to ₹690 (+64%)',
-      cause: 'Ad creative fatigue & high CPM bids during e-commerce festival week',
-      impact: 'ROAS compressed from 3.2x to 1.8x on new user cohorts',
-      severity: 'Info',
-      time: '6h ago',
-      status: 'Reviewed'
-    },
-    {
-      id: 'REV-205',
-      title: 'B2B Corporate Account Renewal Overdue: Infosys Pet Club',
-      channel: 'B2B Corporate Wellness',
-      trigger: 'Contract expiration in 4 days · ₹8.4L Annual ARR',
-      cause: 'Corporate HR procurement awaiting updated billing schedule',
-      impact: '₹8,40,000 annual recurring contract at risk',
-      severity: 'High Warning',
-      time: '8h ago',
-      status: 'Active'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -80,7 +24,7 @@ export default function RevenueAlerts() {
       title="Revenue Pacing & Margin Risk Alerts"
       subtitle="Automated commercial anomaly detection for sales drop-offs, return surges, CAC inflation, and high-value B2B accounts"
       icon="💼"
-      badge="₹14.88L Value at Risk"
+      badge="₹0 Value at Risk"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -134,7 +78,7 @@ export default function RevenueAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Total Revenue at Risk"
-          value="₹14.88 Lakhs"
+          value="₹0"
           delta="4 active warnings"
           trend="down"
           subtext="GMV + CAC + Returns"
@@ -143,14 +87,14 @@ export default function RevenueAlerts() {
         <KpiCard
           label="Target Attainment Gap"
           value="-4.8% MTD"
-          delta="₹6.2L below target"
+          delta="₹0 below target"
           trend="down"
           subtext="Delhi & Chennai hubs"
           icon="🎯"
         />
         <KpiCard
           label="Average Return Rate"
-          value="3.1%"
+          value="0.0%"
           delta="+0.8% vs benchmark"
           trend="down"
           subtext="Threshold: 2.5%"
@@ -159,7 +103,7 @@ export default function RevenueAlerts() {
         <KpiCard
           label="High-Value Accounts Alert"
           value="1 B2B Account"
-          delta="Infosys (₹8.4L)"
+          delta="Infosys (₹0)"
           trend="neutral"
           subtext="Renewal pending sign-off"
           icon="🏢"

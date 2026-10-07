@@ -3,48 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function NotificationServicesHealth() {
-  const [providers, setProviders] = useState([
-    {
-      name: 'Gupshup SMS Gateway (India)',
-      channel: 'Transactional SMS (DLT Approved)',
-      endpoint: 'enterprise.smsgupshup.com',
-      deliveryRate: '99.88%',
-      latency: '2.1s',
-      balance: '₹42,850 (Adequate)',
-      queue: '0 pending',
-      status: 'Active'
-    },
-    {
-      name: 'SendGrid Enterprise Email API',
-      channel: 'Transactional Order Invoices & Rx Reports',
-      endpoint: 'api.sendgrid.com/v3/mail/send',
-      deliveryRate: '99.94%',
-      latency: '1.4s',
-      balance: 'Unlimited Enterprise',
-      queue: '0 pending',
-      status: 'Active'
-    },
-    {
-      name: 'Firebase Cloud Messaging (FCM)',
-      channel: 'Mobile App Push (Android & iOS)',
-      endpoint: 'fcm.googleapis.com/v1',
-      deliveryRate: '98.70%',
-      latency: '850ms',
-      balance: 'Google Cloud Tier-1',
-      queue: '12 in-flight',
-      status: 'Active'
-    },
-    {
-      name: 'WhatsApp Business Cloud API',
-      channel: 'Order Tracking & Doctor Appointment Chimes',
-      endpoint: 'graph.facebook.com/v19.0',
-      deliveryRate: '99.65%',
-      latency: '1.8s',
-      balance: 'Meta Monthly Post-paid',
-      queue: '0 pending',
-      status: 'Active'
-    }
-  ]);
+  const [providers, setProviders] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -60,7 +19,7 @@ export default function NotificationServicesHealth() {
       title="SMS, Email & Push Notification Gateways"
       subtitle="Gupshup SMS, SendGrid email, Firebase FCM push & WhatsApp Business delivery health"
       icon="🔔"
-      badge="99.8% Overall Delivery"
+      badge=""
       actions={
         <button
           onClick={() => {
@@ -98,10 +57,10 @@ export default function NotificationServicesHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Delivery Rate" value="99.82%" delta="High deliverability" trend="up" subtext="Across SMS, Email & App" icon="🟢" />
+        <KpiCard label="Overall Delivery Rate" value="0.0%" delta="High deliverability" trend="up" subtext="Across SMS, Email & App" icon="🟢" />
         <KpiCard label="Average Delivery Time" value="1.5 s" delta="-0.3s vs baseline" trend="up" subtext="Real-time alert SLAs" icon="⚡" />
-        <KpiCard label="Messages Dispatched Today" value="84,210" delta="+16.2% today" trend="up" subtext="Peak hour handled" icon="📨" />
-        <KpiCard label="DLT Template Compliance" value="100%" delta="Zero rejections" trend="up" subtext="TRAI DLT compliant" icon="🛡️" />
+        <KpiCard label="Messages Dispatched Today" value="0" delta="+16.2% today" trend="up" subtext="Peak hour handled" icon="📨" />
+        <KpiCard label="DLT Template Compliance" value="0.0%" delta="Zero rejections" trend="up" subtext="TRAI DLT compliant" icon="🛡️" />
       </div>
 
       {/* Providers Table */}

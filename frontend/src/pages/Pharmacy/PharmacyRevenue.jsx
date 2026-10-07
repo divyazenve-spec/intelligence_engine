@@ -5,21 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function PharmacyRevenue() {
   const [period, setPeriod] = useState('Month to Date');
 
-  const doctorAttribution = [
-    { vet: 'Dr. Priya Sharma', clinic: 'Koramangala Hospital', rxCount: 412, rxRevenue: '₹4,82,400', avgTicket: '₹1,170', convRate: '94.2%', topClass: 'Antiparasitics & Derm' },
-    { vet: 'Dr. Rahul Mehta', clinic: 'Bandra Feline Center', rxCount: 328, rxRevenue: '₹3,64,000', avgTicket: '₹1,110', convRate: '91.8%', topClass: 'Feline Chronic & Renal' },
-    { vet: 'Dr. Aisha Khan', clinic: 'Delhi NCR Hospital', rxCount: 295, rxRevenue: '₹3,42,800', avgTicket: '₹1,162', convRate: '89.4%', topClass: 'Cardiology & Intensive' },
-    { vet: 'Dr. Karan Patel', clinic: 'Ahmedabad Partner', rxCount: 210, rxRevenue: '₹2,38,000', avgTicket: '₹1,133', convRate: '92.0%', topClass: 'Core Preventive Vaccines' },
-    { vet: 'Dr. Neha Singh', clinic: 'Pune Ortho Clinic', rxCount: 184, rxRevenue: '₹1,96,200', avgTicket: '₹1,066', convRate: '88.5%', topClass: 'Post-op NSAIDs & Joint' }
-  ];
+  const doctorAttribution = [];
 
-  const cityRevenue = [
-    { city: 'Bengaluru (HQ)', revenue: '₹5,68,000', share: '45.1%', growth: '+22.4%', color: '#3b82f6' },
-    { city: 'Mumbai MMR', revenue: '₹3,42,000', share: '27.2%', growth: '+18.1%', color: '#0ea5e9' },
-    { city: 'Delhi NCR', revenue: '₹1,95,000', share: '15.5%', growth: '+14.6%', color: '#8b5cf6' },
-    { city: 'Hyderabad', revenue: '₹98,400', share: '7.8%', growth: '+24.0%', color: '#f59e0b' },
-    { city: 'Pune Micro-Hub', revenue: '₹55,000', share: '4.4%', growth: '+19.2%', color: '#10b981' }
-  ];
+  const cityRevenue = [];
 
   return (
     <DashboardLayout
@@ -28,7 +16,7 @@ export default function PharmacyRevenue() {
       title="Veterinary Pharmacy Revenue Intelligence"
       subtitle="Financial realization, doctor prescription monetization, gross-to-net waterfall, and regional sales velocity"
       icon="💎"
-      badge="₹12.58 Lakh MTD"
+      badge="₹0 MTD"
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div style={{
@@ -80,12 +68,12 @@ export default function PharmacyRevenue() {
     >
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Pharmacy Sales" value="₹13.24 Lakh" delta="+19.2% YoY" trend="up" subtext="Billed transaction total" icon="💵" />
-        <KpiCard label="Discounts & Promotions" value="-₹65,600" delta="5.0% discount rate" trend="neutral" subtext="Controlled chronic scheme" icon="🏷️" />
-        <KpiCard label="Net Realized Revenue" value="₹12.58 Lakh" delta="+18.4% YoY" trend="up" subtext="104.8% of monthly target" icon="💎" />
-        <KpiCard label="Avg Revenue / Prescription" value="₹1,248" delta="+6.2% YoY" trend="up" subtext="Multi-item adherence" icon="📋" />
-        <KpiCard label="Direct Insurance Claims" value="₹1.02 Lakh" delta="8.1% of revenue" trend="up" subtext="Cashless vet coverage" icon="🛡️" />
-        <KpiCard label="Consultation-to-Rx Rate" value="91.4%" delta="+2.6% vs target" trend="up" subtext="Dispensary capture rate" icon="📈" />
+        <KpiCard label="Gross Pharmacy Sales" value="₹0" delta="+19.2% YoY" trend="up" subtext="Billed transaction total" icon="💵" />
+        <KpiCard label="Discounts & Promotions" value="-₹0" delta="5.0% discount rate" trend="neutral" subtext="Controlled chronic scheme" icon="🏷️" />
+        <KpiCard label="Net Realized Revenue" value="₹0" delta="+18.4% YoY" trend="up" subtext="104.8% of monthly target" icon="💎" />
+        <KpiCard label="Avg Revenue / Prescription" value="₹0" delta="+6.2% YoY" trend="up" subtext="Multi-item adherence" icon="📋" />
+        <KpiCard label="Direct Insurance Claims" value="₹0" delta="8.1% of revenue" trend="up" subtext="Cashless vet coverage" icon="🛡️" />
+        <KpiCard label="Consultation-to-Rx Rate" value="0.0%" delta="+2.6% vs target" trend="up" subtext="Dispensary capture rate" icon="📈" />
       </div>
 
       {/* Revenue Waterfall & Geographic Contribution */}
@@ -103,19 +91,19 @@ export default function PharmacyRevenue() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px' }}>
               <span>Gross Pharmacy Billing (MRP)</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>₹13,24,000</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>₹0</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 12px', background: 'rgba(239,68,68,0.06)', borderRadius: '8px', color: '#f87171' }}>
               <span>Patient Loyalty & Chronic Discounts</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>- ₹48,200</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>- ₹0</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 12px', background: 'rgba(239,68,68,0.06)', borderRadius: '8px', color: '#f87171' }}>
               <span>Customer Returns / Damage Adjustments</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>- ₹17,400</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace' }}>- ₹0</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: 'rgba(16,185,129,0.12)', borderRadius: '8px', border: '1px solid rgba(16,185,129,0.3)', color: '#10b981', fontSize: '14px' }}>
               <span>Net Recognized Pharmaceutical Revenue</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px' }}>₹12,58,400</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px' }}>₹0</strong>
             </div>
           </div>
         </div>

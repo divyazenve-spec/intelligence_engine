@@ -4,14 +4,7 @@ import KpiCard from '../shared/KpiCard';
 
 export default function Leads() {
   const [stageFilter, setStageFilter] = useState('ALL');
-  const [leads, setLeads] = useState([
-    { id: 'LD-4091', parent: 'Kavita Sundaram', pet: 'Golden Retriever (Bruno)', city: 'Bengaluru (Koramangala)', source: 'Google Search Ads', score: 'A+', stage: 'Consult Booked', rep: 'Dr. Priya Sharma', value: '₹4,500', created: 'Today 11:20 AM' },
-    { id: 'LD-4092', parent: 'Amitabh Sen', pet: 'Persian Cat (Milo)', city: 'Mumbai (Bandra West)', source: 'Instagram Reels', score: 'A', stage: 'Qualified', rep: 'Sneha Kapoor', value: '₹2,800', created: 'Today 10:45 AM' },
-    { id: 'LD-4093', parent: 'Divya Nair', pet: 'German Shepherd (Rocky)', city: 'Bengaluru (Indiranagar)', source: 'Vet Clinic Referral', score: 'A+', stage: 'Converted', rep: 'Dr. Rahul Mehta', value: '₹12,400', created: 'Yesterday' },
-    { id: 'LD-4094', parent: 'Rohan Deshpande', pet: 'Beagle (Daisy)', city: 'Pune (Kalyani Nagar)', source: 'In-App Telehealth Click', score: 'B+', stage: 'Contacted', rep: 'Sameer Khan', value: '₹1,950', created: 'Yesterday' },
-    { id: 'LD-4095', parent: 'Meera Chawla', pet: 'Shih Tzu (Coco)', city: 'Delhi-NCR (Gurgaon)', source: 'Meta Ad Carousel', score: 'A', stage: 'Consult Booked', rep: 'Dr. Aisha Khan', value: '₹3,600', created: '03 Oct' },
-    { id: 'LD-4096', parent: 'Siddharth Rao', pet: 'Labrador (Leo)', city: 'Hyderabad (Jubilee Hills)', source: 'Direct Website', score: 'B', stage: 'New', rep: 'Unassigned', value: '₹2,200', created: '03 Oct' }
-  ]);
+  const [leads, setLeads] = useState([]);
 
   const filtered = leads.filter(l => stageFilter === 'ALL' || l.stage === stageFilter);
 
@@ -22,7 +15,7 @@ export default function Leads() {
       title="Pet Parent Lead Pipeline & Acquisition"
       subtitle="Prospective pet parents, consultation booking stages, and lead conversion velocity"
       icon="🎯"
-      badge="1,840 Total Leads MTD"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'New', 'Contacted', 'Qualified', 'Consult Booked', 'Converted'].map(st => (
@@ -47,10 +40,10 @@ export default function Leads() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="New Leads (MTD)" value="1,840" delta="+18.4%" trend="up" subtext="Qualified pet parents" icon="📥" />
-        <KpiCard label="Consultations Booked" value="684" delta="+22.1%" trend="up" subtext="37.2% booking rate" icon="🩺" />
-        <KpiCard label="Lead-to-Order Conversion" value="28.4%" delta="+4.2%" trend="up" subtext="Benchmark: 22%" icon="🔄" />
-        <KpiCard label="Avg Lead Pipeline Value" value="₹3,850" delta="+8.6%" trend="up" subtext="Expected first 30D spend" icon="💎" />
+        <KpiCard label="New Leads (MTD)" value="0" delta="0.0%" trend="up" subtext="Qualified pet parents" icon="📥" />
+        <KpiCard label="Consultations Booked" value="0" delta="0.0%" trend="up" subtext="37.2% booking rate" icon="🩺" />
+        <KpiCard label="Lead-to-Order Conversion" value="0.0%" delta="0.0%" trend="up" subtext="Benchmark: 22%" icon="🔄" />
+        <KpiCard label="Avg Lead Pipeline Value" value="₹0" delta="0.0%" trend="up" subtext="Expected first 30D spend" icon="💎" />
       </div>
 
       <div style={{

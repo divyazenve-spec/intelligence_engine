@@ -3,19 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function EnterprisePricing() {
-  const tiers = [
-    { tier: 'Tier 1 — Strategic Institutional', minOrder: '₹5,00,000+', discount: 'Base MRP - 32%', paymentTerms: 'Net 60 Days', freight: 'Free Temperature Reefer', rebate: '3% Annual Volume Rebate', minCommit: '₹20L / Year' },
-    { tier: 'Tier 2 — Hospital & Clinic Chain', minOrder: '₹2,00,000+', discount: 'Base MRP - 26%', paymentTerms: 'Net 45 Days', freight: 'Free Surface Freight', rebate: '2% Annual Volume Rebate', minCommit: '₹10L / Year' },
-    { tier: 'Tier 3 — Breeder & Kennel Club', minOrder: '₹75,000+', discount: 'Base MRP - 20%', paymentTerms: 'Net 30 Days', freight: 'Shared Freight (50%)', rebate: '1% Semi-Annual Rebate', minCommit: '₹4L / Year' },
-    { tier: 'Tier 4 — Corporate Employee Benefit', minOrder: 'Voucher Based', discount: 'Base MRP - 18%', paymentTerms: 'Net 30 Days Monthly Bill', freight: 'Free to Employee Doorstep', rebate: 'Dedicated Account Perks', minCommit: '50+ Pets Enrolled' }
-  ];
+  const tiers = [];
 
-  const skus = [
-    { sku: 'B2B-VAC-DHPPi', name: 'Nobivac DHPPi 25-Vial Bulk Pack', retailMrp: '₹14,500', tier1: '₹9,860', tier2: '₹10,730', tier3: '₹11,600', minQty: '5 packs' },
-    { sku: 'B2B-ANT-BRV-01', name: 'Bravecto Chewable Tablets (Carton of 40)', retailMrp: '₹58,000', tier1: '₹39,440', tier2: '₹42,920', tier3: '₹46,400', minQty: '2 cartons' },
-    { sku: 'B2B-NUTR-RC-04', name: 'Royal Canin Professional Maxi Adult (15kg Pallet x 20)', retailMrp: '₹1,56,000', tier1: '₹1,06,080', tier2: '₹1,15,440', tier3: '₹1,24,800', minQty: '1 pallet' },
-    { sku: 'B2B-GRM-SHMP-10', name: 'Oatmeal Hypoallergenic Shampoo (25L Drum)', retailMrp: '₹18,500', tier1: '₹12,580', tier2: '₹13,690', tier3: '₹14,800', minQty: '2 drums' }
-  ];
+  const skus = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -29,10 +19,10 @@ export default function EnterprisePricing() {
       badge="Tier 1-4 Matrices"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average Volume Discount" value="26.4%" delta="Protected floor 22%" trend="up" subtext="Guaranteed margin positive" icon="🏷️" />
+        <KpiCard label="Average Volume Discount" value="0.0%" delta="Protected floor 22%" trend="up" subtext="Guaranteed margin positive" icon="🏷️" />
         <KpiCard label="Annual Price Locked SKUs" value="480 SKUs" delta="12-month lock" trend="up" subtext="Inflation protected" icon="🔒" />
-        <KpiCard label="Enterprise Rebates Issued" value="₹3.18 Lakh" delta="YTD Paid" trend="up" subtext="Volume threshold bonuses" icon="💵" />
-        <KpiCard label="Minimum Order Quantity (MOQ)" value="₹75,000" delta="Tier 3 entry" trend="neutral" subtext="Strict wholesale gating" icon="📦" />
+        <KpiCard label="Enterprise Rebates Issued" value="₹0" delta="YTD Paid" trend="up" subtext="Volume threshold bonuses" icon="💵" />
+        <KpiCard label="Minimum Order Quantity (MOQ)" value="₹0" delta="Tier 3 entry" trend="neutral" subtext="Strict wholesale gating" icon="📦" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>

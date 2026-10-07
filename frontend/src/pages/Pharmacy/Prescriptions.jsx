@@ -8,107 +8,7 @@ export default function Prescriptions() {
   const [selectedRx, setSelectedRx] = useState(null);
   const [toast, setToast] = useState('');
 
-  const prescriptions = [
-    {
-      id: 'RX-2026-9041',
-      date: 'Today, 11:35 AM',
-      petName: 'Bruno',
-      species: 'Canine (Labrador Retriever)',
-      weight: '32.4 kg',
-      age: '4 yrs',
-      parent: 'Rajesh Nair (+91 98450 12345)',
-      vet: 'Dr. Priya Sharma',
-      vci: 'VCI-KAR-2018-842',
-      clinic: 'Zenve Animal Hospital (Koramangala)',
-      drugs: [
-        { name: 'Bravecto Chewable 20-40kg', dose: '1 Chewable Tab', freq: 'Single dose', duration: '90 days protection', schedule: 'Schedule H' },
-        { name: 'Amoxiclav Pet 625mg', dose: '1 Tab (BID)', freq: 'Twice daily after meals', duration: '7 days', schedule: 'Schedule H' }
-      ],
-      diagnosis: 'Severe flea allergy dermatitis + secondary superficial pyoderma',
-      status: 'Pending Verification',
-      refillEligible: false,
-      notes: 'Ensure pet is fed prior to administration.'
-    },
-    {
-      id: 'RX-2026-9040',
-      date: 'Today, 11:10 AM',
-      petName: 'Kiki',
-      species: 'Feline (Persian Longhair)',
-      weight: '3.8 kg',
-      age: '6 yrs',
-      parent: 'Meera Deshmukh (+91 98201 44556)',
-      vet: 'Dr. Rahul Mehta',
-      vci: 'VCI-MAH-2015-110',
-      clinic: 'Zenve Feline Specialty Care (Bandra)',
-      drugs: [
-        { name: 'Zoetis Revolution Spot-On (Cat)', dose: '1 Pipette (0.75ml)', freq: 'Topical monthly', duration: '30 days', schedule: 'Schedule H' },
-        { name: 'Gabapentin Oral Liquid 50mg/ml', dose: '0.4 ml (OD)', freq: 'Once daily before bedtime', duration: '14 days', schedule: 'Schedule H' }
-      ],
-      diagnosis: 'Hyperesthesia syndrome & periodic anxiety',
-      status: 'Pending Verification',
-      refillEligible: true,
-      notes: 'Calibrated oral syringe provided.'
-    },
-    {
-      id: 'RX-2026-9039',
-      date: 'Today, 10:45 AM',
-      petName: 'Simba',
-      species: 'Canine (German Shepherd)',
-      weight: '38.0 kg',
-      age: '9 yrs',
-      parent: 'Ananya Roy (+91 97110 99881)',
-      vet: 'Dr. Aisha Khan',
-      vci: 'VCI-DEL-2019-304',
-      clinic: 'Zenve Cardiology Wing (Delhi NCR)',
-      drugs: [
-        { name: 'Cardisure 5mg (Pimobendan)', dose: '1.5 Tabs (BID)', freq: 'Twice daily empty stomach (1hr before food)', duration: '30 days (Chronic)', schedule: 'Schedule H' },
-        { name: 'Furosemide 20mg', dose: '1 Tab (OD)', freq: 'Morning after breakfast', duration: '30 days', schedule: 'Schedule H' }
-      ],
-      diagnosis: 'Congestive Heart Failure (Stage C MMVD)',
-      status: 'Verified & Ready',
-      refillEligible: true,
-      notes: 'Strict chronic refill protocol active.'
-    },
-    {
-      id: 'RX-2026-9038',
-      date: 'Today, 09:30 AM',
-      petName: 'Bella',
-      species: 'Canine (Beagle)',
-      weight: '13.5 kg',
-      age: '1 yr',
-      parent: 'Deepika Sen (+91 99002 77665)',
-      vet: 'Dr. Karan Patel',
-      vci: 'VCI-GUJ-2020-512',
-      clinic: 'Zenve Wellness Hub',
-      drugs: [
-        { name: 'Nobivac DHPPi Core Vaccine 1D', dose: '1 Vial (1ml SubQ)', freq: 'Immediate clinic administration', duration: 'Annual Booster', schedule: 'Schedule H' }
-      ],
-      diagnosis: 'Annual core vaccination booster schedule',
-      status: 'Dispensed',
-      refillEligible: false,
-      notes: 'Cold chain 3.6°C custody maintained.'
-    },
-    {
-      id: 'RX-2026-9037',
-      date: 'Yesterday, 05:40 PM',
-      petName: 'Rocky',
-      species: 'Canine (Rottweiler)',
-      weight: '45.0 kg',
-      age: '5 yrs',
-      parent: 'Vikram Sethi (+91 98110 33221)',
-      vet: 'Dr. Neha Singh',
-      vci: 'VCI-PUN-2017-628',
-      clinic: 'Zenve Ortho Center',
-      drugs: [
-        { name: 'Carprovet 100mg (Carprofen)', dose: '1 Tab (BID)', freq: 'Twice daily with meals', duration: '10 days', schedule: 'Schedule H' },
-        { name: 'Tramadol Vet 50mg', dose: '1 Tab (TID)', freq: 'Every 8 hours as needed', duration: '5 days', schedule: 'Schedule H' }
-      ],
-      diagnosis: 'Post-op cruciate ligament repair rehabilitation',
-      status: 'Flagged for Review',
-      refillEligible: false,
-      notes: 'Pharmacist warning: check concurrent renal panel before release.'
-    }
-  ];
+  const prescriptions = [];
 
   const filtered = useMemo(() => {
     return prescriptions.filter(rx => {
@@ -135,7 +35,7 @@ export default function Prescriptions() {
       title="Digital Veterinary Prescriptions (e-Rx)"
       subtitle="Doctor verification, VCI licensure audit, drug interaction alerts, and dispensing authorization"
       icon="📋"
-      badge="100% Licensed e-Rx"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -177,7 +77,7 @@ export default function Prescriptions() {
         <KpiCard label="Dispensed Today" value="86 Rx" delta="100% on time" trend="up" subtext="Zero misdispenses" icon="✅" />
         <KpiCard label="Chronic Refill Orders" value="38 Rx" delta="Automated reminder" trend="up" subtext="Heart, renal & endocrine" icon="🔄" />
         <KpiCard label="Flagged Safety Alerts" value="2 Rx" delta="Drug Interaction" trend="down" subtext="Under doctor review" icon="⚠️" />
-        <KpiCard label="Doctor Licensure" value="100.0%" delta="VCI Verified" trend="up" subtext="48 verified veterinarians" icon="👨‍⚕️" />
+        <KpiCard label="Doctor Licensure" value="0.0%" delta="VCI Verified" trend="up" subtext="48 verified veterinarians" icon="👨‍⚕️" />
       </div>
 
       {/* Prescription Queue Container */}

@@ -44,24 +44,9 @@
     { id: 'pune', label: 'Pune Express Center (Koregaon)' }
   ];
 
-  var RIDERS = [
-    { id: 'R1', name: 'Karthik Muthu', phone: '+91 98450 28192', rating: 4.9, completed: 1420, vehicle: 'Ather 450X (EV)', hub: 'bengaluru' },
-    { id: 'R2', name: 'Suresh Patil', phone: '+91 97312 84910', rating: 4.8, completed: 1180, vehicle: 'Ola S1 Pro (EV)', hub: 'mumbai' },
-    { id: 'R3', name: 'Deepak Sharma', phone: '+91 98114 59201', rating: 4.9, completed: 1650, vehicle: 'TVS iQube (EV)', hub: 'delhi' },
-    { id: 'R4', name: 'Rahul Reddy', phone: '+91 99890 31822', rating: 4.7, completed: 920, vehicle: 'Hero Electric (EV)', hub: 'hyderabad' },
-    { id: 'R5', name: 'Aniket Deshpande', phone: '+91 98220 74819', rating: 4.9, completed: 1310, vehicle: 'Ather 450X (EV)', hub: 'pune' }
-  ];
+  var RIDERS = [];
 
-  var PET_PRODUCTS = [
-    { name: 'Royal Canin Maxi Adult Dog Food 4kg', cat: 'Pet Nutrition', price: 2800 },
-    { name: 'Bravecto Tick & Flea Chewable Tablet (10-20kg)', cat: 'Pharmacy & Meds', price: 2400 },
-    { name: 'PetCare Complete Antibiotic Drops 30ml', cat: 'Prescription Medicine', price: 450 },
-    { name: 'Zoetis Canine Vanguard 7-in-1 Vaccine', cat: 'Vaccines & Cold Chain', price: 1800 },
-    { name: 'Dr. Reddy’s Pet Derm-Calm Anti-Itch Spray', cat: 'Dermatology Care', price: 680 },
-    { name: 'Himalayan Organic Yak Milk Chew (Pack of 3)', cat: 'Pet Nutrition', price: 850 },
-    { name: 'Ergonomic Breathable Anti-Pull Dog Harness (L)', cat: 'Accessories', price: 1250 },
-    { name: 'Feline Renal Care Prescription Diet 2kg', cat: 'Clinical Nutrition', price: 2100 }
-  ];
+  var PET_PRODUCTS = [];
 
   /* Global Dashboard State */
   var S = {
@@ -144,12 +129,12 @@
       var hIdx = idx % hubsPool.length;
       var hubKey = hubsPool[hIdx];
       var speed = (s.source && s.source.toLowerCase().indexOf('emergency') >= 0) ? '60-Min Express' : speeds[idx % speeds.length];
-      var rider = RIDERS[idx % RIDERS.length];
+      var rider = RIDERS.length ? RIDERS[idx % RIDERS.length] : { name: '--', vehicle: '--' };
       var status = s.status === 'Cancelled' ? 'Cancelled' : (idx % 14 === 0 ? 'Returned' : statuses[idx % statuses.length]);
       var pet = petNames[idx % petNames.length];
       var addrList = addresses[hubKey] || addresses.bengaluru;
       var address = addrList[idx % addrList.length] + ', ' + (s.city || 'Bengaluru');
-      var prod = PET_PRODUCTS[idx % PET_PRODUCTS.length];
+      var prod = PET_PRODUCTS.length ? PET_PRODUCTS[idx % PET_PRODUCTS.length] : { name: '--', cat: '--', price: 0 };
       var minRemaining = (speed === '60-Min Express' && (status === 'Out for Delivery' || status === 'Processing')) ? (12 + ((idx * 7) % 45)) : null;
 
       return {
@@ -371,18 +356,6 @@
           .catch(function () {
             // Generate synthetic dataset if both endpoints fail
             var dummy = [];
-            for (var i = 0; i < 60; i++) {
-              dummy.push({
-                transaction_ref: 'ZV-' + (11500 + i),
-                sold_at: new Date(Date.now() - i * 3600000).toISOString(),
-                source: (i % 3 === 0 ? 'Veterinary Medicine' : 'Pet Nutrition & Food'),
-                person: 'Pet Parent ' + (i + 1),
-                city: ['Bengaluru', 'Mumbai', 'Delhi NCR', 'Hyderabad', 'Pune'][i % 5],
-                amount: 1200 + (i * 350) % 6500,
-                status: 'Paid',
-                app_source: 'Android'
-              });
-            }
             S.orders = enrichOrders(dummy);
             if (!S.trackingOrderId && S.orders.length) S.trackingOrderId = S.orders[0].id;
             renderAll();
@@ -1112,21 +1085,15 @@
      VIEW 6: Delivery Performance & Logistics Partner Scorecard
      ===================================================================== */
   function renderDeliveryView() {
-    var partners = [
-      { name: 'Zenve In-House EV Fleet', type: 'Hyperlocal 60-Min', onTime: '98.4%', avgTime: '34 Mins', fadr: '98.8%', cost: '₹42 / order', rating: 4.9, active: true },
-      { name: 'Shadowfax Express Fleet', type: 'Hyperlocal & Same-Day', onTime: '94.6%', avgTime: '48 Mins', fadr: '95.2%', cost: '₹58 / order', rating: 4.7, active: true },
-      { name: 'Dunzo Hyperlocal Dispatch', type: 'Intra-City Express', onTime: '93.8%', avgTime: '52 Mins', fadr: '94.6%', cost: '₹62 / order', rating: 4.6, active: true },
-      { name: 'Bluedart Priority Healthcare', type: 'Inter-City Air Cargo', onTime: '96.2%', avgTime: '18 Hours', fadr: '97.4%', cost: '₹110 / order', rating: 4.8, active: true },
-      { name: 'Delhivery Surface Logistics', type: 'Standard Road Transport', onTime: '91.8%', avgTime: '28 Hours', fadr: '92.4%', cost: '₹76 / order', rating: 4.5, active: true }
-    ];
+    var partners = [];
 
     return [
       '<div class="zod-kpis">',
-        kpi('Overall On-Time SLA', '96.2%', '+1.8% vs last quarter', 'up', '🚚'),
-        kpi('Avg Delivery Time (Express)', '38.4 Mins', 'Target: <60 Mins', 'up', '⚡'),
-        kpi('First Attempt Success (FADR)', '97.4%', 'Only 2.6% NDR re-attempts', 'up', '🎯'),
-        kpi('Active Delivery Riders', '76 Riders', '100% Electric vehicle fleet', 'up', '🛵'),
-        kpi('Carbon Saved (MTD)', '1,420 kg CO₂', 'Via 100% EV local delivery', 'up', '🌱'),
+        kpi('Overall On-Time SLA', '--', 'No delivery data', 'neutral', '🚚'),
+        kpi('Avg Delivery Time (Express)', '--', 'Target: <60 Mins', 'neutral', '⚡'),
+        kpi('First Attempt Success (FADR)', '--', 'No data', 'neutral', '🎯'),
+        kpi('Active Delivery Riders', '0 Riders', '100% Electric vehicle fleet', 'neutral', '🛵'),
+        kpi('Carbon Saved (MTD)', '0 kg CO₂', 'Via EV local delivery', 'neutral', '🌱'),
       '</div>',
 
       '<div class="zod-card zod-panel" style="margin-bottom:16px;">',

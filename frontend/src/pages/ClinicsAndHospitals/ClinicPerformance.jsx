@@ -5,15 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function ClinicPerformance() {
   const [selectedSort, setSelectedSort] = useState('csat');
 
-  const performanceMetrics = [
-    { name: 'Zenve Hospital Koramangala', city: 'Bengaluru', opd: 1420, surgeries: 84, waitTime: '12 mins', bedOcc: '87.5%', csat: 4.95, nps: 88, readmission: '0.9%', revPerDoc: '₹2,35,000' },
-    { name: 'Zenve Multi-Specialty Bandra', city: 'Mumbai', opd: 1180, surgeries: 72, waitTime: '14 mins', bedOcc: '91.6%', csat: 4.92, nps: 86, readmission: '1.1%', revPerDoc: '₹2,12,000' },
-    { name: 'Zenve Referral Center Okhla', city: 'Delhi NCR', opd: 960, surgeries: 58, waitTime: '15 mins', bedOcc: '80.0%', csat: 4.88, nps: 82, readmission: '1.4%', revPerDoc: '₹1,95,000' },
-    { name: 'Zenve Care Center Indiranagar', city: 'Bengaluru', opd: 840, surgeries: 18, waitTime: '11 mins', bedOcc: 'Daycare 94%', csat: 4.94, nps: 87, readmission: '0.5%', revPerDoc: '₹1,86,000' },
-    { name: 'Zenve Jubilee Hills Specialty', city: 'Hyderabad', opd: 780, surgeries: 24, waitTime: '16 mins', bedOcc: '75.0%', csat: 4.89, nps: 83, readmission: '1.2%', revPerDoc: '₹1,60,000' },
-    { name: 'Zenve Juhu Companion Care', city: 'Mumbai', opd: 720, surgeries: 12, waitTime: '13 mins', bedOcc: 'Daycare 89%', csat: 4.91, nps: 85, readmission: '0.6%', revPerDoc: '₹1,73,000' },
-    { name: 'Zenve Koregaon Park Clinic', city: 'Pune', opd: 650, surgeries: 14, waitTime: '14 mins', bedOcc: 'Daycare 82%', csat: 4.86, nps: 81, readmission: '0.8%', revPerDoc: '₹1,60,000' }
-  ];
+  const performanceMetrics = [];
 
   const sortedData = [...performanceMetrics].sort((a, b) => {
     if (selectedSort === 'csat') return b.csat - a.csat;
@@ -29,7 +21,7 @@ export default function ClinicPerformance() {
       title="Clinical Performance & Operational Efficiency"
       subtitle="OPD patient throughput, wait time benchmarking, surgical outcomes, bed turnover, and pet parent satisfaction (CSAT)"
       icon="📈"
-      badge="4.92 / 5.0 Network CSAT"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -56,9 +48,9 @@ export default function ClinicPerformance() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Average OPD Wait Time" value="13.5 Mins" delta="-4.2m vs SLA" trend="up" subtext="From check-in to consultation" icon="⏱️" />
-        <KpiCard label="Surgical Success Rate" value="99.2%" delta="+0.4% YoY" trend="up" subtext="Zero intra-op fatalities" icon="🔪" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="+0.4% YoY" trend="up" subtext="Zero intra-op fatalities" icon="🔪" />
         <KpiCard label="Patient CSAT Score" value="4.92 / 5.0" delta="85 Net Promoter Score" trend="up" subtext="Based on 4,210 verified reviews" icon="⭐" />
-        <KpiCard label="30-Day Readmission Rate" value="1.02%" delta="-0.3% vs target" trend="up" subtext="Post-surgical recovery" icon="🔄" />
+        <KpiCard label="30-Day Readmission Rate" value="0.0%" delta="-0.3% vs target" trend="up" subtext="Post-surgical recovery" icon="🔄" />
         <KpiCard label="Diagnostic Turnaround" value="38 Mins" delta="In-house lab SLA" trend="up" subtext="Blood & imaging reports" icon="🔬" />
         <KpiCard label="Daily OPD Throughput" value="482 Pets" delta="+18.4% YoY" trend="up" subtext="Across 14 network facilities" icon="🐾" />
       </div>

@@ -7,72 +7,7 @@ export default function AskZenveAI() {
   const [query, setQuery] = useState('');
   const [context, setContext] = useState({ intent: 'GENERAL_OVERVIEW', location: null, timeframe: 'MTD' });
   const [actionFeedback, setActionFeedback] = useState({});
-  const [history, setHistory] = useState([
-    {
-      q: 'Why did sales drop in Delhi NCR over the past 7 days?',
-      a: 'Sales Drop Intelligence (Delhi NCR • 7D): Analysis of transactional logs indicates a net revenue contraction of ₹14.8 Lakh (-22.4% drop) across 342 → 265 (-77) orders.',
-      nlpMeta: {
-        intent: 'SALES DROP',
-        entities: ['Delhi NCR', '7D'],
-        grounding: 'ERP & Live BI Telemetry',
-        confidence: '99.2%'
-      },
-      kpis: [
-        { label: 'Revenue Drop', val: '-₹14.8 Lakh', status: 'danger' },
-        { label: 'Drop Percentage', val: '-22.4%', status: 'danger' },
-        { label: 'Order Volume', val: '342 → 265 (-77)', status: 'warn' },
-        { label: 'Time Window', val: '7D', status: 'info' }
-      ],
-      insights: [
-        'Primary Root Cause: 48h cold-chain stockout on Emergency Care & broad-spectrum Rx antibiotics + peak hour 60-min delivery SLA breaches.',
-        'Diagnostic Finding: Peak revenue loss was concentrated during evening order surges (5 PM – 10 PM) where unfulfilled prescription demand prompted cart abandonment.',
-        'AI Remediation: Execute emergency stock rebalance PO-8821 from Central Hub and activate rider surge incentives.'
-      ],
-      actions: [
-        { label: '📊 View Sales Drop Dashboard', hash: '#overview', scrollTarget: 'ai', primary: true },
-        { label: '📦 Approve Stock Rebalance PO-8821', actionId: 'po_8821' },
-        { label: '🚚 Inspect 60-Min Delivery SLA', hash: '#logistics-dashboard' }
-      ],
-      followups: [
-        'Why did sales drop in Mumbai?',
-        'Break down Delhi sales by time of day',
-        'Show inventory stockout impact in Delhi'
-      ],
-      time: 'Just now',
-      confidence: '99.2%'
-    },
-    {
-      q: 'Which clinic generated the highest EBITDA this month?',
-      a: 'EBITDA & Financial Health: Consolidated operating EBITDA is currently ₹38.2 Lakh (20.7% margin), pacing +₹4.2L ahead of budget. Indiranagar Flagship generated the highest EBITDA contribution (₹16.4L, 26.2% margin) driven by high surgical throughput.',
-      nlpMeta: {
-        intent: 'EBITDA FINANCIALS',
-        entities: ['Indiranagar Flagship', 'MTD'],
-        grounding: 'ERP Verified',
-        confidence: '98.8%'
-      },
-      kpis: [
-        { label: 'EBITDA', val: '₹38.2L', status: 'success' },
-        { label: 'EBITDA Margin', val: '20.7%', status: 'success' },
-        { label: 'Top Hub EBITDA', val: '₹16.4L', status: 'info' },
-        { label: 'Budget Delta', val: '+₹4.2L', status: 'success' }
-      ],
-      insights: [
-        'Margin Optimization Vector: Eliminating intermediary distributor markups on top 20 Rx medications via direct manufacturer purchasing will recover an estimated ₹3.8L monthly EBITDA.',
-        'Surgical Realization: Emergency weekend surgical suites in Indiranagar and Bandra yielded a 15% pricing premium with zero demand elasticity drop.'
-      ],
-      actions: [
-        { label: '⚡ Open Revenue Intelligence', hash: '#revenue-intelligence', primary: true },
-        { label: '🏥 Inspect Indiranagar Hub Performance', hash: '#clinics-hospitals-dashboard' }
-      ],
-      followups: [
-        'Which clinic has the lowest EBITDA margin?',
-        'What is our pharmacy gross margin breakdown?',
-        'Simulate profit if logistics costs increase 8%'
-      ],
-      time: '10 mins ago',
-      confidence: '98.8%'
-    }
-  ]);
+  const [history, setHistory] = useState([]);
 
   function handleAsk(e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -147,9 +82,9 @@ export default function AskZenveAI() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="NLP Pipeline Latency" value="18 ms" delta="Zero Cloud Cost" trend="up" subtext="In-browser neural inference" icon="⚡" />
-        <KpiCard label="Grounding Accuracy" value="99.6%" delta="Zero Hallucination" trend="up" subtext="Direct ERP record links" icon="🎯" />
-        <KpiCard label="Executive Queries (MTD)" value="2,480" delta="+34% MoM" trend="up" subtext="Leadership adoption" icon="💡" />
-        <KpiCard label="Autonomous Actions Taken" value="384" delta="96% Success" trend="up" subtext="Workflow triggers" icon="🤖" />
+        <KpiCard label="Grounding Accuracy" value="0.0%" delta="Zero Hallucination" trend="up" subtext="Direct ERP record links" icon="🎯" />
+        <KpiCard label="Executive Queries (MTD)" value="0" delta="+34% MoM" trend="up" subtext="Leadership adoption" icon="💡" />
+        <KpiCard label="Autonomous Actions Taken" value="0" delta="96% Success" trend="up" subtext="Workflow triggers" icon="🤖" />
       </div>
 
       <div style={cardStyle}>

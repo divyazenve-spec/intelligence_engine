@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var departments = [
-    { id: 'DEP-01', name: 'Veterinary Clinical Services', lead: 'Dr. Priya Sharma (CMO)', staff: 48, budget: '₹42,00,000', openings: 5, color: '#10b981', desc: 'Surgical theaters, diagnostics, ultrasound, patient wards & vaccination clinics.' },
-    { id: 'DEP-02', name: 'Pharmacy & Drug Dispensing', lead: 'Rohan Deshmukh (Head Pharmacist)', staff: 32, budget: '₹22,50,000', openings: 3, color: '#0ea5e9', desc: 'Schedule-X compliance, temperature-controlled drug inventory & dark store counters.' },
-    { id: 'DEP-03', name: 'Logistics & 60-Min Delivery', lead: 'Vikram Joshi (Fleet Lead)', staff: 54, budget: '₹28,80,000', openings: 8, color: '#f59e0b', desc: 'Hyperlocal EV & bike fleet, cold-box courier logistics, and rapid dispatch hubs.' },
-    { id: 'DEP-04', name: 'Warehouse & Fulfillment Ops', lead: 'Ananya Verma (Ops Manager)', staff: 28, budget: '₹18,40,000', openings: 2, color: '#8b5cf6', desc: 'Bhiwandi & Bengaluru distribution centers, SKU sorting, and FIFO inventory picking.' },
-    { id: 'DEP-05', name: 'Technology & AI Engineering', lead: 'Sameer Kulkarni (VP Tech)', staff: 24, budget: '₹38,00,000', openings: 4, color: '#ec4899', desc: 'Zenve AI intelligence engine, mobile clinical apps, and real-time BI telemetry.' },
-    { id: 'DEP-06', name: 'Customer Delight & Support', lead: 'Pooja Hegde (CX Lead)', staff: 22, budget: '₹14,20,000', openings: 3, color: '#14b8a6', desc: '24/7 pet emergency hotline, post-operative care monitoring, and parent concierge.' }
-  ];
+  var departments = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

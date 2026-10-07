@@ -3,48 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function AccountingSystemHealth() {
-  const [services, setServices] = useState([
-    {
-      name: 'Zoho Books Enterprise ERP',
-      module: 'General Ledger, Chart of Accounts, P&L',
-      endpoint: 'books.zoho.in/api/v3',
-      syncInterval: 'Every 15 mins',
-      lastBatch: '6m ago (Batch #4812)',
-      reconciledInvoices: '14,210',
-      unallocatedVariance: '₹0.00 (Zero discrepancy)',
-      status: 'Connected'
-    },
-    {
-      name: 'Tally Prime Cloud Connector',
-      module: 'Statutory GST Audit & Inventory Valuation',
-      endpoint: 'tally.zenve.internal:9000',
-      syncInterval: 'Daily at 23:00 IST',
-      lastBatch: 'Yesterday 23:00 IST',
-      reconciledInvoices: '77,010',
-      unallocatedVariance: '₹0.00',
-      status: 'Connected'
-    },
-    {
-      name: 'GSTN Government e-Invoice Portal',
-      module: 'B2B QR Code & IRN Generation',
-      endpoint: 'einvoice1.gst.gov.in/asp',
-      syncInterval: 'Real-time on Invoice Creation',
-      lastBatch: '12m ago (IRN #9910)',
-      reconciledInvoices: '4,550 IRNs',
-      unallocatedVariance: '100% Tax Compliant',
-      status: 'Operational'
-    },
-    {
-      name: 'HDFC Corporate Banking Auto-Feed',
-      module: 'Instant Bank Statement Reconciliation',
-      endpoint: 'api.hdfcbank.com/corporate/v1',
-      syncInterval: 'Hourly',
-      lastBatch: '24m ago',
-      reconciledInvoices: '₹14.18 Cr inflows matched',
-      unallocatedVariance: '₹0.00 unmapped',
-      status: 'Active'
-    }
-  ]);
+  const [services, setServices] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -96,9 +55,9 @@ export default function AccountingSystemHealth() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="ERP Sync Latency" value="1.8 s" delta="Near instant" trend="up" subtext="Zoho Books API v3" icon="⚡" />
-        <KpiCard label="Reconciled Revenue" value="₹14.18 Cr" delta="100% matched" trend="up" subtext="Invoices vs Bank balance" icon="📊" />
+        <KpiCard label="Reconciled Revenue" value="₹0" delta="100% matched" trend="up" subtext="Invoices vs Bank balance" icon="📊" />
         <KpiCard label="GST IRN Generation SLA" value="240 ms" delta="Fast e-invoicing" trend="up" subtext="Govt portal verified" icon="🛡️" />
-        <KpiCard label="Unmapped Cash / Items" value="₹0.00" delta="Zero variance" trend="up" subtext="Clean audit trail" icon="🟢" />
+        <KpiCard label="Unmapped Cash / Items" value="₹0" delta="Zero variance" trend="up" subtext="Clean audit trail" icon="🟢" />
       </div>
 
       {/* Services Table */}

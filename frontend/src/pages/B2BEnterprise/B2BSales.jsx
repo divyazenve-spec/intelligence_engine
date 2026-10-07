@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function B2BSales() {
-  const reps = [
-    { rep: 'Vikram Mehta (VP Enterprise)', accounts: 18, quota: '₹40,00,000', actual: '₹44,20,000', attainment: '110.5%', pipeline: '₹62,00,000', commission: '₹1,32,600' },
-    { rep: 'Sneha Rao (Senior Enterprise RM)', accounts: 14, quota: '₹28,00,000', actual: '₹29,80,000', attainment: '106.4%', pipeline: '₹45,00,000', commission: '₹89,400' },
-    { rep: 'Aarav Sen (Wholesale Account Mgr)', accounts: 12, quota: '₹20,00,000', actual: '₹19,10,000', attainment: '95.5%', pipeline: '₹28,00,000', commission: '₹57,300' },
-    { rep: 'Pooja Iyer (Govt & Defense Liasion)', accounts: 4, quota: '₹30,00,000', actual: '₹32,50,000', attainment: '108.3%', pipeline: '₹80,00,000', commission: '₹97,500' }
-  ];
+  const reps = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,12 +14,12 @@ export default function B2BSales() {
       title="Enterprise Sales Pipeline & Performance"
       subtitle="Deal stage velocity, relationship manager quotas, RFP win-loss ratios, and qualified corporate pipeline"
       icon="💼"
-      badge="106.8% Quota Attainment"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Quarterly Enterprise Bookings" value="₹1.25 Crore" delta="+28.4% YoY" trend="up" subtext="Quota: ₹1.18 Cr" icon="💼" />
-        <KpiCard label="Pipeline Value (Q4)" value="₹2.15 Crore" delta="14 deals in RFP" trend="up" subtext="Weighted: ₹1.42 Cr" icon="📈" />
-        <KpiCard label="Deal Win Rate" value="48.5%" delta="+6.2% vs industry" trend="up" subtext="Enterprise proposals" icon="🏆" />
+        <KpiCard label="Quarterly Enterprise Bookings" value="₹0" delta="+28.4% YoY" trend="up" subtext="Quota: ₹0" icon="💼" />
+        <KpiCard label="Pipeline Value (Q4)" value="₹0" delta="14 deals in RFP" trend="up" subtext="Weighted: ₹0" icon="📈" />
+        <KpiCard label="Deal Win Rate" value="0.0%" delta="+6.2% vs industry" trend="up" subtext="Enterprise proposals" icon="🏆" />
         <KpiCard label="Avg Sales Cycle" value="42 Days" delta="-8 days reduction" trend="up" subtext="Standardized MSAs" icon="⚡" />
       </div>
 

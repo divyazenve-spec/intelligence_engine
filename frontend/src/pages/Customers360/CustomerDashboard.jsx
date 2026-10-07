@@ -6,14 +6,7 @@ export default function CustomerDashboard() {
   const [segmentFilter, setSegmentFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const customers = [
-    { id: 'CUST-8401', name: 'Aarav & Tanya Sharma', pets: 'Bruno (Golden Retriever) + Milo (Cat)', tier: 'VIP Elite', ltv: '₹1,48,000', ordersCount: 42, lastOrder: '2026-10-04', mtdSpend: '₹14,200', churnRisk: 'Very Low', status: 'Active' },
-    { id: 'CUST-8402', name: 'Vikram & Ananya Malhotra', pets: 'Leo (German Shepherd)', tier: 'VIP Elite', ltv: '₹1,24,000', ordersCount: 36, lastOrder: '2026-10-05', mtdSpend: '₹18,500', churnRisk: 'Very Low', status: 'Active' },
-    { id: 'CUST-8403', name: 'Priya Sundaram', pets: 'Bella & Coco (Persian Cats)', tier: 'Loyal Gold', ltv: '₹84,000', ordersCount: 24, lastOrder: '2026-10-01', mtdSpend: '₹7,800', churnRisk: 'Low', status: 'Active' },
-    { id: 'CUST-8404', name: 'Rahul & Meera Nambiar', pets: 'Simba (Beagle Pup)', tier: 'New Subscriber', ltv: '₹32,000', ordersCount: 8, lastOrder: '2026-10-03', mtdSpend: '₹6,400', churnRisk: 'Low', status: 'Active' },
-    { id: 'CUST-8405', name: 'Sneha Kulkarni', pets: 'Whiskey (Shih Tzu)', tier: 'Occasional Silver', ltv: '₹48,000', ordersCount: 14, lastOrder: '2026-09-18', mtdSpend: '₹0', churnRisk: 'Medium', status: 'At Risk' },
-    { id: 'CUST-8406', name: 'Karthik & Pooja Sen', pets: 'Rocky (Siberian Husky)', tier: 'Loyal Gold', ltv: '₹92,000', ordersCount: 28, lastOrder: '2026-10-02', mtdSpend: '₹9,200', churnRisk: 'Very Low', status: 'Active' }
-  ];
+  const customers = [];
 
   const filtered = customers.filter(c => {
     if (segmentFilter !== 'ALL' && c.tier !== segmentFilter) return false;
@@ -33,7 +26,7 @@ export default function CustomerDashboard() {
       title="Unified Customer 360° Command Center"
       subtitle="Holistic pet parent profiles, omni-channel engagement, Customer Lifetime Value (LTV), and automated retention telemetry"
       icon="👥"
-      badge="12,480 Active Pet Parents"
+      badge=""
       actions={
         <button
           onClick={() => alert('New Customer Profile creation modal initiated...')}
@@ -55,10 +48,10 @@ export default function CustomerDashboard() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Customer Base" value="12,480 Families" delta="+1,120 MTD" trend="up" subtext="18,650 registered pets" icon="👥" />
         <KpiCard label="Active 30-Day Transactors" value="8,420 Users" delta="67.5% engagement" trend="up" subtext="Purchased or visited clinic" icon="⚡" />
-        <KpiCard label="Avg. Lifetime Value (LTV)" value="₹68,400" delta="+14.2% YoY" trend="up" subtext="Calculated across all cohorts" icon="💎" />
-        <KpiCard label="Repeat Purchase Rate" value="78.4%" delta="+2.6% vs Q2" trend="up" subtext="High loyalty stickiness" icon="🔄" />
-        <KpiCard label="Customer Satisfaction Score" value="96.2%" delta="CSAT 4.9/5" trend="up" subtext="Over 4,800 survey responses" icon="⭐" />
-        <KpiCard label="Net Churn Rate" value="1.18%" delta="-0.32% MoM" trend="up" subtext="Industry leading retention" icon="📉" />
+        <KpiCard label="Avg. Lifetime Value (LTV)" value="₹0" delta="+14.2% YoY" trend="up" subtext="Calculated across all cohorts" icon="💎" />
+        <KpiCard label="Repeat Purchase Rate" value="0.0%" delta="+2.6% vs Q2" trend="up" subtext="High loyalty stickiness" icon="🔄" />
+        <KpiCard label="Customer Satisfaction Score" value="0.0%" delta="CSAT 4.9/5" trend="up" subtext="Over 4,800 survey responses" icon="⭐" />
+        <KpiCard label="Net Churn Rate" value="0.0%" delta="-0.32% MoM" trend="up" subtext="Industry leading retention" icon="📉" />
       </div>
 
       <div style={cardStyle}>

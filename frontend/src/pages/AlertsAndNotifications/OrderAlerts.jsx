@@ -3,63 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function OrderAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'ORD-501',
-      title: 'Veterinary Prescription Verification Queue Backlog (>30m)',
-      category: 'Pharmacy Compliance',
-      metric: '28 Prescriptions pending clinical approval',
-      impact: 'Risk of 60-min delivery breach for Schedule-H antibiotics',
-      hub: 'Central Telehealth Pharmacy Station',
-      severity: 'Critical',
-      time: '14m ago',
-      status: 'Active'
-    },
-    {
-      id: 'ORD-502',
-      title: 'Micro-Hub Packing Station Congestion: 19 Orders Exceeding 20m SLA',
-      category: 'Fulfillment Operations',
-      metric: 'Average packing time surged to 32 mins',
-      impact: 'Riders waiting outside Koramangala Hub; idle dwell time high',
-      hub: 'Koramangala 60-Min Hub',
-      severity: 'High Warning',
-      time: '28m ago',
-      status: 'Active'
-    },
-    {
-      id: 'ORD-503',
-      title: 'Abnormal Cancellation Surge in Indiranagar Node (12 orders/hr)',
-      category: 'Customer Retention',
-      metric: 'Cancellation rate reached 8.4% (Threshold: 3.0%)',
-      impact: '₹18,400 GMV loss; customer complaints regarding rider delays',
-      hub: 'Indiranagar Urban Node',
-      severity: 'Warning',
-      time: '45m ago',
-      status: 'Investigating'
-    },
-    {
-      id: 'ORD-504',
-      title: 'Inefficient Split-Shipment Anomaly: Order #ZV-99481',
-      category: 'Logistics Optimization',
-      metric: 'Order split across 3 separate warehouses',
-      impact: 'Excess delivery fee burn of ₹380 and customer receiving 3 distinct packages',
-      hub: 'Multi-Warehouse Allocation Engine',
-      severity: 'Warning',
-      time: '1h ago',
-      status: 'Action Required'
-    },
-    {
-      id: 'ORD-505',
-      title: 'VIP Gold Pet Parent Post-Op Meds Order Delayed',
-      category: 'VIP Customer Experience',
-      metric: 'Order #ZV-98124 delayed by 38 mins (Puppy post-op analgesics)',
-      impact: 'Customer Priya Nair (LTV: ₹1,42,000) reached out to concierge',
-      hub: 'Bengaluru Flagship Hospital Dispatch',
-      severity: 'Critical',
-      time: '6m ago',
-      status: 'Escalated'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -80,7 +24,7 @@ export default function OrderAlerts() {
       title="Order Fulfillment & Exception Alerts"
       subtitle="Monitoring prescription bottlenecks, packing station SLA breaches, abnormal cancellation rates, and VIP order escalations"
       icon="📦"
-      badge="2 Critical Exceptions"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -99,7 +43,7 @@ export default function OrderAlerts() {
             👨‍⚕️ Page Duty Pharmacist
           </button>
           <button
-            onClick={() => triggerToast('Automated retention apology vouchers (₹150) dispatched to cancelled customers.')}
+            onClick={() => triggerToast('Automated retention apology vouchers (₹0) dispatched to cancelled customers.')}
             style={{
               padding: '8px 14px',
               borderRadius: '8px',
@@ -142,7 +86,7 @@ export default function OrderAlerts() {
         />
         <KpiCard
           label="Packing Station SLA"
-          value="82.4%"
+          value="0.0%"
           delta="-9.6% vs target"
           trend="down"
           subtext="19 orders backlogged"
@@ -150,7 +94,7 @@ export default function OrderAlerts() {
         />
         <KpiCard
           label="Cancellation Rate"
-          value="4.2%"
+          value="0.0%"
           delta="Spike in Indiranagar"
           trend="down"
           subtext="Normal: < 2.5%"
@@ -244,7 +188,7 @@ export default function OrderAlerts() {
                   )}
                   {a.id === 'ORD-505' && (
                     <button
-                      onClick={() => handleAction(a.id, 'Priority Dedicated Express Courier Rerouted & ₹300 Credit Applied')}
+                      onClick={() => handleAction(a.id, 'Priority Dedicated Express Courier Rerouted & ₹0 Applied')}
                       style={{ padding: '6px 14px', borderRadius: '6px', background: '#ef4444', color: '#fff', border: 'none', fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}
                     >
                       Expedite VIP Priority Courier

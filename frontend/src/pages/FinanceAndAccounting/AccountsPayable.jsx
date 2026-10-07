@@ -5,15 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function AccountsPayable() {
   const [vendorFilter, setVendorFilter] = useState('ALL');
 
-  const payables = [
-    { id: 'AP-VND-401', vendor: 'Zoetis India Veterinary Ltd', category: 'Biologicals & Vaccines', balance: '₹8,40,000', terms: 'Net 30', dueIn: '12 Days', earlyDiscount: '₹16,800 (2%)', status: 'Payment Approved' },
-    { id: 'AP-VND-402', vendor: 'DePuy Synthes Vet Implants', category: 'Titanium TPLO Hardware', balance: '₹5,60,000', terms: 'Net 45', dueIn: '18 Days', earlyDiscount: '₹11,200 (2%)', status: 'Payment Approved' },
-    { id: 'AP-VND-403', vendor: 'Abbott Healthcare Anesthetics', category: 'Sevoflurane & Sedatives', balance: '₹4,40,000', terms: 'Net 30', dueIn: '6 Days', earlyDiscount: '₹8,800 (2%)', status: 'Batch Scheduled' },
-    { id: 'AP-VND-404', vendor: 'BOC Linde India Medical Gases', category: 'Bulk Medical Oxygen Cylinders', balance: '₹2,80,000', terms: 'Net 30', dueIn: '22 Days', earlyDiscount: 'None', status: 'Awaiting GRN Match' },
-    { id: 'AP-VND-405', vendor: 'Medline Veterinary Disposables', category: 'Surgical Drapes & PPE', balance: '₹2,40,000', terms: 'Net 30', dueIn: '14 Days', earlyDiscount: '₹4,80,000', status: 'Payment Approved' },
-    { id: 'AP-VND-406', vendor: 'Siemens Healthineers Lease', category: 'Ultrasound Scanner Lease Q3', balance: '₹1,90,000', terms: 'Net 15', dueIn: '2 Days', earlyDiscount: 'None', status: 'Urgent Processing' },
-    { id: 'AP-VND-407', vendor: 'Biohazard Waste India Pvt Ltd', category: 'Hospital Waste Treatment', balance: '₹40,000', terms: 'Disputed Invoice', dueIn: 'Overdue', earlyDiscount: 'None', status: 'Under Quality Review' }
-  ];
+  const payables = [];
 
   return (
     <DashboardLayout
@@ -44,12 +36,12 @@ export default function AccountsPayable() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Payables (AP)" value="₹25.90 Lakh" delta="Optimal working cap" trend="up" subtext="7 Primary OEM Vendors" icon="📤" />
+        <KpiCard label="Total Payables (AP)" value="₹0" delta="Optimal working cap" trend="up" subtext="7 Primary OEM Vendors" icon="📤" />
         <KpiCard label="Days Payable Outstanding (DPO)" value="34 Days" delta="Target: 30–40d" trend="up" subtext="Vendor terms maximized" icon="⏱️" />
-        <KpiCard label="Approved for Immediate Run" value="₹18.40 Lakh" delta="71.0% verified" trend="up" subtext="Full 3-way match OK" icon="✅" />
-        <KpiCard label="Early Settlement Discounts" value="₹41,600" delta="2/10 Net 30" trend="up" subtext="Cash savings captured" icon="🎁" />
-        <KpiCard label="Pending 3-Way GRN Match" value="₹2.80 Lakh" delta="1 Inbound batch" trend="up" subtext="Warehouse verification" icon="🔍" />
-        <KpiCard label="Disputed Invoices" value="₹40,000" delta="1 Clinical query" trend="down" subtext="Biohazard waste billing" icon="⚠️" />
+        <KpiCard label="Approved for Immediate Run" value="₹0" delta="71.0% verified" trend="up" subtext="Full 3-way match OK" icon="✅" />
+        <KpiCard label="Early Settlement Discounts" value="₹0" delta="2/10 Net 30" trend="up" subtext="Cash savings captured" icon="🎁" />
+        <KpiCard label="Pending 3-Way GRN Match" value="₹0" delta="1 Inbound batch" trend="up" subtext="Warehouse verification" icon="🔍" />
+        <KpiCard label="Disputed Invoices" value="₹0" delta="1 Clinical query" trend="down" subtext="Biohazard waste billing" icon="⚠️" />
       </div>
 
       <div style={{

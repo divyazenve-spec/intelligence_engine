@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function ClinicRevenue() {
   const [period, setPeriod] = useState('Month to Date');
 
-  const facilityRevenue = [
-    { name: 'Zenve Hospital Koramangala', city: 'Bengaluru', opdRev: '₹3,80,000', surgeryRev: '₹5,40,000', diagRev: '₹2,80,000', ipdRev: '₹2,20,000', total: '₹14,20,000', share: '28.9%' },
-    { name: 'Zenve Multi-Specialty Bandra', city: 'Mumbai', opdRev: '₹3,10,000', surgeryRev: '₹4,60,000', diagRev: '₹2,35,000', ipdRev: '₹1,80,000', total: '₹11,85,000', share: '24.2%' },
-    { name: 'Zenve Referral Center Okhla', city: 'Delhi NCR', opdRev: '₹2,40,000', surgeryRev: '₹3,80,000', diagRev: '₹1,90,000', ipdRev: '₹1,30,000', total: '₹9,40,000', share: '19.2%' },
-    { name: 'Zenve Care Center Indiranagar', city: 'Bengaluru', opdRev: '₹2,20,000', surgeryRev: '₹1,20,000', diagRev: '₹1,40,000', ipdRev: '₹80,000', total: '₹5,60,000', share: '11.4%' },
-    { name: 'Zenve Jubilee Hills Specialty', city: 'Hyderabad', opdRev: '₹1,80,000', surgeryRev: '₹1,40,000', diagRev: '₹1,10,000', ipdRev: '₹50,000', total: '₹4,80,000', share: '9.8%' },
-    { name: 'Zenve Koregaon Park Clinic', city: 'Pune', opdRev: '₹1,30,000', surgeryRev: '₹90,000', diagRev: '₹60,000', ipdRev: '₹40,000', total: '₹3,20,000', share: '6.5%' }
-  ];
+  const facilityRevenue = [];
 
   return (
     <DashboardLayout
@@ -21,7 +14,7 @@ export default function ClinicRevenue() {
       title="Hospital & Clinic Revenue Intelligence"
       subtitle="Departmental billing realization, surgical monetization, diagnostic revenue, and pet insurance settlements"
       icon="💰"
-      badge="₹49.05 Lakh MTD"
+      badge="₹0 MTD"
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div style={{
@@ -73,12 +66,12 @@ export default function ClinicRevenue() {
     >
       {/* KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Clinical Billings" value="₹49.05 Lakh" delta="+18.2% YoY" trend="up" subtext="Across 14 network facilities" icon="💰" />
-        <KpiCard label="Surgical Theatre Revenue" value="₹18.40 Lakh" delta="37.5% total share" trend="up" subtext="Orthopedic, soft-tissue, neuro" icon="🔪" />
-        <KpiCard label="Outpatient Consultations" value="₹12.60 Lakh" delta="25.7% total share" trend="up" subtext="Routine & specialty OPD" icon="🩺" />
-        <KpiCard label="Diagnostics & Imaging" value="₹9.80 Lakh" delta="20.0% total share" trend="up" subtext="CT, ultrasound, in-house lab" icon="🔬" />
-        <KpiCard label="Inpatient ICU / Daycare" value="₹8.25 Lakh" delta="16.8% total share" trend="up" subtext="Critical care hospitalization" icon="🛏️" />
-        <KpiCard label="Avg Revenue / Case" value="₹2,840" delta="+8.4% YoY" trend="up" subtext="High multi-service adoption" icon="🧾" />
+        <KpiCard label="Gross Clinical Billings" value="₹0" delta="+18.2% YoY" trend="up" subtext="Across 14 network facilities" icon="💰" />
+        <KpiCard label="Surgical Theatre Revenue" value="₹0" delta="37.5% total share" trend="up" subtext="Orthopedic, soft-tissue, neuro" icon="🔪" />
+        <KpiCard label="Outpatient Consultations" value="₹0" delta="25.7% total share" trend="up" subtext="Routine & specialty OPD" icon="🩺" />
+        <KpiCard label="Diagnostics & Imaging" value="₹0" delta="20.0% total share" trend="up" subtext="CT, ultrasound, in-house lab" icon="🔬" />
+        <KpiCard label="Inpatient ICU / Daycare" value="₹0" delta="16.8% total share" trend="up" subtext="Critical care hospitalization" icon="🛏️" />
+        <KpiCard label="Avg Revenue / Case" value="₹0" delta="+8.4% YoY" trend="up" subtext="High multi-service adoption" icon="🧾" />
       </div>
 
       {/* Revenue Split & Payer Distribution */}
@@ -96,19 +89,19 @@ export default function ClinicRevenue() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
               <span>Surgeries & Operating Theatres</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#10b981' }}>₹18,40,000 (37.5%)</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#10b981' }}>₹0 (37.5%)</strong>
             </div>
             <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
               <span>Outpatient Consultations (OPD)</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>₹12,60,000 (25.7%)</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>₹0 (25.7%)</strong>
             </div>
             <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
               <span>Advanced Diagnostics, CT & Lab</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#a855f7' }}>₹9,80,000 (20.0%)</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#a855f7' }}>₹0 (20.0%)</strong>
             </div>
             <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
               <span>Inpatient ICU & Hospitalization</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>₹8,25,000 (16.8%)</strong>
+              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>₹0 (16.8%)</strong>
             </div>
           </div>
         </div>
@@ -127,17 +120,17 @@ export default function ClinicRevenue() {
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>Direct Parent Payment</span>
               <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#38bdf8' }}>72.0%</div>
-              <div style={{ fontSize: '10px', color: '#64748b' }}>₹35.31 Lakh · UPI & Cards</div>
+              <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · UPI & Cards</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>Cashless Pet Insurance</span>
               <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#10b981' }}>18.0%</div>
-              <div style={{ fontSize: '10px', color: '#64748b' }}>₹8.83 Lakh · Direct TPA settlement</div>
+              <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · Direct TPA settlement</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>Corporate / Wellness Plan</span>
               <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#a855f7' }}>10.0%</div>
-              <div style={{ fontSize: '10px', color: '#64748b' }}>₹4.91 Lakh · Pre-paid bundles</div>
+              <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · Pre-paid bundles</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>Average Claim Settlement</span>

@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function InventoryAuditTrail() {
-  const inv = [
-    { batch: 'BATCH-VAC-2026-08', product: 'Zoetis Vanguard Plus 5 Vaccine', hub: 'Central Hub Indiranagar', action: 'Cold-Chain Telemetry Checked (+4.1°C)', adjustment: '0 Units (Verified)', officer: 'IoT Sensor Mon-02', time: '14:00 Today', status: 'Compliant' },
-    { batch: 'BATCH-MED-2026-14', product: 'Bravecto Chewable 20-40kg', hub: 'HSR Layout Pharmacy', action: 'Physical Stock Reconciliation', adjustment: '+2 Units (Surplus match)', officer: 'Amit Joshi', time: '11:45 Today', status: 'Compliant' },
-    { batch: 'BATCH-FOD-2025-99', product: 'Royal Canin Mini Starter 1kg', hub: 'Whitefield Warehouse', action: 'Expiry Quarantine & Disposal Write-off', adjustment: '-4 Units (Expired)', officer: 'Amit Joshi / Sneha Rao', time: 'Yesterday 17:00', status: 'Disposed' },
-    { batch: 'BATCH-MED-2026-02', product: 'Melonex Oral Suspension 10ml', hub: 'Koramangala Clinic', action: 'Inter-Hub Stock Transfer Inward', adjustment: '+25 Units (From Central)', officer: 'Rajesh Verma', time: 'Yesterday 13:20', status: 'Compliant' }
-  ];
+  const inv = [];
 
   return (
     <DashboardLayout
@@ -20,8 +15,8 @@ export default function InventoryAuditTrail() {
       badge="Cold-Chain Monitored"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Cold-Chain Integrity" value="99.98%" delta="2°C to 8°C" trend="up" subtext="Zero thermal excursions" icon="❄️" />
-        <KpiCard label="Stock Variance Rate" value="0.01%" delta="Benchmark" trend="up" subtext="Physical vs ERP match" icon="📦" />
+        <KpiCard label="Cold-Chain Integrity" value="0.0%" delta="2°C to 8°C" trend="up" subtext="Zero thermal excursions" icon="❄️" />
+        <KpiCard label="Stock Variance Rate" value="0.0%" delta="Benchmark" trend="up" subtext="Physical vs ERP match" icon="📦" />
         <KpiCard label="Quarantine Actions" value="4 Units YTD" delta="Safe Disposal" trend="neutral" subtext="Biomedical waste compliant" icon="🗑️" />
         <KpiCard label="Batch Traceability" value="100% Tracked" delta="QR / Barcode" trend="up" subtext="Manufacturer to parent" icon="🏷️" />
       </div>

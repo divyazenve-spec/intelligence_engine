@@ -7,16 +7,7 @@ export default function FashionOrders() {
   const [filterChannel, setFilterChannel] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const orders = [
-    { orderId: 'ORD-FSH-7102', customer: 'Ananya Deshmukh', pet: 'Koko (French Bulldog)', items: 'Italian Leather Harness (M) + Matching Leash', channel: 'Bandra Boutique', customDetails: 'Gold Embossed "KOKO"', value: '₹5,100', date: '2026-10-04', status: 'Delivered', payment: 'Paid (UPI)' },
-    { orderId: 'ORD-FSH-7098', customer: 'Vikramaditya Singhania', pet: 'Simba (Golden Retriever)', items: 'Monsoon Waterproof Parka (XL)', channel: 'Online Store Drop', customDetails: 'Reflective Safety Trims', value: '₹2,850', date: '2026-10-04', status: 'Dispatched', payment: 'Paid (Card)' },
-    { orderId: 'ORD-FSH-7094', customer: 'Pooja Bhattacharya', pet: 'Bella (Shih Tzu)', items: 'Cashmere Cable Knit (S) + Silk Bandana', channel: 'Indiranagar Studio', customDetails: 'Monogrammed Initial "B"', value: '₹3,250', date: '2026-10-03', status: 'Delivered', payment: 'Paid (POS)' },
-    { orderId: 'ORD-FSH-7089', customer: 'Rohan Mehra', pet: 'Oscar (Beagle)', items: 'Bespoke Wedding Tuxedo & Bowtie', channel: 'Concierge Atelier', customDetails: 'Custom Made-to-Measure', value: '₹4,950', date: '2026-10-02', status: 'In Tailoring', payment: 'Advance Paid' },
-    { orderId: 'ORD-FSH-7085', customer: 'Dr. Shruti Nair', pet: 'Milo (Persian Cat)', items: 'Velvet Midnight Rose Gold Collar (XS)', channel: 'Online Store Drop', customDetails: 'Standard Bell Charm', value: '₹1,650', date: '2026-10-02', status: 'Delivered', payment: 'Paid (UPI)' },
-    { orderId: 'ORD-FSH-7081', customer: 'Kunal Kapoor', pet: 'Diesel (Doberman)', items: 'Signature Leather Harness (XL) + Paw Boots', channel: 'Koramangala Lounge', customDetails: 'Heavy-Duty Brass Buckles', value: '₹5,400', date: '2026-10-01', status: 'Delivered', payment: 'Paid (POS)' },
-    { orderId: 'ORD-FSH-7076', customer: 'Natasha Poonawalla', pet: 'Princess (Pomeranian)', items: 'Festive Brocade Bandana (XS) + Silk Bow', channel: 'Bandra Boutique', customDetails: 'Zardozi Hand Embroidery', value: '₹2,450', date: '2026-09-30', status: 'Delivered', payment: 'Paid (Card)' },
-    { orderId: 'ORD-FSH-7070', customer: 'Aditya Birla', pet: 'Leo (German Shepherd)', items: 'All-Terrain Boots (XL) + Rain Parka', channel: 'Online Store Drop', customDetails: 'Standard Ready-to-Wear', value: '₹4,800', date: '2026-09-29', status: 'Delivered', payment: 'Paid (UPI)' }
-  ];
+  const orders = [];
 
   const filtered = orders.filter(o => {
     if (filterStatus !== 'ALL' && o.status !== filterStatus) return false;
@@ -46,11 +37,11 @@ export default function FashionOrders() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Fashion Orders (MTD)" value="730 Orders" delta="+24.6% MoM" trend="up" subtext="Showroom & e-commerce" icon="🛍️" />
-        <KpiCard label="Average Order Value" value="₹3,420" delta="+₹380 vs FY25" trend="up" subtext="Bundled collar & harness" icon="💳" />
-        <KpiCard label="Monogram Customization" value="48.5%" delta="354 personalized items" trend="up" subtext="Custom name embroidery" icon="✨" />
-        <KpiCard label="In-Store Trial Conversion" value="76.2%" delta="+4.1% conversion" trend="up" subtext="Pet dressing rooms" icon="🐕" />
+        <KpiCard label="Average Order Value" value="₹0" delta="+₹0 FY25" trend="up" subtext="Bundled collar & harness" icon="💳" />
+        <KpiCard label="Monogram Customization" value="0.0%" delta="354 personalized items" trend="up" subtext="Custom name embroidery" icon="✨" />
+        <KpiCard label="In-Store Trial Conversion" value="0.0%" delta="+4.1% conversion" trend="up" subtext="Pet dressing rooms" icon="🐕" />
         <KpiCard label="Atelier Turnaround (TAT)" value="4.8 Days" delta="-1.2d faster" trend="up" subtext="Bespoke made-to-measure" icon="⏱️" />
-        <KpiCard label="On-Time Delivery Rate" value="98.8%" delta="Zero transit damage" trend="up" subtext="Luxury packaging" icon="📦" />
+        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="Zero transit damage" trend="up" subtext="Luxury packaging" icon="📦" />
       </div>
 
       <div style={card}>

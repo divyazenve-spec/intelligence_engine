@@ -5,21 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function LeaveManagement() {
   const [activeTab, setActiveTab] = useState('pending');
 
-  const [leaveRequests, setLeaveRequests] = useState([
-    { id: 'LR-8041', empName: 'Dr. Aisha Khan', role: 'Vet Dermatologist', type: 'Sick Leave (Medical)', dates: '05 Oct – 08 Oct (4 days)', reason: 'Post-viral recovery & rest', status: 'Pending', balance: '8 SL left' },
-    { id: 'LR-8042', empName: 'Kunal Sen', role: 'Inventory Controller', type: 'Paid Time Off (PTO)', dates: '12 Oct – 16 Oct (5 days)', reason: 'Family wedding ceremony', status: 'Pending', balance: '12 PTO left' },
-    { id: 'LR-8043', empName: 'Sneha Chawla', role: 'Senior AI Engineer', type: 'Casual Leave (CL)', dates: '09 Oct – 09 Oct (1 day)', reason: 'Personal administration', status: 'Pending', balance: '6 CL left' },
-    { id: 'LR-8040', empName: 'Manish Rawat', role: 'Delivery Rider', type: 'Compensatory Off', dates: '03 Oct – 04 Oct (2 days)', reason: 'Worked weekend emergency surge', status: 'Approved', balance: '2 Comp left' },
-    { id: 'LR-8039', empName: 'Vikram Joshi', role: 'Logistics Lead', type: 'Paid Time Off (PTO)', dates: '22 Sep – 25 Sep (4 days)', reason: 'Annual vacation', status: 'Approved', balance: '9 PTO left' }
-  ]);
+  const [leaveRequests, setLeaveRequests] = useState([]);
 
-  const holidays = [
-    { name: 'Dussehra / Vijayadashami', date: '12 Oct 2026', day: 'Monday', type: 'National Holiday' },
-    { name: 'Diwali (Deepavali)', date: '01 Nov 2026', day: 'Sunday', type: 'National Holiday' },
-    { name: 'Kannada Rajyotsava', date: '01 Nov 2026', day: 'Sunday', type: 'Regional (Karnataka)' },
-    { name: 'Guru Nanak Jayanti', date: '15 Nov 2026', day: 'Sunday', type: 'Optional' },
-    { name: 'Christmas Day', date: '25 Dec 2026', day: 'Friday', type: 'National Holiday' }
-  ];
+  const holidays = [];
 
   function handleAction(id, newStatus) {
     setLeaveRequests(leaveRequests.map(lr => lr.id === id ? { ...lr, status: newStatus } : lr));
@@ -34,7 +22,7 @@ export default function LeaveManagement() {
       title="Time-Off Governance & Leave Requests"
       subtitle="Paid Time Off (PTO), sick leaves, casual leaves, compensatory offs, and public holiday calendars"
       icon="🏖️"
-      badge="3 Pending Approvals · 198 Active"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>

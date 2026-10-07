@@ -5,16 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function SystemHealthDashboard() {
   const [toast, setToast] = useState('');
 
-  const services = [
-    { name: 'FastAPI Backend Core', type: 'Python 3.12 / ASGI Uvicorn', host: 'http://127.0.0.1:8000', status: 'Healthy', latency: '3.4ms', uptime: '99.99%', load: '12%' },
-    { name: 'Vite React Frontend', type: 'Node / React SPA Bundle', host: 'http://localhost:3001', status: 'Healthy', latency: '1.8ms', uptime: '100%', load: '4%' },
-    { name: 'SQLite Zenve Database', type: 'WAL Mode B-Tree Engine', host: 'zenvebi.db (28KB)', status: 'Healthy', latency: '1.2ms', uptime: '100%', load: '8%' },
-    { name: 'Payment Gateway (Razorpay)', type: 'UPI, Cards & NetBanking', host: 'api.razorpay.com', status: 'Healthy', latency: '78ms', uptime: '99.95%', load: '24%' },
-    { name: 'SMS & WhatsApp Gateway', type: 'Gupshup Enterprise Messaging', host: 'api.gupshup.io', status: 'Healthy', latency: '64ms', uptime: '99.88%', load: '18%' },
-    { name: 'Accounting System Sync', type: 'Zoho Books & Tally ERP', host: 'books.zoho.in', status: 'Synced', latency: '114ms', uptime: '99.50%', load: '15%' },
-    { name: 'Customer CRM Sync', type: 'HubSpot Pet Parents CRM', host: 'api.hubapi.com', status: 'Healthy', latency: '92ms', uptime: '99.80%', load: '16%' },
-    { name: 'IoT Cold-Chain Telemetry', type: 'Vaccine Freezer Sensors (5 Hubs)', host: 'iot.zenve.in', status: 'Healthy', latency: '18ms', uptime: '99.99%', load: '32%' }
-  ];
+  const services = [];
 
   const runAllDiagnostics = () => {
     setToast('Dispatched synthetic health probes to all 8 core services & external integrations.');
@@ -30,7 +21,7 @@ export default function SystemHealthDashboard() {
       title="System Architecture & Global Infrastructure Health"
       subtitle="FastAPI microservices, SQLite WAL engine, payment gateways, CRM, ERP, and IoT telemetry monitors"
       icon="🖥️"
-      badge="99.98% Global Uptime"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -85,10 +76,10 @@ export default function SystemHealthDashboard() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall System Uptime" value="99.98%" delta="Online" trend="up" subtext="Last 90 days rolling" icon="🟢" />
+        <KpiCard label="Overall System Uptime" value="0.0%" delta="Online" trend="up" subtext="Last 90 days rolling" icon="🟢" />
         <KpiCard label="Core Backend Latency" value="3.4 ms" delta="Sub-5ms" trend="up" subtext="FastAPI + SQLite" icon="⚡" />
         <KpiCard label="Active Microservices" value="8 / 8 Online" delta="All green" trend="up" subtext="Zero degraded services" icon="🖥️" />
-        <KpiCard label="API Failure Rate" value="0.008%" delta="Optimal" trend="up" subtext="99.992% HTTP 2xx" icon="🛡️" />
+        <KpiCard label="API Failure Rate" value="0.0%" delta="Optimal" trend="up" subtext="99.992% HTTP 2xx" icon="🛡️" />
       </div>
 
       {/* System Infrastructure Matrix */}

@@ -3,41 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CrmStatus() {
-  const [connectors, setConnectors] = useState([
-    {
-      name: 'HubSpot Pet Parents CRM',
-      type: 'Customer 360 & Marketing Hub',
-      endpoint: 'api.hubapi.com/v3',
-      syncedContacts: '142,500',
-      syncFrequency: 'Every 5 mins',
-      lastSync: '2m ago',
-      queueStatus: '0 backlog',
-      status: 'Connected',
-      tokenExpiry: '28 days left'
-    },
-    {
-      name: 'Freshdesk Omnichannel Support',
-      type: 'Customer Tickets & Tele-Vet Support',
-      endpoint: 'zenve.freshdesk.com/api/v2',
-      syncedContacts: '18,400 tickets',
-      syncFrequency: 'Real-time Webhook',
-      lastSync: 'Just now',
-      queueStatus: '0 backlog',
-      status: 'Connected',
-      tokenExpiry: 'Permanent API Key'
-    },
-    {
-      name: 'Salesforce B2B Veterinary Accounts',
-      type: 'Corporate Clinics & Enterprise B2B',
-      endpoint: 'zenve.my.salesforce.com/services/oauth2',
-      syncedContacts: '48 corporate clinics',
-      syncFrequency: 'Hourly batch',
-      lastSync: '14m ago',
-      queueStatus: '0 backlog',
-      status: 'Connected',
-      tokenExpiry: 'Auto-refreshed'
-    }
-  ]);
+  const [connectors, setConnectors] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -91,10 +57,10 @@ export default function CrmStatus() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Synced Pet Profiles" value="142,500" delta="+184 today" trend="up" subtext="HubSpot CRM master" icon="🐾" />
+        <KpiCard label="Synced Pet Profiles" value="0" delta="+184 today" trend="up" subtext="HubSpot CRM master" icon="🐾" />
         <KpiCard label="Sync Lag" value="1.4 s" delta="Near real-time" trend="up" subtext="Webhook powered" icon="⚡" />
         <KpiCard label="Failed Sync Payloads" value="0 Failed" delta="100% clean" trend="up" subtext="Dead letter queue: 0" icon="🟢" />
-        <KpiCard label="API Quota Remaining" value="88.4%" delta="442k / 500k calls" trend="up" subtext="Daily HubSpot quota" icon="📊" />
+        <KpiCard label="API Quota Remaining" value="0.0%" delta="442k / 500k calls" trend="up" subtext="Daily HubSpot quota" icon="📊" />
       </div>
 
       {/* CRM Connectors Table */}

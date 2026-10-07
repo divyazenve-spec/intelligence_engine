@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DoctorActivity() {
-  const liveActivities = [
-    { time: '18:04', doctor: 'Dr. Divya Ramesh', action: 'Completed Surgery', details: 'Tibial Plateau Leveling Osteotomy (TPLO) on German Shepherd', location: 'OT-1 Indiranagar', status: 'Success' },
-    { time: '17:52', doctor: 'Dr. Arvind Swaminathan', action: 'Echocardiogram Review', details: 'Doppler assessment on Persian Cat - Prescribed Pimobendan', location: 'Cardio Lab Koramangala', status: 'Logged' },
-    { time: '17:40', doctor: 'Dr. Siddharth Varma', action: 'Vaccination Milestone', details: '7-in-1 Booster + Anti-Rabies administered to Golden Pup', location: 'OPD-2 Jayanagar', status: 'Completed' },
-    { time: '17:28', doctor: 'Dr. Meera Nambiar', action: 'Spinal Rehab Session', details: 'Hydrotherapy & neuromuscular electric stimulation', location: 'Physio Suite Whitefield', status: 'Active' },
-    { time: '17:15', doctor: 'Dr. Ananya Joshi', action: 'Skin Scraping Cytology', details: 'Microscopic examination for demodectic mange diagnosed', location: 'Diagnostics HSR', status: 'Discharged' },
-    { time: '16:50', doctor: 'Dr. Rohan Deshmukh', action: 'Emergency Crop Flush', details: 'Ingluvies impaction treated in Eclectus Parrot', location: 'Exotic Ward Indiranagar', status: 'Stabilized' }
-  ];
+  const liveActivities = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 

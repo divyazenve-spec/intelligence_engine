@@ -7,24 +7,9 @@ export default function PurchaseHistory() {
   const [filterQuarter, setFilterQuarter] = useState('ALL');
   const [filterCategory, setFilterCategory] = useState('ALL');
 
-  const historyRecords = [
-    { poNumber: 'PO-2026-0914', vendor: 'MSD Animal Health India', category: 'Vaccines & Biologics', itemsCount: 4, orderValue: '₹4,85,000', deliveredDate: '2026-09-28', location: 'Koramangala Central Hub', status: 'Fulfilled', invoiceRef: 'INV-MSD-9481', paidDate: '2026-10-02' },
-    { poNumber: 'PO-2026-0882', vendor: 'Synthes Vet India', category: 'Surgical Implants', itemsCount: 8, orderValue: '₹3,40,000', deliveredDate: '2026-09-22', location: 'Bandra Specialty OT', status: 'Fulfilled', invoiceRef: 'INV-SYN-3301', paidDate: '2026-09-29' },
-    { poNumber: 'PO-2026-0850', vendor: 'Boehringer Ingelheim Vet', category: 'Rx Pharmaceuticals', itemsCount: 6, orderValue: '₹5,12,000', deliveredDate: '2026-09-18', location: 'Whitefield Care Hub', status: 'Fulfilled', invoiceRef: 'INV-BI-8820', paidDate: '2026-09-25' },
-    { poNumber: 'PO-2026-0819', vendor: 'Zoetis India Ltd.', category: 'Broad Spectrum Rx', itemsCount: 5, orderValue: '₹3,95,000', deliveredDate: '2026-09-10', location: 'Okhla Clinic Hub', status: 'Fulfilled', invoiceRef: 'INV-ZOE-4112', paidDate: '2026-09-19' },
-    { poNumber: 'PO-2026-0790', vendor: "Hill's Pet Nutrition", category: 'Rx Diet Foods', itemsCount: 12, orderValue: '₹2,60,000', deliveredDate: '2026-08-30', location: 'Koramangala Central Hub', status: 'Fulfilled', invoiceRef: 'INV-HIL-7740', paidDate: '2026-09-08' },
-    { poNumber: 'PO-2026-0745', vendor: 'Royal Canin India', category: 'Veterinary Nutrition', itemsCount: 14, orderValue: '₹4,10,000', deliveredDate: '2026-08-22', location: 'Andheri Clinic Hub', status: 'Fulfilled', invoiceRef: 'INV-RC-5520', paidDate: '2026-08-31' },
-    { poNumber: 'PO-2026-0710', vendor: 'Virbac India Pvt. Ltd.', category: 'Dental & Dermatology', itemsCount: 7, orderValue: '₹2,15,000', deliveredDate: '2026-08-14', location: 'Indiranagar Hub', status: 'Fulfilled', invoiceRef: 'INV-VIR-3921', paidDate: '2026-08-24' },
-    { poNumber: 'PO-2026-0680', vendor: 'Intas Pharmaceuticals', category: 'Generic APIs & NSAID', itemsCount: 9, orderValue: '₹1,90,000', deliveredDate: '2026-08-04', location: 'Koramangala Central Hub', status: 'Fulfilled', invoiceRef: 'INV-INT-1102', paidDate: '2026-08-12' },
-    { poNumber: 'PO-2026-0622', vendor: 'Dechra Veterinary Products', category: 'Dermatology & Ophthal', itemsCount: 5, orderValue: '₹1,65,000', deliveredDate: '2026-07-26', location: 'Bandra Specialty OT', status: 'Fulfilled', invoiceRef: 'INV-DEC-9041', paidDate: '2026-08-05' },
-    { poNumber: 'PO-2026-0590', vendor: 'MSD Animal Health India', category: 'Vaccines & Biologics', itemsCount: 6, orderValue: '₹4,30,000', deliveredDate: '2026-07-15', location: 'Koramangala Central Hub', status: 'Fulfilled', invoiceRef: 'INV-MSD-8910', paidDate: '2026-07-24' }
-  ];
+  const historyRecords = [];
 
-  const quarterlySpend = [
-    { quarter: 'Q1 FY26-27 (Apr-Jun)', totalSpend: '₹34.50 L', ordersCount: 28, avgTicket: '₹1.23 L', onTimeDelivery: '96.2%' },
-    { quarter: 'Q2 FY26-27 (Jul-Sep)', totalSpend: '₹42.80 L', ordersCount: 34, avgTicket: '₹1.26 L', onTimeDelivery: '97.4%' },
-    { quarter: 'Q3 FY26-27 (Oct MTD)', totalSpend: '₹12.60 L', ordersCount: 9, avgTicket: '₹1.40 L', onTimeDelivery: '98.5%' }
-  ];
+  const quarterlySpend = [];
 
   const filtered = historyRecords.filter(r => {
     if (filterCategory !== 'ALL' && r.category !== filterCategory) return false;
@@ -52,11 +37,11 @@ export default function PurchaseHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Cumulative Spend (FYTD)" value="₹89.90 L" delta="+18.4% YoY" trend="up" subtext="71 POs fulfilled" icon="💰" />
+        <KpiCard label="Cumulative Spend (FYTD)" value="₹0" delta="+18.4% YoY" trend="up" subtext="71 POs fulfilled" icon="💰" />
         <KpiCard label="Fulfilled Orders" value="71 Orders" delta="100% GRN signed" trend="up" subtext="Zero lost shipments" icon="📦" />
-        <KpiCard label="Avg. Order Value" value="₹1.27 L" delta="+4.2% vs FY25" trend="up" subtext="Bulk purchasing efficiency" icon="📊" />
-        <KpiCard label="Historical Fulfillment SLA" value="97.1%" delta="+1.8% vs last year" trend="up" subtext="On-time delivery" icon="⏱️" />
-        <KpiCard label="Invoice Match Accuracy" value="99.4%" delta="Three-way PO/GRN/Inv" trend="up" subtext="Audit compliant" icon="🛡️" />
+        <KpiCard label="Avg. Order Value" value="₹0" delta="+4.2% vs FY25" trend="up" subtext="Bulk purchasing efficiency" icon="📊" />
+        <KpiCard label="Historical Fulfillment SLA" value="0.0%" delta="+1.8% vs last year" trend="up" subtext="On-time delivery" icon="⏱️" />
+        <KpiCard label="Invoice Match Accuracy" value="0.0%" delta="Three-way PO/GRN/Inv" trend="up" subtext="Audit compliant" icon="🛡️" />
         <KpiCard label="Active Supplier Count" value="24 Vendors" delta="Direct pharma & nutrition" trend="neutral" subtext="Approved registry" icon="🏭" />
       </div>
 

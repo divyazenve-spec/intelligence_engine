@@ -5,22 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function SalaryCost() {
   const [viewBy, setViewBy] = useState('department');
 
-  const deptCosts = [
-    { dept: 'Veterinary Clinical Services', headcount: 48, monthlyCTC: '₹42,00,000', annualCTC: '₹5,04,00,000', pctShare: 25.6, color: '#10b981' },
-    { dept: 'Technology & AI Engineering', headcount: 24, monthlyCTC: '₹38,00,000', annualCTC: '₹4,56,00,000', pctShare: 23.2, color: '#ec4899' },
-    { dept: 'Logistics & 60-Min Delivery', headcount: 54, monthlyCTC: '₹28,80,000', annualCTC: '₹3,45,60,000', pctShare: 17.5, color: '#f59e0b' },
-    { dept: 'Pharmacy & Drug Dispensing', headcount: 32, monthlyCTC: '₹22,50,000', annualCTC: '₹2,70,000,000', pctShare: 13.7, color: '#0ea5e9' },
-    { dept: 'Warehouse & Fulfillment', headcount: 28, monthlyCTC: '₹18,40,000', annualCTC: '₹2,20,80,000', pctShare: 11.2, color: '#8b5cf6' },
-    { dept: 'Customer Delight & Support', headcount: 22, monthlyCTC: '₹14,20,000', annualCTC: '₹1,70,40,000', pctShare: 8.8, color: '#14b8a6' }
-  ];
+  const deptCosts = [];
 
-  const salaryBands = [
-    { band: 'Band E1 (Leadership / CMO / VP)', range: '₹25L – ₹45L CTC', count: 6, totalSpend: '₹2,10,00,000 / yr' },
-    { band: 'Band E2 (Senior Surgeons & Staff Eng)', range: '₹18L – ₹25L CTC', count: 18, totalSpend: '₹3,96,00,000 / yr' },
-    { band: 'Band M1 (Mid-Level Specialists & Leads)', range: '₹10L – ₹18L CTC', count: 42, totalSpend: '₹5,88,00,000 / yr' },
-    { band: 'Band S1 (Pharmacists & Ops Associates)', range: '₹5L – ₹10L CTC', count: 68, totalSpend: '₹5,10,00,000 / yr' },
-    { band: 'Band F1 (Riders & Ground Delivery Riders)', range: '₹3.5L – ₹5L CTC', count: 74, totalSpend: '₹2,62,80,000 / yr' }
-  ];
+  const salaryBands = [];
 
   return (
     <DashboardLayout
@@ -29,14 +16,14 @@ export default function SalaryCost() {
       title="Workforce CTC & Departmental Compensation Analytics"
       subtitle="Executive Cost-to-Company (CTC) breakdown, salary band stratification, employer statutory liabilities, and annual payroll forecast"
       icon="💰"
-      badge="₹19.66 Cr Annualized CTC · 208 Headcount"
+      badge="₹0 Annualized CTC · 208 Headcount"
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Total CTC Burn" value="₹1.64 Cr / mo" delta="98% within plan" trend="neutral" subtext="Direct compensation & benefits" icon="💵" />
-        <KpiCard label="Annualized Payroll Commitment" value="₹19.66 Cr" delta="+12.4% vs FY25" trend="up" subtext="Projected for full financial year" icon="📊" />
-        <KpiCard label="Average CTC per Employee" value="₹9,45,000" delta="Median: ₹7,80,000" trend="neutral" subtext="Blended clinical, tech & fleet" icon="🏷️" />
-        <KpiCard label="Employer Statutory Match" value="₹19.72 L / mo" delta="PF 12% + Insurance" trend="neutral" subtext="Fully provisioned on balance sheet" icon="🏛️" />
+        <KpiCard label="Monthly Total CTC Burn" value="₹0 / mo" delta="98% within plan" trend="neutral" subtext="Direct compensation & benefits" icon="💵" />
+        <KpiCard label="Annualized Payroll Commitment" value="₹0" delta="+12.4% vs FY25" trend="up" subtext="Projected for full financial year" icon="📊" />
+        <KpiCard label="Average CTC per Employee" value="₹0" delta="Median: ₹0" trend="neutral" subtext="Blended clinical, tech & fleet" icon="🏷️" />
+        <KpiCard label="Employer Statutory Match" value="₹0 / mo" delta="PF 12% + Insurance" trend="neutral" subtext="Fully provisioned on balance sheet" icon="🏛️" />
       </div>
 
       {/* View Switcher */}

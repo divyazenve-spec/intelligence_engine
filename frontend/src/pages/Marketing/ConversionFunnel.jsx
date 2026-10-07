@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ConversionFunnel() {
-  const funnelSteps = [
-    { stage: '1. Ad Impressions & Brand Discovery', volume: '1,840,000', dropPct: '—', convRate: '100%', channelLead: 'Meta Reels (540K), Google (420K)', color: '#3b82f6' },
-    { stage: '2. Clicks & App Store Landing', volume: '148,000', dropPct: '92.0%', convRate: '8.04%', channelLead: 'Google Search Intent (9.0% CTR)', color: '#0ea5e9' },
-    { stage: '3. Lead Capture & App Installed', volume: '32,400', dropPct: '78.1%', convRate: '21.89%', channelLead: 'App Store (Android 66%, iOS 34%)', color: '#10b981' },
-    { stage: '4. Consult Initiated or Cart Added', volume: '12,800', dropPct: '60.5%', convRate: '39.51%', channelLead: 'Vaccine & Telehealth Bookings', color: '#f59e0b' },
-    { stage: '5. Paid Order / Completed Booking', volume: '4,720', dropPct: '63.1%', convRate: '36.88%', channelLead: 'Average Order Value: ₹1,940', color: '#ec4899' }
-  ];
+  const funnelSteps = [];
 
   return (
     <DashboardLayout
@@ -18,13 +12,13 @@ export default function ConversionFunnel() {
       title="Omni-Channel Conversion Funnel & Micro-Attribution"
       subtitle="Step-by-step visitor progression from initial ad view down to completed veterinary appointment or order"
       icon="⚡"
-      badge="2.57% End-to-End Funnel Conversion"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top-of-Funnel Reach" value="1.84M" delta="+24.5%" trend="up" subtext="Impressions across ads" icon="👁️" />
-        <KpiCard label="Click-to-Install Rate" value="21.9%" delta="+2.8%" trend="up" subtext="High app intent" icon="📲" />
-        <KpiCard label="Cart-to-Paid Rate" value="36.9%" delta="+4.1%" trend="up" subtext="Checkout completion" icon="🛒" />
-        <KpiCard label="Total Converted Customers" value="4,720" delta="+18.9%" trend="up" subtext="Net new buyers MTD" icon="🎉" />
+        <KpiCard label="Top-of-Funnel Reach" value="1.84M" delta="0.0%" trend="up" subtext="Impressions across ads" icon="👁️" />
+        <KpiCard label="Click-to-Install Rate" value="0.0%" delta="0.0%" trend="up" subtext="High app intent" icon="📲" />
+        <KpiCard label="Cart-to-Paid Rate" value="0.0%" delta="0.0%" trend="up" subtext="Checkout completion" icon="🛒" />
+        <KpiCard label="Total Converted Customers" value="0" delta="0.0%" trend="up" subtext="Net new buyers MTD" icon="🎉" />
       </div>
 
       <div style={{

@@ -25,45 +25,24 @@
 
   /* ── 10 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',     label: 'Fashion Dashboard',     icon: '🎀', hash: '#fashion-dashboard',     badge: '₹14.25L MTD',    title: 'Zenve Pet Haute Couture & Lifestyle Command Center', sub: 'Bespoke luxury pet apparel, flagship showroom footfalls, online drops, and premium lifestyle unit economics' },
-    { id: 'products',      label: 'Fashion Products',      icon: '👗', hash: '#fashion-products',      badge: '142 Styles',     title: 'Haute Couture Product Line & Sizing Master', sub: 'Bespoke pet apparel catalog, fabric specifications, ergonomic sizing matrices, and retail inventory valuation' },
-    { id: 'orders',        label: 'Fashion Orders',        icon: '🛍️', hash: '#fashion-orders',        badge: '730 Orders',     title: 'Fashion Orders & Tailoring Pipeline', sub: 'Bespoke atelier tailoring queues, showroom styling orders, online drops, and custom monogram fulfillment' },
-    { id: 'customers',     label: 'Fashion Customers',     icon: '💎', hash: '#fashion-customers',     badge: '1.8K VIPs',      title: 'Haute Couture Clientele & Pet Sizing Profiles', sub: 'Exclusive pet fashion client directory, precision ergonomic sizing records, lifetime value, and styling consultation history' },
-    { id: 'inventory',     label: 'Fashion Inventory',     icon: '📦', hash: '#fashion-inventory',     badge: '₹33.15L Stock',  title: 'Fashion Stock Allocation & Sizing Matrix', sub: 'Finished pet garments distribution across sizing grids (XS to XXL), raw atelier materials, and showroom stock cover' },
-    { id: 'showrooms',     label: 'Fashion Showrooms',     icon: '🛍️', hash: '#fashion-showrooms',     badge: '4 Boutiques',    title: 'Flagship Pet Couture Showrooms & Experience Centers', sub: 'Physical boutique performance, in-store trial room conversions, pet footfall, and retail revenue per square foot' },
-    { id: 'online-sales',  label: 'Online Fashion Sales',  icon: '📱', hash: '#online-fashion-sales',  badge: '₹28.42L Online', title: 'Online Fashion E-Commerce & Digital Drops', sub: 'Mobile app luxury storefront, limited-edition drop sell-through, digital 3D sizing guide, and social commerce' },
-    { id: 'revenue',       label: 'Fashion Revenue',       icon: '💵', hash: '#fashion-revenue',       badge: '+36.4% YoY',     title: 'Fashion Revenue Streams & Financial Trajectory', sub: 'Financial performance across apparel lines, seasonal holiday surges, geographic luxury hubs, and channel distribution' },
-    { id: 'profitability', label: 'Fashion Profitability', icon: '💎', hash: '#fashion-profitability', badge: '68.2% Margin',   title: 'Fashion Margins, COGS & Contribution Profitability', sub: 'Bespoke pet apparel unit economics, artisan atelier labor costs, channel contribution margins, and markdown protection' },
-    { id: 'collections',   label: 'Fashion Collections',   icon: '✨', hash: '#fashion-collections',   badge: '3 Live Drops',   title: 'Haute Couture Collections & Designer Runway Drops', sub: 'Limited-edition seasonal capsule launches, sell-through velocity, fabric sourcing lead times, and designer portfolios' }
+    { id: 'dashboard',     label: 'Fashion Dashboard',     icon: '🎀', hash: '#fashion-dashboard',     badge: '',    title: 'Zenve Pet Haute Couture & Lifestyle Command Center', sub: 'Bespoke luxury pet apparel, flagship showroom footfalls, online drops, and premium lifestyle unit economics' },
+    { id: 'products',      label: 'Fashion Products',      icon: '👗', hash: '#fashion-products',      badge: '',     title: 'Haute Couture Product Line & Sizing Master', sub: 'Bespoke pet apparel catalog, fabric specifications, ergonomic sizing matrices, and retail inventory valuation' },
+    { id: 'orders',        label: 'Fashion Orders',        icon: '🛍️', hash: '#fashion-orders',        badge: '',     title: 'Fashion Orders & Tailoring Pipeline', sub: 'Bespoke atelier tailoring queues, showroom styling orders, online drops, and custom monogram fulfillment' },
+    { id: 'customers',     label: 'Fashion Customers',     icon: '💎', hash: '#fashion-customers',     badge: '',      title: 'Haute Couture Clientele & Pet Sizing Profiles', sub: 'Exclusive pet fashion client directory, precision ergonomic sizing records, lifetime value, and styling consultation history' },
+    { id: 'inventory',     label: 'Fashion Inventory',     icon: '📦', hash: '#fashion-inventory',     badge: '',  title: 'Fashion Stock Allocation & Sizing Matrix', sub: 'Finished pet garments distribution across sizing grids (XS to XXL), raw atelier materials, and showroom stock cover' },
+    { id: 'showrooms',     label: 'Fashion Showrooms',     icon: '🛍️', hash: '#fashion-showrooms',     badge: '',    title: 'Flagship Pet Couture Showrooms & Experience Centers', sub: 'Physical boutique performance, in-store trial room conversions, pet footfall, and retail revenue per square foot' },
+    { id: 'online-sales',  label: 'Online Fashion Sales',  icon: '📱', hash: '#online-fashion-sales',  badge: '', title: 'Online Fashion E-Commerce & Digital Drops', sub: 'Mobile app luxury storefront, limited-edition drop sell-through, digital 3D sizing guide, and social commerce' },
+    { id: 'revenue',       label: 'Fashion Revenue',       icon: '💵', hash: '#fashion-revenue',       badge: '',     title: 'Fashion Revenue Streams & Financial Trajectory', sub: 'Financial performance across apparel lines, seasonal holiday surges, geographic luxury hubs, and channel distribution' },
+    { id: 'profitability', label: 'Fashion Profitability', icon: '💎', hash: '#fashion-profitability', badge: '',   title: 'Fashion Margins, COGS & Contribution Profitability', sub: 'Bespoke pet apparel unit economics, artisan atelier labor costs, channel contribution margins, and markdown protection' },
+    { id: 'collections',   label: 'Fashion Collections',   icon: '✨', hash: '#fashion-collections',   badge: '',   title: 'Haute Couture Collections & Designer Runway Drops', sub: 'Limited-edition seasonal capsule launches, sell-through velocity, fabric sourcing lead times, and designer portfolios' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var PRODUCTS = [
-    { sku: 'ZVF-HARN-01', name: 'Signature Italian Leather Harness', cat: 'Harnesses', petType: 'Dog (All Breeds)', sizes: 'S, M, L, XL', price: '₹3,450', cost: '₹1,090', stock: 184, margin: '68.4%', status: 'In Stock' },
-    { sku: 'ZVF-COAT-04', name: 'Monsoon Waterproof Reflective Parka', cat: 'Weatherwear', petType: 'Dog (Medium/Large)', sizes: 'M, L, XL, XXL', price: '₹2,850', cost: '₹980', stock: 240, margin: '65.6%', status: 'In Stock' },
-    { sku: 'ZVF-KNIT-09', name: 'Cashmere-Blend Cable Knit Sweater', cat: 'Winter Knits', petType: 'Dog & Cat', sizes: 'XS, S, M, L', price: '₹2,400', cost: '₹690', stock: 112, margin: '71.3%', status: 'In Stock' },
-    { sku: 'ZVF-COLL-02', name: 'Velvet Midnight Rose Gold Collar', cat: 'Collars', petType: 'Universal', sizes: 'S, M, L', price: '₹1,650', cost: '₹420', stock: 320, margin: '74.5%', status: 'In Stock' },
-    { sku: 'ZVF-BAND-05', name: 'Handcrafted Silk Festive Bandana', cat: 'Accessories', petType: 'Universal', sizes: 'XS, S, M, L', price: '₹850', cost: '₹185', stock: 450, margin: '78.2%', status: 'In Stock' },
-    { sku: 'ZVF-BOOT-03', name: 'All-Terrain Protective Paw Boots (Set of 4)', cat: 'Footwear', petType: 'Dog (Active)', sizes: 'S, M, L, XL', price: '₹1,950', cost: '₹620', stock: 85, margin: '68.2%', status: 'Low Stock' },
-    { sku: 'ZVF-ROBE-07', name: 'Post-Bath Microfiber Spa Robe', cat: 'Loungewear', petType: 'Dog & Cat', sizes: 'S, M, L, XL', price: '₹1,450', cost: '₹410', stock: 160, margin: '71.7%', status: 'In Stock' },
-    { sku: 'ZVF-TUX-11', name: 'Bespoke Satin Wedding Tuxedo & Bowtie', cat: 'Formal Atelier', petType: 'Custom Tailored', sizes: 'Made to Measure', price: '₹4,950', cost: '₹1,450', stock: 34, margin: '70.7%', status: 'Atelier Queue' }
-  ];
+  var PRODUCTS = [];
 
-  var ORDERS = [
-    { orderId: 'ORD-FSH-7102', customer: 'Ananya Deshmukh', pet: 'Koko (French Bulldog)', items: 'Italian Leather Harness (M) + Matching Leash', channel: 'Bandra Boutique', customDetails: 'Gold Embossed "KOKO"', value: '₹5,100', date: '2026-10-04', status: 'Delivered', payment: 'Paid (UPI)' },
-    { orderId: 'ORD-FSH-7098', customer: 'Vikramaditya Singhania', pet: 'Simba (Golden Retriever)', items: 'Monsoon Waterproof Parka (XL)', channel: 'Online Store Drop', customDetails: 'Reflective Safety Trims', value: '₹2,850', date: '2026-10-04', status: 'Dispatched', payment: 'Paid (Card)' },
-    { orderId: 'ORD-FSH-7094', customer: 'Pooja Bhattacharya', pet: 'Bella (Shih Tzu)', items: 'Cashmere Cable Knit (S) + Silk Bandana', channel: 'Indiranagar Studio', customDetails: 'Monogrammed Initial "B"', value: '₹3,250', date: '2026-10-03', status: 'Delivered', payment: 'Paid (POS)' },
-    { orderId: 'ORD-FSH-7089', customer: 'Rohan Mehra', pet: 'Oscar (Beagle)', items: 'Bespoke Wedding Tuxedo & Bowtie', channel: 'Concierge Atelier', customDetails: 'Custom Made-to-Measure', value: '₹4,950', date: '2026-10-02', status: 'In Tailoring', payment: 'Advance Paid' },
-    { orderId: 'ORD-FSH-7085', customer: 'Dr. Shruti Nair', pet: 'Milo (Persian Cat)', items: 'Velvet Midnight Rose Gold Collar (XS)', channel: 'Online Store Drop', customDetails: 'Standard Bell Charm', value: '₹1,650', date: '2026-10-02', status: 'Delivered', payment: 'Paid (UPI)' },
-    { orderId: 'ORD-FSH-7081', customer: 'Kunal Kapoor', pet: 'Diesel (Doberman)', items: 'Signature Leather Harness (XL) + Paw Boots', channel: 'Koramangala Lounge', customDetails: 'Heavy-Duty Brass Buckles', value: '₹5,400', date: '2026-10-01', status: 'Delivered', payment: 'Paid (POS)' }
-  ];
+  var ORDERS = [];
 
-  var SHOWROOMS = [
-    { id: 'SHW-01', name: 'Indiranagar Flagship Pet Couture Studio', city: 'Bengaluru', area: '100ft Road, Indiranagar', sqft: 1850, footfall: '640 pets', trials: 412, sales: '₹5,42,000', revPerSqft: '₹293 / sqft', conversion: '38.5%', avgTicket: '₹2,190', leadStylist: 'Aarushi Mehta', rating: '4.9 ★' },
-    { id: 'SHW-02', name: 'Bandra Luxury Pet Boutique & Atelier', city: 'Mumbai', area: 'Pali Hill, Bandra West', sqft: 1450, footfall: '520 pets', trials: 380, sales: '₹4,88,000', revPerSqft: '₹336 / sqft', conversion: '41.2%', avgTicket: '₹2,280', leadStylist: 'Zoya Qureshi', rating: '4.9 ★' },
-    { id: 'SHW-03', name: 'Koramangala Pet Styling Lounge', city: 'Bengaluru', area: '4th Block, Koramangala', sqft: 1200, footfall: '480 pets', trials: 295, sales: '₹3,95,000', revPerSqft: '₹329 / sqft', conversion: '34.8%', avgTicket: '₹2,360', leadStylist: 'Karan Sen', rating: '4.8 ★' },
-    { id: 'SHW-04', name: 'Jubilee Hills Experience Center (Soft Launch)', city: 'Hyderabad', area: 'Road No. 36, Jubilee Hills', sqft: 2100, footfall: '310 pets', trials: 210, sales: '₹2,85,000', revPerSqft: '₹135 / sqft', conversion: '32.0%', avgTicket: '₹2,870', leadStylist: 'Pravin Varma', rating: '4.7 ★' }
-  ];
+  var SHOWROOMS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

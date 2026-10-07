@@ -6,16 +6,7 @@ export default function EmployeePerformance() {
   const [cycle, setCycle] = useState('Q3-2026');
   const [filterRating, setFilterRating] = useState('ALL');
 
-  const performers = [
-    { name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', score: 98.4, rating: 'Exceptional (5★)', consultations: 342, csat: '4.95 / 5.0', sla: '99.4%', status: 'Appraised' },
-    { name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', score: 96.8, rating: 'Exceptional (5★)', consultations: 'N/A (24 PRs)', csat: '4.90 / 5.0', sla: '98.5%', status: 'Appraised' },
-    { name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', score: 95.2, rating: 'Exceeds Expectations (4★)', consultations: 298, csat: '4.88 / 5.0', sla: '97.8%', status: 'Appraised' },
-    { name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', score: 94.6, rating: 'Exceeds Expectations (4★)', consultations: '612 Deliveries', csat: '4.92 / 5.0', sla: '98.9%', status: 'Appraised' },
-    { name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', score: 93.8, rating: 'Exceeds Expectations (4★)', consultations: '1,420 Rx', csat: '4.82 / 5.0', sla: '99.1%', status: 'Appraised' },
-    { name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', score: 91.5, rating: 'Meets Expectations (3★)', consultations: '890 Tickets', csat: '4.75 / 5.0', sla: '94.2%', status: 'Pending Review' },
-    { name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', score: 89.2, rating: 'Meets Expectations (3★)', consultations: '12k SKUs', csat: '4.68 / 5.0', sla: '95.0%', status: 'Appraised' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', score: 87.0, rating: 'Meets Expectations (3★)', consultations: 'Stock Audit', csat: '4.60 / 5.0', sla: '93.4%', status: 'Under Review' }
-  ];
+  const performers = [];
 
   const filtered = performers.filter(p => {
     if (filterRating === 'ALL') return true;

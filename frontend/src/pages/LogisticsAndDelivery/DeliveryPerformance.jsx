@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliveryPerformance() {
-  const topRiders = [
-    { rank: 1, name: 'Kiran Kumar', vehicleId: 'EV-BLR-044', hub: 'Koramangala Hub', deliveries: 312, onTime: '99.7%', avgSpeed: '27.4 km/h', csat: '4.98 / 5.0', coldChainAudits: '100% Pass', badge: 'Star Rider of Month' },
-    { rank: 2, name: 'Arun Varma', vehicleId: 'EV-BLR-012', hub: 'Indiranagar Hub', deliveries: 294, onTime: '99.3%', avgSpeed: '26.8 km/h', csat: '4.95 / 5.0', coldChainAudits: '100% Pass', badge: 'Top CSAT' },
-    { rank: 3, name: 'Sunil Jadhav', vehicleId: 'EV-BOM-088', hub: 'Bandra West Hub', deliveries: 288, onTime: '98.9%', avgSpeed: '22.1 km/h', csat: '4.94 / 5.0', coldChainAudits: '100% Pass', badge: 'Rapid City Master' },
-    { rank: 4, name: 'Praveen Gowda', vehicleId: 'EV-BLR-023', hub: 'Whitefield Hub', deliveries: 276, onTime: '98.6%', avgSpeed: '28.2 km/h', csat: '4.91 / 5.0', coldChainAudits: '100% Pass', badge: 'Long-Range Ace' },
-    { rank: 5, name: 'Mohit Sharma', vehicleId: 'EV-DEL-009', hub: 'Gurugram Hub', deliveries: 264, onTime: '98.4%', avgSpeed: '29.5 km/h', csat: '4.89 / 5.0', coldChainAudits: '100% Pass', badge: 'High-Volume Pro' }
-  ];
+  const topRiders = [];
 
   return (
     <DashboardLayout
@@ -18,13 +12,13 @@ export default function DeliveryPerformance() {
       title="Rider & Fleet Delivery Performance Scorecards"
       subtitle="Fulfillment efficiency rankings, doorstep customer satisfaction (CSAT), cold-chain compliance, and safety scorecards"
       icon="🏆"
-      badge="4.92 / 5.0 Network CSAT Score"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Network CSAT Score" value="4.92 / 5" delta="+0.04 MoM" trend="up" subtext="Based on 18,400 ratings" icon="⭐" />
-        <KpiCard label="On-Time Delivery Rate" value="98.8%" delta="+0.6% MoM" trend="up" subtext="Across all 76 EV riders" icon="⏱️" />
+        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="+0.6% MoM" trend="up" subtext="Across all 76 EV riders" icon="⏱️" />
         <KpiCard label="Avg Rider Velocity" value="26.8 km/h" delta="Green eco-speed" trend="up" subtext="Zero safety incidents" icon="⚡" />
-        <KpiCard label="Cold-Chain Audit Pass" value="100%" delta="Zero spoilage" trend="up" subtext="14,800 vaccine deliveries" icon="❄️" />
+        <KpiCard label="Cold-Chain Audit Pass" value="0.0%" delta="Zero spoilage" trend="up" subtext="14,800 vaccine deliveries" icon="❄️" />
       </div>
 
       <div style={{

@@ -6,17 +6,7 @@ export default function Appointments() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const appointments = [
-    { id: 'APT-1041', time: '09:00 AM', pet: 'Koko (Pug)', parent: 'Ramesh Sundaram', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Annual Health Check & Rabies', slotType: 'Scheduled App', duration: '20 mins', status: 'Confirmed' },
-    { id: 'APT-1042', time: '09:30 AM', pet: 'Ginger (Tabby Cat)', parent: 'Meera Sen', doctor: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', service: 'Senior Feline Renal Profile', slotType: 'Scheduled App', duration: '30 mins', status: 'In Session' },
-    { id: 'APT-1043', time: '10:00 AM', pet: 'Thor (Rottweiler)', parent: 'Deepak Varma', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Pre-Op Orthopedic Radiography', slotType: 'Referral', duration: '40 mins', status: 'Arrived / Checked In' },
-    { id: 'APT-1044', time: '10:30 AM', pet: 'Daisy (Lhasa Apso)', parent: 'Nandita Bose', doctor: 'Dr. Karan Patel', clinic: 'Bandra West Super-Clinic', service: 'Cytology & Medicated Bath', slotType: 'Walk-In Priority', duration: '30 mins', status: 'Confirmed' },
-    { id: 'APT-1045', time: '11:15 AM', pet: 'Whiskey (Golden Retriever)', parent: 'Amitabh Sen', doctor: 'Dr. Neha Singh', clinic: 'Gurugram Central Hospital', service: 'Echocardiogram & ECG Review', slotType: 'Scheduled App', duration: '45 mins', status: 'Confirmed' },
-    { id: 'APT-1046', time: '12:00 PM', pet: 'Snowy (Maltese)', parent: 'Preeti Chawla', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Puppy Booster & Microchip', slotType: 'Scheduled App', duration: '20 mins', status: 'Scheduled' },
-    { id: 'APT-1047', time: '01:30 PM', pet: 'Rocky (Doberman)', parent: 'Kabir Bakshi', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Post-Surgical Suture Removal', slotType: 'Follow-Up', duration: '15 mins', status: 'Scheduled' },
-    { id: 'APT-1048', time: '02:15 PM', pet: 'Simba (Persian Cat)', parent: 'Zoya Merchant', doctor: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', service: 'Vaccination & Deworming', slotType: 'Scheduled App', duration: '20 mins', status: 'Scheduled' },
-    { id: 'APT-1049', time: '03:00 PM', pet: 'Tyson (Pitbull)', parent: 'Karthik Raja', doctor: 'Dr. Karan Patel', clinic: 'Bandra West Super-Clinic', service: 'Allergy Skin Scratch Panel', slotType: 'Scheduled App', duration: '30 mins', status: 'Rescheduled' }
-  ];
+  const appointments = [];
 
   const filtered = appointments.filter(a => {
     const matchesFilter = filter === 'ALL' || a.status === filter || a.slotType === filter;
@@ -35,7 +25,7 @@ export default function Appointments() {
       title="Appointment Dispatch & Clinic Scheduling"
       subtitle="Calendar capacity, slot utilization, doctor availability, patient queues, and no-show prevention metrics"
       icon="📅"
-      badge="94.2% Slot Utilization"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {['ALL', 'Confirmed', 'In Session', 'Arrived / Checked In', 'Walk-In Priority', 'Scheduled'].map(f => (
@@ -62,8 +52,8 @@ export default function Appointments() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Booked Slots Today" value="76 Slots" delta="94.2% capacity" trend="up" subtext="Across 6 urban hospitals" icon="📅" />
         <KpiCard label="Walk-In Intake" value="12 Pets" delta="Zero bottleneck" trend="up" subtext="Fast-track triage buffer" icon="🚶" />
-        <KpiCard label="No-Show Rate" value="2.8%" delta="-1.4% MoM" trend="up" subtext="Automated WhatsApp 2h alert" icon="📉" />
-        <KpiCard label="On-Time Consultation" value="96.5%" delta="Within 5 mins of slot" trend="up" subtext="Doctor punctuality SLA" icon="⏱️" />
+        <KpiCard label="No-Show Rate" value="0.0%" delta="-1.4% MoM" trend="up" subtext="Automated WhatsApp 2h alert" icon="📉" />
+        <KpiCard label="On-Time Consultation" value="0.0%" delta="Within 5 mins of slot" trend="up" subtext="Doctor punctuality SLA" icon="⏱️" />
       </div>
 
       <div style={{

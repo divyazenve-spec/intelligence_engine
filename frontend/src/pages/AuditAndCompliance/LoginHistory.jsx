@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function LoginHistory() {
-  const logins = [
-    { user: 'executive@zenve.in', role: 'Super Admin', authMethod: 'Google SSO + FIDO2', ip: '192.168.1.5', location: 'Bengaluru, KA', device: 'macOS Chrome 124', time: '10:02 Today', status: 'Success' },
-    { user: 'priya.sharma@zenve.in', role: 'Doctor / Vet', authMethod: 'Password + TOTP 2FA', ip: '192.168.1.14', location: 'Bengaluru, KA', device: 'Windows 11 Edge', time: '08:45 Today', status: 'Success' },
-    { user: 'rajesh.verma@zenve.in', role: 'Pharmacist', authMethod: 'Password + SMS OTP', ip: '192.168.1.28', location: 'Bengaluru, KA', device: 'Android POS Tab', time: '08:30 Today', status: 'Success' },
-    { user: 'unknown.attempt@zenve.in', role: 'Guest', authMethod: 'Password (Brute)', ip: '203.0.113.42', location: 'External Network', device: 'Linux Curl Probe', time: '04:12 Today', status: 'Blocked' },
-    { user: 'sneha.rao@zenve.in', role: 'Accountant', authMethod: 'Google SSO + TOTP', ip: '192.168.1.19', location: 'Bengaluru, KA', device: 'macOS Safari 17', time: 'Yesterday 09:00', status: 'Success' }
-  ];
+  const logins = [];
 
   return (
     <DashboardLayout
@@ -18,11 +12,11 @@ export default function LoginHistory() {
       title="Login History & Access Security"
       subtitle="Tracks multi-factor authentication events, terminal fingerprints, IP addresses, and intrusion blocks"
       icon="🔑"
-      badge="100% 2FA Enforced"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="2FA Enforcement" value="100%" delta="Mandatory" trend="up" subtext="TOTP / SSO / FIDO2" icon="🔑" />
-        <KpiCard label="Successful Logins (24h)" value="142" delta="100% verified" trend="up" subtext="Zero credential bypass" icon="✅" />
+        <KpiCard label="2FA Enforcement" value="0.0%" delta="Mandatory" trend="up" subtext="TOTP / SSO / FIDO2" icon="🔑" />
+        <KpiCard label="Successful Logins (24h)" value="0" delta="100% verified" trend="up" subtext="Zero credential bypass" icon="✅" />
         <KpiCard label="Blocked Intrusion Attempts" value="1 Blocked" delta="Auto-drop" trend="warn" subtext="Firewall rate-limited" icon="🚫" />
         <KpiCard label="Concurrent Sessions" value="48 Active" delta="Normal" trend="neutral" subtext="Within enterprise budget" icon="💻" />
       </div>

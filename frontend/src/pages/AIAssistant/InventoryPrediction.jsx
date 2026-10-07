@@ -11,12 +11,7 @@ export default function InventoryPrediction() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const inventoryRisks = [
-    { sku: 'ZV-APO-01', name: 'Apoquel 16mg Allergy Tablets (30s)', stock: 24, daysLeft: '4 Days', burnRate: '6.0 units/day', reorderPoint: 45, status: 'Imminent Stockout', riskColor: '#dc2626' },
-    { sku: 'ZV-NEX-02', name: 'NexGard Spectra Medium 7.5-15kg', stock: 48, daysLeft: '8 Days', burnRate: '5.8 units/day', reorderPoint: 60, status: 'Reorder Window Open', riskColor: '#d97706' },
-    { sku: 'ZV-DEX-05', name: 'Dexdomitor 0.5mg/ml Sedative Inj', stock: 18, daysLeft: '11 Days', burnRate: '1.6 units/day', reorderPoint: 20, status: 'Reorder Window Open', riskColor: '#d97706' },
-    { sku: 'ZV-HIL-08', name: 'Hill\'s Prescription Diet c/d Multicare 3.8kg', stock: 96, daysLeft: '28 Days', burnRate: '3.4 units/day', reorderPoint: 40, status: 'Optimal Safety Stock', riskColor: '#16a34a' }
-  ];
+  const inventoryRisks = [];
 
   return (
     <DashboardLayout
@@ -30,8 +25,8 @@ export default function InventoryPrediction() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Imminent Stockout Risk" value="1 SKU" delta="4 Days Runway" trend="down" subtext="Apoquel 16mg" icon="⚠️" />
         <KpiCard label="Average Inventory Runway" value="38.4 Days" delta="Target: 30-45d" trend="neutral" subtext="Balanced working cap" icon="📅" />
-        <KpiCard label="Excess / Slow-Moving Stock" value="₹2.14L" delta="-18% vs Q2" trend="up" subtext="Promotional markdown" icon="📉" />
-        <KpiCard label="Automated Reorder Accuracy" value="98.7%" delta="Zero stockout SLA" trend="up" subtext="Autonomous POs" icon="🤖" />
+        <KpiCard label="Excess / Slow-Moving Stock" value="₹0" delta="-18% vs Q2" trend="up" subtext="Promotional markdown" icon="📉" />
+        <KpiCard label="Automated Reorder Accuracy" value="0.0%" delta="Zero stockout SLA" trend="up" subtext="Autonomous POs" icon="🤖" />
       </div>
 
       <div style={cardStyle}>

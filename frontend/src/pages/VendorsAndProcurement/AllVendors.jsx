@@ -6,20 +6,7 @@ export default function AllVendors() {
   const [search, setSearch] = useState('');
   const [filterStatus, setFilterStatus] = useState('ALL');
 
-  const vendors = [
-    { id: 'VND-001', name: 'MSD Animal Health India', category: 'Vaccines & Biologics', contact: 'Arjun Mehta', city: 'Mumbai', spend: '₹28.40 L', pos: 14, rating: 'AAA', status: 'Preferred', since: 'Jan 2022' },
-    { id: 'VND-002', name: 'Boehringer Ingelheim Vet', category: 'Antiparasitic & Rx', contact: 'Sunita Verma', city: 'Hyderabad', spend: '₹22.80 L', pos: 11, rating: 'AAA', status: 'Preferred', since: 'Mar 2022' },
-    { id: 'VND-003', name: 'Zoetis India Ltd.', category: 'Broad Spectrum Rx', contact: 'Vikram Nair', city: 'Bengaluru', spend: '₹19.60 L', pos: 9, rating: 'AA+', status: 'Preferred', since: 'Feb 2022' },
-    { id: 'VND-004', name: 'Royal Canin India', category: 'Veterinary Nutrition', contact: 'Priya Shah', city: 'Delhi', spend: '₹16.40 L', pos: 8, rating: 'AA', status: 'Active', since: 'Jun 2022' },
-    { id: 'VND-005', name: 'Virbac India Pvt. Ltd.', category: 'Dental & Dermatology', contact: 'Anand Rajan', city: 'Pune', spend: '₹12.20 L', pos: 6, rating: 'AA', status: 'Active', since: 'Sep 2022' },
-    { id: 'VND-006', name: 'Intas Pharmaceuticals', category: 'Generic APIs & NSAID', contact: 'Deepak Joshi', city: 'Ahmedabad', spend: '₹9.80 L', pos: 5, rating: 'A+', status: 'Active', since: 'Nov 2022' },
-    { id: 'VND-007', name: 'Dechra Veterinary Products', category: 'Dermatology & Ophthal', contact: 'Ramona Singh', city: 'Chennai', spend: '₹7.60 L', pos: 4, rating: 'A+', status: 'Active', since: 'Jan 2023' },
-    { id: 'VND-008', name: "Hill's Pet Nutrition", category: 'Rx Diet Foods', contact: 'Thomas Varghese', city: 'Bengaluru', spend: '₹6.40 L', pos: 3, rating: 'AA', status: 'Active', since: 'Apr 2023' },
-    { id: 'VND-009', name: 'Synthes Vet India', category: 'Surgical Implants', contact: 'Kavitha Rao', city: 'Bengaluru', spend: '₹18.60 L', pos: 7, rating: 'AAA', status: 'Preferred', since: 'Oct 2022' },
-    { id: 'VND-010', name: 'Himalaya Wellness Vet', category: 'Herbal Supplements', contact: 'Rajesh Kamat', city: 'Bengaluru', spend: '₹4.20 L', pos: 2, rating: 'A', status: 'Active', since: 'Jul 2023' },
-    { id: 'VND-011', name: 'Vetoquinol India', category: 'Dewormers', contact: 'Nandita Bose', city: 'Mumbai', spend: '₹3.80 L', pos: 2, rating: 'A', status: 'Active', since: 'Sep 2023' },
-    { id: 'VND-012', name: 'Bayer Animal Health India', category: 'Antiparasitic & Antifungal', contact: 'Suresh Kumar', city: 'Hyderabad', spend: '₹5.20 L', pos: 3, rating: 'A+', status: 'Active', since: 'Aug 2023' },
-  ];
+  const vendors = [];
 
   const filtered = vendors.filter(v => {
     if (filterStatus !== 'ALL' && v.status !== filterStatus) return false;
@@ -39,7 +26,7 @@ export default function AllVendors() {
       title="Complete Vendor Directory & Supplier Registry"
       subtitle="All 24 registered suppliers with contacts, spend totals, quality ratings, and GSTIN verification status"
       icon="🏭"
-      badge="24 Verified Suppliers"
+      badge=""
       actions={
         <button onClick={() => alert('Opening New Vendor Registration...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #3b82f6', background: 'rgba(59,130,246,0.15)', color: '#60a5fa', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Register Vendor

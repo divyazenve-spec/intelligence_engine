@@ -3,19 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CustomerAcquisition() {
-  const cohorts = [
-    { cohort: 'September 2026', acquired: '2,840', m1Repeat: '44.8%', m2Repeat: '38.2%', aov: '₹1,940', ltv60d: '₹4,120', retention: 'Healthy' },
-    { cohort: 'August 2026', acquired: '2,620', m1Repeat: '42.6%', m2Repeat: '36.5%', aov: '₹1,880', ltv60d: '₹3,980', retention: 'Healthy' },
-    { cohort: 'July 2026', acquired: '2,410', m1Repeat: '41.2%', m2Repeat: '35.1%', aov: '₹1,820', ltv60d: '₹3,840', retention: 'Healthy' },
-    { cohort: 'June 2026', acquired: '2,180', m1Repeat: '39.8%', m2Repeat: '34.0%', aov: '₹1,760', ltv60d: '₹3,680', retention: 'Benchmark' }
-  ];
+  const cohorts = [];
 
-  const petSplit = [
-    { species: 'Canine (Dogs)', count: '14,200', pct: '64.5%', favCategory: 'Vaccines, Food & Tick Shield' },
-    { species: 'Feline (Cats)', count: '5,800', pct: '26.4%', favCategory: 'Grooming, Litter & Renal Diet' },
-    { species: 'Avian & Birds', count: '1,200', pct: '5.5%', favCategory: 'Supplements & Seeds' },
-    { species: 'Small Animals & Exotics', count: '800', pct: '3.6%', favCategory: 'Specialist Nutrition' }
-  ];
+  const petSplit = [];
 
   return (
     <DashboardLayout
@@ -24,13 +14,13 @@ export default function CustomerAcquisition() {
       title="Pet Parent Acquisition & Cohort Retention"
       subtitle="New customer onboardings, pet species distribution, first-purchase basket size, and repeat behavior"
       icon="🐾"
-      badge="22,000 Total Acquired Pet Parents"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="New Customers (MTD)" value="2,840" delta="+16.8%" trend="up" subtext="First paid transaction" icon="👥" />
-        <KpiCard label="30-Day Repeat Purchase" value="44.8%" delta="+3.6%" trend="up" subtext="Rx refills & pet diets" icon="🔄" />
-        <KpiCard label="First Order Value (AOV)" value="₹1,940" delta="+₹120" trend="up" subtext="Benchmark: ₹1,650" icon="🛍️" />
-        <KpiCard label="60-Day Customer LTV" value="₹4,120" delta="+14.2%" trend="up" subtext="High companion loyalty" icon="💎" />
+        <KpiCard label="New Customers (MTD)" value="0" delta="0.0%" trend="up" subtext="First paid transaction" icon="👥" />
+        <KpiCard label="30-Day Repeat Purchase" value="0.0%" delta="0.0%" trend="up" subtext="Rx refills & pet diets" icon="🔄" />
+        <KpiCard label="First Order Value (AOV)" value="₹0" delta="+₹0" trend="up" subtext="Benchmark: ₹0" icon="🛍️" />
+        <KpiCard label="60-Day Customer LTV" value="₹0" delta="0.0%" trend="up" subtext="High companion loyalty" icon="💎" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '16px' }}>

@@ -3,52 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function PaymentGatewayHealth() {
-  const [gateways, setGateways] = useState([
-    {
-      name: 'Razorpay UPI & NetBanking',
-      provider: 'Razorpay Software Pvt Ltd',
-      status: 'Healthy',
-      latency: '78ms',
-      successRate: '99.4%',
-      uptime: '99.98%',
-      webhookHealth: 'Operational (24ms)',
-      settlementCycle: 'T+1 Days (Automated)',
-      activeQueue: '0 pending'
-    },
-    {
-      name: 'Cashfree Auto-Collect & Escrow',
-      provider: 'Cashfree Payments India',
-      status: 'Healthy',
-      latency: '94ms',
-      successRate: '98.8%',
-      uptime: '99.95%',
-      webhookHealth: 'Operational (32ms)',
-      settlementCycle: 'Instant UPI Payouts',
-      activeQueue: '2 in-flight'
-    },
-    {
-      name: 'PayU Enterprise PG (Fallback)',
-      provider: 'PayU Payments Pvt Ltd',
-      status: 'Standby / Healthy',
-      latency: '110ms',
-      successRate: '97.9%',
-      uptime: '99.90%',
-      webhookHealth: 'Operational (40ms)',
-      settlementCycle: 'T+2 Days',
-      activeQueue: '0 pending'
-    },
-    {
-      name: 'Stripe International Gateway',
-      provider: 'Stripe Payments',
-      status: 'Healthy',
-      latency: '145ms',
-      successRate: '98.5%',
-      uptime: '99.99%',
-      webhookHealth: 'Operational (55ms)',
-      settlementCycle: 'T+3 Days (USD/EUR)',
-      activeQueue: '0 pending'
-    }
-  ]);
+  const [gateways, setGateways] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -64,7 +19,7 @@ export default function PaymentGatewayHealth() {
       title="Payment Gateways & Webhook Health"
       subtitle="Razorpay, Cashfree & Stripe gateway health, UPI success rates, webhook latency & settlement queues"
       icon="💳"
-      badge="99.4% UPI Success Rate"
+      badge=""
       actions={
         <button
           onClick={() => {
@@ -102,10 +57,10 @@ export default function PaymentGatewayHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Success Rate" value="99.2%" delta="+0.4% vs target" trend="up" subtext="Across all payment modes" icon="🟢" />
+        <KpiCard label="Overall Success Rate" value="0.0%" delta="+0.4% vs target" trend="up" subtext="Across all payment modes" icon="🟢" />
         <KpiCard label="Average Webhook Latency" value="28 ms" delta="Rapid callbacks" trend="up" subtext="Sub-50ms fulfillment" icon="⚡" />
-        <KpiCard label="Failed Transactions" value="0.08%" delta="Low abandonment" trend="up" subtext="Bank timeouts only" icon="🛡️" />
-        <KpiCard label="Instant Refund SLA" value="100%" delta="Zero breaches" trend="up" subtext="Compliant with RBI 1-hr" icon="💳" />
+        <KpiCard label="Failed Transactions" value="0.0%" delta="Low abandonment" trend="up" subtext="Bank timeouts only" icon="🛡️" />
+        <KpiCard label="Instant Refund SLA" value="0.0%" delta="Zero breaches" trend="up" subtext="Compliant with RBI 1-hr" icon="💳" />
       </div>
 
       {/* Gateway Status Table */}

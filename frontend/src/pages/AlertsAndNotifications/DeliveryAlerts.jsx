@@ -3,68 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliveryAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'DEL-601',
-      title: '60-Minute SLA Breach Hazard: Order #ZV-98214 (Koramangala -> HSR)',
-      rider: 'Rider #R-104 (Karthik M.)',
-      zone: 'Bengaluru South (Koramangala / HSR)',
-      elapsed: '52 mins elapsed',
-      slaCountdown: '8 mins to SLA breach',
-      rootCause: 'Heavy monsoon traffic on Silk Board flyover junction',
-      severity: 'Critical',
-      time: '4m ago',
-      status: 'Active'
-    },
-    {
-      id: 'DEL-602',
-      title: 'Rider Vehicle Breakdown: Flat Tire on EV Scooter (Ola S1)',
-      rider: 'Rider #R-208 (Suresh Patil)',
-      zone: 'Mumbai West (Bandra Linking Rd)',
-      elapsed: '2 active urgent orders in parcel bag (Antibiotics)',
-      slaCountdown: 'Orders need immediate re-dispatch',
-      rootCause: 'Nail puncture reported via Rider mobile app telemetry',
-      severity: 'Critical',
-      time: '12m ago',
-      status: 'Dispatched Recovery'
-    },
-    {
-      id: 'DEL-603',
-      title: 'Dark-Store Unassigned Orders Accumulation: 14 Orders Idle > 10m',
-      rider: 'Fleet Allocation Engine',
-      zone: 'Whitefield Micro-Hub Dark Store',
-      elapsed: 'Longest idle: 16 mins',
-      slaCountdown: 'Dispatch SLA is 4 mins',
-      rootCause: 'Sudden spike in evening dinner pet food deliveries',
-      severity: 'High Warning',
-      time: '20m ago',
-      status: 'Active'
-    },
-    {
-      id: 'DEL-604',
-      title: 'Pharmaceutical Cold-Chain Corridor Geofence Deviation',
-      rider: 'Van #KA-04-EV-9912 (Cold Carrier)',
-      zone: 'Electronic City Express Highway',
-      elapsed: '2.4 km outside designated route',
-      slaCountdown: 'Driver halted at unscheduled toll plaza',
-      rootCause: 'Road maintenance detour taken without navigation sync',
-      severity: 'Warning',
-      time: '34m ago',
-      status: 'Investigating'
-    },
-    {
-      id: 'DEL-605',
-      title: 'Spillover 3PL Fleet Surge Pricing Active: Shadowfax (+₹45/drop)',
-      rider: 'Shadowfax 3PL Connector',
-      zone: 'Mumbai Andheri West Zone',
-      elapsed: '38 orders dispatched via spillover today',
-      slaCountdown: 'Burn rate +₹1,710 today',
-      rootCause: 'Dedicated Zenve EV fleet fully booked on grooming pickups',
-      severity: 'Info',
-      time: '1h ago',
-      status: 'Active'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -85,7 +24,7 @@ export default function DeliveryAlerts() {
       title="60-Minute Express & Fleet Logistics Alerts"
       subtitle="Real-time rider SLA countdowns, vehicle breakdown recovery, dark-store dispatch bottlenecks, and cold-chain geofencing"
       icon="⚡"
-      badge="96.2% On-Time SLA"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -139,7 +78,7 @@ export default function DeliveryAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="60-Min On-Time SLA"
-          value="96.2%"
+          value="0.0%"
           delta="+1.1% vs last week"
           trend="up"
           subtext="Target: 95.0%"

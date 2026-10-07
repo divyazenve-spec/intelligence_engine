@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CustomerSegmentation() {
-  const segments = [
-    { name: 'Puppy & Kitten Parents (<1 Yr)', count: 2450, share: '19.6%', behavior: 'High vaccine & starter nutrition attach', aov: '₹3,200', arpu: '₹14,500', campaign: 'Puppy milestone training & growth food' },
-    { name: 'Multi-Pet Champions (2+ Pets)', count: 3840, share: '30.8%', behavior: 'Bulk orders, multi-pet wellness insurance', aov: '₹5,800', arpu: '₹38,200', campaign: 'Household discount & sibling care pass' },
-    { name: 'Chronic Health & Senior Pets (7+ Yrs)', count: 2180, share: '17.5%', behavior: 'High pharmacy reorders, mobility supplements', aov: '₹4,600', arpu: '₹28,400', campaign: 'Senior cardiac & joint checkup reminders' },
-    { name: 'Luxury Pamper & Grooming Superfans', count: 1820, share: '14.6%', behavior: 'Fortnightly spa, couture collars, treats', aov: '₹3,900', arpu: '₹24,000', campaign: 'Seasonal grooming & festive fashion drops' },
-    { name: 'Pure Digital Commerce Buyers', count: 2190, share: '17.5%', behavior: 'App 60-min delivery, kibble replenishment', aov: '₹2,800', arpu: '₹16,800', campaign: 'Flash hour deals & free treat sample add-ons' }
-  ];
+  const segments = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -20,12 +14,12 @@ export default function CustomerSegmentation() {
       title="Customer Segmentation & Behavioral Clusters"
       subtitle="RFM analysis, pet life-stage clustering, basket composition patterns, and tailored marketing playbooks"
       icon="🧩"
-      badge="5 Core Persona Clusters"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Persona Segments" value="5 Clusters" delta="RFM Analyzed" trend="neutral" subtext="Dynamic daily cluster updates" icon="🧩" />
-        <KpiCard label="Multi-Pet Cluster Share" value="30.8%" delta="Highest value cohort" trend="up" subtext="3,840 households" icon="🐾" />
-        <KpiCard label="Senior & Chronic Care" value="17.5%" delta="High Rx attach rate" trend="up" subtext="94% recurring monthly spend" icon="🩺" />
+        <KpiCard label="Multi-Pet Cluster Share" value="0.0%" delta="Highest value cohort" trend="up" subtext="3,840 households" icon="🐾" />
+        <KpiCard label="Senior & Chronic Care" value="0.0%" delta="High Rx attach rate" trend="up" subtext="94% recurring monthly spend" icon="🩺" />
         <KpiCard label="Segment Campaign ROAS" value="5.8x" delta="+1.2x vs unsegmented" trend="up" subtext="Hyper-personalized recommendations" icon="🎯" />
       </div>
 

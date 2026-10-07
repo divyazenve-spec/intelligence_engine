@@ -10,18 +10,7 @@ export default function FinanceReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const plItems = [
-    { line: 'Gross Operating Revenue (GMV)', mtd: 20550000, priorMtd: 16400000, variance: '+25.3%', note: 'Across retail, telehealth & clinics' },
-    { line: 'Less: Customer Discounts & Vouchers', mtd: -840000, priorMtd: -620000, variance: '+35.5%', note: 'Monsoon puppy acquisition offers' },
-    { line: 'Less: Return Allowances & Order Refunds', mtd: -320000, priorMtd: -280000, variance: '+14.3%', note: 'Maintained at 1.5% of GMV' },
-    { line: 'Net Operating Revenue', mtd: 19390000, priorMtd: 15500000, variance: '+25.1%', note: 'Recognized GAAP top-line' },
-    { line: 'Cost of Goods Sold (COGS & Med Supplies)', mtd: -11820000, priorMtd: -9500000, variance: '+24.4%', note: 'Procurement at bulk vendor discounts' },
-    { line: 'Gross Profit', mtd: 7570000, priorMtd: 6000000, variance: '+26.2%', note: '39.0% Gross Margin' },
-    { line: 'Operating Expenses (OPEX)', mtd: -4250000, priorMtd: -3500000, variance: '+21.4%', note: 'Salaries, cloud infra, dark store leases' },
-    { line: 'EBITDA (Earnings Before Interest, Tax & Depr)', mtd: 3320000, priorMtd: 2500000, variance: '+32.8%', note: '17.1% EBITDA Margin' },
-    { line: 'Depreciation & Amortization', mtd: -410000, priorMtd: -390000, variance: '+5.1%', note: 'Hospital ICU medical apparatus' },
-    { line: 'Net Profit Before Tax (PBT)', mtd: 2910000, priorMtd: 2110000, variance: '+37.9%', note: '15.0% PBT Margin' }
-  ];
+  const plItems = [];
 
   const inr = (n) => {
     const isNeg = n < 0;
@@ -90,9 +79,9 @@ export default function FinanceReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Net Operating Revenue" value="₹1.94 Crores" delta="+25.1% YoY" trend="up" subtext="MTD recognized" icon="📈" />
-        <KpiCard label="Gross Profit Margin" value="39.0%" delta="+1.2% expansion" trend="up" subtext="Target: 38.0%" icon="🛡️" />
-        <KpiCard label="EBITDA Generated" value="₹33.20 Lakhs" delta="17.1% EBITDA Margin" trend="up" subtext="+32.8% vs prior" icon="💎" />
+        <KpiCard label="Net Operating Revenue" value="₹0" delta="+25.1% YoY" trend="up" subtext="MTD recognized" icon="📈" />
+        <KpiCard label="Gross Profit Margin" value="0.0%" delta="+1.2% expansion" trend="up" subtext="Target: 38.0%" icon="🛡️" />
+        <KpiCard label="EBITDA Generated" value="₹0" delta="17.1% EBITDA Margin" trend="up" subtext="+32.8% vs prior" icon="💎" />
         <KpiCard label="Net Cash Runway" value="18.4 Months" delta="Zero bank debt" trend="up" subtext="HDFC corporate liquid" icon="🏦" />
       </div>
 

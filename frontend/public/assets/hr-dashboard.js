@@ -34,50 +34,15 @@
   ];
 
   /* ── Datasets ─────────────────────────────────────────────────────── */
-  var DEPARTMENTS = [
-    { id: 'DEP-01', name: 'Veterinary Clinical Services', count: 48, lead: 'Dr. Priya Sharma (CMO)', budget: '₹42,00,000', color: '#10b981', attendance: '97.2%', vacancies: 5 },
-    { id: 'DEP-02', name: 'Pharmacy & Drug Dispensing', count: 32, lead: 'Rohan Deshmukh (Head Pharmacist)', budget: '₹22,50,000', color: '#0ea5e9', attendance: '98.1%', vacancies: 3 },
-    { id: 'DEP-03', name: 'Logistics & 60-Min Delivery', count: 54, lead: 'Vikram Joshi (Fleet Lead)', budget: '₹28,80,000', color: '#f59e0b', attendance: '94.8%', vacancies: 8 },
-    { id: 'DEP-04', name: 'Warehouse & Fulfillment', count: 28, lead: 'Ananya Verma (Ops Manager)', budget: '₹18,40,000', color: '#8b5cf6', attendance: '96.4%', vacancies: 2 },
-    { id: 'DEP-05', name: 'Technology & AI Engineering', count: 24, lead: 'Sameer Kulkarni (VP Tech)', budget: '₹38,00,000', color: '#ec4899', attendance: '98.5%', vacancies: 4 },
-    { id: 'DEP-06', name: 'Customer Delight & Support', count: 22, lead: 'Pooja Hegde (CX Lead)', budget: '₹14,20,000', color: '#14b8a6', attendance: '95.6%', vacancies: 3 }
-  ];
+  var DEPARTMENTS = [];
 
-  var EMPLOYEES = [
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', loc: 'Bengaluru Flagship', email: 'priya.s@zenve.in', phone: '+91 98450 11201', joined: '15 Jan 2023', status: 'Active', salary: '₹2,40,000/mo', rating: '5.0★' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', loc: 'Mumbai Center', email: 'rahul.m@zenve.in', phone: '+91 98200 44312', joined: '10 Mar 2023', status: 'Active', salary: '₹1,95,000/mo', rating: '4.9★' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', loc: 'Bengaluru Hub', email: 'rohan.d@zenve.in', phone: '+91 97401 88392', joined: '01 Jun 2023', status: 'Active', salary: '₹1,45,000/mo', rating: '4.8★' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', loc: 'Remote / HQ', email: 'sneha.c@zenve.in', phone: '+91 99102 77314', joined: '28 Sep 2026', status: 'Probation', salary: '₹1,80,000/mo', rating: '4.9★' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet & Logistics Lead', dept: 'Logistics', loc: 'Bengaluru South', email: 'vikram.j@zenve.in', phone: '+91 98860 12093', joined: '12 Aug 2023', status: 'Active', salary: '₹95,000/mo', rating: '4.7★' },
-    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', loc: 'Bhiwandi Hub', email: 'ananya.v@zenve.in', phone: '+91 98211 40592', joined: '05 Feb 2024', status: 'Active', salary: '₹1,10,000/mo', rating: '4.8★' },
-    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', loc: 'Mumbai Bandra', email: 'manish.r@zenve.in', phone: '+91 98330 67123', joined: '25 Sep 2026', status: 'Active', salary: '₹32,000/mo', rating: '4.9★' },
-    { id: 'EMP-1008', name: 'Dr. Aisha Khan', role: 'Consultant Dermatologist', dept: 'Clinical', loc: 'Delhi NCR Clinic', email: 'aisha.k@zenve.in', phone: '+91 98110 55421', joined: '14 Apr 2024', status: 'On Leave', salary: '₹1,15,000/mo', rating: '4.8★' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', loc: 'Bengaluru HQ', email: 'pooja.h@zenve.in', phone: '+91 99001 22894', joined: '01 Nov 2023', status: 'Active', salary: '₹75,000/mo', rating: '4.7★' },
-    { id: 'EMP-1010', name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', loc: 'Bengaluru Hub', email: 'kunal.s@zenve.in', phone: '+91 96190 33412', joined: '18 Sep 2026', status: 'Active', salary: '₹65,000/mo', rating: '4.6★' }
-  ];
+  var EMPLOYEES = [];
 
-  var LEAVE_REQUESTS = [
-    { id: 'LR-8041', name: 'Dr. Aisha Khan', role: 'Vet Dermatologist', type: 'Sick Leave (Medical)', dates: '05 Oct – 08 Oct (4 days)', reason: 'Post-viral recovery & rest', status: 'Pending', bal: '8 SL left' },
-    { id: 'LR-8042', name: 'Kunal Sen', role: 'Inventory Controller', type: 'Paid Time Off (PTO)', dates: '12 Oct – 16 Oct (5 days)', reason: 'Family wedding ceremony', status: 'Pending', bal: '12 PTO left' },
-    { id: 'LR-8043', name: 'Sneha Chawla', role: 'Senior AI Engineer', type: 'Casual Leave (CL)', dates: '09 Oct – 09 Oct (1 day)', reason: 'Personal administration', status: 'Pending', bal: '6 CL left' },
-    { id: 'LR-8040', name: 'Manish Rawat', role: 'Delivery Rider', type: 'Compensatory Off', dates: '03 Oct – 04 Oct (2 days)', reason: 'Worked emergency surge', status: 'Approved', bal: '2 Comp left' }
-  ];
+  var LEAVE_REQUESTS = [];
 
-  var OPEN_JOBS = [
-    { id: 'REQ-101', title: 'Emergency Veterinary Surgeon', dept: 'Clinical', loc: 'Bengaluru Flagship', openings: 2, applicants: 48, interview: 4, priority: 'Urgent' },
-    { id: 'REQ-102', title: 'Staff Veterinarian (Outpatient)', dept: 'Clinical', loc: 'Mumbai Bandra', openings: 3, applicants: 62, interview: 6, priority: 'High' },
-    { id: 'REQ-103', title: 'Registered Clinical Pharmacist', dept: 'Pharmacy', loc: 'Bengaluru Hub', openings: 3, applicants: 54, interview: 5, priority: 'High' },
-    { id: 'REQ-104', title: 'Senior AI / ML Research Engineer', dept: 'Technology', loc: 'Bengaluru / Remote', openings: 2, applicants: 85, interview: 4, priority: 'Urgent' },
-    { id: 'REQ-105', title: 'Hyperlocal Cold-Chain Riders', dept: 'Logistics', loc: 'Mumbai & NCR', openings: 12, applicants: 142, interview: 22, priority: 'Normal' },
-    { id: 'REQ-106', title: 'Warehouse Inventory Auditor', dept: 'Warehouse', loc: 'Bhiwandi Central', openings: 2, applicants: 29, interview: 3, priority: 'Normal' }
-  ];
+  var OPEN_JOBS = [];
 
-  var EXPENSES = [
-    { id: 'EXP-401', name: 'Dr. Rahul Mehta', dept: 'Clinical', category: 'Medical Equipment', amount: '₹14,500', date: '04 Oct 2026', status: 'Approved' },
-    { id: 'EXP-402', name: 'Vikram Joshi', dept: 'Logistics', category: 'Vehicle Fuel & Tolls', amount: '₹8,200', date: '03 Oct 2026', status: 'Pending' },
-    { id: 'EXP-403', name: 'Sneha Chawla', dept: 'Technology', category: 'AWS Cloud Certification', amount: '₹22,000', date: '01 Oct 2026', status: 'Approved' },
-    { id: 'EXP-404', name: 'Pooja Hegde', dept: 'Customer Delight', category: 'Client Care Kits', amount: '₹4,800', date: '29 Sep 2026', status: 'Approved' }
-  ];
+  var EXPENSES = [];
 
   function showToast(msg) {
     var el = document.getElementById('zhr-toast');

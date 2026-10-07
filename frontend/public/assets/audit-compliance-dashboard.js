@@ -152,15 +152,7 @@
 
   // TAB 1: Audit Log
   function renderAuditLogTab() {
-    var logs = [
-      { id: 'AUD-9481', actor: 'Dr. Priya Sharma', role: 'Chief Vet Surgeon', action: 'Approved Schedule H Drug Dispense (ZV-MED-01)', module: 'Pharmacy', ip: '192.168.1.14', time: '14:22:10 Today', hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', status: 'Verified' },
-      { id: 'AUD-9480', actor: 'Rajesh Verma', role: 'Staff Pharmacist', action: 'Updated Patient Care Plan #4928 (Golden Retriever)', module: 'Clinical', ip: '192.168.1.28', time: '13:45:02 Today', hash: '8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4', status: 'Verified' },
-      { id: 'AUD-9479', actor: 'Executive Admin', role: 'Super Admin', action: 'Ingested Q4 Sales Pipeline CSV (20 records)', module: 'Sales', ip: '192.168.1.5', time: '11:10:44 Today', hash: 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', status: 'Verified' },
-      { id: 'AUD-9478', actor: 'Vikram Mehta', role: 'Lab Technician', action: 'Calibrated Diagnostics Blood Analyzer (Lab-02)', module: 'Diagnostics', ip: '192.168.1.42', time: '09:30:18 Today', hash: '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', status: 'Verified' },
-      { id: 'AUD-9477', actor: 'Sneha Rao', role: 'Financial Controller', action: 'Authorized Vendor Wire Transfer ₹4,50,000 (PO-2026-88)', module: 'Finance', ip: '192.168.1.19', time: '08:15:30 Today', hash: '4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a', status: 'Verified' },
-      { id: 'AUD-9476', actor: 'Dr. Rahul Mehta', role: 'Senior Vet', action: 'Digitally Signed Rabies Vaccination Certificate (PET-8201)', module: 'Veterinary', ip: '192.168.1.16', time: 'Yesterday 18:40', hash: 'ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d', status: 'Verified' },
-      { id: 'AUD-9475', actor: 'System Daemon', role: 'Automated Cron', action: 'Encrypted Daily DB Snapshot to Cold Storage (zenve-wal.bak)', module: 'Security', ip: '127.0.0.1', time: 'Yesterday 00:00', hash: 'd7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592', status: 'Verified' }
-    ];
+    var logs = [];
 
     var q = (S.searchQuery || '').toLowerCase();
     var filtered = logs.filter(function (l) {
@@ -215,15 +207,7 @@
 
   // TAB 2: User Activity
   function renderUserActivityTab() {
-    var users = [
-      { name: 'Dr. Priya Sharma', dept: 'Veterinary / Clinical', role: 'Chief Medical Officer', actionsToday: 64, activeHours: '6.4h', lastActive: '3 mins ago', status: 'Online', risk: 'Low' },
-      { name: 'Rajesh Verma', dept: 'Pharmacy Operations', role: 'Head Pharmacist', actionsToday: 92, activeHours: '7.8h', lastActive: '12 mins ago', status: 'Online', risk: 'Low' },
-      { name: 'Sneha Rao', dept: 'Finance & Accounts', role: 'Lead Accountant', actionsToday: 38, activeHours: '5.2h', lastActive: '18 mins ago', status: 'Online', risk: 'Low' },
-      { name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Senior Pathologist', actionsToday: 45, activeHours: '6.1h', lastActive: '45 mins ago', status: 'Online', risk: 'Low' },
-      { name: 'Arjun Nair', dept: 'Logistics & 60-Min', role: 'Fleet Controller', actionsToday: 118, activeHours: '8.4h', lastActive: '1 min ago', status: 'Online', risk: 'Low' },
-      { name: 'Pooja Kapoor', dept: 'Customer Support', role: 'Care Specialist', actionsToday: 87, activeHours: '7.0h', lastActive: '5 mins ago', status: 'Online', risk: 'Low' },
-      { name: 'Amit Joshi', dept: 'Warehouse & Inventory', role: 'Inventory Supervisor', actionsToday: 54, activeHours: '6.5h', lastActive: '22 mins ago', status: 'Online', risk: 'Low' }
-    ];
+    var users = [];
 
     var rows = users.map(function (u) {
       return [
@@ -264,14 +248,7 @@
 
   // TAB 3: Login History
   function renderLoginHistoryTab() {
-    var logins = [
-      { user: 'executive@zenve.in', role: 'Super Admin', authMethod: 'Google SSO + FIDO2', ip: '192.168.1.5', location: 'Bengaluru, KA', device: 'macOS Chrome 124', time: '10:02 Today', status: 'Success' },
-      { user: 'priya.sharma@zenve.in', role: 'Doctor / Vet', authMethod: 'Password + TOTP 2FA', ip: '192.168.1.14', location: 'Bengaluru, KA', device: 'Windows 11 Edge', time: '08:45 Today', status: 'Success' },
-      { user: 'rajesh.verma@zenve.in', role: 'Pharmacist', authMethod: 'Password + SMS OTP', ip: '192.168.1.28', location: 'Bengaluru, KA', device: 'Android POS Tab', time: '08:30 Today', status: 'Success' },
-      { user: 'unknown.attempt@zenve.in', role: 'Guest', authMethod: 'Password (Brute)', ip: '203.0.113.42', location: 'External Network', device: 'Linux Curl Probe', time: '04:12 Today', status: 'Blocked' },
-      { user: 'sneha.rao@zenve.in', role: 'Accountant', authMethod: 'Google SSO + TOTP', ip: '192.168.1.19', location: 'Bengaluru, KA', device: 'macOS Safari 17', time: 'Yesterday 09:00', status: 'Success' },
-      { user: 'arjun.nair@zenve.in', role: 'Fleet Manager', authMethod: 'Password + SMS OTP', ip: '192.168.1.33', location: 'Bengaluru, KA', device: 'iOS Zenve Dispatch', time: 'Yesterday 07:15', status: 'Success' }
-    ];
+    var logins = [];
 
     var rows = logins.map(function (l) {
       var isSuccess = l.status === 'Success';
@@ -313,13 +290,7 @@
 
   // TAB 4: Data Changes
   function renderDataChangesTab() {
-    var changes = [
-      { id: 'DC-409', table: 'inventory_items', record: 'SKU-MED-049', field: 'reorder_level', oldVal: '15 units', newVal: '30 units', changedBy: 'Rajesh Verma (Pharmacist)', time: '13:40 Today', reason: 'Anticipated weekend spike' },
-      { id: 'DC-408', table: 'clinic_doctors', record: 'DOC-102 (Dr. Mehta)', field: 'consultation_fee', oldVal: '₹600.00', newVal: '₹650.00', changedBy: 'Executive Admin', time: '11:22 Today', reason: 'Annual tariff update' },
-      { id: 'DC-407', table: 'pet_health_records', record: 'PET-8201', field: 'vaccination_status', oldVal: 'Pending Booster', newVal: 'DHPPiL Administered', changedBy: 'Dr. Priya Sharma', time: '10:15 Today', reason: 'Vaccine batch #VAC-99' },
-      { id: 'DC-406', table: 'vendor_contracts', record: 'VEN-018 (Zoetis)', field: 'payment_terms', oldVal: 'Net 30', newVal: 'Net 45 (5% Rebate)', changedBy: 'Sneha Rao (Accounts)', time: 'Yesterday 16:20', reason: 'Quarterly volume agreement' },
-      { id: 'DC-405', table: 'delivery_partners', record: 'PART-04 (Dunzo API)', field: 'max_distance_km', oldVal: '8.0 km', newVal: '12.0 km', changedBy: 'Arjun Nair (Logistics)', time: 'Yesterday 14:05', reason: '60-min zone expansion' }
-    ];
+    var changes = [];
 
     var rows = changes.map(function (c) {
       return [
@@ -365,13 +336,7 @@
 
   // TAB 5: Financial Audit Trail
   function renderFinancialAuditTab() {
-    var financial = [
-      { ref: 'FIN-TX-8921', type: 'General Ledger Adjustment', debit: '₹45,000.00', credit: '₹45,000.00', account: 'Inventory Write-down vs COGS', approver: 'Sneha Rao (Controller)', time: '12:40 Today', status: 'Reconciled' },
-      { ref: 'FIN-TX-8920', type: 'Customer Refund Clearance', debit: '₹2,450.00', credit: '₹0.00', account: 'Razorpay UPI Gateway #REF-82', approver: 'Executive Admin', time: '11:15 Today', status: 'Reconciled' },
-      { ref: 'FIN-TX-8919', type: 'Doctor Commission Payout', debit: '₹84,000.00', credit: '₹84,000.00', account: 'Dr. Priya Sharma (58 Consults)', approver: 'Executive Admin', time: '09:00 Today', status: 'Reconciled' },
-      { ref: 'FIN-TX-8918', type: 'GST ITC Reconciliation', debit: '₹1,24,500.00', credit: '₹1,24,500.00', account: 'Input Tax Credit (GSTR-2B)', approver: 'CA External Auditor', time: 'Yesterday 17:30', status: 'Reconciled' },
-      { ref: 'FIN-TX-8917', type: 'Vendor Invoice Settlement', debit: '₹3,20,000.00', credit: '₹3,20,000.00', account: 'Royal Canin India Pvt Ltd', approver: 'Sneha Rao (Controller)', time: 'Yesterday 15:10', status: 'Reconciled' }
-    ];
+    var financial = [];
 
     var rows = financial.map(function (f) {
       return [
@@ -412,13 +377,7 @@
 
   // TAB 6: Order Audit Trail
   function renderOrderAuditTab() {
-    var orders = [
-      { orderId: 'ORD-2026-8819', customer: 'Kavita Menon (Indiranagar)', event: 'Prescription Schedule H Verified', prevStatus: 'Under Review', newStatus: 'Ready for Dispatch', officer: 'Dr. Priya Sharma', time: '14:20 Today' },
-      { orderId: 'ORD-2026-8818', customer: 'Rohan Gupta (Koramangala)', event: 'Dispatched via 60-Min Rider', prevStatus: 'Packed', newStatus: 'Out for Delivery (Rider #14)', officer: 'Arjun Nair (Logistics)', time: '14:05 Today' },
-      { orderId: 'ORD-2026-8817', customer: 'Deepak Patel (Whitefield)', event: 'Special Discount Override (10% Code)', prevStatus: 'Cart Review', newStatus: 'Payment Cleared', officer: 'Executive Admin', time: '13:48 Today' },
-      { orderId: 'ORD-2026-8816', customer: 'Ananya Deshmukh (HSR)', event: 'Customer Initiated Cancellation', prevStatus: 'Processing', newStatus: 'Refund Pending', officer: 'Customer Portal Self-Service', time: '12:30 Today' },
-      { orderId: 'ORD-2026-8815', customer: 'Vikram Sethi (Jayanagar)', event: 'Order Successfully Delivered & OTP Verified', prevStatus: 'Out for Delivery', newStatus: 'Delivered (Signed OTP)', officer: 'Rider Mahesh K.', time: '11:50 Today' }
-    ];
+    var orders = [];
 
     var rows = orders.map(function (o) {
       return [
@@ -458,12 +417,7 @@
 
   // TAB 7: Inventory Audit Trail
   function renderInventoryAuditTab() {
-    var inv = [
-      { batch: 'BATCH-VAC-2026-08', product: 'Zoetis Vanguard Plus 5 Vaccine', hub: 'Central Hub Indiranagar', action: 'Cold-Chain Telemetry Checked (+4.1°C)', adjustment: '0 Units (Verified)', officer: 'IoT Sensor Mon-02', time: '14:00 Today', status: 'Compliant' },
-      { batch: 'BATCH-MED-2026-14', product: 'Bravecto Chewable 20-40kg', hub: 'HSR Layout Pharmacy', action: 'Physical Stock Reconciliation', adjustment: '+2 Units (Surplus match)', officer: 'Amit Joshi', time: '11:45 Today', status: 'Compliant' },
-      { batch: 'BATCH-FOD-2025-99', product: 'Royal Canin Mini Starter 1kg', hub: 'Whitefield Warehouse', action: 'Expiry Quarantine & Disposal Write-off', adjustment: '-4 Units (Expired)', officer: 'Amit Joshi / Sneha Rao', time: 'Yesterday 17:00', status: 'Disposed' },
-      { batch: 'BATCH-MED-2026-02', product: 'Melonex Oral Suspension 10ml', hub: 'Koramangala Clinic', action: 'Inter-Hub Stock Transfer Inward', adjustment: '+25 Units (From Central)', officer: 'Rajesh Verma', time: 'Yesterday 13:20', status: 'Compliant' }
-    ];
+    var inv = [];
 
     var rows = inv.map(function (i) {
       return [
@@ -504,13 +458,7 @@
 
   // TAB 8: Approval History
   function renderApprovalHistoryTab() {
-    var approvals = [
-      { id: 'APP-1082', type: 'Schedule H Medicine Dispense', entity: 'Prescription #RX-8841 (Ketamine Anaesthetic)', requester: 'Clinic Nurse A. Thomas', approver: 'Dr. Priya Sharma (MCI #49281)', status: 'Approved & Signed', time: '14:21 Today' },
-      { id: 'APP-1081', type: 'Purchase Order Approval', entity: 'PO-2026-92 (₹3,40,000 to Zoetis)', requester: 'Amit Joshi (Procurement)', approver: 'Executive Admin', status: 'Approved', time: '12:10 Today' },
-      { id: 'APP-1080', type: 'High-Value Customer Refund', entity: 'Refund #REF-820 (₹4,800.00)', requester: 'Pooja Kapoor (Support)', approver: 'Sneha Rao (Accounts)', status: 'Approved', time: '11:05 Today' },
-      { id: 'APP-1079', type: 'Staff Leave Clearance', entity: 'Annual Leave (3 Days) - R. Verma', requester: 'Rajesh Verma (Pharmacy)', approver: 'HR Operations Lead', status: 'Approved', time: 'Yesterday 16:00' },
-      { id: 'APP-1078', type: 'Special Discount Waiver', entity: 'VIP Kennel Booking (20% Code)', requester: 'Sales Desk Indiranagar', approver: 'Executive Admin', status: 'Approved', time: 'Yesterday 11:30' }
-    ];
+    var approvals = [];
 
     var rows = approvals.map(function (a) {
       return [
@@ -551,14 +499,7 @@
 
   // TAB 9: Compliance Dashboard
   function renderComplianceDashboardTab() {
-    var frameworks = [
-      { standard: 'SOC-2 Type II (Security & Availability)', score: '100%', controls: '64 / 64 Controls Passing', auditor: 'Ernst & Young / Vanta', renew: 'Oct 2027', status: 'Compliant' },
-      { standard: 'Schedule H & H1 Drug Dispensing Registry', score: '100%', controls: 'MCI Signed Digital Scripts', auditor: 'Drugs Control Dept KA', renew: 'Continuous', status: 'Compliant' },
-      { standard: 'HIPAA & Pet Healthcare Data Privacy', score: '99.4%', controls: 'AES-256 at Rest & TLS 1.3', auditor: 'Internal InfoSec Office', renew: 'Q4 2026', status: 'Compliant' },
-      { standard: 'GST & E-Way Bill Regulatory Filing', score: '100%', controls: 'GSTR-1 & 3B Monthly Auto-reconcile', auditor: 'GSTN Portal Sync', renew: 'Monthly (20th)', status: 'Compliant' },
-      { standard: 'ISO 27001:2022 ISMS Framework', score: '98.8%', controls: 'Access Controls & Backup SLAs', auditor: 'BSI Global Assurance', renew: 'Jan 2027', status: 'Compliant' },
-      { standard: 'Biomedical Waste Disposal Protocol', score: '100%', controls: 'Daily Clinic Waste Manifests', auditor: 'Pollution Control Board', renew: 'Quarterly', status: 'Compliant' }
-    ];
+    var frameworks = [];
 
     var rows = frameworks.map(function (f) {
       return [

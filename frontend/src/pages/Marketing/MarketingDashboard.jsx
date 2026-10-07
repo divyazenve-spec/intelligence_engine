@@ -18,22 +18,7 @@ import ConversionFunnel from './ConversionFunnel';
 export default function MarketingDashboard() {
   const [activeSubcategory, setActiveSubcategory] = useState('overview');
 
-  const subcategories = [
-    { id: 'overview', label: 'Executive Overview', icon: '📊' },
-    { id: 'campaigns', label: 'Campaigns', icon: '🚀' },
-    { id: 'leads', label: 'Leads', icon: '🎯' },
-    { id: 'lead-sources', label: 'Lead Sources', icon: '🌐' },
-    { id: 'website-analytics', label: 'Website Analytics', icon: '💻' },
-    { id: 'app-analytics', label: 'App Analytics', icon: '📱' },
-    { id: 'social-media', label: 'Social Media', icon: '📸' },
-    { id: 'advertising', label: 'Advertising', icon: '📢' },
-    { id: 'marketing-spend', label: 'Marketing Spend', icon: '💰' },
-    { id: 'customer-acquisition', label: 'Customer Acquisition', icon: '🐾' },
-    { id: 'cac', label: 'CAC', icon: '🎯' },
-    { id: 'roas', label: 'ROAS', icon: '🚀' },
-    { id: 'marketing-roi', label: 'Marketing ROI', icon: '💎' },
-    { id: 'conversion-funnel', label: 'Conversion Funnel', icon: '⚡' }
-  ];
+  const subcategories = [];
 
   if (activeSubcategory === 'campaigns') return <Campaigns />;
   if (activeSubcategory === 'leads') return <Leads />;
@@ -56,7 +41,7 @@ export default function MarketingDashboard() {
       title="Marketing & Growth Command Center"
       subtitle="Complete multi-channel intelligence: campaigns, pet parent leads, ad spend efficiency, CAC, ROAS & conversion funnels"
       icon="📣"
-      badge="4.45x Blended ROAS"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -114,10 +99,10 @@ export default function MarketingDashboard() {
 
       {/* Primary KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Ad Spend" value="₹7,56,500" delta="-5.4% under budget" trend="up" subtext="Meta, Google, In-App" icon="💳" />
-        <KpiCard label="Acquired Leads" value="18,400" delta="+22.6%" trend="up" subtext="Inbound & app clicks" icon="🎯" />
-        <KpiCard label="Blended CAC" value="₹365" delta="-8.4%" trend="up" subtext="Industry benchmark: ₹450" icon="👥" />
-        <KpiCard label="Blended ROAS" value="4.45x" delta="+18.4%" trend="up" subtext="₹33.65L attributed GMV" icon="🚀" />
+        <KpiCard label="Total Ad Spend" value="₹0" delta="-5.4% under budget" trend="up" subtext="Meta, Google, In-App" icon="💳" />
+        <KpiCard label="Acquired Leads" value="0" delta="0.0%" trend="up" subtext="Inbound & app clicks" icon="🎯" />
+        <KpiCard label="Blended CAC" value="₹0" delta="-8.4%" trend="up" subtext="Industry benchmark: ₹0" icon="👥" />
+        <KpiCard label="Blended ROAS" value="4.45x" delta="0.0%" trend="up" subtext="₹0 attributed GMV" icon="🚀" />
       </div>
 
       {/* Grid of Main Channels & Funnel Snapshot */}

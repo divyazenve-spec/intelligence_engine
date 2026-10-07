@@ -9,16 +9,7 @@ export default function BatchManagement() {
   const [showInwardModal, setShowInwardModal] = useState(false);
   const [toast, setToast] = useState('');
 
-  const batches = [
-    { batchNo: 'BT-2026-BRV01', sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', vendor: 'MSD Animal Health India', mfg: '2025-02-10', exp: '2027-02-09', inwardQty: 250, balance: 142, hub: 'Bengaluru Central', qcStatus: 'QC Passed', zone: 'Ambient Rack A4' },
-    { batchNo: 'BT-2025-NVD04', sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine 1D', vendor: 'MSD Animal Health India', mfg: '2025-01-15', exp: '2026-07-14', inwardQty: 150, balance: 86, hub: 'Mumbai West', qcStatus: 'QC Passed', zone: 'Cold Chiller #02 (3.8°C)' },
-    { batchNo: 'BT-2025-NGS12', sku: 'DRG-VET-002', name: 'NexGard Spectra (7.5-15kg)', vendor: 'Boehringer Ingelheim', mfg: '2024-11-20', exp: '2026-05-19', inwardQty: 100, balance: 42, hub: 'Delhi NCR Hub', qcStatus: 'QC Passed', zone: 'Ambient Rack B2' },
-    { batchNo: 'BT-2025-CDS03', sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg (Pimobendan)', vendor: 'Zoetis India Pvt Ltd', mfg: '2025-03-01', exp: '2027-02-28', inwardQty: 80, balance: 35, hub: 'Bengaluru Central', qcStatus: 'QC Passed', zone: 'Secure Pharmacy Vault' },
-    { batchNo: 'BT-2025-AMX09', sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', vendor: 'Intas Pharmaceuticals', mfg: '2025-04-12', exp: '2026-10-11', inwardQty: 300, balance: 120, hub: 'Hyderabad Center', qcStatus: 'QC Passed', zone: 'Ambient Rack C1' },
-    { batchNo: 'BT-2025-MLS02', sku: 'DRG-VET-006', name: 'Malaseb Medicated Shampoo 250ml', vendor: 'Dechra Veterinary', mfg: '2024-09-05', exp: '2026-03-04', inwardQty: 60, balance: 18, hub: 'Pune Express', qcStatus: 'QC Passed', zone: 'Derm Shelf D3' },
-    { batchNo: 'BT-2026-REV08', sku: 'DRG-VET-007', name: 'Zoetis Revolution Spot-On (Cat)', vendor: 'Zoetis India Pvt Ltd', mfg: '2025-05-18', exp: '2027-05-17', inwardQty: 100, balance: 100, hub: 'Bengaluru Central', qcStatus: 'Under Quarantine', zone: 'QC Hold Bay #1' },
-    { batchNo: 'BT-2024-RBS01', sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', vendor: 'Boehringer Ingelheim', mfg: '2024-08-10', exp: '2025-11-15', inwardQty: 200, balance: 24, hub: 'Mumbai West', qcStatus: 'Recalled', zone: 'Quarantine Lockbox' }
-  ];
+  const batches = [];
 
   const filtered = useMemo(() => {
     return batches.filter(b => {
@@ -54,7 +45,7 @@ export default function BatchManagement() {
       title="Pharmaceutical Batch Traceability & GRN Control"
       subtitle="Complete batch-level lineage, Certificate of Analysis (COA) verification, quarantine bays, and recall management"
       icon="🏷️"
-      badge="342 Active Batches"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -99,7 +90,7 @@ export default function BatchManagement() {
         <KpiCard label="Quarantine Hold Bay" value="6 Batches" delta="Awaiting Lab Sign-off" trend="neutral" subtext="Zero dispensing leak" icon="⏳" />
         <KpiCard label="Recalled / Blocked" value="2 Batches" delta="Safety quarantine" trend="down" subtext="Isolated in vault" icon="🚫" />
         <KpiCard label="Mean Shelf Life" value="16.4 Months" delta="+1.2m vs SLA" trend="up" subtext="Fresh batch intake" icon="📅" />
-        <KpiCard label="GS1 Barcode Scans" value="100.0%" delta="Zero Manual Input" trend="up" subtext="Optical 2D datamatrix" icon="📱" />
+        <KpiCard label="GS1 Barcode Scans" value="0.0%" delta="Zero Manual Input" trend="up" subtext="Optical 2D datamatrix" icon="📱" />
       </div>
 
       {/* Batch Table Container */}

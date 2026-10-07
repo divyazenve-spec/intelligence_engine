@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function EmployeeExpenses() {
   const [filterCategory, setFilterCategory] = useState('ALL');
 
-  const [claims, setClaims] = useState([
-    { id: 'EXP-4011', empName: 'Dr. Priya Sharma', role: 'Chief Vet Officer', category: 'Medical & Diagnostic Supplies', date: '02 Oct 2026', amount: '₹14,250', merchant: 'SurgiCare India', receipt: 'Verified (GST Invoice) 🧾', status: 'Approved' },
-    { id: 'EXP-4012', empName: 'Vikram Joshi', role: 'Fleet Lead', category: 'Fuel & Fleet Maintenance', date: '01 Oct 2026', amount: '₹8,400', merchant: 'HPCL Koramangala', receipt: 'Fuel Slips Attached 🧾', status: 'Approved' },
-    { id: 'EXP-4013', empName: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', category: 'Travel & Accommodation', date: '30 Sep 2026', amount: '₹18,500', merchant: 'IndiGo Airlines (BLR-BOM)', receipt: 'Boarding Pass & Invoice 🧾', status: 'Pending' },
-    { id: 'EXP-4014', empName: 'Sneha Chawla', role: 'Senior AI Engineer', category: 'Software & Cloud Tools', date: '28 Sep 2026', amount: '₹6,200', merchant: 'GitHub Copilot & Cursor Pro', receipt: 'Digital Receipt 🧾', status: 'Approved' },
-    { id: 'EXP-4015', empName: 'Manish Rawat', role: 'Express Rider', category: 'Mobile & Data Allowance', date: '27 Sep 2026', amount: '₹999', merchant: 'Jio 5G Business Plan', receipt: 'Phone Bill 🧾', status: 'Approved' },
-    { id: 'EXP-4016', empName: 'Pooja Hegde', role: 'Support Team Lead', category: 'Team Engagement / Meals', date: '25 Sep 2026', amount: '₹4,500', merchant: 'Swiggy for Work', receipt: 'Itemized Receipt 🧾', status: 'Pending' }
-  ]);
+  const [claims, setClaims] = useState([]);
 
   function handleAction(id, newStatus) {
     setClaims(claims.map(c => c.id === id ? { ...c, status: newStatus } : c));
@@ -30,14 +23,14 @@ export default function EmployeeExpenses() {
       title="Expense Reimbursements & Financial Disbursals"
       subtitle="Corporate travel, clinical consumable claims, fuel stipends, software subscriptions, and tax invoice audits"
       icon="🧾"
-      badge="2 Pending Approvals · ₹52,849 Processed"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Claims Disbursed" value="₹4,28,400" delta="100% within budget" trend="neutral" subtext="Across all 6 divisions" icon="💵" />
-        <KpiCard label="Pending Approval Queue" value="2 Claims" delta="₹23,000 value" trend="neutral" subtext="Avg manager SLA: 18h" icon="⏳" />
-        <KpiCard label="GST Input Credit Reclaimed" value="₹65,300" delta="18% blended GST" trend="up" subtext="Direct tax savings for Zenve" icon="🏛️" />
-        <KpiCard label="Policy Compliance Rate" value="99.2%" delta="Zero fraud detected" trend="up" subtext="Automated OCR receipt scan" icon="🛡️" />
+        <KpiCard label="Monthly Claims Disbursed" value="₹0" delta="100% within budget" trend="neutral" subtext="Across all 6 divisions" icon="💵" />
+        <KpiCard label="Pending Approval Queue" value="2 Claims" delta="₹0" trend="neutral" subtext="Avg manager SLA: 18h" icon="⏳" />
+        <KpiCard label="GST Input Credit Reclaimed" value="₹0" delta="18% blended GST" trend="up" subtext="Direct tax savings for Zenve" icon="🏛️" />
+        <KpiCard label="Policy Compliance Rate" value="0.0%" delta="Zero fraud detected" trend="up" subtext="Automated OCR receipt scan" icon="🛡️" />
       </div>
 
       {/* Expense Filter Bar */}

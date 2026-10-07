@@ -8,13 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var leaveRequests = [
-    { id: 'LR-8041', name: 'Dr. Aisha Khan', role: 'Vet Dermatologist', type: 'Sick Leave (Medical)', dates: '05 Oct – 08 Oct (4 days)', reason: 'Post-viral recovery & rest', status: 'Pending', bal: '8 SL left' },
-    { id: 'LR-8042', name: 'Kunal Sen', role: 'Inventory Controller', type: 'Paid Time Off (PTO)', dates: '12 Oct – 16 Oct (5 days)', reason: 'Family wedding ceremony', status: 'Pending', bal: '12 PTO left' },
-    { id: 'LR-8043', name: 'Sneha Chawla', role: 'Senior AI Engineer', type: 'Casual Leave (CL)', dates: '09 Oct – 09 Oct (1 day)', reason: 'Personal administration', status: 'Pending', bal: '6 CL left' },
-    { id: 'LR-8040', name: 'Manish Rawat', role: 'Delivery Rider', type: 'Compensatory Off', dates: '03 Oct – 04 Oct (2 days)', reason: 'Worked emergency weekend surge', status: 'Approved', bal: '2 Comp left' },
-    { id: 'LR-8039', name: 'Vikram Joshi', role: 'Logistics Lead', type: 'Paid Time Off (PTO)', dates: '22 Sep – 25 Sep (4 days)', reason: 'Annual vacation', status: 'Approved', bal: '9 PTO left' }
-  ];
+  var leaveRequests = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

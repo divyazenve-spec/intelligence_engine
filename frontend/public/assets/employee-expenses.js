@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var claims = [
-    { id: 'EXP-4011', name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', cat: 'Medical Supplies', date: '02 Oct 2026', amt: '₹14,250', merchant: 'SurgiCare India', receipt: 'Verified (GST Invoice) 🧾', status: 'Approved' },
-    { id: 'EXP-4012', name: 'Vikram Joshi', role: 'Fleet Lead', cat: 'Fuel & Fleet Repairs', date: '01 Oct 2026', amt: '₹8,400', merchant: 'HPCL Fuel Station', receipt: 'Fuel Slips Attached 🧾', status: 'Approved' },
-    { id: 'EXP-4013', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', cat: 'Travel & Flights', date: '30 Sep 2026', amt: '₹18,500', merchant: 'IndiGo Airlines (BLR-BOM)', receipt: 'Boarding Pass & Invoice 🧾', status: 'Pending' },
-    { id: 'EXP-4014', name: 'Sneha Chawla', role: 'Senior AI Engineer', cat: 'Cloud Software', date: '28 Sep 2026', amt: '₹6,200', merchant: 'Cursor Pro & GitHub', receipt: 'Digital Receipt 🧾', status: 'Approved' },
-    { id: 'EXP-4015', name: 'Manish Rawat', role: 'Express Rider', cat: 'Mobile 5G Plan', date: '27 Sep 2026', amt: '₹999', merchant: 'Jio Business 5G', receipt: 'Phone Bill 🧾', status: 'Approved' },
-    { id: 'EXP-4016', name: 'Pooja Hegde', role: 'Support Team Lead', cat: 'Team Meals', date: '25 Sep 2026', amt: '₹4,500', merchant: 'Swiggy for Work', receipt: 'Itemized Receipt 🧾', status: 'Pending' }
-  ];
+  var claims = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

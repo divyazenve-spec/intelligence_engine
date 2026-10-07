@@ -10,13 +10,7 @@ export default function CustomerReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const cohorts = [
-    { cohort: 'VIP Gold Concierge (LTV > ₹50K)', count: 420, pct: 4.2, avgOrders: 18.4, ltv: 68400, repeatRate: '92.4%', churn: '1.2%' },
-    { cohort: 'Puppy & Kitten First-Time Parents', count: 2840, pct: 28.4, avgOrders: 3.2, ltv: 8600, repeatRate: '64.8%', churn: '8.4%' },
-    { cohort: 'Chronic Care & Prescription Regulars', count: 1850, pct: 18.5, avgOrders: 9.8, ltv: 24200, repeatRate: '88.1%', churn: '3.1%' },
-    { cohort: 'Multi-Pet Healthcare Households', count: 1220, pct: 12.2, avgOrders: 11.2, ltv: 32500, repeatRate: '84.6%', churn: '4.0%' },
-    { cohort: 'Occasional & Seasonal Care (Grooming)', count: 3670, pct: 36.7, avgOrders: 1.8, ltv: 4200, repeatRate: '38.2%', churn: '18.6%' }
-  ];
+  const cohorts = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -42,7 +36,7 @@ export default function CustomerReport() {
       title="Customer Demographics, LTV & Retention Report"
       subtitle="Comprehensive cohort analytics, Lifetime Value (LTV), repeat purchase frequency, and RFM segmentation for 10,000+ registered pet parents"
       icon="👥"
-      badge="10,000 Active Pet Parents"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -81,9 +75,9 @@ export default function CustomerReport() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Registered Pet Parents" value="10,000 Parents" delta="+1,120 this month" trend="up" subtext="Across 6 metro cities" icon="🐾" />
-        <KpiCard label="Average Blended LTV" value="₹16,400" delta="+₹1,850 YoY" trend="up" subtext="Healthcare + Food" icon="💎" />
-        <KpiCard label="Repeat Order Rate" value="68.4%" delta="+4.2% vs Q2" trend="up" subtext="Target: 65.0%" icon="🔄" />
-        <KpiCard label="Monthly Churn Rate" value="5.2%" delta="-1.1% reduction" trend="up" subtext="Industry low" icon="🛡️" />
+        <KpiCard label="Average Blended LTV" value="₹0" delta="+₹0" trend="up" subtext="Healthcare + Food" icon="💎" />
+        <KpiCard label="Repeat Order Rate" value="0.0%" delta="+4.2% vs Q2" trend="up" subtext="Target: 65.0%" icon="🔄" />
+        <KpiCard label="Monthly Churn Rate" value="0.0%" delta="-1.1% reduction" trend="up" subtext="Industry low" icon="🛡️" />
       </div>
 
       {/* Table Section */}

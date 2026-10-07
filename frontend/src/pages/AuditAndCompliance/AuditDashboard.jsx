@@ -5,17 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function AuditDashboard() {
   const [toast, setToast] = useState('');
 
-  const auditSummary = [
-    { module: 'Audit Log', count: '14,820 Events', health: '100% Sealed', desc: 'Master immutable chronological ledger with SHA-256 validation', icon: '🛡️', badge: 'Active' },
-    { module: 'User Activity', count: '48 Staff Active', health: '92% Online', desc: 'Real-time telemetry, session heartbeats, and action velocities', icon: '👥', badge: 'Monitored' },
-    { module: 'Login History', count: '142 Sessions (24h)', health: '100% 2FA', desc: 'Multi-factor authentication logs, geo-IP locks & intrusion prevention', icon: '🔑', badge: 'Protected' },
-    { module: 'Data Changes', count: '284 Mutations', health: 'Diffs Tracked', desc: 'Granular before/after field diffs with rollback readiness', icon: '🔄', badge: 'Synced' },
-    { module: 'Financial Audit Trail', count: '₹54.80 L Audited', health: '₹0 Variance', desc: 'Double-entry journal validations, refunds & GST GSTR-2B matching', icon: '💰', badge: 'Reconciled' },
-    { module: 'Order Audit Trail', count: '8,240 Verified', health: '99.4% Handover', desc: 'End-to-end chain of custody, price overrides & doctor verification', icon: '📦', badge: 'Verified' },
-    { module: 'Inventory Audit Trail', count: '5 Hubs Monitored', health: '+3.8°C to +4.2°C', desc: 'Cold-chain telemetry, batch traceability & disposal write-offs', icon: '📋', badge: 'Cold-Chain OK' },
-    { module: 'Approval History', count: '100% MCI Signed', health: '3.8m SLA', desc: 'Doctor prescription e-signatures, PO authorizations & staff clearances', icon: '✍️', badge: 'Signed' },
-    { module: 'Compliance Dashboard', count: '99.8% Compliance', health: 'Grade A+', desc: 'SOC-2 Type II, Schedule H Drug Registry, HIPAA & ISO 27001', icon: '⚖️', badge: 'Compliant' }
-  ];
+  const auditSummary = [];
 
   const runFullVerification = () => {
     setToast('Cryptographic audit in progress: checking 14,820 SHA-256 block signatures...');
@@ -69,8 +59,8 @@ export default function AuditDashboard() {
 
       {/* KPI Highlights */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Compliance Score" value="99.8%" delta="Grade A+" trend="up" subtext="SOC-2 & Schedule H verified" icon="🛡️" />
-        <KpiCard label="Audit Log Events" value="14,820" delta="Immutable" trend="neutral" subtext="Stored in SQLite WAL" icon="📑" />
+        <KpiCard label="Compliance Score" value="0.0%" delta="Grade A+" trend="up" subtext="SOC-2 & Schedule H verified" icon="🛡️" />
+        <KpiCard label="Audit Log Events" value="0" delta="Immutable" trend="neutral" subtext="Stored in SQLite WAL" icon="📑" />
         <KpiCard label="Prescription Approvals" value="100% Signed" delta="MCI verified" trend="up" subtext="Zero unsigned scripts" icon="✍️" />
         <KpiCard label="Data Access Logs" value="Zero Breaches" delta="100% 2FA" trend="up" subtext="Role-based access" icon="🔒" />
       </div>

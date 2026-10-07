@@ -10,14 +10,7 @@ export default function DoctorReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const doctors = [
-    { name: 'Dr. Priya Sharma', spec: 'Chief Medical Officer & Ortho Surgeon', hospital: 'Bengaluru Flagship Hospital', consults: 342, surgeries: 28, rating: 4.96, revenue: 1420000, commission: 284000, rxAdherence: '99.2%' },
-    { name: 'Dr. Arvind Swaminathan', spec: 'Senior Soft-Tissue Surgeon', hospital: 'Mumbai Surgical Center', consults: 298, surgeries: 34, rating: 4.92, revenue: 1280000, commission: 256000, rxAdherence: '98.8%' },
-    { name: 'Dr. Rahul Mehta', spec: 'Emergency Trauma & Critical Care', hospital: 'Mumbai Surgical Desk', consults: 276, surgeries: 19, rating: 4.88, revenue: 980000, commission: 196000, rxAdherence: '97.5%' },
-    { name: 'Dr. Aisha Khan', spec: 'Internal Medicine & Dermatology', hospital: 'Delhi NCR Clinic', consults: 312, surgeries: 6, rating: 4.94, revenue: 890000, commission: 178000, rxAdherence: '99.0%' },
-    { name: 'Dr. Karan Patel', spec: 'Cardiology & Ultrasound Diagnostics', hospital: 'Bengaluru ICU Wing', consults: 240, surgeries: 12, rating: 4.90, revenue: 860000, commission: 172000, rxAdherence: '98.4%' },
-    { name: 'Dr. Kavita Reddy', spec: 'Clinical Pathologist & Telehealth', hospital: 'Hyderabad Telehealth Node', consults: 380, surgeries: 0, rating: 4.89, revenue: 760000, commission: 152000, rxAdherence: '99.5%' }
-  ];
+  const doctors = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -43,7 +36,7 @@ export default function DoctorReport() {
       title="Veterinary Doctor Clinical & Revenue Performance Report"
       subtitle="Comprehensive audit of patient consultations, surgical case volume, patient satisfaction ratings, gross revenue generated, and commission ledgers"
       icon="👨‍⚕️"
-      badge="18 Specialist Veterinarians"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -84,7 +77,7 @@ export default function DoctorReport() {
         <KpiCard label="Total Doctor Consultations" value="1,848 Consults" delta="+16.2% MTD" trend="up" subtext="Across 6 metro hospitals" icon="🩺" />
         <KpiCard label="Surgical Procedures" value="99 Surgeries" delta="Zero post-op sepsis" trend="up" subtext="Super-specialty OR" icon="🏥" />
         <KpiCard label="Average Doctor Rating" value="4.92 / 5.0" delta="Based on 1,420 ratings" trend="up" subtext="Verified pet parents" icon="⭐" />
-        <KpiCard label="Doctor Generated Revenue" value="₹61.90 Lakhs" delta="₹12.38L commission" trend="up" subtext="20% incentive split" icon="💼" />
+        <KpiCard label="Doctor Generated Revenue" value="₹0" delta="₹0 commission" trend="up" subtext="20% incentive split" icon="💼" />
       </div>
 
       {/* Table Section */}

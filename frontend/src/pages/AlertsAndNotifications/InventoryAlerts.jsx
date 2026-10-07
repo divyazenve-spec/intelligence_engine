@@ -3,73 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function InventoryAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'INV-301',
-      title: 'Critical Stockout Hazard: Royal Canin Maxi Puppy 4kg',
-      sku: 'ZV-RC-MAX-04',
-      hub: 'Koramangala 60-Min Express Hub',
-      currentStock: 6,
-      safetyStock: 35,
-      burnRate: '18 units/day',
-      estStockout: 'In 8 hours',
-      severity: 'Critical',
-      action: 'Inter-hub transfer from Bhiwandi Central',
-      status: 'Active'
-    },
-    {
-      id: 'INV-302',
-      title: 'Near-Expiry Batch (< 30 Days): Zoetis Apoquel 16mg',
-      sku: 'ZV-MED-APO-16',
-      hub: 'Bhiwandi Central Pharma Hub',
-      currentStock: 140,
-      safetyStock: 50,
-      burnRate: '4 strips/day',
-      estStockout: 'Expires Oct 27 (22 days)',
-      severity: 'High Warning',
-      action: 'Auto-apply 35% clearance discount to partner clinics',
-      status: 'Active'
-    },
-    {
-      id: 'INV-303',
-      title: 'Negative Physical Cycle-Count Variance (-14 cans)',
-      sku: 'ZV-PET-FAR-CAN',
-      hub: 'Indiranagar Express Dark Store',
-      currentStock: 28,
-      safetyStock: 40,
-      burnRate: '12 cans/day',
-      estStockout: 'Audit variance flagged',
-      severity: 'Warning',
-      action: 'Inventory audit review with store manager',
-      status: 'Under Review'
-    },
-    {
-      id: 'INV-304',
-      title: 'Cold-Chain Transit Telemetry Battery Warning',
-      sku: 'MULTI-VACCINES',
-      hub: 'Refrigerated Transit Van #KA-01-MJ-8812',
-      currentStock: 320,
-      safetyStock: 0,
-      burnRate: 'In-transit to Hyderabad Hub',
-      estStockout: 'Battery at 14% (Temp: +4.2°C)',
-      severity: 'Critical',
-      action: 'Rerouted to nearest cold-storage station in Kurnool',
-      status: 'In Transit'
-    },
-    {
-      id: 'INV-305',
-      title: 'Slow-Moving Stock Trap: Zenve Designer Dog Raincoats',
-      sku: 'ZV-FASH-RAIN-L',
-      hub: 'Delhi NCR Warehouse',
-      currentStock: 210,
-      safetyStock: 40,
-      burnRate: '0.8 units/day (DSI: 260 days)',
-      estStockout: '₹2,73,000 capital locked',
-      severity: 'Info',
-      action: 'Bundle with monsoon grooming packages',
-      status: 'Active'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -90,7 +24,7 @@ export default function InventoryAlerts() {
       title="Inventory & Cold-Chain Stock Alerts"
       subtitle="Stockout early-warning system, near-expiry pharmaceutical batches, cold-chain telemetry, and negative physical audit variances"
       icon="📦"
-      badge="2 Critical Stockouts"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -152,7 +86,7 @@ export default function InventoryAlerts() {
         />
         <KpiCard
           label="Near-Expiry Valuation (<30d)"
-          value="₹3,42,000"
+          value="₹0"
           delta="4 Pharmaceutical Batches"
           trend="down"
           subtext="Clearance discount active"
@@ -160,7 +94,7 @@ export default function InventoryAlerts() {
         />
         <KpiCard
           label="Cold-Chain Temperature SLA"
-          value="99.4%"
+          value="0.0%"
           delta="+2°C to +8°C compliant"
           trend="up"
           subtext="IoT telemetry live"
@@ -168,7 +102,7 @@ export default function InventoryAlerts() {
         />
         <KpiCard
           label="Capital Trapped in Slow-Moving"
-          value="₹5,18,000"
+          value="₹0"
           delta="DSI > 120 Days"
           trend="neutral"
           subtext="Monsoon fashion & gear"

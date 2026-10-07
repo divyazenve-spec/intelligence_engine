@@ -78,12 +78,19 @@ async def reset_to_sample(request: Request, db: Session = Depends(get_db)):
 
     sales_rows = sample.get("sales", [])
     metric_rows = sample.get("metrics", [])
-    if not sales_rows:
-        return {"success": False, "error": "Sample data is empty."}
-
     try:
         db.query(Sale).delete()
         db.query(DailyMetric).delete()
+        db.commit()
+
+        if not sales_rows:
+            return {
+                "success": True,
+                "count": 0,
+                "metrics_count": 0,
+                "data": {"sales": [], "metrics": []},
+                "message": "Database successfully reset to empty state (0 records)."
+            }
 
         now_ts = int(time.time() * 1000)
         sale_objs = []

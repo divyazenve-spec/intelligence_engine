@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function SocialMedia() {
-  const handles = [
-    { handle: '@zenvepets (Instagram)', followers: '348,000', growth: '+14,200', engRate: '4.82%', topPost: 'Golden Retriever Monsoon Care Tips', reach: '920K reach', icon: '📸' },
-    { handle: 'Zenve Pet Healthcare (YouTube)', followers: '182,000', growth: '+8,600', engRate: '6.15%', topPost: 'Surgeon Q&A: Tick Fever Signs', reach: '480K views', icon: '▶️' },
-    { handle: 'Zenve India (LinkedIn)', followers: '28,400', growth: '+2,100', engRate: '3.42%', topPost: 'Expanding Vet Hospital Network in Bengaluru', reach: '95K reach', icon: '💼' },
-    { handle: '@ZenveCares (X / Twitter)', followers: '42,500', growth: '+1,800', engRate: '5.20%', topPost: 'Pet Emergency SOS Helpline Hotline', reach: '180K impressions', icon: '🐦' }
-  ];
+  const handles = [];
 
   return (
     <DashboardLayout
@@ -17,13 +12,13 @@ export default function SocialMedia() {
       title="Social Media Reach & Community Engagement"
       subtitle="Follower growth, pet parent community engagement, viral reels reach, and brand sentiment"
       icon="📱"
-      badge="600.9K Community Followers"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Social Audience" value="600,900" delta="+26,700 / mo" trend="up" subtext="Across 4 channels" icon="👥" />
-        <KpiCard label="Average Engagement Rate" value="4.90%" delta="+0.65%" trend="up" subtext="Industry avg: 1.8%" icon="💬" />
-        <KpiCard label="Monthly Content Reach" value="2.45M" delta="+34.2%" trend="up" subtext="Reels, Shorts, Carousels" icon="🔥" />
-        <KpiCard label="UGC Pet Submissions" value="1,840" delta="+41.0%" trend="up" subtext="Pet parent tagging Zenve" icon="🐕" />
+        <KpiCard label="Total Social Audience" value="0" delta="+26,700 / mo" trend="up" subtext="Across 4 channels" icon="👥" />
+        <KpiCard label="Average Engagement Rate" value="0.0%" delta="0.0%" trend="up" subtext="Industry avg: 1.8%" icon="💬" />
+        <KpiCard label="Monthly Content Reach" value="2.45M" delta="0.0%" trend="up" subtext="Reels, Shorts, Carousels" icon="🔥" />
+        <KpiCard label="UGC Pet Submissions" value="0" delta="0.0%" trend="up" subtext="Pet parent tagging Zenve" icon="🐕" />
       </div>
 
       <div style={{

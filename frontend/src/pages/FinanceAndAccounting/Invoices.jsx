@@ -6,14 +6,7 @@ export default function Invoices() {
   const [filterStatus, setFilterStatus] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const invoices = [
-    { id: 'INV-ZV-8021', date: '2026-10-04', client: 'Rohit Sharma (Pet: Bruno)', facility: 'Koramangala 24x7', items: 'Emergency GDV Surgical Package + HDU', taxable: '₹38,000', gst: '₹6,840', total: '₹44,840', status: 'Paid', method: 'Razorpay UPI' },
-    { id: 'INV-ZV-8022', date: '2026-10-04', client: 'Infosys Employee Pets Program', facility: 'Network Wide', items: 'Monthly Corporate Wellness OPD Retainer', taxable: '₹3,55,932', gst: '₹64,068', total: '₹4,20,000', status: 'Pending', method: 'NEFT Invoice' },
-    { id: 'INV-ZV-8023', date: '2026-10-03', client: 'Meera Kapoor (Pet: Bella)', facility: 'Bandra Multi-Specialty', items: 'Minimally Invasive Laparoscopy Spay', taxable: '₹18,500', gst: '₹3,330', total: '₹21,830', status: 'Paid', method: 'Pine Labs POS' },
-    { id: 'INV-ZV-8024', date: '2026-10-03', client: 'Dr. Oak Referral Lab Andheri', facility: 'Bandra Multi-Specialty', items: 'CT Scan & 3D Imaging Referral Bundle', taxable: '₹1,52,542', gst: '₹27,458', total: '₹1,80,000', status: 'Overdue', method: 'Net 30 Ledger' },
-    { id: 'INV-ZV-8025', date: '2026-10-02', client: 'Vikram Malhotra (Pet: Shadow)', facility: 'Okhla Animal Hospital', items: 'Cardiology Workup + Zoetis Rx', taxable: '₹8,200', gst: '₹1,476', total: '₹9,676', status: 'Paid', method: 'Stripe Card' },
-    { id: 'INV-ZV-8026', date: '2026-10-01', client: 'Ananya Deshmukh (Pet: Coco)', facility: 'Care Center Indiranagar', items: 'Routine Vaccination + Dental Prophylaxis', taxable: '₹3,200', gst: '₹576', total: '₹3,776', status: 'Paid', method: 'PhonePe QR' }
-  ];
+  const invoices = [];
 
   const filtered = invoices.filter(inv => {
     if (filterStatus !== 'ALL' && inv.status !== filterStatus) return false;
@@ -54,11 +47,11 @@ export default function Invoices() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Invoices Issued (MTD)" value="1,842 Invoices" delta="+14.2% MoM" trend="up" subtext="100% GST Compliant" icon="🧾" />
-        <KpiCard label="Total Invoiced Value" value="₹78.40 Lakh" delta="₹11.96L GST Output" trend="up" subtext="18% GST Applicable" icon="💰" />
-        <KpiCard label="Settled / Paid" value="₹72.40 Lakh" delta="92.3% Realization" trend="up" subtext="Instant digital pay" icon="✅" />
-        <KpiCard label="Pending Settlement" value="₹4.20 Lakh" delta="Corporate B2B terms" trend="up" subtext="Within credit window" icon="⏳" />
-        <KpiCard label="Overdue Invoices" value="₹1.80 Lakh" delta="1 Institutional account" trend="down" subtext="Follow-up notice sent" icon="⚠️" />
-        <KpiCard label="e-Invoice IRN Portal Sync" value="99.98%" delta="Sub-second sync" trend="up" subtext="NIC e-Invoice portal" icon="📶" />
+        <KpiCard label="Total Invoiced Value" value="₹0" delta="₹0 GST Output" trend="up" subtext="18% GST Applicable" icon="💰" />
+        <KpiCard label="Settled / Paid" value="₹0" delta="92.3% Realization" trend="up" subtext="Instant digital pay" icon="✅" />
+        <KpiCard label="Pending Settlement" value="₹0" delta="Corporate B2B terms" trend="up" subtext="Within credit window" icon="⏳" />
+        <KpiCard label="Overdue Invoices" value="₹0" delta="1 Institutional account" trend="down" subtext="Follow-up notice sent" icon="⚠️" />
+        <KpiCard label="e-Invoice IRN Portal Sync" value="0.0%" delta="Sub-second sync" trend="up" subtext="NIC e-Invoice portal" icon="📶" />
       </div>
 
       <div style={{

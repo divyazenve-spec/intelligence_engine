@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function InventoryDashboard() {
-  const stockItems = [
-    { sku: 'ZV-MED-01', name: 'Bravecto Chewable (10-20kg)', category: 'Pharmacy', qty: 142, reorder: 30, price: '₹1,950', status: 'Healthy' },
-    { sku: 'ZV-DIET-04', name: 'Royal Canin Hepatic Veterinary Food', category: 'Prescription Food', qty: 14, reorder: 25, price: '₹3,400', status: 'Low Stock' },
-    { sku: 'ZV-VAC-02', name: 'Nobivac DHPPi Core Vaccine', category: 'Immunization', qty: 86, reorder: 40, price: '₹850', status: 'Healthy' },
-    { sku: 'ZV-PAR-09', name: 'NexGard Spectra (3.5-7.5kg)', category: 'Pharmacy', qty: 8, reorder: 20, price: '₹1,450', status: 'Critical Low' }
-  ];
+  const stockItems = [];
 
   return (
     <DashboardLayout
@@ -17,12 +12,12 @@ export default function InventoryDashboard() {
       title="Warehouse & SKU Valuation Control"
       subtitle="Stock levels, batch tracking, expiry monitoring, and warehouse movement"
       icon="📦"
-      badge="Total Value: ₹1.86 Cr"
+      badge="Total Value: ₹0"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Stock Value" value="₹1,86,50,000" delta="+4.8%" trend="up" subtext="Warehouse valuation" icon="💰" />
-        <KpiCard label="Active SKUs" value="1,420" delta="100% active" trend="neutral" subtext="Live catalog" icon="🏷️" />
-        <KpiCard label="Low Stock SKUs" value="28" delta="Action required" trend="down" subtext="Below reorder level" icon="⚠️" />
+        <KpiCard label="Total Stock Value" value="₹0" delta="0.0%" trend="up" subtext="Warehouse valuation" icon="💰" />
+        <KpiCard label="Active SKUs" value="0" delta="100% active" trend="neutral" subtext="Live catalog" icon="🏷️" />
+        <KpiCard label="Low Stock SKUs" value="0" delta="Action required" trend="down" subtext="Below reorder level" icon="⚠️" />
         <KpiCard label="Expiring in 30 Days" value="12 batches" delta="Inspection due" trend="down" subtext="FEFO tracking" icon="⏳" />
       </div>
 

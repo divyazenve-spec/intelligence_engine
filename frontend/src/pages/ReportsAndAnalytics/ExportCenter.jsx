@@ -11,18 +11,7 @@ export default function ExportCenter() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const exportDatasets = [
-    { id: 'EXP-01', title: 'Complete Sales & Transactions Master Ledger', domain: 'Sales', format: 'CSV', size: '14.8 MB', rows: '48,250 records', lastGenerated: '10m ago' },
-    { id: 'EXP-02', title: 'Executive Monthly P&L and Balance Sheet Pack', domain: 'Finance', format: 'PDF & XLSX', size: '4.2 MB', rows: 'Full GAAP Audit', lastGenerated: '2h ago' },
-    { id: 'EXP-03', title: 'Customer 360° Demographics & RFM Profiles', domain: 'Customer', format: 'CSV', size: '6.4 MB', rows: '10,000 parents', lastGenerated: '4h ago' },
-    { id: 'EXP-04', title: 'Pet Patient Census & Vaccination History', domain: 'Pets', format: 'CSV', size: '8.1 MB', rows: '13,400 pets', lastGenerated: '6h ago' },
-    { id: 'EXP-05', title: 'Doctor Consultation & Commission Statements', domain: 'Doctors', format: 'CSV', size: '1.2 MB', rows: '18 specialists', lastGenerated: 'Today, 09:00' },
-    { id: 'EXP-06', title: 'Warehouse Inventory Batch & Expiry Valuation', domain: 'Inventory', format: 'XLSX', size: '5.6 MB', rows: '1,840 SKUs', lastGenerated: 'Today, 08:30' },
-    { id: 'EXP-07', title: '60-Minute Express SLA & Rider Dwell Logs', domain: 'Operations', format: 'CSV', size: '9.4 MB', rows: '24,180 drops', lastGenerated: 'Yesterday' },
-    { id: 'EXP-08', title: 'Marketing Multi-Touch Attribution & CAC Data', domain: 'Marketing', format: 'CSV', size: '3.8 MB', rows: '95,000 clicks', lastGenerated: 'Oct 03' },
-    { id: 'EXP-09', title: 'Supplier Purchase Orders & Delivery Scorecards', domain: 'Vendors', format: 'CSV', size: '2.1 MB', rows: '420 POs', lastGenerated: 'Oct 02' },
-    { id: 'EXP-10', title: 'SOC-2 Data Access & Security Audit Trail', domain: 'Compliance', format: 'JSON / CSV', size: '28.4 MB', rows: '124,000 logs', lastGenerated: 'Oct 01' }
-  ];
+  const exportDatasets = [];
 
   const handleInstantDownload = (item) => {
     // Generate actual downloadable CSV file in browser

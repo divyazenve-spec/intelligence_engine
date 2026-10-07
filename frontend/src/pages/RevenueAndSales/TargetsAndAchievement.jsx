@@ -17,48 +17,10 @@ export default function TargetsAndAchievement() {
   const surplusDeficit = realizedRevenue - adjustedTarget;
 
   // Department targets
-  const departments = [
-    { id: 'clin-ops', name: 'Clinical Operations', lead: 'Dr. Priya Sharma', weight: 0.28, achieved: 1520000, icon: '🩺', color: '#0ea5e9' },
-    { id: 'pat-serv', name: 'Patient Services', lead: 'Rajesh Verma', weight: 0.20, achieved: 980000, icon: '👥', color: '#10b981' },
-    { id: 'out-care', name: 'Outpatient Care', lead: 'Ananya Deshmukh', weight: 0.18, achieved: 890000, icon: '🏥', color: '#8b5cf6' },
-    { id: 'diag-lab', name: 'Diagnostics & Lab', lead: 'Vikram Mehta', weight: 0.14, achieved: 640000, icon: '🔬', color: '#f59e0b' },
-    { id: 'pharm-well', name: 'Pharmacy & Wellness', lead: 'Sneha Patel', weight: 0.12, achieved: 680000, icon: '💊', color: '#ec4899' },
-    { id: 'tele-dig', name: 'Telehealth & Digital', lead: 'Arjun Nair', weight: 0.08, achieved: 340000, icon: '📱', color: '#06b6d4' }
-  ].map(dept => {
-    const deptTarget = Math.round(adjustedTarget * dept.weight);
-    const deptAttain = (dept.achieved / deptTarget) * 100;
-    const deptVariance = dept.achieved - deptTarget;
-    let status = 'On Track';
-    let statusColor = '#0ea5e9';
-    if (deptAttain >= 100) {
-      status = '★ Exceeded';
-      statusColor = '#10b981';
-    } else if (deptAttain < 88) {
-      status = 'Needs Focus';
-      statusColor = '#f59e0b';
-    }
-    return { ...dept, target: deptTarget, attain: deptAttain, variance: deptVariance, status, statusColor };
-  });
-
-  const filteredDepts = selectedDept === 'all' ? departments : departments.filter(d => d.id === selectedDept);
-
-  // Individual reps & coordinators
-  const reps = [
-    { rank: '01', medal: '🥇', name: 'Kavita Menon', role: 'Sr. Clinical Coordinator', dept: 'Clinical Operations', target: 800000, achieved: 940000, bonus: 'Tier 1 (+₹25K)' },
-    { rank: '02', medal: '🥈', name: 'Rohan Deshmukh', role: 'Wellness Account Lead', dept: 'Pharmacy & Wellness', target: 600000, achieved: 680000, bonus: 'Tier 1 (+₹20K)' },
-    { rank: '03', medal: '🥉', name: 'Sneha Rao', role: 'Patient Care Specialist', dept: 'Patient Services', target: 550000, achieved: 590000, bonus: 'Tier 2 (+₹15K)' },
-    { rank: '04', medal: '04', name: 'Aditya Birla', role: 'Surgical Consult Planner', dept: 'Outpatient Care', target: 500000, achieved: 495000, bonus: 'Eligible' },
-    { rank: '05', medal: '05', name: 'Vikram Joshi', role: 'Lab Diagnostics Partner', dept: 'Diagnostics & Lab', target: 450000, achieved: 410000, bonus: 'Pacing 91%' },
-    { rank: '06', medal: '06', name: 'Meera Nair', role: 'Telehealth Coordinator', dept: 'Telehealth & Digital', target: 350000, achieved: 295000, bonus: 'In Review' }
-  ];
+  const departments = [];
 
   // Doctors Quotas
-  const doctors = [
-    { name: 'Dr. Priya Sharma', spec: 'Senior Canine Surgeon', consultTarget: 120, consultActual: 134, revTarget: 1100000, revActual: 1220000 },
-    { name: 'Dr. Sameer Joshi', spec: 'Avian & Exotic Specialist', consultTarget: 95, consultActual: 102, revTarget: 850000, revActual: 890000 },
-    { name: 'Dr. Anita Roy', spec: 'Feline Internal Medicine', consultTarget: 110, consultActual: 108, revTarget: 950000, revActual: 940000 },
-    { name: 'Dr. Rajesh Rao', spec: 'Orthopedic Consultant', consultTarget: 80, consultActual: 86, revTarget: 780000, revActual: 840000 }
-  ];
+  const doctors = [];
 
   // Circular gauge calculations
   const rad = 65;

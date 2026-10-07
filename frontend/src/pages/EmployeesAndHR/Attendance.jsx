@@ -6,18 +6,7 @@ export default function Attendance() {
   const [shiftFilter, setShiftFilter] = useState('ALL');
   const [selectedDate, setSelectedDate] = useState('2026-10-05');
 
-  const punches = [
-    { empId: 'EMP-1001', name: 'Dr. Priya Sharma', shift: 'Morning Clinical (08:00 - 16:30)', punchIn: '07:54 AM', punchOut: 'Pending', status: 'On Time', location: 'Bengaluru Flagship (Biometric)', otHours: '0.0h' },
-    { empId: 'EMP-1002', name: 'Dr. Rahul Mehta', shift: 'Morning Clinical (08:00 - 16:30)', punchIn: '07:58 AM', punchOut: 'Pending', status: 'On Time', location: 'Mumbai Center (Biometric)', otHours: '0.0h' },
-    { empId: 'EMP-1003', name: 'Rohan Deshmukh', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:52 AM', punchOut: 'Pending', status: 'On Time', location: 'Bengaluru Hub (RFID)', otHours: '0.0h' },
-    { empId: 'EMP-1004', name: 'Sneha Chawla', shift: 'Flexible Tech (09:30 - 18:30)', punchIn: '09:28 AM', punchOut: 'Pending', status: 'On Time', location: 'Remote (Geo-Mobile)', otHours: '0.0h' },
-    { empId: 'EMP-1005', name: 'Vikram Joshi', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:45 AM', punchOut: 'Pending', status: 'On Time', location: 'Bengaluru South (RFID)', otHours: '0.0h' },
-    { empId: 'EMP-1006', name: 'Ananya Verma', shift: 'Early Warehouse (06:00 - 14:30)', punchIn: '05:50 AM', punchOut: '02:35 PM', status: 'On Time', location: 'Bhiwandi Hub (Biometric)', otHours: '0.5h' },
-    { empId: 'EMP-1007', name: 'Manish Rawat', shift: 'Afternoon Express (12:00 - 21:00)', punchIn: '12:12 PM', punchOut: 'Pending', status: 'Late Mark', location: 'Mumbai Bandra (Mobile App)', otHours: '0.0h' },
-    { empId: 'EMP-1008', name: 'Dr. Aisha Khan', shift: 'On Approved Leave', punchIn: '—', punchOut: '—', status: 'On Leave', location: 'Delhi NCR Clinic', otHours: '0.0h' },
-    { empId: 'EMP-1009', name: 'Pooja Hegde', shift: 'General Shift (09:00 - 18:00)', punchIn: '08:55 AM', punchOut: 'Pending', status: 'On Time', location: 'Bengaluru HQ (Biometric)', otHours: '0.0h' },
-    { empId: 'EMP-1010', name: 'Kunal Sen', shift: 'Early Warehouse (06:00 - 14:30)', punchIn: '05:58 AM', punchOut: '02:30 PM', status: 'On Time', location: 'Bengaluru Hub (Biometric)', otHours: '0.0h' }
-  ];
+  const punches = [];
 
   const filtered = punches.filter(p => {
     if (shiftFilter === 'ALL') return true;
@@ -36,7 +25,7 @@ export default function Attendance() {
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Present on Duty Today" value="198 / 208 Staff" delta="95.2% workforce" trend="up" subtext="Across 7 clinic/hub nodes" icon="🟢" />
-        <KpiCard label="Punctuality Rate" value="96.8%" delta="+1.2% this month" trend="up" subtext="Arrived before shift grace period" icon="⏱️" />
+        <KpiCard label="Punctuality Rate" value="0.0%" delta="+1.2% this month" trend="up" subtext="Arrived before shift grace period" icon="⏱️" />
         <KpiCard label="Late Arrivals Today" value="4 Personnel" delta="Within 15-min grace" trend="neutral" subtext="Rider transit delays" icon="⚠️" />
         <KpiCard label="Approved Leaves Today" value="6 Staff" delta="Planned absence" trend="neutral" subtext="Rosters balanced" icon="🏖️" />
       </div>

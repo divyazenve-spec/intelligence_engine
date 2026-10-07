@@ -6,16 +6,7 @@ export default function FashionCustomers() {
   const [selectedTier, setSelectedTier] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const customers = [
-    { id: 'CUST-FSH-01', name: 'Natasha Poonawalla', city: 'Mumbai', pet: 'Princess & Chloe', breed: 'Pomeranian & Maltipoo', sizeProfile: 'Neck 22cm · Chest 32cm', ltv: '₹84,500', orders: 18, vipTier: 'Platinum Atelier', favCategory: 'Formal Atelier', lastOrder: '2026-09-30' },
-    { id: 'CUST-FSH-02', name: 'Vikramaditya Singhania', city: 'Mumbai', pet: 'Simba', breed: 'Golden Retriever', sizeProfile: 'Neck 48cm · Chest 78cm', ltv: '₹62,400', orders: 12, vipTier: 'Platinum Atelier', favCategory: 'Weatherwear & Boots', lastOrder: '2026-10-04' },
-    { id: 'CUST-FSH-03', name: 'Ananya Deshmukh', city: 'Mumbai', pet: 'Koko', breed: 'French Bulldog', sizeProfile: 'Neck 38cm · Chest 54cm', ltv: '₹48,900', orders: 9, vipTier: 'Gold Couture', favCategory: 'Leather Harnesses', lastOrder: '2026-10-04' },
-    { id: 'CUST-FSH-04', name: 'Kunal Kapoor', city: 'Bengaluru', pet: 'Diesel', breed: 'Doberman Pinscher', sizeProfile: 'Neck 50cm · Chest 82cm', ltv: '₹41,200', orders: 8, vipTier: 'Gold Couture', favCategory: 'Tactical Luxe', lastOrder: '2026-10-01' },
-    { id: 'CUST-FSH-05', name: 'Pooja Bhattacharya', city: 'Bengaluru', pet: 'Bella', breed: 'Shih Tzu', sizeProfile: 'Neck 26cm · Chest 38cm', ltv: '₹36,800', orders: 7, vipTier: 'Gold Couture', favCategory: 'Winter Knits', lastOrder: '2026-10-03' },
-    { id: 'CUST-FSH-06', name: 'Rohan Mehra', city: 'Delhi NCR', pet: 'Oscar', breed: 'Beagle', sizeProfile: 'Neck 34cm · Chest 48cm', ltv: '₹28,500', orders: 5, vipTier: 'Silver Member', favCategory: 'Silk Bandanas', lastOrder: '2026-10-02' },
-    { id: 'CUST-FSH-07', name: 'Dr. Shruti Nair', city: 'Bengaluru', pet: 'Milo', breed: 'Persian Cat', sizeProfile: 'Neck 18cm · Chest 28cm', ltv: '₹22,100', orders: 4, vipTier: 'Silver Member', favCategory: 'Velvet Collars', lastOrder: '2026-10-02' },
-    { id: 'CUST-FSH-08', name: 'Aditya Birla', city: 'Mumbai', pet: 'Leo', breed: 'German Shepherd', sizeProfile: 'Neck 52cm · Chest 86cm', ltv: '₹39,400', orders: 6, vipTier: 'Gold Couture', favCategory: 'Weatherwear', lastOrder: '2026-09-29' }
-  ];
+  const customers = [];
 
   const filtered = customers.filter(c => {
     if (selectedTier !== 'ALL' && c.vipTier !== selectedTier) return false;
@@ -44,11 +35,11 @@ export default function FashionCustomers() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Couture Clients" value="1,840 Parents" delta="+16.4% YoY" trend="up" subtext="Registered size profiles" icon="👥" />
-        <KpiCard label="Average Client LTV" value="₹38,200" delta="+₹4,800 vs FY25" trend="up" subtext="Across apparel & accessories" icon="💎" />
-        <KpiCard label="Repeat Purchase Rate" value="64.8%" delta="+5.2% MoM" trend="up" subtext="Seasonal capsule drops" icon="🔄" />
-        <KpiCard label="Platinum VIP Members" value="142 Clients" delta="Spend > ₹50,000/yr" trend="up" subtext="Bespoke atelier priority" icon="👑" />
+        <KpiCard label="Average Client LTV" value="₹0" delta="+₹0 FY25" trend="up" subtext="Across apparel & accessories" icon="💎" />
+        <KpiCard label="Repeat Purchase Rate" value="0.0%" delta="+5.2% MoM" trend="up" subtext="Seasonal capsule drops" icon="🔄" />
+        <KpiCard label="Platinum VIP Members" value="142 Clients" delta="Spend > ₹0/yr" trend="up" subtext="Bespoke atelier priority" icon="👑" />
         <KpiCard label="Personal Stylist Bookings" value="88 Sessions" delta="94% satisfaction" trend="up" subtext="In-showroom fittings" icon="✂️" />
-        <KpiCard label="Pet Sizing Accuracy" value="98.9%" delta="Precision 3D guide" trend="up" subtext="Virtually zero fit returns" icon="📐" />
+        <KpiCard label="Pet Sizing Accuracy" value="0.0%" delta="Precision 3D guide" trend="up" subtext="Virtually zero fit returns" icon="📐" />
       </div>
 
       <div style={card}>

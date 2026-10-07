@@ -39,6 +39,16 @@ def generate_brief(data: dict, db: Session) -> str:
     aov = int(total_revenue / len(paid) + 0.5) if paid else 0
     rpd = f"{total_revenue / downloads:.1f}" if downloads > 0 else "0"
 
+    if not paid and not metrics:
+        return (
+            "Executive Intelligence Brief — Zenve Pets Healthcare\n"
+            f"Period: {start or 'Last 14 Days'} to {end or 'Today'} (0 settled orders across 0 pet parents)\n\n"
+            "• Revenue & Acquisition Velocity: Net settled sales: ₹0 across 0 new app installs.\n"
+            "• Channel Performance: No transactions recorded in database.\n"
+            "• Top Veterinary Growth Drivers: None recorded (0 orders).\n"
+            "• Operational Recommendation: Awaiting live transactional data ingestion to generate AI trends."
+        )
+
     by_cat: dict[str, float] = {}
     by_app: dict[str, float] = {}
     for s in paid:
@@ -56,8 +66,7 @@ def generate_brief(data: dict, db: Session) -> str:
         f"(Android: {format_int(android)}, iOS: {format_int(ios)}), generating ₹{rpd} revenue-per-download with an Average Order Value (AOV) of ₹{format_indian(aov)}.\n"
         f"• Channel Performance: Android leads mobile volume with ₹{format_indian(by_app.get('Android', 0))}, while iOS demonstrates higher conversion per user with ₹{format_indian(by_app.get('iOS', 0))}. "
         f"Web & Direct orders contributed ₹{format_indian(by_app.get('Web', 0) + by_app.get('Other', 0))}.\n"
-        f"• Top Veterinary Growth Drivers: Highest grossing service verticals include {top_categories or 'Pet Pharmacy and Diagnostics'}. "
+        f"• Top Veterinary Growth Drivers: Highest grossing service verticals include {top_categories or 'None'}. "
         "Preventive healthcare subscriptions continue to deliver repeat margins.\n"
-        "• Operational Recommendation: Expand iOS-targeted seasonal veterinary care packages and maintain stock on fast-moving medications "
-        "in high-density metros (Bengaluru, Mumbai, Delhi NCR) to optimize lifetime value."
+        "• Operational Recommendation: Ingest live transactional or ERP telemetry via the Data Pipeline."
     )

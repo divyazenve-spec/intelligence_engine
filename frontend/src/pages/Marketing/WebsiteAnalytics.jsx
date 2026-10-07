@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function WebsiteAnalytics() {
-  const topPages = [
-    { path: '/vet-telehealth-booking', title: 'Online Vet Consultation & Instant Video Call', views: '84,500', unique: '61,200', time: '3m 42s', bounce: '28.4%', conv: '18.2%' },
-    { path: '/pet-pharmacy/monsoon-flea-tick', title: 'Prescription Flea & Tick Treatments', views: '62,800', unique: '48,900', time: '2m 58s', bounce: '31.6%', conv: '22.4%' },
-    { path: '/puppy-first-year-health-guide', title: 'Puppy Vaccination & Deworming Protocol', views: '45,200', unique: '38,100', time: '4m 15s', bounce: '36.8%', conv: '11.8%' },
-    { path: '/zenve-fashion/dog-apparel', title: 'Luxury Canine Jackets & Harness Collection', views: '38,900', unique: '29,400', time: '2m 12s', bounce: '34.2%', conv: '14.5%' },
-    { path: '/clinic-locator/bengaluru-mumbai', title: 'Zenve Partner Hospitals & Emergency Centers', views: '29,400', unique: '24,800', time: '1m 45s', bounce: '24.1%', conv: '28.9%' }
-  ];
+  const topPages = [];
 
   return (
     <DashboardLayout
@@ -18,13 +12,13 @@ export default function WebsiteAnalytics() {
       title="Digital Web Traffic & Behavioral Analytics"
       subtitle="Web traffic trends, session duration, landing page conversion, and visitor engagement"
       icon="💻"
-      badge="260.8K Monthly Visitors"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Unique Visitors" value="260,800" delta="+24.2%" trend="up" subtext="72% Mobile web traffic" icon="👥" />
+        <KpiCard label="Monthly Unique Visitors" value="0" delta="0.0%" trend="up" subtext="72% Mobile web traffic" icon="👥" />
         <KpiCard label="Avg Session Duration" value="3m 14s" delta="+18s" trend="up" subtext="Benchmark: 2m 20s" icon="⏱️" />
-        <KpiCard label="Sitewide Bounce Rate" value="31.2%" delta="-3.8%" trend="up" subtext="Lower is better" icon="📉" />
-        <KpiCard label="Goal Conversion Rate" value="14.8%" delta="+2.6%" trend="up" subtext="Add to Cart & Booking" icon="🎯" />
+        <KpiCard label="Sitewide Bounce Rate" value="0.0%" delta="-3.8%" trend="up" subtext="Lower is better" icon="📉" />
+        <KpiCard label="Goal Conversion Rate" value="0.0%" delta="0.0%" trend="up" subtext="Add to Cart & Booking" icon="🎯" />
       </div>
 
       <div style={{

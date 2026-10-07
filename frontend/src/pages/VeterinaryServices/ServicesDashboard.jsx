@@ -13,17 +13,7 @@ import ServiceProfitability from './ServiceProfitability';
 export default function ServicesDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
 
-  const subdomains = [
-    { id: 'overview', label: 'Services Dashboard', icon: '🩺' },
-    { id: 'consultations', label: 'Consultations', icon: '👨‍⚕️' },
-    { id: 'appointments', label: 'Appointments', icon: '📅' },
-    { id: 'treatments', label: 'Treatments', icon: '💊' },
-    { id: 'vaccinations', label: 'Vaccinations', icon: '💉' },
-    { id: 'diagnostics', label: 'Diagnostics', icon: '🔬' },
-    { id: 'procedures', label: 'Procedures', icon: '✂️' },
-    { id: 'revenue', label: 'Service Revenue', icon: '💰' },
-    { id: 'profitability', label: 'Service Profitability', icon: '📈' }
-  ];
+  const subdomains = [];
 
   if (activeTab === 'consultations') return <Consultations />;
   if (activeTab === 'appointments') return <Appointments />;
@@ -82,10 +72,10 @@ export default function ServicesDashboard() {
 
       {/* KPI Highlights */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Clinical Revenue (MTD)" value="₹14.99 Lakh" delta="+18.4% MoM" trend="up" subtext="18% total Zenve revenue" icon="💰" />
+        <KpiCard label="Clinical Revenue (MTD)" value="₹0" delta="+18.4% MoM" trend="up" subtext="18% total Zenve revenue" icon="💰" />
         <KpiCard label="Completed Consults" value="1,420 Patients" delta="+14.2% MoM" trend="up" subtext="In-clinic, video & home visits" icon="🩺" />
         <KpiCard label="Surgical Procedures" value="184 Surgeries" delta="100% Sterility" trend="up" subtext="Orthopedic, soft tissue, dental" icon="✂️" />
-        <KpiCard label="Clinical Profit Margin" value="73.9%" delta="+2.8% YoY" trend="up" subtext="High margin core business" icon="📈" />
+        <KpiCard label="Clinical Profit Margin" value="0.0%" delta="+2.8% YoY" trend="up" subtext="High margin core business" icon="📈" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '16px' }}>

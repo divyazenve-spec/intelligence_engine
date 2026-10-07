@@ -6,166 +6,11 @@ export default function ClinicNetwork() {
   const [selectedCity, setSelectedCity] = useState('All');
   const [selectedTier, setSelectedTier] = useState('All');
 
-  const facilities = [
-    {
-      id: 'NET-01',
-      name: 'Zenve Hospital Koramangala',
-      city: 'Bengaluru',
-      tier: 'Tertiary Flagship',
-      role: 'Southern Hub & Trauma Center',
-      beds: '32 Beds (8 ICU)',
-      ots: '3 Modular OTs',
-      ambulance: '2 Advanced Life Support Units',
-      telemed: 'Central Tele-Radiology Hub',
-      referralsReceived: '74 / mo',
-      status: 'Active Hub',
-      uptime: '99.98%'
-    },
-    {
-      id: 'NET-02',
-      name: 'Zenve Multi-Specialty Bandra',
-      city: 'Mumbai',
-      tier: 'Tertiary Flagship',
-      role: 'Western Regional Referral Center',
-      beds: '24 Beds (6 ICU)',
-      ots: '2 Modular OTs',
-      ambulance: '2 ALS Pet Ambulances',
-      telemed: 'Neuro-Surgical Tele-Consult Hub',
-      referralsReceived: '62 / mo',
-      status: 'Active Hub',
-      uptime: '100%'
-    },
-    {
-      id: 'NET-03',
-      name: 'Zenve Animal Hospital Okhla',
-      city: 'Delhi NCR',
-      tier: 'Tertiary Flagship',
-      role: 'Northern Regional Hub',
-      beds: '20 Beds (5 ICU)',
-      ots: '2 Surgical OTs',
-      ambulance: '2 ALS Pet Ambulances',
-      telemed: 'Oncology Board Review Hub',
-      referralsReceived: '51 / mo',
-      status: 'Active Hub',
-      uptime: '99.94%'
-    },
-    {
-      id: 'NET-04',
-      name: 'Zenve Care Center Indiranagar',
-      city: 'Bengaluru',
-      tier: 'Secondary Specialty',
-      role: 'Spoke to Koramangala Hub',
-      beds: 'Daycare & HDU (4 Beds)',
-      ots: '1 Minor Procedure OT',
-      ambulance: 'Shared Koramangala ALS Fleet',
-      telemed: 'Equipped (Direct Koramangala Link)',
-      referralsReceived: '12 / mo (Transfers Out: 28)',
-      status: 'Active Spoke',
-      uptime: '100%'
-    },
-    {
-      id: 'NET-05',
-      name: 'Zenve Jubilee Hills Specialty',
-      city: 'Hyderabad',
-      tier: 'Secondary Specialty',
-      role: 'Telangana Central Referral Spoke',
-      beds: '10 Beds (2 ICU)',
-      ots: '1 Full OT',
-      ambulance: '1 Pet Ambulance Unit',
-      telemed: 'Connected to Southern Hub',
-      referralsReceived: '18 / mo',
-      status: 'Active Hub',
-      uptime: '99.9%'
-    },
-    {
-      id: 'NET-06',
-      name: 'Zenve Jayanagar OPD & Daycare',
-      city: 'Bengaluru',
-      tier: 'Primary Express',
-      role: 'Spoke to Koramangala Hub',
-      beds: '6 Daycare Recovery Bays',
-      ots: 'Dental & Minor Suite',
-      ambulance: 'On-Call Transfer Support',
-      telemed: 'Equipped for Second Opinions',
-      referralsReceived: '4 / mo (Transfers Out: 19)',
-      status: 'Active Spoke',
-      uptime: '100%'
-    },
-    {
-      id: 'NET-07',
-      name: 'Zenve Koregaon Park Clinic',
-      city: 'Pune',
-      tier: 'Secondary Specialty',
-      role: 'Western Regional Spoke',
-      beds: '6 Beds (1 ICU)',
-      ots: '1 Minor Surgical OT',
-      ambulance: '1 First-Responder Unit',
-      telemed: 'Direct Bandra Tele-Link',
-      referralsReceived: '9 / mo (Transfers Out: 14)',
-      status: 'Active Spoke',
-      uptime: '99.8%'
-    },
-    {
-      id: 'NET-08',
-      name: 'Zenve Andheri West Express',
-      city: 'Mumbai',
-      tier: 'Primary Express',
-      role: 'Spoke to Bandra Hub',
-      beds: '4 Daycare Pods',
-      ots: 'Consultation & Diagnostics',
-      ambulance: 'Shared Bandra ALS Unit',
-      telemed: 'Equipped',
-      referralsReceived: '3 / mo (Transfers Out: 22)',
-      status: 'Active Spoke',
-      uptime: '100%'
-    },
-    {
-      id: 'NET-09',
-      name: 'Zenve Gurgaon Sector 29 Clinic',
-      city: 'Delhi NCR',
-      tier: 'Secondary Specialty',
-      role: 'Spoke to Okhla Hub',
-      beds: '8 Beds (2 HDU)',
-      ots: '1 Surgical Suite',
-      ambulance: '1 Mobile Vet Unit',
-      telemed: 'Connected to Okhla Hub',
-      referralsReceived: '11 / mo (Transfers Out: 16)',
-      status: 'Active Spoke',
-      uptime: '99.9%'
-    },
-    {
-      id: 'NET-10',
-      name: 'Zenve Whitefield Tech Hub Clinic',
-      city: 'Bengaluru',
-      tier: 'Primary Express',
-      role: 'Spoke to Koramangala Hub',
-      beds: '4 Daycare Pods',
-      ots: 'OPD & Preventive Suite',
-      ambulance: 'On-Call',
-      telemed: 'Equipped',
-      referralsReceived: '2 / mo (Transfers Out: 17)',
-      status: 'Active Spoke',
-      uptime: '100%'
-    }
-  ];
+  const facilities = [];
 
-  const ambulanceFleet = [
-    { id: 'AMB-01', vehicle: 'Force Traveller ALS-1', base: 'Koramangala 24x7', city: 'Bengaluru', pilot: 'Ramesh K.', medic: 'Vet Nurse Suresh', equipment: 'Portable Ventilator, O2, Defibrillator, Syringe Pump', status: 'On Active Transit', pet: 'Bruno (GDV transfer from Indiranagar)', eta: '8 mins' },
-    { id: 'AMB-02', vehicle: 'Force Traveller ALS-2', base: 'Koramangala 24x7', city: 'Bengaluru', pilot: 'Anand M.', medic: 'Vet Nurse Preethi', equipment: 'O2, Portable USG, Vital Monitor, Stretcher', status: 'Stationed / Ready', pet: 'Standby for Emergency Dispatch', eta: 'Immediate' },
-    { id: 'AMB-03', vehicle: 'Force Traveller ALS-3', base: 'Bandra Specialty', city: 'Mumbai', pilot: 'Sunil P.', medic: 'Vet Nurse Rohit', equipment: 'Ventilator, O2, Infusion Pumps, ICU Cage', status: 'On Emergency Call', pet: 'Whiskey (Severe Trauma from Juhu)', eta: '12 mins' },
-    { id: 'AMB-04', vehicle: 'Force Traveller ALS-4', base: 'Bandra Specialty', city: 'Mumbai', pilot: 'Vikas T.', medic: 'Vet Nurse Divya', equipment: 'O2, ECG, Suction Unit, Stretcher', status: 'Stationed / Ready', pet: 'Standby', eta: 'Immediate' },
-    { id: 'AMB-05', vehicle: 'Tata Winger ALS-5', base: 'Okhla Animal Hospital', city: 'Delhi NCR', pilot: 'Manish D.', medic: 'Vet Nurse Ajay', equipment: 'Full Trauma Kit, O2, Blood Warmer, Monitor', status: 'Dispatched', pet: 'Thor (Parvo Dehydration from Noida)', eta: '16 mins' },
-    { id: 'AMB-06', vehicle: 'Tata Winger ALS-6', base: 'Okhla Animal Hospital', city: 'Delhi NCR', pilot: 'Satish R.', medic: 'Vet Nurse Kavita', equipment: 'O2, Incubator Pod, Defibrillator', status: 'Stationed / Ready', pet: 'Standby', eta: 'Immediate' },
-    { id: 'AMB-07', vehicle: 'Maruti Eeco Mobile-7', base: 'Jubilee Hills Clinic', city: 'Hyderabad', pilot: 'Krishna B.', medic: 'Vet Tech Venu', equipment: 'Basic Life Support, O2 Cylinder, Triage Kit', status: 'Stationed / Ready', pet: 'Standby', eta: 'Immediate' },
-    { id: 'AMB-08', vehicle: 'Maruti Eeco Mobile-8', base: 'Koregaon Park Clinic', city: 'Pune', pilot: 'Ganesh S.', medic: 'Vet Tech Nitin', equipment: 'Basic Life Support, First-Aid, O2, Crates', status: 'Stationed / Ready', pet: 'Standby', eta: 'Immediate' }
-  ];
+  const ambulanceFleet = [];
 
-  const expansionRoadmap = [
-    { quarter: 'Q1 2027', facility: 'Zenve Hospital Whitefield', city: 'Bengaluru', type: 'Tertiary Care (20 Beds)', progress: 'Civil & Lead Lining 85%', targetOpening: 'Jan 2027', status: 'On Track' },
-    { quarter: 'Q1 2027', facility: 'Zenve Specialty Powai', city: 'Mumbai', type: 'Secondary Specialty (12 Beds)', progress: 'Fitouts & MEP 65%', targetOpening: 'Feb 2027', status: 'Equipment Inbound' },
-    { quarter: 'Q2 2027', facility: 'Zenve Hospital Gachibowli', city: 'Hyderabad', type: 'Full Tertiary Hospital (25 Beds)', progress: 'Architecture Finalized', targetOpening: 'Apr 2027', status: 'Licensing Stage' },
-    { quarter: 'Q2 2027', facility: 'Zenve Express DLF Phase 5', city: 'Delhi NCR', type: 'Primary Daycare & Diagnostics', progress: 'Lease Executed', targetOpening: 'May 2027', status: 'Vendor Allotted' }
-  ];
+  const expansionRoadmap = [];
 
   const filteredFacilities = facilities.filter(f => {
     const matchesCity = selectedCity === 'All' || f.city === selectedCity;
@@ -180,7 +25,7 @@ export default function ClinicNetwork() {
       title="Regional Healthcare Network & Hub-and-Spoke Infrastructure"
       subtitle="Geographical distribution, inter-facility emergency referral corridors, 24x7 ALS veterinary ambulance fleet, and expansion pipeline"
       icon="🌐"
-      badge="14 Network Facilities | 5 Metros"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
           <select
@@ -242,7 +87,7 @@ export default function ClinicNetwork() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
         <KpiCard
           title="Active Healthcare Facilities"
-          value="14"
+          value="0"
           change="3 Flagships + 11 Spokes"
           trend="up"
           description="Operational licensed veterinary centers"
@@ -258,7 +103,7 @@ export default function ClinicNetwork() {
         />
         <KpiCard
           title="Inter-Facility Transfers"
-          value="184"
+          value="0"
           change="+18.4% vs last month"
           trend="up"
           description="Primary clinic to tertiary ICU referrals"
@@ -266,7 +111,7 @@ export default function ClinicNetwork() {
         />
         <KpiCard
           title="Avg Emergency Transit Time"
-          value="24.6 min"
+          value="0"
           change="-4.2 min faster"
           trend="up"
           description="Point of pickup to tertiary triage intake"
@@ -274,7 +119,7 @@ export default function ClinicNetwork() {
         />
         <KpiCard
           title="Network System Uptime"
-          value="99.96%"
+          value="0.0%"
           change="Tier 4 Cloud EMR Sync"
           trend="up"
           description="Continuous EMR, PACS & telemetry link"

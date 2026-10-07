@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function SubscriptionAnalytics() {
-  const cohorts = [
-    { cohort: 'Q1 2026 Cohort', startingUsers: 140, m3Ret: '96.4%', m6Ret: '92.1%', m9Ret: '89.5%', cumulativeLtv: '₹18,400', ltvCacRatio: '5.2x' },
-    { cohort: 'Q2 2026 Cohort', startingUsers: 185, m3Ret: '97.2%', m6Ret: '93.5%', m9Ret: '—', cumulativeLtv: '₹14,200', ltvCacRatio: '5.5x' },
-    { cohort: 'Q3 2026 Cohort', startingUsers: 240, m3Ret: '98.0%', m6Ret: '—', m9Ret: '—', cumulativeLtv: '₹8,900', ltvCacRatio: '5.8x' },
-    { cohort: 'Q4 2026 (MTD)', startingUsers: 108, m3Ret: '—', m6Ret: '—', m9Ret: '—', cumulativeLtv: '₹2,400', ltvCacRatio: '6.1x (Proj)' }
-  ];
+  const cohorts = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function SubscriptionAnalytics() {
       title="Cohort Retention & Lifetime Value (LTV) Deep-Dive"
       subtitle="Multi-month retention heatmaps, customer lifetime value expansion, payback velocity, and subscriber health scores"
       icon="📊"
-      badge="5.4x LTV / CAC"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Blended LTV / CAC" value="5.4x" delta="World-class > 3.0x" trend="up" subtext="Healthy acquisition engine" icon="📊" />
         <KpiCard label="Average Customer Lifetime" value="18.2 Months" delta="+2.6 mo vs FY25" trend="up" subtext="Long-term pet relationship" icon="⏱️" />
         <KpiCard label="Quick Ratio (Growth / Churn)" value="7.7x" delta="New MRR vs Lost MRR" trend="up" subtext="Extremely healthy growth" icon="🚀" />
-        <KpiCard label="Net Revenue Retention (NRR)" value="114.2%" delta="+14.2% expansion" trend="up" subtext="Negative net churn" icon="📈" />
+        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="+14.2% expansion" trend="up" subtext="Negative net churn" icon="📈" />
       </div>
 
       <div style={card}>

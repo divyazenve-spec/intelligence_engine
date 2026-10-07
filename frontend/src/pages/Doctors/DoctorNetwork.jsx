@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DoctorNetwork() {
-  const centers = [
-    { name: 'Indiranagar Flagship Specialty Hospital', leadDoctor: 'Dr. Divya Ramesh', teamSize: 8, specialties: 'Orthopedics, Soft Tissue Surgery, Exotics, ICU', mtdPatients: 740, revMtd: '₹14.20 Lakh', status: 'Optimal' },
-    { name: 'Koramangala Emergency & Critical Trauma', leadDoctor: 'Dr. Arvind Swaminathan', teamSize: 5, specialties: 'Cardiology, Trauma, Emergency Triage, 24/7 ICU', mtdPatients: 490, revMtd: '₹9.40 Lakh', status: 'High Load' },
-    { name: 'Whitefield Comprehensive Veterinary Clinic', leadDoctor: 'Dr. Meera Nambiar', teamSize: 4, specialties: 'Neurology, Physical Rehabilitation, Hydrotherapy', mtdPatients: 380, revMtd: '₹6.80 Lakh', status: 'Optimal' },
-    { name: 'Jayanagar Pet Wellness & Diagnostics', leadDoctor: 'Dr. Siddharth Varma', teamSize: 3, specialties: 'Pediatrics, Preventative Vaccines, Dentistry', mtdPatients: 310, revMtd: '₹4.90 Lakh', status: 'Optimal' },
-    { name: 'HSR Layout Outpatient & Dermatology', leadDoctor: 'Dr. Ananya Joshi', teamSize: 4, specialties: 'Allergy, Cytology, General Medicine', mtdPatients: 228, revMtd: '₹3.60 Lakh', status: 'Optimal' }
-  ];
+  const centers = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -20,13 +14,13 @@ export default function DoctorNetwork() {
       title="Doctor Network & Hospital Affiliations"
       subtitle="Hospital clinical staffing, specialty distribution across network centers, physician rotas, and referral flows"
       icon="🌐"
-      badge="5 Clinical Centers"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Affiliated Hospital Hubs" value="5 Centers" delta="Bangalore Metro" trend="neutral" subtext="All equipped with sterile OTs" icon="🏥" />
         <KpiCard label="Total Medical Staff" value="46 Clinicians & Vets" delta="+6 Resident interns" trend="up" subtext="24 Senior Consultants" icon="👨‍⚕️" />
         <KpiCard label="Inter-Hospital Referrals" value="184 Patients" delta="Cross-center specialty" trend="up" subtext="Seamless EHR patient transfers" icon="🔄" />
-        <KpiCard label="Network Bed Utilization" value="78.4%" delta="Safe capacity margin" trend="up" subtext="Emergency surge ready" icon="🛏️" />
+        <KpiCard label="Network Bed Utilization" value="0.0%" delta="Safe capacity margin" trend="up" subtext="Emergency surge ready" icon="🛏️" />
       </div>
 
       <div style={cardStyle}>

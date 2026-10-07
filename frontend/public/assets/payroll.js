@@ -8,16 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var payrollRecords = [
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', basic: '₹1,20,000', hra: '₹60,000', pf: '₹14,400', tds: '₹28,500', net: '₹1,97,100', status: 'Disbursed', batch: 'HDFC-0926-01' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', basic: '₹97,500', hra: '₹48,750', pf: '₹11,700', tds: '₹22,100', net: '₹1,61,200', status: 'Disbursed', batch: 'HDFC-0926-01' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head Pharmacist', basic: '₹72,500', hra: '₹36,250', pf: '₹8,700', tds: '₹14,200', net: '₹1,22,100', status: 'Disbursed', batch: 'HDFC-0926-01' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', basic: '₹90,000', hra: '₹45,000', pf: '₹10,800', tds: '₹19,400', net: '₹1,49,800', status: 'Disbursed', batch: 'HDFC-0926-02' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet Lead', basic: '₹47,500', hra: '₹23,750', pf: '₹5,700', tds: '₹6,400', net: '₹82,900', status: 'Disbursed', batch: 'HDFC-0926-02' },
-    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', basic: '₹55,000', hra: '₹27,500', pf: '₹6,600', tds: '₹8,100', net: '₹95,300', status: 'Disbursed', batch: 'HDFC-0926-02' },
-    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Rider', basic: '₹18,000', hra: '₹7,000', pf: '₹2,160', tds: '₹0', net: '₹29,840', status: 'Disbursed', batch: 'ICICI-0926-03' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', basic: '₹37,500', hra: '₹18,750', pf: '₹4,500', tds: '₹4,200', net: '₹66,300', status: 'Disbursed', batch: 'HDFC-0926-02' }
-  ];
+  var payrollRecords = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

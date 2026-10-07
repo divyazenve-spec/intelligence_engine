@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function FailedDeliveries() {
-  const rootCauses = [
-    { cause: 'Pet Parent Unavailable / Phone Unreachable', incidents: 38, pct: '44.2%', avgResolution: 'Same-day re-slot via WhatsApp', rtoImpact: 'Low (92% re-delivered)' },
-    { cause: 'Gated Society Entry Delayed / Denied', incidents: 19, pct: '22.1%', avgResolution: 'Security gate handover OTP', rtoImpact: 'Minimal (96% re-delivered)' },
-    { cause: 'Address Incomplete / Incorrect Landmark', incidents: 14, pct: '16.3%', avgResolution: 'Google Maps pin sharing with rider', rtoImpact: 'Medium (88% re-delivered)' },
-    { cause: 'Customer Cancelled at Doorstep', incidents: 8, pct: '9.3%', avgResolution: 'Immediate dark store restock', rtoImpact: 'Definite RTO (Refund initiated)' },
-    { cause: 'Severe Monsoon Waterlogging / Roadblock', incidents: 5, pct: '5.8%', avgResolution: 'Alternate rider re-routing', rtoImpact: 'Low (Delivered within 3 hrs)' },
-    { cause: 'Cold-Chain Temperature Warning Excursion', incidents: 2, pct: '2.3%', avgResolution: 'Fresh vial dispatched immediately from hub', rtoImpact: 'Zero cost to customer' }
-  ];
+  const rootCauses = [];
 
   return (
     <DashboardLayout
@@ -19,13 +12,13 @@ export default function FailedDeliveries() {
       title="Non-Delivery Reports (NDR) & Failed Delivery Analytics"
       subtitle="Failed first-attempt analysis, doorstep reachability, Return to Origin (RTO) prevention, and recovery velocity"
       icon="⚠️"
-      badge="0.8% Industry-Leading Low Failure Rate"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Failed Attempt Rate" value="0.8%" delta="-0.3% MoM" trend="up" subtext="Benchmark: 3.5%" icon="🎯" />
-        <KpiCard label="NDR Recovery Rate" value="91.4%" delta="+2.1% MoM" trend="up" subtext="Re-delivered on same day" icon="🔄" />
-        <KpiCard label="Return to Origin (RTO)" value="0.32%" delta="Ultra-low" trend="up" subtext="Only 86 orders / mo" icon="📦" />
-        <KpiCard label="Avg Re-attempt Speed" value="2.2 hrs" delta="Same day loop" trend="up" subtext="Automated WhatsApp bot" icon="⚡" />
+        <KpiCard label="Failed Attempt Rate" value="0.0%" delta="-0.3% MoM" trend="up" subtext="Benchmark: 3.5%" icon="🎯" />
+        <KpiCard label="NDR Recovery Rate" value="0.0%" delta="+2.1% MoM" trend="up" subtext="Re-delivered on same day" icon="🔄" />
+        <KpiCard label="Return to Origin (RTO)" value="0.0%" delta="Ultra-low" trend="up" subtext="Only 86 orders / mo" icon="📦" />
+        <KpiCard label="Avg Re-attempt Speed" value="0" delta="Same day loop" trend="up" subtext="Automated WhatsApp bot" icon="⚡" />
       </div>
 
       <div style={{

@@ -3,58 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function PaymentAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'PAY-401',
-      title: 'Razorpay UPI Intent Failure Rate Surge (4.8%)',
-      gateway: 'Razorpay Enterprise Production',
-      impact: '₹2,64,000 in dropped transactions over 30 mins',
-      rootCause: 'SBI & HDFC bank handle downtime on NPCI switch',
-      severity: 'Critical',
-      time: '15m ago',
-      status: 'Active'
-    },
-    {
-      id: 'PAY-402',
-      title: 'B2B Overdue Receivable > 30 Days: PetCare Clinic Network',
-      gateway: 'Corporate Net Banking / Invoicing',
-      impact: '₹1,20,000 outstanding (Invoice #INV-2024-8841)',
-      rootCause: 'Credit cycle passed 30 days without payment confirmation',
-      severity: 'High Warning',
-      time: '2h ago',
-      status: 'Action Required'
-    },
-    {
-      id: 'PAY-403',
-      title: 'Instant Refund Buffer Depletion: ₹14,200 Remaining',
-      gateway: 'Cashfree Instant Payouts',
-      impact: 'Risk of failed return refunds for 60-min express deliveries',
-      rootCause: 'Daily merchant float auto-top-up delayed by bank clearance',
-      severity: 'Warning',
-      time: '3h ago',
-      status: 'Under Review'
-    },
-    {
-      id: 'PAY-404',
-      title: 'Veterinary Doctor Weekly Commission Payout Hold',
-      gateway: 'Direct Bank NEFT Batch #NEFT-2024-41',
-      impact: '₹3,84,000 for 14 consulting veterinarians',
-      rootCause: 'Requires CFO biometric approval prior to 5:00 PM cutoff',
-      severity: 'High Warning',
-      time: '4h ago',
-      status: 'Awaiting Sign-off'
-    },
-    {
-      id: 'PAY-405',
-      title: 'High Chargeback / Fraud Dispute Flag on International Card',
-      gateway: 'Stripe Global (Expat Pet Relocation Orders)',
-      impact: '₹34,500 across 2 orders with delivery to Bangalore airport',
-      rootCause: 'Mismatch between billing address and Indian SIM card IP',
-      severity: 'Warning',
-      time: '7h ago',
-      status: 'Investigating'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -75,7 +24,7 @@ export default function PaymentAlerts() {
       title="Payment Gateways & Collections Alerts"
       subtitle="Monitoring UPI success rates, B2B aging receivables, payout float balances, chargebacks, and veterinary doctor commissions"
       icon="💳"
-      badge="₹8.02L Exposure"
+      badge="₹0 Exposure"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -129,7 +78,7 @@ export default function PaymentAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Gateway Uptime (Razorpay)"
-          value="95.2%"
+          value="0.0%"
           delta="4.8% failure spike"
           trend="down"
           subtext="UPI intent degraded"
@@ -137,7 +86,7 @@ export default function PaymentAlerts() {
         />
         <KpiCard
           label="Overdue B2B Receivables"
-          value="₹1,20,000"
+          value="₹0"
           delta="1 clinic > 30 days"
           trend="down"
           subtext="Invoice #8841"
@@ -145,15 +94,15 @@ export default function PaymentAlerts() {
         />
         <KpiCard
           label="Instant Refund Balance"
-          value="₹14,200"
+          value="₹0"
           delta="Critically low float"
           trend="down"
-          subtext="Requires ₹2L top-up"
+          subtext="Requires ₹0 top-up"
           icon="🏦"
         />
         <KpiCard
           label="Pending Vet Commissions"
-          value="₹3,84,000"
+          value="₹0"
           delta="14 Doctors pending"
           trend="neutral"
           subtext="Batch #NEFT-41"

@@ -10,14 +10,7 @@ export default function PetReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const breeds = [
-    { breed: 'Golden Retriever (Canine)', registered: 2450, share: '18.2%', avgAge: '3.4 yrs', vaxRate: '96.4%', commonIssues: 'Hip Dysplasia, Atopic Dermatitis', checkupsPerYr: 4.2 },
-    { breed: 'Shih Tzu & Toy Breeds', registered: 1980, share: '14.7%', avgAge: '2.8 yrs', vaxRate: '94.8%', commonIssues: 'Dental Tartar, Brachycephalic Airway', checkupsPerYr: 3.8 },
-    { breed: 'Labrador Retriever (Canine)', registered: 1820, share: '13.5%', avgAge: '4.1 yrs', vaxRate: '95.1%', commonIssues: 'Obesity, Ear Infections', checkupsPerYr: 3.9 },
-    { breed: 'Persian Cat (Feline)', registered: 1540, share: '11.4%', avgAge: '2.5 yrs', vaxRate: '91.2%', commonIssues: 'Hairballs, Renal PKD, Eye Discharge', checkupsPerYr: 2.6 },
-    { breed: 'Indie / Community Rescues', registered: 2120, share: '15.7%', avgAge: '3.9 yrs', vaxRate: '97.8%', commonIssues: 'Tick Fever, Seasonal Allergies', checkupsPerYr: 3.4 },
-    { breed: 'German Shepherd & Working', registered: 1140, share: '8.5%', avgAge: '3.2 yrs', vaxRate: '96.0%', commonIssues: 'Gastric Torsion, Joint Stiffness', checkupsPerYr: 4.5 }
-  ];
+  const breeds = [];
 
   const downloadCSV = () => {
     const rows = [
@@ -41,7 +34,7 @@ export default function PetReport() {
       title="Pet Demographics & Health Profile Report"
       subtitle="Species distributions, breed prevalence, vaccination adherence, and chronic condition registries across 13,400+ active pet patient records"
       icon="🐾"
-      badge="13,400 Patient Records"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -80,7 +73,7 @@ export default function PetReport() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Patient Census" value="13,400 Pets" delta="68% Canine · 32% Feline" trend="neutral" subtext="In electronic health records" icon="🐕" />
-        <KpiCard label="Vaccination Adherence" value="95.2%" delta="+2.4% vs 2025" trend="up" subtext="Automated reminder active" icon="💉" />
+        <KpiCard label="Vaccination Adherence" value="0.0%" delta="+2.4% vs 2025" trend="up" subtext="Automated reminder active" icon="💉" />
         <KpiCard label="Chronic Care Cohort" value="1,850 Pets" delta="Renal, Cardiac, Allergy" trend="neutral" subtext="Monthly Rx protocol" icon="🩺" />
         <KpiCard label="Preventive Care Visits" value="3.6 / Year" delta="Industry leading" trend="up" subtext="Includes teleconsults" icon="📋" />
       </div>

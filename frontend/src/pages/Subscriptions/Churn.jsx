@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Churn() {
-  const churnReasons = [
-    { reason: 'Relocation to City without Zenve Clinic Hub', pct: '38.5%', count: 5, mrrLost: '₹8,490', preventable: 'No (Geo expansion needed)', action: 'Telehealth fallback offered' },
-    { reason: 'Pet Passed Away / End of Life Care', pct: '28.0%', count: 4, mrrLost: '₹7,200', preventable: 'No (Bereavement)', action: 'Condolence card + Memorial credit' },
-    { reason: 'Financial Constraints / Budgeting', pct: '18.2%', count: 3, mrrLost: '₹4,497', preventable: 'Yes', action: 'Downgrade to Telehealth (₹499) saved 2' },
-    { reason: 'Switch to Raw Diet / Custom Home Cooking', pct: '15.3%', count: 2, mrrLost: '₹5,700', preventable: 'Yes', action: 'Nutrition counseling consultation booked' }
-  ];
+  const churnReasons = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function Churn() {
       title="Subscriber Churn Analytics & Root Cause Mitigation"
       subtitle="Voluntary and involuntary churn analysis, exit survey insights, revenue attrition, and win-back campaigns"
       icon="📉"
-      badge="1.18% Monthly Churn"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Monthly Churn" value="1.18%" delta="-0.3% MoM" trend="up" subtext="Only 14 cancellations MTD" icon="📉" />
-        <KpiCard label="Net Revenue Retention (NRR)" value="114.2%" delta="+4.2% YoY" trend="up" subtext="Expansion > Churn" icon="📈" />
-        <KpiCard label="Preventable Churn Ratio" value="33.5%" delta="Mitigated via downgrades" trend="up" subtext="Saved 42% of budget exits" icon="🛡️" />
-        <KpiCard label="Win-Back Campaign Rate" value="24.8%" delta="Re-subscribed in 90D" trend="up" subtext="Targeted promotion" icon="🔄" />
+        <KpiCard label="Gross Monthly Churn" value="0.0%" delta="-0.3% MoM" trend="up" subtext="Only 14 cancellations MTD" icon="📉" />
+        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="+4.2% YoY" trend="up" subtext="Expansion > Churn" icon="📈" />
+        <KpiCard label="Preventable Churn Ratio" value="0.0%" delta="Mitigated via downgrades" trend="up" subtext="Saved 42% of budget exits" icon="🛡️" />
+        <KpiCard label="Win-Back Campaign Rate" value="0.0%" delta="Re-subscribed in 90D" trend="up" subtext="Targeted promotion" icon="🔄" />
       </div>
 
       <div style={card}>

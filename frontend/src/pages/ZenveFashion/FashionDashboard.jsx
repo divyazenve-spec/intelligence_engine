@@ -3,19 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function FashionDashboard() {
-  const topProducts = [
-    { sku: 'ZVF-HARN-01', name: 'Signature Italian Leather Harness', category: 'Ergonomic Harnesses', price: '₹3,450', unitsSold: 142, revenue: '₹4,89,900', margin: '68.4%', trend: '+34%' },
-    { sku: 'ZVF-COAT-04', name: 'Monsoon Waterproof Dog Parka', category: 'Weatherwear', price: '₹2,850', unitsSold: 118, revenue: '₹3,36,300', margin: '64.2%', trend: '+42%' },
-    { sku: 'ZVF-KNIT-09', name: 'Cashmere-Blend Cable Knit Sweater', category: 'Winter Knits', price: '₹2,400', unitsSold: 96, revenue: '₹2,30,400', margin: '71.0%', trend: '+19%' },
-    { sku: 'ZVF-COLL-02', name: 'Rose Gold Hardware Velvet Collar', category: 'Collars & Leashes', price: '₹1,650', unitsSold: 164, revenue: '₹2,70,600', margin: '74.5%', trend: '+28%' },
-    { sku: 'ZVF-BAND-05', name: 'Handcrafted Silk Festive Bandana', category: 'Accessories', price: '₹850', unitsSold: 210, revenue: '₹1,78,500', margin: '78.2%', trend: '+55%' },
-  ];
+  const topProducts = [];
 
-  const showroomPerformance = [
-    { name: 'Indiranagar Luxe Studio (BLR)', footfall: '640 visitors', sales: '₹5.42 L', conversion: '38.5%', avgTicket: '₹2,190', rating: '4.9 ★' },
-    { name: 'Bandra Boutique & Atelier (MUM)', footfall: '520 visitors', sales: '₹4.88 L', conversion: '41.2%', avgTicket: '₹2,280', rating: '4.9 ★' },
-    { name: 'Koramangala Pet Styling Lounge', footfall: '480 visitors', sales: '₹3.95 L', conversion: '34.8%', avgTicket: '₹2,360', rating: '4.8 ★' },
-  ];
+  const showroomPerformance = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -34,12 +24,12 @@ export default function FashionDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Fashion Gross Revenue (MTD)" value="₹14.25 L" delta="+34.8% MoM" trend="up" subtext="Combined online & boutique" icon="🎀" />
+        <KpiCard label="Fashion Gross Revenue (MTD)" value="₹0" delta="+34.8% MoM" trend="up" subtext="Combined online & boutique" icon="🎀" />
         <KpiCard label="Apparel Units Sold" value="730 Items" delta="+22.4% vs last month" trend="up" subtext="Average 2.4 items/cart" icon="👗" />
-        <KpiCard label="Blended Gross Margin" value="68.2%" delta="+3.1% YoY" trend="up" subtext="High atelier contribution" icon="💎" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+3.1% YoY" trend="up" subtext="High atelier contribution" icon="💎" />
         <KpiCard label="Flagship Showroom Footfall" value="1,640 Visitors" delta="+18.5% conversion" trend="up" subtext="BLR & MUM Boutiques" icon="🛍️" />
         <KpiCard label="Bespoke Atelier Orders" value="64 Custom" delta="Fit guarantee 100%" trend="up" subtext="Handcrafted tailored fit" icon="✂️" />
-        <KpiCard label="Return & Exchange Rate" value="3.1%" delta="-1.4% improvement" trend="up" subtext="Precision 3D pet sizing" icon="📐" />
+        <KpiCard label="Return & Exchange Rate" value="0.0%" delta="-1.4% improvement" trend="up" subtext="Precision 3D pet sizing" icon="📐" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '18px' }}>

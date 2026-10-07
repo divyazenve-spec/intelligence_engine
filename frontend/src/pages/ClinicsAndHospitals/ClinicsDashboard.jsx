@@ -5,22 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function ClinicsDashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState('Today');
 
-  const facilityHighlights = [
-    { name: 'Zenve Hospital Koramangala (24x7)', type: 'Tertiary Care Center', city: 'Bengaluru', beds: '28 / 32 Beds', ot: '88% OT Utilized', rev: '₹14.20 Lakh', status: 'Operational' },
-    { name: 'Zenve Multi-Specialty Bandra', type: '24x7 Surgical Hospital', city: 'Mumbai', beds: '22 / 24 Beds', ot: '92% OT Utilized', rev: '₹11.85 Lakh', status: 'Operational' },
-    { name: 'Zenve Animal Hospital Okhla', type: 'Tertiary Referral Center', city: 'Delhi NCR', beds: '18 / 20 Beds', ot: '84% OT Utilized', rev: '₹9.40 Lakh', status: 'Operational' },
-    { name: 'Zenve Care Center Indiranagar', type: 'Primary OPD & Diagnostics', city: 'Bengaluru', beds: 'Daycare Only', ot: 'Minor OT Ready', rev: '₹5.60 Lakh', status: 'Operational' },
-    { name: 'Zenve Jubilee Hills Specialty', type: 'Secondary Care Clinic', city: 'Hyderabad', beds: '8 / 10 Beds', ot: '75% OT Utilized', rev: '₹4.80 Lakh', status: 'Operational' },
-    { name: 'Zenve Koregaon Park Clinic', type: 'Daycare & Wellness Center', city: 'Pune', beds: 'Daycare Only', ot: 'Minor OT Ready', rev: '₹3.20 Lakh', status: 'Operational' }
-  ];
+  const facilityHighlights = [];
 
-  const liveAdmissions = [
-    { id: 'ADM-9024', pet: 'Max (Golden Retriever, 34kg)', reason: 'Gastric Dilatation-Volvulus (GDV Surgery)', facility: 'Koramangala 24x7', doctor: 'Dr. Priya Sharma', bed: 'ICU-02', status: 'In Surgery', time: '14 mins ago' },
-    { id: 'ADM-9023', pet: 'Mia (Persian Cat, 3.6kg)', reason: 'Acute Feline Lower Urinary Tract (FLUTD)', facility: 'Bandra Specialty', doctor: 'Dr. Rahul Mehta', bed: 'Feline HDU-04', status: 'Admitted', time: '35 mins ago' },
-    { id: 'ADM-9022', pet: 'Rocky (Rottweiler, 42kg)', reason: 'Tibial Plateau Leveling Osteotomy (TPLO)', facility: 'Delhi NCR Hospital', doctor: 'Dr. Aisha Khan', bed: 'Post-Op Ward 1', status: 'Post-Op Recovery', time: '1.2 hrs ago' },
-    { id: 'ADM-9021', pet: 'Leo (Beagle, 14kg)', reason: 'Parvovirus Enteritis Protocol', facility: 'Koramangala 24x7', doctor: 'Dr. Arun V.', bed: 'Isolation Bay 3', status: 'Stable', time: '2.5 hrs ago' },
-    { id: 'ADM-9020', pet: 'Chloe (Shih Tzu, 5.8kg)', reason: 'Severe Corneal Ulcer & Debridement', facility: 'Jubilee Hills Clinic', doctor: 'Dr. Lakshmi Reddy', bed: 'Daycare Bed 2', status: 'Discharge Ready', time: '3.1 hrs ago' }
-  ];
+  const liveAdmissions = [];
 
   return (
     <DashboardLayout
@@ -29,7 +16,7 @@ export default function ClinicsDashboard() {
       title="Veterinary Hospitals & Clinics Command Center"
       subtitle="Network-wide healthcare delivery, inpatient bed census, surgical theatre utilization, and emergency clinical triage"
       icon="🏥"
-      badge="14 Network Centers"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div style={{
@@ -89,8 +76,8 @@ export default function ClinicsDashboard() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Network Facilities" value="14 Facilities" delta="6 Metros" trend="neutral" subtext="3 Hospitals, 11 Outpatient" icon="🏥" />
         <KpiCard label="Network Inpatient Beds" value="76 / 86 Beds" delta="88.4% Occupancy" trend="up" subtext="24x7 ICU, HDU & Isolation" icon="🛏️" />
-        <KpiCard label="OT Surgical Utilization" value="86.2%" delta="+5.4% YoY" trend="up" subtext="12 Active Operating Theatres" icon="⚡" />
-        <KpiCard label="In-Clinic Monthly Billings" value="₹49.05 Lakh" delta="+18.2% YoY" trend="up" subtext="OPD, Surgeries & ICU" icon="💰" />
+        <KpiCard label="OT Surgical Utilization" value="0.0%" delta="+5.4% YoY" trend="up" subtext="12 Active Operating Theatres" icon="⚡" />
+        <KpiCard label="In-Clinic Monthly Billings" value="₹0" delta="+18.2% YoY" trend="up" subtext="OPD, Surgeries & ICU" icon="💰" />
         <KpiCard label="Daily OPD Consults" value="482 Pets" delta="Avg 18m wait time" trend="up" subtext="Across all OPD desks" icon="🐾" />
         <KpiCard label="Emergency Response SLA" value="4.8 Mins" delta="Triage to Vet" trend="up" subtext="Critical care protocol" icon="🚨" />
       </div>

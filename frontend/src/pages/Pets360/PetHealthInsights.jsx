@@ -7,106 +7,9 @@ export default function PetHealthInsights() {
   const [searchQuery, setSearchQuery] = useState('');
   const [actionMessage, setActionMessage] = useState('');
 
-  const insights = [
-    {
-      id: 'INS-01',
-      title: 'Seasonal Flea, Tick & Malassezia Surge',
-      category: 'Critical Outbreak',
-      severity: 'Critical',
-      impact: 'High Risk (410 Canines)',
-      cohort: 'Canine (Bengaluru & Mumbai Hubs)',
-      timeframe: 'Past 14 Days',
-      description: 'Post-monsoon ambient humidity has caused a 38% spike in canine Malassezia pachydermatis dermatitis, tick infestations, and Ehrlichiosis canis seropositivity in outpatient consults.',
-      recommendation: 'Broadcast automated WhatsApp push reminders for Bravecto / NexGard 3-month chewables to 410 overdue canine pet parents. Stock up ectoparasiticide inventory.',
-      status: 'Action Required',
-      metric: '+38% Case Surge',
-      preventable: '94% Avertable',
-      actionLabel: 'Broadcast WhatsApp Recall'
-    },
-    {
-      id: 'INS-02',
-      title: 'Canine Parvovirus (CPV) Strain Cluster in Pups < 4 Mos',
-      category: 'Critical Outbreak',
-      severity: 'Critical',
-      impact: 'High Risk (124 Pups)',
-      cohort: 'Canine Pediatric (< 16 weeks) — Delhi NCR',
-      timeframe: 'Past 7 Days',
-      description: 'Surveillance telemetry detected 8 confirmed CPV cases within a 6km radius in Delhi NCR/Gurugram. High mortality risk for unimmunized or single-dose puppies.',
-      recommendation: 'Initiate emergency isolation ward triage protocol. Send high-priority immunization recall to 124 pet parents with pending 2nd or 3rd DHPPiL booster doses.',
-      status: 'Action Required',
-      metric: '8 CPV Cases Detected',
-      preventable: '98% Vaccine Protected',
-      actionLabel: 'Trigger Emergency Booster Alerts'
-    },
-    {
-      id: 'INS-03',
-      title: 'Senior Feline Early Renal Azotemia (SDMA Biomarker Cluster)',
-      category: 'Clinical Warning',
-      severity: 'Warning',
-      impact: 'Medium Risk (24 Felines)',
-      cohort: 'Persian & Domestic Shorthair (Age > 6y)',
-      timeframe: 'Past 30 Days',
-      description: 'Routine SDMA biomarker screening identified early Stage 2 Chronic Kidney Disease (CKD) in 24 senior cats prior to overt serum creatinine elevation or clinical nephron loss.',
-      recommendation: 'Enroll flagged pets into Royal Canin Renal / Hill’s k/d therapeutic diet plans and schedule subcutaneous fluid home hydration consultations.',
-      status: 'Under Protocol',
-      metric: '24 Early Staged',
-      preventable: 'Slows Progression by 62%',
-      actionLabel: 'Prescribe Renal Diet Regimen'
-    },
-    {
-      id: 'INS-04',
-      title: 'Brachycephalic Airway (BOAS) Heat Distress Risk',
-      category: 'Breed Genetic Risk',
-      severity: 'Warning',
-      impact: 'Moderate Risk (48 Pets)',
-      cohort: 'French Bulldogs, Pugs & Shih Tzus',
-      timeframe: 'Ongoing Surveillance',
-      description: 'Elevated ambient afternoon temperatures have correlated with a 22% increase in grade 2+ stertor, stridor, and respiratory distress admissions among brachycephalic patients.',
-      recommendation: 'Publish hot-weather exercise avoidance guides to parent app. Schedule preventative rhinoplasty / staphylectomy consultations for high-risk candidates.',
-      status: 'Advisory Active',
-      metric: '48 Flagged Patients',
-      preventable: 'Averts Heatstroke ICU',
-      actionLabel: 'Send BOAS Care Guide'
-    },
-    {
-      id: 'INS-05',
-      title: 'Canine Degenerative Mitral Valve Disease (MMVD) Staging',
-      category: 'Breed Genetic Risk',
-      severity: 'Warning',
-      impact: 'Moderate Risk (32 Dogs)',
-      cohort: 'Shih Tzus, Dachshunds & Senior Toy Breeds',
-      timeframe: 'Past 60 Days',
-      description: 'Auscultation data flagged systolic murmurs (Grade 2-3/6) in 32 senior toy breeds. 14 patients progressed to Stage B2 enlargement requiring inodilator therapy.',
-      recommendation: 'Schedule cardiac Doppler echocardiograms and initiate Pimobendan (Vetmedin 1.25mg) to delay congestive heart failure onset.',
-      status: 'Under Protocol',
-      metric: '32 Murmurs Logged',
-      preventable: '+60% Delay to CHF',
-      actionLabel: 'Schedule Echocardiograms'
-    },
-    {
-      id: 'INS-06',
-      title: 'High Primary Immunization Adherence in Puppy Cohort',
-      category: 'Wellness Milestone',
-      severity: 'Milestone',
-      impact: 'High Protective Efficacy',
-      cohort: 'Canine (< 12 months, All Hubs)',
-      timeframe: 'Year-to-Date',
-      description: '97.4% of registered puppies completed the full DHPPiL + Canine Corona primary vaccination series on schedule within the standard 16-week developmental window.',
-      recommendation: 'Issue automated digital health passports with tamper-proof QR codes and calendarize 1-year Rabies booster reminders in the Zenve Parent App.',
-      status: 'Target Achieved',
-      metric: '97.4% Completion',
-      preventable: 'Herd Immunity Secured',
-      actionLabel: 'Issue Health Passports'
-    }
-  ];
+  const insights = [];
 
-  const biomarkerSurveillance = [
-    { test: 'Symmetric Dimethylarginine (SDMA)', indication: 'Early Renal Nephron Loss (Feline/Canine)', tested: 342, normal: 312, atRisk: 24, pathological: 6, action: 'Early CKD Renal Diet & Hydration' },
-    { test: 'Canine NT-proBNP Cardiac Biomarker', indication: 'Myocardial Wall Stress & MMVD Progression', tested: 188, normal: 156, atRisk: 21, pathological: 11, action: 'Cardiac Ultrasound & Pimobendan' },
-    { test: 'Fasting Blood Glucose & Fructosamine', indication: 'Endocrine & Diabetes Mellitus Screening', tested: 260, normal: 242, atRisk: 14, pathological: 4, action: 'Glargine Insulin & Satiety Diet' },
-    { test: 'Urine Protein:Creatinine (UPC) Ratio', indication: 'Glomerular Proteinuria & Renal Disease', tested: 215, normal: 198, atRisk: 12, pathological: 5, action: 'ACE Inhibitor (Benazepril) Therapy' },
-    { test: 'Feline Spec fPL (Pancreatic Lipase)', indication: 'Acute / Chronic Feline Pancreatitis', tested: 144, normal: 128, atRisk: 10, pathological: 6, action: 'Anti-emetic, Analgesia, Ultra-low Fat Diet' }
-  ];
+  const biomarkerSurveillance = [];
 
   const handleAction = (title, label) => {
     setActionMessage(`Executing "${label}" for: ${title}`);
@@ -128,7 +31,7 @@ export default function PetHealthInsights() {
       title="Zenve AI Pet Health Intelligence & Epidemiological Surveillance"
       subtitle="Machine learning-driven epidemiological alert triggers, infectious disease clustering, genetic risk flags, biomarker surveillance, and proactive clinical recall protocols"
       icon="🧠"
-      badge="6 Live Clinical Signals"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {['ALL', 'Critical', 'Warning', 'Milestone'].map(f => (
@@ -178,8 +81,8 @@ export default function PetHealthInsights() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
         <KpiCard label="Population Health Index" value="91.2/100" delta="Optimal Health Band" trend="up" subtext="Aggregated clinical wellness score" icon="🧠" />
         <KpiCard label="Active Surveillance Triggers" value="5 Live Alerts" delta="2 Critical, 3 Warnings" trend="neutral" subtext="Epidemiological clusters" icon="🚨" />
-        <KpiCard label="Early Morbidity Staging" value="88.5%" delta="+6.2 pts YoY" trend="up" subtext="Averts late-stage hospitalization" icon="🛡️" />
-        <KpiCard label="Parent Recall Action Rate" value="81.4%" delta="642 Recalls Sent" trend="up" subtext="WhatsApp & push response" icon="📱" />
+        <KpiCard label="Early Morbidity Staging" value="0.0%" delta="+6.2 pts YoY" trend="up" subtext="Averts late-stage hospitalization" icon="🛡️" />
+        <KpiCard label="Parent Recall Action Rate" value="0.0%" delta="642 Recalls Sent" trend="up" subtext="WhatsApp & push response" icon="📱" />
         <KpiCard label="Chronic Care Cohort" value="142 Pets" delta="Cardiac & Renal" trend="neutral" subtext="Enrolled in remote monitoring" icon="🩺" />
       </div>
 

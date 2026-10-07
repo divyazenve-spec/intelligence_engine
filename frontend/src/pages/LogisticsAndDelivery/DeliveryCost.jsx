@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliveryCost() {
-  const costLines = [
-    { component: 'Rider Payout (Per Drop Base)', internalEv: '₹28.00', partner3pl: '₹38.50', variance: '-₹10.50 (EV Saves 27%)', shareOfCost: '54.2%' },
-    { component: 'Fuel & EV Battery Swapping', internalEv: '₹3.40', partner3pl: '₹8.20', variance: '-₹4.80 (EV Saves 58%)', shareOfCost: '12.4%' },
-    { component: 'Packaging & Thermal Cold-Box Pouches', internalEv: '₹6.20', partner3pl: '₹6.20', variance: '₹0.00 (Standardized)', shareOfCost: '14.8%' },
-    { component: 'Dispatch Telematics & SaaS Platform', internalEv: '₹1.80', partner3pl: '₹2.40', variance: '-₹0.60 (In-House)', shareOfCost: '5.1%' },
-    { component: 'Failed Attempt Re-dispatch Buffer', internalEv: '₹1.10', partner3pl: '₹2.80', variance: '-₹1.70 (Higher EV OTP rate)', shareOfCost: '3.5%' },
-    { component: 'Insurance & Transit Damage Guarantee', internalEv: '₹1.40', partner3pl: '₹1.40', variance: '₹0.00 (Shared)', shareOfCost: '10.0%' }
-  ];
+  const costLines = [];
 
   return (
     <DashboardLayout
@@ -19,13 +12,13 @@ export default function DeliveryCost() {
       title="Delivery Cost Economics & Per-Drop Efficiency"
       subtitle="Unit economics of last-mile delivery, EV vs ICE cost comparison, packaging expenses, and hub efficiency"
       icon="💰"
-      badge="₹41.90 Blended Cost Per Delivery"
+      badge="₹0 Cost Per Delivery"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Cost / Drop" value="₹41.90" delta="-₹4.20 MoM" trend="up" subtext="Target < ₹45.00" icon="💰" />
-        <KpiCard label="Internal EV Cost" value="₹38.20" delta="18% cheaper" trend="up" subtext="Own electric fleet" icon="⚡" />
-        <KpiCard label="3PL Partner Cost" value="₹46.80" delta="Flex on-demand" trend="neutral" subtext="Surge & overflow" icon="🛵" />
-        <KpiCard label="Monthly Fleet Spend" value="₹11.15 L" delta="-8.4% vs Budget" trend="up" subtext="26,600 deliveries" icon="📉" />
+        <KpiCard label="Blended Cost / Drop" value="₹0" delta="-₹0" trend="up" subtext="Target < ₹0" icon="💰" />
+        <KpiCard label="Internal EV Cost" value="₹0" delta="18% cheaper" trend="up" subtext="Own electric fleet" icon="⚡" />
+        <KpiCard label="3PL Partner Cost" value="₹0" delta="Flex on-demand" trend="neutral" subtext="Surge & overflow" icon="🛵" />
+        <KpiCard label="Monthly Fleet Spend" value="₹0" delta="-8.4% vs Budget" trend="up" subtext="26,600 deliveries" icon="📉" />
       </div>
 
       <div style={{

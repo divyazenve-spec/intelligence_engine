@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Renewals() {
-  const renewals = [
-    { cohort: 'Oct 2026 Scheduled Cycles', scheduled: 412, successful: 396, retryQueue: 12, failed: 4, rate: '96.1%', processedRev: '₹5,74,200' },
-    { cohort: 'Sep 2026 Completed Cycles', scheduled: 388, successful: 372, retryQueue: 0, failed: 16, rate: '95.9%', processedRev: '₹5,38,100' },
-    { cohort: 'Aug 2026 Completed Cycles', scheduled: 360, successful: 344, retryQueue: 0, failed: 16, rate: '95.6%', processedRev: '₹4,98,400' },
-    { cohort: 'Jul 2026 Completed Cycles', scheduled: 335, successful: 318, retryQueue: 0, failed: 17, rate: '94.9%', processedRev: '₹4,62,000' }
-  ];
+  const renewals = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function Renewals() {
       title="Automated Billing Cycles & Renewal Rates"
       subtitle="Monthly automated debit execution, dunning management, card & UPI retry algorithms, and successful collection velocity"
       icon="🔄"
-      badge="96.1% Renewal Rate"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="First-Pass Renewal Rate" value="96.1%" delta="+1.8% vs Q2" trend="up" subtext="Automated mandate execution" icon="🔄" />
-        <KpiCard label="Smart Dunning Recovery" value="75.0%" delta="9 of 12 recovered" trend="up" subtext="WhatsApp prompt + UPI retry" icon="⚡" />
-        <KpiCard label="Processed Renewal Value" value="₹5.74 Lakh" delta="MTD Realized" trend="up" subtext="Direct settlement to bank" icon="💰" />
-        <KpiCard label="Involuntary Churn Rate" value="0.7%" delta="Expired card / low balance" trend="up" subtext="Industry benchmark 2.2%" icon="📉" />
+        <KpiCard label="First-Pass Renewal Rate" value="0.0%" delta="+1.8% vs Q2" trend="up" subtext="Automated mandate execution" icon="🔄" />
+        <KpiCard label="Smart Dunning Recovery" value="0.0%" delta="9 of 12 recovered" trend="up" subtext="WhatsApp prompt + UPI retry" icon="⚡" />
+        <KpiCard label="Processed Renewal Value" value="₹0" delta="MTD Realized" trend="up" subtext="Direct settlement to bank" icon="💰" />
+        <KpiCard label="Involuntary Churn Rate" value="0.0%" delta="Expired card / low balance" trend="up" subtext="Industry benchmark 2.2%" icon="📉" />
       </div>
 
       <div style={card}>

@@ -10,13 +10,7 @@ export default function ClinicReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const clinics = [
-    { name: 'Bengaluru Flagship Hospital & ICU', city: 'Bengaluru', beds: 24, occupancy: '91.6%', opdFootfall: 1420, labScans: 840, revenue: 5840000, margin: '41.2%' },
-    { name: 'Mumbai Surgical Center (Bandra West)', city: 'Mumbai', beds: 18, occupancy: '88.8%', opdFootfall: 1180, labScans: 690, revenue: 4720000, margin: '43.5%' },
-    { name: 'Delhi NCR Super-Specialty Clinic', city: 'Delhi NCR', beds: 16, occupancy: '84.2%', opdFootfall: 990, labScans: 540, revenue: 3850000, margin: '38.6%' },
-    { name: 'Hyderabad Diagnostics & Outpatient', city: 'Hyderabad', beds: 10, occupancy: '78.5%', opdFootfall: 840, labScans: 720, revenue: 2950000, margin: '44.8%' },
-    { name: 'Chennai Outpatient & Pharmacy Node', city: 'Chennai', beds: 8, occupancy: '75.0%', opdFootfall: 680, labScans: 410, revenue: 2150000, margin: '39.0%' }
-  ];
+  const clinics = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -42,7 +36,7 @@ export default function ClinicReport() {
       title="Clinic Network & Hospital Facility Utilization Report"
       subtitle="Operational performance across 5 metropolitan hospitals and surgical centers, ICU bed occupancy, OPD throughput, and clinical margins"
       icon="🏥"
-      badge="5 Hospital Nodes"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -83,7 +77,7 @@ export default function ClinicReport() {
         <KpiCard label="Total Inpatient Beds" value="76 Beds" delta="85.4% Blended Occupancy" trend="up" subtext="Across 5 metro centers" icon="🛏️" />
         <KpiCard label="Monthly OPD Footfall" value="5,110 Visits" delta="+14.8% vs last month" trend="up" subtext="Consultations & checkups" icon="🚶‍♂️" />
         <KpiCard label="Diagnostic Lab Scans" value="3,200 Tests" delta="Hematology & X-Ray" trend="up" subtext="LIMS integrated" icon="🔬" />
-        <KpiCard label="Consolidated Clinical GMV" value="₹1.95 Crores" delta="41.8% Net Margin" trend="up" subtext="High contribution" icon="💼" />
+        <KpiCard label="Consolidated Clinical GMV" value="₹0" delta="41.8% Net Margin" trend="up" subtext="High contribution" icon="💼" />
       </div>
 
       {/* Table Section */}

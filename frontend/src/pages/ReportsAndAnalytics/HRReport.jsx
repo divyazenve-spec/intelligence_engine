@@ -10,14 +10,7 @@ export default function HRReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const departments = [
-    { dept: 'Clinical Veterinary & Surgeons', headcount: 48, attendance: '98.4%', targetAttainment: '97.2%', monthlyPayroll: 4250000, avgOvertimeHrs: 6.2, attrition: '0.8%' },
-    { dept: 'Veterinary Nurses & Paramedics', headcount: 64, attendance: '94.2%', targetAttainment: '95.0%', monthlyPayroll: 2880000, avgOvertimeHrs: 18.4, attrition: '2.1%' },
-    { dept: 'Pharmacy & Quality Pharmacists', headcount: 32, attendance: '99.1%', targetAttainment: '102.4%', monthlyPayroll: 1920000, avgOvertimeHrs: 4.8, attrition: '0.0%' },
-    { dept: 'Supply Chain, Dark Stores & Fleet', headcount: 110, attendance: '92.6%', targetAttainment: '96.8%', monthlyPayroll: 3850000, avgOvertimeHrs: 22.5, attrition: '3.4%' },
-    { dept: 'Digital Tech, AI & Telehealth Eng', headcount: 24, attendance: '99.5%', targetAttainment: '104.0%', monthlyPayroll: 3600000, avgOvertimeHrs: 3.1, attrition: '0.0%' },
-    { dept: 'Corporate, Finance & Commercial', headcount: 22, attendance: '98.8%', targetAttainment: '98.5%', monthlyPayroll: 2200000, avgOvertimeHrs: 2.4, attrition: '1.2%' }
-  ];
+  const departments = [];
 
   const inr = (n) => '₹' + (Number(n) / 100000).toFixed(2) + ' Lakhs';
 
@@ -43,7 +36,7 @@ export default function HRReport() {
       title="Workforce, Clinical Roster & Payroll Analytics Report"
       subtitle="Headcount allocation across 6 functional divisions, doctor/nurse shift attendance, quota pacing, overtime distribution, and monthly payroll"
       icon="🧑‍💼"
-      badge="300 Team Members"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -82,9 +75,9 @@ export default function HRReport() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Organization Headcount" value="300 Personnel" delta="112 Clinical Vets/Nurses" trend="up" subtext="Across 6 metro cities" icon="👥" />
-        <KpiCard label="Average Shift Attendance" value="95.4%" delta="Low absenteeism" trend="up" subtext="Biometric / App sync" icon="📅" />
-        <KpiCard label="Monthly Payroll Disbursement" value="₹1.87 Crores" delta="Includes doctor incentive" trend="neutral" subtext="Fully funded" icon="💳" />
-        <KpiCard label="Annualized Attrition Rate" value="1.8%" delta="Well below industry 8%" trend="up" subtext="High retention" icon="🌟" />
+        <KpiCard label="Average Shift Attendance" value="0.0%" delta="Low absenteeism" trend="up" subtext="Biometric / App sync" icon="📅" />
+        <KpiCard label="Monthly Payroll Disbursement" value="₹0" delta="Includes doctor incentive" trend="neutral" subtext="Fully funded" icon="💳" />
+        <KpiCard label="Annualized Attrition Rate" value="0.0%" delta="Well below industry 8%" trend="up" subtext="High retention" icon="🌟" />
       </div>
 
       {/* Table Section */}

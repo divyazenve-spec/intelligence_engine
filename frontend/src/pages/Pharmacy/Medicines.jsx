@@ -10,20 +10,7 @@ export default function Medicines() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [toast, setToast] = useState('');
 
-  const medicinesData = [
-    { sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', generic: 'Fluralaner (1000mg)', brand: 'MSD Animal Health', form: 'Chewable Tablet', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 2100, ptr: 1220, gst: '12%', stock: 84, reorder: 20 },
-    { sku: 'DRG-VET-002', name: 'NexGard Spectra (7.5-15kg)', generic: 'Afoxolaner + Milbemycin Oxime', brand: 'Boehringer Ingelheim', form: 'Chewable Tablet', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 1650, ptr: 990, gst: '12%', stock: 42, reorder: 15 },
-    { sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg', generic: 'Pimobendan (5mg)', brand: 'Zoetis India', form: 'Flavoured Tablets', category: 'Cardiac & Renal', schedule: 'Schedule H', cold: false, mrp: 2400, ptr: 1350, gst: '12%', stock: 35, reorder: 12 },
-    { sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine 1D', generic: 'Live Attenuated Canine Distemper/Parvo', brand: 'MSD Animal Health', form: 'Injectable Vial', category: 'Vaccines', schedule: 'Schedule H', cold: true, mrp: 950, ptr: 420, gst: '5%', stock: 96, reorder: 30 },
-    { sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', generic: 'Amoxicillin + Potassium Clavulanate', brand: 'Intas Pharmaceuticals', form: 'Film-coated Tablets', category: 'Antibiotics', schedule: 'Schedule H', cold: false, mrp: 380, ptr: 210, gst: '12%', stock: 120, reorder: 40 },
-    { sku: 'DRG-VET-006', name: 'Malaseb Medicated Shampoo 250ml', generic: 'Chlorhexidine Gluconate + Miconazole', brand: 'Dechra', form: 'Topical Solution', category: 'Dermatology', schedule: 'OTC', cold: false, mrp: 720, ptr: 390, gst: '18%', stock: 18, reorder: 15 },
-    { sku: 'DRG-VET-007', name: 'Zoetis Revolution Spot-On (Cat)', generic: 'Selamectin (60mg/ml)', brand: 'Zoetis India', form: 'Spot-On Pipette', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 1450, ptr: 880, gst: '12%', stock: 28, reorder: 10 },
-    { sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', generic: 'Inactivated Rabies Virus', brand: 'Boehringer Ingelheim', form: 'Injectable Vial', category: 'Vaccines', schedule: 'Schedule H', cold: true, mrp: 380, ptr: 160, gst: '5%', stock: 110, reorder: 40 },
-    { sku: 'DRG-VET-009', name: 'Carprovet 50mg (Carprofen)', generic: 'Carprofen (50mg NSAID)', brand: 'Virbac India', form: 'Chewable Tablets', category: 'Pain & NSAIDs', schedule: 'Schedule H', cold: false, mrp: 540, ptr: 310, gst: '12%', stock: 55, reorder: 20 },
-    { sku: 'DRG-VET-010', name: 'Himalaya Digyton Plus 200ml', generic: 'Herbal Carminative Extract', brand: 'Himalaya Wellness', form: 'Oral Drops / Syrup', category: 'Supplements', schedule: 'OTC', cold: false, mrp: 380, ptr: 195, gst: '12%', stock: 68, reorder: 25 },
-    { sku: 'DRG-VET-011', name: 'Drontal Plus Puppy Suspension', generic: 'Pyrantel Embonate + Febantel', brand: 'Vetoquinol', form: 'Oral Liquid 30ml', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 450, ptr: 260, gst: '12%', stock: 32, reorder: 15 },
-    { sku: 'DRG-VET-012', name: 'Enrofloxacin 100mg (Baytril)', generic: 'Enrofloxacin Broad Spectrum', brand: 'Bayer Animal Health', form: 'Tablets x10', category: 'Antibiotics', schedule: 'Schedule H', cold: false, mrp: 320, ptr: 180, gst: '12%', stock: 6, reorder: 15 }
-  ];
+  const medicinesData = [];
 
   const filtered = useMemo(() => {
     return medicinesData.filter(m => {
@@ -53,7 +40,7 @@ export default function Medicines() {
       title="Veterinary Medicines & Formulary Catalog"
       subtitle="Complete drug master, active pharmaceutical ingredients (API), schedule classifications, and pricing matrices"
       icon="💊"
-      badge="642 Licensed Drugs"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -96,9 +83,9 @@ export default function Medicines() {
         <KpiCard label="Formulated Drugs" value="642 SKUs" delta="+18 added MTD" trend="up" subtext="All therapeutic classes" icon="📚" />
         <KpiCard label="Schedule H Drugs" value="284 SKUs" delta="Prescription Only" trend="neutral" subtext="Strict batch tracking" icon="⚠️" />
         <KpiCard label="Cold Chain Drugs" value="86 SKUs" delta="2°C – 8°C Required" trend="neutral" subtext="Vaccines & biologics" icon="❄️" />
-        <KpiCard label="Average Drug Margin" value="41.4%" delta="+2.1% YoY" trend="up" subtext="MRP vs PTR spread" icon="📈" />
+        <KpiCard label="Average Drug Margin" value="0.0%" delta="+2.1% YoY" trend="up" subtext="MRP vs PTR spread" icon="📈" />
         <KpiCard label="Low Stock Drugs" value="5 SKUs" delta="Below reorder point" trend="down" subtext="Immediate PO needed" icon="⚡" />
-        <KpiCard label="Total Formulary Value" value="₹48.20 Lakh" delta="Stock on hand" trend="up" subtext="12 dispensary units" icon="💎" />
+        <KpiCard label="Total Formulary Value" value="₹0" delta="Stock on hand" trend="up" subtext="12 dispensary units" icon="💎" />
       </div>
 
       {/* Filter and Search Bar */}

@@ -10,13 +10,7 @@ export default function VendorReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const vendors = [
-    { name: 'Royal Canin India Pvt Ltd', category: 'Pet Nutrition & Dietetics', poSpend: 14200000, fillRate: '98.8%', onTimeRate: '96.5%', qualityScore: '99.4%', paymentTerms: 'Net 45 Days', savingsGenerated: 850000 },
-    { name: 'Zoetis India Animal Health', category: 'Biologicals & Vaccines', poSpend: 9800000, fillRate: '99.2%', onTimeRate: '98.0%', qualityScore: '100.0%', paymentTerms: 'Net 30 Days', savingsGenerated: 620000 },
-    { name: 'Boehringer Ingelheim Animal Health', category: 'Parasiticides & Rx', poSpend: 8400000, fillRate: '96.4%', onTimeRate: '94.2%', qualityScore: '98.9%', paymentTerms: 'Net 30 Days', savingsGenerated: 480000 },
-    { name: 'Farmina Pet Foods India', category: 'Grain-Free Diets', poSpend: 6200000, fillRate: '95.1%', onTimeRate: '92.8%', qualityScore: '98.5%', paymentTerms: 'Net 30 Days', savingsGenerated: 340000 },
-    { name: 'Dr. Reddy Laboratories (Vet)', category: 'Generics & Supplements', poSpend: 3800000, fillRate: '97.6%', onTimeRate: '95.5%', qualityScore: '99.1%', paymentTerms: 'Net 45 Days', savingsGenerated: 290000 }
-  ];
+  const vendors = [];
 
   const inr = (n) => '₹' + (Number(n) / 100000).toFixed(2) + ' Lakhs';
 
@@ -80,10 +74,10 @@ export default function VendorReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Procurement Spend MTD" value="₹4.24 Crores" delta="Across 18 suppliers" trend="neutral" subtext="Direct manufacturer" icon="🛒" />
-        <KpiCard label="Average PO Fill Rate" value="97.8%" delta="High stock readiness" trend="up" subtext="Target: > 96.0%" icon="📋" />
-        <KpiCard label="On-Time Delivery Rate" value="95.4%" delta="+1.8% vs last quarter" trend="up" subtext="To Bhiwandi Central" icon="🚚" />
-        <KpiCard label="Procurement Savings" value="₹25.80 Lakhs" delta="6.1% average discount" trend="up" subtext="Volume negotiated" icon="💎" />
+        <KpiCard label="Procurement Spend MTD" value="₹0" delta="Across 18 suppliers" trend="neutral" subtext="Direct manufacturer" icon="🛒" />
+        <KpiCard label="Average PO Fill Rate" value="0.0%" delta="High stock readiness" trend="up" subtext="Target: > 96.0%" icon="📋" />
+        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="+1.8% vs last quarter" trend="up" subtext="To Bhiwandi Central" icon="🚚" />
+        <KpiCard label="Procurement Savings" value="₹0" delta="6.1% average discount" trend="up" subtext="Volume negotiated" icon="💎" />
       </div>
 
       {/* Table Section */}

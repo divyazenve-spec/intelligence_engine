@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function SixtyMinuteDelivery() {
-  const hubMetrics = [
-    { hub: 'Koramangala Dark Store Hub', city: 'Bengaluru', orders60m: 142, avgFulfillment: '32.4 mins', dispatchTime: '6.2 mins', breachCount: 1, slaCompliance: '99.3%', peakCapacity: '28 riders' },
-    { hub: 'Indiranagar Care Hub', city: 'Bengaluru', orders60m: 118, avgFulfillment: '34.8 mins', dispatchTime: '7.1 mins', breachCount: 2, slaCompliance: '98.3%', peakCapacity: '22 riders' },
-    { hub: 'Whitefield Tech Center', city: 'Bengaluru', orders60m: 86, avgFulfillment: '38.6 mins', dispatchTime: '8.4 mins', breachCount: 3, slaCompliance: '96.5%', peakCapacity: '18 riders' },
-    { hub: 'Bandra West Specialty Hub', city: 'Mumbai', orders60m: 98, avgFulfillment: '35.1 mins', dispatchTime: '6.8 mins', breachCount: 1, slaCompliance: '99.0%', peakCapacity: '20 riders' },
-    { hub: 'Andheri East Logistics Node', city: 'Mumbai', orders60m: 84, avgFulfillment: '37.2 mins', dispatchTime: '7.9 mins', breachCount: 2, slaCompliance: '97.6%', peakCapacity: '16 riders' },
-    { hub: 'Gurugram Cyber Hub Node', city: 'Delhi-NCR', orders60m: 76, avgFulfillment: '39.0 mins', dispatchTime: '8.1 mins', breachCount: 2, slaCompliance: '97.4%', peakCapacity: '15 riders' }
-  ];
+  const hubMetrics = [];
 
   return (
     <DashboardLayout
@@ -19,12 +12,12 @@ export default function SixtyMinuteDelivery() {
       title="Hyperlocal 60-Minute Rapid Delivery SLA"
       subtitle="Guaranteed sub-60 minute order-to-doorstep dispatch for critical pet medications, diets, and emergency supplies"
       icon="⚡"
-      badge="36.2 Mins Avg Doorstep Speed"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Avg Doorstep Time" value="36.2 mins" delta="Target <60m" trend="up" subtext="Order placement to OTP" icon="⏱️" />
-        <KpiCard label="Rapid SLA Compliance" value="98.1%" delta="+1.2% MoM" trend="up" subtext="Delivered within 60 mins" icon="⚡" />
-        <KpiCard label="Pick & Pack Velocity" value="7.2 mins" delta="Lightning fast" trend="up" subtext="Pharmacist bag-ready time" icon="📦" />
+        <KpiCard label="Avg Doorstep Time" value="0" delta="Target <60m" trend="up" subtext="Order placement to OTP" icon="⏱️" />
+        <KpiCard label="Rapid SLA Compliance" value="0.0%" delta="+1.2% MoM" trend="up" subtext="Delivered within 60 mins" icon="⚡" />
+        <KpiCard label="Pick & Pack Velocity" value="0" delta="Lightning fast" trend="up" subtext="Pharmacist bag-ready time" icon="📦" />
         <KpiCard label="60-Min Volume" value="604 Orders" delta="62.4% total mix" trend="up" subtext="Highest customer loyalty tier" icon="🚀" />
       </div>
 

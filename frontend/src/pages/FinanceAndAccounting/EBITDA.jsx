@@ -5,23 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function EBITDA() {
   const [metricView, setMetricView] = useState('Operating');
 
-  const facilityEbitda = [
-    { facility: 'Zenve Hospital Koramangala (24x7)', city: 'Bengaluru', rev: '₹14.20 Lakh', gp: '₹8.95 Lakh', opex: '₹4.85 Lakh', ebitda: '₹4.10 Lakh', margin: '28.9%', status: 'Top Performer' },
-    { facility: 'Zenve Multi-Specialty Bandra', city: 'Mumbai', rev: '₹11.85 Lakh', gp: '₹7.45 Lakh', opex: '₹4.20 Lakh', ebitda: '₹3.25 Lakh', margin: '27.4%', status: 'Top Performer' },
-    { facility: 'Zenve Animal Hospital Okhla', city: 'Delhi NCR', rev: '₹9.40 Lakh', gp: '₹5.64 Lakh', opex: '₹3.40 Lakh', ebitda: '₹2.24 Lakh', margin: '23.8%', status: 'Solid EBITDA' },
-    { facility: 'Zenve Jubilee Hills Specialty', city: 'Hyderabad', rev: '₹4.80 Lakh', gp: '₹2.78 Lakh', opex: '₹1.80 Lakh', ebitda: '₹0.98 Lakh', margin: '20.4%', status: 'Solid EBITDA' },
-    { facility: 'Zenve Care Center Indiranagar', city: 'Bengaluru', rev: '₹5.60 Lakh', gp: '₹3.25 Lakh', opex: '₹2.10 Lakh', ebitda: '₹1.15 Lakh', margin: '20.5%', status: 'Solid EBITDA' },
-    { facility: 'Zenve Koregaon Park Clinic', city: 'Pune', rev: '₹3.20 Lakh', gp: '₹1.82 Lakh', opex: '₹1.35 Lakh', ebitda: '₹0.47 Lakh', margin: '14.7%', status: 'Ramping Up' }
-  ];
+  const facilityEbitda = [];
 
-  const bridgeItems = [
-    { step: 'Reported GAAP Operating Income (EBIT)', amt: '₹13,30,000', type: 'base' },
-    { step: '+ Add-back: Depreciation of Medical Equipment & Imaging', amt: '+₹2,40,000', type: 'add' },
-    { step: 'REPORTED OPERATING EBITDA', amt: '₹15,70,000', type: 'subtotal' },
-    { step: '+ Add-back: Pre-Opening Fitout Costs for Whitefield Hub', amt: '+₹1,20,000', type: 'add' },
-    { step: '+ Add-back: Cloud EMR Architecture One-Time Migration', amt: '+₹60,000', type: 'add' },
-    { step: 'NORMALIZED ADJUSTED EBITDA', amt: '₹17,50,000', type: 'total' }
-  ];
+  const bridgeItems = [];
 
   return (
     <DashboardLayout
@@ -52,11 +38,11 @@ export default function EBITDA() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Operating EBITDA (MTD)" value="₹15.70 Lakh" delta="+49.5% vs Plan" trend="up" subtext="20.02% of Revenue" icon="⚡" />
-        <KpiCard label="Normalized Adjusted EBITDA" value="₹17.50 Lakh" delta="22.3% Adj Margin" trend="up" subtext="Adding non-recurring" icon="💎" />
-        <KpiCard label="Annualized EBITDA Run-rate" value="₹1.88 Crore" delta="+28.4% YoY" trend="up" subtext="Debt service coverage >15x" icon="📈" />
-        <KpiCard label="EBITDA-to-Cash Conversion" value="76.4%" delta="High cash flow" trend="up" subtext="CFO / EBITDA" icon="💧" />
-        <KpiCard label="Flagship Tertiary EBITDA" value="28.9%" delta="Koramangala 24x7" trend="up" subtext="Highest volume center" icon="🏥" />
+        <KpiCard label="Operating EBITDA (MTD)" value="₹0" delta="+49.5% vs Plan" trend="up" subtext="20.02% of Revenue" icon="⚡" />
+        <KpiCard label="Normalized Adjusted EBITDA" value="₹0" delta="22.3% Adj Margin" trend="up" subtext="Adding non-recurring" icon="💎" />
+        <KpiCard label="Annualized EBITDA Run-rate" value="₹0" delta="+28.4% YoY" trend="up" subtext="Debt service coverage >15x" icon="📈" />
+        <KpiCard label="EBITDA-to-Cash Conversion" value="0.0%" delta="High cash flow" trend="up" subtext="CFO / EBITDA" icon="💧" />
+        <KpiCard label="Flagship Tertiary EBITDA" value="0.0%" delta="Koramangala 24x7" trend="up" subtext="Highest volume center" icon="🏥" />
         <KpiCard label="Break-Even Hospital Month" value="3.2 Months" delta="-1.4 mo faster" trend="up" subtext="Average new center" icon="⏱️" />
       </div>
 

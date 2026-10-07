@@ -5,16 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function EmployeeTargets() {
   const [filterPeriod, setFilterPeriod] = useState('October 2026');
 
-  const targets = [
-    { name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', metric: 'Consultation Revenue', target: '₹8,00,000', achieved: '₹8,40,000', pct: 105.0, status: 'Surplus (+5%)', tier: 'Diamond 💎' },
-    { name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', metric: 'Surgical Procedures', target: '₹6,50,000', achieved: '₹6,80,000', pct: 104.6, status: 'Surplus (+4.6%)', tier: 'Diamond 💎' },
-    { name: 'Rohan Deshmukh', role: 'Head Pharmacist', metric: 'Prescription Dispensing', target: '1,300 Rx', achieved: '1,420 Rx', pct: 109.2, status: 'Surplus (+9.2%)', tier: 'Platinum 🏆' },
-    { name: 'Manish Rawat', role: 'Express Rider', metric: 'On-Time Deliveries', target: '550 Orders', achieved: '612 Orders', pct: 111.3, status: 'Surplus (+11.3%)', tier: 'Platinum 🏆' },
-    { name: 'Sneha Chawla', role: 'Senior AI Engineer', metric: 'Sprint Velocity & Models', target: '20 Tasks', achieved: '24 Tasks', pct: 120.0, status: 'Surplus (+20%)', tier: 'Diamond 💎' },
-    { name: 'Pooja Hegde', role: 'Support Team Lead', metric: 'Tickets SLA & Resolution', target: '800 Solved', achieved: '792 Solved', pct: 99.0, status: 'On Track (99%)', tier: 'Gold 🥇' },
-    { name: 'Ananya Verma', role: 'Warehouse Ops Manager', metric: 'Outbound Dispatch SLA', target: '98.0%', achieved: '96.8%', pct: 98.7, status: 'On Track (98.7%)', tier: 'Gold 🥇' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', metric: 'Stock Reconciliation Audit', target: '100% SKU audit', achieved: '94.2%', pct: 94.2, status: 'Gap (-5.8%)', tier: 'Silver 🥈' }
-  ];
+  const targets = [];
 
   return (
     <DashboardLayout
@@ -27,9 +18,9 @@ export default function EmployeeTargets() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Quota Attainment" value="106.8%" delta="+6.8% over plan" trend="up" subtext="Across all quota-bearing roles" icon="🏆" />
+        <KpiCard label="Blended Quota Attainment" value="0.0%" delta="+6.8% over plan" trend="up" subtext="Across all quota-bearing roles" icon="🏆" />
         <KpiCard label="Team Members Surpassing Target" value="142 Staff" delta="68.2% of cohort" trend="up" subtext="Eligible for tier incentives" icon="🚀" />
-        <KpiCard label="Incentive Pool Allocated" value="₹18,40,000" delta="Fully funded" trend="neutral" subtext="To be disbursed with payroll" icon="💰" />
+        <KpiCard label="Incentive Pool Allocated" value="₹0" delta="Fully funded" trend="neutral" subtext="To be disbursed with payroll" icon="💰" />
         <KpiCard label="Quota Deficit Cases" value="8 Personnel" delta="Coaching plan initiated" trend="down" subtext="Under 90% attainment" icon="⚠️" />
       </div>
 

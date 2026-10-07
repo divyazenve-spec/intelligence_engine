@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CustomerRevenue() {
-  const revStreams = [
-    { channel: 'Zenve Mobile App (Quick Commerce)', mtdRev: '₹78.50 Lakh', share: '45.8%', avgUserSpend: '₹4,200', grossMargin: '42.5%', growth: '+28.4% YoY' },
-    { channel: 'Physical Clinic Centers & OPD', mtdRev: '₹46.20 Lakh', share: '26.9%', avgUserSpend: '₹5,800', grossMargin: '48.0%', growth: '+18.2% YoY' },
-    { channel: 'Zenve Online Web Portal', mtdRev: '₹28.40 Lakh', share: '16.6%', avgUserSpend: '₹3,400', grossMargin: '38.0%', growth: '+12.5% YoY' },
-    { channel: 'Recurring Wellness Subscriptions', mtdRev: '₹18.42 Lakh', share: '10.7%', avgUserSpend: '₹1,850', grossMargin: '58.5%', growth: '+42.0% YoY' }
-  ];
+  const revStreams = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function CustomerRevenue() {
       title="Customer Revenue & Monetization Streams"
       subtitle="Total customer-generated gross revenue, channel share, ARPU trajectory, and category margin analysis"
       icon="💰"
-      badge="₹1.71 Cr MTD Revenue"
+      badge="₹0 MTD Revenue"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Customer Billed Revenue" value="₹1.71 Cr MTD" delta="+24.8% YoY" trend="up" subtext="All retail and clinical channels" icon="💰" />
-        <KpiCard label="Monthly ARPU" value="₹4,620 / User" delta="+11.2% MoM" trend="up" subtext="Across active transactors" icon="📈" />
-        <KpiCard label="Blended Gross Margin" value="44.2%" delta="+2.1% vs FY25" trend="up" subtext="High margin clinical services" icon="💎" />
-        <KpiCard label="Subscription Recurring Share" value="10.7%" delta="High predictable baseline" trend="up" subtext="Aiming for 18% in FY27" icon="🔄" />
+        <KpiCard label="Customer Billed Revenue" value="₹0 MTD" delta="+24.8% YoY" trend="up" subtext="All retail and clinical channels" icon="💰" />
+        <KpiCard label="Monthly ARPU" value="₹0 / User" delta="+11.2% MoM" trend="up" subtext="Across active transactors" icon="📈" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.1% vs FY25" trend="up" subtext="High margin clinical services" icon="💎" />
+        <KpiCard label="Subscription Recurring Share" value="0.0%" delta="High predictable baseline" trend="up" subtext="Aiming for 18% in FY27" icon="🔄" />
       </div>
 
       <div style={cardStyle}>

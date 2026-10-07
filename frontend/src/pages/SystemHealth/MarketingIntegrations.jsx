@@ -3,53 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function MarketingIntegrations() {
-  const [integrations, setIntegrations] = useState([
-    {
-      platform: 'Meta Ads Conversions API (CAPI)',
-      purpose: 'Server-Side Event Attribution (Purchase, AddToCart)',
-      endpoint: 'graph.facebook.com/v19.0',
-      eventMatchQuality: '8.9 / 10 (High)',
-      latency: '112ms',
-      dailyEvents: '42,800 events',
-      status: 'Active'
-    },
-    {
-      platform: 'Google Ads Enhanced Conversions',
-      purpose: 'First-Party Customer Match & Offline Conversion Import',
-      endpoint: 'googleads.googleapis.com/v16',
-      eventMatchQuality: '9.2 / 10',
-      latency: '94ms',
-      dailyEvents: '38,100 events',
-      status: 'Active'
-    },
-    {
-      platform: 'AppsFlyer Deep-Linking & Mobile Attribution',
-      purpose: 'Install attribution, SKAdNetwork & Cost Aggregation',
-      endpoint: 'api2.appsflyer.com/inappevent',
-      eventMatchQuality: '99.4% Attribution Accuracy',
-      latency: '68ms',
-      dailyEvents: '84,500 events',
-      status: 'Active'
-    },
-    {
-      platform: 'WhatsApp Cloud API (Meta)',
-      purpose: 'Abandoned Cart Recovery & Order Milestone Updates',
-      endpoint: 'graph.facebook.com/v19.0/messages',
-      eventMatchQuality: '98.8% Read Rate',
-      latency: '52ms',
-      dailyEvents: '12,400 messages',
-      status: 'Active'
-    },
-    {
-      platform: 'Segment CDP / Customer Data Pipeline',
-      purpose: 'Unified Event Streaming & Warehouse Forwarding',
-      endpoint: 'api.segment.io/v1/track',
-      eventMatchQuality: '100% Delivery',
-      latency: '34ms',
-      dailyEvents: '190,000 events',
-      status: 'Active'
-    }
-  ]);
+  const [integrations, setIntegrations] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -103,9 +57,9 @@ export default function MarketingIntegrations() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Server Event Delivery" value="99.96%" delta="0 event drops" trend="up" subtext="Meta CAPI & Google" icon="🟢" />
+        <KpiCard label="Server Event Delivery" value="0.0%" delta="0 event drops" trend="up" subtext="Meta CAPI & Google" icon="🟢" />
         <KpiCard label="Event Match Quality" value="9.1 / 10" delta="Top 5% industry" trend="up" subtext="Enhanced conversions" icon="🎯" />
-        <KpiCard label="Daily Stream Volume" value="367,800" delta="+14.2% traffic" trend="up" subtext="Real-time web & app" icon="📊" />
+        <KpiCard label="Daily Stream Volume" value="0" delta="+14.2% traffic" trend="up" subtext="Real-time web & app" icon="📊" />
         <KpiCard label="Avg Stream Latency" value="72 ms" delta="Sub-100ms" trend="up" subtext="No queuing backlog" icon="⚡" />
       </div>
 

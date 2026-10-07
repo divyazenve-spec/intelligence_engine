@@ -11,13 +11,7 @@ export default function SalesReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const salesData = [
-    { channel: 'Express Mobile App (Android)', orders: 3840, gross: 2450000, discounts: 120000, refunds: 45000, net: 2285000, aov: 638 },
-    { channel: 'Express Mobile App (iOS)', orders: 2420, gross: 1820000, discounts: 85000, refunds: 32000, net: 1703000, aov: 752 },
-    { channel: 'Web Portal (Direct B2C)', orders: 980, gross: 780000, discounts: 42000, refunds: 18000, net: 720000, aov: 795 },
-    { channel: 'In-Clinic OTC & Pharmacy', orders: 1240, gross: 1420000, discounts: 35000, refunds: 8000, net: 1377000, aov: 1145 },
-    { channel: 'B2B / Corporate Clinics', orders: 68, gross: 840000, discounts: 48000, refunds: 0, net: 792000, aov: 12352 }
-  ];
+  const salesData = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -101,10 +95,10 @@ export default function SalesReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Sales MTD" value="₹73.10 Lakhs" delta="+18.4% YoY" trend="up" subtext="Across 8,548 orders" icon="📈" />
-        <KpiCard label="Total Deductions" value="₹4.33 Lakhs" delta="5.9% of Gross" trend="neutral" subtext="Discounts + Returns" icon="🧾" />
-        <KpiCard label="Net Sales Realized" value="₹68.77 Lakhs" delta="94.1% Retention" trend="up" subtext="Bank settled GMV" icon="💰" />
-        <KpiCard label="Blended AOV" value="₹804" delta="+₹48 vs prior" trend="up" subtext="Higher pharma basket" icon="🛒" />
+        <KpiCard label="Gross Sales MTD" value="₹0" delta="+18.4% YoY" trend="up" subtext="Across 8,548 orders" icon="📈" />
+        <KpiCard label="Total Deductions" value="₹0" delta="5.9% of Gross" trend="neutral" subtext="Discounts + Returns" icon="🧾" />
+        <KpiCard label="Net Sales Realized" value="₹0" delta="94.1% Retention" trend="up" subtext="Bank settled GMV" icon="💰" />
+        <KpiCard label="Blended AOV" value="₹0" delta="+₹0 prior" trend="up" subtext="Higher pharma basket" icon="🛒" />
       </div>
 
       {/* Table Section */}

@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function NewSubscriptions() {
-  const acquisitions = [
-    { channel: 'Zenve SuperApp First-Time Pet Onboarding', newSubs: 38, cac: '₹420', conversion: '14.2%', mrrAdded: '₹56,400', payback: '22 Days' },
-    { channel: 'Veterinary Clinic Post-Consult Checkout', newSubs: 24, cac: '₹180', conversion: '32.5%', mrrAdded: '₹45,600', payback: '8 Days' },
-    { channel: 'Puppy & Kitten Welcome Vaccine Camp', newSubs: 16, cac: '₹310', conversion: '28.0%', mrrAdded: '₹23,984', payback: '14 Days' },
-    { channel: 'Flagship Showroom Haute Couture VIP Signups', newSubs: 12, cac: '₹550', conversion: '18.4%', mrrAdded: '₹34,200', payback: '16 Days' },
-    { channel: 'Corporate Wellness Infosys & Wipro Portals', newSubs: 18, cac: '₹0 (Partner)', conversion: '42.0%', mrrAdded: '₹22,500', payback: 'Instant' }
-  ];
+  const acquisitions = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -20,12 +14,12 @@ export default function NewSubscriptions() {
       title="New Subscriber Acquisition & Channel Velocity"
       subtitle="Monthly new subscriber signups, acquisition channel conversion, customer acquisition cost (CAC), and payback period"
       icon="✨"
-      badge="108 New Subs MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="New Subscriptions (MTD)" value="108 Signups" delta="+34% vs last month" trend="up" subtext="Target: 90 signups" icon="✨" />
-        <KpiCard label="Blended CAC per Subscriber" value="₹342" delta="-18% YoY" trend="up" subtext="Clinic referral advantage" icon="🎯" />
-        <KpiCard label="New MRR Added" value="₹1,82,684" delta="+28% MoM" trend="up" subtext="Pure recurring ARR boost" icon="💰" />
+        <KpiCard label="Blended CAC per Subscriber" value="₹0" delta="-18% YoY" trend="up" subtext="Clinic referral advantage" icon="🎯" />
+        <KpiCard label="New MRR Added" value="₹0" delta="+28% MoM" trend="up" subtext="Pure recurring ARR boost" icon="💰" />
         <KpiCard label="Avg Payback Period" value="16.4 Days" delta="Instant unit profitability" trend="up" subtext="First month margin positive" icon="⏱️" />
       </div>
 

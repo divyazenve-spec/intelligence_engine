@@ -11,32 +11,7 @@ export default function BusinessInsights() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const insights = [
-    {
-      category: 'Clinical Operations',
-      title: 'Weekend Emergency Teleconsultation Surge (+34%)',
-      desc: 'Saturday and Sunday evening teleconsultations for canine gastrointestinal distress spiked by 34% over the last 3 weekends. Recommend staffing 2 additional on-call clinicians during 18:00–23:00 to reduce wait times below 4 minutes.',
-      impact: '+₹1.8L Monthly Revenue',
-      tag: 'Immediate Action',
-      tagColor: '#ef4444'
-    },
-    {
-      category: 'Merchandise & Nutrition',
-      title: 'Hypoallergenic Diet Affinity Following Dermatology Consultations',
-      desc: 'Patients diagnosed with canine atopic dermatitis by Dr. Ananya Joshi have an 88.4% conversion rate to Farmina Vet Life Hypoallergenic food when recommended within the electronic prescription checkout.',
-      impact: '+42% Basket Size',
-      tag: 'Growth Vector',
-      tagColor: '#10b981'
-    },
-    {
-      category: 'Fulfillment Logistics',
-      title: 'Whitefield Micro-Hub Delivery Consolidation Opportunity',
-      desc: 'Over 64% of deliveries in East Bengaluru occur within a 3.2km radius of the Palm Meadows clinic. Routing pharmacy dispatches directly from the clinic rather than the central warehouse cuts delivery cost from ₹78 to ₹42 per order.',
-      impact: '₹1.15L OpEx Reduction',
-      tag: 'Cost Optimization',
-      tagColor: '#3b82f6'
-    }
-  ];
+  const insights = [];
 
   return (
     <DashboardLayout
@@ -49,9 +24,9 @@ export default function BusinessInsights() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Synthesized Insights" value="18 Active" delta="3 High Impact" trend="up" subtext="Updated 15m ago" icon="💡" />
-        <KpiCard label="Estimated Revenue Value" value="₹4.75 Lakh" delta="Unlockable MTD" trend="up" subtext="Across 3 vectors" icon="💰" />
-        <KpiCard label="Action Adoption Rate" value="84.2%" delta="+8% vs LY" trend="up" subtext="Operations teams" icon="🚀" />
-        <KpiCard label="Efficiency Gain" value="14.8%" delta="OpEx savings" trend="up" subtext="Logistics & sourcing" icon="⚡" />
+        <KpiCard label="Estimated Revenue Value" value="₹0" delta="Unlockable MTD" trend="up" subtext="Across 3 vectors" icon="💰" />
+        <KpiCard label="Action Adoption Rate" value="0.0%" delta="+8% vs LY" trend="up" subtext="Operations teams" icon="🚀" />
+        <KpiCard label="Efficiency Gain" value="0.0%" delta="OpEx savings" trend="up" subtext="Logistics & sourcing" icon="⚡" />
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

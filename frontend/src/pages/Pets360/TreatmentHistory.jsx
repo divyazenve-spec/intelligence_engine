@@ -6,14 +6,7 @@ export default function TreatmentHistory() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const treatments = [
-    { id: 'TRT-101', pet: 'Bruno (Golden Retriever)', date: '02-Oct-2026', condition: 'Acute Gastroenteritis', procedure: 'IV Rehydration & Antiemetics (Maropitant 10mg)', duration: 'Day Ward (6 hrs)', vet: 'Dr. Priya Sharma', cost: '₹2,400', outcome: 'Fully Resolved' },
-    { id: 'TRT-102', pet: 'Milo (Persian Cat)', date: '28-Sep-2026', condition: 'FLUTD Urethral Spasm', procedure: 'Urinary Catheterization & Spasmolytic Infusion', duration: 'Inpatient (48 hrs)', vet: 'Dr. Aisha Khan', cost: '₹5,800', outcome: 'Catheter Removed / Discharged' },
-    { id: 'TRT-103', pet: 'Rocky (German Shepherd)', date: '24-Sep-2026', condition: 'CCL Right Cruciate Rupture', procedure: 'TPLO Surgical Stabilization & Orthopedic Plate', duration: 'OT + 3 Days Inpatient', vet: 'Dr. Rahul Mehta', cost: '₹34,500', outcome: 'Rehab / Hydrotherapy' },
-    { id: 'TRT-104', pet: 'Simba (Beagle)', date: '20-Sep-2026', condition: 'Severe Malassezia Otitis', procedure: 'Deep Ear Flushing & Posatex Suspension Course', duration: 'Outpatient (Weekly)', vet: 'Dr. Karan Patel', cost: '₹3,200', outcome: 'Regimen Week 2 of 4' },
-    { id: 'TRT-105', pet: 'Bella (Shih Tzu)', date: '15-Sep-2026', condition: 'Mitral Valve Insufficiency (MMVD)', procedure: 'Echocardiogram Staging & Pimobendan Inception', duration: 'Chronic Care Protocol', vet: 'Dr. Neha Singh', cost: '₹4,500', outcome: 'Stable on Daily Meds' },
-    { id: 'TRT-106', pet: 'Casper (Siberian Husky)', date: '10-Sep-2026', condition: 'Heatstroke Induced Encephalopathy', procedure: 'Active Cold Perfusion & Mannitol Osmotherapy', duration: 'ICU Critical Care (72 hrs)', vet: 'Dr. Neha Singh', cost: '₹18,200', outcome: 'Full Recovery' }
-  ];
+  const treatments = [];
 
   const filtered = treatments.filter(t => {
     const matchesFilter = filter === 'ALL' || t.outcome.includes(filter);
@@ -31,7 +24,7 @@ export default function TreatmentHistory() {
       title="Inpatient Protocols, ICU & Surgical Recovery Logs"
       subtitle="Historical treatment regimens, emergency interventions, surgical procedures, and discharge outcome tracking"
       icon="🐾"
-      badge="1,840 Cumulative Treatments"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Resolved', 'Discharged', 'Rehab', 'Stable', 'Recovery'].map(f => (
@@ -56,10 +49,10 @@ export default function TreatmentHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Procedures Logged" value="1,840" delta="+16.8%" trend="up" subtext="Medical & surgical" icon="💊" />
-        <KpiCard label="Average Recovery Rate" value="98.2%" delta="High success" trend="up" subtext="Discharged safely" icon="📈" />
+        <KpiCard label="Total Procedures Logged" value="0" delta="0.0%" trend="up" subtext="Medical & surgical" icon="💊" />
+        <KpiCard label="Average Recovery Rate" value="0.0%" delta="High success" trend="up" subtext="Discharged safely" icon="📈" />
         <KpiCard label="Avg Inpatient Stay" value="1.8 Days" delta="-0.4d YoY" trend="up" subtext="Optimized recovery" icon="⏱️" />
-        <KpiCard label="Surgical Success Rate" value="99.4%" delta="Zero sepsis" trend="up" subtext="Sterile theater suite" icon="🏥" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="Zero sepsis" trend="up" subtext="Sterile theater suite" icon="🏥" />
       </div>
 
       <div style={{

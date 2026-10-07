@@ -3,63 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function HRAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'HR-801',
-      title: 'ICU Night-Shift Veterinary Nurse Staffing Deficit (-2 Staff)',
-      department: 'Clinical Inpatient & ICU',
-      facility: 'Koramangala 24/7 Super-Specialty Hospital',
-      metric: 'Only 3 nurses confirmed for 8 PM shift (Minimum Safe Ratio: 5)',
-      impact: 'Critical patient-to-nurse ratio breached for post-op ICU ward',
-      severity: 'Critical',
-      time: '25m ago',
-      status: 'Active'
-    },
-    {
-      id: 'HR-802',
-      title: 'Emergency On-Call Veterinary Surgeon Absence',
-      department: 'Veterinary Surgery & Trauma',
-      facility: 'Mumbai Surgical Center (Bandra West)',
-      metric: 'Dr. Rahul Mehta reported acute illness; no locum doctor assigned',
-      impact: 'Trauma intake compromised between 10:00 PM and 6:00 AM',
-      severity: 'Critical',
-      time: '42m ago',
-      status: 'Escalated'
-    },
-    {
-      id: 'HR-803',
-      title: 'Sales Pacing Under-Performance: Diagnostics & Lab Team (74%)',
-      department: 'B2B & Diagnostics Field Sales',
-      facility: 'All India Field Force (5 Reps lagging)',
-      metric: 'Pacing at 74% attainment with only 5 days remaining in month',
-      impact: 'Risk of missing quarterly lab testing revenue target by ₹4.2L',
-      severity: 'High Warning',
-      time: '2h ago',
-      status: 'Active'
-    },
-    {
-      id: 'HR-804',
-      title: 'Veterinary Council of India (VCI) License Expiry Warning',
-      department: 'Clinical Credentialing & Governance',
-      facility: 'Delhi NCR Clinic (Dr. Aisha Khan)',
-      metric: 'State veterinary practice license renewal due in 15 days',
-      impact: 'Statutory compliance violation if practicing without renewed certificate',
-      severity: 'Warning',
-      time: '4h ago',
-      status: 'Reminder Sent'
-    },
-    {
-      id: 'HR-805',
-      title: 'Excessive Overtime Alert: Koramangala Dark Store Fulfillment Crew',
-      department: 'Supply Chain & Warehousing',
-      facility: 'Koramangala Fulfillment Hub',
-      metric: '6 pack associates exceeded 24 hours cumulative weekly overtime',
-      impact: 'Burnout risk, fatigue errors, and statutory labor cap breach',
-      severity: 'Info',
-      time: '6h ago',
-      status: 'Under Review'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -80,7 +24,7 @@ export default function HRAlerts() {
       title="People, Clinical Roster & Credentialing Alerts"
       subtitle="Shift staffing shortages in ICU, on-call doctor emergency absences, sales quota deficits, and veterinary licensing renewals"
       icon="🧑‍💼"
-      badge="2 Critical Staffing Alerts"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -134,7 +78,7 @@ export default function HRAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Shift Coverage Rate"
-          value="93.8%"
+          value="0.0%"
           delta="2 Shifts understaffed"
           trend="down"
           subtext="ICU night shift alert"

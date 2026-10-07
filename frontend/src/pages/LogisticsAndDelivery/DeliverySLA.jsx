@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliverySLA() {
-  const slaBreakdown = [
-    { tier: '60-Minute Rapid Tier', target: '< 60 mins', actual: '36.2 mins', volume: '14,200', breaches: 24, compliance: '98.3%', benchmark: '95.0%', status: 'Exceeding' },
-    { tier: 'Same-Day Slotted Tier', target: '< 4 hours', actual: '2.8 hours', volume: '6,400', breaches: 18, compliance: '97.2%', benchmark: '95.0%', status: 'Exceeding' },
-    { tier: 'Cold-Chain Biologicals', target: '2°C to 8°C continuous', actual: '99.9% in-range', volume: '3,850', breaches: 3, compliance: '99.9%', benchmark: '99.5%', status: 'World Class' },
-    { tier: 'Next-Day Clinic Supply', target: '< 24 hours', actual: '18.4 hours', volume: '1,200', breaches: 8, compliance: '99.3%', benchmark: '98.0%', status: 'Exceeding' },
-    { tier: 'Emergency Telehealth Dispatch', target: '< 45 mins', actual: '28.1 mins', volume: '980', breaches: 4, compliance: '99.6%', benchmark: '98.0%', status: 'World Class' }
-  ];
+  const slaBreakdown = [];
 
   return (
     <DashboardLayout
@@ -18,12 +12,12 @@ export default function DeliverySLA() {
       title="Delivery Service Level Agreements (SLA) & Compliance"
       subtitle="Fulfillment SLA adherence, breach root causes, temperature cold-chain compliance, and first-attempt success"
       icon="🛡️"
-      badge="98.4% Blended SLA Adherence"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall SLA Rate" value="98.4%" delta="+0.9% MoM" trend="up" subtext="Target: 95.0%" icon="🛡️" />
-        <KpiCard label="Cold-Chain SLA" value="99.9%" delta="Zero spoilage" trend="up" subtext="Refrigerated integrity" icon="❄️" />
-        <KpiCard label="First Attempt SLA" value="99.1%" delta="+0.3% MoM" trend="up" subtext="Doorstep delivery success" icon="🎯" />
+        <KpiCard label="Overall SLA Rate" value="0.0%" delta="+0.9% MoM" trend="up" subtext="Target: 95.0%" icon="🛡️" />
+        <KpiCard label="Cold-Chain SLA" value="0.0%" delta="Zero spoilage" trend="up" subtext="Refrigerated integrity" icon="❄️" />
+        <KpiCard label="First Attempt SLA" value="0.0%" delta="+0.3% MoM" trend="up" subtext="Doorstep delivery success" icon="🎯" />
         <KpiCard label="Total Breaches MTD" value="57 Breaches" delta="-18.2% vs last mo" trend="up" subtext="Across 26,630 orders" icon="📉" />
       </div>
 

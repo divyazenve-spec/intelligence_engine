@@ -5,13 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function Contracts() {
   const [filter, setFilter] = useState('ALL');
 
-  const contracts = [
-    { id: 'CTR-ENT-2024-01', title: 'National Veterinary Consumables Master Agreement', entity: 'PetCare Hospital Network', validFrom: '2024-04-01', validTo: '2027-03-31', value: '₹72,00,000 (3-Yr)', slaPenalty: '2.5% per 24h delay', status: 'Active (Signed)' },
-    { id: 'CTR-ENT-2024-08', title: 'Paramilitary K-9 Nutrition & Medical Supply Contract', entity: 'K-9 Paramilitary Kennels', validFrom: '2024-08-01', validTo: '2025-07-31', value: '₹18,50,000 (Annual)', slaPenalty: 'Liquidated Damages Clause', status: 'Active (Signed)' },
-    { id: 'CTR-ENT-2025-02', title: 'Bangalore Breeder Network Feed Supply Framework', entity: 'Bangalore Canine Breeding Co-op', validFrom: '2025-01-01', validTo: '2025-12-31', value: '₹12,80,000 (Annual)', slaPenalty: 'Replacement within 12h', status: 'Active (Signed)' },
-    { id: 'CTR-ENT-2025-04', title: 'Urban Mutts Exclusive Grooming Chemical Supplies', entity: 'Urban Mutts Luxury Hospitality', validFrom: '2025-04-01', validTo: '2026-03-31', value: '₹8,40,000 (Annual)', slaPenalty: 'Credit note adjustment', status: 'Active (Signed)' },
-    { id: 'CTR-ENT-2023-11', title: 'Airport Security Canine Working Pack Master Deed', entity: 'Airports Authority Canine Unit', validFrom: '2023-11-01', validTo: '2026-10-31', value: '₹42,60,000 (3-Yr)', slaPenalty: 'Immediate re-procure offset', status: 'Renewal Pending' }
-  ];
+  const contracts = [];
 
   const filtered = filter === 'ALL' ? contracts : contracts.filter(c => c.status.toLowerCase().includes(filter.toLowerCase()));
 
@@ -24,12 +18,12 @@ export default function Contracts() {
       title="Master Services Agreements (MSA) & Contracts"
       subtitle="Corporate legal master deeds, SLA penalty terms, renewal milestones, and compliance tracking"
       icon="📜"
-      badge="38 Active MSAs"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Commercial MSAs" value="38 Contracts" delta="₹3.14 Cr Total Value" trend="up" subtext="Multi-year binding" icon="📜" />
-        <KpiCard label="Contracts Expiring in 90D" value="3 Contracts" delta="Renewal in discussion" trend="warn" subtext="₹34.5L total value" icon="⏳" />
-        <KpiCard label="Legal SLA Compliance" value="99.4%" delta="Zero penalty notices" trend="up" subtext="Full delivery fulfillment" icon="🛡️" />
+        <KpiCard label="Active Commercial MSAs" value="38 Contracts" delta="₹0 Total Value" trend="up" subtext="Multi-year binding" icon="📜" />
+        <KpiCard label="Contracts Expiring in 90D" value="3 Contracts" delta="Renewal in discussion" trend="warn" subtext="₹0 total value" icon="⏳" />
+        <KpiCard label="Legal SLA Compliance" value="0.0%" delta="Zero penalty notices" trend="up" subtext="Full delivery fulfillment" icon="🛡️" />
         <KpiCard label="Avg Contract Duration" value="2.2 Years" delta="Standard 1 to 3 yrs" trend="up" subtext="Long-term predictability" icon="📅" />
       </div>
 

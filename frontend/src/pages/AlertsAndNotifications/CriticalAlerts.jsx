@@ -3,56 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function CriticalAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'CRIT-101',
-      title: 'Vaccine Cold-Chain Temperature Breach (> +8°C)',
-      facility: 'Bengaluru Central Cold Depot (Freezer #3)',
-      metric: '+8.6°C (Threshold: +2°C to +8°C)',
-      impact: '480 Doses Zoetis Vanguard 7-in-1 at risk (₹8,64,000)',
-      time: '12m ago',
-      slaCountdown: '18m left before batch write-off',
-      lead: 'Sneha Patel (Cold-Chain Supervisor)',
-      status: 'Active',
-      actionTaken: 'Backup dry-ice thermal units initiated'
-    },
-    {
-      id: 'CRIT-102',
-      title: 'Telemedicine Red-Flag: Canine Acute GDV Bloat',
-      facility: 'Indiranagar Urban Node (Patient #PT-8819)',
-      metric: 'Severe tympany, heart rate 180 bpm, retching',
-      impact: 'Life-threatening emergency · 4yo Golden Retriever',
-      time: '18m ago',
-      slaCountdown: 'Emergency surgical transit in progress',
-      lead: 'Dr. Priya Sharma (CMO on dispatch)',
-      status: 'Acknowledged',
-      actionTaken: 'Zenve Mobile ICU Ambulance #02 rerouted to location'
-    },
-    {
-      id: 'CRIT-103',
-      title: 'Payment Gateway Webhook Timeout: Razorpay Instant Refunds',
-      facility: 'Core Financial API Gateway',
-      metric: 'Error Rate: 28.4% on /webhook/refunds',
-      impact: '42 customer UPI refunds stuck (₹1,84,500 total)',
-      time: '34m ago',
-      slaCountdown: '26m to RBI 1-hour refund breach',
-      lead: 'Arjun Nair (FinTech Lead)',
-      status: 'Active',
-      actionTaken: 'Automatic failover to Cashfree retry queue triggered'
-    },
-    {
-      id: 'CRIT-104',
-      title: 'LIMS Pathology Equipment Offline: Koramangala ICU Analyzer',
-      facility: 'Koramangala 24/7 Super-Specialty Hospital',
-      metric: 'Mindray BC-5000 Vet Hematology dropped serial sync',
-      impact: '6 pre-operative surgical blood profiles stalled',
-      time: '52m ago',
-      slaCountdown: 'Surgery slot starts in 38m',
-      lead: 'Dr. Kavita Reddy (Pathology Lead)',
-      status: 'Under Investigation',
-      actionTaken: 'Biomedical engineer paged on WhatsApp emergency bridge'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -153,7 +104,7 @@ export default function CriticalAlerts() {
         />
         <KpiCard
           label="Financial Value at Risk"
-          value="₹10.48 Lakhs"
+          value="₹0"
           delta="Cold-chain + UPI buffer"
           trend="down"
           subtext="Contained in safety zones"

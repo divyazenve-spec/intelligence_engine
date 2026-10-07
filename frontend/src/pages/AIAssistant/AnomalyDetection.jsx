@@ -11,12 +11,7 @@ export default function AnomalyDetection() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const anomalies = [
-    { id: 'ANM-402', metric: 'Whitefield Clinic OPD Footfall', type: 'Negative Outlier (-38%)', rootCause: 'Heavy monsoon road waterlogging at Palm Meadows junction', detected: '2h ago', status: 'Active Alert', severity: 'High' },
-    { id: 'ANM-401', metric: 'Canine Tick Treatment Orders (Mumbai)', type: 'Positive Surge (+62%)', rootCause: 'High humidity weather pattern triggering regional infestation', detected: '6h ago', status: 'Replenishment Dispatched', severity: 'Medium' },
-    { id: 'ANM-400', metric: 'Payment Gateway UPI Dropout Rate', type: 'Negative Outlier (+8.4%)', rootCause: 'HDFC Bank netbanking gateway intermittent latency', detected: '12h ago', status: 'Auto-Rerouted to Razorpay Direct', severity: 'Resolved' },
-    { id: 'ANM-399', metric: 'Supplier Zoetis Vaccine Batch Invoicing', type: 'Cost Variance (+6.8%)', rootCause: 'Unscheduled carrier cold-chain surcharge applied', detected: 'Yesterday', status: 'Credit Note Claimed', severity: 'Resolved' }
-  ];
+  const anomalies = [];
 
   return (
     <DashboardLayout
@@ -25,12 +20,12 @@ export default function AnomalyDetection() {
       title="Autonomous Statistical Anomaly & Outlier Radar"
       subtitle="Real-time multi-dimensional telemetry scanning (3σ deviation), root-cause diagnostics, and automated remediation"
       icon="🛡️"
-      badge="3σ Telemetry Radar Active"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Anomalies" value="1 Critical" delta="1 High / 1 Med" trend="down" subtext="Whitefield footfall" icon="⚠️" />
-        <KpiCard label="Detection Latency" value="2.4 mins" delta="Real-time stream" trend="up" subtext="From telemetry stream" icon="⚡" />
-        <KpiCard label="False Positive Rate" value="0.8%" delta="< 1% Target" trend="up" subtext="Isolation Forest ML" icon="🎯" />
+        <KpiCard label="Detection Latency" value="0" delta="Real-time stream" trend="up" subtext="From telemetry stream" icon="⚡" />
+        <KpiCard label="False Positive Rate" value="0.0%" delta="< 1% Target" trend="up" subtext="Isolation Forest ML" icon="🎯" />
         <KpiCard label="Auto-Remediated (MTD)" value="24 Incidents" delta="91.4% Automated" trend="up" subtext="Self-healing flows" icon="🤖" />
       </div>
 

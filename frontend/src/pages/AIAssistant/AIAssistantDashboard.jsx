@@ -13,19 +13,7 @@ export default function AIAssistantDashboard() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const aiModules = [
-    { id: 'ask-zenve-ai', title: 'Ask Zenve AI', desc: 'Conversational LLM for instant ad-hoc natural language data queries.', icon: '💬', badge: 'Gemini Flash 2.5' },
-    { id: 'business-insights', title: 'Business Insights', desc: 'Automated synthesis of cross-functional operational performance.', icon: '💡', badge: 'Daily Synthesis' },
-    { id: 'revenue-intelligence', title: 'Revenue Intelligence', desc: 'Margin leak detection, dynamic pricing sensitivity, and churn alerts.', icon: '⚡', badge: 'Active Radar' },
-    { id: 'sales-forecast', title: 'Sales Forecast', desc: 'Multi-horizon Bayesian sales trajectory modeling with confidence bands.', icon: '📈', badge: '96.2% Confidence' },
-    { id: 'demand-forecast', title: 'Demand Forecast', desc: 'SKU-level and regional consumption velocity modeling.', icon: '📦', badge: 'Automated POs' },
-    { id: 'inventory-prediction', title: 'Inventory Prediction', desc: 'Stockout risk scoring, optimal safety stock levels, batch expiry alerts.', icon: '⚠️', badge: 'Real-time Buffer' },
-    { id: 'customer-prediction', title: 'Customer Prediction', desc: 'Next-best-action, propensity to purchase, and repeat cycle timing.', icon: '🎯', badge: 'LTV Uplift' },
-    { id: 'churn-prediction', title: 'Churn Prediction', desc: 'Early flight risk identification, decay scoring, proactive win-back.', icon: '🛡️', badge: 'High Risk Watch' },
-    { id: 'profit-prediction', title: 'Profit Prediction', desc: 'Unit economic forecasting under varying COGS and supply costs.', icon: '💹', badge: 'Scenario Engine' },
-    { id: 'anomaly-detection', title: 'Anomaly Detection', desc: 'Continuous statistical 3-sigma variance monitoring across orders & revenue.', icon: '🔍', badge: 'Sub-minute Alerts' },
-    { id: 'ai-recommendations', title: 'AI Recommendations', desc: 'Ranked executive action items with estimated EBITDA impact.', icon: '✨', badge: '+₹38.4L Est. Lift' }
-  ];
+  const aiModules = [];
 
   return (
     <DashboardLayout
@@ -57,10 +45,10 @@ export default function AIAssistantDashboard() {
     >
       {/* KPI Vitals */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Prediction Accuracy" value="95.8%" delta="+1.4% WoW" trend="up" subtext="Across 180 SKU clusters" icon="🎯" />
+        <KpiCard label="Prediction Accuracy" value="0.0%" delta="+1.4% WoW" trend="up" subtext="Across 180 SKU clusters" icon="🎯" />
         <KpiCard label="Anomalies Flagged" value="4 Active" delta="Resolved 12" trend="up" subtext="2 pricing, 2 dispatch" icon="🔍" />
-        <KpiCard label="Identified Growth" value="₹42.8 Lakhs" delta="EBITDA potential" trend="up" subtext="In next 60-day horizon" icon="💹" />
-        <KpiCard label="Queries Processed" value="3,420" delta="Avg 180ms latency" trend="neutral" subtext="Executive & manager sessions" icon="⚡" />
+        <KpiCard label="Identified Growth" value="₹0" delta="EBITDA potential" trend="up" subtext="In next 60-day horizon" icon="💹" />
+        <KpiCard label="Queries Processed" value="0" delta="Avg 180ms latency" trend="neutral" subtext="Executive & manager sessions" icon="⚡" />
       </div>
 
       {/* Overview Grid */}
@@ -133,7 +121,7 @@ export default function AIAssistantDashboard() {
             Action Required: Bravecto Hub Transfer
           </span>
           <span style={{ fontSize: '12px', padding: '4px 10px', borderRadius: '6px', background: '#f0fdf4', color: '#166534', fontWeight: 500 }}>
-            Retention Uplift: +₹4.6L / Mo
+            Retention Uplift: +₹0 / Mo
           </span>
         </div>
       </div>

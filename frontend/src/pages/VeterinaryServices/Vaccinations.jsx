@@ -6,15 +6,7 @@ export default function Vaccinations() {
   const [speciesFilter, setSpeciesFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const records = [
-    { id: 'VAC-991', pet: 'Cooper (Golden Retriever)', species: 'Canine', parent: 'Alok Goel', vaccineName: 'Nobivac DHPPi + L4 (9-in-1 Core)', batchNo: 'NBV-2026-X81', mfg: 'MSD Animal Health', administered: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Priya Sharma', coldChainVerified: '3.4°C (Pass)', certStatus: 'Certificate Issued' },
-    { id: 'VAC-992', pet: 'Luna (Persian Cat)', species: 'Feline', parent: 'Divya Khurana', vaccineName: 'Felocell 4 (FVRCP + Chlamydia)', batchNo: 'ZTS-9410-F2', mfg: 'Zoetis Animal Health', administered: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Aisha Khan', coldChainVerified: '3.8°C (Pass)', certStatus: 'Certificate Issued' },
-    { id: 'VAC-993', pet: 'Rocky (Rottweiler)', species: 'Canine', parent: 'Sanjay Dutt', vaccineName: 'Defensor 3 (Anti-Rabies Core)', batchNo: 'DEF-8820-R1', mfg: 'Zoetis Animal Health', administered: '04 Oct 2026', nextDue: '04 Oct 2029', vet: 'Dr. Rahul Mehta', coldChainVerified: '4.1°C (Pass)', certStatus: 'Certificate Issued' },
-    { id: 'VAC-994', pet: 'Bella (Shih Tzu Pup)', species: 'Canine', parent: 'Pooja Agarwal', vaccineName: 'Nobivac Puppy DP (First Shot)', batchNo: 'NBV-7714-P0', mfg: 'MSD Animal Health', administered: '04 Oct 2026', nextDue: '25 Oct 2026', vet: 'Dr. Priya Sharma', coldChainVerified: '3.2°C (Pass)', certStatus: 'Booster Scheduled' },
-    { id: 'VAC-995', pet: 'Simba (British Shorthair)', species: 'Feline', parent: 'Tariq Mansoor', vaccineName: 'Rabisin (Rabies Feline Inactivated)', batchNo: 'BOE-6102-RB', mfg: 'Boehringer Ingelheim', administered: '03 Oct 2026', nextDue: '03 Oct 2027', vet: 'Dr. Aisha Khan', coldChainVerified: '3.6°C (Pass)', certStatus: 'Certificate Issued' },
-    { id: 'VAC-996', pet: 'Tommy (Beagle)', species: 'Canine', parent: 'Harish Kalyan', vaccineName: 'Nobivac KC (Bordetella Intranasal)', batchNo: 'NBV-5510-KC', mfg: 'MSD Animal Health', administered: '02 Oct 2026', nextDue: '02 Oct 2027', vet: 'Dr. Karan Patel', coldChainVerified: '3.5°C (Pass)', certStatus: 'Certificate Issued' },
-    { id: 'VAC-997', pet: 'Cleo (Siamese Cat)', species: 'Feline', parent: 'Zoya Qureshi', vaccineName: 'Purevax Feline FeLV Non-Adjuvant', batchNo: 'BOE-4491-LV', mfg: 'Boehringer Ingelheim', administered: '01 Oct 2026', nextDue: '01 Oct 2027', vet: 'Dr. Aisha Khan', coldChainVerified: '3.9°C (Pass)', certStatus: 'Certificate Issued' }
-  ];
+  const records = [];
 
   const filtered = records.filter(r => {
     const matchesFilter = speciesFilter === 'ALL' || r.species === speciesFilter || r.certStatus === speciesFilter;
@@ -33,7 +25,7 @@ export default function Vaccinations() {
       title="Pet Immunization & Cold-Chain Biologicals Registry"
       subtitle="Canine & feline vaccination schedules, IoT cold-chain batch tracking, booster recall cycles, and digital health pass generation"
       icon="💉"
-      badge="99.9% Cold Chain Integrity"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {['ALL', 'Canine', 'Feline', 'Certificate Issued', 'Booster Scheduled'].map(s => (
@@ -59,8 +51,8 @@ export default function Vaccinations() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Vaccines Given MTD" value="784 Doses" delta="+22.1% MoM" trend="up" subtext="512 Canine • 272 Feline" icon="💉" />
-        <KpiCard label="Cold-Chain Adherence" value="100.0%" delta="2-8°C Verified" trend="up" subtext="Zero heat excursion recorded" icon="❄️" />
-        <KpiCard label="Booster Recall Rate" value="94.6%" delta="+3.8% MoM" trend="up" subtext="Automated WhatsApp reminder" icon="📲" />
+        <KpiCard label="Cold-Chain Adherence" value="0.0%" delta="2-8°C Verified" trend="up" subtext="Zero heat excursion recorded" icon="❄️" />
+        <KpiCard label="Booster Recall Rate" value="0.0%" delta="+3.8% MoM" trend="up" subtext="Automated WhatsApp reminder" icon="📲" />
         <KpiCard label="Digital Passports Issued" value="768 Certs" delta="Govt Rabies Compliant" trend="up" subtext="Instant QR verifiable" icon="🛡️" />
       </div>
 

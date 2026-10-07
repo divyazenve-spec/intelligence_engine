@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function TradeLogistics() {
-  const legs = [
-    { track: 'TRK-COR-01', route: 'Marseille to JNPT (Mumbai)', carrier: 'CMA CGM (Vessel: Mozart)', mode: 'Ocean Freight (2 x 40ft)', temp: 'Ambient (Pet Food)', transitTime: '18 Days', currentLoc: 'Berth 4, Nhava Sheva', status: 'Docked / Discharging' },
-    { track: 'TRK-COR-02', route: 'Frankfurt to Bengaluru (BLR)', carrier: 'Lufthansa Cargo (LH 8220)', mode: 'Air Cargo Reefer', temp: '4.2°C Continuous', transitTime: '9 Hours', currentLoc: 'Air Cargo Terminal BLR', status: 'Customs Examination' },
-    { track: 'TRK-COR-03', route: 'Rotterdam to JNPT (Mumbai)', carrier: 'Maersk Line (Vessel: Mc-Kinney)', mode: 'Ocean Reefer Container', temp: '3.8°C Continuous', transitTime: '21 Days', currentLoc: 'Arabian Sea (High Seas)', status: 'In Transit' },
-    { track: 'TRK-COR-04', route: 'Mumbai to Dubai (DXB)', carrier: 'Emirates SkyCargo (EK 501)', mode: 'Air Export (Pallet)', temp: 'Ambient (Luxury Leather)', transitTime: '3.5 Hours', currentLoc: 'DXB Dnata Cargo Terminal', status: 'Delivered to Agent' }
-  ];
+  const legs = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,12 +14,12 @@ export default function TradeLogistics() {
       title="International Ocean, Air & Reefer Multimodal Corridors"
       subtitle="Cross-border freight forwarding, maritime vessel telemetry, cold-chain flight routes, and container yard milestones"
       icon="🚢"
-      badge="4 Freight Corridors"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Global Freight Corridors" value="4 Multi-modal Legs" delta="Ocean & Air Cargo" trend="up" subtext="Direct OEM routing" icon="🚢" />
         <KpiCard label="Cold-Chain Marine IoT" value="99.9% In-Range" delta="2°C to 8°C continuous" trend="up" subtext="Zero thermal deviations" icon="❄️" />
-        <KpiCard label="Freight Cost per Kg" value="₹142 / kg" delta="-12.4% vs Spot Rate" trend="up" subtext="Annual volume contracted" icon="💰" />
+        <KpiCard label="Freight Cost per Kg" value="₹0 / kg" delta="-12.4% vs Spot Rate" trend="up" subtext="Annual volume contracted" icon="💰" />
         <KpiCard label="Average Port Clearance" value="36 Hours" delta="Direct to Central Reefer" trend="up" subtext="Direct Port Delivery (DPD)" icon="⚡" />
       </div>
 

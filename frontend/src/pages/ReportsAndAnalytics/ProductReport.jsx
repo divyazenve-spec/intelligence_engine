@@ -10,14 +10,7 @@ export default function ProductReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const products = [
-    { sku: 'ZV-RC-MAX-04', name: 'Royal Canin Maxi Adult Dog Food 4kg', category: 'Pet Nutrition', unitsSold: 1420, revenue: 3976000, margin: '32.5%', returnRate: '1.4%', abcClass: 'Class A' },
-    { sku: 'ZV-MED-BRAV-M', name: 'Bravecto Chewable Tick & Flea (10-20kg)', category: 'Pharmaceuticals', unitsSold: 980, revenue: 2352000, margin: '42.0%', returnRate: '5.8%', abcClass: 'Class A' },
-    { sku: 'ZV-VAC-ZOE-07', name: 'Zoetis Vanguard Plus 7-in-1 Canine Vaccine', category: 'Cold-Chain Vaccines', unitsSold: 720, revenue: 1296000, margin: '48.5%', returnRate: '0.0%', abcClass: 'Class A' },
-    { sku: 'ZV-NUT-FAR-LAM', name: 'Farmina N&D Grain-Free Lamb & Blueberry 2.5kg', category: 'Pet Nutrition', unitsSold: 640, revenue: 1600000, margin: '34.0%', returnRate: '1.2%', abcClass: 'Class B' },
-    { sku: 'ZV-ACC-ORTH-BED', name: 'Zenve Orthopedic Memory Foam Pet Bed (Large)', category: 'Accessories & Beds', unitsSold: 320, revenue: 1536000, margin: '56.0%', returnRate: '3.2%', abcClass: 'Class B' },
-    { sku: 'ZV-SUP-PET-OMEG', name: 'Dr. Reddy Pet-Omega Wild Salmon Oil 250ml', category: 'Health Supplements', unitsSold: 890, revenue: 756500, margin: '45.0%', returnRate: '0.8%', abcClass: 'Class B' }
-  ];
+  const products = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -82,8 +75,8 @@ export default function ProductReport() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Top-Performing SKUs" value="48 Class A" delta="72% Revenue Contribution" trend="up" subtext="Royal Canin, Zoetis" icon="🏆" />
-        <KpiCard label="Blended Product Margin" value="38.4%" delta="+2.1% YoY" trend="up" subtext="High-margin pharma" icon="📊" />
-        <KpiCard label="Avg Product Return Rate" value="2.3%" delta="Within 2.5% threshold" trend="up" subtext="Minus Bravecto" icon="🔄" />
+        <KpiCard label="Blended Product Margin" value="0.0%" delta="+2.1% YoY" trend="up" subtext="High-margin pharma" icon="📊" />
+        <KpiCard label="Avg Product Return Rate" value="0.0%" delta="Within 2.5% threshold" trend="up" subtext="Minus Bravecto" icon="🔄" />
         <KpiCard label="Active Catalog Units" value="1,840 SKUs" delta="Across 8 categories" trend="neutral" subtext="Live in micro-hubs" icon="📦" />
       </div>
 

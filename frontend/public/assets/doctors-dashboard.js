@@ -24,26 +24,19 @@
 
   /* ── 9 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',   label: 'Doctors Dashboard',  icon: '👨‍⚕️', hash: '#doctors-dashboard',   badge: '24 Board Cert',   title: 'Veterinary Medical Board & Practitioners', sub: 'Clinical quotas, consultation volumes, physician performance, and departmental economics' },
-    { id: 'all-doctors', label: 'All Doctors',        icon: '📋', hash: '#all-doctors',         badge: '24 Clinicians',   title: 'All Registered Veterinary Practitioners', sub: 'Complete clinical directory, state veterinary board licensing, and center affiliations' },
-    { id: 'performance', label: 'Doctor Performance', icon: '⭐', hash: '#doctor-performance',  badge: '105.2% Attain',   title: 'Doctor Clinical Performance & Quota Attainment', sub: 'Physician consultation pacing, patient NPS ratings, wait-time SLA, and surgical outcomes' },
-    { id: 'revenue',     label: 'Doctor Revenue',     icon: '💰', hash: '#doctor-revenue',      badge: '₹36.8L Billed',   title: 'Doctor Revenue & Financial Attribution', sub: 'Consultation fee realization, surgical billing shares, and prescription attach revenue' },
-    { id: 'patients',    label: 'Doctor Patients',    icon: '🐾', hash: '#doctor-patients',     badge: '2,148 Patients',  title: 'Doctor Patients & Treatment Logs', sub: 'Active patient caseloads, clinical case histories, diagnoses, and scheduled follow-ups' },
-    { id: 'orders',      label: 'Doctor Orders',      icon: '📦', hash: '#doctor-orders',       badge: '1,480 Rx Orders', title: 'Doctor Prescriptions & Pharmacy Order Tracking', sub: 'In-house digital Rx dispensary, surgical consumables requisitions, and formulary adherence' },
-    { id: 'commissions', label: 'Doctor Commissions', icon: '💵', hash: '#doctor-commissions',  badge: '₹7.37L Settled',  title: 'Doctor Commissions & Compensation Settlement', sub: 'Bi-weekly incentive disbursements, surgical bonus slabs, and statutory TDS deduction ledgers' },
-    { id: 'activity',    label: 'Doctor Activity',    icon: '⚡', hash: '#doctor-activity',     badge: 'Live Telemetry',  title: 'Doctor Real-Time Activity & Shift Telemetry', sub: 'Real-time OT monitoring, ongoing outpatient consults, and emergency duty rosters' },
-    { id: 'network',     label: 'Doctor Network',     icon: '🌐', hash: '#doctor-network',      badge: '5 Centers',       title: 'Doctor Network & Hospital Affiliations', sub: 'Hospital staffing distributions, inter-facility specialty referrals, and bed utilization' }
+    { id: 'dashboard',   label: 'Doctors Dashboard',  icon: '👨‍⚕️', hash: '#doctors-dashboard',   badge: '',   title: 'Veterinary Medical Board & Practitioners', sub: 'Clinical quotas, consultation volumes, physician performance, and departmental economics' },
+    { id: 'all-doctors', label: 'All Doctors',        icon: '📋', hash: '#all-doctors',         badge: '',   title: 'All Registered Veterinary Practitioners', sub: 'Complete clinical directory, state veterinary board licensing, and center affiliations' },
+    { id: 'performance', label: 'Doctor Performance', icon: '⭐', hash: '#doctor-performance',  badge: '',   title: 'Doctor Clinical Performance & Quota Attainment', sub: 'Physician consultation pacing, patient NPS ratings, wait-time SLA, and surgical outcomes' },
+    { id: 'revenue',     label: 'Doctor Revenue',     icon: '💰', hash: '#doctor-revenue',      badge: '',   title: 'Doctor Revenue & Financial Attribution', sub: 'Consultation fee realization, surgical billing shares, and prescription attach revenue' },
+    { id: 'patients',    label: 'Doctor Patients',    icon: '🐾', hash: '#doctor-patients',     badge: '',  title: 'Doctor Patients & Treatment Logs', sub: 'Active patient caseloads, clinical case histories, diagnoses, and scheduled follow-ups' },
+    { id: 'orders',      label: 'Doctor Orders',      icon: '📦', hash: '#doctor-orders',       badge: '', title: 'Doctor Prescriptions & Pharmacy Order Tracking', sub: 'In-house digital Rx dispensary, surgical consumables requisitions, and formulary adherence' },
+    { id: 'commissions', label: 'Doctor Commissions', icon: '💵', hash: '#doctor-commissions',  badge: '',  title: 'Doctor Commissions & Compensation Settlement', sub: 'Bi-weekly incentive disbursements, surgical bonus slabs, and statutory TDS deduction ledgers' },
+    { id: 'activity',    label: 'Doctor Activity',    icon: '⚡', hash: '#doctor-activity',     badge: '',  title: 'Doctor Real-Time Activity & Shift Telemetry', sub: 'Real-time OT monitoring, ongoing outpatient consults, and emergency duty rosters' },
+    { id: 'network',     label: 'Doctor Network',     icon: '🌐', hash: '#doctor-network',      badge: '',       title: 'Doctor Network & Hospital Affiliations', sub: 'Hospital staffing distributions, inter-facility specialty referrals, and bed utilization' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var DOCTORS = [
-    { id: 'DOC-101', name: 'Dr. Divya Ramesh', spec: 'Lead Surgeon & Critical Care', regNo: 'KVC-8842', rating: '4.98', exp: '14 Yrs', patientsMtd: 242, revMtd: '₹6,40,000', comm: '₹1,28,000', status: 'On Duty', clinic: 'Indiranagar Flagship' },
-    { id: 'DOC-102', name: 'Dr. Arvind Swaminathan', spec: 'Veterinary Cardiologist', regNo: 'KVC-9014', rating: '4.92', exp: '11 Yrs', patientsMtd: 188, revMtd: '₹4,85,000', comm: '₹97,000', status: 'In Surgery', clinic: 'Koramangala Trauma' },
-    { id: 'DOC-103', name: 'Dr. Meera Nambiar', spec: 'Neurology & Orthopedics', regNo: 'KVC-7832', rating: '4.95', exp: '12 Yrs', patientsMtd: 174, revMtd: '₹4,30,000', comm: '₹86,000', status: 'On Duty', clinic: 'Whitefield Specialty' },
-    { id: 'DOC-104', name: 'Dr. Siddharth Varma', spec: 'Pediatric & Neonatal Vet', regNo: 'KVC-9421', rating: '4.88', exp: '8 Yrs', patientsMtd: 215, revMtd: '₹3,90,000', comm: '₹78,000', status: 'On Duty', clinic: 'Jayanagar Wellness' },
-    { id: 'DOC-105', name: 'Dr. Ananya Joshi', spec: 'Dermatology & Allergy', regNo: 'KVC-9250', rating: '4.85', exp: '9 Yrs', patientsMtd: 164, revMtd: '₹3,45,000', comm: '₹69,000', status: 'On Call', clinic: 'HSR Layout Clinic' },
-    { id: 'DOC-106', name: 'Dr. Rohan Deshmukh', spec: 'Exotics & Avian Specialist', regNo: 'KVC-8711', rating: '4.90', exp: '10 Yrs', patientsMtd: 132, revMtd: '₹3,10,000', comm: '₹62,000', status: 'On Duty', clinic: 'Indiranagar Flagship' }
-  ];
+  var DOCTORS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {
@@ -112,12 +105,12 @@
   function renderDashboard() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Active Veterinary Doctors', '24 Doctors', '100% Licensed', 'up', 'Across 6 clinic centers', '👨‍⚕️'),
-        kpiHtml('Monthly Patient Consults', '2,148 Pets', '+18.4% MoM', 'up', 'Avg 89 consults/doc', '🐾'),
-        kpiHtml('Doctor Attributed Revenue', '₹36.85 Lakh', '+14.2% YoY', 'up', 'Consults, meds & surgery', '💰'),
-        kpiHtml('Doctor Commissions Paid', '₹7.37 Lakh', '20% standard rate', 'up', 'Settled bi-weekly', '📋'),
+        kpiHtml('Active Veterinary Doctors', '0', '0.0%', 'neutral', 'up', 'Across 6 clinic centers'),
+        kpiHtml('Monthly Patient Consults', '0', '0.0%', 'neutral', 'up', 'Avg 89 consults/doc'),
+        kpiHtml('Doctor Attributed Revenue', '0', '0.0%', 'neutral', 'up', 'Consults, meds & surgery'),
+        kpiHtml('Doctor Commissions Paid', '0', '0.0%', 'neutral', 'up', 'Settled bi-weekly'),
         kpiHtml('Avg. Patient Satisfaction', '4.92 / 5.0', '1,840 ratings', 'up', 'Top in feline & canine care', '⭐'),
-        kpiHtml('Surgical Success Rate', '99.4%', '284 procedures', 'up', 'Zero cross-contamination', '🛡️'),
+        kpiHtml('Surgical Success Rate', '0', '0.0%', 'neutral', 'up', 'Zero cross-contamination'),
       '</div>',
 
       '<div class="zdoc-card">',
@@ -132,7 +125,7 @@
           '<table class="zdoc-table">',
             '<thead><tr><th>Doctor ID</th><th>Practitioner Name</th><th>Specialty</th><th>Center Clinic</th><th>MTD Patients</th><th>Attributed Revenue</th><th>Commissions</th><th>Rating</th><th>Status</th></tr></thead>',
             '<tbody>',
-              DOCTORS.map(function(d) {
+              DOCTORS.length ? DOCTORS.map(function(d) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(d.id) + '</td>' +
                   '<td style="font-weight:600;">' + esc(d.name) + '</td>' +
@@ -144,7 +137,7 @@
                   '<td style="color:#d97706;font-weight:600;">★ ' + esc(d.rating) + '</td>' +
                   '<td><span class="zdoc-pill ' + (d.status === 'On Duty' ? 'active' : d.status === 'In Surgery' ? 'warning' : 'critical') + '">' + esc(d.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No doctor records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -155,24 +148,17 @@
   function renderAllDoctors() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Total Board Clinicians', '24 Doctors', '+3 Hired Q3', 'up', 'All state board registered', '👨‍⚕️'),
-        kpiHtml('Primary Specialties', '8 Disciplines', 'Surgery, Cardio, Neuro+', 'up', 'Full tertiary care coverage', '🩺'),
-        kpiHtml('Avg Clinical Experience', '10.8 Yrs', 'Senior faculty', 'up', 'Board certified clinicians', '🎓'),
-        kpiHtml('Clinic Shifts Scheduled', '98.5%', 'Optimal roster', 'up', 'Zero doctor absence backlog', '📅'),
+        kpiHtml('Total Board Clinicians', '0', '0.0%', 'neutral', 'up', 'All state board registered'),
+        kpiHtml('Primary Specialties', '0', '0.0%', 'neutral', 'up', 'Full tertiary care coverage'),
+        kpiHtml('Avg Clinical Experience', '0', '0.0%', 'neutral', 'up', 'Board certified clinicians'),
+        kpiHtml('Clinic Shifts Scheduled', '0', '0.0%', 'neutral', 'up', 'Zero doctor absence backlog'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">📋 Practitioner Directory & Licensing Master</h3></div>',
         '<div class="zdoc-table-wrap">',
           '<table class="zdoc-table">',
             '<thead><tr><th>Doctor ID</th><th>Clinician Name</th><th>Specialty</th><th>Qualifications</th><th>Experience</th><th>Center Clinic</th><th>Schedule</th><th>Status</th></tr></thead>',
-            '<tbody>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-101</td><td style="font-weight:600;">Dr. Divya Ramesh</td><td>Lead Surgeon</td><td>MVSc (Surgery), PhD</td><td>14 Yrs</td><td>Indiranagar Flagship</td><td>Mon-Fri (09:00 - 17:00)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-102</td><td style="font-weight:600;">Dr. Arvind Swaminathan</td><td>Cardiology</td><td>MVSc, DACVIM</td><td>11 Yrs</td><td>Koramangala Trauma</td><td>Tue-Sat (10:00 - 18:00)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-103</td><td style="font-weight:600;">Dr. Meera Nambiar</td><td>Neurology</td><td>MVSc (Neuro & Ortho)</td><td>12 Yrs</td><td>Whitefield Specialty</td><td>Mon-Thu (08:30 - 16:30)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-104</td><td style="font-weight:600;">Dr. Siddharth Varma</td><td>Pediatrics</td><td>BVSc & AH, MVSc</td><td>8 Yrs</td><td>Jayanagar Wellness</td><td>Wed-Sun (11:00 - 19:00)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-105</td><td style="font-weight:600;">Dr. Ananya Joshi</td><td>Dermatology</td><td>MVSc (Internal Med)</td><td>9 Yrs</td><td>HSR Layout Clinic</td><td>Mon-Fri (09:30 - 17:30)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">DOC-106</td><td style="font-weight:600;">Dr. Rohan Deshmukh</td><td>Exotics</td><td>MVSc (Avian)</td><td>10 Yrs</td><td>Indiranagar Flagship</td><td>Tue-Sat (09:00 - 17:00)</td><td><span class="zdoc-pill active">Active</span></td></tr>',
-            '</tbody>',
+            '<tbody><tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No practitioner records found</td></tr></tbody>',
           '</table>',
         '</div>',
       '</div>'
@@ -182,23 +168,17 @@
   function renderPerformance() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Overall Quota Attainment', '105.2%', '+4.2% vs target', 'up', 'All practitioners above goal', '🎯'),
-        kpiHtml('Clinical Net Promoter Score', '95.4 NPS', '+3 pts MoM', 'up', 'Based on 1,420 pet reviews', '⭐'),
-        kpiHtml('Avg. Consultation Wait Time', '7.6 mins', '-2.1 mins YoY', 'up', 'Strict appointment pacing', '⏱️'),
-        kpiHtml('Overall Surgical Success', '99.5%', 'Zero critical incidents', 'up', 'NABH protocol compliant', '🛡️'),
+        kpiHtml('Overall Quota Attainment', '0', '0.0%', 'neutral', 'up', 'All practitioners above goal'),
+        kpiHtml('Clinical Net Promoter Score', '0', '0.0%', 'neutral', 'up', 'Based on 1,420 pet reviews'),
+        kpiHtml('Avg. Consultation Wait Time', '0', '0.0%', 'neutral', 'up', 'Strict appointment pacing'),
+        kpiHtml('Overall Surgical Success', '0', '0.0%', 'neutral', 'up', 'NABH protocol compliant'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">⭐ Physician Performance Scorecard & Quality Index</h3></div>',
         '<div class="zdoc-table-wrap">',
           '<table class="zdoc-table">',
             '<thead><tr><th>Doctor Name</th><th>Specialty</th><th>Target</th><th>Actual</th><th>Attainment %</th><th>Patient NPS</th><th>Wait Time</th><th>Surgical Success</th><th>Clinical Grade</th></tr></thead>',
-            '<tbody>',
-              '<tr><td style="font-weight:600;">Dr. Divya Ramesh</td><td>Lead Surgeon</td><td>220</td><td style="font-weight:600;">242</td><td style="color:#059669;font-weight:700;">110%</td><td>98/100</td><td>6 min</td><td>99.8%</td><td><span class="zdoc-pill active">A+</span></td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Arvind Swaminathan</td><td>Cardiology</td><td>180</td><td style="font-weight:600;">188</td><td style="color:#059669;font-weight:700;">104%</td><td>96/100</td><td>9 min</td><td>99.2%</td><td><span class="zdoc-pill active">A+</span></td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Meera Nambiar</td><td>Neurology</td><td>170</td><td style="font-weight:600;">174</td><td style="color:#059669;font-weight:700;">102%</td><td>95/100</td><td>8 min</td><td>99.4%</td><td><span class="zdoc-pill active">A</span></td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Siddharth Varma</td><td>Pediatrics</td><td>200</td><td style="font-weight:600;">215</td><td style="color:#059669;font-weight:700;">107%</td><td>94/100</td><td>5 min</td><td>100%</td><td><span class="zdoc-pill active">A+</span></td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Ananya Joshi</td><td>Dermatology</td><td>160</td><td style="font-weight:600;">164</td><td style="color:#059669;font-weight:700;">102%</td><td>92/100</td><td>11 min</td><td>N/A</td><td><span class="zdoc-pill active">A</span></td></tr>',
-            '</tbody>',
+            '<tbody><tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No performance records found</td></tr></tbody>',
           '</table>',
         '</div>',
       '</div>'
@@ -208,22 +188,17 @@
   function renderRevenue() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Doctor Billed Revenue', '₹36.85 Lakh', '+16.8% MoM', 'up', 'Direct physician billing', '💰'),
-        kpiHtml('Procedure Billings', '₹19.40 Lakh', '52.6% of doctor rev', 'up', 'Surgeries & diagnostics', '🩺'),
-        kpiHtml('Consultation Fees', '₹11.20 Lakh', '30.4% of doctor rev', 'up', 'Outpatient OPD fee', '📋'),
-        kpiHtml('Pharmacy & Rx Uplift', '₹6.25 Lakh', '17.0% attach rate', 'up', 'Prescriptions filled in-house', '💊'),
+        kpiHtml('Doctor Billed Revenue', '0', '0.0%', 'neutral', 'up', 'Direct physician billing'),
+        kpiHtml('Procedure Billings', '0', '0.0%', 'neutral', 'up', 'Surgeries & diagnostics'),
+        kpiHtml('Consultation Fees', '0', '0.0%', 'neutral', 'up', 'Outpatient OPD fee'),
+        kpiHtml('Pharmacy & Rx Uplift', '0', '0.0%', 'neutral', 'up', 'Prescriptions filled in-house'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">💰 Clinician Revenue Matrix & Departmental Contribution</h3></div>',
         '<div class="zdoc-table-wrap">',
           '<table class="zdoc-table">',
             '<thead><tr><th>Doctor Name</th><th>Department</th><th>Consult Fees</th><th>Procedures & Surgery</th><th>Rx Medicines</th><th>Total Attributed</th><th>Operating Margin</th><th>Revenue Share</th></tr></thead>',
-            '<tbody>',
-              '<tr><td style="font-weight:600;">Dr. Divya Ramesh</td><td>Surgery</td><td>₹1,95,000</td><td>₹3,45,000</td><td>₹1,00,000</td><td style="color:#059669;font-weight:700;">₹6,40,000</td><td>42.5%</td><td style="color:#4f46e5;font-weight:600;">17.4%</td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Arvind Swaminathan</td><td>Cardiology</td><td>₹1,50,000</td><td>₹2,40,000</td><td>₹95,000</td><td style="color:#059669;font-weight:700;">₹4,85,000</td><td>39.8%</td><td style="color:#4f46e5;font-weight:600;">13.2%</td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Meera Nambiar</td><td>Neurology</td><td>₹1,40,000</td><td>₹2,10,000</td><td>₹80,000</td><td style="color:#059669;font-weight:700;">₹4,30,000</td><td>41.0%</td><td style="color:#4f46e5;font-weight:600;">11.7%</td></tr>',
-              '<tr><td style="font-weight:600;">Dr. Siddharth Varma</td><td>Pediatrics</td><td>₹1,75,000</td><td>₹1,20,000</td><td>₹95,000</td><td style="color:#059669;font-weight:700;">₹3,90,000</td><td>36.5%</td><td style="color:#4f46e5;font-weight:600;">10.6%</td></tr>',
-            '</tbody>',
+            '<tbody><tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No revenue records found</td></tr></tbody>',
           '</table>',
         '</div>',
       '</div>'
@@ -233,22 +208,17 @@
   function renderPatients() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Active Patient Caseload', '2,148 Pets', '+18.4% MTD', 'up', 'Under active care', '🐾'),
-        kpiHtml('Repeat Pet Consults', '74.2%', 'High physician trust', 'up', 'Return visit rate', '🔄'),
-        kpiHtml('Chronic Care Monitored', '482 Pets', 'Cardiac, renal, ortho', 'up', 'Regular maintenance', '🩺'),
-        kpiHtml('Follow-Up Adherence', '91.8%', '+3.4% vs benchmark', 'up', 'Automated reminder sync', '📅'),
+        kpiHtml('Active Patient Caseload', '0', '0.0%', 'neutral', 'up', 'Under active care'),
+        kpiHtml('Repeat Pet Consults', '0', '0.0%', 'neutral', 'up', 'Return visit rate'),
+        kpiHtml('Chronic Care Monitored', '0', '0.0%', 'neutral', 'up', 'Regular maintenance'),
+        kpiHtml('Follow-Up Adherence', '0', '0.0%', 'neutral', 'up', 'Automated reminder sync'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">🐾 Recent Patient Encounters & Care Plans</h3></div>',
         '<div class="zdoc-table-wrap">',
           '<table class="zdoc-table">',
             '<thead><tr><th>Pet Patient & Breed</th><th>Pet Parent</th><th>Attending Clinician</th><th>Diagnosis</th><th>Date</th><th>Status</th><th>Next Follow-Up</th><th>Center Clinic</th></tr></thead>',
-            '<tbody>',
-              '<tr><td style="font-weight:600;">Leo (Golden Retriever)</td><td>Vikram Malhotra</td><td style="color:#047857;font-weight:600;">Dr. Divya Ramesh</td><td>Cruciate Ligament Post-Op</td><td>2026-10-05</td><td><span class="zdoc-pill active">Recovering</span></td><td style="font-weight:600;">2026-10-12</td><td>Indiranagar</td></tr>',
-              '<tr><td style="font-weight:600;">Milo (Persian Cat)</td><td>Priya Iyer</td><td style="color:#047857;font-weight:600;">Dr. Arvind Swaminathan</td><td>Hypertrophic Cardio</td><td>2026-10-04</td><td><span class="zdoc-pill active">Stable</span></td><td style="font-weight:600;">2026-10-18</td><td>Koramangala</td></tr>',
-              '<tr><td style="font-weight:600;">Bruno (Rottweiler)</td><td>Rahul Sen</td><td style="color:#047857;font-weight:600;">Dr. Meera Nambiar</td><td>Hip Dysplasia & Rehab</td><td>2026-10-04</td><td><span class="zdoc-pill active">In Physio</span></td><td style="font-weight:600;">2026-10-11</td><td>Whitefield</td></tr>',
-              '<tr><td style="font-weight:600;">Bella (Beagle Pup)</td><td>Sneha Kulkarni</td><td style="color:#047857;font-weight:600;">Dr. Siddharth Varma</td><td>DHPPi Core Vaccine</td><td>2026-10-03</td><td><span class="zdoc-pill active">Completed</span></td><td style="font-weight:600;">2026-11-03</td><td>Jayanagar</td></tr>',
-            '</tbody>',
+            '<tbody><tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No patient encounter records found</td></tr></tbody>',
           '</table>',
         '</div>',
       '</div>'
@@ -259,9 +229,9 @@
     return [
       '<div class="zdoc-kpi-grid">',
         kpiHtml('Physician Orders Raised', '1,480 Orders', '+15.2% MoM', 'up', 'Direct doctor requisitions', '📦'),
-        kpiHtml('Order Fulfillment Rate', '98.7%', 'Instant dispensary', 'up', 'Under 12 mins at clinic', '⚡'),
-        kpiHtml('Order Value Generated', '₹18.42 Lakh', '+12.8% YoY', 'up', 'Pharmacy attach value', '💰'),
-        kpiHtml('Formulary Adherence', '99.2%', 'Zero out-of-stock subst.', 'up', 'NABH quality standards', '🛡️'),
+        kpiHtml('Order Fulfillment Rate', '0', '0.0%', 'neutral', 'up', 'Under 12 mins at clinic'),
+        kpiHtml('Order Value Generated', '0', '0.0%', 'neutral', 'up', 'Pharmacy attach value'),
+        kpiHtml('Formulary Adherence', '0', '0.0%', 'neutral', 'up', 'NABH quality standards'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">📦 Real-Time Prescribed Order Stream</h3></div>',
@@ -282,10 +252,10 @@
   function renderCommissions() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Total Commission Disbursed', '₹7.37 Lakh', '100% on schedule', 'up', 'Bi-weekly direct transfer', '💵'),
+        kpiHtml('Total Commission Disbursed', '0', '0.0%', 'neutral', 'up', 'Bi-weekly direct transfer'),
         kpiHtml('Avg. Physician Earning', '₹1.22 Lakh/mo', '+11.4% YoY', 'up', 'Excluding fixed retainers', '📈'),
-        kpiHtml('TDS Deducted (Sec 194J)', '₹73,700', '10% statutory tax', 'up', 'Form 16A filed auto', '🏛️'),
-        kpiHtml('Payment Reconciliation', '100.0%', 'Zero dispute log', 'up', 'Automated audit', '✅'),
+        kpiHtml('TDS Deducted (Sec 194J)', '₹0', '0.0%', 'neutral', 'Form 16A filed auto', '🏛️'),
+        kpiHtml('Payment Reconciliation', '0', '0.0%', 'neutral', 'up', 'Automated audit'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">💵 Professional Fee Settlements & Remittance Register</h3></div>',
@@ -333,7 +303,7 @@
         kpiHtml('Affiliated Hospital Hubs', '5 Centers', 'Bangalore Metro', 'up', 'Equipped with sterile OTs', '🏥'),
         kpiHtml('Total Medical Staff', '46 Clinicians', '+6 Resident interns', 'up', '24 Senior Consultants', '👨‍⚕️'),
         kpiHtml('Inter-Hospital Referrals', '184 Patients', 'Cross-center specialty', 'up', 'Seamless EHR transfers', '🔄'),
-        kpiHtml('Network Bed Utilization', '78.4%', 'Safe capacity margin', 'up', 'Emergency surge ready', '🛏️'),
+        kpiHtml('Network Bed Utilization', '0', '0.0%', 'neutral', 'up', 'Emergency surge ready'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">🌐 Hospital Center Deployment & Clinical Leadership</h3></div>',

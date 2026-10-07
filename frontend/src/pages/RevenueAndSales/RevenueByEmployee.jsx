@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByEmployee() {
-  const employees = [
-    { name: 'Dr. Priya Sharma', dept: 'Clinical Operations', role: 'Chief Medical Officer', target: '₹12.0L', rev: '₹14.2L', attain: '118.3%', orders: 184, rating: '5.0' },
-    { name: 'Rajesh Verma', dept: 'Patient Services', role: 'Care Coordinator Lead', target: '₹8.5L', rev: '₹9.4L', attain: '110.5%', orders: 152, rating: '4.9' },
-    { name: 'Ananya Deshmukh', dept: 'Outpatient Care', role: 'Services Lead', target: '₹9.8L', rev: '₹10.1L', attain: '103.0%', orders: 138, rating: '4.8' },
-    { name: 'Vikram Mehta', dept: 'Diagnostics & Lab', role: 'Lab Operations Manager', target: '₹7.2L', rev: '₹6.8L', attain: '94.4%', orders: 112, rating: '4.7' },
-    { name: 'Sneha Patel', dept: 'Pharmacy & Wellness', role: 'Head Pharmacist', target: '₹6.4L', rev: '₹7.2L', attain: '112.5%', orders: 164, rating: '4.9' },
-    { name: 'Arjun Nair', dept: 'Telehealth', role: 'Digital Health Consultant', target: '₹7.6L', rev: '₹6.9L', attain: '90.7%', orders: 98, rating: '4.6' }
-  ];
+  const employees = [];
 
   return (
     <DashboardLayout
@@ -22,10 +15,10 @@ export default function RevenueByEmployee() {
       badge="Staff Leaderboard"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Staff Producer" value="Dr. Priya Sharma" delta="₹14.2L billings" trend="up" subtext="118.3% quota" icon="⭐" />
-        <KpiCard label="Team Attainment Rate" value="105.4%" delta="+5.4% surplus" trend="up" subtext="Average achievement" icon="👥" />
-        <KpiCard label="Total Staff Quota" value="₹51.5L" delta="6 members" trend="neutral" subtext="Period baseline" icon="🎯" />
-        <KpiCard label="Total Realized" value="₹54.6L" delta="+₹3.1L surplus" trend="up" subtext="Net revenue" icon="💰" />
+        <KpiCard label="Top Staff Producer" value="Dr. Priya Sharma" delta="₹0 billings" trend="up" subtext="118.3% quota" icon="⭐" />
+        <KpiCard label="Team Attainment Rate" value="0.0%" delta="+5.4% surplus" trend="up" subtext="Average achievement" icon="👥" />
+        <KpiCard label="Total Staff Quota" value="₹0" delta="6 members" trend="neutral" subtext="Period baseline" icon="🎯" />
+        <KpiCard label="Total Realized" value="₹0" delta="+₹0 surplus" trend="up" subtext="Net revenue" icon="💰" />
       </div>
 
       <div style={{

@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var deptCosts = [
-    { dept: 'Veterinary Clinical Services', staff: 48, monthly: '₹42,00,000', annual: '₹5,04,00,000', pct: 25.6, color: '#10b981' },
-    { dept: 'Technology & AI Engineering', staff: 24, monthly: '₹38,00,000', annual: '₹4,56,00,000', pct: 23.2, color: '#ec4899' },
-    { dept: 'Logistics & 60-Min Delivery', staff: 54, monthly: '₹28,80,000', annual: '₹3,45,60,000', pct: 17.5, color: '#f59e0b' },
-    { dept: 'Pharmacy & Drug Dispensing', staff: 32, monthly: '₹22,50,000', annual: '₹2,70,000,000', pct: 13.7, color: '#0ea5e9' },
-    { dept: 'Warehouse & Fulfillment', staff: 28, monthly: '₹18,40,000', annual: '₹2,20,80,000', pct: 11.2, color: '#8b5cf6' },
-    { dept: 'Customer Delight & Support', staff: 22, monthly: '₹14,20,000', annual: '₹1,70,40,000', pct: 8.8, color: '#14b8a6' }
-  ];
+  var deptCosts = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

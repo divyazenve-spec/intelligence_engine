@@ -6,14 +6,7 @@ export default function Treatments() {
   const [wardFilter, setWardFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const treatments = [
-    { id: 'TRT-401', pet: 'Casper (Siberian Husky)', parent: 'Aditya Oberoi', ward: 'Critical ICU Ward', vet: 'Dr. Neha Singh', protocol: 'Severe Heatstroke & Hyperthermia Protocol', meds: 'Chilled IV Ringer Lactate, Mannitol, O2 Support', daysAdmitted: 2, vitals: 'Temp: 38.8°C (Normalized) • HR: 110bpm', recoveryProgress: '78%', status: 'Guarded Progress' },
-    { id: 'TRT-402', pet: 'Simba (Persian Cat)', parent: 'Rashmi Sen', ward: 'Feline Special Ward', vet: 'Dr. Aisha Khan', protocol: 'Urethral Obstruction & Post-Catheterization Care', meds: 'Buprenorphine, Prazosin, IV Plasmalyte', daysAdmitted: 3, vitals: 'Urine Output: 2.2 ml/kg/hr • Normal', recoveryProgress: '92%', status: 'Discharge Ready' },
-    { id: 'TRT-403', pet: 'Shadow (Black Labrador)', parent: 'Manish Tiwari', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'Hemilaminectomy Spinal Decompression Post-Op', meds: 'Gabapentin, Meloxicam, Physical Rehab passive rom', daysAdmitted: 4, vitals: 'Deep Pain Perception: Positive • Reflexes ++', recoveryProgress: '65%', status: 'Stable Recovery' },
-    { id: 'TRT-404', pet: 'Ginger (Golden Retriever)', parent: 'Sunita Menon', ward: 'Medical Ward A', vet: 'Dr. Priya Sharma', protocol: 'Canine Parvovirus Intensive Fluid Resuscitation', meds: 'Maropitant, Metronidazole IV, Ondansetron', daysAdmitted: 5, vitals: 'Eating wet gastro diet voluntarily', recoveryProgress: '88%', status: 'Stable Recovery' },
-    { id: 'TRT-405', pet: 'Coco (French Bulldog)', parent: 'Varun Grover', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'BOAS Rhinoplasty & Soft Palate Resection Post-Op', meds: 'Dexamethasone tapering, Nebulization 3x/day', daysAdmitted: 1, vitals: 'SpO2: 99% on room air • Clear airway sounds', recoveryProgress: '70%', status: 'Under Observation' },
-    { id: 'TRT-406', pet: 'Tiger (Bengal Cat)', parent: 'Naveen Jindal', ward: 'Isolation Ward', vet: 'Dr. Aisha Khan', protocol: 'Feline Infectious Peritonitis (FIP) GS-441524 Protocol', meds: 'GS-441524 10mg/kg SC Daily, Cobalamin, Hepato-protectant', daysAdmitted: 12, vitals: 'A/G Ratio: 0.72 (Improved from 0.38)', recoveryProgress: '84%', status: 'Guarded Progress' }
-  ];
+  const treatments = [];
 
   const filtered = treatments.filter(t => {
     const matchesFilter = wardFilter === 'ALL' || t.ward === wardFilter || t.status === wardFilter;
@@ -31,7 +24,7 @@ export default function Treatments() {
       title="Inpatient Treatment Protocols & Ward Management"
       subtitle="ICU patient vitals, fluid therapy rates, surgical recovery milestones, chronic medical therapy, and discharge tracking"
       icon="💊"
-      badge="18 Inpatients Admitted"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {['ALL', 'Critical ICU Ward', 'Post-Op Surgical Ward', 'Feline Special Ward', 'Discharge Ready', 'Stable Recovery'].map(w => (
@@ -57,7 +50,7 @@ export default function Treatments() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Inpatient Ward" value="18 Patients" delta="82% Bed Occupancy" trend="up" subtext="6 ICU • 7 Post-Op • 5 General" icon="🏥" />
-        <KpiCard label="Treatment Success Rate" value="97.4%" delta="+1.1% MoM" trend="up" subtext="Clinical recovery & discharge" icon="🎯" />
+        <KpiCard label="Treatment Success Rate" value="0.0%" delta="+1.1% MoM" trend="up" subtext="Clinical recovery & discharge" icon="🎯" />
         <KpiCard label="Average Hospital Stay" value="3.4 Days" delta="Optimal turnover" trend="up" subtext="Benchmark: 4.0 Days" icon="⏱️" />
         <KpiCard label="Ready for Discharge" value="4 Pets Today" delta="Discharge summaries ready" trend="up" subtext="Pet parent pickup scheduled" icon="🏡" />
       </div>

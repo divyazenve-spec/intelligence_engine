@@ -11,12 +11,7 @@ export default function RevenueIntelligence() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const leakagePoints = [
-    { source: 'Uncollected Post-Op Medication Balances', amount: '₹1,42,000', risk: 'High', action: 'Automate WhatsApp Razorpay checkout links on discharge' },
-    { source: 'Sub-Optimal Surgery Weekend Pricing', amount: '₹95,000', risk: 'Medium', action: 'Dynamic surge rate adjustment on elective orthopedic bookings' },
-    { source: 'Expired Coupon Code Misapplication', amount: '₹34,000', risk: 'Low', action: 'Enforce real-time coupon validation at POS checkout' },
-    { source: 'Abandoned Nutrition Cart Re-Engagement', amount: '₹2,10,000', risk: 'High', action: 'Trigger 1-hour automated push notification with 5% re-order incentive' }
-  ];
+  const leakagePoints = [];
 
   return (
     <DashboardLayout
@@ -28,16 +23,16 @@ export default function RevenueIntelligence() {
       badge="Revenue Radar Active"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Detected Revenue Leakage" value="₹4.81 Lakh" delta="Recoverable" trend="down" subtext="Across 4 vectors" icon="⚠️" />
-        <KpiCard label="Recovery Realization (MTD)" value="₹2.65 Lakh" delta="55% Recovered" trend="up" subtext="Automated recovery" icon="💰" />
+        <KpiCard label="Detected Revenue Leakage" value="₹0" delta="Recoverable" trend="down" subtext="Across 4 vectors" icon="⚠️" />
+        <KpiCard label="Recovery Realization (MTD)" value="₹0" delta="55% Recovered" trend="up" subtext="Automated recovery" icon="💰" />
         <KpiCard label="Optimal Price Elasticity" value="+4.2%" delta="Margin upside" trend="up" subtext="On premium services" icon="📈" />
-        <KpiCard label="Discount Efficiency Score" value="92.4%" delta="+3.1% QoQ" trend="up" subtext="Effective coupon yield" icon="🎯" />
+        <KpiCard label="Discount Efficiency Score" value="0.0%" delta="+3.1% QoQ" trend="up" subtext="Effective coupon yield" icon="🎯" />
       </div>
 
       <div style={cardStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>Identified Revenue Leakage & Remediation Radar</h3>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: '#ef4444' }}>Total Identified: ₹4.81L</span>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: '#ef4444' }}>Total Identified: ₹0</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>

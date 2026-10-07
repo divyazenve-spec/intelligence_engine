@@ -6,14 +6,7 @@ export default function PrescriptionHistory() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const prescriptions = [
-    { id: 'RX-7701', pet: 'Bruno (Golden Retriever)', date: '02-Oct-2026', medicine: 'Maropitant (Cerenia) 24mg', dosage: '1 tab OD x 3 days', indication: 'Antiemetic / Gastritis', prescriber: 'Dr. Priya Sharma', pharmacyStatus: 'Dispensed', refillsLeft: 0 },
-    { id: 'RX-7702', pet: 'Milo (Persian Cat)', date: '28-Sep-2026', medicine: 'Prazosin 0.5mg + Gabapentin 50mg', dosage: 'Prazosin 1/4 tab BD, Gaba BID x 7d', indication: 'FLUTD Urethral Relaxation & Analgesia', prescriber: 'Dr. Aisha Khan', pharmacyStatus: 'Dispensed', refillsLeft: 1 },
-    { id: 'RX-7703', pet: 'Rocky (German Shepherd)', date: '24-Sep-2026', medicine: 'Carprofen (Rimadyl) 75mg + Tramadol 50mg', dosage: '1 tab BD with food x 10 days', indication: 'Post-Op Orthopedic Analgesia', prescriber: 'Dr. Rahul Mehta', pharmacyStatus: 'Dispensed', refillsLeft: 2 },
-    { id: 'RX-7704', pet: 'Simba (Beagle)', date: '20-Sep-2026', medicine: 'Posatex Otic Drops (Orbifloxacin/Mometasone)', dosage: '4 drops into each ear canal OD x 14d', indication: 'Malassezia & Bacterial Otitis', prescriber: 'Dr. Karan Patel', pharmacyStatus: 'Dispensed', refillsLeft: 0 },
-    { id: 'RX-7705', pet: 'Bella (Shih Tzu)', date: '15-Sep-2026', medicine: 'Vetmedin (Pimobendan) 1.25mg Chewable', dosage: '1 chewable BD on empty stomach', indication: 'Chronic MMVD Cardiac Support', prescriber: 'Dr. Neha Singh', pharmacyStatus: 'Active Refill', refillsLeft: 5 },
-    { id: 'RX-7706', pet: 'Max (Labrador)', date: '10-Sep-2026', medicine: 'Bravecto Chew (Fluralaner 500mg)', dosage: '1 chewable tablet PO every 12 weeks', indication: 'Ectoparasite (Tick & Flea) Prevention', prescriber: 'Dr. Priya Sharma', pharmacyStatus: 'Dispensed', refillsLeft: 3 }
-  ];
+  const prescriptions = [];
 
   const filtered = prescriptions.filter(p => {
     const matchesFilter = filter === 'ALL' || p.pharmacyStatus === filter;
@@ -32,7 +25,7 @@ export default function PrescriptionHistory() {
       title="Veterinary Rx & Medication Dispensation History"
       subtitle="Digital prescription records, pharmaceutical dosages, chronic maintenance refills, and drug interaction audits"
       icon="🐾"
-      badge="2,940 Prescriptions Tracked"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Dispensed', 'Active Refill'].map(f => (
@@ -57,10 +50,10 @@ export default function PrescriptionHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Rx Generated" value="2,940" delta="+15.3%" trend="up" subtext="Digital tamper-proof" icon="💊" />
-        <KpiCard label="Active Chronic Refills" value="312" delta="Auto-scheduled" trend="neutral" subtext="Cardiac, renal, thyroid" icon="🔄" />
+        <KpiCard label="Total Rx Generated" value="0" delta="0.0%" trend="up" subtext="Digital tamper-proof" icon="💊" />
+        <KpiCard label="Active Chronic Refills" value="0" delta="Auto-scheduled" trend="neutral" subtext="Cardiac, renal, thyroid" icon="🔄" />
         <KpiCard label="Dispense Turnaround" value="8.4 Mins" delta="-2.1m YoY" trend="up" subtext="In-house pharmacy" icon="⏱️" />
-        <KpiCard label="Drug Safety Adherence" value="100%" delta="Zero errors" trend="up" subtext="Species-weight verified" icon="🛡️" />
+        <KpiCard label="Drug Safety Adherence" value="0.0%" delta="Zero errors" trend="up" subtext="Species-weight verified" icon="🛡️" />
       </div>
 
       <div style={{

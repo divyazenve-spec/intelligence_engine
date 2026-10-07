@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DeliveryPartners() {
-  const partners = [
-    { name: 'Zenve Internal EV Fleet', type: 'Dedicated Electric 2-Wheeler', fleetSize: '76 Riders', activeNow: 62, onTimeSla: '99.4%', avgCost: '₹38 / drop', rating: '4.95 / 5.0', coldChainReady: 'Yes (Insulated Boxes)', status: 'Primary' },
-    { name: 'Shadowfax Quick Delivery', type: 'On-Demand Hyperlocal 3PL', fleetSize: 'Flex Pool (BLR/BOM)', activeNow: 28, onTimeSla: '96.2%', avgCost: '₹46 / drop', rating: '4.78 / 5.0', coldChainReady: 'Partial', status: 'Active 3PL' },
-    { name: 'Dunzo for Business', type: 'Instant Hyperlocal 3PL', fleetSize: 'Flex Pool (BLR)', activeNow: 14, onTimeSla: '95.8%', avgCost: '₹48 / drop', rating: '4.72 / 5.0', coldChainReady: 'No (Dry goods only)', status: 'Active 3PL' },
-    { name: 'Porter Enterprise', type: '4-Wheeler & Bulk Hub Transfer', fleetSize: '12 Vans', activeNow: 9, onTimeSla: '98.1%', avgCost: '₹340 / trip', rating: '4.88 / 5.0', coldChainReady: 'Yes (Reefer Vans)', status: 'Bulk & Hubs' },
-    { name: 'Delhivery Surface Direct', type: 'Inter-City & Regional Courier', fleetSize: 'National Network', activeNow: 4, onTimeSla: '94.5%', avgCost: '₹85 / parcel', rating: '4.65 / 5.0', coldChainReady: 'Dry Ice Verified', status: 'Inter-City' }
-  ];
+  const partners = [];
 
   return (
     <DashboardLayout
@@ -18,12 +12,12 @@ export default function DeliveryPartners() {
       title="Fleet & 3PL Logistics Delivery Partners"
       subtitle="Dedicated EV rider fleets, contracted hyperlocal 3PLs, inter-hub transfer networks, and SLA scorecards"
       icon="🛵"
-      badge="130 Total Contracted Riders"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Dedicated Fleet" value="76 EV Riders" delta="100% Electric" trend="up" subtext="Zero emissions hyperlocal" icon="⚡" />
         <KpiCard label="Active On Road" value="117 Riders" delta="Live capacity" trend="up" subtext="Zenve + 3PL partners" icon="🛵" />
-        <KpiCard label="Blended On-Time SLA" value="98.2%" delta="+0.8% MoM" trend="up" subtext="Weighted network avg" icon="⏱️" />
+        <KpiCard label="Blended On-Time SLA" value="0.0%" delta="+0.8% MoM" trend="up" subtext="Weighted network avg" icon="⏱️" />
         <KpiCard label="Avg Fleet Rating" value="4.86 / 5" delta="Exceptional" trend="up" subtext="Pet parent doorstep CSAT" icon="⭐" />
       </div>
 

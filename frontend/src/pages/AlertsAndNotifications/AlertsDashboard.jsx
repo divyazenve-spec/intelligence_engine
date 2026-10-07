@@ -22,29 +22,9 @@ export default function AlertsDashboard() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const tabs = [
-    { id: 'overview', label: 'Overview Control Center', icon: '🎛️' },
-    { id: 'critical', label: 'Critical Alerts', icon: '🚨', badge: '4' },
-    { id: 'revenue', label: 'Revenue Alerts', icon: '💼', badge: '5' },
-    { id: 'inventory', label: 'Inventory Alerts', icon: '📦', badge: '5' },
-    { id: 'payment', label: 'Payment Alerts', icon: '💳', badge: '5' },
-    { id: 'order', label: 'Order Alerts', icon: '🚚', badge: '5' },
-    { id: 'delivery', label: 'Delivery Alerts', icon: '⚡', badge: '5' },
-    { id: 'finance', label: 'Finance Alerts', icon: '💰', badge: '5' },
-    { id: 'hr', label: 'HR Alerts', icon: '🧑‍💼', badge: '5' },
-    { id: 'system', label: 'System Alerts', icon: '🖥️', badge: '5' },
-    { id: 'rules', label: 'Alert Rules', icon: '⚙️', badge: '8 Rules' },
-    { id: 'notifs', label: 'Notification Center', icon: '🔔', badge: '3 Unread' }
-  ];
+  const tabs = [];
 
-  const recentIncidents = [
-    { id: 'CRIT-101', cat: 'Critical', title: 'Vaccine Cold-Chain Breach (+8.6°C)', hub: 'Bengaluru Central Cold Depot', time: '12m ago', severity: 'Critical' },
-    { id: 'ORD-501', cat: 'Order', title: 'Rx Verification Queue Overload (28 orders)', hub: 'Telehealth Rx Node', time: '14m ago', severity: 'High' },
-    { id: 'PAY-401', cat: 'Payment', title: 'Razorpay UPI Failure Rate Surge (4.8%)', hub: 'Core Payment Gateway', time: '15m ago', severity: 'Critical' },
-    { id: 'DEL-601', cat: 'Delivery', title: '60-Min SLA Risk: Order #ZV-98214', hub: 'HSR Layout Zone', time: '18m ago', severity: 'Critical' },
-    { id: 'HR-801', cat: 'HR', title: 'ICU Night-Shift Nurse Staffing Deficit (-2 Staff)', hub: 'Koramangala Hospital ICU', time: '25m ago', severity: 'Critical' },
-    { id: 'REV-201', cat: 'Revenue', title: 'Delhi NCR Weekend GMV Drop (-14.2%)', hub: 'Gurgaon Micro-Hub', time: '45m ago', severity: 'Warning' }
-  ];
+  const recentIncidents = [];
 
   return (
     <div style={{ width: '100%' }}>
@@ -198,7 +178,7 @@ export default function AlertsDashboard() {
             />
             <KpiCard
               label="Multi-Channel Delivery Health"
-              value="99.9%"
+              value="0.0%"
               delta="1,420 notifications"
               trend="up"
               subtext="WhatsApp, Slack, SMS"

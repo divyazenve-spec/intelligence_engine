@@ -7,16 +7,7 @@ export default function Payroll() {
   const [disbursed, setDisbursed] = useState(true);
   const [showPayslip, setShowPayslip] = useState(null);
 
-  const payrollRecords = [
-    { empId: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Vet Officer', basic: '₹1,20,000', hra: '₹60,000', allowances: '₹60,000', pfDeduction: '₹14,400', tds: '₹28,500', netPay: '₹1,97,100', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-01' },
-    { empId: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', basic: '₹97,500', hra: '₹48,750', allowances: '₹48,750', pfDeduction: '₹11,700', tds: '₹22,100', netPay: '₹1,61,200', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-01' },
-    { empId: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head Pharmacist', basic: '₹72,500', hra: '₹36,250', allowances: '₹36,250', pfDeduction: '₹8,700', tds: '₹14,200', netPay: '₹1,22,100', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-01' },
-    { empId: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', basic: '₹90,000', hra: '₹45,000', allowances: '₹45,000', pfDeduction: '₹10,800', tds: '₹19,400', netPay: '₹1,49,800', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-02' },
-    { empId: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet Lead', basic: '₹47,500', hra: '₹23,750', allowances: '₹23,750', pfDeduction: '₹5,700', tds: '₹6,400', netPay: '₹82,900', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-02' },
-    { empId: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', basic: '₹55,000', hra: '₹27,500', allowances: '₹27,500', pfDeduction: '₹6,600', tds: '₹8,100', netPay: '₹95,300', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-02' },
-    { empId: 'EMP-1007', name: 'Manish Rawat', role: 'Express Rider', basic: '₹18,000', hra: '₹7,000', allowances: '₹7,000', pfDeduction: '₹2,160', tds: '₹0', netPay: '₹29,840', status: 'Disbursed', bankBatch: 'ICICI-BATCH-0926-03' },
-    { empId: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', basic: '₹37,500', hra: '₹18,750', allowances: '₹18,750', pfDeduction: '₹4,500', tds: '₹4,200', netPay: '₹66,300', status: 'Disbursed', bankBatch: 'HDFC-BATCH-0926-02' }
-  ];
+  const payrollRecords = [];
 
   return (
     <DashboardLayout
@@ -49,10 +40,10 @@ export default function Payroll() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Payroll Disbursal" value="₹1,64,30,000" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
-        <KpiCard label="Statutory Deductions (PF/ESI)" value="₹19,71,600" delta="PF: 12% · ESI: 0.75%" trend="neutral" subtext="Remitted to EPFO & ESIC" icon="🏛️" />
-        <KpiCard label="Income Tax TDS Deducted" value="₹24,80,000" delta="Sec 192 compliance" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
-        <KpiCard label="Net Disbursed to Bank" value="₹1,19,78,400" delta="208 Accounts Credited" trend="up" subtext="Zero transaction failures" icon="✅" />
+        <KpiCard label="Gross Payroll Disbursal" value="₹0" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
+        <KpiCard label="Statutory Deductions (PF/ESI)" value="₹0" delta="PF: 12% · ESI: 0.75%" trend="neutral" subtext="Remitted to EPFO & ESIC" icon="🏛️" />
+        <KpiCard label="Income Tax TDS Deducted" value="₹0" delta="Sec 192 compliance" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
+        <KpiCard label="Net Disbursed to Bank" value="₹0" delta="208 Accounts Credited" trend="up" subtext="Zero transaction failures" icon="✅" />
       </div>
 
       {/* Month Selector Bar */}

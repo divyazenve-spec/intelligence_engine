@@ -10,13 +10,13 @@ export default function VendorsDashboard() {
       title="Vendor Relations & Procurement"
       subtitle="Purchase order status, pharmaceutical supplier pricing, procurement savings, and fulfillment SLAs"
       icon="🤝"
-      badge="24 Verified Suppliers"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Suppliers" value="24 Vendors" delta="100% compliant" trend="neutral" subtext="Direct pharma & food" icon="🏭" />
-        <KpiCard label="Open Purchase Orders" value="₹18.4 Lakh" delta="8 active POs" trend="neutral" subtext="In transit to hub" icon="📑" />
-        <KpiCard label="Procurement Savings" value="₹3.85 Lakh" delta="+12.4%" trend="up" subtext="Bulk discount savings" icon="💰" />
-        <KpiCard label="Vendor On-Time SLA" value="96.8%" delta="+2.1%" trend="up" subtext="Delivery compliance" icon="⏱️" />
+        <KpiCard label="Open Purchase Orders" value="₹0" delta="8 active POs" trend="neutral" subtext="In transit to hub" icon="📑" />
+        <KpiCard label="Procurement Savings" value="₹0" delta="0.0%" trend="up" subtext="Bulk discount savings" icon="💰" />
+        <KpiCard label="Vendor On-Time SLA" value="0.0%" delta="0.0%" trend="up" subtext="Delivery compliance" icon="⏱️" />
       </div>
 
       <div style={{

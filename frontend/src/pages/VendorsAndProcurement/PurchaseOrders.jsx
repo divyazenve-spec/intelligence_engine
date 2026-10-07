@@ -5,16 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function PurchaseOrders() {
   const [filterStatus, setFilterStatus] = useState('ALL');
 
-  const orders = [
-    { id: 'PO-7821', vendor: 'MSD Animal Health India', items: 'Nobivac DHPPi + Advantage Multi', qty: '500 units + 200 doses', value: '₹8,40,000', raised: '2026-09-24', delivery: '2026-10-08', rcvd: '-', status: 'In Transit', approver: 'Dr. Rao' },
-    { id: 'PO-7815', vendor: 'Boehringer Ingelheim Vet', items: 'Veritas Duo + Advocate', qty: '300 units + 150 packs', value: '₹5,20,000', raised: '2026-09-20', delivery: '2026-10-05', rcvd: '2026-10-04', status: 'Received', approver: 'Dr. Patel' },
-    { id: 'PO-7808', vendor: 'Zoetis India Ltd.', items: 'Revolution + Convenia Inj', qty: '200 tubes + 100 vials', value: '₹4,80,000', raised: '2026-09-18', delivery: '2026-10-04', rcvd: '2026-10-03', status: 'Received', approver: 'Dr. Rao' },
-    { id: 'PO-7802', vendor: 'Royal Canin India', items: 'Renal + Hepatic + Urinary diet', qty: '400 kg bulk packs', value: '₹3,20,000', raised: '2026-09-25', delivery: '2026-10-12', rcvd: '-', status: 'Pending', approver: 'Mgr. Sharma' },
-    { id: 'PO-7796', vendor: 'Synthes Vet India', items: 'LCP Plates + Titanium Screws', qty: '50 plate kits', value: '₹6,80,000', raised: '2026-09-15', delivery: '2026-10-02', rcvd: '-', status: 'Delayed', approver: 'Dr. Singh' },
-    { id: 'PO-7789', vendor: 'Virbac India Pvt. Ltd.', items: 'Dentisept + Pyocalm', qty: '600 tubes + 240 packs', value: '₹2,40,000', raised: '2026-09-26', delivery: '2026-10-10', rcvd: '-', status: 'Processing', approver: 'Mgr. Gupta' },
-    { id: 'PO-7782', vendor: "Hill's Pet Nutrition", items: 'Prescription Diet k/d + i/d', qty: '250 kg', value: '₹1,80,000', raised: '2026-09-14', delivery: '2026-10-01', rcvd: '2026-10-01', status: 'Received', approver: 'Dr. Rao' },
-    { id: 'PO-7775', vendor: 'Intas Pharmaceuticals', items: 'Meloxicam 1.5mg + Prednisolone', qty: '1000 tabs + 500 tabs', value: '₹1,20,000', raised: '2026-09-28', delivery: '2026-10-15', rcvd: '-', status: 'Processing', approver: 'Mgr. Sharma' },
-  ];
+  const orders = [];
 
   const statusColor = s => ({ Received: '#34d399', 'In Transit': '#38bdf8', Processing: '#a78bfa', Pending: '#fbbf24', Delayed: '#f87171' }[s] || '#94a3b8');
   const filtered = filterStatus === 'ALL' ? orders : orders.filter(o => o.status === filterStatus);
@@ -27,7 +18,7 @@ export default function PurchaseOrders() {
       title="Purchase Order Management & Delivery Tracker"
       subtitle="All active and historical POs with delivery dates, quantities, approval chain, and real-time status tracking"
       icon="📑"
-      badge="18 Active POs"
+      badge=""
       actions={
         <button onClick={() => alert('Opening New Purchase Order Form...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #3b82f6', background: 'rgba(59,130,246,0.15)', color: '#60a5fa', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Raise PO
@@ -35,11 +26,11 @@ export default function PurchaseOrders() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Active POs" value="18 Orders" delta="₹34.8 L in pipeline" trend="neutral" subtext="FY 2026 Oct" icon="📑" />
-        <KpiCard label="Received (MTD)" value="3 POs" delta="₹14.80 L received" trend="up" subtext="On-time deliveries" icon="✅" />
+        <KpiCard label="Total Active POs" value="18 Orders" delta="₹0 in pipeline" trend="neutral" subtext="FY 2026 Oct" icon="📑" />
+        <KpiCard label="Received (MTD)" value="3 POs" delta="₹0 received" trend="up" subtext="On-time deliveries" icon="✅" />
         <KpiCard label="In Transit" value="2 POs" delta="Expected this week" trend="neutral" subtext="MSD + Virbac" icon="🚛" />
         <KpiCard label="Delayed POs" value="1 PO" delta="Synthes Vet — 3d late" trend="down" subtext="Escalation triggered" icon="⚠️" />
-        <KpiCard label="Avg. PO Value" value="₹4.23 L" delta="+12.4% vs Q2" trend="up" subtext="Per order avg." icon="💰" />
+        <KpiCard label="Avg. PO Value" value="₹0" delta="+12.4% vs Q2" trend="up" subtext="Per order avg." icon="💰" />
         <KpiCard label="PO Approval TAT" value="4.2 Hours" delta="-1.8h improvement" trend="up" subtext="3-level approval chain" icon="⏱️" />
       </div>
 

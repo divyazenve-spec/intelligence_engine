@@ -26,39 +26,23 @@
 
   /* ── 11 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',      label: 'Customer Dashboard',     icon: '👥', hash: '#customer-dashboard',       badge: '12.4k Base',    title: 'Unified Customer 360° Command Center', sub: 'Holistic pet parent profiles, omnichannel engagement, and loyalty status' },
-    { id: 'all-customers',  label: 'All Customers',          icon: '📋', hash: '#all-customers',           badge: '12,480 Records', title: 'All Registered Customers & Pet Parents', sub: 'Verified contact directory, multi-pet ownership mapping, and geographic distribution' },
-    { id: 'new-customers',  label: 'New Customers',          icon: '✨', hash: '#new-customers',           badge: '+1,120 MTD',    title: 'New Customer Acquisition & First-Order Velocity', sub: 'Channel attribution, welcome bundle activations, and blended CAC dynamics' },
-    { id: 'active-customers', label: 'Active Customers',     icon: '⚡', hash: '#active-customers',        badge: '8,420 MAU',     title: 'Active Customers & Omni-Channel Frequency', sub: 'Rolling DAU / WAU / MAU stickiness, repeat clinic visits, and mobile app usage' },
-    { id: 'repeat-customers', label: 'Repeat Customers',     icon: '🔄', hash: '#repeat-customers',        badge: '78.4% Rate',    title: 'Repeat Customers & Order Frequency Progression', sub: 'Replenishment interval tracking, reorder retention, and multi-visit habit loops' },
-    { id: 'lifetime-value', label: 'Customer Lifetime Value', icon: '💎', hash: '#customer-lifetime-value', badge: '5.8x LTV/CAC',  title: 'Customer Lifetime Value (LTV) & CAC Multiples', sub: 'Predictive CLV tiers, cumulative cohort GMV, and customer margin realization' },
-    { id: 'segmentation',   label: 'Customer Segmentation',  icon: '🧩', hash: '#customer-segmentation',   badge: '5 Clusters',    title: 'Customer Segmentation & Behavioral Clusters', sub: 'RFM analysis, pet life-stage clustering, and personalized CRM campaigns' },
-    { id: 'orders',         label: 'Customer Orders',        icon: '🛒', hash: '#customer-orders',         badge: '28.4k Orders',  title: 'Customer Orders & Transaction History', sub: 'Omnichannel commerce purchases, clinic treatment billing, and 60-min deliveries' },
-    { id: 'revenue',        label: 'Customer Revenue',       icon: '💰', hash: '#customer-revenue',        badge: '₹1.71 Cr MTD',  title: 'Customer Revenue & Monetization Streams', sub: 'Gross merchandise value, monthly ARPU realization, and category gross margins' },
-    { id: 'retention',      label: 'Customer Retention',     icon: '🛡️', hash: '#customer-retention',      badge: '91.2% M1 Ret',  title: 'Customer Retention & Cohort Decay Curves', sub: 'Longitudinal cohort retention curves, churn rate tracking, and win-back success' },
-    { id: 'complaints',     label: 'Customer Complaints',    icon: '⚠️', hash: '#customer-complaints',     badge: '98.2% SLA',     title: 'Customer Complaints & Grievance Resolution', sub: 'Support ticket resolution speed, First-Contact Resolution, and post-service CSAT' }
+    { id: 'dashboard',      label: 'Customer Dashboard',     icon: '👥', hash: '#customer-dashboard',       badge: '',    title: 'Unified Customer 360° Command Center', sub: 'Holistic pet parent profiles, omnichannel engagement, and loyalty status' },
+    { id: 'all-customers',  label: 'All Customers',          icon: '📋', hash: '#all-customers',           badge: '', title: 'All Registered Customers & Pet Parents', sub: 'Verified contact directory, multi-pet ownership mapping, and geographic distribution' },
+    { id: 'new-customers',  label: 'New Customers',          icon: '✨', hash: '#new-customers',           badge: '',    title: 'New Customer Acquisition & First-Order Velocity', sub: 'Channel attribution, welcome bundle activations, and blended CAC dynamics' },
+    { id: 'active-customers', label: 'Active Customers',     icon: '⚡', hash: '#active-customers',        badge: '',     title: 'Active Customers & Omni-Channel Frequency', sub: 'Rolling DAU / WAU / MAU stickiness, repeat clinic visits, and mobile app usage' },
+    { id: 'repeat-customers', label: 'Repeat Customers',     icon: '🔄', hash: '#repeat-customers',        badge: '',    title: 'Repeat Customers & Order Frequency Progression', sub: 'Replenishment interval tracking, reorder retention, and multi-visit habit loops' },
+    { id: 'lifetime-value', label: 'Customer Lifetime Value', icon: '💎', hash: '#customer-lifetime-value', badge: '',  title: 'Customer Lifetime Value (LTV) & CAC Multiples', sub: 'Predictive CLV tiers, cumulative cohort GMV, and customer margin realization' },
+    { id: 'segmentation',   label: 'Customer Segmentation',  icon: '🧩', hash: '#customer-segmentation',   badge: '',    title: 'Customer Segmentation & Behavioral Clusters', sub: 'RFM analysis, pet life-stage clustering, and personalized CRM campaigns' },
+    { id: 'orders',         label: 'Customer Orders',        icon: '🛒', hash: '#customer-orders',         badge: '',  title: 'Customer Orders & Transaction History', sub: 'Omnichannel commerce purchases, clinic treatment billing, and 60-min deliveries' },
+    { id: 'revenue',        label: 'Customer Revenue',       icon: '💰', hash: '#customer-revenue',        badge: '',  title: 'Customer Revenue & Monetization Streams', sub: 'Gross merchandise value, monthly ARPU realization, and category gross margins' },
+    { id: 'retention',      label: 'Customer Retention',     icon: '🛡️', hash: '#customer-retention',      badge: '',  title: 'Customer Retention & Cohort Decay Curves', sub: 'Longitudinal cohort retention curves, churn rate tracking, and win-back success' },
+    { id: 'complaints',     label: 'Customer Complaints',    icon: '⚠️', hash: '#customer-complaints',     badge: '',     title: 'Customer Complaints & Grievance Resolution', sub: 'Support ticket resolution speed, First-Contact Resolution, and post-service CSAT' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var CUSTOMERS = [
-    { id: 'CUST-8401', name: 'Aarav & Tanya Sharma', pets: 'Bruno (Golden Retriever) + Milo (Cat)', tier: 'VIP Elite', ltv: '₹1,48,000', ordersCount: 42, lastOrder: '2026-10-04', mtdSpend: '₹14,200', churnRisk: 'Very Low', status: 'Active' },
-    { id: 'CUST-8402', name: 'Vikram & Ananya Malhotra', pets: 'Leo (German Shepherd)', tier: 'VIP Elite', ltv: '₹1,24,000', ordersCount: 36, lastOrder: '2026-10-05', mtdSpend: '₹18,500', churnRisk: 'Very Low', status: 'Active' },
-    { id: 'CUST-8403', name: 'Priya Sundaram', pets: 'Bella & Coco (Persian Cats)', tier: 'Loyal Gold', ltv: '₹84,000', ordersCount: 24, lastOrder: '2026-10-01', mtdSpend: '₹7,800', churnRisk: 'Low', status: 'Active' },
-    { id: 'CUST-8404', name: 'Rahul & Meera Nambiar', pets: 'Simba (Beagle Pup)', tier: 'New Subscriber', ltv: '₹32,000', ordersCount: 8, lastOrder: '2026-10-03', mtdSpend: '₹6,400', churnRisk: 'Low', status: 'Active' },
-    { id: 'CUST-8405', name: 'Sneha Kulkarni', pets: 'Whiskey (Shih Tzu)', tier: 'Occasional Silver', ltv: '₹48,000', ordersCount: 14, lastOrder: '2026-09-18', mtdSpend: '₹0', churnRisk: 'Medium', status: 'At Risk' },
-    { id: 'CUST-8406', name: 'Karthik & Pooja Sen', pets: 'Rocky (Siberian Husky)', tier: 'Loyal Gold', ltv: '₹92,000', ordersCount: 28, lastOrder: '2026-10-02', mtdSpend: '₹9,200', churnRisk: 'Very Low', status: 'Active' }
-  ];
+  var CUSTOMERS = [];
 
-  var GRIEVANCES = [
-    { id: 'TICK-4401', parent: 'Sneha Kulkarni', pet: 'Whiskey (Shih Tzu)', category: 'Delivery Delay', priority: 'High', issue: '60-min prescription delivery arrived in 78 mins during rain', rep: 'Kiran R.', sla: '12 mins', remedy: 'Full delivery fee waiver + ₹200 wallet credit', csat: '5.0 ⭐', status: 'Closed' },
-    { id: 'TICK-4402', parent: 'Vikram Malhotra', pet: 'Leo (German Shepherd)', category: 'Product Packaging', priority: 'Medium', issue: 'Outer seal torn on Royal Canin 15kg kibble sack', rep: 'Aisha S.', sla: '18 mins', remedy: 'Immediate replacement dispatched via instant dark store', csat: '5.0 ⭐', status: 'Closed' },
-    { id: 'TICK-4403', parent: 'Priya Sundaram', pet: 'Bella (Persian Cat)', category: 'Billing Query', priority: 'Low', issue: '840 pet loyalty club coins not automatically credited', rep: 'Kiran R.', sla: '5 mins', remedy: 'Coins credited manually with +100 bonus compensation', csat: '5.0 ⭐', status: 'Closed' },
-    { id: 'TICK-4404', parent: 'Rahul Nambiar', pet: 'Simba (Beagle Pup)', category: 'Clinic Reschedule', priority: 'Medium', issue: 'Requested slot shift from morning to evening OPD', rep: 'Rahul B.', sla: '28 mins', remedy: 'Slot moved to 6:30 PM with Dr. Siddharth confirmed', csat: '4.8 ⭐', status: 'Closed' },
-    { id: 'TICK-4405', parent: 'Alok Bhattacharya', pet: 'Max (Labrador)', category: 'App & Passport Bug', priority: 'Low', issue: 'Vaccination digital card PDF export showed blank page', rep: 'Tech L2', sla: '22 mins', remedy: 'Server font cache patched; PDF emailed directly', csat: '4.9 ⭐', status: 'Closed' },
-    { id: 'TICK-4406', parent: 'Meera Deshpande', pet: 'Ginger (Tabby Cat)', category: 'Cold-Chain Pharmacy', priority: 'Critical', issue: 'Insulin vial temperature monitor was near threshold (7.8°C)', rep: 'Dr. Ananya P.', sla: '8 mins', remedy: 'Fresh cold-pack vial sent immediately, zero charge', csat: '5.0 ⭐', status: 'Closed' },
-    { id: 'TICK-4407', parent: 'Kavita Menon', pet: 'Oreo (French Bulldog)', category: 'Grooming Service', priority: 'Medium', issue: 'Groomer arrived 20 minutes behind scheduled window', rep: 'Siddharth M.', sla: '15 mins', remedy: 'Free spa upgrade + ₹300 next appointment coupon', csat: '4.7 ⭐', status: 'Closed' },
-    { id: 'TICK-4408', parent: 'Arjun Singhania', pet: 'Thor (Rottweiler)', category: 'Delivery Delay', priority: 'Critical', issue: 'Express delivery rider delayed at society security gate', rep: 'Operations L1', sla: '11 mins', remedy: 'Security gate cleared, expedited handover completed', csat: '4.6 ⭐', status: 'Closed' }
-  ];
+  var GRIEVANCES = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

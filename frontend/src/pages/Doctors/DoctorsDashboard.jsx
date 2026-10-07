@@ -6,14 +6,7 @@ export default function DoctorsDashboard() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const doctors = [
-    { id: 'DOC-101', name: 'Dr. Divya Ramesh', spec: 'Lead Surgeon & Critical Care', regNo: 'KVC-8842', rating: '4.98', exp: '14 Yrs', patientsMtd: 242, revMtd: '₹6,40,000', comm: '₹1,28,000', status: 'On Duty', clinic: 'Indiranagar Flagship' },
-    { id: 'DOC-102', name: 'Dr. Arvind Swaminathan', spec: 'Veterinary Cardiologist', regNo: 'KVC-9014', rating: '4.92', exp: '11 Yrs', patientsMtd: 188, revMtd: '₹4,85,000', comm: '₹97,000', status: 'In Surgery', clinic: 'Koramangala Trauma' },
-    { id: 'DOC-103', name: 'Dr. Meera Nambiar', spec: 'Neurology & Orthopedics', regNo: 'KVC-7832', rating: '4.95', exp: '12 Yrs', patientsMtd: 174, revMtd: '₹4,30,000', comm: '₹86,000', status: 'On Duty', clinic: 'Whitefield Specialty' },
-    { id: 'DOC-104', name: 'Dr. Siddharth Varma', spec: 'Pediatric & Neonatal Vet', regNo: 'KVC-9421', rating: '4.88', exp: '8 Yrs', patientsMtd: 215, revMtd: '₹3,90,000', comm: '₹78,000', status: 'On Duty', clinic: 'Jayanagar Wellness' },
-    { id: 'DOC-105', name: 'Dr. Ananya Joshi', spec: 'Dermatology & Allergy', regNo: 'KVC-9250', rating: '4.85', exp: '9 Yrs', patientsMtd: 164, revMtd: '₹3,45,000', comm: '₹69,000', status: 'On Call', clinic: 'HSR Layout Clinic' },
-    { id: 'DOC-106', name: 'Dr. Rohan Deshmukh', spec: 'Exotics & Avian Specialist', regNo: 'KVC-8711', rating: '4.90', exp: '10 Yrs', patientsMtd: 132, revMtd: '₹3,10,000', comm: '₹62,000', status: 'On Duty', clinic: 'Indiranagar Flagship' }
-  ];
+  const doctors = [];
 
   const filtered = doctors.filter(d => {
     if (filter !== 'ALL' && d.status !== filter) return false;
@@ -38,7 +31,7 @@ export default function DoctorsDashboard() {
       title="Veterinary Medical Board & Practitioners"
       subtitle="Physician consultation quotas, clinical patient volume, surgical rosters, and commission settlements"
       icon="👨‍⚕️"
-      badge="24 Board Certified"
+      badge=""
       actions={
         <button
           onClick={() => alert('New Doctor Onboarding modal initiated...')}
@@ -60,10 +53,10 @@ export default function DoctorsDashboard() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Veterinary Doctors" value="24 Doctors" delta="100% Licensed" trend="up" subtext="Across 6 clinic centers" icon="👨‍⚕️" />
         <KpiCard label="Monthly Patient Consults" value="2,148 Pets" delta="+18.4% MoM" trend="up" subtext="Avg 89 consults/doc" icon="🐾" />
-        <KpiCard label="Doctor Attributed Revenue" value="₹36.85 Lakh" delta="+14.2% YoY" trend="up" subtext="Consults, meds & surgery" icon="💰" />
-        <KpiCard label="Doctor Commissions Paid" value="₹7.37 Lakh" delta="20% standard rate" trend="neutral" subtext="Settled bi-weekly" icon="📋" />
+        <KpiCard label="Doctor Attributed Revenue" value="₹0" delta="+14.2% YoY" trend="up" subtext="Consults, meds & surgery" icon="💰" />
+        <KpiCard label="Doctor Commissions Paid" value="₹0" delta="20% standard rate" trend="neutral" subtext="Settled bi-weekly" icon="📋" />
         <KpiCard label="Avg. Patient Satisfaction" value="4.92 / 5.0" delta="1,840 ratings" trend="up" subtext="Top in feline & canine care" icon="⭐" />
-        <KpiCard label="Surgical Success Rate" value="99.4%" delta="284 procedures" trend="up" subtext="Zero cross-contamination" icon="🛡️" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="284 procedures" trend="up" subtext="Zero cross-contamination" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>

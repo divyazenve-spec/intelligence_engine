@@ -8,88 +8,7 @@ export default function ClinicPatients() {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [toast, setToast] = useState('');
 
-  const inpatientList = [
-    {
-      id: 'PT-2026-8812',
-      petName: 'Max',
-      species: 'Canine (Golden Retriever)',
-      age: '5 yrs',
-      weight: '34.2 kg',
-      parent: 'Rajesh Nair (+91 98450 12345)',
-      facility: 'Koramangala 24x7 Hospital',
-      bed: 'ICU Pod 02',
-      doctor: 'Dr. Priya Sharma',
-      diagnosis: 'Emergency Gastric Dilatation-Volvulus (GDV Post-op)',
-      vitals: 'HR: 110 bpm | Temp: 38.6°C | SpO2: 98% | BP: 120/75',
-      admittedOn: 'Yesterday, 11:30 PM',
-      dischargeEta: 'Tomorrow, 04:00 PM',
-      wardStatus: 'Critical ICU'
-    },
-    {
-      id: 'PT-2026-8811',
-      petName: 'Mia',
-      species: 'Feline (Persian Longhair)',
-      age: '4 yrs',
-      weight: '3.6 kg',
-      parent: 'Meera Deshmukh (+91 98201 44556)',
-      facility: 'Bandra West Hospital',
-      bed: 'Feline HDU 04',
-      doctor: 'Dr. Rahul Mehta',
-      diagnosis: 'Urethral Obstruction & Metabolic Acidosis (FLUTD)',
-      vitals: 'HR: 160 bpm | Temp: 38.1°C | SpO2: 99% | Urine: Clear',
-      admittedOn: 'Today, 06:15 AM',
-      dischargeEta: 'In 2 days',
-      wardStatus: 'High Dependency'
-    },
-    {
-      id: 'PT-2026-8810',
-      petName: 'Rocky',
-      species: 'Canine (Rottweiler)',
-      age: '6 yrs',
-      weight: '44.0 kg',
-      parent: 'Vikram Sethi (+91 98110 33221)',
-      facility: 'Delhi NCR Hospital',
-      bed: 'Post-Op Ward Bed 01',
-      doctor: 'Dr. Aisha Khan',
-      diagnosis: 'TPLO Cruciate Ligament Repair (Right Hind Limb)',
-      vitals: 'HR: 88 bpm | Temp: 38.4°C | SpO2: 99% | Pain: Mild',
-      admittedOn: 'Today, 08:00 AM',
-      dischargeEta: 'Today, 07:00 PM',
-      wardStatus: 'Discharge Ready'
-    },
-    {
-      id: 'PT-2026-8809',
-      petName: 'Leo',
-      species: 'Canine (Beagle Pup)',
-      age: '6 mos',
-      weight: '6.2 kg',
-      parent: 'Deepika Sen (+91 99002 77665)',
-      facility: 'Koramangala 24x7 Hospital',
-      bed: 'Negative-Pressure Isolation Bay 3',
-      doctor: 'Dr. Arun V.',
-      diagnosis: 'Canine Parvoviral Enteritis (Day 3 IV Protocol)',
-      vitals: 'HR: 130 bpm | Temp: 38.9°C | Hydration: Normalizing',
-      admittedOn: '3 days ago',
-      dischargeEta: 'In 24 hours',
-      wardStatus: 'Isolation Ward'
-    },
-    {
-      id: 'PT-2026-8808',
-      petName: 'Simba',
-      species: 'Canine (German Shepherd)',
-      age: '8 yrs',
-      weight: '38.5 kg',
-      parent: 'Ananya Roy (+91 97110 99881)',
-      facility: 'Delhi NCR Hospital',
-      bed: 'Cardio Ward Bed 02',
-      doctor: 'Dr. Aisha Khan',
-      diagnosis: 'Stage C CHF & Pulmonary Edema Stabilization',
-      vitals: 'Resp: 26/min | HR: 102 bpm | SpO2: 97% | Vitals Stable',
-      admittedOn: 'Yesterday, 04:00 PM',
-      dischargeEta: 'Tomorrow, 11:00 AM',
-      wardStatus: 'Stable Inpatient'
-    }
-  ];
+  const inpatientList = [];
 
   const filtered = useMemo(() => {
     return inpatientList.filter(p => {
@@ -116,7 +35,7 @@ export default function ClinicPatients() {
       title="Inpatient Ward Census & Patient Tracking"
       subtitle="24x7 hospital admissions, ICU critical care telemetry, recovery monitoring, and digital discharge summaries"
       icon="🐾"
-      badge="66 Inpatients Admitted"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -161,7 +80,7 @@ export default function ClinicPatients() {
         <KpiCard label="Daily OPD Consults" value="482 Pets" delta="+18.4% YoY" trend="up" subtext="Across 14 network clinics" icon="🐾" />
         <KpiCard label="Planned Discharges" value="18 Pets" delta="Expected Today" trend="up" subtext="Post-op recovery cleared" icon="🏡" />
         <KpiCard label="Average Length of Stay" value="2.8 Days" delta="-0.4d vs target" trend="up" subtext="Rapid patient stabilization" icon="📅" />
-        <KpiCard label="Hospital Infection Rate" value="0.00%" delta="Zero outbreak" trend="up" subtext="UV-C sterilized wards" icon="🛡️" />
+        <KpiCard label="Hospital Infection Rate" value="0.0%" delta="Zero outbreak" trend="up" subtext="UV-C sterilized wards" icon="🛡️" />
       </div>
 
       {/* Patients Filter & Inpatient Census Table */}

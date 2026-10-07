@@ -8,41 +8,13 @@ export default function PetAnalytics() {
   const [searchBreed, setSearchBreed] = useState('');
   const [selectedHub, setSelectedHub] = useState('ALL');
 
-  const breedDistribution = [
-    { breed: 'Golden Retriever', species: 'Canine', count: 284, pct: 22.9, avgAge: '3.4 yrs', vaxRate: '96.2%', microchipRate: '88.5%', riskTier: 'Low (Joint Monitoring)' },
-    { breed: 'Labrador Retriever', species: 'Canine', count: 248, pct: 20.0, avgAge: '4.1 yrs', vaxRate: '94.8%', microchipRate: '85.2%', riskTier: 'Low (Caloric Weight Control)' },
-    { breed: 'Indie / Desi Dog', species: 'Canine', count: 186, pct: 15.0, avgAge: '2.8 yrs', vaxRate: '98.4%', microchipRate: '92.0%', riskTier: 'Minimal (High Natural Resilience)' },
-    { breed: 'Persian Longhair', species: 'Feline', count: 148, pct: 11.9, avgAge: '2.6 yrs', vaxRate: '91.2%', microchipRate: '72.4%', riskTier: 'Moderate (FLUTD & Renal)' },
-    { breed: 'Beagle', species: 'Canine', count: 124, pct: 10.0, avgAge: '3.1 yrs', vaxRate: '92.7%', microchipRate: '81.6%', riskTier: 'Moderate (Otitis & Obesity)' },
-    { breed: 'German Shepherd', species: 'Canine', count: 98, pct: 7.9, avgAge: '3.9 yrs', vaxRate: '95.9%', microchipRate: '89.1%', riskTier: 'Moderate (Hip Dysplasia)' },
-    { breed: 'Shih Tzu', species: 'Canine', count: 86, pct: 6.9, avgAge: '5.2 yrs', vaxRate: '88.4%', microchipRate: '68.0%', riskTier: 'High (MMVD Cardiac & Corneal)' },
-    { breed: 'Domestic Shorthair', species: 'Feline', count: 72, pct: 5.8, avgAge: '2.1 yrs', vaxRate: '94.4%', microchipRate: '75.0%', riskTier: 'Minimal (Oral Dental Care)' },
-    { breed: 'French Bulldog', species: 'Canine', count: 48, pct: 3.9, avgAge: '2.4 yrs', vaxRate: '93.8%', microchipRate: '91.7%', riskTier: 'High (BOAS Airway & Spinal)' },
-    { breed: 'Cockatiel & Parakeet', species: 'Avian', count: 46, pct: 3.7, avgAge: '1.8 yrs', vaxRate: 'N/A', microchipRate: '62.0%', riskTier: 'Low (Respiratory Sensitivity)' }
-  ];
+  const breedDistribution = [];
 
-  const lifeStages = [
-    { stage: 'Pediatric / Puppy & Kitten (< 1 yr)', pets: 308, pct: 24.8, color: '#3b82f6', focus: 'Primary DHPPiL/Tricat series, microchipping, puppy socialization, nutritional growth formulas' },
-    { stage: 'Young Adult (1 – 3 yrs)', pets: 398, pct: 32.1, color: '#10b981', focus: 'Annual booster immunization, dental prophylaxis scaling, flea & tick chewables, desexing' },
-    { stage: 'Mature Adult (4 – 6 yrs)', pets: 291, pct: 23.5, color: '#f59e0b', focus: 'Caloric weight tracking, baseline blood chemistry & urinalysis, joint supplements' },
-    { stage: 'Senior Companion (7 – 10 yrs)', pets: 176, pct: 14.2, color: '#8b5cf6', focus: 'Geriatric screening, renal SDMA biomarker panels, cardiac doppler ultrasound, arthritis analgesia' },
-    { stage: 'Super Senior / Geriatric (11+ yrs)', pets: 67, pct: 5.4, color: '#ef4444', focus: 'Cognitive dysfunction support, palliative comfort protocols, sub-Q hydration therapy' }
-  ];
+  const lifeStages = [];
 
-  const bcsDistribution = [
-    { label: 'BCS 1-3 (Underweight)', pct: 4.2, count: 52, color: '#3b82f6', tag: 'High-density caloric nutrition & deworming' },
-    { label: 'BCS 4-5 (Ideal & Optimal)', pct: 58.6, count: 727, color: '#10b981', tag: 'Balanced maintenance diet & regular exercise' },
-    { label: 'BCS 6-7 (Overweight)', pct: 26.4, count: 327, color: '#f59e0b', tag: 'Caloric restriction & portion management' },
-    { label: 'BCS 8-9 (Clinically Obese)', pct: 10.8, count: 134, color: '#ef4444', tag: 'Satiety metabolic diet & endocrinology workup' }
-  ];
+  const bcsDistribution = [];
 
-  const regionalHubs = [
-    { city: 'Bengaluru (Koramangala & Indiranagar)', pets: 486, share: '39.2%', visitsPerPet: '4.8 / yr', vaxRate: '96.4%', wellnessPlan: '48.2%' },
-    { city: 'Mumbai (Bandra, Juhu & Powai)', pets: 342, share: '27.6%', visitsPerPet: '4.5 / yr', vaxRate: '94.1%', wellnessPlan: '42.8%' },
-    { city: 'Delhi NCR (Gurugram & Saket)', pets: 224, share: '18.1%', visitsPerPet: '3.9 / yr', vaxRate: '91.8%', wellnessPlan: '36.5%' },
-    { city: 'Hyderabad (Jubilee Hills & Gachibowli)', pets: 118, share: '9.5%', visitsPerPet: '3.6 / yr', vaxRate: '93.2%', wellnessPlan: '33.9%' },
-    { city: 'Pune (Kalyani Nagar & Baner)', pets: 70, share: '5.6%', visitsPerPet: '3.2 / yr', vaxRate: '90.0%', wellnessPlan: '28.6%' }
-  ];
+  const regionalHubs = [];
 
   const filteredBreeds = breedDistribution.filter(b => {
     const matchesSpecies = speciesFilter === 'ALL' || b.species === speciesFilter;
@@ -57,7 +29,7 @@ export default function PetAnalytics() {
       title="Pet Population Demographics & Statistical Analytics"
       subtitle="Holistic statistical analysis of registered companion animals, species segmentation, life-stage epidemiology, BCS distribution, and clinical compliance"
       icon="📊"
-      badge="1,240 Enrolled Pets Cohort"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {['7D', '30D', '90D', '1Y', 'ALL'].map(t => (
@@ -85,10 +57,10 @@ export default function PetAnalytics() {
       {/* KPI Ribbon */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
         <KpiCard label="Registered Population" value="1,240 Pets" delta="+26.4% YoY" trend="up" subtext="72.5% Dogs, 21.8% Cats" icon="🐾" />
-        <KpiCard label="Sterilization Rate" value="68.4%" delta="848 Desexed" trend="up" subtext="Reduces behavioral & cancer risks" icon="✂️" />
-        <KpiCard label="Microchip RFID Rate" value="76.2%" delta="945 Registered" trend="up" subtext="ISO 11784/11785 compliant" icon="📡" />
+        <KpiCard label="Sterilization Rate" value="0.0%" delta="848 Desexed" trend="up" subtext="Reduces behavioral & cancer risks" icon="✂️" />
+        <KpiCard label="Microchip RFID Rate" value="0.0%" delta="945 Registered" trend="up" subtext="ISO 11784/11785 compliant" icon="📡" />
         <KpiCard label="Average Body Condition" value="5.2 / 9" delta="Optimal Band" trend="neutral" subtext="58.6% in ideal 4-5 score" icon="⚖️" />
-        <KpiCard label="Preventive Compliance" value="84.6%" delta="+4.8 pts" trend="up" subtext="Vaccine & deworming adherence" icon="🛡️" />
+        <KpiCard label="Preventive Compliance" value="0.0%" delta="+4.8 pts" trend="up" subtext="Vaccine & deworming adherence" icon="🛡️" />
       </div>
 
       {/* Cohort & Life-Stage Analytics */}

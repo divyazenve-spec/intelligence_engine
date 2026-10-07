@@ -5,20 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function Expenses() {
   const [costCenter, setCostCenter] = useState('ALL');
 
-  const expenseBreakdown = [
-    { code: 'EXP-PAY-01', name: 'Veterinary Clinicians, Surgeons & Nursing Roster', cc: 'Clinical Operations', budget: '₹15,00,000', actual: '₹15,40,000', var: '+2.7%', pct: '54.6%', status: 'Normal' },
-    { code: 'EXP-LSE-02', name: 'Hospital Leases & Diagnostic Facility Rents (14 sites)', cc: 'Real Estate & Infrastructure', budget: '₹6,20,000', actual: '₹6,20,000', var: '0.0%', pct: '22.0%', status: 'Fixed' },
-    { code: 'EXP-UTL-03', name: 'Clinical Electricity, Medical Gas & Biohazard Disposal', cc: 'Facilities & Utilities', budget: '₹2,20,000', actual: '₹2,40,000', var: '+9.1%', pct: '8.5%', status: 'Review' },
-    { code: 'EXP-MKT-04', name: 'Pet Parent Acquisition, Google Ads & Retention', cc: 'Marketing & Growth', budget: '₹2,80,000', actual: '₹2,60,000', var: '-7.1%', pct: '9.2%', status: 'Favorable' },
-    { code: 'EXP-TEC-05', name: 'Cloud EMR, Tele-PACS Storage & Practice Management', cc: 'Information Technology', budget: '₹1,50,000', actual: '₹1,60,000', var: '+6.7%', pct: '5.7%', status: 'Approved' }
-  ];
+  const expenseBreakdown = [];
 
-  const recentExpenseApprovals = [
-    { id: 'REQ-EXP-401', desc: 'Preventative Maintenance Service - Shimadzu DR X-Ray', dept: 'Koramangala 24x7', amt: '₹42,000', requester: 'Dr. Priya Sharma', approver: 'Finance Controller', status: 'Approved / Processed' },
-    { id: 'REQ-EXP-402', desc: 'Central Biomedical Waste Treatment Monthly Contract', dept: 'All Mumbai Clinics', amt: '₹38,500', requester: 'Operations Lead', approver: 'Chief Financial Officer', status: 'Approved / Processed' },
-    { id: 'REQ-EXP-403', desc: 'Veterinary Dialysis Filter Cartridges & Tubing Kits', dept: 'Bandra Multi-Specialty', amt: '₹64,000', requester: 'Dr. Rahul Mehta', approver: 'Medical Director', status: 'Approved / Inbound' },
-    { id: 'REQ-EXP-404', desc: 'Pet Parents WhatsApp API Notification Enterprise Tier', dept: 'Engineering & Product', amt: '₹22,000', requester: 'Tech Lead', approver: 'Finance Controller', status: 'Approved / Processed' }
-  ];
+  const recentExpenseApprovals = [];
 
   return (
     <DashboardLayout
@@ -27,7 +16,7 @@ export default function Expenses() {
       title="Operating Expenses (OPEX) Control & Ledger"
       subtitle="Departmental cost centers, monthly budget variance, automated expense approvals, and facility overheads"
       icon="🏢"
-      badge="Total OPEX: ₹28.20L"
+      badge="Total OPEX: ₹0"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -49,12 +38,12 @@ export default function Expenses() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Monthly OPEX" value="₹28.20 Lakh" delta="+2.5% vs Plan" trend="up" subtext="35.9% of Revenue" icon="🏢" />
-        <KpiCard label="Clinical Staffing Payroll" value="₹15.40 Lakh" delta="54.6% of OPEX" trend="up" subtext="Doctors, Nurses, Care" icon="👨‍⚕️" />
-        <KpiCard label="Facility Rental Leases" value="₹6.20 Lakh" delta="22.0% of OPEX" trend="up" subtext="14 Network locations" icon="📍" />
-        <KpiCard label="Marketing & CAC" value="₹2.60 Lakh" delta="-7.1% under plan" trend="up" subtext="Blended CAC: ₹420" icon="📣" />
-        <KpiCard label="Hospital Utilities" value="₹2.40 Lakh" delta="+9.1% (Oxygen load)" trend="down" subtext="Bio-waste + power" icon="⚡" />
-        <KpiCard label="Budget Adherence" value="97.5%" delta="High compliance" trend="up" subtext="Within ±5% variance" icon="🛡️" />
+        <KpiCard label="Total Monthly OPEX" value="₹0" delta="+2.5% vs Plan" trend="up" subtext="35.9% of Revenue" icon="🏢" />
+        <KpiCard label="Clinical Staffing Payroll" value="₹0" delta="54.6% of OPEX" trend="up" subtext="Doctors, Nurses, Care" icon="👨‍⚕️" />
+        <KpiCard label="Facility Rental Leases" value="₹0" delta="22.0% of OPEX" trend="up" subtext="14 Network locations" icon="📍" />
+        <KpiCard label="Marketing & CAC" value="₹0" delta="-7.1% under plan" trend="up" subtext="Blended CAC: ₹0" icon="📣" />
+        <KpiCard label="Hospital Utilities" value="₹0" delta="+9.1% (Oxygen load)" trend="down" subtext="Bio-waste + power" icon="⚡" />
+        <KpiCard label="Budget Adherence" value="0.0%" delta="High compliance" trend="up" subtext="Within ±5% variance" icon="🛡️" />
       </div>
 
       <div style={{

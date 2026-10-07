@@ -731,23 +731,10 @@
   /* ── Subpage 6: Clinic Reports ───────────────────────────────────── */
   function renderClinicReport() {
     // Clinic-specific department throughput data
-    var deptData = [
-      { dept: 'Cardiology & Cardiovascular ICU', cases: '1,840', avgLoS: '3.2 days', bedUtil: '91.4%', nurseRatio: '1:3', nps: '74', infectionRate: '0.08%' },
-      { dept: 'Orthopedics & Rehabilitation', cases: '2,210', avgLoS: '4.1 days', bedUtil: '87.6%', nurseRatio: '1:4', nps: '78', infectionRate: '0.06%' },
-      { dept: 'Neurology & Critical Care', cases: '980', avgLoS: '5.8 days', bedUtil: '84.2%', nurseRatio: '1:2', nps: '71', infectionRate: '0.12%' },
-      { dept: 'Dermatology & Allergy OPD', cases: '3,640', avgLoS: '1.0 days', bedUtil: '72.0%', nurseRatio: '1:6', nps: '82', infectionRate: '0.02%' },
-      { dept: 'Internal Medicine & Endocrinology', cases: '2,900', avgLoS: '2.6 days', bedUtil: '88.9%', nurseRatio: '1:4', nps: '76', infectionRate: '0.09%' },
-      { dept: 'Diagnostic Imaging & Pathology Lab', cases: '5,820', avgLoS: '0.5 days', bedUtil: '68.0%', nurseRatio: '1:8', nps: '80', infectionRate: '0.01%' }
-    ];
+    var deptData = [];
 
     // Clinic satisfaction & NABH data
-    var satisfData = [
-      { hub: 'Koramangala 24/7 Super-Specialty', nps: '76', csat: '4.82/5', nabh: 'Accredited', complaint: '0.4%', repeat: '68.2%' },
-      { hub: 'Indiranagar Urban Care Center', nps: '79', csat: '4.88/5', nabh: 'Accredited', complaint: '0.3%', repeat: '71.4%' },
-      { hub: 'Whitefield Tech Corridor Hospital', nps: '72', csat: '4.76/5', nabh: 'In Progress', complaint: '0.6%', repeat: '64.8%' },
-      { hub: 'Jayanagar Wellness &amp; Diagnostics', nps: '68', csat: '4.71/5', nabh: 'Accredited', complaint: '0.8%', repeat: '62.1%' },
-      { hub: 'HSR Layout Surgical Pavilion', nps: '74', csat: '4.80/5', nabh: 'Accredited', complaint: '0.5%', repeat: '66.9%' }
-    ];
+    var satisfData = [];
 
     var deptRows = deptData.map(function (d) {
       var npsColor = parseInt(d.nps) >= 75 ? 'zrep-pill-green' : (parseInt(d.nps) >= 70 ? 'zrep-pill-blue' : 'zrep-pill-amber');
@@ -1493,16 +1480,7 @@
     var btnDlSales = document.getElementById('zrep-dl-sales');
     if (btnDlSales) {
       btnDlSales.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — SALES REPORT', new Date().toISOString()],
-          ['Gross Sales', D.salesSummary.grossSales],
-          ['Discounts', D.salesSummary.discounts],
-          ['Net Sales', D.salesSummary.netSales],
-          ['Refunds', D.salesSummary.refunds],
-          ['AOV', D.salesSummary.aov],
-          [],
-          ['Channel', 'Orders', 'Gross Sales', 'Net GMV', 'Share %']
-        ];
+        var rows = [];
         D.salesChannels.forEach(function (c) {
           rows.push([c.channel, c.orders, c.gross, c.net, c.share]);
         });
@@ -1514,10 +1492,7 @@
     var btnDlRev = document.getElementById('zrep-dl-revenue');
     if (btnDlRev) {
       btnDlRev.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — REVENUE REPORT', new Date().toISOString()],
-          ['Business Unit', 'Target', 'Actual', 'Attainment', 'Gross Margin', 'Trend']
-        ];
+        var rows = [];
         D.revenueBUs.forEach(function (b) {
           rows.push([b.unit, b.target, b.achieved, b.attainment, b.margin, b.trend]);
         });
@@ -1529,10 +1504,7 @@
     var btnDlCust = document.getElementById('zrep-dl-customer');
     if (btnDlCust) {
       btnDlCust.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — CUSTOMER COHORT REPORT', new Date().toISOString()],
-          ['Cohort', 'Users', 'Month 1', 'Month 3', 'Month 6', 'Month 12', 'Est LTV']
-        ];
+        var rows = [];
         D.customerCohorts.forEach(function (c) {
           rows.push([c.cohort, c.users, c.m1, c.m3, c.m6, c.m12, c.ltv]);
         });
@@ -1544,10 +1516,7 @@
     var btnDlPet = document.getElementById('zrep-dl-pet');
     if (btnDlPet) {
       btnDlPet.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — PET DEMOGRAPHICS & EPIDEMIOLOGY', new Date().toISOString()],
-          ['Breed', 'Species', 'Registered Count', 'Average Age', 'Top Health Condition', 'Vaccine Adherence']
-        ];
+        var rows = [];
         D.petBreeds.forEach(function (p) {
           rows.push([p.breed, p.species, p.count, p.avgAge, p.topCondition, p.adherence]);
         });
@@ -1559,10 +1528,7 @@
     var btnDlDoc = document.getElementById('zrep-dl-doctor');
     if (btnDlDoc) {
       btnDlDoc.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — DOCTOR PERFORMANCE REPORT', new Date().toISOString()],
-          ['Doctor Name', 'Specialty', 'Consultations', 'Surgeries', 'Satisfaction', 'Commission']
-        ];
+        var rows = [];
         D.doctors.forEach(function (d) {
           rows.push([d.name, d.specialty, d.consults, d.surgeries, d.satisfaction, d.commission]);
         });
@@ -1574,10 +1540,7 @@
     var btnDlClinic = document.getElementById('zrep-dl-clinic');
     if (btnDlClinic) {
       btnDlClinic.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — CLINIC PATIENT SATISFACTION & NABH REPORT', new Date().toISOString()],
-          ['Hospital Hub', 'NPS Score', 'CSAT Rating', 'NABH Status', 'Complaint Rate', 'Repeat Visit Rate']
-        ];
+        var rows = [];
         var satisfDataLocal = [
           ['Koramangala 24/7 Super-Specialty', '76', '4.82/5', 'Accredited', '0.4%', '68.2%'],
           ['Indiranagar Urban Care Center', '79', '4.88/5', 'Accredited', '0.3%', '71.4%'],
@@ -1594,10 +1557,7 @@
     var btnDlClinicDept = document.getElementById('zrep-dl-clinic-dept');
     if (btnDlClinicDept) {
       btnDlClinicDept.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — CLINIC DEPARTMENT THROUGHPUT & INFECTION CONTROL', new Date().toISOString()],
-          ['Department', 'Cases', 'Avg LoS', 'Bed Utilization', 'Nurse:Patient Ratio', 'NPS Score', 'Infection Rate']
-        ];
+        var rows = [];
         var deptLocal = [
           ['Cardiology & Cardiovascular ICU', '1,840', '3.2 days', '91.4%', '1:3', '74', '0.08%'],
           ['Orthopedics & Rehabilitation', '2,210', '4.1 days', '87.6%', '1:4', '78', '0.06%'],
@@ -1615,10 +1575,7 @@
     var btnDlProd = document.getElementById('zrep-dl-product');
     if (btnDlProd) {
       btnDlProd.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — PRODUCT SKU REPORT', new Date().toISOString()],
-          ['SKU', 'Name', 'Category', 'Units Sold', 'Revenue', 'Margin', 'ABC Class']
-        ];
+        var rows = [];
         D.topProducts.forEach(function (p) {
           rows.push([p.sku, p.name, p.cat, p.units, p.rev, p.margin, p.abc]);
         });
@@ -1630,10 +1587,7 @@
     var btnDlInv = document.getElementById('zrep-dl-inventory');
     if (btnDlInv) {
       btnDlInv.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — INVENTORY VALUATION REPORT', new Date().toISOString()],
-          ['Hub', 'SKUs', 'Valuation', 'DSI Cover', 'Expiring Soon', 'Space Used']
-        ];
+        var rows = [];
         D.inventoryDepots.forEach(function (i) {
           rows.push([i.hub, i.skus, i.val, i.dsi, i.expiryNear, i.space]);
         });
@@ -1645,10 +1599,7 @@
     var btnDlFin = document.getElementById('zrep-dl-finance');
     if (btnDlFin) {
       btnDlFin.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — GAAP P&L REPORT', new Date().toISOString()],
-          ['Line Item', 'MTD Actual', 'QTD Actual', 'Revenue %', 'Notes']
-        ];
+        var rows = [];
         D.financePnL.forEach(function (p) {
           rows.push([p.line, p.mtd, p.qtd, p.pct, p.note]);
         });
@@ -1660,10 +1611,7 @@
     var btnDlHr = document.getElementById('zrep-dl-hr');
     if (btnDlHr) {
       btnDlHr.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — WORKFORCE HR REPORT', new Date().toISOString()],
-          ['Department', 'Headcount', 'Monthly Payroll', 'Attendance', 'Monthly Turnover']
-        ];
+        var rows = [];
         D.hrDepartments.forEach(function (h) {
           rows.push([h.dept, h.count, h.payroll, h.attendance, h.turn]);
         });
@@ -1675,10 +1623,7 @@
     var btnDlMkt = document.getElementById('zrep-dl-marketing');
     if (btnDlMkt) {
       btnDlMkt.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — MARKETING ATTRIBUTION REPORT', new Date().toISOString()],
-          ['Channel', 'Ad Spend', 'Attributed Revenue', 'ROAS', 'CAC', 'New Pet Parents']
-        ];
+        var rows = [];
         D.marketingChannels.forEach(function (m) {
           rows.push([m.channel, m.spend, m.rev, m.roas, m.cac, m.newUsers]);
         });
@@ -1690,10 +1635,7 @@
     var btnDlOps = document.getElementById('zrep-dl-operations');
     if (btnDlOps) {
       btnDlOps.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — OPERATIONS & DELIVERY SLA REPORT', new Date().toISOString()],
-          ['Dispatch Hub', 'Orders Dispatched', 'Average Mins', '60-Min SLA Pass', 'Riders Fleet', 'Rating']
-        ];
+        var rows = [];
         D.operationsHubs.forEach(function (o) {
           rows.push([o.hub, o.orders, o.avgMins, o.slaPass, o.activeRiders, o.rating]);
         });
@@ -1705,10 +1647,7 @@
     var btnDlVen = document.getElementById('zrep-dl-vendor');
     if (btnDlVen) {
       btnDlVen.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — VENDOR SCORECARD REPORT', new Date().toISOString()],
-          ['Vendor', 'Category', 'PO Volume', 'Fill Rate', 'OTIF Compliance', 'Rebate']
-        ];
+        var rows = [];
         D.vendors.forEach(function (v) {
           rows.push([v.name, v.category, v.poVolume, v.fillRate, v.otif, v.rebate]);
         });
@@ -1724,39 +1663,6 @@
         var sec = document.getElementById('zrep-dim-secondary') ? document.getElementById('zrep-dim-secondary').value : 'month';
 
         var rows = [];
-        if (prim === 'channel') {
-          rows = [
-            { dim: 'Online App & Web Store', sub: 'Q3 2026', val: '₹8,55,10,000', units: '48,200 orders', metric: '60.3% share' },
-            { dim: 'Veterinary Clinics OPD', sub: 'Q3 2026', val: '₹3,38,50,000', units: '14,850 orders', metric: '23.8% share' },
-            { dim: '60-Minute Tele-Meds', sub: 'Q3 2026', val: '₹1,48,20,000', units: '9,410 orders', metric: '10.5% share' },
-            { dim: 'Corporate B2B Accounts', sub: 'Q3 2026', val: '₹76,25,200', units: '4,550 orders', metric: '5.4% share' }
-          ];
-        } else if (prim === 'doctor') {
-          rows = [
-            { dim: 'Dr. Priya Sharma', sub: 'Chief Surgery', val: '₹48,20,000', units: '1,420 consults', metric: '4.95 Rating' },
-            { dim: 'Dr. Rahul Mehta', sub: 'Orthopedic Vet', val: '₹42,50,000', units: '1,180 consults', metric: '4.92 Rating' },
-            { dim: 'Dr. Aisha Khan', sub: 'Dermatology', val: '₹37,50,000', units: '1,340 consults', metric: '4.89 Rating' }
-          ];
-        } else {
-          rows = [
-            { dim: 'Pet Nutrition & Food', sub: 'Pan-India', val: '₹6,42,80,000', units: '34,200 units', metric: '38.4% Margin' },
-            { dim: 'Prescription Pharmacy', sub: 'Pan-India', val: '₹3,94,20,000', units: '21,800 units', metric: '44.2% Margin' },
-            { dim: 'Clinical Surgery & Care', sub: 'Pan-India', val: '₹2,68,50,000', units: '14,280 units', metric: '58.2% Margin' }
-          ];
-        }
-        S.customQuery.resultRows = rows;
-        showToast('Query executed successfully (' + rows.length + ' rows generated)');
-        switchTab('custom');
-      });
-    }
-
-    var btnExpQuery = document.getElementById('zrep-export-query');
-    if (btnExpQuery) {
-      btnExpQuery.addEventListener('click', function () {
-        var rows = [
-          ['ZENVE BI — AD-HOC CUSTOM QUERY EXPORT', new Date().toISOString()],
-          ['Primary Dimension', 'Secondary Stratification', 'Projected GMV', 'Volume', 'Metric']
-        ];
         if (S.customQuery.resultRows && S.customQuery.resultRows.length > 0) {
           S.customQuery.resultRows.forEach(function (r) {
             rows.push([r.dim, r.sub, r.val, r.units, r.metric]);
@@ -1803,13 +1709,7 @@
         var name = this.getAttribute('data-name');
         var filename = name.toLowerCase().replace(/[^a-z0-9]+/g, '_') + '.csv';
 
-        var rows = [
-          ['ZENVE BI RAW DATASET EXPORT', id, name],
-          ['GENERATED AT', new Date().toISOString()],
-          ['STATUS', 'CONFIDENTIAL & AUDITED'],
-          [],
-          ['Record_ID', 'Entity_Ref', 'Timestamp_IST', 'Category_Domain', 'Metrics_Val', 'Financial_Reconciliation']
-        ];
+        var rows = [];
         for (var i = 1; i <= 25; i++) {
           rows.push([
             id + '-ROW-' + (1000 + i),

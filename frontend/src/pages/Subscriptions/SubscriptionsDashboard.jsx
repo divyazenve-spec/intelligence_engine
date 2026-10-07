@@ -5,13 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function SubscriptionsDashboard() {
   const [filter, setFilter] = useState('ALL');
 
-  const plans = [
-    { id: 'SUB-PLN-101', name: 'Comprehensive Puppy Preventive Care Suite', price: '₹1,499 / mo', activeSubscribers: 184, mrr: '₹2,75,816', renewalRate: '96.2%', churn: '0.8%', benefits: 'Unlimited Vet Consults + Vaccines + Flea/Tick' },
-    { id: 'SUB-PLN-102', name: 'Monthly Nutrition & Prescription Auto-Ship', price: '₹2,850 / mo', activeSubscribers: 142, mrr: '₹4,04,700', renewalRate: '94.5%', churn: '1.2%', benefits: 'Scheduled Royal Canin / Farmina Doorstep' },
-    { id: 'SUB-PLN-103', name: 'Senior Pet Geriatric Vitality & Arthritis Care', price: '₹1,850 / mo', activeSubscribers: 98, mrr: '₹1,81,300', renewalRate: '97.4%', churn: '0.6%', benefits: 'Joint Injections + Monthly Blood Chemistries' },
-    { id: 'SUB-PLN-104', name: 'Feline Holistic Wellness & Grooming Spa Plan', price: '₹1,250 / mo', activeSubscribers: 120, mrr: '₹1,50,000', renewalRate: '93.8%', churn: '1.5%', benefits: 'Deworming + Spa Bath + Dental Cleans' },
-    { id: 'SUB-PLN-105', name: 'Zenve 24x7 Emergency Telehealth Unlimited', price: '₹499 / mo', activeSubscribers: 280, mrr: '₹1,39,720', renewalRate: '91.2%', churn: '2.1%', benefits: 'Instant Video Vet in < 60 seconds' }
-  ];
+  const plans = [];
 
   const filtered = filter === 'ALL' ? plans : plans.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()));
 
@@ -24,7 +18,7 @@ export default function SubscriptionsDashboard() {
       title="Recurring Subscriptions & Pet Wellness Memberships"
       subtitle="Monthly recurring revenue (MRR), automated doorstep auto-shipments, preventive wellness plans, and subscriber cohorts"
       icon="🔄"
-      badge="₹11.5L MRR"
+      badge="₹0 MRR"
       actions={
         <button onClick={() => alert('Creating New Recurring Membership Plan...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #7c3aed', background: 'rgba(124,58,237,0.12)', color: '#6d28d9', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Create Subscription Plan
@@ -32,12 +26,12 @@ export default function SubscriptionsDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Recurring Revenue (MRR)" value="₹11.51 Lakh" delta="+24.8% MoM" trend="up" subtext="Annualized ARR: ₹1.38 Cr" icon="🔄" />
+        <KpiCard label="Monthly Recurring Revenue (MRR)" value="₹0" delta="+24.8% MoM" trend="up" subtext="Annualized ARR: ₹0" icon="🔄" />
         <KpiCard label="Active Paying Subscribers" value="824 Pets" delta="+68 net new this month" trend="up" subtext="Across 5 recurring plans" icon="👥" />
-        <KpiCard label="Subscriber Renewal Rate" value="95.4%" delta="+1.2% improvement" trend="up" subtext="Auto-debit UPI / Cards" icon="🛡️" />
-        <KpiCard label="Gross Monthly Churn" value="1.18%" delta="-0.3% reduction" trend="up" subtext="Industry benchmark 3.5%" icon="📉" />
-        <KpiCard label="Average Revenue Per User (ARPU)" value="₹1,397 / mo" delta="+8.5% YoY" trend="up" subtext="Multi-tier add-ons" icon="💎" />
-        <KpiCard label="Customer Lifetime Value (LTV)" value="₹24,800" delta="17.8 months avg tenure" trend="up" subtext="LTV/CAC ratio: 5.4x" icon="⭐" />
+        <KpiCard label="Subscriber Renewal Rate" value="0.0%" delta="+1.2% improvement" trend="up" subtext="Auto-debit UPI / Cards" icon="🛡️" />
+        <KpiCard label="Gross Monthly Churn" value="0.0%" delta="-0.3% reduction" trend="up" subtext="Industry benchmark 3.5%" icon="📉" />
+        <KpiCard label="Average Revenue Per User (ARPU)" value="₹0 / mo" delta="+8.5% YoY" trend="up" subtext="Multi-tier add-ons" icon="💎" />
+        <KpiCard label="Customer Lifetime Value (LTV)" value="₹0" delta="17.8 months avg tenure" trend="up" subtext="LTV/CAC ratio: 5.4x" icon="⭐" />
       </div>
 
       <div style={card}>

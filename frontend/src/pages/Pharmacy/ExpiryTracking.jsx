@@ -7,15 +7,7 @@ export default function ExpiryTracking() {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState('');
 
-  const expiryBatches = [
-    { batchNo: 'BT-2024-RBS01', sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', vendor: 'Boehringer Ingelheim', exp: '2025-10-15', daysLeft: 10, balance: 24, costValue: 3840, mrpValue: 9120, zone: 'Critical (<30d)', hub: 'Mumbai West', action: 'Supplier Return' },
-    { batchNo: 'BT-2024-CDS01', sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg x30', vendor: 'Zoetis India Pvt Ltd', exp: '2025-10-20', daysLeft: 15, balance: 8, costValue: 10800, mrpValue: 19200, zone: 'Critical (<30d)', hub: 'Bengaluru Central', action: 'Priority Chronic Dispatch' },
-    { batchNo: 'BT-2024-NVD02', sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine', vendor: 'MSD Animal Health', exp: '2025-11-05', daysLeft: 31, balance: 35, costValue: 14700, mrpValue: 33250, zone: 'High (30-60d)', hub: 'Delhi NCR Hub', action: 'Clinic Campaign' },
-    { batchNo: 'BT-2024-MLS01', sku: 'DRG-VET-006', name: 'Malaseb Medicated Shampoo 250ml', vendor: 'Dechra Veterinary', exp: '2025-11-20', daysLeft: 46, balance: 14, costValue: 5460, mrpValue: 10080, zone: 'High (30-60d)', hub: 'Pune Express', action: 'Auto-Discount 30%' },
-    { batchNo: 'BT-2024-DIG03', sku: 'DRG-VET-010', name: 'Himalaya Digyton Plus 200ml', vendor: 'Himalaya Drug Co.', exp: '2025-12-10', daysLeft: 66, balance: 40, costValue: 7800, mrpValue: 15200, zone: 'Medium (60-90d)', hub: 'Hyderabad Center', action: 'Supplier SRA' },
-    { batchNo: 'BT-2025-AMX02', sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', vendor: 'Intas Pharmaceuticals', exp: '2025-12-28', daysLeft: 84, balance: 65, costValue: 13650, mrpValue: 24700, zone: 'Medium (60-90d)', hub: 'Bengaluru Central', action: 'Standard FEFO' },
-    { batchNo: 'BT-2025-BRV01', sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', vendor: 'MSD Animal Health', exp: '2027-02-09', daysLeft: 492, balance: 142, costValue: 173240, mrpValue: 298200, zone: 'Safe (>90d)', hub: 'Bengaluru Central', action: 'Normal Stock' }
-  ];
+  const expiryBatches = [];
 
   const filtered = useMemo(() => {
     return expiryBatches.filter(b => {
@@ -85,12 +77,12 @@ export default function ExpiryTracking() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Near-Expiry Exposure" value="₹48,200" delta="-32% vs last month" trend="up" subtext="Total cost at risk" icon="⏳" />
+        <KpiCard label="Near-Expiry Exposure" value="₹0" delta="-32% vs last month" trend="up" subtext="Total cost at risk" icon="⏳" />
         <KpiCard label="Critical (<30 Days)" value="2 Batches" delta="Immediate action" trend="down" subtext="32 total units" icon="🚨" />
         <KpiCard label="High Alert (30–60 Days)" value="4 Batches" delta="Auto-discount active" trend="neutral" subtext="49 units in buffer" icon="⚠️" />
         <KpiCard label="Medium Alert (60–90 Days)" value="6 Batches" delta="SRA eligible" trend="neutral" subtext="105 units rotating" icon="🟡" />
-        <KpiCard label="Salvage Recovery Rate" value="94.2%" delta="+4.6% YoY" trend="up" subtext="Zero landfill waste" icon="♻️" />
-        <KpiCard label="FEFO Picking Adherence" value="100.0%" delta="System Enforced" trend="up" subtext="Oldest valid batch first" icon="🎯" />
+        <KpiCard label="Salvage Recovery Rate" value="0.0%" delta="+4.6% YoY" trend="up" subtext="Zero landfill waste" icon="♻️" />
+        <KpiCard label="FEFO Picking Adherence" value="0.0%" delta="System Enforced" trend="up" subtext="Oldest valid batch first" icon="🎯" />
       </div>
 
       {/* Expiry Risk Horizons Summary */}
@@ -104,7 +96,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#f87171' }}>Critical Zone (&lt; 30 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(239,68,68,0.2)', color: '#f87171' }}>Action Required</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>2 Batches · ₹14,640 Cost</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>2 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Rabies vaccines & Cardisure. Expedited clinic injection or immediate return.</p>
         </div>
 
@@ -113,7 +105,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#fbbf24' }}>High Alert (30 – 60 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(245,158,11,0.2)', color: '#fbbf24' }}>Auto Discount</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>4 Batches · ₹20,160 Cost</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>4 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Nobivac core vaccines & Malaseb shampoos. Prioritized in 60-min rapid packs.</p>
         </div>
 
@@ -122,7 +114,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#60a5fa' }}>Medium Horizon (60 – 90 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(59,130,246,0.2)', color: '#60a5fa' }}>SRA Window</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>6 Batches · ₹21,450 Cost</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>6 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Eligible for 100% manufacturer credit note if returned within 30 days.</p>
         </div>
       </div>

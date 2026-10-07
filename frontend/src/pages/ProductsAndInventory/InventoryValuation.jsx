@@ -5,22 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function InventoryValuation() {
   const [method, setMethod] = useState('FIFO');
 
-  const categories = [
-    { name: 'Pharmacy & Meds', costVal: '₹54,20,000', retailVal: '₹84,50,000', margin: '35.8%', share: 29.1, color: '#10b981' },
-    { name: 'Clinical Nutrition', costVal: '₹42,80,000', retailVal: '₹68,20,000', margin: '37.2%', share: 23.0, color: '#0ea5e9' },
-    { name: 'Vaccines & Cold Chain', costVal: '₹34,60,000', retailVal: '₹52,40,000', margin: '34.0%', share: 18.5, color: '#8b5cf6' },
-    { name: 'Pet Supplements', costVal: '₹28,40,000', retailVal: '₹46,10,000', margin: '38.4%', share: 15.2, color: '#f59e0b' },
-    { name: 'Pet Gear & Tech', costVal: '₹16,50,000', retailVal: '₹27,80,000', margin: '40.6%', share: 8.8, color: '#ec4899' },
-    { name: 'Fashion & Apparel', costVal: '₹10,00,000', retailVal: '₹15,20,000', margin: '34.2%', share: 5.4, color: '#14b8a6' }
-  ];
+  const categories = [];
 
-  const warehouseVal = [
-    { hub: 'Bengaluru Central Hub', costVal: '₹84,00,000', share: 45.0, units: 8240, manager: 'Ravi Shankar K.' },
-    { hub: 'Mumbai West Fulfillment', costVal: '₹42,00,000', share: 22.5, units: 4120, manager: 'Priya Joshi' },
-    { hub: 'Delhi NCR Hub', costVal: '₹31,00,000', share: 16.6, units: 3180, manager: 'Amit Verma' },
-    { hub: 'Hyderabad Center', costVal: '₹19,50,000', share: 10.5, units: 1940, manager: 'Lakshmi Reddy' },
-    { hub: 'Pune Express Micro-Hub', costVal: '₹11,00,000', share: 5.9, units: 970, manager: 'Sneha Kulkarni' }
-  ];
+  const warehouseVal = [];
 
   return (
     <DashboardLayout
@@ -29,7 +16,7 @@ export default function InventoryValuation() {
       title="Inventory Asset Valuation"
       subtitle="Financial cost-of-goods valuation, gross margin projection, holding carrying costs & aging reserves"
       icon="💎"
-      badge="Asset: ₹1.86 Cr"
+      badge="Asset: ₹0"
       actions={
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '11px', color: '#94a3b8' }}>Valuation Method:</span>
@@ -55,10 +42,10 @@ export default function InventoryValuation() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Stock Cost Value" value="₹1,86,50,000" delta="+4.8% MTD" trend="up" subtext={`Using ${method} valuation`} icon="💰" />
-        <KpiCard label="Projected Retail Value" value="₹2,94,20,000" delta="+5.2%" trend="up" subtext="Current MRP realization" icon="🏷️" />
-        <KpiCard label="Unrealized Gross Margin" value="36.6%" delta="₹1.07 Cr" trend="up" subtext="Embedded profit potential" icon="📈" />
-        <KpiCard label="Annual Carrying Cost" value="14.2%" delta="-0.8%" trend="up" subtext="Holding & storage rate" icon="🛡️" />
+        <KpiCard label="Total Stock Cost Value" value="₹0" delta="+4.8% MTD" trend="up" subtext={`Using ${method} valuation`} icon="💰" />
+        <KpiCard label="Projected Retail Value" value="₹0" delta="0.0%" trend="up" subtext="Current MRP realization" icon="🏷️" />
+        <KpiCard label="Unrealized Gross Margin" value="0.0%" delta="₹0" trend="up" subtext="Embedded profit potential" icon="📈" />
+        <KpiCard label="Annual Carrying Cost" value="0.0%" delta="-0.8%" trend="up" subtext="Holding & storage rate" icon="🛡️" />
       </div>
 
       {/* Valuation Mix by Category & Aging */}
@@ -104,23 +91,23 @@ export default function InventoryValuation() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600 }}>Fresh (0–30 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹1.38 Cr (74%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (74%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Peak turnover velocity</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(14,165,233,0.08)', border: '1px solid rgba(14,165,233,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#0ea5e9', fontWeight: 600 }}>Active (31–60 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹29.8 L (16%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (16%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Normal consumption</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#f59e0b', fontWeight: 600 }}>Slow Moving (61–90d)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹13.0 L (7%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (7%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Review promotional discount</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#ef4444', fontWeight: 600 }}>At Risk (&gt;90 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹5.9 L (3%)</div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Reserve covered: ₹4.8L</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (3%)</div>
+              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Reserve covered: ₹0</div>
             </div>
           </div>
         </div>

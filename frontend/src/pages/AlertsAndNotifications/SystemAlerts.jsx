@@ -3,58 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function SystemAlerts() {
-  const [alerts, setAlerts] = useState([
-    {
-      id: 'SYS-901',
-      title: 'FastAPI Gateway Latency Spike on /api/v1/orders/create',
-      service: 'FastAPI Order Routing Gateway (Uvicorn Workers)',
-      metric: 'P99 Latency: 640ms (Baseline: 45ms)',
-      impact: 'Mobile app checkout spinner showing 1.2s delay for customers',
-      severity: 'Critical',
-      time: '18m ago',
-      status: 'Active'
-    },
-    {
-      id: 'SYS-902',
-      title: 'SQLite Database Write-Lock Contention on zenvebi.db',
-      service: 'Core Persistence Layer (SQLite WAL Mode)',
-      metric: 'Write Lock Queue: 14 concurrent transactions waiting',
-      impact: 'Telemetry ingestion from cold-chain sensors delayed by 8 seconds',
-      severity: 'High Warning',
-      time: '29m ago',
-      status: 'Active'
-    },
-    {
-      id: 'SYS-903',
-      title: 'Google Gemini AI Token Quota Consumption Warning (88%)',
-      service: 'Zenve AI Revenue Intelligence & Executive Briefing Engine',
-      metric: 'Per-minute token consumption at 88% of Tier-3 ceiling',
-      impact: 'Automated revenue anomaly analysis may throttle if traffic surges',
-      severity: 'Warning',
-      time: '45m ago',
-      status: 'Monitoring'
-    },
-    {
-      id: 'SYS-904',
-      title: 'ERP Financial Sync Delay: Tally Prime Connector (2h 15m lag)',
-      service: 'Tally Prime / Zoho Books Gateway',
-      metric: 'Last sync: 2 hours 15 minutes ago (Expected interval: 30 mins)',
-      impact: 'P&L and Accounts Receivable balances not real-time in Executive view',
-      severity: 'Warning',
-      time: '1h ago',
-      status: 'Reconnecting'
-    },
-    {
-      id: 'SYS-905',
-      title: 'Session Memory Cache Utilization Above Warning Threshold (82%)',
-      service: 'In-Memory Cache & WebSocket Feed Node',
-      metric: 'Memory usage: 3.28 GB / 4.00 GB allocation',
-      impact: 'Garbage collection cycles causing micro-jitters on live dispatch board',
-      severity: 'Info',
-      time: '2h ago',
-      status: 'Active'
-    }
-  ]);
+  const [alerts, setAlerts] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -75,7 +24,7 @@ export default function SystemAlerts() {
       title="System Health, API & Infrastructure Alerts"
       subtitle="Monitoring FastAPI latency spikes, SQLite database concurrency locks, Gemini AI quotas, and ERP financial synchronization"
       icon="🖥️"
-      badge="99.92% System Uptime"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button

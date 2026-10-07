@@ -10,13 +10,7 @@ export default function RevenueReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const buData = [
-    { bu: 'Clinical & Surgical Hospitals', lead: 'Dr. Priya Sharma', mtdRev: 4850000, target: 5000000, attainment: 97.0, margin: 42.5, growth: '+21.4%' },
-    { bu: 'Digital Tele-Health & Home Visits', lead: 'Dr. Arvind Swaminathan', mtdRev: 3280000, target: 3400000, attainment: 96.5, margin: 68.0, growth: '+34.2%' },
-    { bu: 'Pharmacy & Cold-Chain Logistics', lead: 'Sneha Patel', mtdRev: 6420000, target: 6200000, attainment: 103.5, margin: 28.4, growth: '+18.9%' },
-    { bu: 'Pet Nutrition & Healthcare Retail', lead: 'Rajesh Verma', mtdRev: 4160000, target: 4500000, attainment: 92.4, margin: 31.2, growth: '+14.6%' },
-    { bu: 'B2B Enterprise & Corporate Wellness', lead: 'Vikram Mehta', mtdRev: 1840000, target: 1800000, attainment: 102.2, margin: 38.0, growth: '+44.0%' }
-  ];
+  const buData = [];
 
   const inr = (n) => '₹' + Number(n).toLocaleString('en-IN');
 
@@ -80,10 +74,10 @@ export default function RevenueReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated Revenue MTD" value="₹2.05 Crores" delta="+24.8% YoY" trend="up" subtext="All 5 business units" icon="💰" />
-        <KpiCard label="Target Attainment" value="98.2%" delta="₹3.6L gap to budget" trend="up" subtext="Month pacing strong" icon="🎯" />
-        <KpiCard label="Blended Gross Margin" value="38.6%" delta="+1.4% margin expansion" trend="up" subtext="Driven by telehealth" icon="📈" />
-        <KpiCard label="Recurring ARR Run-Rate" value="₹4.24 Crores" delta="24% share" trend="up" subtext="Wellness subscriptions" icon="🔄" />
+        <KpiCard label="Consolidated Revenue MTD" value="₹0" delta="+24.8% YoY" trend="up" subtext="All 5 business units" icon="💰" />
+        <KpiCard label="Target Attainment" value="0.0%" delta="₹0 gap to budget" trend="up" subtext="Month pacing strong" icon="🎯" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+1.4% margin expansion" trend="up" subtext="Driven by telehealth" icon="📈" />
+        <KpiCard label="Recurring ARR Run-Rate" value="₹0" delta="24% share" trend="up" subtext="Wellness subscriptions" icon="🔄" />
       </div>
 
       {/* Table Section */}

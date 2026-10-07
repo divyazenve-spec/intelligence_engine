@@ -5,20 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function CostAnalysis() {
   const [costModel, setCostModel] = useState('Activity-Based');
 
-  const activityCosts = [
-    { activity: 'Modular OT Theatre Hour (Anesthesia + Scrub Nurse + Gas)', type: 'Surgical Procedure', unitCost: '₹4,200 / hr', benchmark: '₹5,100 / hr', variance: '-17.6%', efficiency: 'High' },
-    { activity: 'Tertiary Inpatient Care Bed-Day (24h Nursing + Vitals)', type: 'Inpatient Ward', unitCost: '₹1,840 / bed-day', benchmark: '₹2,200 / bed-day', variance: '-16.4%', efficiency: 'High' },
-    { activity: 'Primary Veterinary Outpatient Consultation (18m slot)', type: 'Clinical OPD', unitCost: '₹245 / visit', benchmark: '₹290 / visit', variance: '-15.5%', efficiency: 'High' },
-    { activity: 'In-House Automated Hematology & Biochemistry Assay', type: 'Pathology Lab', unitCost: '₹310 / panel', benchmark: '₹420 / panel', variance: '-26.2%', efficiency: 'Superior' },
-    { activity: 'Cold-Chain Pet Vaccine Administration & Record Sync', type: 'Preventative', unitCost: '₹140 / pet', benchmark: '₹180 / pet', variance: '-22.2%', efficiency: 'High' },
-    { activity: 'ALS Pet Ambulance Emergency Transit (per dispatch)', type: 'Logistics / Fleet', unitCost: '₹1,150 / callout', benchmark: '₹1,400 / callout', variance: '-17.9%', efficiency: 'High' }
-  ];
+  const activityCosts = [];
 
-  const costStructure = [
-    { category: 'Variable Costs (COGS, Meds, Implants, Oxygen, Reagents)', monthlyAmt: '₹36,10,000', pct: '57.6%', behavior: 'Directly scales with patient footfall' },
-    { category: 'Semi-Variable Costs (Surgeon Performance Pay, Utilities)', monthlyAmt: '₹11,40,000', pct: '18.2%', behavior: 'Base fee + per-procedure incentive' },
-    { category: 'Fixed Facility Overhead (Lease Rents, Depreciation, Core Staff)', monthlyAmt: '₹15,20,000', pct: '24.2%', behavior: 'Stable fixed baseline across 14 sites' }
-  ];
+  const costStructure = [];
 
   return (
     <DashboardLayout
@@ -49,12 +38,12 @@ export default function CostAnalysis() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network Monthly Breakeven" value="₹48.20 Lakh" delta="Actual: ₹78.40L" trend="up" subtext="Breakeven reached on Day 18" icon="⚖️" />
-        <KpiCard label="Margin of Safety" value="38.5%" delta="+4.2% pts YoY" trend="up" subtext="Substantial cushion" icon="🛡️" />
-        <KpiCard label="Cost / Inpatient Bed-Day" value="₹1,840" delta="-16.4% vs Industry" trend="up" subtext="Optimized nurse-to-pet ratio" icon="🛏️" />
-        <KpiCard label="Cost / Surgical OT Hour" value="₹4,200 / hr" delta="High throughput" trend="up" subtext="3 Modular OTs" icon="🩺" />
-        <KpiCard label="Fixed Cost Ratio" value="24.2%" delta="Lean real estate" trend="up" subtext="₹15.20 Lakh fixed base" icon="🏢" />
-        <KpiCard label="Variable Cost Ratio" value="57.6%" delta="High elasticity" trend="up" subtext="Low risk capital model" icon="📉" />
+        <KpiCard label="Network Monthly Breakeven" value="₹0" delta="Actual: ₹0" trend="up" subtext="Breakeven reached on Day 18" icon="⚖️" />
+        <KpiCard label="Margin of Safety" value="0.0%" delta="+4.2% pts YoY" trend="up" subtext="Substantial cushion" icon="🛡️" />
+        <KpiCard label="Cost / Inpatient Bed-Day" value="₹0" delta="-16.4% vs Industry" trend="up" subtext="Optimized nurse-to-pet ratio" icon="🛏️" />
+        <KpiCard label="Cost / Surgical OT Hour" value="₹0 / hr" delta="High throughput" trend="up" subtext="3 Modular OTs" icon="🩺" />
+        <KpiCard label="Fixed Cost Ratio" value="0.0%" delta="Lean real estate" trend="up" subtext="₹0 fixed base" icon="🏢" />
+        <KpiCard label="Variable Cost Ratio" value="0.0%" delta="High elasticity" trend="up" subtext="Low risk capital model" icon="📉" />
       </div>
 
       <div style={{

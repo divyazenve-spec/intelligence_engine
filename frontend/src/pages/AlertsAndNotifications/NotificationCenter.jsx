@@ -3,85 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function NotificationCenter() {
-  const [notifications, setNotifications] = useState([
-    {
-      id: 'NOTIF-901',
-      title: 'Emergency P1: Freezer #3 Vaccine Temperature (+8.6°C)',
-      channel: 'WhatsApp & SMS',
-      recipient: 'Sneha Patel (Cold-Chain Head)',
-      time: '12m ago',
-      read: false,
-      severity: 'Critical',
-      body: 'Temperature threshold exceeded in Koramangala Central Depot. 480 doses Zoetis Vanguard at immediate risk.',
-      status: 'Delivered (Read by User)'
-    },
-    {
-      id: 'NOTIF-902',
-      title: '60-Min Express ETA Warning: Order #ZV-98214',
-      channel: 'Rider Push & SMS',
-      recipient: 'Rider Karthik M. & Customer Priya Nair',
-      time: '18m ago',
-      read: false,
-      severity: 'High Warning',
-      body: 'Order elapsed time 52 mins. Silk Board flyover rain slowdown. Live GPS link sent to customer phone.',
-      status: 'Delivered'
-    },
-    {
-      id: 'NOTIF-903',
-      title: 'Prescription Verification Required (28 orders queued)',
-      channel: 'In-App & Slack #pharma-ops',
-      recipient: 'Clinical Duty Pharmacists',
-      time: '34m ago',
-      read: true,
-      severity: 'Warning',
-      body: 'Peak order intake has created a 35-minute verification queue. Schedule-H antibiotic verification pending.',
-      status: 'Acknowledged'
-    },
-    {
-      id: 'NOTIF-904',
-      title: 'Razorpay UPI Webhook Degradation (Error Rate 28.4%)',
-      channel: 'Slack #devops-critical',
-      recipient: 'Arjun Nair & DevOps On-Call',
-      time: '48m ago',
-      read: true,
-      severity: 'Critical',
-      body: '42 refund webhooks failed due to NPCI switch timeout. Automatic fallback to Cashfree queue engaged.',
-      status: 'Resolved'
-    },
-    {
-      id: 'NOTIF-905',
-      title: 'B2B Invoice Overdue Notice: PetCare Clinic Network',
-      channel: 'Email & WhatsApp Dunning',
-      recipient: 'Dr. Ramesh Rao (Clinic Owner)',
-      time: '2h ago',
-      read: false,
-      severity: 'Warning',
-      body: 'Invoice #INV-2024-8841 for ₹1,20,000 has crossed 30 days. Auto-payment link generated.',
-      status: 'Delivered'
-    },
-    {
-      id: 'NOTIF-906',
-      title: 'Low Stock Auto-Replenishment Triggered: Bravecto Chewables',
-      channel: 'Email PO',
-      recipient: 'Procurement & Boehringer Ingelheim Rep',
-      time: '4h ago',
-      read: true,
-      severity: 'Info',
-      body: 'Stock dropped below 40 units in Indiranagar dark store. Automated PO #PO-8812 sent for 100 units.',
-      status: 'Delivered (PO Confirmed)'
-    },
-    {
-      id: 'NOTIF-907',
-      title: 'Executive Daily Revenue Pacing Briefing Ready',
-      channel: 'In-App Feed',
-      recipient: 'Executive Leadership',
-      time: '6h ago',
-      read: true,
-      severity: 'Info',
-      body: 'Today GMV pacing at ₹28.4L (94.2% of target). Top category: Pet Nutrition (34%).',
-      status: 'Delivered'
-    }
-  ]);
+  const [notifications, setNotifications] = useState([]);
 
   const [activeFilter, setActiveFilter] = useState('all');
   const [search, setSearch] = useState('');
@@ -189,7 +111,7 @@ export default function NotificationCenter() {
         />
         <KpiCard
           label="WhatsApp Business Delivery"
-          value="99.9%"
+          value="0.0%"
           delta="DLT & Meta Green Tier"
           trend="up"
           subtext="Gupshup Cloud API"

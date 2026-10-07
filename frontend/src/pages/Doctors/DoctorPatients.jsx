@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DoctorPatients() {
-  const patientLogs = [
-    { petName: 'Leo (Golden Retriever)', parent: 'Vikram Malhotra', doctor: 'Dr. Divya Ramesh', condition: 'Cruciate Ligament Post-Op', date: '2026-10-05', status: 'Recovering', followUp: '2026-10-12', clinic: 'Indiranagar Flagship' },
-    { petName: 'Milo (Persian Cat)', parent: 'Priya Iyer', doctor: 'Dr. Arvind Swaminathan', condition: 'Hypertrophic Cardiomyopathy (HCM)', date: '2026-10-04', status: 'Stable on Meds', followUp: '2026-10-18', clinic: 'Koramangala Trauma' },
-    { petName: 'Bruno (Rottweiler)', parent: 'Rahul Sen', doctor: 'Dr. Meera Nambiar', condition: 'Hip Dysplasia & Spinal Physio', date: '2026-10-04', status: 'In Rehab', followUp: '2026-10-11', clinic: 'Whitefield Specialty' },
-    { petName: 'Bella (Beagle Pup)', parent: 'Sneha Kulkarni', doctor: 'Dr. Siddharth Varma', condition: 'DHPPi Core Vaccination & Deworming', date: '2026-10-03', status: 'Completed', followUp: '2026-11-03', clinic: 'Jayanagar Wellness' },
-    { petName: 'Simba (Maine Coon)', parent: 'Anand Verma', doctor: 'Dr. Ananya Joshi', condition: 'Atopic Dermatitis & Ear Cytology', date: '2026-10-02', status: 'Improving', followUp: '2026-10-16', clinic: 'HSR Layout Clinic' },
-    { petName: 'Coco (African Grey Parrot)', parent: 'Dr. N. Roy', doctor: 'Dr. Rohan Deshmukh', condition: 'Beak Trimming & Vitamin Deficit', date: '2026-10-01', status: 'Healthy', followUp: '2026-12-01', clinic: 'Indiranagar Flagship' }
-  ];
+  const patientLogs = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -21,13 +14,13 @@ export default function DoctorPatients() {
       title="Doctor Patients & Treatment Logs"
       subtitle="Outpatient records, clinical case histories, diagnoses, and scheduled medical follow-ups"
       icon="🐾"
-      badge="2,148 Active Patients"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Patient Caseload" value="2,148 Pets" delta="+18.4% MTD" trend="up" subtext="Under active care" icon="🐾" />
-        <KpiCard label="Repeat Pet Consults" value="74.2%" delta="High physician trust" trend="up" subtext="Return visit rate" icon="🔄" />
+        <KpiCard label="Repeat Pet Consults" value="0.0%" delta="High physician trust" trend="up" subtext="Return visit rate" icon="🔄" />
         <KpiCard label="Chronic Care Monitored" value="482 Pets" delta="Cardiac, renal, ortho" trend="neutral" subtext="Regular maintenance" icon="🩺" />
-        <KpiCard label="Follow-Up Adherence" value="91.8%" delta="+3.4% vs benchmark" trend="up" subtext="Automated reminder sync" icon="📅" />
+        <KpiCard label="Follow-Up Adherence" value="0.0%" delta="+3.4% vs benchmark" trend="up" subtext="Automated reminder sync" icon="📅" />
       </div>
 
       <div style={cardStyle}>

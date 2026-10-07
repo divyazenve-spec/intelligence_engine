@@ -44,71 +44,19 @@
   ];
 
   /* ── Datasets ─────────────────────────────────────────────────── */
-  var FACILITIES = [
-    { id: 'FAC-01', name: 'Zenve Hospital Koramangala (24x7)', type: 'Tertiary Care Center', city: 'Bengaluru', beds: '28 / 32 Beds', ot: '88% OT Utilized', rev: '₹14.20 L', status: 'Operational', lead: 'Dr. Priya Sharma, MVSc Surgery' },
-    { id: 'FAC-02', name: 'Zenve Multi-Specialty Bandra', type: '24x7 Surgical Hospital', city: 'Mumbai', beds: '22 / 24 Beds', ot: '92% OT Utilized', rev: '₹11.85 L', status: 'Operational', lead: 'Dr. Rahul Mehta, MVSc Neuro' },
-    { id: 'FAC-03', name: 'Zenve Animal Hospital Okhla', type: 'Tertiary Referral Center', city: 'Delhi NCR', beds: '18 / 20 Beds', ot: '84% OT Utilized', rev: '₹9.40 L', status: 'Operational', lead: 'Dr. Aisha Khan, MVSc Oncology' },
-    { id: 'FAC-04', name: 'Zenve Care Center Indiranagar', type: 'Primary OPD & Diagnostics', city: 'Bengaluru', beds: 'Daycare & HDU (4 Beds)', ot: 'Minor OT Ready', rev: '₹5.60 L', status: 'Operational', lead: 'Dr. Arun V., BVSc' },
-    { id: 'FAC-05', name: 'Zenve Jubilee Hills Specialty', type: 'Secondary Care Clinic', city: 'Hyderabad', beds: '8 / 10 Beds', ot: '75% OT Utilized', rev: '₹4.80 L', status: 'Operational', lead: 'Dr. Lakshmi Reddy, MVSc' },
-    { id: 'FAC-06', name: 'Zenve Koregaon Park Clinic', type: 'Daycare & Wellness Center', city: 'Pune', beds: '6 Daycare Bays', ot: 'Minor OT Ready', rev: '₹3.20 L', status: 'Operational', lead: 'Dr. Nitin Deshmukh, BVSc' },
-    { id: 'FAC-07', name: 'Zenve Jayanagar OPD & Daycare', type: 'Primary Outpatient Center', city: 'Bengaluru', beds: '6 Daycare Bays', ot: 'Dental & Minor Suite', rev: '₹4.10 L', status: 'Operational', lead: 'Dr. Preethi Rao, BVSc' },
-    { id: 'FAC-08', name: 'Zenve Andheri West Express', type: 'Primary Express Clinic', city: 'Mumbai', beds: '4 Daycare Pods', ot: 'Diagnostics & Triage', rev: '₹3.80 L', status: 'Operational', lead: 'Dr. Rohit Sen, BVSc' },
-    { id: 'FAC-09', name: 'Zenve Gurgaon Sector 29 Clinic', type: 'Secondary Care Clinic', city: 'Delhi NCR', beds: '8 Beds (2 HDU)', ot: '1 Full OT', rev: '₹4.60 L', status: 'Operational', lead: 'Dr. Ajay Verma, MVSc' },
-    { id: 'FAC-10', name: 'Zenve Whitefield Tech Hub Clinic', type: 'Primary Express Clinic', city: 'Bengaluru', beds: '4 Daycare Pods', ot: 'Preventive Suite', rev: '₹3.90 L', status: 'Operational', lead: 'Dr. Sneha Nair, BVSc' }
-  ];
+  var FACILITIES = [];
 
-  var LIVE_ADMISSIONS = [
-    { id: 'ADM-9024', pet: 'Max (Golden Retriever, 34kg)', reason: 'Gastric Dilatation-Volvulus (GDV Surgery)', facility: 'Koramangala 24x7', doctor: 'Dr. Priya Sharma', bed: 'ICU-02', status: 'In Surgery', time: '14 mins ago' },
-    { id: 'ADM-9023', pet: 'Mia (Persian Cat, 3.6kg)', reason: 'Acute Feline Lower Urinary Tract (FLUTD)', facility: 'Bandra Specialty', doctor: 'Dr. Rahul Mehta', bed: 'Feline HDU-04', status: 'Admitted', time: '35 mins ago' },
-    { id: 'ADM-9022', pet: 'Rocky (Rottweiler, 42kg)', reason: 'Tibial Plateau Leveling Osteotomy (TPLO)', facility: 'Delhi NCR Hospital', doctor: 'Dr. Aisha Khan', bed: 'Post-Op Ward 1', status: 'Post-Op Recovery', time: '1.2 hrs ago' },
-    { id: 'ADM-9021', pet: 'Leo (Beagle, 14kg)', reason: 'Parvovirus Enteritis Protocol', facility: 'Koramangala 24x7', doctor: 'Dr. Arun V.', bed: 'Isolation Bay 3', status: 'Stable', time: '2.5 hrs ago' },
-    { id: 'ADM-9020', pet: 'Chloe (Shih Tzu, 5.8kg)', reason: 'Severe Corneal Ulcer & Debridement', facility: 'Jubilee Hills Clinic', doctor: 'Dr. Lakshmi Reddy', bed: 'Daycare Bed 2', status: 'Discharge Ready', time: '3.1 hrs ago' }
-  ];
+  var LIVE_ADMISSIONS = [];
 
-  var INPATIENTS = [
-    { id: 'PAT-1081', pet: 'Bruno (Labrador, 32kg)', owner: 'Vikram Seth', admitDate: '03 Oct 2026', facility: 'Koramangala 24x7', bed: 'ICU Pod 01', dx: 'Acute Pancreatitis & Sepsis', doc: 'Dr. Priya Sharma', vitals: 'Temp 101.4°F, SpO2 98%', status: 'Critical / Intensive' },
-    { id: 'PAT-1082', pet: 'Simba (Domestic Shorthair, 4.2kg)', owner: 'Ananya Roy', admitDate: '04 Oct 2026', facility: 'Bandra Specialty', bed: 'Cat Ward 03', dx: 'Hepatic Lipidosis & Jaundice', doc: 'Dr. Rahul Mehta', vitals: 'Temp 100.8°F, Feeding Tube', status: 'Stable / Monitoring' },
-    { id: 'PAT-1083', pet: 'Zoe (German Shepherd, 28kg)', owner: 'Capt. R. Malhotra', admitDate: '02 Oct 2026', facility: 'Delhi NCR Hospital', bed: 'Ortho Recovery 02', dx: 'Spinal Decompression Hemilaminectomy', doc: 'Dr. Aisha Khan', vitals: 'Motor reflex returning', status: 'Post-Op Rehab' },
-    { id: 'PAT-1084', pet: 'Coco (Pug, 8.5kg)', owner: 'Meera Nambiar', admitDate: '04 Oct 2026', facility: 'Indiranagar Care', bed: 'Daycare Bay 01', dx: 'BOAS Stenotic Nares Resection', doc: 'Dr. Arun V.', vitals: 'Normal breathing recovery', status: 'Discharge Today' },
-    { id: 'PAT-1085', pet: 'Tyson (Pitbull Terrier, 36kg)', owner: 'Karan Johar', admitDate: '01 Oct 2026', facility: 'Koramangala 24x7', bed: 'Isolation 02', dx: 'Leptospirosis Renal Failure', doc: 'Dr. Priya Sharma', vitals: 'Peritoneal Dialysis Day 4', status: 'High Care HDU' }
-  ];
+  var INPATIENTS = [];
 
-  var DOCTORS = [
-    { id: 'DOC-01', name: 'Dr. Priya Sharma', qual: 'B.V.Sc & A.H, M.V.Sc (Vet Surgery & Radiology)', vci: 'VCI-KAR-2018-842', spec: 'Orthopedics & TPLO Surgeon', base: 'Koramangala 24x7', shift: 'Morning (08:00 – 16:00)', consults: 412, surgeries: 48, csat: '4.96 ★', status: 'On Duty', bio: 'Gold medalist in Small Animal Orthopedic Surgery. Pioneer in canine cruciate ligament repairs (TPLO/CTWO) and fracture stabilization.' },
-    { id: 'DOC-02', name: 'Dr. Rahul Mehta', qual: 'B.V.Sc & A.H, M.V.Sc (Small Animal Surgery)', vci: 'VCI-MAH-2015-110', spec: 'Orthopedics & Neurosurgery', base: 'Bandra Specialty', shift: 'Operating Day (09:00 – 17:00)', consults: 365, surgeries: 34, csat: '4.94 ★', status: 'In Surgery', bio: 'Specialist in spinal cord decompressive hemilaminectomy and complex canine neurological disorders.' },
-    { id: 'DOC-03', name: 'Dr. Aisha Khan', qual: 'B.V.Sc & A.H, PhD (Veterinary Oncology)', vci: 'VCI-DEL-2019-304', spec: 'Medical & Surgical Oncology', base: 'Okhla Animal Hospital', shift: 'Chemotherapy Rounds', consults: 340, surgeries: 38, csat: '4.98 ★', status: 'On Duty', bio: 'Expert in canine mast cell tumors, lymphoma protocol optimization, and reconstructive surgical oncology.' },
-    { id: 'DOC-04', name: 'Dr. Arun V.', qual: 'B.V.Sc & A.H, PG Dip Ultrasound', vci: 'VCI-KAR-2020-112', spec: 'Internal Medicine & Critical Care', base: 'Care Center Indiranagar', shift: 'General Consultations', consults: 380, surgeries: 12, csat: '4.94 ★', status: 'On Duty', bio: 'Advanced ultrasonography, echocardiography, and emergency feline medicine specialist.' },
-    { id: 'DOC-05', name: 'Dr. Lakshmi Reddy', qual: 'B.V.Sc & A.H, M.V.Sc (Veterinary Medicine)', vci: 'VCI-TEL-2017-488', spec: 'Feline Specialist & Nephrology', base: 'Jubilee Hills Specialty', shift: 'Morning (09:00 – 17:00)', consults: 310, surgeries: 16, csat: '4.93 ★', status: 'On Duty', bio: 'Dedicated cat-friendly certified veterinarian. Special focus on chronic kidney disease (CKD) and diabetes mellitus management.' },
-    { id: 'DOC-06', name: 'Dr. Sneha Kulkarni', qual: 'B.V.Sc & A.H, M.V.Sc (Surgery)', vci: 'VCI-MAH-2018-902', spec: 'Minimally Invasive Laparoscopy', base: 'Koregaon Park Clinic', shift: 'Evening (13:00 – 21:00)', consults: 290, surgeries: 22, csat: '4.88 ★', status: 'Off Duty', bio: 'Pioneered keyhole laparoscopic spays and gastropexy in companion animals with zero surgical complications.' },
-    { id: 'DOC-07', name: 'Dr. Karan Patel', qual: 'B.V.Sc & A.H, PG Cert (Ophthalmology)', vci: 'VCI-GUJ-2020-512', spec: 'Ophthalmology & Corneal Repair', base: 'Bandra Specialty', shift: 'Morning (09:00 – 17:00)', consults: 260, surgeries: 28, csat: '4.92 ★', status: 'On Duty', bio: 'Phacoemulsification cataract extraction, corneal grafting, and glaucoma drainage implants.' },
-    { id: 'DOC-08', name: 'Dr. Neha Singh', qual: 'B.V.Sc & A.H, M.V.Sc (Cardiology)', vci: 'VCI-DEL-2021-940', spec: 'Cardiovascular Medicine', base: 'Okhla Animal Hospital', shift: 'Cardiac Clinic', consults: 240, surgeries: 8, csat: '4.95 ★', status: 'On Duty', bio: 'Management of dilated cardiomyopathy (DCM) and myxomatous mitral valve disease in canines.' },
-    { id: 'DOC-09', name: 'Dr. Vikram Malhotra', qual: 'B.V.Sc & A.H, Cert. Emergency Care', vci: 'VCI-KAR-2019-332', spec: 'Emergency & Critical Care (ECC)', base: 'Koramangala 24x7', shift: 'Night Emergency (20:00 – 08:00)', consults: 430, surgeries: 42, csat: '4.97 ★', status: 'On Call', bio: 'Trauma resuscitation, mechanical ventilation, and GDV emergency derotation specialist.' },
-    { id: 'DOC-10', name: 'Dr. Preethi Rao', qual: 'B.V.Sc & A.H, Cert. Exotics', vci: 'VCI-KAR-2022-771', spec: 'Avian & Exotic Pet Medicine', base: 'Care Center Indiranagar', shift: 'Daycare Schedule', consults: 210, surgeries: 14, csat: '4.91 ★', status: 'On Duty', bio: 'Specialized healthcare for avian species, small mammals, reptiles, and rabbits.' }
-  ];
+  var DOCTORS = [];
 
-  var CLINIC_ORDERS = [
-    { po: 'PO-CLIN-4081', facility: 'Koramangala 24x7', item: 'Titanium TPLO Plates & Locking Screws (Synthes)', vendor: 'Depuy Synthes Vet', qty: '12 Kits', cost: '₹1,44,000', status: 'Approved / Inbound', priority: 'High' },
-    { po: 'PO-CLIN-4082', facility: 'Bandra Specialty', item: 'Sevoflurane Inhalation Anesthetic 250ml', vendor: 'Abbott Healthcare', qty: '8 Bottles', cost: '₹68,000', status: 'Dispatched', priority: 'Critical' },
-    { po: 'PO-CLIN-4083', facility: 'Okhla Animal Hospital', item: 'Medical Oxygen Cylinders (D-Type Bulk 47L)', vendor: 'BOC Linde India', qty: '15 Cylinders', cost: '₹28,500', status: 'Delivered', priority: 'Routine' },
-    { po: 'PO-CLIN-4084', facility: 'Indiranagar Care Center', item: 'Disposable Surgical Drape & Gown Packs', vendor: 'Medline Veterinary', qty: '200 Sets', cost: '₹42,000', status: 'Pending Approval', priority: 'Medium' },
-    { po: 'PO-CLIN-4085', facility: 'Jubilee Hills Specialty', item: 'Endotracheal Tubes (Cuffed, 3.0mm–10.0mm)', vendor: 'Rusch Vet Line', qty: '50 Pcs', cost: '₹18,500', status: 'Delivered', priority: 'Routine' }
-  ];
+  var CLINIC_ORDERS = [];
 
-  var COMMISSIONS = [
-    { id: 'COMM-801', partner: 'Paws & Claws Pet Clinic, HSR', type: 'B2B Partner Clinic', cases: 14, val: '₹3,40,000', rate: '10%', comm: '₹34,000', tds: '₹3,400', net: '₹30,600', status: 'Approved' },
-    { id: 'COMM-802', partner: 'Dr. Verma Ultrasound Lab, Andheri', type: 'Diagnostic Center', cases: 22, val: '₹1,85,000', rate: '12%', comm: '₹22,200', tds: '₹2,220', net: '₹19,980', status: 'Paid' },
-    { id: 'COMM-803', partner: 'Metro Pet Care, Vasant Kunj', type: 'Referring Vet Practice', cases: 9, val: '₹2,90,000', rate: '10%', comm: '₹29,000', tds: '₹2,900', net: '₹26,100', status: 'Approved' },
-    { id: 'COMM-804', partner: 'Canine Care Center, Secunderabad', type: 'Emergency Referral Partner', cases: 18, val: '₹4,10,000', rate: '10%', comm: '₹41,000', tds: '₹4,100', net: '₹36,900', status: 'Pending Review' },
-    { id: 'COMM-805', partner: 'Dr. Sharad Oak (Visiting Ortho)', type: 'Consultant Surgeon', cases: 6, val: '₹2,60,000', rate: '35%', comm: '₹91,000', tds: '₹9,100', net: '₹81,900', status: 'Paid' }
-  ];
+  var COMMISSIONS = [];
 
-  var AMBULANCE_FLEET = [
-    { id: 'AMB-01', vehicle: 'Force Traveller ALS-1', base: 'Koramangala 24x7', city: 'Bengaluru', medic: 'Vet Nurse Suresh', equipment: 'Portable Ventilator, O2, Syringe Pump', status: 'On Active Transit', eta: '8 mins' },
-    { id: 'AMB-02', vehicle: 'Force Traveller ALS-2', base: 'Koramangala 24x7', city: 'Bengaluru', medic: 'Vet Nurse Preethi', equipment: 'O2, Portable USG, Vital Monitor', status: 'Stationed / Ready', eta: 'Immediate' },
-    { id: 'AMB-03', vehicle: 'Force Traveller ALS-3', base: 'Bandra Specialty', city: 'Mumbai', medic: 'Vet Nurse Rohit', equipment: 'Ventilator, O2, Infusion Pumps, ICU Cage', status: 'On Emergency Call', eta: '12 mins' },
-    { id: 'AMB-04', vehicle: 'Tata Winger ALS-5', base: 'Okhla Animal Hospital', city: 'Delhi NCR', medic: 'Vet Nurse Ajay', equipment: 'Full Trauma Kit, O2, Blood Warmer', status: 'Dispatched', eta: '16 mins' },
-    { id: 'AMB-05', vehicle: 'Maruti Eeco Mobile-7', base: 'Jubilee Hills Clinic', city: 'Hyderabad', medic: 'Vet Tech Venu', equipment: 'Basic Life Support, O2 Cylinder, Triage Kit', status: 'Stationed / Ready', eta: 'Immediate' }
-  ];
+  var AMBULANCE_FLEET = [];
 
   /* ── State ─────────────────────────────────────────────────────── */
   var S = {

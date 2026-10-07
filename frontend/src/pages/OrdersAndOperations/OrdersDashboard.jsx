@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function OrdersDashboard() {
-  const orders = [
-    { id: 'ORD-9821', customer: 'Kavita Menon', items: 'Royal Canin (3kg) + Bravecto', amount: '₹3,400', status: 'Delivered', time: '42 mins' },
-    { id: 'ORD-9820', customer: 'Aditya Birla', items: 'Vet Consultation + Antibiotics', amount: '₹2,100', status: 'In Transit', time: '18 mins' },
-    { id: 'ORD-9819', customer: 'Sneha Rao', items: 'Canine Core Vaccines (Pack of 2)', amount: '₹1,950', status: 'Processing', time: '8 mins' },
-    { id: 'ORD-9818', customer: 'Vikram Joshi', items: 'NexGard Spectra + Chew Sticks', amount: '₹2,800', status: 'Delivered', time: '35 mins' }
-  ];
+  const orders = [];
 
   return (
     <DashboardLayout
@@ -17,13 +12,13 @@ export default function OrdersDashboard() {
       title="Fulfillment & Operations Control"
       subtitle="Rapid delivery SLA monitoring, dispatch status, returns, and order workflows"
       icon="🚚"
-      badge="94.2% On-Time"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Orders" value="148" delta="Today" trend="neutral" subtext="In flight" icon="📦" />
-        <KpiCard label="Avg Delivery Time" value="38 mins" delta="Under 60m" trend="up" subtext="SLA met" icon="⚡" />
-        <KpiCard label="Delivered Today" value="584" delta="+14.2%" trend="up" subtext="98.5% success" icon="✅" />
-        <KpiCard label="Return / Refund Rate" value="2.1%" delta="Low" trend="up" subtext="Below 3% threshold" icon="🛡️" />
+        <KpiCard label="Active Orders" value="0" delta="Today" trend="neutral" subtext="In flight" icon="📦" />
+        <KpiCard label="Avg Delivery Time" value="0" delta="Under 60m" trend="up" subtext="SLA met" icon="⚡" />
+        <KpiCard label="Delivered Today" value="0" delta="0.0%" trend="up" subtext="98.5% success" icon="✅" />
+        <KpiCard label="Return / Refund Rate" value="0.0%" delta="Low" trend="up" subtext="Below 3% threshold" icon="🛡️" />
       </div>
 
       <div style={{

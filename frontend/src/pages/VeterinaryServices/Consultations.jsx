@@ -6,16 +6,7 @@ export default function Consultations() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const consultations = [
-    { id: 'CNS-8801', pet: 'Bruno (Golden Retriever)', parent: 'Vikram Singhania', doctor: 'Dr. Priya Sharma', specialty: 'General Medicine', mode: 'In-Clinic', complaint: 'Acute gastroenteritis, persistent vomiting', vitals: 'Temp: 39.1°C, Wt: 32kg', diagnosis: 'Dietary Indiscretion (Mild Enteritis)', fee: '₹950', status: 'Completed', time: '09:30 AM' },
-    { id: 'CNS-8802', pet: 'Milo (Persian Cat)', parent: 'Ananya Deshmukh', doctor: 'Dr. Aisha Khan', specialty: 'Feline Medicine', mode: 'Video Telehealth', complaint: 'Lethargy, reduced water intake, squinting', vitals: 'Wt: 4.1kg, Age: 3y', diagnosis: 'Early Feline Lower Urinary Tract (FLUTD)', fee: '₹750', status: 'In Consultation', time: '10:15 AM' },
-    { id: 'CNS-8803', pet: 'Rocky (German Shepherd)', parent: 'Rohan Mehta', doctor: 'Dr. Rahul Mehta', specialty: 'Orthopedics', mode: 'In-Clinic', complaint: 'Right hind leg lameness post-run', vitals: 'Temp: 38.6°C, Wt: 38kg', diagnosis: 'Cranial Cruciate Ligament (CCL) Partial Tear', fee: '₹1,400', status: 'Completed', time: '11:00 AM' },
-    { id: 'CNS-8804', pet: 'Simba (Beagle)', parent: 'Pooja Nair', doctor: 'Dr. Karan Patel', specialty: 'Dermatology', mode: 'In-Clinic', complaint: 'Severe pruritus, bilateral ear discharge', vitals: 'Temp: 38.8°C, Wt: 14kg', diagnosis: 'Malassezia Otitis Externa & Atopy', fee: '₹1,100', status: 'Waiting in Triage', time: '11:45 AM' },
-    { id: 'CNS-8805', pet: 'Bella (Shih Tzu)', parent: 'Kavita Rao', doctor: 'Dr. Neha Singh', specialty: 'Cardiology', mode: 'In-Clinic', complaint: 'Chronic dry hacking cough, tachypnea', vitals: 'Temp: 38.4°C, HR: 160bpm', diagnosis: 'Stage B2 Mitral Valve Disease (MMVD)', fee: '₹1,800', status: 'Completed', time: '12:30 PM' },
-    { id: 'CNS-8806', pet: 'Leo (Indie Pup)', parent: 'Sameer Joshi', doctor: 'Dr. Priya Sharma', specialty: 'Pediatrics & Neonatal', mode: 'Home Visit', complaint: 'General wellness checkup, deworming', vitals: 'Temp: 38.5°C, Wt: 6.2kg', diagnosis: 'Healthy Puppy Routine Check', fee: '₹1,250', status: 'Scheduled', time: '02:00 PM' },
-    { id: 'CNS-8807', pet: 'Oreo (Domestic Shorthair)', parent: 'Farhan Akhtar', doctor: 'Dr. Aisha Khan', specialty: 'Dental & Oral', mode: 'In-Clinic', complaint: 'Halitosis, pawing at mouth, anorexia', vitals: 'Temp: 38.9°C, Wt: 3.8kg', diagnosis: 'Grade 3 Periodontitis, Subgingival Calculus', fee: '₹1,150', status: 'Scheduled', time: '03:15 PM' },
-    { id: 'CNS-8808', pet: 'Max (Labrador)', parent: 'Siddharth Roy', doctor: 'Dr. Rahul Mehta', specialty: 'Emergency / Triage', mode: 'In-Clinic', complaint: 'Suspected chocolate toxicity (dark chocolate)', vitals: 'Temp: 39.4°C, HR: 175bpm', diagnosis: 'Theobromine Toxicosis (Stat Induction)', fee: '₹2,200', status: 'Under Observation', time: '04:00 PM' }
-  ];
+  const consultations = [];
 
   const filtered = consultations.filter(c => {
     const matchesFilter = filter === 'ALL' || c.mode === filter || c.status === filter;
@@ -34,7 +25,7 @@ export default function Consultations() {
       title="Clinical Consultations & Patient Triage"
       subtitle="In-clinic visits, video telehealth consults, chief complaints, diagnostic triage, and attending veterinarian assignments"
       icon="🩺"
-      badge="48 Consultations Today"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           {['ALL', 'In-Clinic', 'Video Telehealth', 'Home Visit', 'Completed', 'Under Observation'].map(f => (
@@ -60,7 +51,7 @@ export default function Consultations() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Consultations Today" value="48 Cases" delta="+14.2% vs yesterday" trend="up" subtext="34 In-Clinic • 11 Video • 3 Home" icon="🩺" />
-        <KpiCard label="Avg Consultation Duration" value="24.6 mins" delta="High patient care" trend="up" subtext="Benchmark: 20 mins" icon="⏱️" />
+        <KpiCard label="Avg Consultation Duration" value="0" delta="High patient care" trend="up" subtext="Benchmark: 20 mins" icon="⏱️" />
         <KpiCard label="Active Triage Queue" value="4 Patients" delta="Avg wait: 8 mins" trend="up" subtext="Zero critical wait time" icon="🏥" />
         <KpiCard label="Consultation CSAT" value="4.94 / 5" delta="98.8% Positive" trend="up" subtext="Based on 412 verified ratings" icon="⭐" />
       </div>

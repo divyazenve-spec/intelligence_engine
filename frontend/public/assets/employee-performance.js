@@ -8,16 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var performers = [
-    { name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', score: 98.4, rating: 'Exceptional (5★)', cases: '342 Consults', csat: '4.95 / 5.0', sla: '99.4%', status: 'Appraised' },
-    { name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', score: 96.8, rating: 'Exceptional (5★)', cases: '24 Releases', csat: '4.90 / 5.0', sla: '98.5%', status: 'Appraised' },
-    { name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', score: 95.2, rating: 'Exceeds (4★)', cases: '298 Consults', csat: '4.88 / 5.0', sla: '97.8%', status: 'Appraised' },
-    { name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', score: 94.6, rating: 'Exceeds (4★)', cases: '612 Deliveries', csat: '4.92 / 5.0', sla: '98.9%', status: 'Appraised' },
-    { name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', score: 93.8, rating: 'Exceeds (4★)', cases: '1,420 Rx', csat: '4.82 / 5.0', sla: '99.1%', status: 'Appraised' },
-    { name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', score: 91.5, rating: 'Meets (3★)', cases: '890 Tickets', csat: '4.75 / 5.0', sla: '94.2%', status: 'Pending Review' },
-    { name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', score: 89.2, rating: 'Meets (3★)', cases: '12k SKUs', csat: '4.68 / 5.0', sla: '95.0%', status: 'Appraised' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', score: 87.0, rating: 'Meets (3★)', cases: 'Audit Run', csat: '4.60 / 5.0', sla: '93.4%', status: 'Under Review' }
-  ];
+  var performers = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

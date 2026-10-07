@@ -18,22 +18,11 @@
   };
 
   /* Monthly revenue targets (editable) */
-  var MONTHLY_TARGETS = {
-    'Jan': 2200000, 'Feb': 2400000, 'Mar': 2800000, 'Apr': 2600000,
-    'May': 2900000, 'Jun': 3100000, 'Jul': 3300000, 'Aug': 3500000,
-    'Sep': 3800000, 'Oct': 4200000, 'Nov': 4800000, 'Dec': 5500000,
-  };
+  var MONTHLY_TARGETS = {};
 
   /* Team members with targets */
-  var TEAM = [
-    { id: 'T1', av: 'PS', name: 'Dr. Priya Sharma',     dept: 'Clinical Ops',       target: 1200000 },
-    { id: 'T2', av: 'RV', name: 'Rajesh Verma',          dept: 'Patient Services',   target: 850000  },
-    { id: 'T3', av: 'AD', name: 'Ananya Deshmukh',       dept: 'Outpatient Care',    target: 980000  },
-    { id: 'T4', av: 'VM', name: 'Vikram Mehta',          dept: 'Diagnostics & Lab',  target: 720000  },
-    { id: 'T5', av: 'SP', name: 'Sneha Patel',           dept: 'Pharmacy & Wellness',target: 640000  },
-    { id: 'T6', av: 'AN', name: 'Arjun Nair',            dept: 'Telehealth',         target: 760000  },
-  ];
-  var OVERALL_TARGET_MONTHLY = 5150000;
+  var TEAM = [];
+  var OVERALL_TARGET_MONTHLY = 0;
 
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 

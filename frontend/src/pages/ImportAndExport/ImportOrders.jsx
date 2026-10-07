@@ -5,13 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function ImportOrders() {
   const [filter, setFilter] = useState('ALL');
 
-  const orders = [
-    { po: 'IPO-2026-081', supplier: 'Royal Canin SAS (France)', goods: 'Gastrointestinal & Hepatic Diet Pallets', val: '€52,000 (~₹46.8L)', terms: 'CIF Nhava Sheva (LC 60D)', orderDate: '2026-09-12', deliveryEta: '2026-10-06', status: 'Port Inspection' },
-    { po: 'IPO-2026-082', supplier: 'MSD Animal Health (Germany)', goods: 'Bravecto Chewable Dog Fluralaner', val: '$41,000 (~₹34.4L)', terms: 'CIP Bengaluru Airport', orderDate: '2026-09-18', deliveryEta: '2026-10-05', status: 'Customs Clearance' },
-    { po: 'IPO-2026-083', supplier: 'Guccio Leather Atelier (Italy)', goods: 'Tuscan Full Grain Nappa Hides (Grade A)', val: '€16,500 (~₹14.8L)', terms: 'FOB Genoa (Air)', orderDate: '2026-09-24', deliveryEta: '2026-10-09', status: 'In Transit' },
-    { po: 'IPO-2026-084', supplier: 'Zoetis Global LLC (USA)', goods: 'Revolution Plus Spot-On Feline Solution', val: '$68,000 (~₹57.1L)', terms: 'CIF Nhava Sheva (LC 90D)', orderDate: '2026-09-05', deliveryEta: '2026-10-14', status: 'Vessel on High Seas' },
-    { po: 'IPO-2026-085', supplier: 'Midmark Veterinary (USA)', goods: 'Digital Dental X-Ray & Anesthesia Station', val: '$28,000 (~₹23.5L)', terms: 'CIP Mumbai Air Cargo', orderDate: '2026-09-20', deliveryEta: '2026-10-04', status: 'Delivered to Central Hub' }
-  ];
+  const orders = [];
 
   const filtered = filter === 'ALL' ? orders : orders.filter(o => o.status.toLowerCase().includes(filter.toLowerCase()));
 
@@ -24,12 +18,12 @@ export default function ImportOrders() {
       title="International Purchase Orders (IPO) & LC Pipeline"
       subtitle="Cross-border procurement orders, commercial proforma invoices, forex hedging contracts, and port ETA milestones"
       icon="📑"
-      badge="₹1.76 Cr Inbound Orders"
+      badge="₹0 Inbound Orders"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Open Import POs" value="5 Consignments" delta="€68.5K + $137K" trend="up" subtext="Inbound cross-border" icon="📑" />
         <KpiCard label="Average Lead Time" value="28 Days" delta="-4 days via Air freight" trend="up" subtext="Factory dispatch to hub" icon="⏱️" />
-        <KpiCard label="Forex Hedging Coverage" value="92.5%" delta="Forward contracts locked" trend="up" subtext="Protected vs USD/EUR surge" icon="🔒" />
+        <KpiCard label="Forex Hedging Coverage" value="0.0%" delta="Forward contracts locked" trend="up" subtext="Protected vs USD/EUR surge" icon="🔒" />
         <KpiCard label="Port Demurrage Incidents" value="0 Days" delta="Direct Port Delivery (DPD)" trend="up" subtext="Zero port detention penalty" icon="⚡" />
       </div>
 

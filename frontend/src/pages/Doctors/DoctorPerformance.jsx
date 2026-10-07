@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function DoctorPerformance() {
-  const performanceRoster = [
-    { name: 'Dr. Divya Ramesh', spec: 'Lead Surgeon', consultTarget: 220, consultActual: 242, attainment: '110%', nps: 98, waitTime: '6 min', surgSuccess: '99.8%', grade: 'A+' },
-    { name: 'Dr. Arvind Swaminathan', spec: 'Cardiology', consultTarget: 180, consultActual: 188, attainment: '104%', nps: 96, waitTime: '9 min', surgSuccess: '99.2%', grade: 'A+' },
-    { name: 'Dr. Meera Nambiar', spec: 'Neurology', consultTarget: 170, consultActual: 174, attainment: '102%', nps: 95, waitTime: '8 min', surgSuccess: '99.4%', grade: 'A' },
-    { name: 'Dr. Siddharth Varma', spec: 'Pediatrics', consultTarget: 200, consultActual: 215, attainment: '107%', nps: 94, waitTime: '5 min', surgSuccess: '100%', grade: 'A+' },
-    { name: 'Dr. Ananya Joshi', spec: 'Dermatology', consultTarget: 160, consultActual: 164, attainment: '102%', nps: 92, waitTime: '11 min', surgSuccess: 'N/A', grade: 'A' },
-    { name: 'Dr. Rohan Deshmukh', spec: 'Exotics', consultTarget: 130, consultActual: 132, attainment: '101%', nps: 96, waitTime: '7 min', surgSuccess: '99.0%', grade: 'A' }
-  ];
+  const performanceRoster = [];
 
   const cardStyle = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -21,13 +14,13 @@ export default function DoctorPerformance() {
       title="Doctor Clinical Performance & Quota Attainment"
       subtitle="Physician consultation benchmarks, Net Promoter Scores (NPS), patient wait times, and clinical outcomes"
       icon="⭐"
-      badge="105.2% Avg Attainment"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Quota Attainment" value="105.2%" delta="+4.2% vs target" trend="up" subtext="All practitioners above goal" icon="🎯" />
+        <KpiCard label="Overall Quota Attainment" value="0.0%" delta="+4.2% vs target" trend="up" subtext="All practitioners above goal" icon="🎯" />
         <KpiCard label="Clinical Net Promoter Score" value="95.4 NPS" delta="+3 pts MoM" trend="up" subtext="Based on 1,420 pet parent reviews" icon="⭐" />
-        <KpiCard label="Avg. Consultation Wait Time" value="7.6 mins" delta="-2.1 mins YoY" trend="up" subtext="Strict appointment pacing" icon="⏱️" />
-        <KpiCard label="Overall Surgical Success" value="99.5%" delta="Zero critical incidents" trend="up" subtext="NABH protocol compliant" icon="🛡️" />
+        <KpiCard label="Avg. Consultation Wait Time" value="0" delta="-2.1 mins YoY" trend="up" subtext="Strict appointment pacing" icon="⏱️" />
+        <KpiCard label="Overall Surgical Success" value="0.0%" delta="Zero critical incidents" trend="up" subtext="NABH protocol compliant" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>

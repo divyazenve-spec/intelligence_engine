@@ -5,18 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function OnlineFashionSales() {
   const [selectedChannel, setSelectedChannel] = useState('ALL');
 
-  const channels = [
-    { channel: 'Zenve iOS Luxury App', sessions: '48,200', aov: '₹3,840', orders: 342, revenue: '₹13,13,280', convRate: '3.42%', share: '46.2%' },
-    { channel: 'Zenve Android App', sessions: '36,500', aov: '₹3,120', orders: 254, revenue: '₹7,92,480', convRate: '2.85%', share: '27.9%' },
-    { channel: 'Mobile Responsive Web', sessions: '22,400', aov: '₹2,680', orders: 118, revenue: '₹3,16,240', convRate: '2.10%', share: '11.1%' },
-    { channel: 'Instagram Shop & Social Drops', sessions: '18,900', aov: '₹3,450', orders: 122, revenue: '₹4,20,900', convRate: '2.95%', share: '14.8%' }
-  ];
+  const channels = [];
 
-  const onlineDrops = [
-    { dropName: 'Monsoon Canine Splash Capsule', releaseDate: '2026-08-15', itemsOffered: 'Parkas, Waterproof Boots, Drying Robes', sellThrough: '92.4%', revenue: '₹8,45,000', stockoutDays: '14 days', status: 'Completed' },
-    { dropName: 'Royal Velvet Festive Collection', releaseDate: '2026-09-20', itemsOffered: 'Zari Collars, Brocade Bandanas, Tuxedos', sellThrough: '78.5%', revenue: '₹12,40,000', stockoutDays: 'Active Drop', status: 'Live' },
-    { dropName: 'Alpine Cashmere Winter Preview', releaseDate: '2026-10-01', itemsOffered: 'Cable Knit Sweaters, Thermal Vests', sellThrough: '44.8%', revenue: '₹5,18,000', stockoutDays: 'Active Drop', status: 'Live' }
-  ];
+  const onlineDrops = [];
 
   const filtered = channels.filter(c => {
     if (selectedChannel !== 'ALL' && c.channel !== selectedChannel) return false;
@@ -40,10 +31,10 @@ export default function OnlineFashionSales() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Online Fashion Revenue" value="₹28.42 L" delta="+38.2% YoY" trend="up" subtext="iOS, Android & Social Shop" icon="📱" />
+        <KpiCard label="Online Fashion Revenue" value="₹0" delta="+38.2% YoY" trend="up" subtext="iOS, Android & Social Shop" icon="📱" />
         <KpiCard label="Online Orders (MTD)" value="836 Orders" delta="+21.5% MoM" trend="up" subtext="Average 1.8 items per cart" icon="🛍️" />
-        <KpiCard label="Average Online AOV" value="₹3,399" delta="+₹420 vs FY25" trend="up" subtext="Accessory add-on bundle" icon="💳" />
-        <KpiCard label="E-Commerce Conversion" value="3.02%" delta="+0.45% MoM" trend="up" subtext="Industry benchmark 1.8%" icon="⚡" />
+        <KpiCard label="Average Online AOV" value="₹0" delta="+₹0 FY25" trend="up" subtext="Accessory add-on bundle" icon="💳" />
+        <KpiCard label="E-Commerce Conversion" value="0.0%" delta="+0.45% MoM" trend="up" subtext="Industry benchmark 1.8%" icon="⚡" />
         <KpiCard label="3D AI Pet Sizing Assist" value="78.4% Adoption" delta="3,210 scans completed" trend="up" subtext="Camera dimension scan" icon="📐" />
         <KpiCard label="60-Min Rush Delivery" value="42.8% of Orders" delta="Metro hub express" trend="up" subtext="Same-day party wear" icon="🚀" />
       </div>

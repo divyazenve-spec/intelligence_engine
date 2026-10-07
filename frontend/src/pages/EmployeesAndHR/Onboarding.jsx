@@ -5,23 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function Onboarding() {
   const [selectedCohort, setSelectedCohort] = useState('October 2026');
 
-  const recruits = [
-    { name: 'Dr. Aakash Roy', role: 'Veterinary Radiologist', dept: 'Clinical', joinDate: '01 Oct 2026', buddy: 'Dr. Priya Sharma', bvg: 'Verified ✅', itHardware: 'MacBook Pro Provisioned', medicalLicense: 'Verified (VCI)', completion: 85, status: 'In Progress' },
-    { name: 'Sneha Chawla', role: 'Senior React / AI Eng', dept: 'Technology', joinDate: '28 Sep 2026', buddy: 'Sameer Kulkarni', bvg: 'Verified ✅', itHardware: 'Laptop & Keys Issued', medicalLicense: 'N/A', completion: 92, status: 'Near Complete' },
-    { name: 'Manish Rawat', role: 'Fleet Lead Rider', dept: 'Logistics', joinDate: '25 Sep 2026', buddy: 'Vikram Joshi', bvg: 'Verified ✅', itHardware: 'Smart POS & Uniform', medicalLicense: 'DL Verified', completion: 100, status: 'Completed' },
-    { name: 'Divya Sundaram', role: 'Clinical Pharmacist', dept: 'Pharmacy', joinDate: '22 Sep 2026', buddy: 'Rohan Deshmukh', bvg: 'Verified ✅', itHardware: 'ERP / POS Creds', medicalLicense: 'Pharmacy Reg Validated', completion: 100, status: 'Completed' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', joinDate: '18 Sep 2026', buddy: 'Ananya Verma', bvg: 'Verified ✅', itHardware: 'Barcode Scanner & ID', medicalLicense: 'N/A', completion: 100, status: 'Completed' },
-    { name: 'Tanya Bhalla', role: 'Tele-Support Specialist', dept: 'Customer Delight', joinDate: '05 Oct 2026', buddy: 'Pooja Hegde', bvg: 'In Progress ⏳', itHardware: 'Headset & CRM Assigned', medicalLicense: 'N/A', completion: 45, status: 'Day 1 Roster' }
-  ];
+  const recruits = [];
 
-  const checklistItems = [
-    { title: 'Identity & Address KYC Verification (Aadhaar / PAN / Voter ID)', progress: '100% Verified' },
-    { title: 'Medical License & Veterinary Registration Council Audit', progress: '100% Compliant' },
-    { title: 'Criminal Background Verification (Third-party SpringVerify)', progress: '96% Completed' },
-    { title: 'Corporate Laptop, Security YubiKey & VPN Setup', progress: '98% Provisioned' },
-    { title: 'POS / ERP / Hospital Telemetry Access Granting', progress: '95% Configured' },
-    { title: 'Zenve Clinical Standards & SOP Induction Training', progress: '90% Completed' }
-  ];
+  const checklistItems = [];
 
   return (
     <DashboardLayout
@@ -30,14 +16,14 @@ export default function Onboarding() {
       title="New Hire Onboarding & Day-1 Readiness"
       subtitle="Recruit integration journeys, hardware provisioning, background checks, medical council verification, and buddy assignments"
       icon="🐣"
-      badge="6 Recent Joiners · 94% SLA Adherence"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Onboarding Cohort" value="6 Personnel" delta="Joined within 30 days" trend="neutral" subtext="Clinical, tech & operations" icon="👥" />
-        <KpiCard label="Average Day-1 Readiness" value="98.5%" delta="Hardware & logins live" trend="up" subtext="Zero downtime on joining day" icon="💻" />
+        <KpiCard label="Average Day-1 Readiness" value="0.0%" delta="Hardware & logins live" trend="up" subtext="Zero downtime on joining day" icon="💻" />
         <KpiCard label="Background Checks (BGV)" value="100% Clear" delta="Zero adverse flags" trend="up" subtext="SpringVerify certified" icon="🛡️" />
-        <KpiCard label="Buddy Allocation Rate" value="100%" delta="1:1 senior mentor assigned" trend="up" subtext="Accelerates time-to-productivity" icon="🤝" />
+        <KpiCard label="Buddy Allocation Rate" value="0.0%" delta="1:1 senior mentor assigned" trend="up" subtext="Accelerates time-to-productivity" icon="🤝" />
       </div>
 
       {/* Onboarding Recruits Table */}

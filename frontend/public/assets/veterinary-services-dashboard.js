@@ -29,76 +29,21 @@
   var root = null;
 
   /* ── Master Mock Clinical Datasets ────────────────────────────────── */
-  var CONSULTATIONS = [
-    { id: 'CNS-8801', pet: 'Bruno (Golden Retriever)', parent: 'Vikram Singhania', doctor: 'Dr. Priya Sharma', specialty: 'General Medicine', mode: 'In-Clinic', diagnosis: 'Dietary Indiscretion (Enteritis)', fee: '₹950', status: 'Completed', time: '09:30 AM' },
-    { id: 'CNS-8802', pet: 'Milo (Persian Cat)', parent: 'Ananya Deshmukh', doctor: 'Dr. Aisha Khan', specialty: 'Feline Medicine', mode: 'Video Telehealth', diagnosis: 'Early Feline Lower Urinary (FLUTD)', fee: '₹750', status: 'In Consultation', time: '10:15 AM' },
-    { id: 'CNS-8803', pet: 'Rocky (German Shepherd)', parent: 'Rohan Mehta', doctor: 'Dr. Rahul Mehta', specialty: 'Orthopedics', mode: 'In-Clinic', diagnosis: 'CCL Partial Ligament Tear', fee: '₹1,400', status: 'Completed', time: '11:00 AM' },
-    { id: 'CNS-8804', pet: 'Simba (Beagle)', parent: 'Pooja Nair', doctor: 'Dr. Karan Patel', specialty: 'Dermatology', mode: 'In-Clinic', diagnosis: 'Malassezia Otitis Externa & Atopy', fee: '₹1,100', status: 'Waiting in Triage', time: '11:45 AM' },
-    { id: 'CNS-8805', pet: 'Bella (Shih Tzu)', parent: 'Kavita Rao', doctor: 'Dr. Neha Singh', specialty: 'Cardiology', mode: 'In-Clinic', diagnosis: 'Stage B2 Mitral Valve Disease', fee: '₹1,800', status: 'Completed', time: '12:30 PM' },
-    { id: 'CNS-8806', pet: 'Leo (Indie Pup)', parent: 'Sameer Joshi', doctor: 'Dr. Priya Sharma', specialty: 'Pediatrics', mode: 'Home Visit', diagnosis: 'Puppy Wellness Exam & Deworm', fee: '₹1,250', status: 'Scheduled', time: '02:00 PM' },
-    { id: 'CNS-8807', pet: 'Oreo (Domestic Shorthair)', parent: 'Farhan Akhtar', doctor: 'Dr. Aisha Khan', specialty: 'Dental / Oral', mode: 'In-Clinic', diagnosis: 'Grade 3 Periodontitis & Calculus', fee: '₹1,150', status: 'Scheduled', time: '03:15 PM' },
-    { id: 'CNS-8808', pet: 'Max (Labrador)', parent: 'Siddharth Roy', doctor: 'Dr. Rahul Mehta', specialty: 'Emergency / Triage', mode: 'In-Clinic', diagnosis: 'Theobromine Toxicity (Stat Care)', fee: '₹2,200', status: 'Under Observation', time: '04:00 PM' }
-  ];
+  var CONSULTATIONS = [];
 
-  var APPOINTMENTS = [
-    { id: 'APT-1041', time: '09:00 AM', pet: 'Koko (Pug)', parent: 'Ramesh Sundaram', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Annual Check & Rabies Booster', type: 'Scheduled App', status: 'Confirmed' },
-    { id: 'APT-1042', time: '09:30 AM', pet: 'Ginger (Tabby Cat)', parent: 'Meera Sen', doctor: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', service: 'Senior Feline Renal Profile', type: 'Scheduled App', status: 'In Session' },
-    { id: 'APT-1043', time: '10:00 AM', pet: 'Thor (Rottweiler)', parent: 'Deepak Varma', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Pre-Op Orthopedic Radiography', type: 'Referral', status: 'Arrived' },
-    { id: 'APT-1044', time: '10:30 AM', pet: 'Daisy (Lhasa Apso)', parent: 'Nandita Bose', doctor: 'Dr. Karan Patel', clinic: 'Bandra West Super-Clinic', service: 'Cytology & Medicated Bath', type: 'Walk-In Priority', status: 'Confirmed' },
-    { id: 'APT-1045', time: '11:15 AM', pet: 'Whiskey (Golden Ret)', parent: 'Amitabh Sen', doctor: 'Dr. Neha Singh', clinic: 'Gurugram Central Hospital', service: 'Echocardiogram & ECG Review', type: 'Scheduled App', status: 'Confirmed' },
-    { id: 'APT-1046', time: '12:00 PM', pet: 'Snowy (Maltese)', parent: 'Preeti Chawla', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Puppy Booster & Microchip', type: 'Scheduled App', status: 'Scheduled' },
-    { id: 'APT-1047', time: '01:30 PM', pet: 'Rocky (Doberman)', parent: 'Kabir Bakshi', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Post-Surgical Suture Removal', type: 'Follow-Up', status: 'Scheduled' }
-  ];
+  var APPOINTMENTS = [];
 
-  var TREATMENTS = [
-    { id: 'TRT-401', pet: 'Casper (Husky)', parent: 'Aditya Oberoi', ward: 'Critical ICU Ward', vet: 'Dr. Neha Singh', protocol: 'Severe Heatstroke & Hyperthermia', days: 2, progress: '78%', status: 'Guarded Progress' },
-    { id: 'TRT-402', pet: 'Simba (Persian Cat)', parent: 'Rashmi Sen', ward: 'Feline Special Ward', vet: 'Dr. Aisha Khan', protocol: 'FLUTD Post-Catheterization Care', days: 3, progress: '92%', status: 'Discharge Ready' },
-    { id: 'TRT-403', pet: 'Shadow (Labrador)', parent: 'Manish Tiwari', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'Hemilaminectomy Spinal Rehab', days: 4, progress: '65%', status: 'Stable Recovery' },
-    { id: 'TRT-404', pet: 'Ginger (Golden Ret)', parent: 'Sunita Menon', ward: 'Medical Ward A', vet: 'Dr. Priya Sharma', protocol: 'Canine Parvovirus Fluid Resuscitation', days: 5, progress: '88%', status: 'Stable Recovery' },
-    { id: 'TRT-405', pet: 'Coco (Frenchie)', parent: 'Varun Grover', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'BOAS Staphylectomy Airway Post-Op', days: 1, progress: '70%', status: 'Under Observation' }
-  ];
+  var TREATMENTS = [];
 
-  var VACCINATIONS = [
-    { id: 'VAC-991', pet: 'Cooper (Golden Ret)', species: 'Canine', vaccine: 'Nobivac DHPPi + L4 (9-in-1 Core)', batch: 'NBV-2026-X81', date: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Priya Sharma', temp: '3.4°C', cert: 'Issued' },
-    { id: 'VAC-992', pet: 'Luna (Persian Cat)', species: 'Feline', vaccine: 'Felocell 4 (FVRCP Core)', batch: 'ZTS-9410-F2', date: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Aisha Khan', temp: '3.8°C', cert: 'Issued' },
-    { id: 'VAC-993', pet: 'Rocky (Rottweiler)', species: 'Canine', vaccine: 'Defensor 3 (Anti-Rabies Core)', batch: 'DEF-8820-R1', date: '04 Oct 2026', nextDue: '04 Oct 2029', vet: 'Dr. Rahul Mehta', temp: '4.1°C', cert: 'Issued' },
-    { id: 'VAC-994', pet: 'Bella (Shih Tzu Pup)', species: 'Canine', vaccine: 'Nobivac Puppy DP First Shot', batch: 'NBV-7714-P0', date: '04 Oct 2026', nextDue: '25 Oct 2026', vet: 'Dr. Priya Sharma', temp: '3.2°C', cert: 'Scheduled' },
-    { id: 'VAC-995', pet: 'Simba (British Cat)', species: 'Feline', vaccine: 'Rabisin (Inactivated Rabies)', batch: 'BOE-6102-RB', date: '03 Oct 2026', nextDue: '03 Oct 2027', vet: 'Dr. Aisha Khan', temp: '3.6°C', cert: 'Issued' }
-  ];
+  var VACCINATIONS = [];
 
-  var DIAGNOSTICS = [
-    { id: 'LAB-5101', pet: 'Oscar (Beagle)', test: '18-Parameter Biochemistry + Electrolytes', modality: 'Biochemistry', vet: 'Dr. Priya Sharma', tat: '45 mins', flag: 'High BUN / Creatinine', status: 'Result Ready' },
-    { id: 'LAB-5102', pet: 'Bella (Persian Cat)', test: 'Digital Abdominal Ultrasonography (Doppler)', modality: 'Ultrasound', vet: 'Dr. Aisha Khan', tat: '30 mins', flag: 'Bilateral Renal Cysts', status: 'Report Signed' },
-    { id: 'LAB-5103', pet: 'Max (German Shep)', test: 'Orthopedic Digital Radiography (Stifle / Hip)', modality: 'Digital X-Ray', vet: 'Dr. Rahul Mehta', tat: '20 mins', flag: 'Joint Effusion & Osteophytes', status: 'Report Signed' },
-    { id: 'LAB-5104', pet: 'Simba (Golden Ret)', test: 'Complete Blood Count (CBC) with Reticulocytes', modality: 'Hematology', vet: 'Dr. Karan Patel', tat: '25 mins', flag: 'Leukocytosis (WBC 22.4K)', status: 'Result Ready' },
-    { id: 'LAB-5105', pet: 'Milo (Indie Pup)', test: 'CPV / CCV Antigen Rapid Fluorescence Immunoassay', modality: 'Pathogen PCR', vet: 'Dr. Priya Sharma', tat: '15 mins', flag: 'Parvovirus Negative', status: 'Result Ready' }
-  ];
+  var DIAGNOSTICS = [];
 
-  var PROCEDURES = [
-    { id: 'SUR-701', patient: 'Thor (Rottweiler)', procedure: 'TPLO Left Stifle Reconstruction', theater: 'OT 1 (Orthopedic Suite)', surgeon: 'Dr. Rahul Mehta', duration: '95 mins', anesthesia: 'Isoflurane + Epidural', status: 'Completed' },
-    { id: 'SUR-702', patient: 'Daisy (Lhasa Apso)', procedure: 'Full Mouth Dental Prophylaxis & Polish', theater: 'Dental OT', surgeon: 'Dr. Priya Sharma', duration: '50 mins', anesthesia: 'Propofol Induction', status: 'Completed' },
-    { id: 'SUR-703', patient: 'Coco (Frenchie)', procedure: 'BOAS Corrective Staphylectomy', theater: 'OT 2 (Soft Tissue)', surgeon: 'Dr. Rahul Mehta', duration: '75 mins', anesthesia: 'Sevoflurane + Block', status: 'In Procedure' },
-    { id: 'SUR-704', patient: 'Cleo (Persian Cat)', procedure: 'Laparoscopic Assisted Ovariohysterectomy', theater: 'OT 2 (Soft Tissue)', surgeon: 'Dr. Aisha Khan', duration: '40 mins', anesthesia: 'Alfaxalone + Iso', status: 'Prep / Induction' },
-    { id: 'SUR-705', patient: 'Simba (Golden Pup)', procedure: 'Endoscopic Foreign Body Retrieval', theater: 'Endoscopy OT', surgeon: 'Dr. Priya Sharma', duration: '45 mins', anesthesia: 'Propofol TIVA', status: 'Scheduled' }
-  ];
+  var PROCEDURES = [];
 
-  var REVENUE_DATA = [
-    { specialty: 'Orthopedic & Soft Tissue Surgery', rev: '₹4,85,000', cases: 38, aov: '₹12,763', share: '32.4%', margin: '72.0%' },
-    { specialty: 'Outpatient Clinical Consultations', rev: '₹3,42,000', cases: 342, aov: '₹1,000', share: '22.8%', margin: '84.0%' },
-    { specialty: 'Laboratory Pathology & Diagnostics', rev: '₹2,68,000', cases: 214, aov: '₹1,252', share: '17.9%', margin: '68.5%' },
-    { specialty: 'Cardiology & Diagnostic Ultrasound', rev: '₹1,84,000', cases: 68, aov: '₹2,705', share: '12.3%', margin: '74.2%' },
-    { specialty: 'Dentistry & Ultrasonic Scaling', rev: '₹1,22,000', cases: 46, aov: '₹2,652', share: '8.1%', margin: '78.0%' },
-    { specialty: 'Vaccinations & Biologicals', rev: '₹98,000', cases: 142, aov: '₹690', share: '6.5%', margin: '58.0%' }
-  ];
+  var REVENUE_DATA = [];
 
-  var PROFIT_DATA = [
-    { service: 'Outpatient Consultations', rev: '₹3,42,000', cogs: '₹54,720', profit: '₹2,87,280', margin: '84.0%', tier: 'Highest Margin' },
-    { service: 'Dental & Oral Surgery', rev: '₹1,22,000', cogs: '₹26,840', profit: '₹95,160', margin: '78.0%', tier: 'High Margin' },
-    { service: 'Cardiology & Diagnostic Ultrasound', rev: '₹1,84,000', cogs: '₹47,472', profit: '₹1,36,528', margin: '74.2%', tier: 'High Margin' },
-    { service: 'Orthopedic & Soft Tissue Surgery', rev: '₹4,85,000', cogs: '₹1,35,800', profit: '₹3,49,200', margin: '72.0%', tier: 'High Absolute EBITDA' },
-    { service: 'In-House Laboratory Diagnostics', rev: '₹2,68,000', cogs: '₹84,420', profit: '₹1,83,580', margin: '68.5%', tier: 'Steady Margin' },
-    { service: 'Vaccinations & Biologicals', rev: '₹98,000', cogs: '₹41,160', profit: '₹56,840', margin: '58.0%', tier: 'Retention Anchor' }
-  ];
+  var PROFIT_DATA = [];
 
   /* ── Tab Helpers ──────────────────────────────────────────────────── */
   function tabFromText(t) {

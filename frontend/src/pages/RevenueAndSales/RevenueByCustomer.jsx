@@ -3,14 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByCustomer() {
-  const customers = [
-    { name: 'Kavita Menon', city: 'Bengaluru', pet: 'Golden Retriever (Bruno)', spend: '₹42,800', orders: 18, aov: '₹2,377', tier: 'Diamond' },
-    { name: 'Aditya Birla', city: 'Mumbai', pet: 'German Shepherd (Max)', spend: '₹38,400', orders: 14, aov: '₹2,742', tier: 'Diamond' },
-    { name: 'Sneha Rao', city: 'Bengaluru', pet: 'Beagle (Daisy)', spend: '₹31,200', orders: 12, aov: '₹2,600', tier: 'Gold' },
-    { name: 'Vikram Joshi', city: 'Delhi NCR', pet: 'Labrador (Cooper)', spend: '₹28,500', orders: 11, aov: '₹2,590', tier: 'Gold' },
-    { name: 'Pooja Hegde', city: 'Chennai', pet: 'Persian Cat (Simba)', spend: '₹24,900', orders: 9, aov: '₹2,766', tier: 'Gold' },
-    { name: 'Rohan Deshmukh', city: 'Pune', pet: 'Shih Tzu (Coco)', spend: '₹19,800', orders: 8, aov: '₹2,475', tier: 'Silver' }
-  ];
+  const customers = [];
 
   return (
     <DashboardLayout
@@ -22,10 +15,10 @@ export default function RevenueByCustomer() {
       badge="Top Clients"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Client Spend" value="₹42,800" delta="18 orders" trend="up" subtext="Diamond Tier" icon="💎" />
-        <KpiCard label="Avg Lifetime Value" value="₹12,480" delta="+18.4%" trend="up" subtext="Per active parent" icon="📈" />
-        <KpiCard label="Repeat Customer Rate" value="68.4%" delta="+4.2%" trend="up" subtext="Multi-order loyalty" icon="🔁" />
-        <KpiCard label="Loyalty Tier Members" value="482" delta="Tiered base" trend="neutral" subtext="Diamond/Gold/Silver" icon="🏅" />
+        <KpiCard label="Top Client Spend" value="₹0" delta="18 orders" trend="up" subtext="Diamond Tier" icon="💎" />
+        <KpiCard label="Avg Lifetime Value" value="₹0" delta="0.0%" trend="up" subtext="Per active parent" icon="📈" />
+        <KpiCard label="Repeat Customer Rate" value="0.0%" delta="0.0%" trend="up" subtext="Multi-order loyalty" icon="🔁" />
+        <KpiCard label="Loyalty Tier Members" value="0" delta="Tiered base" trend="neutral" subtext="Diamond/Gold/Silver" icon="🏅" />
       </div>
 
       <div style={{

@@ -12,40 +12,13 @@ export default function HRDashboard() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showReqModal, setShowReqModal] = useState(false);
 
-  const deptHeadcounts = [
-    { name: 'Veterinary Clinical Services', count: 48, lead: 'Dr. Priya Sharma (CMO)', budget: '₹42,00,000', color: '#10b981', attendance: '97.2%', vacancies: 5 },
-    { name: 'Pharmacy & Drug Dispensing', count: 32, lead: 'Rohan Deshmukh (Head Pharmacist)', budget: '₹22,50,000', color: '#0ea5e9', attendance: '98.1%', vacancies: 3 },
-    { name: 'Logistics & 60-Min Delivery', count: 54, lead: 'Vikram Joshi (Fleet Lead)', budget: '₹28,80,000', color: '#f59e0b', attendance: '94.8%', vacancies: 8 },
-    { name: 'Warehouse & Fulfillment', count: 28, lead: 'Ananya Verma (Ops Manager)', budget: '₹18,40,000', color: '#8b5cf6', attendance: '96.4%', vacancies: 2 },
-    { name: 'Technology & AI Engineering', count: 24, lead: 'Sameer Kulkarni (VP Tech)', budget: '₹38,00,000', color: '#ec4899', attendance: '98.5%', vacancies: 4 },
-    { name: 'Customer Delight & Support', count: 22, lead: 'Pooja Hegde (CX Lead)', budget: '₹14,20,000', color: '#14b8a6', attendance: '95.6%', vacancies: 3 }
-  ];
+  const deptHeadcounts = [];
 
-  const [employees, setEmployees] = useState([
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', loc: 'Bengaluru Flagship', email: 'priya.s@zenve.in', phone: '+91 98450 11201', joined: '15 Jan 2023', status: 'Active', salary: '₹2,40,000/mo', rating: '5.0★' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', loc: 'Mumbai Center', email: 'rahul.m@zenve.in', phone: '+91 98200 44312', joined: '10 Mar 2023', status: 'Active', salary: '₹1,95,000/mo', rating: '4.9★' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', loc: 'Bengaluru Hub', email: 'rohan.d@zenve.in', phone: '+91 97401 88392', joined: '01 Jun 2023', status: 'Active', salary: '₹1,45,000/mo', rating: '4.8★' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', loc: 'Remote / HQ', email: 'sneha.c@zenve.in', phone: '+91 99102 77314', joined: '28 Sep 2026', status: 'Probation', salary: '₹1,80,000/mo', rating: '4.9★' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet & Logistics Lead', dept: 'Logistics', loc: 'Bengaluru South', email: 'vikram.j@zenve.in', phone: '+91 98860 12093', joined: '12 Aug 2023', status: 'Active', salary: '₹95,000/mo', rating: '4.7★' },
-    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', loc: 'Bhiwandi Hub', email: 'ananya.v@zenve.in', phone: '+91 98211 40592', joined: '05 Feb 2024', status: 'Active', salary: '₹1,10,000/mo', rating: '4.8★' },
-    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', loc: 'Mumbai Bandra', email: 'manish.r@zenve.in', phone: '+91 98330 67123', joined: '25 Sep 2026', status: 'Active', salary: '₹32,000/mo', rating: '4.9★' },
-    { id: 'EMP-1008', name: 'Dr. Aisha Khan', role: 'Consultant Dermatologist', dept: 'Clinical', loc: 'Delhi NCR Clinic', email: 'aisha.k@zenve.in', phone: '+91 98110 55421', joined: '14 Apr 2024', status: 'On Leave', salary: '₹1,15,000/mo', rating: '4.8★' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', loc: 'Bengaluru HQ', email: 'pooja.h@zenve.in', phone: '+91 99001 22894', joined: '01 Nov 2023', status: 'Active', salary: '₹75,000/mo', rating: '4.7★' },
-    { id: 'EMP-1010', name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', loc: 'Bengaluru Hub', email: 'kunal.s@zenve.in', phone: '+91 96190 33412', joined: '18 Sep 2026', status: 'Active', salary: '₹65,000/mo', rating: '4.6★' }
-  ]);
+  const [employees, setEmployees] = useState([]);
 
-  const [leaveRequests, setLeaveRequests] = useState([
-    { id: 'LR-8041', name: 'Dr. Aisha Khan', role: 'Vet Dermatologist', type: 'Sick Leave', dates: '05 Oct – 08 Oct', status: 'Pending', bal: '8 SL left' },
-    { id: 'LR-8042', name: 'Kunal Sen', role: 'Inventory Controller', type: 'PTO Vacation', dates: '12 Oct – 16 Oct', status: 'Pending', bal: '12 PTO left' },
-    { id: 'LR-8043', name: 'Sneha Chawla', role: 'Senior AI Engineer', type: 'Casual Leave', dates: '09 Oct – 09 Oct', status: 'Pending', bal: '6 CL left' }
-  ]);
+  const [leaveRequests, setLeaveRequests] = useState([]);
 
-  const [openJobs, setOpenJobs] = useState([
-    { id: 'REQ-101', title: 'Emergency Veterinary Surgeon', dept: 'Clinical', loc: 'Bengaluru Flagship', openings: 2, applicants: 48, interview: 4, priority: 'Urgent' },
-    { id: 'REQ-102', title: 'Staff Veterinarian (Outpatient)', dept: 'Clinical', loc: 'Mumbai Bandra', openings: 3, applicants: 62, interview: 6, priority: 'High' },
-    { id: 'REQ-103', title: 'Registered Clinical Pharmacist', dept: 'Pharmacy', loc: 'Bengaluru Hub', openings: 3, applicants: 54, interview: 5, priority: 'High' },
-    { id: 'REQ-104', title: 'Senior AI / ML Research Engineer', dept: 'Technology', loc: 'Bengaluru / Remote', openings: 2, applicants: 85, interview: 4, priority: 'Urgent' }
-  ]);
+  const [openJobs, setOpenJobs] = useState([]);
 
   function approveLeave(id) {
     setLeaveRequests(leaveRequests.map(l => l.id === id ? { ...l, status: 'Approved' } : l));
@@ -68,7 +41,7 @@ export default function HRDashboard() {
       title="Human Resources & Workforce Executive Command Center"
       subtitle="Executive headcount telemetry, talent acquisition pacing, attendance governance, and payroll expenditure"
       icon="🧑‍💼"
-      badge="208 Total Employees · 97.4% Retention"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -129,7 +102,7 @@ export default function HRDashboard() {
           { id: 'overview', label: 'HR Executive Overview', icon: '🧑‍💼' },
           { id: 'directory', label: 'Workforce Directory', icon: '👥', badge: employees.length },
           { id: 'attendance', label: 'Attendance & Leaves', icon: '⏰', badge: `${leaveRequests.filter(l => l.status === 'Pending').length} Pending` },
-          { id: 'payroll', label: 'Payroll & Cost Ledger', icon: '💵', badge: '₹1.64 Cr' },
+          { id: 'payroll', label: 'Payroll & Cost Ledger', icon: '💵', badge: '₹0' },
           { id: 'recruitment', label: 'Talent Acquisition', icon: '📢', badge: `${openJobs.length} Roles` },
           { id: 'performance', label: 'Performance & Culture', icon: '⭐', badge: '93.8%' }
         ].map(t => (
@@ -176,8 +149,8 @@ export default function HRDashboard() {
           {/* Top Level KPIs */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
             <KpiCard label="Active Headcount" value="208 Staff" delta="+14 this quarter" trend="up" subtext="Across 6 core divisions" icon="👥" />
-            <KpiCard label="Monthly Payroll Burn" value="₹1.64 Cr" delta="98.2% budget adherence" trend="neutral" subtext="Salaries, PF, ESI & bonuses" icon="💵" />
-            <KpiCard label="Workforce Retention Rate" value="97.4%" delta="+2.1% YoY gain" trend="up" subtext="Top-quartile benchmark" icon="🤝" />
+            <KpiCard label="Monthly Payroll Burn" value="₹0" delta="98.2% budget adherence" trend="neutral" subtext="Salaries, PF, ESI & bonuses" icon="💵" />
+            <KpiCard label="Workforce Retention Rate" value="0.0%" delta="+2.1% YoY gain" trend="up" subtext="Top-quartile benchmark" icon="🤝" />
             <KpiCard label="eNPS Pulse Score" value="+68 eNPS" delta="Top quartile morale" trend="up" subtext="Quarterly employee pulse" icon="❤️" />
           </div>
 
@@ -428,10 +401,10 @@ export default function HRDashboard() {
       {activeTab === 'payroll' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-            <KpiCard label="Monthly Gross Disbursal" value="₹1,64,30,000" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
-            <KpiCard label="PF &amp; ESI Statutory" value="₹19,71,600" delta="Remitted to EPFO" trend="neutral" subtext="Zero compliance default" icon="🏛️" />
-            <KpiCard label="TDS Tax Deducted" value="₹24,80,000" delta="Sec 192 compliant" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
-            <KpiCard label="Annualized CTC Spend" value="₹19.66 Cr" delta="Budget: ₹20.5 Cr" trend="up" subtext="FY 2026-2027 plan" icon="💰" />
+            <KpiCard label="Monthly Gross Disbursal" value="₹0" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
+            <KpiCard label="PF &amp; ESI Statutory" value="₹0" delta="Remitted to EPFO" trend="neutral" subtext="Zero compliance default" icon="🏛️" />
+            <KpiCard label="TDS Tax Deducted" value="₹0" delta="Sec 192 compliant" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
+            <KpiCard label="Annualized CTC Spend" value="₹0" delta="Budget: ₹0" trend="up" subtext="FY 2026-2027 plan" icon="💰" />
           </div>
 
           <div style={{
@@ -455,17 +428,17 @@ export default function HRDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px', fontSize: '12px' }}>
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch HDFC-0926-01 (Clinical &amp; Doctors)</strong>
-                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹64,50,000</div>
+                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
                 <div style={{ color: '#94a3b8' }}>48 Accounts Credited · Verified ✅</div>
               </div>
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch HDFC-0926-02 (Tech, Pharmacy, Ops)</strong>
-                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹72,80,000</div>
+                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
                 <div style={{ color: '#94a3b8' }}>84 Accounts Credited · Verified ✅</div>
               </div>
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch ICICI-0926-03 (Delivery Riders)</strong>
-                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹27,00,000</div>
+                <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
                 <div style={{ color: '#94a3b8' }}>76 Accounts Credited · Verified ✅</div>
               </div>
             </div>
@@ -656,7 +629,7 @@ export default function HRDashboard() {
                 phone: '+91 98000 00000',
                 joined: 'Today',
                 status: 'Active',
-                salary: '₹85,000/mo',
+                salary: '₹0/mo',
                 rating: '5.0★'
               };
               setEmployees([newEmp, ...employees]);

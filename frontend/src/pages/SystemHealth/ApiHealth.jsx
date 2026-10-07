@@ -3,16 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ApiHealth() {
-  const [endpoints, setEndpoints] = useState([
-    { route: '/api/v1/data', method: 'GET', status: 'Healthy', p50: '3.8ms', p95: '11.2ms', p99: '18.5ms', rps: '18.4 rps', errors: '0.00%' },
-    { route: '/api/v1/sales/save', method: 'POST', status: 'Healthy', p50: '6.2ms', p95: '14.8ms', p99: '22.0ms', rps: '6.1 rps', errors: '0.01%' },
-    { route: '/api/v1/sales/import', method: 'POST', status: 'Healthy', p50: '18.4ms', p95: '42.0ms', p99: '84.0ms', rps: '1.2 rps', errors: '0.00%' },
-    { route: '/api/v1/inventory', method: 'GET', status: 'Healthy', p50: '4.5ms', p95: '12.0ms', p99: '19.1ms', rps: '12.6 rps', errors: '0.00%' },
-    { route: '/api/v1/inventory/save', method: 'POST', status: 'Healthy', p50: '8.1ms', p95: '16.4ms', p99: '28.2ms', rps: '3.4 rps', errors: '0.00%' },
-    { route: '/api/v1/ai/brief', method: 'POST', status: 'Healthy', p50: '320ms', p95: '780ms', p99: '1,250ms', rps: '1.8 rps', errors: '0.04%' },
-    { route: '/api/v1/health', method: 'GET', status: 'Healthy', p50: '1.2ms', p95: '3.4ms', p99: '6.8ms', rps: '24.0 rps', errors: '0.00%' },
-    { route: '/api/v1/health/database', method: 'GET', status: 'Healthy', p50: '1.8ms', p95: '4.9ms', p99: '8.4ms', rps: '8.5 rps', errors: '0.00%' }
-  ]);
+  const [endpoints, setEndpoints] = useState([]);
 
   const [toast, setToast] = useState('');
 
@@ -68,8 +59,8 @@ export default function ApiHealth() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Average P50 Latency" value="4.2 ms" delta="-0.8ms vs baseline" trend="up" subtext="Sub-5ms median" icon="⚡" />
         <KpiCard label="P99 Tail Latency" value="22.4 ms" delta="Optimal" trend="up" subtext="Well within 100ms budget" icon="🛡️" />
-        <KpiCard label="API Error Rate" value="0.008%" delta="99.99% success" trend="up" subtext="HTTP 5xx: 0.00%" icon="🟢" />
-        <KpiCard label="Total Requests Today" value="184,920" delta="+18.4%" trend="up" subtext="Peak: 76 RPS" icon="📊" />
+        <KpiCard label="API Error Rate" value="0.0%" delta="99.99% success" trend="up" subtext="HTTP 5xx: 0.00%" icon="🟢" />
+        <KpiCard label="Total Requests Today" value="0" delta="0.0%" trend="up" subtext="Peak: 76 RPS" icon="📊" />
       </div>
 
       {/* HTTP Status Code Distribution */}

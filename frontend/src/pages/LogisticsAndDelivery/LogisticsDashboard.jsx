@@ -13,17 +13,7 @@ import DeliveryPerformance from './DeliveryPerformance';
 export default function LogisticsDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
 
-  const subcategories = [
-    { id: 'overview', label: 'Logistics Dashboard', icon: '⚡' },
-    { id: 'orders', label: 'Delivery Orders', icon: '📦' },
-    { id: 'partners', label: 'Delivery Partners', icon: '🛵' },
-    { id: 'tracking', label: 'Delivery Tracking', icon: '📍' },
-    { id: '60min', label: '60-Minute Delivery', icon: '⏱️' },
-    { id: 'sla', label: 'Delivery SLA', icon: '🛡️' },
-    { id: 'cost', label: 'Delivery Cost', icon: '💰' },
-    { id: 'failed', label: 'Failed Deliveries', icon: '⚠️' },
-    { id: 'perf', label: 'Delivery Performance', icon: '🏆' }
-  ];
+  const subcategories = [];
 
   if (activeTab === 'orders') return <DeliveryOrders />;
   if (activeTab === 'partners') return <DeliveryPartners />;
@@ -82,9 +72,9 @@ export default function LogisticsDashboard() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Hyperlocal Fleet" value="76 EV Riders" delta="100% Electric" trend="up" subtext="38 active now on road" icon="🛵" />
-        <KpiCard label="Avg Fulfillment Speed" value="36.2 mins" delta="Target <60m" trend="up" subtext="Order placement to doorstep" icon="⚡" />
-        <KpiCard label="Cold-Chain Integrity" value="99.9%" delta="2-8°C Constant" trend="up" subtext="Zero vaccine excursion" icon="❄️" />
-        <KpiCard label="Failed Delivery Rate" value="0.8%" delta="Ultra-low" trend="up" subtext="First attempt doorstep OTP" icon="🎯" />
+        <KpiCard label="Avg Fulfillment Speed" value="0" delta="Target <60m" trend="up" subtext="Order placement to doorstep" icon="⚡" />
+        <KpiCard label="Cold-Chain Integrity" value="0.0%" delta="2-8°C Constant" trend="up" subtext="Zero vaccine excursion" icon="❄️" />
+        <KpiCard label="Failed Delivery Rate" value="0.0%" delta="Ultra-low" trend="up" subtext="First attempt doorstep OTP" icon="🎯" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '16px' }}>

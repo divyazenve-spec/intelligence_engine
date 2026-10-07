@@ -6,14 +6,7 @@ export default function ActiveSubscriptions() {
   const [planFilter, setPlanFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const subscribers = [
-    { subId: 'SUB-ACT-8801', petName: 'Simba (Golden Retriever)', parent: 'Vikramaditya Singhania', plan: 'Puppy Preventive Care Suite', autoDebit: 'UPI AutoPay (HDFC)', monthlyFee: '₹1,499', startDate: '2026-04-12', nextRenewal: '2026-10-12', status: 'Active (Healthy)' },
-    { subId: 'SUB-ACT-8802', petName: 'Bella (Shih Tzu)', parent: 'Pooja Bhattacharya', plan: 'Monthly Nutrition Auto-Ship', autoDebit: 'Credit Card (ICICI)', monthlyFee: '₹2,850', startDate: '2026-02-18', nextRenewal: '2026-10-18', status: 'Active (Healthy)' },
-    { subId: 'SUB-ACT-8803', petName: 'Bruno (Rottweiler)', parent: 'Harish Mehta', plan: 'Senior Pet Geriatric Vitality', autoDebit: 'UPI AutoPay (SBI)', monthlyFee: '₹1,850', startDate: '2025-11-05', nextRenewal: '2026-11-05', status: 'Active (Healthy)' },
-    { subId: 'SUB-ACT-8804', petName: 'Milo (Persian Cat)', parent: 'Dr. Shruti Nair', plan: 'Feline Wellness & Spa Plan', autoDebit: 'Debit Card (Axis)', monthlyFee: '₹1,250', startDate: '2026-06-20', nextRenewal: '2026-10-20', status: 'Active (Healthy)' },
-    { subId: 'SUB-ACT-8805', petName: 'Koko (French Bulldog)', parent: 'Ananya Deshmukh', plan: '24x7 Emergency Telehealth', autoDebit: 'UPI AutoPay (Paytm)', monthlyFee: '₹499', startDate: '2026-01-10', nextRenewal: '2026-10-10', status: 'Active (Healthy)' },
-    { subId: 'SUB-ACT-8806', petName: 'Oscar (Beagle)', parent: 'Rohan Mehra', plan: 'Monthly Nutrition Auto-Ship', autoDebit: 'Credit Card (HDFC)', monthlyFee: '₹2,850', startDate: '2026-05-15', nextRenewal: '2026-10-15', status: 'Active (Healthy)' }
-  ];
+  const subscribers = [];
 
   const filtered = subscribers.filter(s => {
     if (planFilter !== 'ALL' && !s.plan.toLowerCase().includes(planFilter.toLowerCase())) return false;
@@ -33,13 +26,13 @@ export default function ActiveSubscriptions() {
       title="Active Member Roster & Auto-Debit Mandates"
       subtitle="Live subscriber cohort, e-mandate banking authorizations, recurring fulfillment status, and pet health profiles"
       icon="✅"
-      badge="824 Active Members"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Active Subscriptions" value="824 Pets" delta="+68 net this month" trend="up" subtext="Across Bangalore & Mumbai" icon="✅" />
-        <KpiCard label="Auto-Debit E-Mandate Success" value="98.2%" delta="NPCI UPI & E-NACH" trend="up" subtext="Automated tokenization" icon="💳" />
+        <KpiCard label="Auto-Debit E-Mandate Success" value="0.0%" delta="NPCI UPI & E-NACH" trend="up" subtext="Automated tokenization" icon="💳" />
         <KpiCard label="Average Subscriber Longevity" value="14.2 Months" delta="+2.4 months YoY" trend="up" subtext="High brand stickiness" icon="⏱️" />
-        <KpiCard label="Active MRR Realization" value="₹11.51 Lakh" delta="100% collectable" trend="up" subtext="Zero manual collection" icon="💰" />
+        <KpiCard label="Active MRR Realization" value="₹0" delta="100% collectable" trend="up" subtext="Zero manual collection" icon="💰" />
       </div>
 
       <div style={card}>

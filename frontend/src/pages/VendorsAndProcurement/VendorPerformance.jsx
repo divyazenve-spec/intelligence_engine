@@ -5,18 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function VendorPerformance() {
   const [sortBy, setSortBy] = useState('score');
 
-  const vendors = [
-    { name: 'MSD Animal Health India', onTime: 99.2, quality: 99.8, fillRate: 100, defect: 0.02, lead: '3d', compliance: 100, score: 99.5, trend: 'stable' },
-    { name: 'Synthes Vet India', onTime: 98.8, quality: 99.5, fillRate: 99.4, defect: 0.05, lead: '5d', compliance: 100, score: 99.1, trend: 'up' },
-    { name: 'Boehringer Ingelheim Vet', onTime: 98.4, quality: 99.2, fillRate: 98.8, defect: 0.08, lead: '4d', compliance: 100, score: 98.7, trend: 'up' },
-    { name: 'Zoetis India Ltd.', onTime: 97.8, quality: 98.8, fillRate: 98.2, defect: 0.12, lead: '4d', compliance: 98, score: 98.0, trend: 'stable' },
-    { name: "Hill's Pet Nutrition", onTime: 96.0, quality: 97.8, fillRate: 97.6, defect: 0.18, lead: '6d', compliance: 98, score: 97.1, trend: 'up' },
-    { name: 'Royal Canin India', onTime: 96.5, quality: 97.2, fillRate: 96.8, defect: 0.22, lead: '5d', compliance: 96, score: 96.6, trend: 'stable' },
-    { name: 'Virbac India Pvt. Ltd.', onTime: 95.2, quality: 96.8, fillRate: 96.2, defect: 0.28, lead: '7d', compliance: 96, score: 95.9, trend: 'up' },
-    { name: 'Intas Pharmaceuticals', onTime: 94.1, quality: 95.8, fillRate: 94.8, defect: 0.35, lead: '8d', compliance: 94, score: 94.4, trend: 'down' },
-    { name: 'Dechra Veterinary Products', onTime: 93.8, quality: 95.2, fillRate: 94.4, defect: 0.40, lead: '9d', compliance: 92, score: 93.8, trend: 'stable' },
-    { name: 'Bayer Animal Health India', onTime: 92.4, quality: 94.6, fillRate: 93.8, defect: 0.48, lead: '10d', compliance: 92, score: 92.5, trend: 'down' },
-  ];
+  const vendors = [];
 
   const sorted = [...vendors].sort((a, b) => b[sortBy] - a[sortBy]);
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(255,255,255,0.08))', borderRadius: '12px', padding: '22px 24px' };
@@ -33,11 +22,11 @@ export default function VendorPerformance() {
       badge="Monthly Scorecard"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Avg. On-Time Delivery" value="96.8%" delta="+1.2% MoM" trend="up" subtext="Across all vendors" icon="⏱️" />
-        <KpiCard label="Avg. Fill Rate" value="97.1%" delta="+0.8% MoM" trend="up" subtext="Order fulfillment" icon="📦" />
-        <KpiCard label="Avg. Defect Rate" value="0.22%" delta="-0.04% MoM" trend="up" subtext="Quality compliance" icon="🎯" />
+        <KpiCard label="Avg. On-Time Delivery" value="0.0%" delta="+1.2% MoM" trend="up" subtext="Across all vendors" icon="⏱️" />
+        <KpiCard label="Avg. Fill Rate" value="0.0%" delta="+0.8% MoM" trend="up" subtext="Order fulfillment" icon="📦" />
+        <KpiCard label="Avg. Defect Rate" value="0.0%" delta="-0.04% MoM" trend="up" subtext="Quality compliance" icon="🎯" />
         <KpiCard label="Avg. Lead Time" value="6.2 Days" delta="-0.5d improvement" trend="up" subtext="Order to receipt" icon="🚛" />
-        <KpiCard label="Preferred Vendor SLA" value="99.1%" delta="MSD, Zoetis, BI" trend="up" subtext="Top 3 performers" icon="⭐" />
+        <KpiCard label="Preferred Vendor SLA" value="0.0%" delta="MSD, Zoetis, BI" trend="up" subtext="Top 3 performers" icon="⭐" />
         <KpiCard label="Vendors Below Target" value="2 Vendors" delta="Below 94% threshold" trend="down" subtext="Improvement notices sent" icon="⚠️" />
       </div>
 

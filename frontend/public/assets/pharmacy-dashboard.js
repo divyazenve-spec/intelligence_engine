@@ -34,66 +34,25 @@
     { id: 'dashboard',     label: 'Pharmacy Dashboard',     icon: '💊', hash: '#pharmacy-dashboard',     badge: 'Control Center' },
     { id: 'sales',         label: 'Pharmacy Sales',         icon: '💰', hash: '#pharmacy-sales',         badge: '₹12.58 L' },
     { id: 'medicines',     label: 'Medicines',              icon: '📚', hash: '#medicines',              badge: '642 SKUs' },
-    { id: 'prescriptions', label: 'Prescriptions',          icon: '📋', hash: '#prescriptions',          badge: '14 Pending', warnBadge: true },
+    { id: 'prescriptions', label: 'Prescriptions',          icon: '📋', hash: '#prescriptions',          badge: '', warnBadge: true },
     { id: 'orders',        label: 'Pharmacy Orders',        icon: '🚚', hash: '#pharmacy-orders',        badge: '42 Active' },
     { id: 'batches',       label: 'Batch Management',       icon: '🏷️', hash: '#batch-management',       badge: '342 Batches' },
-    { id: 'expiry',        label: 'Expiry Tracking',        icon: '⏳', hash: '#expiry-tracking',        badge: '4 Near Exp', warnBadge: true },
+    { id: 'expiry',        label: 'Expiry Tracking',        icon: '⏳', hash: '#expiry-tracking',        badge: '', warnBadge: true },
     { id: 'inventory',     label: 'Pharmacy Inventory',     icon: '📦', hash: '#pharmacy-inventory',     badge: '₹28.40 L Cost' },
     { id: 'revenue',       label: 'Pharmacy Revenue',       icon: '💎', hash: '#pharmacy-revenue',       badge: '+18.4% YoY' },
     { id: 'profitability', label: 'Pharmacy Profitability', icon: '📈', hash: '#pharmacy-profitability', badge: '41.2% Margin' }
   ];
 
   /* ── Datasets ─────────────────────────────────────────────────── */
-  var MEDICINES = [
-    { sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', generic: 'Fluralaner (1000mg)', brand: 'MSD Animal Health', form: 'Chewable Tablet', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 2100, ptr: 1220, stock: 142, rop: 50, zone: 'Ambient Rack A4' },
-    { sku: 'DRG-VET-002', name: 'NexGard Spectra (7.5-15kg)', generic: 'Afoxolaner + Milbemycin Oxime', brand: 'Boehringer Ingelheim', form: 'Chewable Tablet', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 1650, ptr: 990, stock: 42, rop: 25, zone: 'Ambient Rack B2' },
-    { sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg', generic: 'Pimobendan (5mg)', brand: 'Zoetis India', form: 'Flavoured Tablets', category: 'Cardiac & Renal', schedule: 'Schedule H', cold: false, mrp: 2400, ptr: 1350, stock: 35, rop: 20, zone: 'Schedule H Vault' },
-    { sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine 1D', generic: 'Attenuated Canine Distemper/Parvo', brand: 'MSD Animal Health', form: 'Injectable Vial', category: 'Vaccines', schedule: 'Schedule H', cold: true, mrp: 950, ptr: 420, stock: 86, rop: 40, zone: 'Cold Chiller (3.8°C)' },
-    { sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', generic: 'Amoxicillin + Potassium Clavulanate', brand: 'Intas Pharmaceuticals', form: 'Film-coated Tablets', category: 'Antibiotics', schedule: 'Schedule H', cold: false, mrp: 380, ptr: 210, stock: 120, rop: 60, zone: 'Schedule H Vault' },
-    { sku: 'DRG-VET-006', name: 'Malaseb Medicated Shampoo 250ml', generic: 'Chlorhexidine Gluconate + Miconazole', brand: 'Dechra Veterinary', form: 'Topical Solution', category: 'Dermatology', schedule: 'OTC', cold: false, mrp: 720, ptr: 390, stock: 18, rop: 20, zone: 'Topicals & Derm Bay' },
-    { sku: 'DRG-VET-007', name: 'Zoetis Revolution Spot-On (Cat)', generic: 'Selamectin (60mg/ml)', brand: 'Zoetis India', form: 'Spot-On Pipette', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 1450, ptr: 880, stock: 28, rop: 15, zone: 'Ambient Rack A4' },
-    { sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', generic: 'Inactivated Rabies Virus', brand: 'Boehringer Ingelheim', form: 'Injectable Vial', category: 'Vaccines', schedule: 'Schedule H', cold: true, mrp: 380, ptr: 160, stock: 6, rop: 30, zone: 'Cold Chiller (3.8°C)' },
-    { sku: 'DRG-VET-009', name: 'Carprovet 50mg (Carprofen)', generic: 'Carprofen (50mg NSAID)', brand: 'Virbac India', form: 'Chewable Tablets', category: 'Pain & NSAIDs', schedule: 'Schedule H', cold: false, mrp: 540, ptr: 310, stock: 55, rop: 25, zone: 'Schedule H Vault' },
-    { sku: 'DRG-VET-010', name: 'Himalaya Digyton Plus 200ml', generic: 'Herbal Carminative Extract', brand: 'Himalaya Wellness', form: 'Oral Drops / Syrup', category: 'Supplements', schedule: 'OTC', cold: false, mrp: 380, ptr: 195, stock: 68, rop: 25, zone: 'Supplements Bay' },
-    { sku: 'DRG-VET-011', name: 'Drontal Plus Puppy Suspension', generic: 'Pyrantel Embonate + Febantel', brand: 'Vetoquinol', form: 'Oral Liquid 30ml', category: 'Antiparasitic', schedule: 'Schedule H', cold: false, mrp: 450, ptr: 260, stock: 32, rop: 20, zone: 'Pediatric Rx Bay' },
-    { sku: 'DRG-VET-012', name: 'Enrofloxacin 100mg (Baytril)', generic: 'Enrofloxacin Broad Spectrum', brand: 'Bayer Animal Health', form: 'Tablets x10', category: 'Antibiotics', schedule: 'Schedule H', cold: false, mrp: 320, ptr: 180, stock: 4, rop: 20, zone: 'Schedule H Vault' }
-  ];
+  var MEDICINES = [];
 
-  var PRESCRIPTIONS = [
-    { id: 'RX-2026-9041', time: '12 mins ago', pet: 'Bruno', species: 'Canine (Labrador, 32kg)', parent: 'Rajesh Nair (+91 98450 12345)', vet: 'Dr. Priya Sharma (VCI-KAR-842)', meds: 'Bravecto 20-40kg x1 + Amoxiclav 625mg x10', status: 'Pending Verification', notes: 'Severe flea allergy dermatitis' },
-    { id: 'RX-2026-9040', time: '28 mins ago', pet: 'Kiki', species: 'Feline (Persian, 3.8kg)', parent: 'Meera Deshmukh (+91 98201 44556)', vet: 'Dr. Rahul Mehta (VCI-MAH-110)', meds: 'Zoetis Revolution Spot-On x1 + Gabapentin 50mg x14', status: 'Pending Verification', notes: 'Feline hyperesthesia syndrome' },
-    { id: 'RX-2026-9039', time: '45 mins ago', pet: 'Simba', species: 'Canine (GSD, 38kg)', parent: 'Ananya Roy (+91 97110 99881)', vet: 'Dr. Aisha Khan (VCI-DEL-304)', meds: 'Zoetis Cardisure 5mg x60 + Furosemide 20mg x30', status: 'Verified & Ready', notes: 'Stage C Congestive Heart Failure' },
-    { id: 'RX-2026-9038', time: '1 hour ago', pet: 'Bella', species: 'Canine (Beagle, 13.5kg)', parent: 'Deepika Sen (+91 99002 77665)', vet: 'Dr. Karan Patel (VCI-GUJ-512)', meds: 'Nobivac DHPPi Core Vaccine 1D (Cold Chain)', status: 'Dispensed', notes: 'Annual core booster' },
-    { id: 'RX-2026-9037', time: '1.5 hours ago', pet: 'Rocky', species: 'Canine (Rottweiler, 45kg)', parent: 'Vikram Sethi (+91 98110 33221)', vet: 'Dr. Neha Singh (VCI-PUN-628)', meds: 'Carprovet 100mg x10 + Tramadol 50mg x15', status: 'Flagged for Review', notes: 'Dosage interaction: renal panel required' }
-  ];
+  var PRESCRIPTIONS = [];
 
-  var ORDERS = [
-    { id: 'PH-ORD-8812', time: '12 mins ago', customer: 'Pooja Hegde', channel: '60-Min Rapid', address: 'Indiranagar, Bengaluru', items: 'Bravecto 20-40kg (1 tab), Drontal Plus (1 bot)', value: 2550, cold: false, status: 'Out for Delivery', rider: 'Ramesh K. (EV-12)', sla: '28 mins' },
-    { id: 'PH-ORD-8811', time: '24 mins ago', customer: 'Sanjay Reddy', channel: 'Clinic Counter', address: 'Zenve Hospital Koramangala', items: 'Cardisure 5mg (60 tabs), Furosemide (30 tabs)', value: 2880, cold: false, status: 'Ready for Pickup', rider: 'Walk-in Collection', sla: 'Ready' },
-    { id: 'PH-ORD-8810', time: '35 mins ago', customer: 'Kavita Nair', channel: '60-Min Rapid', address: 'Whitefield, Bengaluru', items: 'Nobivac DHPPi Vaccine (2 vials), Syringes', value: 1900, cold: true, status: 'Out for Delivery', rider: 'Imran (Cold Box-04)', sla: '16 mins' },
-    { id: 'PH-ORD-8809', time: '50 mins ago', customer: 'Vikram Sethi', channel: 'Scheduled Delivery', address: 'Jubilee Hills, Hyderabad', items: 'Royal Canin Renal 3kg, Digyton Plus', value: 3780, cold: false, status: 'Packed & Dispatched', rider: 'Delhivery Surface', sla: 'Today 4 PM' },
-    { id: 'PH-ORD-8808', time: '1 hour ago', customer: 'Ananya Roy', channel: 'Scheduled Delivery', address: 'Vasant Kunj, New Delhi', items: 'NexGard Spectra 7.5-15kg (2 packs)', value: 3300, cold: false, status: 'Packed & Dispatched', rider: 'BlueDart Air', sla: 'Today 5:30 PM' },
-    { id: 'PH-ORD-8807', time: '1.5 hours ago', customer: 'Deepika Sen', channel: 'Clinic Counter', address: 'Zenve Bandra Hospital, Mumbai', items: 'Amoxiclav 625mg (20 tabs), Malaseb 250ml', value: 1480, cold: false, status: 'Delivered', rider: 'Walk-in Collection', sla: 'Completed' }
-  ];
+  var ORDERS = [];
 
-  var BATCHES = [
-    { batchNo: 'BT-2026-BRV01', sku: 'DRG-VET-001', name: 'Bravecto Chewable 20-40kg', vendor: 'MSD Animal Health', mfg: '2025-02-10', exp: '2027-02-09', qty: 250, balance: 142, hub: 'Bengaluru Central', qc: 'QC Passed', zone: 'Ambient Rack A4' },
-    { batchNo: 'BT-2025-NVD04', sku: 'DRG-VET-004', name: 'Nobivac DHPPi Core Vaccine 1D', vendor: 'MSD Animal Health', mfg: '2025-01-15', exp: '2026-07-14', qty: 150, balance: 86, hub: 'Mumbai West', qc: 'QC Passed', zone: 'Cold Chiller (3.8°C)' },
-    { batchNo: 'BT-2025-NGS12', sku: 'DRG-VET-002', name: 'NexGard Spectra (7.5-15kg)', vendor: 'Boehringer Ingelheim', mfg: '2024-11-20', exp: '2026-05-19', qty: 100, balance: 42, hub: 'Delhi NCR Hub', qc: 'QC Passed', zone: 'Ambient Rack B2' },
-    { batchNo: 'BT-2025-CDS03', sku: 'DRG-VET-003', name: 'Zoetis Cardisure 5mg (Pimobendan)', vendor: 'Zoetis India', mfg: '2025-03-01', exp: '2027-02-28', qty: 80, balance: 35, hub: 'Bengaluru Central', qc: 'QC Passed', zone: 'Schedule H Vault' },
-    { batchNo: 'BT-2025-AMX09', sku: 'DRG-VET-005', name: 'Amoxiclav Pet 625mg', vendor: 'Intas Pharmaceuticals', mfg: '2025-04-12', exp: '2026-10-11', qty: 300, balance: 120, hub: 'Hyderabad Center', qc: 'QC Passed', zone: 'Ambient Rack C1' },
-    { batchNo: 'BT-2026-REV08', sku: 'DRG-VET-007', name: 'Zoetis Revolution Spot-On (Cat)', vendor: 'Zoetis India', mfg: '2025-05-18', exp: '2027-05-17', qty: 100, balance: 100, hub: 'Bengaluru Central', qc: 'Under Quarantine', zone: 'QC Hold Bay #1' },
-    { batchNo: 'BT-2024-RBS01', sku: 'DRG-VET-008', name: 'Rabisin Rabies Vaccine 1ml', vendor: 'Boehringer Ingelheim', mfg: '2024-08-10', exp: '2025-10-15', qty: 200, balance: 24, hub: 'Mumbai West', qc: 'Critical Exp', zone: 'Quarantine Lockbox' }
-  ];
+  var BATCHES = [];
 
-  var EXPIRY_ITEMS = [
-    { batchNo: 'BT-2024-RBS01', name: 'Rabisin Rabies Vaccine 1ml', vendor: 'Boehringer Ingelheim', exp: '2025-10-15', daysLeft: 10, balance: 24, cost: 3840, mrp: 9120, horizon: 'Critical (<30d)', hub: 'Mumbai West', action: 'Supplier Return' },
-    { batchNo: 'BT-2024-CDS01', name: 'Zoetis Cardisure 5mg x30', vendor: 'Zoetis India', exp: '2025-10-20', daysLeft: 15, balance: 8, cost: 10800, mrp: 19200, horizon: 'Critical (<30d)', hub: 'Bengaluru Central', action: 'Priority Dispatch' },
-    { batchNo: 'BT-2024-NVD02', name: 'Nobivac DHPPi Core Vaccine', vendor: 'MSD Animal Health', exp: '2025-11-05', daysLeft: 31, balance: 35, cost: 14700, mrp: 33250, horizon: 'High (30-60d)', hub: 'Delhi NCR Hub', action: 'Clinic Campaign' },
-    { batchNo: 'BT-2024-MLS01', name: 'Malaseb Medicated Shampoo 250ml', vendor: 'Dechra Veterinary', exp: '2025-11-20', daysLeft: 46, balance: 14, cost: 5460, mrp: 10080, horizon: 'High (30-60d)', hub: 'Pune Express', action: 'Auto-Discount 30%' },
-    { batchNo: 'BT-2024-DIG03', name: 'Himalaya Digyton Plus 200ml', vendor: 'Himalaya Drug Co.', exp: '2025-12-10', daysLeft: 66, balance: 40, cost: 7800, mrp: 15200, horizon: 'Medium (60-90d)', hub: 'Hyderabad Center', action: 'Supplier SRA' },
-    { batchNo: 'BT-2025-AMX02', name: 'Amoxiclav Pet 625mg', vendor: 'Intas Pharmaceuticals', exp: '2025-12-28', daysLeft: 84, balance: 65, cost: 13650, mrp: 24700, horizon: 'Medium (60-90d)', hub: 'Bengaluru Central', action: 'Standard FEFO' }
-  ];
+  var EXPIRY_ITEMS = [];
 
   /* ── State ─────────────────────────────────────────────────────── */
   var S = {

@@ -369,9 +369,9 @@
 
     var A = analyse(S.period);
     var isOverallDrop = A.drop > 0;
-    var worstLoc = A.rows.length ? A.rows[0] : null;
+    var worstLoc = A.rows.length ? A.rows[0] : { city: 'All Regions', drop: 0, dropPct: 0, curN: 0, prevN: 0, cur: 0, prev: 0, reason: 'No drop events detected. All revenue channels operating normally.', remedy: 'Continue active operations monitoring.' };
 
-    var rowsHtml = A.rows.map(function (r) {
+    var rowsHtml = A.rows.length ? A.rows.map(function (r) {
       var isLocDrop = r.drop > 0;
       return '<tr>' +
         '<td class="zsda-cell-loc">' +
@@ -411,7 +411,7 @@
           '<div class="zsda-predict-remedy"><b>AI Action:</b> ' + esc(r.aiRemedy) + '</div>' +
         '</td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No sales records or drop events found.</td></tr>';
 
     host.innerHTML = [
       '<div class="zsda-container">',

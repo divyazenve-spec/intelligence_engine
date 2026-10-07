@@ -5,21 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function GrossProfit() {
   const [viewBy, setViewBy] = useState('Department');
 
-  const departmentMargins = [
-    { dept: 'Surgical Operations & Modular OTs', rev: '₹24,80,000', cogs: '₹8,88,000', gp: '₹15,92,000', margin: '64.2%', target: '60.0%', status: 'Exceeding' },
-    { dept: 'Diagnostic Pathology & Imaging (DR/USG)', rev: '₹12,40,000', cogs: '₹4,65,000', gp: '₹7,75,000', margin: '62.5%', target: '60.0%', status: 'Exceeding' },
-    { dept: 'Outpatient Care & Wellness Consults', rev: '₹28,40,000', cogs: '₹11,82,000', gp: '₹16,58,000', margin: '58.4%', target: '55.0%', status: 'Exceeding' },
-    { dept: 'Veterinary Pharmacy & Prescription Retail', rev: '₹14,20,000', cogs: '₹8,24,000', gp: '₹5,96,000', margin: '42.0%', target: '40.0%', status: 'On Target' },
-    { dept: 'Pet Food, Supplements & Accessories E-Com', rev: '₹6,80,000', cogs: '₹4,86,000', gp: '₹1,94,000', margin: '28.5%', target: '28.0%', status: 'On Target' }
-  ];
+  const departmentMargins = [];
 
-  const unitEconomics = [
-    { service: 'Complex Orthopedic TPLO Cruciate Surgery', avgPrice: '₹38,000', directCost: '₹12,500', contribution: '₹25,500', margin: '67.1%', volume: '44 cases/mo' },
-    { service: 'Cataract Phacoemulsification Eye Surgery', avgPrice: '₹28,000', directCost: '₹9,200', contribution: '₹18,800', margin: '67.1%', volume: '28 cases/mo' },
-    { service: 'General Veterinary OPD + 5-in-1 Vaccine', avgPrice: '₹1,450', directCost: '₹540', contribution: '₹910', margin: '62.8%', volume: '1,840 visits/mo' },
-    { service: 'Full Body Color Doppler Ultrasound Scan', avgPrice: '₹2,800', directCost: '₹680', contribution: '₹2,120', margin: '75.7%', volume: '340 scans/mo' },
-    { service: 'Canine Routine Dental Scaling & Polishing', avgPrice: '₹4,500', directCost: '₹1,200', contribution: '₹3,300', margin: '73.3%', volume: '180 pets/mo' }
-  ];
+  const unitEconomics = [];
 
   return (
     <DashboardLayout
@@ -50,12 +38,12 @@ export default function GrossProfit() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Gross Profit" value="₹43.90 Lakh" delta="+14.9% vs Budget" trend="up" subtext="Revenue - COGS" icon="💎" />
-        <KpiCard label="Blended Gross Margin" value="56.0%" delta="+2.2% pts YoY" trend="up" subtext="Target: >52.0%" icon="📈" />
-        <KpiCard label="Surgical Gross Margin" value="64.2%" delta="Highest margin unit" trend="up" subtext="Specialist OTs" icon="🩺" />
-        <KpiCard label="Diagnostics Margin" value="62.5%" delta="High capital efficiency" trend="up" subtext="In-house blood lab" icon="🔬" />
-        <KpiCard label="Pharmacy Gross Margin" value="42.0%" delta="+1.8% pts QoQ" trend="up" subtext="Direct OEM sourcing" icon="💊" />
-        <KpiCard label="Price Realization Index" value="103.4" delta="+3.4% YoY" trend="up" subtext="Zero discounting in OTs" icon="🛡️" />
+        <KpiCard label="Total Gross Profit" value="₹0" delta="+14.9% vs Budget" trend="up" subtext="Revenue - COGS" icon="💎" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.2% pts YoY" trend="up" subtext="Target: >52.0%" icon="📈" />
+        <KpiCard label="Surgical Gross Margin" value="0.0%" delta="Highest margin unit" trend="up" subtext="Specialist OTs" icon="🩺" />
+        <KpiCard label="Diagnostics Margin" value="0.0%" delta="High capital efficiency" trend="up" subtext="In-house blood lab" icon="🔬" />
+        <KpiCard label="Pharmacy Gross Margin" value="0.0%" delta="+1.8% pts QoQ" trend="up" subtext="Direct OEM sourcing" icon="💊" />
+        <KpiCard label="Price Realization Index" value="0" delta="+3.4% YoY" trend="up" subtext="Zero discounting in OTs" icon="🛡️" />
       </div>
 
       <div style={{

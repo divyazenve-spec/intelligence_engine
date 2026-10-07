@@ -7,14 +7,7 @@ export default function ClinicCommissions() {
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [toast, setToast] = useState('');
 
-  const commissionLedger = [
-    { id: 'COM-2026-081', partner: 'PetCare Referral Clinic (Indiranagar)', type: 'Partner Clinic', cases: 28, billed: 420000, rate: '12.5%', grossCom: 52500, tds: 5250, netPay: 47250, status: 'Settled', bankRef: 'NEFT-AXIS-90812' },
-    { id: 'COM-2026-082', partner: 'Dr. Vikram Sethi (Visiting Orthopedic)', type: 'Visiting Surgeon', cases: 14, billed: 380000, rate: '25.0%', grossCom: 95000, tds: 9500, netPay: 85500, status: 'Settled', bankRef: 'NEFT-HDFC-44120' },
-    { id: 'COM-2026-083', partner: 'Bandra Pet Diagnostic Associates', type: 'Diagnostic Partner', cases: 45, billed: 310000, rate: '15.0%', grossCom: 46500, tds: 4650, netPay: 41850, status: 'Scheduled (Friday)', bankRef: 'Pending Release' },
-    { id: 'COM-2026-084', partner: 'South Ex Pet Health Network', type: 'Partner Clinic', cases: 22, billed: 280000, rate: '12.5%', grossCom: 35000, tds: 3500, netPay: 31500, status: 'Scheduled (Friday)', bankRef: 'Pending Release' },
-    { id: 'COM-2026-085', partner: 'Dr. Sneha Kulkarni (Laparoscopy Specialist)', type: 'Visiting Surgeon', cases: 8, billed: 190000, rate: '25.0%', grossCom: 47500, tds: 4750, netPay: 42750, status: 'In Audit', bankRef: 'Audit Hold' },
-    { id: 'COM-2026-086', partner: 'Hyderabad Vet Diagnostic Labs', type: 'Diagnostic Partner', cases: 32, billed: 210000, rate: '15.0%', grossCom: 31500, tds: 3150, netPay: 28350, status: 'Settled', bankRef: 'NEFT-ICICI-66219' }
-  ];
+  const commissionLedger = [];
 
   const filtered = useMemo(() => {
     return commissionLedger.filter(c => {
@@ -36,7 +29,7 @@ export default function ClinicCommissions() {
       title="Partner Clinic Commissions & Surgeon Honorariums"
       subtitle="B2B referral commissions, diagnostic cross-referrals, visiting surgeon honorariums, and TDS compliance (Section 194J)"
       icon="🤝"
-      badge="12.5% Standard Referral"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -76,12 +69,12 @@ export default function ClinicCommissions() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Commissions Settled MTD" value="₹5.84 Lakh" delta="+16.2% YoY" trend="up" subtext="Direct to partner bank accounts" icon="💸" />
-        <KpiCard label="Scheduled for Friday" value="₹1.12 Lakh" delta="2 Payout Batches" trend="neutral" subtext="Pre-audited & verified" icon="📅" />
+        <KpiCard label="Commissions Settled MTD" value="₹0" delta="+16.2% YoY" trend="up" subtext="Direct to partner bank accounts" icon="💸" />
+        <KpiCard label="Scheduled for Friday" value="₹0" delta="2 Payout Batches" trend="neutral" subtext="Pre-audited & verified" icon="📅" />
         <KpiCard label="Partner Clinic Cases" value="149 Cases" delta="+22% referral volume" trend="up" subtext="Advanced CT & surgeries" icon="🤝" />
-        <KpiCard label="Surgeon Honorariums" value="₹2.15 Lakh" delta="Visiting super-specialists" trend="up" subtext="TPLO, THR & neuro" icon="🔪" />
-        <KpiCard label="TDS Tax Withheld (194J)" value="₹64,800" delta="100% Tax Compliant" trend="up" subtext="Form 16A auto-generated" icon="🏛️" />
-        <KpiCard label="On-Time Settlement SLA" value="100.0%" delta="Zero overdue claims" trend="up" subtext="Every Friday cycle" icon="🎯" />
+        <KpiCard label="Surgeon Honorariums" value="₹0" delta="Visiting super-specialists" trend="up" subtext="TPLO, THR & neuro" icon="🔪" />
+        <KpiCard label="TDS Tax Withheld (194J)" value="₹0" delta="100% Tax Compliant" trend="up" subtext="Form 16A auto-generated" icon="🏛️" />
+        <KpiCard label="On-Time Settlement SLA" value="0.0%" delta="Zero overdue claims" trend="up" subtext="Every Friday cycle" icon="🎯" />
       </div>
 
       {/* Commission Ledger Table */}

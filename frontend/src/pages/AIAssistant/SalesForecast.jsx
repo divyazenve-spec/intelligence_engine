@@ -13,12 +13,7 @@ export default function SalesForecast() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const projections = [
-    { period: 'Next 7 Days (Oct 06 - Oct 12)', p10: '₹12.4L', p50: '₹13.8L', p90: '₹15.2L', growth: '+14.2%', confidence: '96.2%' },
-    { period: 'Next 14 Days (Oct 06 - Oct 19)', p10: '₹25.8L', p50: '₹28.2L', p90: '₹31.0L', growth: '+16.5%', confidence: '94.8%' },
-    { period: 'Next 30 Days (Oct 06 - Nov 04)', p10: '₹56.4L', p50: '₹62.0L', p90: '₹68.5L', growth: '+18.8%', confidence: '92.4%' },
-    { period: 'Q4 Full Projected (Oct - Dec)', p10: '₹1.72 Cr', p50: '₹1.91 Cr', p90: '₹2.12 Cr', growth: '+22.4%', confidence: '89.6%' }
-  ];
+  const projections = [];
 
   return (
     <DashboardLayout
@@ -30,10 +25,10 @@ export default function SalesForecast() {
       badge="Proprietary Time-Series Model"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next 30-Day Forecast (p50)" value="₹62.00 Lakh" delta="+18.8% vs Sept" trend="up" subtext="Expected trajectory" icon="📈" />
-        <KpiCard label="Optimistic Scenario (p90)" value="₹68.50 Lakh" delta="+24.2% Growth" trend="up" subtext="High-demand bound" icon="🚀" />
-        <KpiCard label="Conservative Bound (p10)" value="₹56.40 Lakh" delta="+11.5% Floor" trend="neutral" subtext="Downside buffer" icon="🛡️" />
-        <KpiCard label="Model Backtest Accuracy" value="95.4%" delta="MAPE: 4.6%" trend="up" subtext="Last 90 days test" icon="🎯" />
+        <KpiCard label="Next 30-Day Forecast (p50)" value="₹0" delta="+18.8% vs Sept" trend="up" subtext="Expected trajectory" icon="📈" />
+        <KpiCard label="Optimistic Scenario (p90)" value="₹0" delta="+24.2% Growth" trend="up" subtext="High-demand bound" icon="🚀" />
+        <KpiCard label="Conservative Bound (p10)" value="₹0" delta="+11.5% Floor" trend="neutral" subtext="Downside buffer" icon="🛡️" />
+        <KpiCard label="Model Backtest Accuracy" value="0.0%" delta="MAPE: 4.6%" trend="up" subtext="Last 90 days test" icon="🎯" />
       </div>
 
       <div style={cardStyle}>

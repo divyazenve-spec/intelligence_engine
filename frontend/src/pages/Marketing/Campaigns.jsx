@@ -4,14 +4,7 @@ import KpiCard from '../shared/KpiCard';
 
 export default function Campaigns() {
   const [filter, setFilter] = useState('ALL');
-  const [campaigns, setCampaigns] = useState([
-    { id: 'CMP-201', name: 'Puppy Vaccination & Vet Care 2026', channel: 'Meta (Insta & FB)', budget: '₹2,50,000', spend: '₹2,14,000', impressions: '540K', clicks: '24,200', ctr: '4.48%', conv: '1,420', cac: '₹150', roas: '4.8x', status: 'Active' },
-    { id: 'CMP-202', name: 'Emergency 60-Min Pet Pharmacy Rx', channel: 'Google Search Ads', budget: '₹1,80,000', spend: '₹1,65,000', impressions: '210K', clicks: '18,900', ctr: '9.00%', conv: '1,180', cac: '₹140', roas: '5.2x', status: 'Active' },
-    { id: 'CMP-203', name: 'Monsoon Canine Tick & Flea Shield', channel: 'Meta Instagram Reels', budget: '₹1,50,000', spend: '₹1,42,000', impressions: '420K', clicks: '16,500', ctr: '3.93%', conv: '760', cac: '₹187', roas: '3.9x', status: 'Active' },
-    { id: 'CMP-204', name: 'Bengaluru Top Vet Tele-Consult Co-Op', channel: 'YouTube Video Ads', budget: '₹1,20,000', spend: '₹95,000', impressions: '310K', clicks: '8,400', ctr: '2.71%', conv: '380', cac: '₹250', roas: '3.4x', status: 'Active' },
-    { id: 'CMP-205', name: 'Zenve Fashion Designer Harness Launch', channel: 'Influencer Collabs', budget: '₹90,000', spend: '₹90,000', impressions: '190K', clicks: '9,800', ctr: '5.16%', conv: '410', cac: '₹220', roas: '3.1x', status: 'Completed' },
-    { id: 'CMP-206', name: 'Diwali Pet Gourmet Nutrition Box', channel: 'WhatsApp & SMS', budget: '₹60,000', spend: '₹12,000', impressions: '85K', clicks: '11,200', ctr: '13.18%', conv: '620', cac: '₹19', roas: '6.8x', status: 'Scheduled' }
-  ]);
+  const [campaigns, setCampaigns] = useState([]);
 
   const filtered = campaigns.filter(c => filter === 'ALL' || c.status === filter);
 
@@ -47,10 +40,10 @@ export default function Campaigns() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Campaign Spend" value="₹7,18,000" delta="-6.2% vs Plan" trend="up" subtext="Across 6 active flights" icon="💳" />
-        <KpiCard label="Ad Impressions" value="1.75M" delta="+22.4%" trend="up" subtext="Meta, Google, YouTube" icon="👁️" />
-        <KpiCard label="Click-Through Rate" value="5.12%" delta="+0.84%" trend="up" subtext="Benchmark: 3.2%" icon="🖱️" />
-        <KpiCard label="Campaign Conversions" value="4,770" delta="+18.9%" trend="up" subtext="Orders & consultations" icon="🎯" />
+        <KpiCard label="Total Campaign Spend" value="₹0" delta="-6.2% vs Plan" trend="up" subtext="Across 6 active flights" icon="💳" />
+        <KpiCard label="Ad Impressions" value="1.75M" delta="0.0%" trend="up" subtext="Meta, Google, YouTube" icon="👁️" />
+        <KpiCard label="Click-Through Rate" value="0.0%" delta="0.0%" trend="up" subtext="Benchmark: 3.2%" icon="🖱️" />
+        <KpiCard label="Campaign Conversions" value="0" delta="0.0%" trend="up" subtext="Orders & consultations" icon="🎯" />
       </div>
 
       <div style={{

@@ -25,59 +25,26 @@
 
   /* ── 10 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'dashboard',         label: 'Vendor Dashboard',     icon: '🤝', hash: '#vendor-dashboard',     badge: '24 Vendors',   title: 'Vendors & Procurement Command Center', sub: 'Master supplier network, active purchase orders, fulfillment compliance, and network-wide procurement savings' },
-    { id: 'all-vendors',       label: 'All Vendors',          icon: '🏭', hash: '#all-vendors',          badge: '100% Validated', title: 'Complete Vendor Directory & Supplier Registry', sub: 'All 24 registered suppliers with contacts, spend totals, quality ratings, and GSTIN verification status' },
-    { id: 'vendor-perf',       label: 'Vendor Performance',   icon: '📊', hash: '#vendor-performance',   badge: '96.8% SLA',    title: 'Vendor Performance Scorecards & SLA Analytics', sub: 'On-time delivery SLA, fill rate, defect rate, lead times, and composite vendor performance scores' },
-    { id: 'vendor-pay',        label: 'Vendor Payments',      icon: '💳', hash: '#vendor-payments',      badge: '₹34.8L Due',   title: 'Vendor Accounts Payable & Payment Scheduling', sub: 'Outstanding invoice aging, 2/10 Net 30 cash discounts, bank UTR disbursements, and payment terms' },
-    { id: 'purchase-orders',   label: 'Purchase Orders',      icon: '📑', hash: '#purchase-orders',      badge: '18 Active',    title: 'Purchase Order Management & Tracking', sub: 'PO lifecycle tracking: draft creation, department approval, dispatch, transit, and GRN verification' },
-    { id: 'procurement',       label: 'Procurement',          icon: '🔄', hash: '#procurement',          badge: '3-Way Match 98%', title: 'Procurement Workflow & Requisition Pipeline', sub: 'End-to-end procurement lifecycle: requisition → approval → vendor negotiation → PO → GRN → 3-way match → payment' },
-    { id: 'purchase-history',  label: 'Purchase History',     icon: '📜', hash: '#purchase-history',     badge: '71 POs Archived', title: 'Purchase History & Fulfilled Order Archive', sub: 'Complete ledger of historical purchase orders, fulfillment timelines, invoice audit trail, and multi-hub spend' },
-    { id: 'supplier-pricing',  label: 'Supplier Pricing',     icon: '🏷️', hash: '#supplier-pricing',     badge: '23.6% Disc',   title: 'Contracted Supplier Pricing & Rate Benchmarking', sub: 'Master SKU pricing schedules, negotiated discounts against MSRP, volume tier rebates, and price lock validity' },
-    { id: 'supplier-perf',     label: 'Supplier Performance', icon: '🎯', hash: '#supplier-performance', badge: 'OTIF 97.3%',   title: 'Supplier Quality Engineering & SLA Scorecards', sub: 'On-time in-full (OTIF), cold-chain compliance, defect rates (PPM), invoice accuracy, and GMP audit certifications' },
-    { id: 'savings',           label: 'Procurement Savings',  icon: '💰', hash: '#procurement-savings',  badge: '₹18.4L Realized', title: 'Procurement Cost Savings & Value Realization', sub: 'Negotiated price variances, bulk volume consolidation rebates, generic substitution arbitrage, and cash discounts' }
+    { id: 'dashboard',         label: 'Vendor Dashboard',     icon: '🤝', hash: '#vendor-dashboard',     badge: '',   title: 'Vendors & Procurement Command Center', sub: 'Master supplier network, active purchase orders, fulfillment compliance, and network-wide procurement savings' },
+    { id: 'all-vendors',       label: 'All Vendors',          icon: '🏭', hash: '#all-vendors',          badge: '', title: 'Complete Vendor Directory & Supplier Registry', sub: 'All 24 registered suppliers with contacts, spend totals, quality ratings, and GSTIN verification status' },
+    { id: 'vendor-perf',       label: 'Vendor Performance',   icon: '📊', hash: '#vendor-performance',   badge: '',    title: 'Vendor Performance Scorecards & SLA Analytics', sub: 'On-time delivery SLA, fill rate, defect rate, lead times, and composite vendor performance scores' },
+    { id: 'vendor-pay',        label: 'Vendor Payments',      icon: '💳', hash: '#vendor-payments',      badge: '',   title: 'Vendor Accounts Payable & Payment Scheduling', sub: 'Outstanding invoice aging, 2/10 Net 30 cash discounts, bank UTR disbursements, and payment terms' },
+    { id: 'purchase-orders',   label: 'Purchase Orders',      icon: '📑', hash: '#purchase-orders',      badge: '',    title: 'Purchase Order Management & Tracking', sub: 'PO lifecycle tracking: draft creation, department approval, dispatch, transit, and GRN verification' },
+    { id: 'procurement',       label: 'Procurement',          icon: '🔄', hash: '#procurement',          badge: '', title: 'Procurement Workflow & Requisition Pipeline', sub: 'End-to-end procurement lifecycle: requisition → approval → vendor negotiation → PO → GRN → 3-way match → payment' },
+    { id: 'purchase-history',  label: 'Purchase History',     icon: '📜', hash: '#purchase-history',     badge: '', title: 'Purchase History & Fulfilled Order Archive', sub: 'Complete ledger of historical purchase orders, fulfillment timelines, invoice audit trail, and multi-hub spend' },
+    { id: 'supplier-pricing',  label: 'Supplier Pricing',     icon: '🏷️', hash: '#supplier-pricing',     badge: '',   title: 'Contracted Supplier Pricing & Rate Benchmarking', sub: 'Master SKU pricing schedules, negotiated discounts against MSRP, volume tier rebates, and price lock validity' },
+    { id: 'supplier-perf',     label: 'Supplier Performance', icon: '🎯', hash: '#supplier-performance', badge: '',   title: 'Supplier Quality Engineering & SLA Scorecards', sub: 'On-time in-full (OTIF), cold-chain compliance, defect rates (PPM), invoice accuracy, and GMP audit certifications' },
+    { id: 'savings',           label: 'Procurement Savings',  icon: '💰', hash: '#procurement-savings',  badge: '', title: 'Procurement Cost Savings & Value Realization', sub: 'Negotiated price variances, bulk volume consolidation rebates, generic substitution arbitrage, and cash discounts' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var VENDORS = [
-    { id: 'VND-001', name: 'MSD Animal Health India', gstin: '27AABCM8421K1ZX', category: 'Vaccines & Biologics', contact: 'Arjun Mehta', city: 'Mumbai', spend: '₹28.40 L', pos: 14, rating: 'AAA', status: 'Preferred', onTime: 99.2, quality: 99.8, fillRate: 100, score: 99.5, since: 'Jan 2022' },
-    { id: 'VND-002', name: 'Boehringer Ingelheim Vet', gstin: '36AABCB9120H1ZP', category: 'Antiparasitic & Rx', contact: 'Sunita Verma', city: 'Hyderabad', spend: '₹22.80 L', pos: 11, rating: 'AAA', status: 'Preferred', onTime: 98.4, quality: 99.2, fillRate: 98.8, score: 98.7, since: 'Mar 2022' },
-    { id: 'VND-003', name: 'Synthes Vet India', gstin: '29AABCS5541L1Z4', category: 'Surgical Implants', contact: 'Kavitha Rao', city: 'Bengaluru', spend: '₹18.60 L', pos: 7, rating: 'AAA', status: 'Preferred', onTime: 98.8, quality: 99.5, fillRate: 99.4, score: 99.1, since: 'Oct 2022' },
-    { id: 'VND-004', name: 'Zoetis India Ltd.', gstin: '29AABCZ3291F1Z1', category: 'Broad Spectrum Rx', contact: 'Vikram Nair', city: 'Bengaluru', spend: '₹19.60 L', pos: 9, rating: 'AA+', status: 'Preferred', onTime: 97.8, quality: 98.8, fillRate: 98.2, score: 98.0, since: 'Feb 2022' },
-    { id: 'VND-005', name: 'Royal Canin India', gstin: '07AABCR1840E1Z9', category: 'Veterinary Nutrition', contact: 'Priya Shah', city: 'Delhi', spend: '₹16.40 L', pos: 8, rating: 'AA', status: 'Active', onTime: 96.5, quality: 97.2, fillRate: 96.8, score: 96.6, since: 'Jun 2022' },
-    { id: 'VND-006', name: "Hill's Pet Nutrition", gstin: '29AABCH6719P1ZW', category: 'Rx Diet Foods', contact: 'Thomas Varghese', city: 'Bengaluru', spend: '₹6.40 L', pos: 3, rating: 'AA', status: 'Active', onTime: 96.0, quality: 97.8, fillRate: 97.6, score: 97.1, since: 'Apr 2023' },
-    { id: 'VND-007', name: 'Virbac India Pvt. Ltd.', gstin: '27AABCV4981C1ZB', category: 'Dental & Dermatology', contact: 'Anand Rajan', city: 'Pune', spend: '₹12.20 L', pos: 6, rating: 'AA', status: 'Active', onTime: 95.2, quality: 96.8, fillRate: 96.2, score: 95.9, since: 'Sep 2022' },
-    { id: 'VND-008', name: 'Intas Pharmaceuticals', gstin: '24AABCI1109Q1ZM', category: 'Generic APIs & NSAID', contact: 'Deepak Joshi', city: 'Ahmedabad', spend: '₹9.80 L', pos: 5, rating: 'A+', status: 'Active', onTime: 94.1, quality: 95.8, fillRate: 94.8, score: 94.4, since: 'Nov 2022' },
-    { id: 'VND-009', name: 'Dechra Veterinary Products', gstin: '33AABCD7720K1ZX', category: 'Dermatology & Topicals', contact: 'Ramona Singh', city: 'Chennai', spend: '₹7.60 L', pos: 4, rating: 'A+', status: 'Active', onTime: 93.8, quality: 95.2, fillRate: 94.4, score: 93.8, since: 'Jan 2023' },
-    { id: 'VND-010', name: 'Bayer Animal Health India', gstin: '36AABCB4419G1Z8', category: 'Antiparasitic & Antifungal', contact: 'Suresh Kumar', city: 'Hyderabad', spend: '₹5.20 L', pos: 3, rating: 'A+', status: 'Active', onTime: 92.4, quality: 94.6, fillRate: 93.8, score: 92.5, since: 'Aug 2023' }
-  ];
+  var VENDORS = [];
 
-  var PURCHASE_ORDERS = [
-    { poNumber: 'PO-2026-1042', vendor: 'MSD Animal Health India', items: 'Nobivac DHPPi + Lepto (500 vials)', amount: '₹1,57,500', createdDate: '2026-10-02', deliveryEta: '2026-10-06', clinicHub: 'Koramangala Central Hub', status: 'Dispatched', priority: 'High' },
-    { poNumber: 'PO-2026-1039', vendor: 'Synthes Vet India', items: 'Titanium TPLO 2.7mm Plates & Screws (25 sets)', amount: '₹1,95,000', createdDate: '2026-10-01', deliveryEta: '2026-10-07', clinicHub: 'Bandra Specialty OT Hub', status: 'Approved', priority: 'Critical' },
-    { poNumber: 'PO-2026-1035', vendor: 'Boehringer Ingelheim Vet', items: 'NexGard Spectra Chewables Medium (120 boxes)', amount: '₹1,82,400', createdDate: '2026-09-29', deliveryEta: '2026-10-05', clinicHub: 'Whitefield Care Hub', status: 'GRN Verified', priority: 'Medium' },
-    { poNumber: 'PO-2026-1031', vendor: 'Royal Canin India', items: 'Veterinary Diet Hepatic & Renal Dry (400 kg)', amount: '₹2,88,000', createdDate: '2026-09-28', deliveryEta: '2026-10-04', clinicHub: 'Okhla Clinic Hub', status: 'GRN Verified', priority: 'Medium' },
-    { poNumber: 'PO-2026-1028', vendor: 'Intas Pharmaceuticals', items: 'Meloxicam Injection 5mg/ml (200 vials)', amount: '₹42,000', createdDate: '2026-09-27', deliveryEta: '2026-10-03', clinicHub: 'Indiranagar Hub', status: 'Fulfilled', priority: 'Standard' },
-    { poNumber: 'PO-2026-1024', vendor: "Hill's Pet Nutrition", items: 'Prescription Diet c/d Multicare Feline (150 kg)', amount: '₹1,24,800', createdDate: '2026-09-25', deliveryEta: '2026-10-02', clinicHub: 'Koramangala Central Hub', status: 'Fulfilled', priority: 'Medium' },
-    { poNumber: 'PO-2026-1018', vendor: 'Dechra Veterinary Products', items: 'Malaseb Medicated Shampoo 250ml (100 units)', amount: '₹95,000', createdDate: '2026-09-24', deliveryEta: '2026-10-01', clinicHub: 'Bandra Specialty OT Hub', status: 'Fulfilled', priority: 'Standard' }
-  ];
+  var PURCHASE_ORDERS = [];
 
-  var PAYMENTS = [
-    { invoiceNo: 'INV-MSD-9481', vendor: 'MSD Animal Health India', poRef: 'PO-2026-0914', amount: '₹4,85,000', dueDate: '2026-10-15', cashDiscount: '₹9,700 (2%)', terms: '2/10 Net 30', status: 'Scheduled', bankRef: 'HDFC-NEFT-8891' },
-    { invoiceNo: 'INV-SYN-3301', vendor: 'Synthes Vet India', poRef: 'PO-2026-0882', amount: '₹3,40,000', dueDate: '2026-10-22', cashDiscount: '₹6,800 (2%)', terms: '2/10 Net 30', status: 'Approved', bankRef: 'Pending Release' },
-    { invoiceNo: 'INV-BI-8820', vendor: 'Boehringer Ingelheim Vet', poRef: 'PO-2026-0850', amount: '₹5,12,000', dueDate: '2026-10-18', cashDiscount: '₹10,240 (2%)', terms: '2/10 Net 30', status: 'Scheduled', bankRef: 'HDFC-RTGS-3401' },
-    { invoiceNo: 'INV-ZOE-4112', vendor: 'Zoetis India Ltd.', poRef: 'PO-2026-0819', amount: '₹3,95,000', dueDate: '2026-10-25', cashDiscount: '₹7,900 (2%)', terms: 'Net 30 Days', status: 'Approved', bankRef: 'Pending Release' },
-    { invoiceNo: 'INV-RC-5520', vendor: 'Royal Canin India', poRef: 'PO-2026-0745', amount: '₹4,10,000', dueDate: '2026-10-30', cashDiscount: '₹0 (Standard)', terms: 'Net 45 Days', status: 'Processing', bankRef: 'GRN Verification' },
-    { invoiceNo: 'INV-HIL-7740', vendor: "Hill's Pet Nutrition", poRef: 'PO-2026-0790', amount: '₹2,60,000', dueDate: '2026-10-28', cashDiscount: '₹5,200 (2%)', terms: '2/10 Net 30', status: 'Scheduled', bankRef: 'HDFC-NEFT-9012' }
-  ];
+  var PAYMENTS = [];
 
-  var REQUISITIONS = [
-    { id: 'REQ-4821', department: 'Pharmacy — Koramangala', item: 'Nobivac Puppy DP vaccines', qty: '250 doses', urgency: 'High', requestedBy: 'Sr. Pharmacist Meera', status: 'In Approval', created: '2026-10-03' },
-    { id: 'REQ-4818', department: 'Surgery OT — Bandra', item: 'LCP Titanium 2.4mm Plates', qty: '20 kits', urgency: 'Critical', requestedBy: 'Dr. Vikram Singh', status: 'PO Raised', created: '2026-10-01' },
-    { id: 'REQ-4815', department: 'Nutrition Counseling', item: "Hill's Prescription k/d Dry", qty: '100 kg bags', urgency: 'Medium', requestedBy: 'Nutritionist Anita', status: 'Received', created: '2026-09-28' },
-    { id: 'REQ-4812', department: 'Dermatology Clinic', item: 'Dechra Malaseb Shampoo', qty: '500 bottles', urgency: 'Medium', requestedBy: 'Dr. Priya Rajan', status: 'In Approval', created: '2026-09-27' },
-    { id: 'REQ-4809', department: 'Pharmacy — Okhla', item: 'Advocate 40-4kg spot-on', qty: '1000 tubes', urgency: 'High', requestedBy: 'Pharmacist Suresh', status: 'PO Raised', created: '2026-09-25' },
-    { id: 'REQ-4806', department: 'Lab — Andheri', item: 'Blood Glucose Reagent Strips', qty: '5000 strips', urgency: 'Low', requestedBy: 'Lab Tech Ramesh', status: 'Pending', created: '2026-09-24' }
-  ];
+  var REQUISITIONS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

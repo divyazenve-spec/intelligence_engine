@@ -8,14 +8,7 @@
   var root = null;
   var isOpen = false;
 
-  var recruits = [
-    { name: 'Dr. Aakash Roy', role: 'Veterinary Radiologist', dept: 'Clinical', date: '01 Oct 2026', buddy: 'Dr. Priya Sharma', bvg: 'Verified ✅', hardware: 'MacBook Pro', license: 'Verified (VCI)', pct: 85, status: 'In Progress' },
-    { name: 'Sneha Chawla', role: 'Senior React / AI Eng', dept: 'Technology', date: '28 Sep 2026', buddy: 'Sameer Kulkarni', bvg: 'Verified ✅', hardware: 'Laptop & Keys', license: 'N/A', pct: 92, status: 'Near Complete' },
-    { name: 'Manish Rawat', role: 'Fleet Lead Rider', dept: 'Logistics', date: '25 Sep 2026', buddy: 'Vikram Joshi', bvg: 'Verified ✅', hardware: 'POS & Kit', license: 'DL Verified', pct: 100, status: 'Completed' },
-    { name: 'Divya Sundaram', role: 'Clinical Pharmacist', dept: 'Pharmacy', date: '22 Sep 2026', buddy: 'Rohan Deshmukh', bvg: 'Verified ✅', hardware: 'ERP Creds', license: 'Pharmacy Reg', pct: 100, status: 'Completed' },
-    { name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', date: '18 Sep 2026', buddy: 'Ananya Verma', bvg: 'Verified ✅', hardware: 'Scanner & ID', license: 'N/A', pct: 100, status: 'Completed' },
-    { name: 'Tanya Bhalla', role: 'Tele-Support Specialist', dept: 'Customer Delight', date: '05 Oct 2026', buddy: 'Pooja Hegde', bvg: 'In Progress ⏳', hardware: 'Headset & CRM', license: 'N/A', pct: 45, status: 'Day 1 Roster' }
-  ];
+  var recruits = [];
 
   function closeOthers() {
     document.querySelectorAll('.zpanel-root').forEach(function (el) {

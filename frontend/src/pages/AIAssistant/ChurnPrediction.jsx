@@ -11,12 +11,7 @@ export default function ChurnPrediction() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const churnCohorts = [
-    { cohort: 'Cancelled Wellness Plan Subscribers', users: 142, riskScore: '88.4%', rootCause: 'Missed doctor follow-up checkin', intervention: 'Specialist concierge call + free dental voucher', recoveryRate: '44.2%' },
-    { cohort: 'Lapsed Single-Purchase App Users (>60d)', users: 380, riskScore: '76.2%', rootCause: 'Fulfillment delay on first order', intervention: '₹300 wallet credit + priority 60m delivery', recoveryRate: '31.8%' },
-    { cohort: 'Grooming-Only Clients (No Vet Consult)', users: 215, riskScore: '64.5%', rootCause: 'Never introduced to clinical services', intervention: 'Complimentary general health check voucher', recoveryRate: '52.1%' },
-    { cohort: 'Multi-Pet Parents with Decreased Frequency', users: 84, riskScore: '58.0%', rootCause: 'Competitor price shopping on bulk food', intervention: 'VIP multi-pet bundle 12% subscription discount', recoveryRate: '68.4%' }
-  ];
+  const churnCohorts = [];
 
   return (
     <DashboardLayout
@@ -28,10 +23,10 @@ export default function ChurnPrediction() {
       badge="Early Warning Churn Radar"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Churn Risk Index" value="8.8%" delta="-2.1% vs Q2" trend="down" subtext="Best-in-class" icon="🛡️" />
+        <KpiCard label="Overall Churn Risk Index" value="0.0%" delta="-2.1% vs Q2" trend="down" subtext="Best-in-class" icon="🛡️" />
         <KpiCard label="High-Risk Pet Parents" value="226 Users" delta="1.8% of Base" trend="neutral" subtext="In intervention queue" icon="⚠️" />
-        <KpiCard label="Intervention Win-Back Rate" value="48.6%" delta="+6.4% YoY" trend="up" subtext="Recovered revenue" icon="🔄" />
-        <KpiCard label="Protected Annual Revenue" value="₹18.40 Lakh" delta="LTV preserved" trend="up" subtext="Proactive playbooks" icon="💎" />
+        <KpiCard label="Intervention Win-Back Rate" value="0.0%" delta="+6.4% YoY" trend="up" subtext="Recovered revenue" icon="🔄" />
+        <KpiCard label="Protected Annual Revenue" value="₹0" delta="LTV preserved" trend="up" subtext="Proactive playbooks" icon="💎" />
       </div>
 
       <div style={cardStyle}>

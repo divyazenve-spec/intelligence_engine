@@ -9,98 +9,7 @@ export default function PharmacyOrders() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [toast, setToast] = useState('');
 
-  const orders = [
-    {
-      id: 'PH-ORD-8812',
-      time: '12 mins ago',
-      customer: 'Pooja Hegde',
-      phone: '+91 98450 99881',
-      address: 'Apartment 402, Prestige Palms, Indiranagar, Bengaluru',
-      channel: '60-Min Rapid',
-      items: 'Bravecto 20-40kg (1 tab), Drontal Plus Puppy (1 bottle)',
-      cold: false,
-      value: 2550,
-      slaRemaining: '28 mins',
-      status: 'Out for Delivery',
-      rider: 'Ramesh K. (Zenve EV-12)',
-      pharmacist: 'Priya Iyer (Reg #KA-PH-8401)'
-    },
-    {
-      id: 'PH-ORD-8811',
-      time: '24 mins ago',
-      customer: 'Sanjay Reddy',
-      phone: '+91 98201 11223',
-      address: 'Zenve Hospital Koramangala (In-Clinic Pickup)',
-      channel: 'Clinic Counter',
-      items: 'Zoetis Cardisure 5mg (60 tabs), Furosemide 20mg (30 tabs)',
-      cold: false,
-      value: 2880,
-      slaRemaining: 'Ready',
-      status: 'Ready for Pickup',
-      rider: 'Counter Collection',
-      pharmacist: 'Priya Iyer (Reg #KA-PH-8401)'
-    },
-    {
-      id: 'PH-ORD-8810',
-      time: '35 mins ago',
-      customer: 'Kavita Nair',
-      phone: '+91 97110 55443',
-      address: 'Villa 18, Palm Meadows, Whitefield, Bengaluru',
-      channel: '60-Min Rapid',
-      items: 'Nobivac DHPPi Core Vaccine (2 vials), Syringe Set',
-      cold: true,
-      value: 1900,
-      slaRemaining: '16 mins',
-      status: 'Out for Delivery',
-      rider: 'Imran Khan (Cold Box Zenve-04)',
-      pharmacist: 'Arun V. (Reg #KA-PH-7920)'
-    },
-    {
-      id: 'PH-ORD-8809',
-      time: '50 mins ago',
-      customer: 'Vikram Sethi',
-      phone: '+91 99001 22334',
-      address: 'Plot 42, Jubilee Hills, Hyderabad',
-      channel: 'Scheduled Delivery',
-      items: 'Royal Canin Renal Diet 3kg, Himalaya Digyton Plus',
-      cold: false,
-      value: 3780,
-      slaRemaining: 'Today 4:00 PM',
-      status: 'Packed & Dispatched',
-      rider: 'Delhivery Surface (#DL-90812)',
-      pharmacist: 'Lakshmi Reddy'
-    },
-    {
-      id: 'PH-ORD-8808',
-      time: '1 hour ago',
-      customer: 'Ananya Roy',
-      phone: '+91 98110 77889',
-      address: 'C-14, Vasant Kunj, New Delhi',
-      channel: 'Scheduled Delivery',
-      items: 'NexGard Spectra 7.5-15kg (2 packs)',
-      cold: false,
-      value: 3300,
-      slaRemaining: 'Today 5:30 PM',
-      status: 'Packed & Dispatched',
-      rider: 'BlueDart Air (#BD-4412)',
-      pharmacist: 'Amit Verma'
-    },
-    {
-      id: 'PH-ORD-8807',
-      time: '1.5 hours ago',
-      customer: 'Deepika Sen',
-      phone: '+91 98451 33445',
-      address: 'Zenve Bandra Hospital, Mumbai',
-      channel: 'Clinic Counter',
-      items: 'Amoxiclav Pet 625mg (20 tabs), Malaseb Medicated Shampoo',
-      cold: false,
-      value: 1480,
-      slaRemaining: 'Completed',
-      status: 'Delivered',
-      rider: 'Counter Collection',
-      pharmacist: 'Priya Joshi'
-    }
-  ];
+  const orders = [];
 
   const filtered = useMemo(() => {
     return orders.filter(o => {
@@ -128,7 +37,7 @@ export default function PharmacyOrders() {
       title="Dispensary Orders & Rapid Fulfillment"
       subtitle="60-minute express delivery, cold chain packaging verification, and pharmacist sign-off tracking"
       icon="🚚"
-      badge="42 Active Orders"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -173,7 +82,7 @@ export default function PharmacyOrders() {
         <KpiCard label="Clinic Counter Pickups" value="14 Orders" delta="Instant collection" trend="up" subtext="Walk-in dispensary" icon="🏥" />
         <KpiCard label="Cold Chain Dispatches" value="8 Orders" delta="100% Validated" trend="up" subtext="Insulated gel packs" icon="❄️" />
         <KpiCard label="Average Packing Time" value="8.4 Mins" delta="-1.6m vs target" trend="up" subtext="Pharmacist check to pack" icon="⏱️" />
-        <KpiCard label="Dispatch SLA Compliance" value="98.6%" delta="+0.4% MoM" trend="up" subtext="On-time delivery" icon="🎯" />
+        <KpiCard label="Dispatch SLA Compliance" value="0.0%" delta="+0.4% MoM" trend="up" subtext="On-time delivery" icon="🎯" />
       </div>
 
       {/* Orders Filter & Table */}

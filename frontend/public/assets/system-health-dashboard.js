@@ -168,14 +168,7 @@
 
   /* Sub-tab renderers */
   function renderAppTab() {
-    var apps = [
-      { name: 'Vite React Frontend SPA', stack: 'Node / React 18', host: 'http://localhost:3001', mem: '42 MB', cpu: '0.4%', tput: '142 rpm', status: 'Healthy', version: 'v2.4.0' },
-      { name: 'FastAPI Backend Core', stack: 'Python 3.12 ASGI (Uvicorn)', host: 'http://127.0.0.1:8000', mem: '78 MB', cpu: '1.2%', tput: '380 rpm', status: 'Healthy', version: 'v1.0.0' },
-      { name: 'Background Worker Daemon', stack: 'Asyncio Task Queue', host: 'Internal Process', mem: '34 MB', cpu: '0.8%', tput: '60 jobs/min', status: 'Healthy', version: 'v1.1.2' },
-      { name: 'Zenve Pet Mobile App (Android)', stack: 'React Native / Android 14', host: 'Google Play Store', mem: 'Client', cpu: 'Client', tput: '1,240 rpm', status: 'Healthy', version: 'v3.1.2' },
-      { name: 'Zenve Pet Mobile App (iOS)', stack: 'Swift / React Native', host: 'Apple App Store', mem: 'Client', cpu: 'Client', tput: '980 rpm', status: 'Healthy', version: 'v3.1.0' },
-      { name: 'Session Cache & Feed Layer', stack: 'In-Memory LRU Cache', host: '6379 (Virtual)', mem: '128 MB', cpu: '0.2%', tput: '2,400 rpm', status: 'Healthy', version: 'v1.0.0' }
-    ];
+    var apps = [];
 
     var rows = apps.map(function (a) {
       return [
@@ -213,15 +206,7 @@
   }
 
   function renderApiTab() {
-    var endpoints = [
-      { route: '/api/v1/data', method: 'GET', p50: '3.8ms', p95: '11.2ms', p99: '18.5ms', rps: '18.4 rps', err: '0.00%', status: 'Healthy' },
-      { route: '/api/v1/sales/save', method: 'POST', p50: '6.2ms', p95: '14.8ms', p99: '22.0ms', rps: '6.1 rps', err: '0.01%', status: 'Healthy' },
-      { route: '/api/v1/sales/import', method: 'POST', p50: '18.4ms', p95: '42.0ms', p99: '84.0ms', rps: '1.2 rps', err: '0.00%', status: 'Healthy' },
-      { route: '/api/v1/inventory', method: 'GET', p50: '4.5ms', p95: '12.0ms', p99: '19.1ms', rps: '12.6 rps', err: '0.00%', status: 'Healthy' },
-      { route: '/api/v1/inventory/save', method: 'POST', p50: '8.1ms', p95: '16.4ms', p99: '28.2ms', rps: '3.4 rps', err: '0.00%', status: 'Healthy' },
-      { route: '/api/v1/ai/brief', method: 'POST', p50: '320ms', p95: '780ms', p99: '1,250ms', rps: '1.8 rps', err: '0.04%', status: 'Healthy' },
-      { route: '/api/v1/health', method: 'GET', p50: '1.2ms', p95: '3.4ms', p99: '6.8ms', rps: '24.0 rps', err: '0.00%', status: 'Healthy' }
-    ];
+    var endpoints = [];
 
     var rows = endpoints.map(function (e) {
       return [
@@ -257,12 +242,7 @@
   }
 
   function renderDbTab() {
-    var tables = [
-      { name: 'sales', rows: '1,420', size: '14.2 KB', indexCount: 3, lastUpdated: 'Just now', status: 'Optimal' },
-      { name: 'daily_metrics', rows: '90', size: '4.8 KB', indexCount: 2, lastUpdated: '10m ago', status: 'Optimal' },
-      { name: 'inventory_items', rows: '240', size: '6.4 KB', indexCount: 2, lastUpdated: '25m ago', status: 'Optimal' },
-      { name: 'audit_logs', rows: '3,840', size: '18.6 KB', indexCount: 2, lastUpdated: 'Just now', status: 'Optimal' }
-    ];
+    var tables = [];
 
     var rows = tables.map(function (t) {
       return [
@@ -295,12 +275,7 @@
   }
 
   function renderPaymentTab() {
-    var gateways = [
-      { name: 'Razorpay UPI & Cards', provider: 'Razorpay India', ping: '78ms', success: '99.4%', uptime: '99.98%', webhook: 'Operational (24ms)', status: 'Healthy' },
-      { name: 'Cashfree Auto-Collect', provider: 'Cashfree Payments', ping: '94ms', success: '98.8%', uptime: '99.95%', webhook: 'Operational (32ms)', status: 'Healthy' },
-      { name: 'PayU Enterprise (Backup)', provider: 'PayU Payments', ping: '110ms', success: '97.9%', uptime: '99.90%', webhook: 'Operational (40ms)', status: 'Standby' },
-      { name: 'Stripe International', provider: 'Stripe Inc', ping: '145ms', success: '98.5%', uptime: '99.99%', webhook: 'Operational (55ms)', status: 'Healthy' }
-    ];
+    var gateways = [];
 
     var rows = gateways.map(function (g) {
       return [
@@ -334,11 +309,7 @@
   }
 
   function renderCrmTab() {
-    var connectors = [
-      { name: 'HubSpot Pet Parents CRM', role: 'Customer 360 & Marketing', endpoint: 'api.hubapi.com/v3', volume: '142,500 contacts', freq: 'Every 5 mins', lastSync: '2m ago', status: 'Connected' },
-      { name: 'Freshdesk Omnichannel', role: 'Support & Tele-Vet Helpdesk', endpoint: 'zenve.freshdesk.com/api/v2', volume: '18,400 tickets', freq: 'Real-time Webhook', lastSync: 'Just now', status: 'Connected' },
-      { name: 'Salesforce B2B Veterinary', role: 'Clinics & Corporate B2B', endpoint: 'zenve.my.salesforce.com', volume: '48 clinics', freq: 'Hourly batch', lastSync: '14m ago', status: 'Connected' }
-    ];
+    var connectors = [];
 
     var rows = connectors.map(function (c) {
       return [
@@ -372,13 +343,7 @@
   }
 
   function renderInventoryTab() {
-    var nodes = [
-      { hub: 'Bengaluru Central Cold Depot', ip: '10.20.1.14', latency: '14ms', skus: '4,200 SKUs', telemetry: 'Freezer #1: +3.8°C | Freezer #2: +4.2°C', status: 'Healthy' },
-      { hub: 'Mumbai West Express Fulfillment', ip: '10.20.2.22', latency: '24ms', skus: '1,850 SKUs', telemetry: 'Ambient: +22.4°C | Chiller: +4.0°C', status: 'Healthy' },
-      { hub: 'Delhi NCR Urban Node', ip: '10.20.3.18', latency: '32ms', skus: '2,400 SKUs', telemetry: 'Ambient: +24.1°C | Chiller: +3.9°C', status: 'Healthy' },
-      { hub: 'Hyderabad Central Micro-Hub', ip: '10.20.4.11', latency: '28ms', skus: '1,420 SKUs', telemetry: 'Ambient: +23.2°C | Chiller: +4.1°C', status: 'Healthy' },
-      { hub: 'Pune Express Center', ip: '10.20.5.09', latency: '26ms', skus: '1,280 SKUs', telemetry: 'Ambient: +22.8°C | Chiller: +3.7°C', status: 'Healthy' }
-    ];
+    var nodes = [];
 
     var rows = nodes.map(function (n) {
       return [
@@ -412,12 +377,7 @@
   }
 
   function renderAccountingTab() {
-    var services = [
-      { name: 'Zoho Books Enterprise ERP', scope: 'General Ledger, Chart of Accounts, P&L', cadence: 'Every 15 mins', lastBatch: '6m ago (Batch #4812)', audited: '14,210 invoices', status: 'Connected' },
-      { name: 'Tally Prime Cloud Connector', scope: 'Statutory GST Audit & Inventory Valuation', cadence: 'Daily at 23:00 IST', lastBatch: 'Yesterday 23:00', audited: '77,010 vouchers', status: 'Connected' },
-      { name: 'GSTN Government e-Invoice Portal', scope: 'B2B QR Code & IRN Generation', cadence: 'Real-time on Order', lastBatch: '12m ago (IRN #9910)', audited: '4,550 IRNs', status: 'Operational' },
-      { name: 'HDFC Corporate Banking Auto-Feed', scope: 'Instant Bank Statement Reconciliation', cadence: 'Hourly', lastBatch: '24m ago', audited: '₹14.18 Cr inflows matched', status: 'Active' }
-    ];
+    var services = [];
 
     var rows = services.map(function (s) {
       return [
@@ -451,13 +411,7 @@
   }
 
   function renderMarketingTab() {
-    var integrations = [
-      { platform: 'Meta Ads Conversions API (CAPI)', purpose: 'Server-Side Event Attribution', match: '8.9 / 10', latency: '112ms', events: '42,800 events', status: 'Active' },
-      { platform: 'Google Ads Enhanced Conversions', purpose: 'First-Party Customer Match', match: '9.2 / 10', latency: '94ms', events: '38,100 events', status: 'Active' },
-      { platform: 'AppsFlyer Mobile Attribution', purpose: 'SKAdNetwork & Install Tracking', match: '99.4%', latency: '68ms', events: '84,500 events', status: 'Active' },
-      { platform: 'WhatsApp Cloud API (Meta)', purpose: 'Cart Recovery & Live Order Updates', match: '98.8%', latency: '52ms', events: '12,400 messages', status: 'Active' },
-      { platform: 'Segment CDP Event Stream', purpose: 'Unified Customer Data Forwarding', match: '100%', latency: '34ms', events: '190,000 events', status: 'Active' }
-    ];
+    var integrations = [];
 
     var rows = integrations.map(function (i) {
       return [
@@ -491,12 +445,7 @@
   }
 
   function renderNotificationsTab() {
-    var providers = [
-      { name: 'Gupshup SMS Gateway (India)', channel: 'Transactional SMS (DLT Approved)', delivery: '99.88%', latency: '2.1s', balance: '₹42,850 (Healthy)', status: 'Active' },
-      { name: 'SendGrid Enterprise Email', channel: 'Invoices, Rx Reports & Orders', delivery: '99.94%', latency: '1.4s', balance: 'Unlimited Enterprise', status: 'Active' },
-      { name: 'Firebase Cloud Messaging (FCM)', channel: 'Mobile App Push (Android / iOS)', delivery: '98.70%', latency: '850ms', balance: 'Google Tier-1', status: 'Active' },
-      { name: 'WhatsApp Business Cloud API', channel: 'Order Milestones & Vet Chimes', delivery: '99.65%', latency: '1.8s', balance: 'Post-paid Active', status: 'Active' }
-    ];
+    var providers = [];
 
     var rows = providers.map(function (p) {
       return [
@@ -530,18 +479,7 @@
   }
 
   function renderLogsTab() {
-    var rawLogs = [
-      { time: '14:32:05', service: 'FastAPI Core', level: 'INFO', msg: 'Health diagnostic probe /api/health returned 200 OK (1.2ms latency)' },
-      { time: '14:31:40', service: 'Razorpay Gateway', level: 'INFO', msg: 'Webhook event payment.captured processed for order #ORD-9912 (₹2,400) · 24ms' },
-      { time: '14:30:12', service: 'Zoho Books Sync', level: 'INFO', msg: 'Batch sync #4812 completed: 18 sales invoices matched to accounts receivable' },
-      { time: '14:28:55', service: 'IoT Cold-Chain', level: 'INFO', msg: 'Telemetry heartbeat received from BLR Central Depot Freezer #1: +4.1°C' },
-      { time: '14:27:10', service: 'Gupshup SMS', level: 'INFO', msg: 'DLT SMS delivered to +91 98450***** (Template: VET_APPT_REMINDER)' },
-      { time: '14:25:04', service: 'HubSpot CRM', level: 'INFO', msg: 'Contact profile updated: 1 new pet record linked to user #USR-8812' },
-      { time: '14:21:18', service: 'Cashfree Gateway', level: 'WARN', msg: 'Instant UPI payout queued — Bank network micro-retry (Resolved in 4s)' },
-      { time: '14:18:22', service: 'SQLite Core DB', level: 'INFO', msg: 'WAL checkpoint executed: 48 pages transferred to zenvebi.db master file' },
-      { time: '14:15:00', service: 'Meta Ads CAPI', level: 'INFO', msg: 'Conversion event Purchase (value: ₹4,800) forwarded with Match Quality 9.2' },
-      { time: '14:10:44', service: 'FastAPI Core', level: 'INFO', msg: 'Inventory batch update completed: 12 SKUs refreshed in 4.5ms' }
-    ];
+    var rawLogs = [];
 
     var filtered = rawLogs.filter(function (l) {
       var matchLvl = S.logLevel === 'ALL' || l.level === S.logLevel;

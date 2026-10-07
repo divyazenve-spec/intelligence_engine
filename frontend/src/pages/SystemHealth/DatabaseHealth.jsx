@@ -13,12 +13,7 @@ export default function DatabaseHealth() {
     walBacklog: '0 pages'
   });
 
-  const [tables, setTables] = useState([
-    { name: 'sales', records: '1,420', size: '14.2 KB', indexCount: 3, lastUpdated: 'Just now', status: 'Optimal' },
-    { name: 'daily_metrics', records: '90', size: '4.8 KB', indexCount: 2, lastUpdated: '10m ago', status: 'Optimal' },
-    { name: 'inventory_items', records: '240', size: '6.4 KB', indexCount: 2, lastUpdated: '25m ago', status: 'Optimal' },
-    { name: 'audit_logs', records: '3,840', size: '18.6 KB', indexCount: 2, lastUpdated: 'Just now', status: 'Optimal' }
-  ]);
+  const [tables, setTables] = useState([]);
 
   const [toast, setToast] = useState('');
 

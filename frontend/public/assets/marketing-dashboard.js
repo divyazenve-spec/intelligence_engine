@@ -35,103 +35,29 @@
   ];
 
   /* ── Datasets ─────────────────────────────────────────────────────── */
-  var CAMPAIGNS = [
-    { id: 'CMP-201', name: 'Puppy Vaccination & Vet Care 2026', channel: 'Meta (Insta & FB)', budget: '₹2,50,000', spend: '₹2,14,000', impressions: '540,000', clicks: '24,200', ctr: '4.48%', conv: 1420, cac: '₹150', roas: '4.8x', status: 'Active' },
-    { id: 'CMP-202', name: 'Emergency 60-Min Pet Pharmacy Rx', channel: 'Google Search Ads', budget: '₹1,80,000', spend: '₹1,65,000', impressions: '210,000', clicks: '18,900', ctr: '9.00%', conv: 1180, cac: '₹140', roas: '5.2x', status: 'Active' },
-    { id: 'CMP-203', name: 'Monsoon Canine Tick & Flea Shield', channel: 'Meta Instagram Reels', budget: '₹1,50,000', spend: '₹1,42,000', impressions: '420,000', clicks: '16,500', ctr: '3.93%', conv: 760, cac: '₹187', roas: '3.9x', status: 'Active' },
-    { id: 'CMP-204', name: 'Bengaluru Top Vet Tele-Consult Co-Op', channel: 'YouTube Video Ads', budget: '₹1,20,000', spend: '₹95,000', impressions: '310,000', clicks: '8,400', ctr: '2.71%', conv: 380, cac: '₹250', roas: '3.4x', status: 'Active' },
-    { id: 'CMP-205', name: 'Zenve Fashion Designer Harness Launch', channel: 'Influencer Collabs', budget: '₹90,000', spend: '₹90,000', impressions: '190,000', clicks: '9,800', ctr: '5.16%', conv: 410, cac: '₹220', roas: '3.1x', status: 'Completed' },
-    { id: 'CMP-206', name: 'Diwali Pet Gourmet Nutrition Box', channel: 'WhatsApp & SMS', budget: '₹60,000', spend: '₹12,000', impressions: '85,000', clicks: '11,200', ctr: '13.18%', conv: 620, cac: '₹19', roas: '6.8x', status: 'Scheduled' }
-  ];
+  var CAMPAIGNS = [];
 
-  var LEADS = [
-    { id: 'LD-4091', parent: 'Kavita Sundaram', pet: 'Golden Retriever (Bruno)', city: 'Bengaluru (Koramangala)', source: 'Google Search Ads', score: 'A+', stage: 'Consult Booked', rep: 'Dr. Priya Sharma', value: '₹4,500', status: 'Active' },
-    { id: 'LD-4092', parent: 'Amitabh Sen', pet: 'Persian Cat (Milo)', city: 'Mumbai (Bandra West)', source: 'Instagram Reels', score: 'A', stage: 'Qualified', rep: 'Sneha Kapoor', value: '₹2,800', status: 'Active' },
-    { id: 'LD-4093', parent: 'Divya Nair', pet: 'German Shepherd (Rocky)', city: 'Bengaluru (Indiranagar)', source: 'Vet Clinic Referral', score: 'A+', stage: 'Converted', rep: 'Dr. Rahul Mehta', value: '₹12,400', status: 'Won' },
-    { id: 'LD-4094', parent: 'Rohan Deshpande', pet: 'Beagle (Daisy)', city: 'Pune (Kalyani Nagar)', source: 'In-App Telehealth Click', score: 'B+', stage: 'Contacted', rep: 'Sameer Khan', value: '₹1,950', status: 'Active' },
-    { id: 'LD-4095', parent: 'Meera Chawla', pet: 'Shih Tzu (Coco)', city: 'Delhi-NCR (Gurgaon)', source: 'Meta Ad Carousel', score: 'A', stage: 'Consult Booked', rep: 'Dr. Aisha Khan', value: '₹3,600', status: 'Active' },
-    { id: 'LD-4096', parent: 'Siddharth Rao', pet: 'Labrador (Leo)', city: 'Hyderabad (Jubilee Hills)', source: 'Direct Website', score: 'B', stage: 'New', rep: 'Unassigned', value: '₹2,200', status: 'Active' },
-    { id: 'LD-4097', parent: 'Pooja Agarwal', pet: 'French Bulldog (Oreo)', city: 'Mumbai (Andheri East)', source: 'Google Search Ads', score: 'A+', stage: 'Converted', rep: 'Dr. Rahul Mehta', value: '₹8,900', status: 'Won' },
-    { id: 'LD-4098', parent: 'Karthik Varma', pet: 'Siberian Husky (Ghost)', city: 'Bengaluru (Whitefield)', source: 'Instagram Video', score: 'A', stage: 'Consult Booked', rep: 'Dr. Priya Sharma', value: '₹6,400', status: 'Active' }
-  ];
+  var LEADS = [];
 
-  var SOURCES = [
-    { name: 'Google Search (High Intent)', visitors: '68,400', leads: '6,420', convRate: '9.38%', spend: '₹2,10,000', cac: '₹140', quality: '9.6/10', share: '34.8%' },
-    { name: 'Meta Instagram (Visual & Reels)', visitors: '54,200', leads: '4,180', convRate: '7.71%', spend: '₹1,85,000', cac: '₹165', quality: '8.8/10', share: '22.7%' },
-    { name: 'Partner Vet Clinics & Hospitals', visitors: '14,800', leads: '2,940', convRate: '19.86%', spend: '₹84,000', cac: '₹85', quality: '9.9/10', share: '16.0%' },
-    { name: 'In-App Referral & Invite Pet Friend', visitors: '19,500', leads: '2,450', convRate: '12.56%', spend: '₹35,000', cac: '₹32', quality: '9.4/10', share: '13.3%' },
-    { name: 'Organic SEO & Pet Health Guides', visitors: '42,000', leads: '1,650', convRate: '3.93%', spend: '₹40,000', cac: '₹24', quality: '9.1/10', share: '9.0%' },
-    { name: 'Local Pet Events & Adoption Drives', visitors: '6,400', leads: '760', convRate: '11.88%', spend: '₹28,000', cac: '₹110', quality: '8.9/10', share: '4.2%' }
-  ];
+  var SOURCES = [];
 
-  var WEB_PAGES = [
-    { path: '/vet-telehealth-booking', title: 'Online Vet Consultation & Instant Video Call', views: '84,500', unique: '61,200', time: '3m 42s', bounce: '28.4%', conv: '18.2%' },
-    { path: '/pet-pharmacy/monsoon-flea-tick', title: 'Prescription Flea & Tick Treatments', views: '62,800', unique: '48,900', time: '2m 58s', bounce: '31.6%', conv: '22.4%' },
-    { path: '/puppy-first-year-health-guide', title: 'Puppy Vaccination & Deworming Protocol', views: '45,200', unique: '38,100', time: '4m 15s', bounce: '36.8%', conv: '11.8%' },
-    { path: '/zenve-fashion/dog-apparel', title: 'Luxury Canine Jackets & Harness Collection', views: '38,900', unique: '29,400', time: '2m 12s', bounce: '34.2%', conv: '14.5%' },
-    { path: '/clinic-locator/bengaluru-mumbai', title: 'Zenve Partner Hospitals & Emergency Centers', views: '29,400', unique: '24,800', time: '1m 45s', bounce: '24.1%', conv: '28.9%' }
-  ];
+  var WEB_PAGES = [];
 
-  var SOCIAL_CHANNELS = [
-    { handle: '@zenvepets (Instagram)', followers: '348,000', growth: '+14,200', engRate: '4.82%', topPost: 'Golden Retriever Monsoon Care Tips', reach: '920K reach', icon: '📸' },
-    { handle: 'Zenve Pet Healthcare (YouTube)', followers: '182,000', growth: '+8,600', engRate: '6.15%', topPost: 'Surgeon Q&A: Tick Fever Signs', reach: '480K views', icon: '▶️' },
-    { handle: 'Zenve India (LinkedIn)', followers: '28,400', growth: '+2,100', engRate: '3.42%', topPost: 'Expanding Vet Hospital Network in Bengaluru', reach: '95K reach', icon: '💼' },
-    { handle: '@ZenveCares (X / Twitter)', followers: '42,500', growth: '+1,800', engRate: '5.20%', topPost: 'Pet Emergency SOS Helpline Hotline', reach: '180K impressions', icon: '🐦' }
-  ];
+  var SOCIAL_CHANNELS = [];
 
-  var AD_SETS = [
-    { name: 'Meta Advantage+ Dynamic Pet Pharmacy Catalog', platform: 'Meta Ads', spend: '₹1,42,000', cpm: '₹165', cpc: '₹7.80', cpa: '₹145', roas: '4.9x', health: 'Optimal' },
-    { name: 'Google Search: Urgent 24/7 Vet Near Me', platform: 'Google Ads', spend: '₹1,65,000', cpm: '₹420', cpc: '₹18.40', cpa: '₹140', roas: '5.2x', health: 'Optimal' },
-    { name: 'Instagram Video: Puppy Training & Preventive Vet Care', platform: 'Meta Ads', spend: '₹98,000', cpm: '₹140', cpc: '₹6.20', cpa: '₹180', roas: '3.8x', health: 'Creative Refresh Due' },
-    { name: 'Google Performance Max: Premium Canine Nutrition', platform: 'Google Ads', spend: '₹1,10,000', cpm: '₹280', cpc: '₹12.50', cpa: '₹165', roas: '4.2x', health: 'Optimal' },
-    { name: 'YouTube Non-Skip: Veterinary Surgery Precision', platform: 'YouTube Ads', spend: '₹85,000', cpm: '₹210', cpc: '₹16.20', cpa: '₹240', roas: '3.4x', health: 'Scaling' }
-  ];
+  var AD_SETS = [];
 
-  var SPEND_ITEMS = [
-    { category: 'Paid Performance Media (Meta & Google)', budget: '₹5,00,000', actual: '₹4,72,000', variance: '-5.6%', status: 'Under Budget', share: '62.4%' },
-    { category: 'Influencer & Creator Endorsements', budget: '₹1,20,000', actual: '₹1,15,000', variance: '-4.2%', status: 'Under Budget', share: '15.2%' },
-    { category: 'Creative Production & Video Shooting', budget: '₹80,000', actual: '₹74,000', variance: '-7.5%', status: 'Under Budget', share: '9.8%' },
-    { category: 'Pet Clinic Offline Co-op Signage', budget: '₹60,000', actual: '₹58,000', variance: '-3.3%', status: 'Under Budget', share: '7.7%' },
-    { category: 'Marketing Automation & Tool Stack', budget: '₹40,000', actual: '₹37,500', variance: '-6.2%', status: 'Under Budget', share: '4.9%' }
-  ];
+  var SPEND_ITEMS = [];
 
-  var COHORTS = [
-    { cohort: 'September 2026', acquired: '2,840', m1Repeat: '44.8%', m2Repeat: '38.2%', aov: '₹1,940', ltv60d: '₹4,120', retention: 'Healthy' },
-    { cohort: 'August 2026', acquired: '2,620', m1Repeat: '42.6%', m2Repeat: '36.5%', aov: '₹1,880', ltv60d: '₹3,980', retention: 'Healthy' },
-    { cohort: 'July 2026', acquired: '2,410', m1Repeat: '41.2%', m2Repeat: '35.1%', aov: '₹1,820', ltv60d: '₹3,840', retention: 'Healthy' },
-    { cohort: 'June 2026', acquired: '2,180', m1Repeat: '39.8%', m2Repeat: '34.0%', aov: '₹1,760', ltv60d: '₹3,680', retention: 'Benchmark' }
-  ];
+  var COHORTS = [];
 
-  var CITY_CAC = [
-    { city: 'Bengaluru Flagship Metro', blendedCAC: '₹340', paidCAC: '₹480', organicCAC: '₹95', newCustomers: '1,420', ltvRatio: '4.2x', status: 'Excellent' },
-    { city: 'Mumbai MMR & Thane', blendedCAC: '₹390', paidCAC: '₹560', organicCAC: '₹110', newCustomers: '980', ltvRatio: '3.9x', status: 'Healthy' },
-    { city: 'Delhi-NCR (Gurgaon & Noida)', blendedCAC: '₹410', paidCAC: '₹590', organicCAC: '₹125', newCustomers: '720', ltvRatio: '3.6x', status: 'Healthy' },
-    { city: 'Hyderabad & Secunderabad', blendedCAC: '₹320', paidCAC: '₹440', organicCAC: '₹85', newCustomers: '540', ltvRatio: '4.4x', status: 'Excellent' },
-    { city: 'Pune & Pimpri', blendedCAC: '₹295', paidCAC: '₹390', organicCAC: '₹70', newCustomers: '380', ltvRatio: '4.8x', status: 'Top Efficiency' }
-  ];
+  var CITY_CAC = [];
 
-  var CATEGORY_ROAS = [
-    { category: 'Puppy Vaccines & Health Packages', spend: '₹1,80,000', revenue: '₹9,72,000', roas: '5.4x', target: '4.0x', status: 'Exceeding' },
-    { category: 'Veterinary Prescription Drugs (Rx)', spend: '₹1,40,000', revenue: '₹7,14,000', roas: '5.1x', target: '4.2x', status: 'Exceeding' },
-    { category: 'Tick & Flea Prevention Treatments', spend: '₹1,20,000', revenue: '₹4,92,000', roas: '4.1x', target: '3.8x', status: 'Exceeding' },
-    { category: 'Super Premium Dry Pet Food', spend: '₹95,000', revenue: '₹3,42,000', roas: '3.6x', target: '3.2x', status: 'On Target' },
-    { category: 'Zenve Fashion Harness & Apparel', spend: '₹75,000', revenue: '₹2,40,000', roas: '3.2x', target: '3.0x', status: 'On Target' }
-  ];
+  var CATEGORY_ROAS = [];
 
-  var FINANCIAL_ROI = [
-    { channel: 'Search Ads & SEO Hybrid', spend: '₹2,50,000', grossProfitContrib: '₹6,40,000', netProfitLift: '₹3,90,000', netROI: '156%', paybackDays: '22 Days' },
-    { channel: 'Meta Instagram & Reels Ad Suite', spend: '₹2,10,000', grossProfitContrib: '₹5,10,000', netProfitLift: '₹3,00,000', netROI: '143%', paybackDays: '28 Days' },
-    { channel: 'Partner Clinic In-Store Displays', spend: '₹84,000', grossProfitContrib: '₹2,85,000', netProfitLift: '₹2,01,000', netROI: '239%', paybackDays: '14 Days' },
-    { channel: 'Influencer & Creator Video Collabs', spend: '₹95,000', grossProfitContrib: '₹1,95,000', netProfitLift: '₹1,00,000', netROI: '105%', paybackDays: '35 Days' }
-  ];
+  var FINANCIAL_ROI = [];
 
-  var FUNNEL_STEPS = [
-    { stage: '1. Ad Impressions & Brand Discovery', volume: '1,840,000', dropPct: '—', convRate: '100%', channelLead: 'Meta Reels (540K), Google (420K)', color: '#3b82f6', width: '100%' },
-    { stage: '2. Clicks & App Store Landing', volume: '148,000', dropPct: '92.0%', convRate: '8.04%', channelLead: 'Google Search Intent (9.0% CTR)', color: '#0ea5e9', width: '78%' },
-    { stage: '3. Lead Capture & App Installed', volume: '32,400', dropPct: '78.1%', convRate: '21.89%', channelLead: 'App Store (Android 66%, iOS 34%)', color: '#10b981', width: '55%' },
-    { stage: '4. Consult Initiated or Cart Added', volume: '12,800', dropPct: '60.5%', convRate: '39.51%', channelLead: 'Vaccine & Telehealth Bookings', color: '#f59e0b', width: '38%' },
-    { stage: '5. Paid Order / Completed Booking', volume: '4,720', dropPct: '63.1%', convRate: '36.88%', channelLead: 'Average Order Value: ₹1,940', color: '#ec4899', width: '25%' }
-  ];
+  var FUNNEL_STEPS = [];
 
   /* ── Helpers ──────────────────────────────────────────────────────── */
   function showToast(msg) {

@@ -6,16 +6,7 @@ export default function DeliveryOrders() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const orders = [
-    { id: 'ORD-DL-9821', customer: 'Ananya Deshmukh', pet: 'Golden Retriever (Max)', hub: 'Koramangala Hub (BLR)', rider: 'Kiran Kumar (EV-44)', items: 'Nobivac DHPPi + Royal Canin Hepatic', time: '14 mins ago', eta: '18 mins', type: '60-Min Express', temp: '3.4°C', status: 'In Transit' },
-    { id: 'ORD-DL-9820', customer: 'Rajesh Subramaniam', pet: 'Beagle (Rocky)', hub: 'Indiranagar Hub (BLR)', rider: 'Arun Varma (EV-12)', items: 'NexGard Chewables + Ear Cleanser', time: '22 mins ago', eta: '8 mins', type: '60-Min Express', temp: 'Ambient', status: 'Out for Delivery' },
-    { id: 'ORD-DL-9819', customer: 'Meera Chawla', pet: 'Persian Cat (Snowy)', hub: 'Bandra West Hub (BOM)', rider: 'Sunil Jadhav (EV-88)', items: 'Renal Liquid Diet + Syringes', time: '35 mins ago', eta: 'Delivered', type: 'Same Day', temp: '4.1°C', status: 'Delivered' },
-    { id: 'ORD-DL-9818', customer: 'Vikramaditya Rao', pet: 'German Shepherd (Tiger)', hub: 'Whitefield Hub (BLR)', rider: 'Praveen Gowda (EV-23)', items: 'Post-op Antibiotics + Surgical Collar', time: '41 mins ago', eta: '24 mins', type: '60-Min Express', temp: 'Ambient', status: 'In Transit' },
-    { id: 'ORD-DL-9817', customer: 'Pooja Agarwal', pet: 'Shih Tzu (Coco)', hub: 'Andheri East Hub (BOM)', rider: 'Ramesh Sawant (EV-31)', items: 'Puppy Starter Pack + Tick Shield', time: '55 mins ago', eta: 'Delivered', type: 'Same Day', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9816', customer: 'Nikhil Kashyap', pet: 'Labrador (Cooper)', hub: 'Gurugram Sec 29 (DEL)', rider: 'Mohit Sharma (EV-09)', items: 'Rabies Booster + Calcium Chewables', time: '1 hr ago', eta: 'Scheduled', type: 'Scheduled Slot', temp: '3.8°C', status: 'Dispatched' },
-    { id: 'ORD-DL-9815', customer: 'Sonalika Sen', pet: 'Indie Puppy (Chutki)', hub: 'Jubilee Hills Hub (HYD)', rider: 'Venkatesh R (EV-55)', items: 'Emergency Deworming Suspension', time: '1 hr ago', eta: 'Delivered', type: '60-Min Express', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9814', customer: 'Harish Mehta', pet: 'Rottweiler (Bruno)', hub: 'Koramangala Hub (BLR)', rider: 'Dinesh Patil (EV-19)', items: 'Prescription Joint Supplements', time: '2 hrs ago', eta: 'Rescheduled', type: 'Same Day', temp: 'Ambient', status: 'Failed Attempt' }
-  ];
+  const orders = [];
 
   const filtered = orders.filter(o => {
     const matchFilter = filter === 'ALL' || o.status === filter;
@@ -33,13 +24,13 @@ export default function DeliveryOrders() {
       title="Live Delivery Orders Dispatch Stream"
       subtitle="Real-time parcel status, rider telematics, hyperlocal express fulfillment, and cold-chain parcel tracking"
       icon="📦"
-      badge="482 Deliveries Today"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Dispatched Today" value="482 Orders" delta="+18.4% vs yday" trend="up" subtext="Across 14 micro-hubs" icon="📦" />
         <KpiCard label="Active In-Transit" value="38 Parcels" delta="Live now" trend="neutral" subtext="Average speed 26 km/h" icon="🛵" />
         <KpiCard label="60-Min Deliveries" value="294 Orders" delta="61% of volume" trend="up" subtext="Express rapid tier" icon="⚡" />
-        <KpiCard label="Delivery Success Rate" value="99.2%" delta="+0.4% MoM" trend="up" subtext="First attempt doorstep OTP" icon="🎯" />
+        <KpiCard label="Delivery Success Rate" value="0.0%" delta="+0.4% MoM" trend="up" subtext="First attempt doorstep OTP" icon="🎯" />
       </div>
 
       <div style={{

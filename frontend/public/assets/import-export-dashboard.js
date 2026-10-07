@@ -24,31 +24,21 @@
 
   /* ── 9 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
-    { id: 'import-dashboard', label: 'Import Dashboard',        icon: '🌐', hash: '#import-dashboard',          badge: '₹1.82 Cr MTD',  title: 'Global Import Procurement & Supply', sub: 'International procurement manifests, ocean & air cargo shipments, CDSCO veterinary drug clearance, and customs duty tracking' },
-    { id: 'export-dashboard', label: 'Export Dashboard',        icon: '🛫', hash: '#export-dashboard',          badge: '₹64.4L MTD',   title: 'International Export Sales & Global Trade', sub: 'Overseas market shipments, foreign exchange (Forex) remittances, Letter of Credit (LC) execution, and export duty incentives' },
-    { id: 'import-orders',    label: 'Import Orders',           icon: '📑', hash: '#import-orders',             badge: '5 Open IPOs',   title: 'International Purchase Orders (IPO) & LC Pipeline', sub: 'Cross-border procurement orders, commercial proforma invoices, forex hedging contracts, and port ETA milestones' },
-    { id: 'export-orders',    label: 'Export Orders',           icon: '📦', hash: '#export-orders',             badge: '4 Active XPOs', title: 'International Export Sales Orders & Invoicing', sub: 'Overseas commercial sales orders, foreign bank letters of credit, customs shipping bill filings, and cargo manifests' },
-    { id: 'suppliers',        label: 'Suppliers',               icon: '🌍', hash: '#suppliers',                 badge: '16 Global OEMs', title: 'Global Veterinary & Raw Material Suppliers', sub: 'International manufacturer registry, CDSCO import licenses, country of origin compliance, and quality certifications' },
-    { id: 'buyers',           label: 'Buyers',                  icon: '🤝', hash: '#buyers',                    badge: '8 Overseas Dist.', title: 'International Buyers & Distribution Partners', sub: 'Overseas retail chains, international veterinary hospital groups, luxury boutique distributors, and credit limits' },
-    { id: 'customs',          label: 'Customs & Documentation', icon: '🏛️', hash: '#customs-documentation',    badge: '100% ICEGATE',  title: 'Customs Compliance, Bill of Entry & Shipping Bills', sub: 'DGFT import export code (IEC), CDSCO drug controller permits, ICEGATE electronic filings, and animal quarantine NOCs' },
-    { id: 'logistics',        label: 'Logistics',               icon: '🚢', hash: '#trade-logistics',           badge: '4 Corridors',   title: 'Multimodal Reefer, Ocean & Air Corridors', sub: 'Cross-border freight forwarding, maritime vessel telemetry, cold-chain flight routes, and container yard milestones' },
-    { id: 'profitability',    label: 'Import/Export Profit',    icon: '💎', hash: '#import-export-profitability', badge: '47.2% Margin', title: 'Landed Cost Economics & Cross-Border Margins', sub: 'Total landed cost breakdown (CIF, customs duty, IGST, clearing, cold freight) and net international export arbitrage' }
+    { id: 'import-dashboard', label: 'Import Dashboard',        icon: '🌐', hash: '#import-dashboard',          badge: '',  title: 'Global Import Procurement & Supply', sub: 'International procurement manifests, ocean & air cargo shipments, CDSCO veterinary drug clearance, and customs duty tracking' },
+    { id: 'export-dashboard', label: 'Export Dashboard',        icon: '🛫', hash: '#export-dashboard',          badge: '',   title: 'International Export Sales & Global Trade', sub: 'Overseas market shipments, foreign exchange (Forex) remittances, Letter of Credit (LC) execution, and export duty incentives' },
+    { id: 'import-orders',    label: 'Import Orders',           icon: '📑', hash: '#import-orders',             badge: '',   title: 'International Purchase Orders (IPO) & LC Pipeline', sub: 'Cross-border procurement orders, commercial proforma invoices, forex hedging contracts, and port ETA milestones' },
+    { id: 'export-orders',    label: 'Export Orders',           icon: '📦', hash: '#export-orders',             badge: '', title: 'International Export Sales Orders & Invoicing', sub: 'Overseas commercial sales orders, foreign bank letters of credit, customs shipping bill filings, and cargo manifests' },
+    { id: 'suppliers',        label: 'Suppliers',               icon: '🌍', hash: '#suppliers',                 badge: '', title: 'Global Veterinary & Raw Material Suppliers', sub: 'International manufacturer registry, CDSCO import licenses, country of origin compliance, and quality certifications' },
+    { id: 'buyers',           label: 'Buyers',                  icon: '🤝', hash: '#buyers',                    badge: '', title: 'International Buyers & Distribution Partners', sub: 'Overseas retail chains, international veterinary hospital groups, luxury boutique distributors, and credit limits' },
+    { id: 'customs',          label: 'Customs & Documentation', icon: '🏛️', hash: '#customs-documentation',    badge: '',  title: 'Customs Compliance, Bill of Entry & Shipping Bills', sub: 'DGFT import export code (IEC), CDSCO drug controller permits, ICEGATE electronic filings, and animal quarantine NOCs' },
+    { id: 'logistics',        label: 'Logistics',               icon: '🚢', hash: '#trade-logistics',           badge: '',   title: 'Multimodal Reefer, Ocean & Air Corridors', sub: 'Cross-border freight forwarding, maritime vessel telemetry, cold-chain flight routes, and container yard milestones' },
+    { id: 'profitability',    label: 'Import/Export Profit',    icon: '💎', hash: '#import-export-profitability', badge: '', title: 'Landed Cost Economics & Cross-Border Margins', sub: 'Total landed cost breakdown (CIF, customs duty, IGST, clearing, cold freight) and net international export arbitrage' }
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var IMPORTS = [
-    { bl: 'BL-IMP-9801', origin: 'Marseille, France', product: 'Royal Canin Veterinary Diet (2 x 40ft HQ)', port: 'Nhava Sheva (JNPT)', value: '₹48,50,000', customs: 'Cleared / Out of Charge', eta: 'Central Hub', status: 'Received' },
-    { bl: 'BL-IMP-9802', origin: 'Munich, Germany', product: 'Bravecto Antiparasitic Fluralaner (Air Reefer)', port: 'Bengaluru Air Cargo (BLR)', value: '₹34,20,000', customs: 'Under Inspection (ADC)', eta: 'Today, 18:00', status: 'In Customs' },
-    { bl: 'BL-IMP-9803', origin: 'Milan, Italy', product: 'Bespoke Haute Couture Leather & Hardware', port: 'Mumbai Air Cargo (BOM)', value: '₹14,80,000', customs: 'Bill of Entry Filed', eta: 'Oct 08, 2026', status: 'In Transit' },
-    { bl: 'BL-IMP-9804', origin: 'Rotterdam, Netherlands', product: 'Nobivac Vaccines (Cold Chain Reefer)', port: 'Nhava Sheva (JNPT)', value: '₹62,00,000', customs: 'CDSCO NOC Granted', eta: 'Oct 11, 2026', status: 'In Transit (Sea)' }
-  ];
+  var IMPORTS = [];
 
-  var EXPORTS = [
-    { sb: 'SB-EXP-4101', dest: 'Dubai, UAE', client: 'Royal Pets Hospital LLC', items: 'Haute Couture Leather Collars', fob: '₹14,50,000', status: 'Dispatched (Air)' },
-    { sb: 'SB-EXP-4102', dest: 'Singapore', client: 'PetLovers Centre APAC', items: 'Ayurvedic Herbal Grooming Range', fob: '₹22,80,000', status: 'On Board Vessel' },
-    { sb: 'SB-EXP-4103', dest: 'London, UK', client: 'Mayfair Canine Atelier', items: 'Bespoke Wedding Tuxedos', fob: '₹8,90,000', status: 'Delivered' },
-    { sb: 'SB-EXP-4104', dest: 'Riyadh, Saudi Arabia', client: 'Arabian Falcon Healthcare', items: 'Titanium Orthopedic Implants', fob: '₹18,20,000', status: 'In Flight' }
-  ];
+  var EXPORTS = [];
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {

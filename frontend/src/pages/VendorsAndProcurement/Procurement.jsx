@@ -3,25 +3,9 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Procurement() {
-  const pipeline = [
-    { stage: 'Requisition', count: 12, value: '₹18.4 L', color: '#a78bfa', pct: 100 },
-    { stage: 'Approval Pending', count: 8, value: '₹14.2 L', color: '#38bdf8', pct: 82 },
-    { stage: 'Vendor Negotiation', count: 5, value: '₹9.8 L', color: '#fbbf24', pct: 58 },
-    { stage: 'PO Issued', count: 18, value: '₹34.8 L', color: '#34d399', pct: 75 },
-    { stage: 'Goods In Transit', count: 6, value: '₹12.6 L', color: '#3b82f6', pct: 42 },
-    { stage: 'GRN Completed', count: 14, value: '₹28.4 L', color: '#10b981', pct: 68 },
-    { stage: 'Invoice Matched (3-way)', count: 11, value: '₹22.8 L', color: '#06b6d4', pct: 55 },
-    { stage: 'Payment Cleared', count: 9, value: '₹18.6 L', color: '#8b5cf6', pct: 48 },
-  ];
+  const pipeline = [];
 
-  const requisitions = [
-    { id: 'REQ-4821', department: 'Pharmacy — Koramangala', item: 'Nobivac Puppy DP vaccines', qty: '250 doses', urgency: 'High', requestedBy: 'Sr. Pharmacist Meera', status: 'In Approval', created: '2026-10-03' },
-    { id: 'REQ-4818', department: 'Surgery OT — Bandra', item: 'LCP Titanium 2.4mm Plates', qty: '20 kits', urgency: 'Critical', requestedBy: 'Dr. Vikram Singh', status: 'PO Raised', created: '2026-10-01' },
-    { id: 'REQ-4815', department: 'Nutrition Counseling', item: "Hill's Prescription k/d Dry", qty: '100 kg bags', urgency: 'Medium', requestedBy: 'Nutritionist Anita', status: 'Received', created: '2026-09-28' },
-    { id: 'REQ-4812', department: 'Dermatology Clinic', item: 'Dechra Malaseb Shampoo', qty: '500 bottles', urgency: 'Medium', requestedBy: 'Dr. Priya Rajan', status: 'In Approval', created: '2026-09-27' },
-    { id: 'REQ-4809', department: 'Pharmacy — Okhla', item: 'Advocate 40-4kg spot-on', qty: '1000 tubes', urgency: 'High', requestedBy: 'Pharmacist Suresh', status: 'PO Raised', created: '2026-09-25' },
-    { id: 'REQ-4806', department: 'Lab — Andheri', item: 'Blood Glucose Reagent Strips', qty: '5000 strips', urgency: 'Low', requestedBy: 'Lab Tech Ramesh', status: 'Pending', created: '2026-09-24' },
-  ];
+  const requisitions = [];
 
   const urgencyColor = u => ({ Critical: '#f87171', High: '#fbbf24', Medium: '#38bdf8', Low: '#94a3b8' }[u] || '#94a3b8');
   const statusColor = s => ({ 'Received': '#34d399', 'PO Raised': '#3b82f6', 'In Approval': '#a78bfa', Pending: '#64748b' }[s] || '#94a3b8');
@@ -43,11 +27,11 @@ export default function Procurement() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Requisitions (MTD)" value="43 Requests" delta="+8 vs last month" trend="up" subtext="Cross all departments" icon="📋" />
-        <KpiCard label="POs Issued (MTD)" value="18 POs" delta="₹34.8 L total value" trend="up" subtext="Oct 2026" icon="📑" />
+        <KpiCard label="POs Issued (MTD)" value="18 POs" delta="₹0 total value" trend="up" subtext="Oct 2026" icon="📑" />
         <KpiCard label="Avg. Requisition to PO" value="2.4 Days" delta="-0.6d improvement" trend="up" subtext="End-to-end cycle time" icon="⏱️" />
-        <KpiCard label="3-Way Match Rate" value="98.6%" delta="+0.4% MoM" trend="up" subtext="PO-GRN-Invoice match" icon="🎯" />
+        <KpiCard label="3-Way Match Rate" value="0.0%" delta="+0.4% MoM" trend="up" subtext="PO-GRN-Invoice match" icon="🎯" />
         <KpiCard label="Critical Requisitions" value="3 Urgent" delta="Surgery OT + Pharma" trend="down" subtext="Fast-track in progress" icon="🚨" />
-        <KpiCard label="Procurement Cycle Savings" value="₹4.85 L" delta="+18.4% vs target" trend="up" subtext="Negotiation & volume" icon="💰" />
+        <KpiCard label="Procurement Cycle Savings" value="₹0" delta="+18.4% vs target" trend="up" subtext="Negotiation & volume" icon="💰" />
       </div>
 
       {/* Pipeline Stages */}

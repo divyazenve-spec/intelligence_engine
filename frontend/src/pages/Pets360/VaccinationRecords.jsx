@@ -6,15 +6,7 @@ export default function VaccinationRecords() {
   const [filter, setFilter] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const vaccinations = [
-    { id: 'VAX-501', pet: 'Bruno (Golden Retriever)', vaccine: 'DHPPiL (9-in-1 Vanguard Plus 5)', manufacturer: 'Zoetis Animal Health', batch: 'ZT-99410-A', administeredOn: '15-Jan-2026', nextDue: '15-Jan-2027', vet: 'Dr. Priya Sharma', clinic: 'Koramangala Super Hospital', status: 'Valid (Immune)', passId: 'ZV-PASS-8819' },
-    { id: 'VAX-502', pet: 'Bruno (Golden Retriever)', vaccine: 'Anti-Rabies (Defensor 3)', manufacturer: 'Zoetis Animal Health', batch: 'ZT-RAB-2041', administeredOn: '15-Jan-2026', nextDue: '15-Jan-2027', vet: 'Dr. Priya Sharma', clinic: 'Koramangala Super Hospital', status: 'Valid (Immune)', passId: 'ZV-PASS-8819' },
-    { id: 'VAX-503', pet: 'Milo (Persian Cat)', vaccine: 'Feline Tricat Trio (FPV/FHV/FCV)', manufacturer: 'MSD Animal Health (Nobivac)', batch: 'MSD-TRI-119', administeredOn: '18-Oct-2025', nextDue: '18-Oct-2026', vet: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', status: 'Due in 13 Days', passId: 'ZV-PASS-3312' },
-    { id: 'VAX-504', pet: 'Milo (Persian Cat)', vaccine: 'Nobivac Rabies Feline', manufacturer: 'MSD Animal Health', batch: 'MSD-RAB-440', administeredOn: '18-Oct-2025', nextDue: '18-Oct-2026', vet: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', status: 'Due in 13 Days', passId: 'ZV-PASS-3312' },
-    { id: 'VAX-505', pet: 'Rocky (German Shepherd)', vaccine: 'Canine Corona + Giardia Dual', manufacturer: 'Boehringer Ingelheim', batch: 'BI-COR-5510', administeredOn: '10-Apr-2026', nextDue: '10-Apr-2027', vet: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', status: 'Valid (Immune)', passId: 'ZV-PASS-6041' },
-    { id: 'VAX-506', pet: 'Simba (Beagle)', vaccine: 'Kennel Cough (Nobivac KC Intranasal)', manufacturer: 'MSD Animal Health', batch: 'MSD-KC-889', administeredOn: '05-May-2026', nextDue: '05-May-2027', vet: 'Dr. Karan Patel', clinic: 'Bandra West Clinic', status: 'Valid (Immune)', passId: 'ZV-PASS-7120' },
-    { id: 'VAX-507', pet: 'Bella (Shih Tzu)', vaccine: 'Annual Rabies Booster', manufacturer: 'Zoetis Animal Health', batch: 'ZT-RAB-1092', administeredOn: '12-Aug-2025', nextDue: '12-Aug-2026', vet: 'Dr. Neha Singh', clinic: 'Gurugram Hospital', status: 'Overdue (Expired)', passId: 'ZV-PASS-1099' }
-  ];
+  const vaccinations = [];
 
   const filtered = vaccinations.filter(v => {
     const matchesFilter = filter === 'ALL' || v.status.includes(filter);
@@ -32,7 +24,7 @@ export default function VaccinationRecords() {
       title="Digital Vaccination Passports & Biological Records"
       subtitle="Verifiable immunization records, vaccine manufacturer lot tracing, expiry recalls, and digital health pass passes"
       icon="🐾"
-      badge="94.2% Immune Rate"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Valid', 'Due', 'Overdue'].map(f => (
@@ -57,10 +49,10 @@ export default function VaccinationRecords() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Doses Administered" value="3,892" delta="+22.1%" trend="up" subtext="YTD across network" icon="💉" />
-        <KpiCard label="Immunity Compliance" value="94.2%" delta="High" trend="up" subtext="Protected population" icon="🛡️" />
+        <KpiCard label="Doses Administered" value="0" delta="0.0%" trend="up" subtext="YTD across network" icon="💉" />
+        <KpiCard label="Immunity Compliance" value="0.0%" delta="High" trend="up" subtext="Protected population" icon="🛡️" />
         <KpiCard label="Due Within 30 Days" value="84 Pets" delta="Recalls sent" trend="neutral" subtext="WhatsApp & SMS alerts" icon="🔔" />
-        <KpiCard label="Cold-Chain Lot Tracked" value="100%" delta="Zoetis / MSD" trend="up" subtext="IoT 2-8°C verified" icon="❄️" />
+        <KpiCard label="Cold-Chain Lot Tracked" value="0.0%" delta="Zoetis / MSD" trend="up" subtext="IoT 2-8°C verified" icon="❄️" />
       </div>
 
       <div style={{

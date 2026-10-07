@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function RevenueByChannel() {
-  const channels = [
-    { name: 'Android Mobile App', share: '46.2%', rev: '₹8,24,300', orders: 576, aov: '₹1,431', color: '#3ddc84', icon: '📱' },
-    { name: 'iOS Mobile App', share: '27.8%', rev: '₹4,96,000', orders: 288, aov: '₹1,722', color: '#0071e3', icon: '🍏' },
-    { name: 'Web & Direct Portal', share: '18.4%', rev: '₹3,28,300', orders: 242, aov: '₹1,356', color: '#6366f1', icon: '💻' },
-    { name: 'B2B & Partner Clinics', share: '7.6%', rev: '₹1,35,600', orders: 142, aov: '₹955', color: '#f59e0b', icon: '🏥' }
-  ];
+  const channels = [];
 
   return (
     <DashboardLayout
@@ -20,10 +15,10 @@ export default function RevenueByChannel() {
       badge="Multi-Channel"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Channel" value="Android App" delta="46.2% share" trend="up" subtext="₹8,24,300 generated" icon="📱" />
-        <KpiCard label="Highest Ticket Size" value="iOS Mobile" delta="₹1,722 AOV" trend="up" subtext="+20% vs Android" icon="🍏" />
-        <KpiCard label="Web Direct Volume" value="₹3,28,300" delta="18.4% share" trend="neutral" subtext="242 orders" icon="💻" />
-        <KpiCard label="Partner Network" value="₹1,35,600" delta="7.6% share" trend="up" subtext="142 clinic orders" icon="🏥" />
+        <KpiCard label="Top Channel" value="Android App" delta="46.2% share" trend="up" subtext="₹0" icon="📱" />
+        <KpiCard label="Highest Ticket Size" value="iOS Mobile" delta="₹0" trend="up" subtext="+20% vs Android" icon="🍏" />
+        <KpiCard label="Web Direct Volume" value="₹0" delta="18.4% share" trend="neutral" subtext="242 orders" icon="💻" />
+        <KpiCard label="Partner Network" value="₹0" delta="7.6% share" trend="up" subtext="142 clinic orders" icon="🏥" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>

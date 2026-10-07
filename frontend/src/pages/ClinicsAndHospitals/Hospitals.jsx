@@ -6,64 +6,9 @@ export default function Hospitals() {
   const [selectedHospital, setSelectedHospital] = useState('ALL');
   const [toast, setToast] = useState('');
 
-  const hospitalsData = [
-    {
-      code: 'HSP-BLR-01',
-      name: 'Zenve Super-Specialty Animal Hospital',
-      city: 'Bengaluru (Koramangala)',
-      type: 'Level-1 Tertiary Referral Center (24x7)',
-      bedsTotal: 32,
-      bedsOccupied: 28,
-      icuPods: 8,
-      otCount: 5,
-      otUtilization: '88.0%',
-      bloodBank: '8 Units Packed RBC, 4 Plasma',
-      imaging: '16-Slice Helical CT, High-Res Echo, DR X-Ray, C-Arm',
-      leadSurgeon: 'Dr. Priya Sharma (M.V.Sc Surgery)',
-      monthlyBillings: '₹18.40 Lakh',
-      status: 'High Occupancy'
-    },
-    {
-      code: 'HSP-MUM-01',
-      name: 'Zenve Multi-Specialty Veterinary Hospital',
-      city: 'Mumbai (Bandra West)',
-      type: '24x7 Critical Care & Surgical Hospital',
-      bedsTotal: 24,
-      bedsOccupied: 22,
-      icuPods: 6,
-      otCount: 4,
-      otUtilization: '92.0%',
-      bloodBank: '5 Units Packed RBC, 3 Plasma',
-      imaging: '1.5T MRI, Laparoscopy Tower, Digital Radiography',
-      leadSurgeon: 'Dr. Rahul Mehta (M.V.Sc Critical Care)',
-      monthlyBillings: '₹14.85 Lakh',
-      status: 'High Occupancy'
-    },
-    {
-      code: 'HSP-DEL-01',
-      name: 'Zenve Tertiary Referral Center',
-      city: 'Delhi NCR (Okhla Phase 3)',
-      type: '24x7 Orthopedic & Neuro Hospital',
-      bedsTotal: 20,
-      bedsOccupied: 16,
-      icuPods: 4,
-      otCount: 3,
-      otUtilization: '84.0%',
-      bloodBank: '4 Units Packed RBC, 2 Plasma',
-      imaging: '16-Slice CT Scanner, Color Doppler Ultrasound',
-      leadSurgeon: 'Dr. Aisha Khan (M.V.Sc Orthopedics)',
-      monthlyBillings: '₹11.20 Lakh',
-      status: 'Optimal Occupancy'
-    }
-  ];
+  const hospitalsData = [];
 
-  const otSchedule = [
-    { ot: 'OT Suite 1 (Bengaluru)', patient: 'Simba (GSD)', procedure: 'Total Hip Replacement (THR)', surgeon: 'Dr. Priya Sharma', anesthesia: 'Dr. Arun V.', time: '09:00 AM – 12:30 PM', status: 'In Progress' },
-    { ot: 'OT Suite 2 (Bengaluru)', patient: 'Max (Labrador)', procedure: 'Emergency Gastric De-torsion (GDV)', surgeon: 'Dr. Kavita Nair', anesthesia: 'Dr. Ramesh S.', time: '11:00 AM – 01:00 PM', status: 'In Progress' },
-    { ot: 'OT Suite 1 (Mumbai)', patient: 'Kiki (Persian Cat)', procedure: 'Subtotal Colectomy for Megacolon', surgeon: 'Dr. Rahul Mehta', anesthesia: 'Dr. Sneha P.', time: '10:00 AM – 12:00 PM', status: 'Completed' },
-    { ot: 'OT Suite 2 (Mumbai)', patient: 'Bruno (Boxer)', procedure: 'Hemilaminectomy (IVDD L2-L3)', surgeon: 'Dr. Meera Deshmukh', anesthesia: 'Dr. Sneha P.', time: '01:30 PM – 04:00 PM', status: 'Scheduled' },
-    { ot: 'OT Suite 1 (Delhi NCR)', patient: 'Rocky (Rottweiler)', procedure: 'TPLO Cruciate Ligament Repair', surgeon: 'Dr. Aisha Khan', anesthesia: 'Dr. Vikram Sethi', time: '09:30 AM – 11:45 AM', status: 'Completed' }
-  ];
+  const otSchedule = [];
 
   const filteredHospitals = selectedHospital === 'ALL' ? hospitalsData : hospitalsData.filter(h => h.code === selectedHospital);
 
@@ -79,7 +24,7 @@ export default function Hospitals() {
       title="24x7 Multi-Specialty Veterinary Hospitals"
       subtitle="Inpatient bed census, surgical operating suites, ICU pods, blood bank reserves, and advanced diagnostic imaging"
       icon="🏢"
-      badge="3 Tertiary Hospitals"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -124,7 +69,7 @@ export default function Hospitals() {
         <KpiCard label="Operating Theatres" value="12 OT Suites" delta="88.0% Utilized" trend="up" subtext="Laminar airflow Class 100" icon="🔪" />
         <KpiCard label="Critical Care Pods" value="18 ICU Pods" delta="100% telemetry" trend="up" subtext="Continuous vitals logging" icon="💓" />
         <KpiCard label="Blood Bank Inventory" value="26 Units" delta="Safe Reserves" trend="up" subtext="Canine & feline matched" icon="🩸" />
-        <KpiCard label="Hospital Billings MTD" value="₹44.45 Lakh" delta="+21.4% YoY" trend="up" subtext="Inpatient & surgical care" icon="💰" />
+        <KpiCard label="Hospital Billings MTD" value="₹0" delta="+21.4% YoY" trend="up" subtext="Inpatient & surgical care" icon="💰" />
       </div>
 
       {/* Flagship Hospital Profiles */}

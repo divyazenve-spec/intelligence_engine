@@ -8,16 +8,7 @@ export default function InventoryMovement() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
-  const [movements, setMovements] = useState([
-    { id: 'MOV-8841', time: '10 mins ago', type: 'Outbound Sale', sku: 'ZV-MED-001', name: 'Bravecto Chewable Tablet (10-20kg)', qty: -4, source: 'BLR Hub', dest: 'Order #ZV-84210', ref: 'SO-84210', value: '₹7,800', badge: 'outbound' },
-    { id: 'MOV-8840', time: '25 mins ago', type: 'Inbound GRN', sku: 'ZV-DIET-004', name: 'Royal Canin Hepatic Veterinary 3kg', qty: 48, source: 'Royal Canin India', dest: 'BLR Hub (Bay 4)', ref: 'GRN-4910', value: '₹1,05,600', badge: 'inbound' },
-    { id: 'MOV-8839', time: '1 hour ago', type: 'Transfer Out', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: -50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: '₹21,000', badge: 'transfer' },
-    { id: 'MOV-8838', time: '1.5 hours ago', type: 'Transfer In', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: 50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: '₹21,000', badge: 'transfer' },
-    { id: 'MOV-8837', time: '2 hours ago', type: 'Outbound Sale', sku: 'ZV-FOOD-022', name: 'Pedigree Pro Puppy Starter 3kg', qty: -12, source: 'HYD Center', dest: 'Clinic Bulk #CL-902', ref: 'SO-84198', value: '₹9,360', badge: 'outbound' },
-    { id: 'MOV-8836', time: '3 hours ago', type: 'Stock Adjustment', sku: 'ZV-DERM-007', name: 'Malaseb Medicated Shampoo 250ml', qty: -2, source: 'BLR Hub', dest: 'Damaged / Spillage Write-off', ref: 'ADJ-0314', value: '₹620', badge: 'adjustment' },
-    { id: 'MOV-8835', time: '4 hours ago', type: 'Customer Return', sku: 'ZV-ACC-015', name: 'Ergonomic Anti-Pull Harness (L)', qty: 1, source: 'Customer Ret #RT-104', dest: 'BLR Hub (QC Pass)', ref: 'RET-0941', value: '₹1,250', badge: 'return' },
-    { id: 'MOV-8834', time: '5 hours ago', type: 'Inbound GRN', sku: 'ZV-PAR-009', name: 'NexGard Spectra (3.5-7.5kg)', qty: 60, source: 'Boehringer Ingelheim', dest: 'DEL Hub', ref: 'GRN-4908', value: '₹49,200', badge: 'inbound' }
-  ]);
+  const [movements, setMovements] = useState([]);
 
   const [formData, setFormData] = useState({
     type: 'Inbound GRN',
@@ -27,7 +18,7 @@ export default function InventoryMovement() {
     source: 'MSD India Pvt Ltd',
     dest: 'BLR Hub (Bay 2)',
     ref: 'GRN-' + Math.floor(1000 + Math.random() * 9000),
-    value: '₹48,750'
+    value: '₹0'
   });
 
   const filtered = movements.filter(m => {
@@ -128,7 +119,7 @@ export default function InventoryMovement() {
         <KpiCard label="Inbound Stock Today" value="+108 Units" delta="2 GRNs received" trend="up" subtext="Vendor supplier receipts" icon="📥" />
         <KpiCard label="Outbound Dispatched" value="-66 Units" delta="B2C & Clinic orders" trend="down" subtext="Fulfillment shipments" icon="📤" />
         <KpiCard label="Net Stock Delta" value="+42 Units" delta="+2.4% net buffer" trend="up" subtext="Positive net replenishment" icon="⚖️" />
-        <KpiCard label="Adjustment Variance" value="-2 Units" delta="₹620 spillage write-off" trend="up" subtext="Shrinkage & audit delta" icon="🔍" />
+        <KpiCard label="Adjustment Variance" value="-2 Units" delta="₹0 write-off" trend="up" subtext="Shrinkage & audit delta" icon="🔍" />
       </div>
 
       {/* 2-Column Velocity & Flow Balancing Section */}

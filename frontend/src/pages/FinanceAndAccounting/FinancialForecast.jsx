@@ -5,19 +5,9 @@ import KpiCard from '../shared/KpiCard';
 export default function FinancialForecast() {
   const [scenario, setScenario] = useState('Base Case');
 
-  const projections = [
-    { period: 'Q3 FY 2026-27 (Next)', rev: '₹84,50,000', cogs: '₹36,30,000', opex: '₹29,80,000', ebitda: '₹18,40,000', pat: '₹11,10,000', cashClosing: '₹1,54,00,000' },
-    { period: 'Q4 FY 2026-27', rev: '₹92,80,000', cogs: '₹39,50,000', opex: '₹31,40,000', ebitda: '₹21,90,000', pat: '₹13,50,000', cashClosing: '₹1,68,00,000' },
-    { period: 'Q1 FY 2027-28', rev: '₹1,02,00,000', cogs: '₹43,20,000', opex: '₹33,60,000', ebitda: '₹25,20,000', pat: '₹15,80,000', cashClosing: '₹1,85,00,000' },
-    { period: 'Q2 FY 2027-28', rev: '₹1,14,50,000', cogs: '₹48,00,000', opex: '₹36,20,000', ebitda: '₹30,30,000', pat: '₹19,40,000', cashClosing: '₹2,08,00,000' }
-  ];
+  const projections = [];
 
-  const capexRoadmap = [
-    { project: 'Whitefield Modular OT Hub Fitout', city: 'Bengaluru', budget: '₹95,00,000', targetDate: 'Jan 2027', roi: '18 Months', status: 'Civil Works Inbound' },
-    { project: 'Powai Specialty Surgical Center', city: 'Mumbai', budget: '₹85,00,000', targetDate: 'Mar 2027', roi: '20 Months', status: 'Lease Executed' },
-    { project: 'Gachibowli Secondary Care Upgrade', city: 'Hyderabad', budget: '₹60,00,000', targetDate: 'May 2027', roi: '16 Months', status: 'Architectural Review' },
-    { project: 'Central High-Volume Pathology Core Lab', city: 'Bengaluru', budget: '₹1,00,00,000', targetDate: 'Jul 2027', roi: '14 Months', status: 'Vendor Shortlisting' }
-  ];
+  const capexRoadmap = [];
 
   return (
     <DashboardLayout
@@ -26,7 +16,7 @@ export default function FinancialForecast() {
       title="Financial Forecasting & Predictive Runway"
       subtitle="12-month rolling balance sheet and P&L modeling, multi-scenario Monte Carlo simulations, and capital expenditure roadmap"
       icon="🔮"
-      badge="FY28 ARR: ₹13.7 Cr"
+      badge="FY28 ARR: ₹0"
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <select
@@ -64,10 +54,10 @@ export default function FinancialForecast() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next 12M Projected Revenue" value="₹11.84 Crore" delta="+26.0% YoY" trend="up" subtext="Base expansion path" icon="🔮" />
-        <KpiCard label="Projected FY28 EBITDA" value="₹3.12 Crore" delta="26.3% Margin" trend="up" subtext="Operating leverage" icon="⚡" />
-        <KpiCard label="12M Free Cash Flow" value="₹1.42 Crore" delta="Post all CAPEX" trend="up" subtext="Self-funded pipeline" icon="💧" />
-        <KpiCard label="Total Planned CAPEX" value="₹3.40 Crore" delta="4 New Facilities" trend="up" subtext="+65 Inpatient Beds" icon="🏗️" />
+        <KpiCard label="Next 12M Projected Revenue" value="₹0" delta="+26.0% YoY" trend="up" subtext="Base expansion path" icon="🔮" />
+        <KpiCard label="Projected FY28 EBITDA" value="₹0" delta="26.3% Margin" trend="up" subtext="Operating leverage" icon="⚡" />
+        <KpiCard label="12M Free Cash Flow" value="₹0" delta="Post all CAPEX" trend="up" subtext="Self-funded pipeline" icon="💧" />
+        <KpiCard label="Total Planned CAPEX" value="₹0" delta="4 New Facilities" trend="up" subtext="+65 Inpatient Beds" icon="🏗️" />
         <KpiCard label="Target Breakeven / Bed" value="2.8 Months" delta="-0.6 mo faster" trend="up" subtext="Capital efficiency" icon="⏱️" />
         <KpiCard label="Sensitivity Risk Score" value="Low Risk (1.18)" delta="Debt Service >12x" trend="up" subtext="Stress-tested" icon="🛡️" />
       </div>

@@ -10,13 +10,7 @@ export default function InventoryReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const warehouses = [
-    { hub: 'Bhiwandi Central Cold Hub (Mumbai)', type: 'National Distribution Center', totalSkus: 1840, stockValue: 84500000, daysCover: 42, nearExpiryValue: 820000, deadStockValue: 340000 },
-    { hub: 'Koramangala 60-Min Express Hub (BLR)', type: 'Urban Micro-Fulfillment Node', totalSkus: 640, stockValue: 18400000, daysCover: 14, nearExpiryValue: 140000, deadStockValue: 85000 },
-    { hub: 'Indiranagar Express Dark Store (BLR)', type: 'Micro Dark Store', totalSkus: 480, stockValue: 12200000, daysCover: 11, nearExpiryValue: 92000, deadStockValue: 42000 },
-    { hub: 'Delhi NCR Okhla Logistics Center', type: 'Regional Fulfillment Depot', totalSkus: 920, stockValue: 34500000, daysCover: 28, nearExpiryValue: 410000, deadStockValue: 180000 },
-    { hub: 'Hyderabad Jubilee Hills Hub', type: 'City Distribution Center', totalSkus: 580, stockValue: 16800000, daysCover: 18, nearExpiryValue: 180000, deadStockValue: 65000 }
-  ];
+  const warehouses = [];
 
   const inr = (n) => '₹' + (Number(n) / 100000).toFixed(2) + ' Lakhs';
 
@@ -42,7 +36,7 @@ export default function InventoryReport() {
       title="Warehouse Inventory & Batch Valuation Audit Report"
       subtitle="Stock valuation across 5 regional cold-chain distribution centers, days of inventory cover (DSI), near-expiry write-downs, and aging capital"
       icon="📦"
-      badge="₹16.64 Cr Total Inventory"
+      badge="₹0 Total Inventory"
       actions={
         <button
           onClick={downloadCSV}
@@ -80,10 +74,10 @@ export default function InventoryReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated Inventory Valuation" value="₹16.64 Crores" delta="+6.2% vs budget" trend="neutral" subtext="Across 5 cold hubs" icon="🏭" />
+        <KpiCard label="Consolidated Inventory Valuation" value="₹0" delta="+6.2% vs budget" trend="neutral" subtext="Across 5 cold hubs" icon="🏭" />
         <KpiCard label="Days of Inventory Cover" value="26.4 Days" delta="-3.2 days improved" trend="up" subtext="Target: < 30 days" icon="⏱️" />
-        <KpiCard label="Near-Expiry Valuation (<60d)" value="₹16.42 Lakhs" delta="Under 1.0% threshold" trend="up" subtext="Active clearance" icon="⏳" />
-        <KpiCard label="Stock Fill Rate SLA" value="98.6%" delta="Same-day dispatch" trend="up" subtext="High availability" icon="✅" />
+        <KpiCard label="Near-Expiry Valuation (<60d)" value="₹0" delta="Under 1.0% threshold" trend="up" subtext="Active clearance" icon="⏳" />
+        <KpiCard label="Stock Fill Rate SLA" value="0.0%" delta="Same-day dispatch" trend="up" subtext="High availability" icon="✅" />
       </div>
 
       {/* Table Section */}

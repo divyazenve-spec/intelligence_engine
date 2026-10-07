@@ -11,12 +11,7 @@ export default function DemandForecast() {
     boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
   };
 
-  const demandItems = [
-    { sku: 'ZV-BRV-01', item: 'Bravecto Chewable Dog (20-40kg)', category: 'Tick & Flea Rx', curStock: 142, demand30d: 380, surgePct: '+28%', replenishment: 'Urgent Order 300 units' },
-    { sku: 'ZV-RC-04', item: 'Royal Canin Veterinary Renal Adult 4kg', category: 'Therapeutic Food', curStock: 88, demand30d: 210, surgePct: '+14%', replenishment: 'Order 150 units by Friday' },
-    { sku: 'ZV-VAC-09', item: 'Zoetis Vanguard Plus 5/CV-L Vaccine', category: 'Biologicals & Vaccines', curStock: 320, demand30d: 480, surgePct: '+22%', replenishment: 'Order 250 units in cold-chain' },
-    { sku: 'ZV-SYN-02', item: 'Synulox Palatable Drops 15ml', category: 'Veterinary Antibiotics', curStock: 64, demand30d: 195, surgePct: '+18%', replenishment: 'Urgent Order 180 units' }
-  ];
+  const demandItems = [];
 
   return (
     <DashboardLayout
@@ -29,9 +24,9 @@ export default function DemandForecast() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="SKUs with Surge Demand" value="28 SKUs" delta="+18% Surge" trend="up" subtext="Requires buffer stock" icon="⚡" />
-        <KpiCard label="Fulfillment Availability" value="99.2%" delta="Zero Stockout" trend="up" subtext="Across 14 hubs" icon="✅" />
+        <KpiCard label="Fulfillment Availability" value="0.0%" delta="Zero Stockout" trend="up" subtext="Across 14 hubs" icon="✅" />
         <KpiCard label="Forecast Horizon" value="45 Days" delta="Rolling weekly" trend="neutral" subtext="Dynamic lead time" icon="📅" />
-        <KpiCard label="Procurement Capital Plan" value="₹18.40L" delta="-6.2% Bulk Disc" trend="up" subtext="Pre-negotiated" icon="💰" />
+        <KpiCard label="Procurement Capital Plan" value="₹0" delta="-6.2% Bulk Disc" trend="up" subtext="Pre-negotiated" icon="💰" />
       </div>
 
       <div style={cardStyle}>

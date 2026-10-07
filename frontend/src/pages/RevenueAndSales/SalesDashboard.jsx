@@ -41,12 +41,12 @@ export default function SalesDashboard() {
         gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
         gap: '14px'
       }}>
-        <KpiCard label="Today's Sales" value="₹38,100" delta="+18.4%" trend="up" subtext="vs yesterday" icon="⚡" />
-        <KpiCard label="Period Revenue" value="₹17,84,200" delta="+12.6%" trend="up" subtext="30 days volume" icon="📈" />
-        <KpiCard label="Paid Transactions" value="1,248" delta="98.2%" trend="up" subtext="Settlement rate" icon="✅" />
-        <KpiCard label="Avg Order Value" value="₹1,429" delta="+4.2%" trend="up" subtext="Basket size" icon="🛒" />
-        <KpiCard label="Active Clients" value="894" delta="+15.1%" trend="up" subtext="Unique pet parents" icon="👥" />
-        <KpiCard label="App Downloads" value="2,480" delta="+22.0%" trend="up" subtext="Android & iOS" icon="📱" />
+        <KpiCard label="Today's Sales" value="₹0" delta="0.0%" trend="up" subtext="vs yesterday" icon="⚡" />
+        <KpiCard label="Period Revenue" value="₹0" delta="0.0%" trend="up" subtext="30 days volume" icon="📈" />
+        <KpiCard label="Paid Transactions" value="0" delta="0.0%" trend="up" subtext="Settlement rate" icon="✅" />
+        <KpiCard label="Avg Order Value" value="₹0" delta="0.0%" trend="up" subtext="Basket size" icon="🛒" />
+        <KpiCard label="Active Clients" value="0" delta="0.0%" trend="up" subtext="Unique pet parents" icon="👥" />
+        <KpiCard label="App Downloads" value="0" delta="0.0%" trend="up" subtext="Android & iOS" icon="📱" />
       </div>
 
       <div style={{

@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function OrderAuditTrail() {
-  const orders = [
-    { orderId: 'ORD-2026-8819', customer: 'Kavita Menon (Indiranagar)', event: 'Prescription Schedule H Verified', prevStatus: 'Under Review', newStatus: 'Ready for Dispatch', officer: 'Dr. Priya Sharma', time: '14:20 Today' },
-    { orderId: 'ORD-2026-8818', customer: 'Rohan Gupta (Koramangala)', event: 'Dispatched via 60-Min Rider', prevStatus: 'Packed', newStatus: 'Out for Delivery (Rider #14)', officer: 'Arjun Nair (Logistics)', time: '14:05 Today' },
-    { orderId: 'ORD-2026-8817', customer: 'Deepak Patel (Whitefield)', event: 'Special Discount Override (10% Code)', prevStatus: 'Cart Review', newStatus: 'Payment Cleared', officer: 'Executive Admin', time: '13:48 Today' },
-    { orderId: 'ORD-2026-8816', customer: 'Ananya Deshmukh (HSR)', event: 'Customer Initiated Cancellation', prevStatus: 'Processing', newStatus: 'Refund Pending', officer: 'Customer Portal Self-Service', time: '12:30 Today' },
-    { orderId: 'ORD-2026-8815', customer: 'Vikram Sethi (Jayanagar)', event: 'Order Successfully Delivered & OTP Verified', prevStatus: 'Out for Delivery', newStatus: 'Delivered (Signed OTP)', officer: 'Rider Mahesh K.', time: '11:50 Today' }
-  ];
+  const orders = [];
 
   return (
     <DashboardLayout
@@ -18,11 +12,11 @@ export default function OrderAuditTrail() {
       title="Order State & Fulfillment Audit Trail"
       subtitle="State transitions, doctor verifications, price override logs, and courier handover receipts"
       icon="📦"
-      badge="100% Chain of Custody"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Audited Orders Today" value="184 Orders" delta="100% Tracked" trend="up" subtext="End-to-end chain of custody" icon="📦" />
-        <KpiCard label="OTP Delivery Validation" value="99.4%" delta="Verified" trend="up" subtext="Contactless signed handover" icon="📱" />
+        <KpiCard label="OTP Delivery Validation" value="0.0%" delta="Verified" trend="up" subtext="Contactless signed handover" icon="📱" />
         <KpiCard label="Price / Discount Overrides" value="3 Logged" delta="All Approved" trend="neutral" subtext="Manager authorization valid" icon="🏷️" />
         <KpiCard label="Prescription Match SLA" value="4.2 Mins" delta="MCI Guidelines" trend="up" subtext="Verified by licensed doctor" icon="🩺" />
       </div>

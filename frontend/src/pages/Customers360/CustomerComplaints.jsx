@@ -2,16 +2,7 @@ import React, { useState } from 'react';
 import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
-const INITIAL_TICKETS = [
-  { id: 'TICK-4401', customer: 'Sneha Kulkarni', pet: 'Whiskey (Shih Tzu)', category: 'Delivery Delay', priority: 'High', issue: '60-min prescription delivery arrived in 78 mins during rain', rep: 'Kiran R.', sla: '12 mins', remedy: 'Full delivery fee waiver + ₹200 wallet credit', csat: '5.0 ⭐', status: 'Closed' },
-  { id: 'TICK-4402', customer: 'Vikram Malhotra', pet: 'Leo (German Shepherd)', category: 'Product Packaging', priority: 'Medium', issue: 'Outer seal torn on Royal Canin 15kg kibble sack', rep: 'Aisha S.', sla: '18 mins', remedy: 'Immediate replacement dispatched via instant dark store', csat: '5.0 ⭐', status: 'Closed' },
-  { id: 'TICK-4403', customer: 'Priya Sundaram', pet: 'Bella (Persian Cat)', category: 'Billing Query', priority: 'Low', issue: '840 pet loyalty club coins not automatically credited', rep: 'Kiran R.', sla: '5 mins', remedy: 'Coins credited manually with +100 bonus compensation', csat: '5.0 ⭐', status: 'Closed' },
-  { id: 'TICK-4404', customer: 'Rahul Nambiar', pet: 'Simba (Beagle Pup)', category: 'Clinic Reschedule', priority: 'Medium', issue: 'Requested slot shift from morning to evening OPD', rep: 'Rahul B.', sla: '28 mins', remedy: 'Slot moved to 6:30 PM with Dr. Siddharth confirmed', csat: '4.8 ⭐', status: 'Closed' },
-  { id: 'TICK-4405', customer: 'Alok Bhattacharya', pet: 'Max (Labrador)', category: 'App Bug', priority: 'Low', issue: 'Vaccination digital card PDF export showed blank page', rep: 'Tech L2', sla: '22 mins', remedy: 'Server font cache patched; PDF emailed directly', csat: '4.9 ⭐', status: 'Closed' },
-  { id: 'TICK-4406', customer: 'Meera Deshpande', pet: 'Ginger (Tabby Cat)', category: 'Cold-Chain Pharmacy', priority: 'Critical', issue: 'Insulin vial temperature monitor was near threshold (7.8°C)', rep: 'Dr. Ananya P.', sla: '8 mins', remedy: 'Fresh cold-pack vial sent immediately, zero charge', csat: '5.0 ⭐', status: 'Closed' },
-  { id: 'TICK-4407', customer: 'Kavita Menon', pet: 'Oreo (French Bulldog)', category: 'Grooming Service', priority: 'Medium', issue: 'Groomer arrived 20 minutes behind scheduled window', rep: 'Siddharth M.', sla: '15 mins', remedy: 'Free spa upgrade + ₹300 next appointment coupon', csat: '4.7 ⭐', status: 'Closed' },
-  { id: 'TICK-4408', customer: 'Arjun Singhania', pet: 'Thor (Rottweiler)', category: 'Delivery Delay', priority: 'Critical', issue: 'Express delivery rider delayed at society security gate', rep: 'Operations L1', sla: '11 mins', remedy: 'Security gate cleared, expedited handover completed', csat: '4.6 ⭐', status: 'Closed' }
-];
+const INITIAL_TICKETS = [];
 
 export default function CustomerComplaints() {
   const [tickets, setTickets] = useState(INITIAL_TICKETS);
@@ -25,7 +16,7 @@ export default function CustomerComplaints() {
     priority: 'Medium',
     issue: '',
     rep: 'Kiran R. (Escalations)',
-    remedy: 'Instant replacement + ₹200 wallet credit'
+    remedy: 'Instant replacement + ₹0 credit'
   });
 
   const cardStyle = {
@@ -57,7 +48,7 @@ export default function CustomerComplaints() {
   const handleResolve = (id) => {
     const ticket = tickets.find(t => t.id === id);
     if (!ticket) return;
-    const remedy = window.prompt(`Enter resolution outcome & compensation for ${ticket.id} (${ticket.customer}):`, 'Full fee waiver + ₹200 wallet credit provided');
+    const remedy = window.prompt(`Enter resolution outcome & compensation for ${ticket.id} (${ticket.customer}):`, 'Full fee waiver + ₹0 credit provided');
     if (remedy) {
       setTickets(prev => prev.map(t => t.id === id ? {
         ...t,
@@ -95,7 +86,7 @@ export default function CustomerComplaints() {
       priority: 'Medium',
       issue: '',
       rep: 'Kiran R. (Escalations)',
-      remedy: 'Instant replacement + ₹200 wallet credit'
+      remedy: 'Instant replacement + ₹0 credit'
     });
     alert(`Complaint ${id} registered! Priority alert dispatched.`);
   };
@@ -107,16 +98,16 @@ export default function CustomerComplaints() {
       title="Customer Complaints & Grievance Resolution"
       subtitle="Executive grievance telemetry, root-cause categorization, SLA turnaround countdowns, and automated pet parent compensation SOPs"
       icon="⚠️"
-      badge="98.2% SLA Turnaround"
+      badge=""
     >
       {/* 6 Executive KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Grievances (MTD)" value={`${tickets.length} Tickets`} delta="-24% MoM" trend="up" subtext="Only 0.06% of total orders" icon="⚠️" />
-        <KpiCard label="First Contact Resolution" value="94.2%" delta="+3.1% MoM" trend="up" subtext="Resolved in initial interaction" icon="⚡" />
-        <KpiCard label="Avg. SLA Resolution Time" value="14.8 mins" delta="-4.2 mins vs SLA" trend="up" subtext="Target SLA < 25 mins" icon="⏱️" />
+        <KpiCard label="First Contact Resolution" value="0.0%" delta="+3.1% MoM" trend="up" subtext="Resolved in initial interaction" icon="⚡" />
+        <KpiCard label="Avg. SLA Resolution Time" value="0" delta="-4.2 mins vs SLA" trend="up" subtext="Target SLA < 25 mins" icon="⏱️" />
         <KpiCard label="Post-Resolution CSAT" value="4.88 / 5.0" delta="+0.14 vs Q2" trend="up" subtext="98.2% customer delight" icon="⭐" />
-        <KpiCard label="Cold-Chain / Rx SLA" value="100.0%" delta="Zero breaches" trend="up" subtext="Insulin & emergency Rx" icon="❄️" />
-        <KpiCard label="Sentiment Recovery" value="96.4%" delta="+4.8% YoY" trend="up" subtext="Retained pet parent accounts" icon="❤️" />
+        <KpiCard label="Cold-Chain / Rx SLA" value="0.0%" delta="Zero breaches" trend="up" subtext="Insulin & emergency Rx" icon="❄️" />
+        <KpiCard label="Sentiment Recovery" value="0.0%" delta="+4.8% YoY" trend="up" subtext="Retained pet parent accounts" icon="❤️" />
       </div>
 
       {/* 2-Column Root Cause and SOP Remedy Cards */}
@@ -137,7 +128,7 @@ export default function CustomerComplaints() {
               <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
                 <div style={{ width: '42%', height: '100%', background: '#f59e0b', borderRadius: '4px' }} />
               </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 12.4 mins · Automatic ₹200 wallet compensation applied</div>
+              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 12.4 mins · Automatic ₹0 compensation applied</div>
             </div>
 
             <div>
@@ -196,7 +187,7 @@ export default function CustomerComplaints() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700, color: '#f59e0b' }}>🚚 Delivery Delay > 20 Mins</span>
-              <span style={{ fontSize: '13px', fontWeight: 700, color: '#2563eb' }}>Full Waiver + ₹200 Credit</span>
+              <span style={{ fontSize: '13px', fontWeight: 700, color: '#2563eb' }}>Full Waiver + ₹0</span>
               <p style={{ margin: 0, fontSize: '11px', color: '#64748b', lineHeight: 1.4 }}>Auto-triggered if rider GPS exceeds 70 mins. Team lead provides live ETA.</p>
             </div>
 

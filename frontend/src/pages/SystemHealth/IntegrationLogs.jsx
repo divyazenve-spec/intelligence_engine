@@ -8,18 +8,7 @@ export default function IntegrationLogs() {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState('');
 
-  const [rawLogs, setRawLogs] = useState([
-    { id: 'LOG-881', time: '14:32:05', service: 'FastAPI Backend', level: 'INFO', message: 'Health diagnostic probe /api/health returned 200 OK (1.2ms latency)' },
-    { id: 'LOG-880', time: '14:31:40', service: 'Razorpay Gateway', level: 'INFO', message: 'Webhook event payment.captured processed for order #ORD-9912 (₹2,400) · 24ms' },
-    { id: 'LOG-879', time: '14:30:12', service: 'Zoho Books Sync', level: 'INFO', message: 'Batch sync #4812 completed: 18 sales invoices matched to accounts receivable' },
-    { id: 'LOG-878', time: '14:28:55', service: 'IoT Cold-Chain', level: 'INFO', message: 'Telemetry heartbeat received from BLR Central Depot Freezer #1: +4.1°C' },
-    { id: 'LOG-877', time: '14:27:10', service: 'Gupshup SMS', level: 'INFO', message: 'DLT SMS delivered to +91 98450***** (Template: VET_APPT_REMINDER)' },
-    { id: 'LOG-876', time: '14:25:04', service: 'HubSpot CRM', level: 'INFO', message: 'Contact profile updated: 1 new pet record linked to user #USR-8812' },
-    { id: 'LOG-875', time: '14:21:18', service: 'Cashfree Gateway', level: 'WARN', message: 'Instant UPI payout queued — Bank network experiencing micro-retry (Resolved in 4s)' },
-    { id: 'LOG-874', time: '14:18:22', service: 'SQLite Core DB', level: 'INFO', message: 'WAL checkpoint executed: 48 pages transferred to zenvebi.db master file' },
-    { id: 'LOG-873', time: '14:15:00', service: 'Meta Ads CAPI', level: 'INFO', message: 'Conversion event Purchase (value: ₹4,800) forwarded with Match Quality 9.2' },
-    { id: 'LOG-872', time: '14:10:44', service: 'FastAPI Backend', level: 'INFO', message: 'Inventory batch update completed: 12 SKUs refreshed in 4.5ms' }
-  ]);
+  const [rawLogs, setRawLogs] = useState([]);
 
   const filteredLogs = rawLogs.filter((log) => {
     const matchesLevel = filterLevel === 'ALL' || log.level === filterLevel;
@@ -108,8 +97,8 @@ export default function IntegrationLogs() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Logs Ingested Today" value="48,120" delta="+8% volume" trend="up" subtext="No dropped events" icon="📜" />
-        <KpiCard label="Warning Rate" value="0.04%" delta="Low threshold" trend="warn" subtext="12 non-critical warns" icon="⚠️" />
+        <KpiCard label="Logs Ingested Today" value="0" delta="+8% volume" trend="up" subtext="No dropped events" icon="📜" />
+        <KpiCard label="Warning Rate" value="0.0%" delta="Low threshold" trend="warn" subtext="12 non-critical warns" icon="⚠️" />
         <KpiCard label="Critical Errors" value="0 Errors" delta="100% clean" trend="up" subtext="Zero system halts" icon="🟢" />
         <KpiCard label="Log Retention SLA" value="90 Days" delta="Compliant" trend="up" subtext="Compressed archival" icon="🛡️" />
       </div>

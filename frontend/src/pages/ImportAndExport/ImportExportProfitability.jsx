@@ -3,12 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ImportExportProfitability() {
-  const lanes = [
-    { lane: 'Import: Clinical Diet (France to India)', grossCost: '₹48,50,000', landedLanded: '₹56,40,000', domesticNetRev: '₹94,80,000', grossProfit: '₹38,40,000', margin: '40.5%', status: 'High Yield' },
-    { lane: 'Import: Antiparasitics & Biologics (Germany)', grossCost: '₹34,20,000', landedLanded: '₹38,60,000', domesticNetRev: '₹74,20,000', grossProfit: '₹35,60,000', margin: '48.0%', status: 'Prime Yield' },
-    { lane: 'Export: Bespoke Luxury Leather (India to UAE)', grossCost: '₹4,80,000', landedLanded: '₹5,40,000', exportFobRev: '₹14,50,000', grossProfit: '₹9,10,000', margin: '62.8%', status: 'Atelier Premium' },
-    { lane: 'Export: Organic Herbal Shampoos (India to SG)', grossCost: '₹9,20,000', landedLanded: '₹10,80,000', exportFobRev: '₹22,80,000', grossProfit: '₹12,00,000', margin: '52.6%', status: 'High Margin' }
-  ];
+  const lanes = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -19,13 +14,13 @@ export default function ImportExportProfitability() {
       title="Landed Cost Economics & Cross-Border Margins"
       subtitle="Total landed cost breakdown (CIF, customs duty, IGST, clearing, cold freight) and net international export arbitrage"
       icon="💎"
-      badge="47.2% Net Trade Margin"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Trade Gross Margin" value="47.2%" delta="+3.4% YoY" trend="up" subtext="Direct OEM sourcing advantage" icon="💎" />
+        <KpiCard label="Blended Trade Gross Margin" value="0.0%" delta="+3.4% YoY" trend="up" subtext="Direct OEM sourcing advantage" icon="💎" />
         <KpiCard label="Landed Cost Multiplier" value="1.14x CIF" delta="Duty + Freight + Clearance" trend="up" subtext="Lowest in specialty animal health" icon="📈" />
-        <KpiCard label="Export Net Contribution" value="₹21.10 Lakh" delta="60.5% average export margin" trend="up" subtext="Haute couture luxury markup" icon="💰" />
-        <KpiCard label="Forex Gain / Arbitrage" value="+₹1.84 Lakh" delta="Favorable EUR/INR hedge" trend="up" subtext="Treasury forward lock" icon="🌐" />
+        <KpiCard label="Export Net Contribution" value="₹0" delta="60.5% average export margin" trend="up" subtext="Haute couture luxury markup" icon="💰" />
+        <KpiCard label="Forex Gain / Arbitrage" value="+₹0" delta="Favorable EUR/INR hedge" trend="up" subtext="Treasury forward lock" icon="🌐" />
       </div>
 
       <div style={card}>

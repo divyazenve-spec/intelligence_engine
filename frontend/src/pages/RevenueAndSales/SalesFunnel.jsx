@@ -3,50 +3,20 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 const INITIAL_STAGES = [
-  { id: 'installs', num: '01', name: 'App Store Installs', val: 2480, rev: '₹57,09,400', conv: '100%', drop: '0.0%', color: '#0ea5e9', icon: '📲', source: 'Play Store & App Store' },
-  { id: 'sessions', num: '02', name: 'Active Pet Sessions', val: 1785, rev: '₹41,10,700', conv: '72.0%', drop: '28.0%', color: '#3b82f6', icon: '👁️', source: 'Browsing & Pet Setup' },
-  { id: 'intent', num: '03', name: 'Consult & Cart Actions', val: 1120, rev: '₹25,78,000', conv: '62.7%', drop: '37.3%', color: '#8b5cf6', icon: '🩺', source: 'Medicines & Doctor Selection' },
-  { id: 'checkout', num: '04', name: 'Orders Placed', val: 435, rev: '₹10,01,200', conv: '38.8%', drop: '61.2%', color: '#f59e0b', icon: '🛒', source: 'Checkout Initiated' },
-  { id: 'paid', num: '05', name: 'Paid Healthcare Sales', val: 412, rev: '₹9,48,200', conv: '94.7%', drop: '5.3%', color: '#10b981', icon: '✅', source: 'Settled Transactions' }
+  { id: 'installs', num: '01', name: 'App Store Installs', val: 0, rev: '₹0', conv: '0.0%', drop: '0.0%', color: '#0ea5e9', icon: '📲', source: 'Play Store & App Store' },
+  { id: 'sessions', num: '02', name: 'Active Pet Sessions', val: 0, rev: '₹0', conv: '0.0%', drop: '0.0%', color: '#3b82f6', icon: '👁️', source: 'Browsing & Pet Setup' },
+  { id: 'intent', num: '03', name: 'Consult & Cart Actions', val: 0, rev: '₹0', conv: '0.0%', drop: '0.0%', color: '#8b5cf6', icon: '🩺', source: 'Medicines & Doctor Selection' },
+  { id: 'checkout', num: '04', name: 'Orders Placed', val: 0, rev: '₹0', conv: '0.0%', drop: '0.0%', color: '#f59e0b', icon: '🛒', source: 'Checkout Initiated' },
+  { id: 'paid', num: '05', name: 'Paid Healthcare Sales', val: 0, rev: '₹0', conv: '0.0%', drop: '0.0%', color: '#10b981', icon: '✅', source: 'Settled Transactions' }
 ];
 
-const CHANNELS = [
-  { name: 'Android App', installs: 1420, inquiries: 284, paid: 272, conv: '19.1%', rev: '₹4,82,300', color: '#3ddc84', icon: '📱' },
-  { name: 'iOS App', installs: 680, inquiries: 198, paid: 192, conv: '28.2%', rev: '₹3,96,000', color: '#0071e3', icon: '🍏' },
-  { name: 'Web Direct Portal', installs: 260, inquiries: 64, paid: 58, conv: '22.3%', rev: '₹1,28,300', color: '#6366f1', icon: '💻' },
-  { name: 'Partner Clinic Referrals', installs: 120, inquiries: 54, paid: 52, conv: '43.3%', rev: '₹1,35,600', color: '#f59e0b', icon: '🏥' }
-];
+const CHANNELS = [];
 
-const SPECIALTY_BOTTLENECKS = [
-  { name: 'General Medicine & Care', inquiries: 312, paid: 298, rate: '95.5%', drop: '4.5%', rev: '₹3,42,000' },
-  { name: 'Diagnostics & Pathology', inquiries: 245, paid: 231, rate: '94.3%', drop: '5.7%', rev: '₹2,98,400' },
-  { name: 'Cardiology Specialization', inquiries: 168, paid: 154, rate: '91.7%', drop: '8.3%', rev: '₹2,15,600' },
-  { name: 'Surgery & Orthopedics', inquiries: 142, paid: 124, rate: '87.3%', drop: '12.7%', rev: '₹1,86,500' },
-  { name: 'Pharmacy & Wellness', inquiries: 110, paid: 102, rate: '92.7%', drop: '7.3%', rev: '₹1,44,200' }
-];
+const SPECIALTY_BOTTLENECKS = [];
 
-const REGIONAL_CITIES = [
-  { city: 'Mumbai', inquiries: 340, paid: 322, rate: '94.7%', rev: '₹4,12,000' },
-  { city: 'Bengaluru', inquiries: 295, paid: 281, rate: '95.3%', rev: '₹3,68,400' },
-  { city: 'Delhi NCR', inquiries: 240, paid: 224, rate: '93.3%', rev: '₹2,84,000' },
-  { city: 'Hyderabad', inquiries: 165, paid: 152, rate: '92.1%', rev: '₹1,95,000' },
-  { city: 'Chennai', inquiries: 140, paid: 131, rate: '93.6%', rev: '₹1,62,500' }
-];
+const REGIONAL_CITIES = [];
 
-const ALL_LEADS = [
-  { id: 'LD-4091', date: '2026-10-03 14:15', customer: 'Kavita Menon', pet: 'Golden Retriever (Bruno)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Android App', service: 'Royal Canin + Vet Consult', city: 'Mumbai', amount: 3400, status: 'Converted' },
-  { id: 'LD-4090', date: '2026-10-03 13:48', customer: 'Aditya Birla', pet: 'German Shepherd (Max)', stage: '04 Checkout Initiated', stageId: 'checkout', channel: 'iOS App', service: 'Bravecto Flea & Tick 3-Pack', city: 'Bengaluru', amount: 5850, status: 'Pending Payment' },
-  { id: 'LD-4089', date: '2026-10-03 12:30', customer: 'Sneha Rao', pet: 'Beagle (Daisy)', stage: '04 Checkout Initiated', stageId: 'checkout', channel: 'Web Direct Portal', service: 'Full Health Blood Screening', city: 'Delhi NCR', amount: 2400, status: 'Cart Abandoned' },
-  { id: 'LD-4088', date: '2026-10-03 11:14', customer: 'Vikram Joshi', pet: 'Labrador (Cooper)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Partner Clinic Referrals', service: 'Orthopedic Consultation MS', city: 'Mumbai', amount: 2800, status: 'Converted' },
-  { id: 'LD-4087', date: '2026-10-03 10:45', customer: 'Pooja Hegde', pet: 'Persian Cat (Simba)', stage: '02 Active Sessions', stageId: 'sessions', channel: 'Android App', service: 'Cat Hairball Prevention Diet', city: 'Hyderabad', amount: 1850, status: 'Browsing' },
-  { id: 'LD-4086', date: '2026-10-03 09:20', customer: 'Rohan Deshmukh', pet: 'Shih Tzu (Coco)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'iOS App', service: 'Nobivac Core Vaccines Pack', city: 'Pune', amount: 1950, status: 'Converted' },
-  { id: 'LD-4085', date: '2026-10-03 08:50', customer: 'Meera Nair', pet: 'Cocker Spaniel (Leo)', stage: '04 Checkout Initiated', stageId: 'checkout', channel: 'Android App', service: 'NexGard Spectra Monthly', city: 'Bengaluru', amount: 1450, status: 'Pending Payment' },
-  { id: 'LD-4084', date: '2026-10-02 18:40', customer: 'Arun Varma', pet: 'Rottweiler (Rocky)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Partner Clinic Referrals', service: 'Echocardiogram Screening', city: 'Chennai', amount: 4200, status: 'Converted' },
-  { id: 'LD-4083', date: '2026-10-02 17:15', customer: 'Divya Iyer', pet: 'Indie Dog (Milo)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Android App', service: 'Wellness Deworming Combo', city: 'Mumbai', amount: 1150, status: 'Converted' },
-  { id: 'LD-4082', date: '2026-10-02 15:30', customer: 'Kunal Sen', pet: 'Pug (Gordo)', stage: '04 Checkout Initiated', stageId: 'checkout', channel: 'iOS App', service: 'Dermatology Skin Scraping', city: 'Kolkata', amount: 2600, status: 'Pending Payment' },
-  { id: 'LD-4081', date: '2026-10-02 14:10', customer: 'Ananya Roy', pet: 'Husky (Ghost)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Web Direct Portal', service: 'Hip Dysplasia X-Ray Exam', city: 'Delhi NCR', amount: 3900, status: 'Converted' },
-  { id: 'LD-4080', date: '2026-10-02 12:00', customer: 'Harish Patel', pet: 'Golden Retriever (Buddy)', stage: '05 Paid Conversion', stageId: 'paid', channel: 'Android App', service: 'Senior Canine Dental Scaling', city: 'Ahmedabad', amount: 3100, status: 'Converted' }
-];
+const ALL_LEADS = [];
 
 export default function SalesFunnel() {
   const [selectedStage, setSelectedStage] = useState('all');

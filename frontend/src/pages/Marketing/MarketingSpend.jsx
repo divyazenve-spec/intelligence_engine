@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function MarketingSpend() {
-  const lineItems = [
-    { category: 'Paid Performance Media (Meta & Google)', budget: '₹5,00,000', actual: '₹4,72,000', variance: '-5.6%', status: 'Under Budget', share: '62.4%' },
-    { category: 'Influencer & Creator Endorsements', budget: '₹1,20,000', actual: '₹1,15,000', variance: '-4.2%', status: 'Under Budget', share: '15.2%' },
-    { category: 'Creative Production & Video Shooting', budget: '₹80,000', actual: '₹74,000', variance: '-7.5%', status: 'Under Budget', share: '9.8%' },
-    { category: 'Pet Clinic Offline Co-op Signage', budget: '₹60,000', actual: '₹58,000', variance: '-3.3%', status: 'Under Budget', share: '7.7%' },
-    { category: 'Marketing Automation & Tool Stack', budget: '₹40,000', actual: '₹37,500', variance: '-6.2%', status: 'Under Budget', share: '4.9%' }
-  ];
+  const lineItems = [];
 
   return (
     <DashboardLayout
@@ -18,13 +12,13 @@ export default function MarketingSpend() {
       title="Marketing Budget Allocation & Spend Burn"
       subtitle="Monthly OPEX allocation, vendor disbursements, channel spend variance, and budget compliance"
       icon="💰"
-      badge="₹7.56L Total Spend MTD"
+      badge="₹0 Total Spend MTD"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Allocated Marketing Budget" value="₹8,00,000" delta="Monthly approved" trend="neutral" subtext="Approved by Finance" icon="📋" />
-        <KpiCard label="Actual Marketing Burn" value="₹7,56,500" delta="-5.4% under budget" trend="up" subtext="Favorable variance: ₹43.5K" icon="💳" />
-        <KpiCard label="Paid Media Share" value="62.4%" delta="Meta, Google, YouTube" trend="neutral" subtext="Optimal target: 60-65%" icon="📊" />
-        <KpiCard label="Marketing % of GMV" value="4.8%" delta="-0.6% vs target" trend="up" subtext="Very efficient cost structure" icon="📈" />
+        <KpiCard label="Allocated Marketing Budget" value="₹0" delta="Monthly approved" trend="neutral" subtext="Approved by Finance" icon="📋" />
+        <KpiCard label="Actual Marketing Burn" value="₹0" delta="-5.4% under budget" trend="up" subtext="Favorable variance: ₹0" icon="💳" />
+        <KpiCard label="Paid Media Share" value="0.0%" delta="Meta, Google, YouTube" trend="neutral" subtext="Optimal target: 60-65%" icon="📊" />
+        <KpiCard label="Marketing % of GMV" value="0.0%" delta="-0.6% vs target" trend="up" subtext="Very efficient cost structure" icon="📈" />
       </div>
 
       <div style={{

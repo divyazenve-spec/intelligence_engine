@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function ApprovalHistory() {
-  const approvals = [
-    { id: 'APP-1082', type: 'Schedule H Medicine Dispense', entity: 'Prescription #RX-8841 (Ketamine Anaesthetic)', requester: 'Clinic Nurse A. Thomas', approver: 'Dr. Priya Sharma (MCI #49281)', status: 'Approved & Signed', time: '14:21 Today' },
-    { id: 'APP-1081', type: 'Purchase Order Approval', entity: 'PO-2026-92 (₹3,40,000 to Zoetis)', requester: 'Amit Joshi (Procurement)', approver: 'Executive Admin', status: 'Approved', time: '12:10 Today' },
-    { id: 'APP-1080', type: 'High-Value Customer Refund', entity: 'Refund #REF-820 (₹4,800.00)', requester: 'Pooja Kapoor (Support)', approver: 'Sneha Rao (Accounts)', status: 'Approved', time: '11:05 Today' },
-    { id: 'APP-1079', type: 'Staff Leave Clearance', entity: 'Annual Leave (3 Days) - R. Verma', requester: 'Rajesh Verma (Pharmacy)', approver: 'HR Operations Lead', status: 'Approved', time: 'Yesterday 16:00' },
-    { id: 'APP-1078', type: 'Special Discount Waiver', entity: 'VIP Kennel Booking (20% Code)', requester: 'Sales Desk Indiranagar', approver: 'Executive Admin', status: 'Approved', time: 'Yesterday 11:30' }
-  ];
+  const approvals = [];
 
   return (
     <DashboardLayout

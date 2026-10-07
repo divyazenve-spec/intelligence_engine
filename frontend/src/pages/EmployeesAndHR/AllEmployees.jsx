@@ -9,18 +9,7 @@ export default function AllEmployees() {
   const [selectedEmp, setSelectedEmp] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  const [employees, setEmployees] = useState([
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', location: 'Bengaluru Flagship', email: 'priya.s@zenve.in', phone: '+91 98450 11201', joined: '15 Jan 2023', status: 'Active', type: 'Full-time', salary: '₹2,40,000/mo' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', location: 'Mumbai Center', email: 'rahul.m@zenve.in', phone: '+91 98200 44312', joined: '10 Mar 2023', status: 'Active', type: 'Full-time', salary: '₹1,95,000/mo' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', location: 'Bengaluru Hub', email: 'rohan.d@zenve.in', phone: '+91 97401 88392', joined: '01 Jun 2023', status: 'Active', type: 'Full-time', salary: '₹1,45,000/mo' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', location: 'Remote / HQ', email: 'sneha.c@zenve.in', phone: '+91 99102 77314', joined: '28 Sep 2026', status: 'Probation', type: 'Full-time', salary: '₹1,80,000/mo' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet & Logistics Lead', dept: 'Logistics', location: 'Bengaluru South', email: 'vikram.j@zenve.in', phone: '+91 98860 12093', joined: '12 Aug 2023', status: 'Active', type: 'Full-time', salary: '₹95,000/mo' },
-    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', location: 'Bhiwandi Hub', email: 'ananya.v@zenve.in', phone: '+91 98211 40592', joined: '05 Feb 2024', status: 'Active', type: 'Full-time', salary: '₹1,10,000/mo' },
-    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', location: 'Mumbai Bandra', email: 'manish.r@zenve.in', phone: '+91 98330 67123', joined: '25 Sep 2026', status: 'Active', type: 'Contract', salary: '₹32,000/mo' },
-    { id: 'EMP-1008', name: 'Dr. Aisha Khan', role: 'Consultant Dermatologist', dept: 'Clinical', location: 'Delhi NCR Clinic', email: 'aisha.k@zenve.in', phone: '+91 98110 55421', joined: '14 Apr 2024', status: 'On Leave', type: 'Part-time', salary: '₹1,15,000/mo' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', location: 'Bengaluru HQ', email: 'pooja.h@zenve.in', phone: '+91 99001 22894', joined: '01 Nov 2023', status: 'Active', type: 'Full-time', salary: '₹75,000/mo' },
-    { id: 'EMP-1010', name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', location: 'Bengaluru Hub', email: 'kunal.s@zenve.in', phone: '+91 96190 33412', joined: '18 Sep 2026', status: 'Active', type: 'Full-time', salary: '₹65,000/mo' }
-  ]);
+  const [employees, setEmployees] = useState([]);
 
   const filtered = employees.filter(e => {
     const matchSearch = (e.name + ' ' + e.role + ' ' + e.id + ' ' + e.email + ' ' + e.location).toLowerCase().includes(searchTerm.toLowerCase());
@@ -326,7 +315,7 @@ export default function AllEmployees() {
                 joined: 'Today',
                 status: 'Active',
                 type: 'Full-time',
-                salary: '₹85,000/mo'
+                salary: '₹0/mo'
               };
               setEmployees([newEmp, ...employees]);
               setShowAddModal(false);

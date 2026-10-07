@@ -10,13 +10,7 @@ export default function OperationsReport() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const hubs = [
-    { hub: 'Koramangala 60-Min Express Hub', city: 'Bengaluru', orders: 3420, onTimeRate: '97.2%', avgDispatchMins: 3.4, riderCount: 24, deliveryCostPerOrder: 52, returnsPct: '1.4%' },
-    { hub: 'Indiranagar Express Dark Store', city: 'Bengaluru', orders: 2180, onTimeRate: '96.8%', avgDispatchMins: 3.8, riderCount: 16, deliveryCostPerOrder: 54, returnsPct: '1.6%' },
-    { hub: 'Mumbai West Fulfillment Center', city: 'Mumbai', orders: 1840, onTimeRate: '95.4%', avgDispatchMins: 4.2, riderCount: 18, deliveryCostPerOrder: 62, returnsPct: '2.1%' },
-    { hub: 'Delhi NCR Okhla Logistics Depot', city: 'Delhi NCR', orders: 1420, onTimeRate: '94.8%', avgDispatchMins: 4.6, riderCount: 12, deliveryCostPerOrder: 66, returnsPct: '2.8%' },
-    { hub: 'Hyderabad Jubilee Hills Node', city: 'Hyderabad', orders: 1120, onTimeRate: '96.5%', avgDispatchMins: 3.9, riderCount: 10, deliveryCostPerOrder: 56, returnsPct: '1.5%' }
-  ];
+  const hubs = [];
 
   const downloadCSV = () => {
     const rows = [
@@ -40,7 +34,7 @@ export default function OperationsReport() {
       title="Fulfillment Logistics & 60-Minute SLA Report"
       subtitle="Warehouse packing throughput, dark-store staging dwell times, delivery cost per drop, rider fleet efficiency, and SLA compliance"
       icon="🚚"
-      badge="96.2% On-Time Delivery"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -78,10 +72,10 @@ export default function OperationsReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated On-Time SLA" value="96.2%" delta="+1.1% vs last week" trend="up" subtext="Target: 95.0%" icon="⚡" />
+        <KpiCard label="Consolidated On-Time SLA" value="0.0%" delta="+1.1% vs last week" trend="up" subtext="Target: 95.0%" icon="⚡" />
         <KpiCard label="Average Dispatch Dwell" value="3.8 Mins" delta="Under 4.0m SLA" trend="up" subtext="Dark store automated" icon="⏱️" />
         <KpiCard label="Active Dedicated Fleet" value="80 EV Riders" delta="Ather & Ola EV" trend="neutral" subtext="Zero fuel emissions" icon="🛵" />
-        <KpiCard label="Blended Cost / Delivery" value="₹57.40" delta="-₹3.80 efficiency" trend="up" subtext="Route optimized" icon="📉" />
+        <KpiCard label="Blended Cost / Delivery" value="₹0" delta="-₹0" trend="up" subtext="Route optimized" icon="📉" />
       </div>
 
       {/* Table Section */}

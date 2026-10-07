@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function ComplianceDashboard() {
   const [toast, setToast] = useState('');
 
-  const frameworks = [
-    { standard: 'SOC-2 Type II (Security & Availability)', score: '100%', controls: '64 / 64 Controls Passing', auditor: 'Ernst & Young / Vanta', renew: 'Oct 2027', status: 'Compliant' },
-    { standard: 'Schedule H & H1 Drug Dispensing Registry', score: '100%', controls: 'MCI Signed Digital Scripts', auditor: 'Drugs Control Dept KA', renew: 'Continuous', status: 'Compliant' },
-    { standard: 'HIPAA & Pet Healthcare Data Privacy', score: '99.4%', controls: 'AES-256 at Rest & TLS 1.3', auditor: 'Internal InfoSec Office', renew: 'Q4 2026', status: 'Compliant' },
-    { standard: 'GST & E-Way Bill Regulatory Filing', score: '100%', controls: 'GSTR-1 & 3B Monthly Auto-reconcile', auditor: 'GSTN Portal Sync', renew: 'Monthly (20th)', status: 'Compliant' },
-    { standard: 'ISO 27001:2022 ISMS Framework', score: '98.8%', controls: 'Access Controls & Backup SLAs', auditor: 'BSI Global Assurance', renew: 'Jan 2027', status: 'Compliant' },
-    { standard: 'Biomedical Waste Disposal Protocol', score: '100%', controls: 'Daily Clinic Waste Manifests', auditor: 'Pollution Control Board', renew: 'Quarterly', status: 'Compliant' }
-  ];
+  const frameworks = [];
 
   const runProbe = () => {
     setToast('Executing automated compliance health check across 64 regulatory controls...');
@@ -55,7 +48,7 @@ export default function ComplianceDashboard() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Compliance Score" value="99.8%" delta="Grade A+" trend="up" subtext="Audited across 6 frameworks" icon="🛡️" />
+        <KpiCard label="Overall Compliance Score" value="0.0%" delta="Grade A+" trend="up" subtext="Audited across 6 frameworks" icon="🛡️" />
         <KpiCard label="SOC-2 Controls" value="64 / 64 Passing" delta="100% Tested" trend="up" subtext="Automated evidence collector" icon="🔒" />
         <KpiCard label="Schedule H Drug Audit" value="100% Compliant" delta="Zero Deviations" trend="up" subtext="Full prescription audit trail" icon="💊" />
         <KpiCard label="Next Regulatory Audit" value="34 Days" delta="GST & ISO Review" trend="neutral" subtext="Readiness score: 100%" icon="📅" />

@@ -9,14 +9,7 @@ export default function ClinicOrders() {
   const [showPOModal, setShowPOModal] = useState(false);
   const [toast, setToast] = useState('');
 
-  const requisitions = [
-    { id: 'REQ-HSP-401', facility: 'Koramangala Hospital', category: 'Surgical Implants', items: 'Titanium TPLO Plates (3.5mm x8) + Bone Screws', vendor: 'DePuy Synthes Vet', value: 145000, eta: 'Today, 2:00 PM', status: 'Dispatched', approvedBy: 'Dr. Priya Sharma' },
-    { id: 'REQ-HSP-402', facility: 'Bandra West Hospital', category: 'Anesthetic Gases', items: 'Isoflurane USP (250ml x12 bottles) + Medical O2', vendor: 'Piramal Critical Care', value: 68000, eta: 'Tomorrow, 11:00 AM', status: 'Approved', approvedBy: 'Dr. Rahul Mehta' },
-    { id: 'REQ-HSP-403', facility: 'Delhi NCR Hospital', category: 'Diagnostic Kits', items: 'IDEXX Catalyst Chem 17 Clips (50 tests) + CBC Reagents', vendor: 'IDEXX Laboratories', value: 112000, eta: 'Today, 4:30 PM', status: 'Dispatched', approvedBy: 'Dr. Aisha Khan' },
-    { id: 'REQ-CLN-304', facility: 'Care Center Indiranagar', category: 'Vaccines (Cold)', items: 'Nobivac DHPPi (100 doses) + Rabisin (100 doses)', vendor: 'MSD Animal Health', value: 85000, eta: 'Today, 1:15 PM', status: 'Delivered', approvedBy: 'Dr. Arun V.' },
-    { id: 'REQ-CLN-305', facility: 'Jubilee Hills Specialty', category: 'Surgical Consumables', items: 'Vicryl 3-0 Sutures (12 boxes) + Sterile Laparotomy Drapes', vendor: 'Ethicon India', value: 42000, eta: 'Tomorrow, 5:00 PM', status: 'Pending Review', approvedBy: 'Dr. Lakshmi Reddy' },
-    { id: 'REQ-CLN-306', facility: 'Koregaon Park Clinic', category: 'PPE & Sterilization', items: 'Autoclave Pouches (1000 pcs) + Surgical Gloves (500 pairs)', vendor: 'MediPack Systems', value: 24500, eta: 'In Review', status: 'Pending Review', approvedBy: 'Dr. Sneha Kulkarni' }
-  ];
+  const requisitions = [];
 
   const filtered = useMemo(() => {
     return requisitions.filter(r => {
@@ -50,7 +43,7 @@ export default function ClinicOrders() {
       title="Hospital Supplies & Clinical Procurement"
       subtitle="Surgical consumables, orthopedic implants, anesthesia gases, diagnostic test kits, and facility supply orders"
       icon="📦"
-      badge="28 Active Orders"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -91,10 +84,10 @@ export default function ClinicOrders() {
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Requisitions" value="28 POs" delta="In Fulfillment" trend="neutral" subtext="Across all 14 facilities" icon="📦" />
-        <KpiCard label="Procurement Value" value="₹8.45 Lakh" delta="MTD Budget" trend="up" subtext="Consumables & implants" icon="💰" />
+        <KpiCard label="Procurement Value" value="₹0" delta="MTD Budget" trend="up" subtext="Consumables & implants" icon="💰" />
         <KpiCard label="Surgical Implants" value="12 Orders" delta="Orthopedic & TPLO" trend="up" subtext="Titanium plates & pins" icon="🦴" />
         <KpiCard label="Diagnostic Reagents" value="8 Orders" delta="IDEXX & Roche" trend="up" subtext="Zero stockout SLA" icon="🔬" />
-        <KpiCard label="On-Time Delivery SLA" value="98.4%" delta="+1.2% MoM" trend="up" subtext="Surgical readiness maintained" icon="⏱️" />
+        <KpiCard label="On-Time Delivery SLA" value="0.0%" delta="+1.2% MoM" trend="up" subtext="Surgical readiness maintained" icon="⏱️" />
         <KpiCard label="Average PO Turnaround" value="18.6 Hours" delta="Requisition to arrival" trend="up" subtext="Fast-track approval" icon="⚡" />
       </div>
 

@@ -5,14 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function B2BOrders() {
   const [status, setStatus] = useState('ALL');
 
-  const orders = [
-    { po: 'PO-B2B-4401', client: 'PetCare Hospital Network', items: 'Nobivac Vaccines (200v) + Bravecto (80p)', val: '₹3,45,000', orderDate: '2026-10-04', dispatchDate: '2026-10-05', status: 'Dispatched', terms: 'Net 30' },
-    { po: 'PO-B2B-4402', client: 'K-9 Paramilitary Kennels', items: 'Tactical Working Dog Nutrition (1.2 Tons)', val: '₹2,80,000', orderDate: '2026-10-03', dispatchDate: '2026-10-04', status: 'Delivered', terms: 'Net 60' },
-    { po: 'PO-B2B-4403', client: 'Bangalore Canine Breeding Co-op', items: 'Puppy Starter Formula + Calcium Kits (150u)', val: '₹1,95,000', orderDate: '2026-10-04', dispatchDate: 'Pending', status: 'Processing', terms: 'Net 45' },
-    { po: 'PO-B2B-4404', client: 'Urban Mutts Luxury Daycare', items: 'Hypoallergenic Grooming Shampoos (400L)', val: '₹1,12,000', orderDate: '2026-10-02', dispatchDate: '2026-10-03', status: 'Delivered', terms: 'Net 30' },
-    { po: 'PO-B2B-4405', client: 'Airports Authority Canine Unit', items: 'Joint Health Chews + Dewormers (300u)', val: '₹1,65,000', orderDate: '2026-10-01', dispatchDate: '2026-10-02', status: 'Delivered', terms: 'Net 60' },
-    { po: 'PO-B2B-4406', client: 'Infosys Corp Employee Wellness', items: 'Executive Preventive Care Vouchers (200u)', val: '₹1,40,000', orderDate: '2026-10-05', dispatchDate: 'Instant Dig.', status: 'Fulfilled', terms: 'Net 30' }
-  ];
+  const orders = [];
 
   const filtered = status === 'ALL' ? orders : orders.filter(o => o.status === status);
 
@@ -25,12 +18,12 @@ export default function B2BOrders() {
       title="B2B Purchase Orders & Bulk Fulfillment"
       subtitle="Institutional purchase orders, batch fulfillment allocations, warehouse dispatch manifests, and invoice linking"
       icon="📦"
-      badge="148 Orders MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="B2B Orders (MTD)" value="148 Orders" delta="+22% vs Sep" trend="up" subtext="Avg order: ₹2.35L" icon="📦" />
-        <KpiCard label="Order Value Pipeline" value="₹34.82 Lakh" delta="100% contracted" trend="up" subtext="Wholesale pricing tiers" icon="💵" />
-        <KpiCard label="On-Time Dispatch Rate" value="98.6%" delta="48h SLA" trend="up" subtext="Bulk freight partners" icon="⚡" />
+        <KpiCard label="B2B Orders (MTD)" value="148 Orders" delta="+22% vs Sep" trend="up" subtext="Avg order: ₹0" icon="📦" />
+        <KpiCard label="Order Value Pipeline" value="₹0" delta="100% contracted" trend="up" subtext="Wholesale pricing tiers" icon="💵" />
+        <KpiCard label="On-Time Dispatch Rate" value="0.0%" delta="48h SLA" trend="up" subtext="Bulk freight partners" icon="⚡" />
         <KpiCard label="Pending Orders" value="6 Orders" delta="In warehouse pack" trend="warn" subtext="Dispatching today" icon="⏳" />
       </div>
 

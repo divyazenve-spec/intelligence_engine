@@ -3,13 +3,7 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function Suppliers() {
-  const suppliers = [
-    { code: 'SUP-GLB-01', name: 'Royal Canin SAS', country: 'France', cat: 'Veterinary Clinical Nutrition', terms: 'LC 60 Days', annualVol: '€580,000', leadTime: '24 Days', cdsco: 'Approved & Registered', rating: '4.9 ★' },
-    { code: 'SUP-GLB-02', name: 'MSD Animal Health GmbH', country: 'Germany', cat: 'Pharmaceuticals & Biologics', terms: 'LC 90 Days', annualVol: '€420,000', leadTime: '18 Days', cdsco: 'Form 10 Issued', rating: '5.0 ★' },
-    { code: 'SUP-GLB-03', name: 'Zoetis Global LLC', country: 'United States', cat: 'Vaccines & Parasiticides', terms: 'LC 60 Days', annualVol: '$640,000', leadTime: '21 Days', cdsco: 'Form 10 Issued', rating: '4.9 ★' },
-    { code: 'SUP-GLB-04', name: 'Conceria Guccio Nappa SRL', country: 'Italy', cat: 'Haute Couture Raw Leather', terms: 'TT Wire / 30D', annualVol: '€180,000', leadTime: '12 Days', cdsco: 'N/A (Apparel)', rating: '4.8 ★' },
-    { code: 'SUP-GLB-05', name: 'Midmark Animal Health Corp', country: 'United States', cat: 'Surgical Tables & Imaging', terms: 'Direct Wire', annualVol: '$210,000', leadTime: '30 Days', cdsco: 'Medical Device NOC', rating: '4.7 ★' }
-  ];
+  const suppliers = [];
 
   const card = { background: 'var(--card, #ffffff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: '12px', padding: '22px 24px' };
 
@@ -20,13 +14,13 @@ export default function Suppliers() {
       title="Global Veterinary & Raw Material Suppliers"
       subtitle="International manufacturer registry, CDSCO import licenses, country of origin compliance, and quality certifications"
       icon="🌍"
-      badge="16 International OEMs"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Active Global Suppliers" value="16 Manufacturers" delta="Europe, US, Japan" trend="up" subtext="Direct OEM distribution" icon="🌍" />
         <KpiCard label="CDSCO Registered OEMs" value="100% Compliant" delta="Form 10 / 11 active" trend="up" subtext="Biologicals clearance" icon="🛡️" />
         <KpiCard label="Avg Import Lead Time" value="21.4 Days" delta="-3 days optimization" trend="up" subtext="Direct air corridors" icon="⏱️" />
-        <KpiCard label="Supplier Quality Score" value="99.2%" delta="Zero batch rejections" trend="up" subtext="Pre-shipment COA verified" icon="✅" />
+        <KpiCard label="Supplier Quality Score" value="0.0%" delta="Zero batch rejections" trend="up" subtext="Pre-shipment COA verified" icon="✅" />
       </div>
 
       <div style={card}>

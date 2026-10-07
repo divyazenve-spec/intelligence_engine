@@ -9,19 +9,7 @@ export default function AllClinics() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [toast, setToast] = useState('');
 
-  const clinicsData = [
-    { code: 'CLN-BLR-01', name: 'Zenve Care Center Indiranagar', city: 'Bengaluru', address: '100ft Road, HAL 2nd Stage, Indiranagar', tier: 'Diagnostic Care Center', rooms: 4, leadVet: 'Dr. Priya Sharma', staff: 12, hours: '08:00 AM – 10:00 PM', footfall: '48 pets/day', monthlyRev: '₹5,60,000', equipment: 'DR X-Ray, Vet USG, IDEXX Blood Lab, Dental Station' },
-    { code: 'CLN-BLR-02', name: 'Zenve Whitefield Pet Clinic', city: 'Bengaluru', address: 'Palm Meadows Junction, Whitefield', tier: 'Primary Outpatient', rooms: 3, leadVet: 'Dr. Arun V.', staff: 8, hours: '09:00 AM – 09:00 PM', footfall: '36 pets/day', monthlyRev: '₹4,10,000', equipment: 'Digital Radiography, Hematology Analyzer' },
-    { code: 'CLN-BLR-03', name: 'Zenve Jayanagar Wellness Center', city: 'Bengaluru', address: '4th Block, Near Cool Joint, Jayanagar', tier: 'Primary Outpatient', rooms: 3, leadVet: 'Dr. Kavita Nair', staff: 7, hours: '09:00 AM – 08:30 PM', footfall: '32 pets/day', monthlyRev: '₹3,75,000', equipment: 'General OPD, Vaccination Hub, Biochemistry' },
-    { code: 'CLN-MUM-01', name: 'Zenve Juhu Companion Care', city: 'Mumbai', address: '10th Road, JVPD Scheme, Juhu', tier: 'Specialty Outpatient', rooms: 4, leadVet: 'Dr. Rahul Mehta', staff: 14, hours: '08:30 AM – 09:30 PM', footfall: '44 pets/day', monthlyRev: '₹5,20,000', equipment: 'Echocardiography, Feline ICU pod, Blood Gas Analyzer' },
-    { code: 'CLN-MUM-02', name: 'Zenve Powai Lake Clinic', city: 'Mumbai', address: 'Hiranandani Gardens, Powai', tier: 'Primary Outpatient', rooms: 3, leadVet: 'Dr. Meera Deshmukh', staff: 8, hours: '09:00 AM – 09:00 PM', footfall: '30 pets/day', monthlyRev: '₹3,60,000', equipment: 'Digital X-Ray, Minor Procedure Suite' },
-    { code: 'CLN-DEL-01', name: 'Zenve South Extension Clinic', city: 'Delhi NCR', address: 'South Ex Part 2, Ring Road', tier: 'Diagnostic Care Center', rooms: 4, leadVet: 'Dr. Aisha Khan', staff: 11, hours: '08:00 AM – 09:30 PM', footfall: '42 pets/day', monthlyRev: '₹4,95,000', equipment: 'Color Doppler Ultrasound, Full Lab Suite, Dental Suite' },
-    { code: 'CLN-DEL-02', name: 'Zenve Gurgaon Cyber Hub Clinic', city: 'Delhi NCR', address: 'Sector 54, Golf Course Road, Gurugram', tier: 'Specialty Outpatient', rooms: 3, leadVet: 'Dr. Vikram Sethi', staff: 9, hours: '09:00 AM – 09:00 PM', footfall: '38 pets/day', monthlyRev: '₹4,40,000', equipment: 'Digital Radiography, Endoscopy Suite, Blood Lab' },
-    { code: 'CLN-HYD-01', name: 'Zenve Jubilee Hills Specialty Clinic', city: 'Hyderabad', address: 'Road No. 36, Jubilee Hills', tier: 'Diagnostic Care Center', rooms: 4, leadVet: 'Dr. Lakshmi Reddy', staff: 10, hours: '08:30 AM – 09:30 PM', footfall: '40 pets/day', monthlyRev: '₹4,80,000', equipment: 'DR X-Ray, Veterinary USG, In-house Biochemistry' },
-    { code: 'CLN-HYD-02', name: 'Zenve Gachibowli Tech Care', city: 'Hyderabad', address: 'Financial District, Gachibowli', tier: 'Primary Outpatient', rooms: 2, leadVet: 'Dr. Sanjay Reddy', staff: 6, hours: '09:00 AM – 08:30 PM', footfall: '26 pets/day', monthlyRev: '₹2,95,000', equipment: 'General OPD, Preventative Vaccination Suites' },
-    { code: 'CLN-PNE-01', name: 'Zenve Koregaon Park Clinic', city: 'Pune', address: 'North Main Road, Koregaon Park', tier: 'Specialty Outpatient', rooms: 3, leadVet: 'Dr. Sneha Kulkarni', staff: 8, hours: '09:00 AM – 09:00 PM', footfall: '34 pets/day', monthlyRev: '₹3,20,000', equipment: 'Full Diagnostics, Minor Surgical OT, Grooming Med' },
-    { code: 'CLN-PNE-02', name: 'Zenve Baner Wellness Center', city: 'Pune', address: 'Balewadi High Street, Baner', tier: 'Primary Outpatient', rooms: 2, leadVet: 'Dr. Anupama Joshi', staff: 6, hours: '09:00 AM – 08:30 PM', footfall: '24 pets/day', monthlyRev: '₹2,65,000', equipment: 'Routine OPD, Preventive Care, Rapid Diagnostics' }
-  ];
+  const clinicsData = [];
 
   const filtered = useMemo(() => {
     return clinicsData.filter(c => {
@@ -50,7 +38,7 @@ export default function AllClinics() {
       title="Outpatient Clinics Directory & Operations"
       subtitle="Complete primary care clinic network, consultation suites, lead veterinarians, diagnostics, and patient throughput"
       icon="🩺"
-      badge="11 Outpatient Clinics"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -95,7 +83,7 @@ export default function AllClinics() {
         <KpiCard label="Active Attending Vets" value="28 Doctors" delta="Full duty roster" trend="up" subtext="VCI registered clinicians" icon="👨‍⚕️" />
         <KpiCard label="Daily OPD Footfall" value="374 Pets / Day" delta="+16.4% YoY" trend="up" subtext="Avg 34 pets / clinic" icon="🐾" />
         <KpiCard label="Avg Patient Wait Time" value="14.2 Mins" delta="-3.5m vs target" trend="up" subtext="Appointment slotted" icon="⏱️" />
-        <KpiCard label="Total Clinics Revenue" value="₹44.80 Lakh" delta="MTD Billings" trend="up" subtext="Consults, labs & pharmacy" icon="💰" />
+        <KpiCard label="Total Clinics Revenue" value="₹0" delta="MTD Billings" trend="up" subtext="Consults, labs & pharmacy" icon="💰" />
       </div>
 
       {/* Filter and Search Bar */}

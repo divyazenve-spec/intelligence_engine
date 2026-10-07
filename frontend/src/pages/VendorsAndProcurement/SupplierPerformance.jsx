@@ -6,24 +6,9 @@ export default function SupplierPerformance() {
   const [selectedTier, setSelectedTier] = useState('ALL');
   const [search, setSearch] = useState('');
 
-  const suppliers = [
-    { id: 'SUP-01', name: 'MSD Animal Health India', qbrTier: 'Tier 1 Strategic', otifRate: 99.4, coldChainCompliance: 100.0, defectPpm: 18, invoiceAccuracy: 99.8, avgLeadDays: 3.2, auditCert: 'WHO-GMP & ISO 13485', status: 'Excellent', lastAudit: '2026-08-15' },
-    { id: 'SUP-02', name: 'Boehringer Ingelheim Vet', qbrTier: 'Tier 1 Strategic', otifRate: 98.6, coldChainCompliance: 99.8, defectPpm: 24, invoiceAccuracy: 99.5, avgLeadDays: 4.1, auditCert: 'EU-GMP & Schedule M', status: 'Excellent', lastAudit: '2026-07-20' },
-    { id: 'SUP-03', name: 'Synthes Vet India', qbrTier: 'Tier 1 Strategic', otifRate: 99.1, coldChainCompliance: 100.0, defectPpm: 12, invoiceAccuracy: 99.6, avgLeadDays: 4.8, auditCert: 'ISO 13485 & CE Mark', status: 'Excellent', lastAudit: '2026-09-05' },
-    { id: 'SUP-04', name: 'Zoetis India Ltd.', qbrTier: 'Tier 1 Strategic', otifRate: 97.9, coldChainCompliance: 99.4, defectPpm: 32, invoiceAccuracy: 99.1, avgLeadDays: 4.3, auditCert: 'US-FDA & WHO-GMP', status: 'Good', lastAudit: '2026-06-12' },
-    { id: 'SUP-05', name: "Hill's Pet Nutrition", qbrTier: 'Tier 2 Preferred', otifRate: 96.8, coldChainCompliance: 100.0, defectPpm: 45, invoiceAccuracy: 98.4, avgLeadDays: 5.8, auditCert: 'HACCP & ISO 22000', status: 'Good', lastAudit: '2026-05-18' },
-    { id: 'SUP-06', name: 'Royal Canin India', qbrTier: 'Tier 2 Preferred', otifRate: 96.2, coldChainCompliance: 100.0, defectPpm: 52, invoiceAccuracy: 98.2, avgLeadDays: 5.5, auditCert: 'FSSC 22000 & ISO 9001', status: 'Good', lastAudit: '2026-05-22' },
-    { id: 'SUP-07', name: 'Virbac India Pvt. Ltd.', qbrTier: 'Tier 2 Preferred', otifRate: 95.8, coldChainCompliance: 98.9, defectPpm: 64, invoiceAccuracy: 97.9, avgLeadDays: 6.8, auditCert: 'Schedule M & ISO 9001', status: 'Good', lastAudit: '2026-04-10' },
-    { id: 'SUP-08', name: 'Intas Pharmaceuticals', qbrTier: 'Tier 2 Preferred', otifRate: 94.6, coldChainCompliance: 99.1, defectPpm: 88, invoiceAccuracy: 97.5, avgLeadDays: 7.6, auditCert: 'WHO-GMP & UK-MHRA', status: 'Acceptable', lastAudit: '2026-03-15' },
-    { id: 'SUP-09', name: 'Dechra Veterinary Products', qbrTier: 'Tier 3 Tactical', otifRate: 93.9, coldChainCompliance: 98.2, defectPpm: 95, invoiceAccuracy: 96.8, avgLeadDays: 8.5, auditCert: 'GMP Certified', status: 'Acceptable', lastAudit: '2026-02-28' },
-    { id: 'SUP-10', name: 'Bayer Animal Health India', qbrTier: 'Tier 3 Tactical', otifRate: 92.5, coldChainCompliance: 97.8, defectPpm: 120, invoiceAccuracy: 96.2, avgLeadDays: 9.8, auditCert: 'ISO 9001:2015', status: 'Under Review', lastAudit: '2026-01-14' }
-  ];
+  const suppliers = [];
 
-  const auditHighlights = [
-    { title: 'Cold-Chain Validation Audit', score: '99.5% Compliance', desc: 'Continuous data logger readings maintained 2°C - 8°C across all temperature-sensitive vaccines.', status: 'Compliant' },
-    { title: 'Sterile Implant Packaging Verification', score: 'Zero Breaches', desc: '100% peel-pouch sterility verification on orthopedic implants from Synthes Vet India.', status: 'Verified' },
-    { title: 'Batch Release & COA Accuracy', score: '99.8% Passed', desc: 'Certificate of Analysis (COA) matched all chemical assay tolerances and active potencies.', status: 'Verified' }
-  ];
+  const auditHighlights = [];
 
   const filtered = suppliers.filter(s => {
     if (selectedTier !== 'ALL' && s.qbrTier !== selectedTier) return false;
@@ -61,10 +46,10 @@ export default function SupplierPerformance() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network OTIF Delivery Rate" value="97.3%" delta="+1.4% MoM" trend="up" subtext="On-Time In-Full benchmark" icon="⏱️" />
-        <KpiCard label="Cold-Chain Compliance" value="99.5%" delta="Zero breaches YTD" trend="up" subtext="2°C - 8°C vaccine integrity" icon="❄️" />
+        <KpiCard label="Network OTIF Delivery Rate" value="0.0%" delta="+1.4% MoM" trend="up" subtext="On-Time In-Full benchmark" icon="⏱️" />
+        <KpiCard label="Cold-Chain Compliance" value="0.0%" delta="Zero breaches YTD" trend="up" subtext="2°C - 8°C vaccine integrity" icon="❄️" />
         <KpiCard label="Avg. Defect PPM" value="48 PPM" delta="-12 PPM vs target" trend="up" subtext="World-class pharma spec" icon="🛡️" />
-        <KpiCard label="Invoice Match Accuracy" value="98.7%" delta="Three-way PO-GRN-Inv" trend="up" subtext="Discrepancy < 1.3%" icon="📑" />
+        <KpiCard label="Invoice Match Accuracy" value="0.0%" delta="Three-way PO-GRN-Inv" trend="up" subtext="Discrepancy < 1.3%" icon="📑" />
         <KpiCard label="Strategic Tier 1 Suppliers" value="4 Vendors" delta="68% total spend" trend="up" subtext="High reliability index" icon="⭐" />
         <KpiCard label="Audit Recertifications" value="100% Passed" delta="10 of 10 certified" trend="up" subtext="WHO-GMP & ISO 13485" icon="📜" />
       </div>

@@ -25,17 +25,17 @@
   }
 
   var TABS = [
-    { id: 'ask-ai',      label: 'Ask Zenve AI',         icon: '💬', hash: '#ask-zenve-ai',        badge: 'Gemini 2.5 Flash', title: 'Ask Zenve AI — Natural Language Intelligence', sub: 'Interactive executive query interface with live database grounding and contextual recommendations' },
-    { id: 'insights',    label: 'Business Insights',    icon: '💡', hash: '#business-insights',    badge: '18 Insights',      title: 'Automated Executive Business Insights', sub: 'Synthesized multi-channel operational patterns, conversion drivers, and growth bottlenecks' },
-    { id: 'revenue',     label: 'Revenue Intelligence', icon: '⚡', hash: '#revenue-intelligence', badge: 'Active Radar',     title: 'Autonomous Revenue Intelligence', sub: 'Pricing elasticity modeling, margin leak detection, and revenue optimization vectors' },
-    { id: 'sales-fc',    label: 'Sales Forecast',       icon: '📈', hash: '#ai-sales-forecast',    badge: '96.2% Confidence', title: 'Bayesian Sales Trajectory Forecast', sub: 'Multi-horizon predictive sales modeling with P10/P50/P90 statistical confidence bands' },
-    { id: 'demand-fc',   label: 'Demand Forecast',      icon: '📦', hash: '#demand-forecast',      badge: 'SKU Level',        title: 'SKU & Regional Demand Forecasting', sub: 'Predictive consumption velocity, seasonal surge dampening, and automated purchase requisitions' },
-    { id: 'inventory-pr',label: 'Inventory Prediction', icon: '⚠️', hash: '#inventory-prediction', badge: 'Risk Alert',      title: 'Predictive Stockout & Expiry Analytics', sub: 'Runway exhaustion forecasting, optimal reorder cycles, and cold-chain batch alerts' },
-    { id: 'customer-pr', label: 'Customer Prediction',  icon: '🎯', hash: '#customer-prediction',  badge: 'LTV Uplift',       title: 'Customer Behavioral & Next-Best-Action Engine', sub: 'Propensity-to-repurchase scoring, basket upgrade probabilities, and service cross-sell triggers' },
-    { id: 'churn-pr',    label: 'Churn Prediction',     icon: '🛡️', hash: '#churn-prediction',     badge: '4 High Risk',      title: 'Predictive Pet Parent Churn Mitigation', sub: 'Early engagement decay detection, vaccination lapse indicators, and automated win-back workflows' },
-    { id: 'profit-pr',   label: 'Profit Prediction',    icon: '💹', hash: '#profit-prediction',    badge: 'Scenario Engine',  title: 'Predictive Profitability & Unit Economics', sub: 'Dynamic EBITDA sensitivity simulation across varying logistics, COGS, and labor cost models' },
-    { id: 'anomaly',     label: 'Anomaly Detection',    icon: '🔍', hash: '#anomaly-detection',    badge: '3-Sigma Watch',    title: 'Continuous Statistical Anomaly Detection', sub: 'Real-time telemetry scanning for revenue deviations, dispatch delays, and cart abandonment surges' },
-    { id: 'recommend',   label: 'AI Recommendations',   icon: '✨', hash: '#ai-recommendations',   badge: '+₹38.4L Est.',     title: 'Ranked Autonomous AI Executive Playbooks', sub: 'Algorithmic prioritization of highest-ROI interventions across operations, clinical care, and pricing' }
+    { id: 'ask-ai',      label: 'Ask Zenve AI',         icon: '💬', hash: '#ask-zenve-ai',        badge: '', title: 'Ask Zenve AI — Natural Language Intelligence', sub: 'Interactive executive query interface with live database grounding and contextual recommendations' },
+    { id: 'insights',    label: 'Business Insights',    icon: '💡', hash: '#business-insights',    badge: '',      title: 'Automated Executive Business Insights', sub: 'Synthesized multi-channel operational patterns, conversion drivers, and growth bottlenecks' },
+    { id: 'revenue',     label: 'Revenue Intelligence', icon: '⚡', hash: '#revenue-intelligence', badge: '',     title: 'Autonomous Revenue Intelligence', sub: 'Pricing elasticity modeling, margin leak detection, and revenue optimization vectors' },
+    { id: 'sales-fc',    label: 'Sales Forecast',       icon: '📈', hash: '#ai-sales-forecast',    badge: '', title: 'Bayesian Sales Trajectory Forecast', sub: 'Multi-horizon predictive sales modeling with P10/P50/P90 statistical confidence bands' },
+    { id: 'demand-fc',   label: 'Demand Forecast',      icon: '📦', hash: '#demand-forecast',      badge: '',        title: 'SKU & Regional Demand Forecasting', sub: 'Predictive consumption velocity, seasonal surge dampening, and automated purchase requisitions' },
+    { id: 'inventory-pr',label: 'Inventory Prediction', icon: '⚠️', hash: '#inventory-prediction', badge: '',      title: 'Predictive Stockout & Expiry Analytics', sub: 'Runway exhaustion forecasting, optimal reorder cycles, and cold-chain batch alerts' },
+    { id: 'customer-pr', label: 'Customer Prediction',  icon: '🎯', hash: '#customer-prediction',  badge: '',       title: 'Customer Behavioral & Next-Best-Action Engine', sub: 'Propensity-to-repurchase scoring, basket upgrade probabilities, and service cross-sell triggers' },
+    { id: 'churn-pr',    label: 'Churn Prediction',     icon: '🛡️', hash: '#churn-prediction',     badge: '',      title: 'Predictive Pet Parent Churn Mitigation', sub: 'Early engagement decay detection, vaccination lapse indicators, and automated win-back workflows' },
+    { id: 'profit-pr',   label: 'Profit Prediction',    icon: '💹', hash: '#profit-prediction',    badge: '',  title: 'Predictive Profitability & Unit Economics', sub: 'Dynamic EBITDA sensitivity simulation across varying logistics, COGS, and labor cost models' },
+    { id: 'anomaly',     label: 'Anomaly Detection',    icon: '🔍', hash: '#anomaly-detection',    badge: '',    title: 'Continuous Statistical Anomaly Detection', sub: 'Real-time telemetry scanning for revenue deviations, dispatch delays, and cart abandonment surges' },
+    { id: 'recommend',   label: 'AI Recommendations',   icon: '✨', hash: '#ai-recommendations',   badge: '',     title: 'Ranked Autonomous AI Executive Playbooks', sub: 'Algorithmic prioritization of highest-ROI interventions across operations, clinical care, and pricing' }
   ];
 
   var S = {
@@ -51,24 +51,20 @@
     chatHistory: [
       {
         role: 'ai',
-        text: 'Hello! I am <strong>Zenve AI Executive Copilot</strong>, powered by an autonomous, free-source domain reasoning engine grounded in your live ERP data. I have real-time telemetry across all <strong>14 clinic hubs</strong>, <strong>₹1.84 Cr MTD sales</strong>, pharmacy runways, doctor rosters, and 18,450 pet patient histories.',
+        text: 'Hello! I am <strong>Zenve AI Executive Copilot</strong>. Connect your live database or import sales records to begin real-time conversational analysis across clinics, pharmacy, and executive telemetry.',
         nlpMeta: {
           intent: 'EXECUTIVE ONBOARDING',
-          entities: ['14 Clinic Hubs', 'All Metros', 'Live ERP'],
+          entities: ['All Modules', 'Live ERP'],
           grounding: 'Postgres & BigQuery Telemetry',
-          confidence: '99.8%'
+          confidence: '100%'
         },
         kpis: [
-          { label: 'MTD Revenue', val: '₹1.84 Cr', status: 'success' },
-          { label: 'EBITDA Margin', val: '20.7%', status: 'info' },
-          { label: 'Active Pets', val: '18,450', status: 'info' },
-          { label: 'SLA Delivery', val: '97.6%', status: 'success' }
+          { label: 'MTD Revenue', val: '₹0', status: 'neutral' },
+          { label: 'EBITDA Margin', val: '0.0%', status: 'neutral' },
+          { label: 'Active Pets', val: '0', status: 'neutral' },
+          { label: 'SLA Delivery', val: '--', status: 'neutral' }
         ],
-        followups: [
-          'Why did sales drop in Delhi NCR?',
-          'Which clinic generated the highest EBITDA this month?',
-          'What is the forecast for Bravecto chewables inventory?'
-        ]
+        followups: []
       }
     ]
   };
@@ -132,78 +128,31 @@
   var ZenveNLP_LLM = (function () {
     var KNOWLEDGE = {
       overview: {
-        mtdRevenue: '₹1.84 Cr',
-        revenueGrowth: '+18.4% YoY',
-        totalOrders: '12,480',
-        activePets: '18,450',
-        ebitda: '₹38.2 Lakh (20.7%)',
-        hubsCount: 14,
-        sla: '97.6%'
+        mtdRevenue: '₹0',
+        revenueGrowth: '0.0%',
+        totalOrders: '0',
+        activePets: '0',
+        ebitda: '₹0 (0.0%)',
+        hubsCount: 0,
+        sla: '--'
       },
-      salesDrop: {
-        'Delhi NCR': { dropAmt: '₹14.8 Lakh', dropPct: '22.4%', orders: '342 → 265 (-77)', reason: '48h cold-chain stockout on Emergency Care & broad-spectrum Rx antibiotics + peak hour 60-min delivery SLA breaches', remedy: 'Execute emergency stock rebalance PO-8821 from Central Hub and activate rider surge incentives.' },
-        'Mumbai': { dropAmt: '₹9.6 Lakh', dropPct: '14.8%', orders: '280 → 238 (-42)', reason: 'Monsoon localized delivery route disruptions in Bandra West & Lower Parel causing delivery partner cancellations', remedy: 'Reroute orders to suburban partner hubs and extend delivery booking SLAs to 90 mins.' },
-        'Bengaluru': { dropAmt: '₹8.2 Lakh', dropPct: '11.6%', orders: '410 → 362 (-48)', reason: 'Cold-chain DHPPiL vaccine distributor shipment delays in Koramangala and Whitefield hubs', remedy: 'Authorize direct local depot pickups and trigger WhatsApp rebooking concierge for affected pet parents.' },
-        'Pune': { dropAmt: '₹5.4 Lakh', dropPct: '16.2%', orders: '190 → 159 (-31)', reason: 'Lead orthopedic surgeon on scheduled leave, dampening high-AOV elective surgical procedures', remedy: 'Schedule visiting senior surgeon from Mumbai for weekend surgical triage.' },
-        'Hyderabad': { dropAmt: '₹6.1 Lakh', dropPct: '13.5%', orders: '235 → 203 (-32)', reason: 'Payment gateway failures on UPI recurring wellness subscriptions during banking node maintenance', remedy: 'Enable auto-retry with fallback payment gateways and instant payment link generation.' },
-        'Chennai': { dropAmt: '₹4.8 Lakh', dropPct: '12.1%', orders: '198 → 174 (-24)', reason: 'Temporary transit bottleneck from central logistics warehouse to Adyar clinic hub', remedy: 'Establish secondary local safety stock in Adyar hub.' },
-        'Kolkata': { dropAmt: '₹3.9 Lakh', dropPct: '10.5%', orders: '162 → 145 (-17)', reason: 'Cat prescription diet stockout (Royal Canin Renal & Gastrointestinal pouches)', remedy: 'Expedite express air shipment from Mumbai distribution center.' },
-        'Consolidated': { dropAmt: '₹52.8 Lakh', dropPct: '15.8%', orders: '1,817 → 1,586 (-231)', reason: 'Inter-hub inventory stockouts across critical Rx medication and Friday delivery SLA bottlenecks', remedy: 'Implement unified AI reorder replenishment protocol across all 14 clinic hubs.' }
-      },
-      clinics: {
-        'Indiranagar Flagship': { ebitda: '₹16.4L', margin: '26.2%', surgeries: 382, revenue: '₹42.8L', status: 'Highest EBITDA Flagship' },
-        'Koramangala Trauma Hub': { ebitda: '₹9.2L', margin: '21.5%', surgeries: 240, occupancy: '94.2%', status: 'Peak Emergency Volume' },
-        'Whitefield Care Center': { ebitda: '₹6.8L', margin: '19.4%', surgeries: 175, occupancy: '81.0%', status: 'High Growth Trajectory' },
-        'Bandra Hub (Mumbai)': { ebitda: '₹11.2L', margin: '24.1%', surgeries: 295, occupancy: '89.5%', status: 'Top Western Region Hub' },
-        'Cyber Hub (Gurgaon)': { ebitda: '₹8.4L', margin: '22.0%', surgeries: 210, occupancy: '86.4%', status: 'High Average Order Value' }
-      },
-      pharmacy: {
-        'Bravecto Chewables': { stock: '142 units', runway: '44 hours in Koramangala (Critical)', runRate: '480 units/mo', reorderPo: 'PO-8821 for 60 units staged' },
-        'NexGard Spectra': { stock: '194 units', runway: '18 days', runRate: '320 units/mo', reorderPo: 'PO-8824 scheduled' },
-        'Royal Canin Clinical Diet': { stock: '420 kg', runway: '28 days', runRate: '450 kg/mo', reorderPo: 'Normal stock level' },
-        'Apoquel Allergy Tablets': { stock: '78 boxes', runway: '12 days in Mumbai', runRate: '190 boxes/mo', reorderPo: 'PO-8830 pending approval' }
-      },
-      doctors: {
-        'Dr. Aisha Khan': { role: 'Chief Veterinary Surgeon', clinic: 'Indiranagar Flagship', utilization: '94.2%', surgeriesMtd: 114, rating: '4.96/5.0' },
-        'Dr. Rajesh Nair': { role: 'Senior Orthopedic Specialist', clinic: 'Indiranagar & Koramangala', utilization: '88.5%', surgeriesMtd: 78, rating: '4.91/5.0' },
-        'Dr. Priya Sharma': { role: 'Feline Specialist', clinic: 'Bandra Hub', utilization: '91.0%', consultationsMtd: 186, rating: '4.94/5.0' }
-      }
+      salesDrop: {},
+      clinics: {},
+      pharmacy: {},
+      doctors: {}
     };
 
     function extractEntities(text) {
       var t = ' ' + text.toLowerCase() + ' ';
       var res = { locations: [], skus: [], doctors: [], timeframes: [], metrics: [] };
 
-      var locs = [
-        { name: 'Delhi NCR', re: /\b(delhi|ncr|gurgaon|noida)\b/i },
-        { name: 'Mumbai', re: /\b(mumbai|bombay|bandra|andheri)\b/i },
-        { name: 'Bengaluru', re: /\b(bengaluru|bangalore|indiranagar|koramangala|whitefield|hsr)\b/i },
-        { name: 'Pune', re: /\b(pune|kalyani nagar|hinjewadi)\b/i },
-        { name: 'Hyderabad', re: /\b(hyderabad|hitec|jubilee)\b/i },
-        { name: 'Chennai', re: /\b(chennai|madras|adyar)\b/i },
-        { name: 'Kolkata', re: /\b(kolkata|calcutta|salt lake)\b/i },
-        { name: 'Indiranagar Flagship', re: /\bindiranagar\b/i },
-        { name: 'Koramangala Trauma Hub', re: /\bkoramangala\b/i }
-      ];
+      var locs = [];
       locs.forEach(function (l) { if (l.re.test(t) && res.locations.indexOf(l.name) === -1) res.locations.push(l.name); });
 
-      var skus = [
-        { name: 'Bravecto Chewables', re: /\bbravecto\b/i },
-        { name: 'NexGard Spectra', re: /\b(nexgard|spectra)\b/i },
-        { name: 'Royal Canin Clinical Diet', re: /\b(royal canin|renal|gastro)\b/i },
-        { name: 'Apoquel Allergy Tablets', re: /\bapoquel\b/i },
-        { name: 'Simparica Trio', re: /\bsimparica\b/i },
-        { name: 'Synulox Antibiotics', re: /\bsynulox\b/i }
-      ];
+      var skus = [];
       skus.forEach(function (s) { if (s.re.test(t) && res.skus.indexOf(s.name) === -1) res.skus.push(s.name); });
 
-      var docs = [
-        { name: 'Dr. Aisha Khan (Chief Surgeon)', re: /\b(aisha|khan|chief surgeon)\b/i },
-        { name: 'Dr. Rajesh Nair (Orthopedic)', re: /\b(rajesh|nair|orthopedic)\b/i },
-        { name: 'Dr. Priya Sharma (Feline)', re: /\b(priya|sharma|feline)\b/i },
-        { name: 'Dr. Rohan Verma (Emergency Triage)', re: /\b(rohan|verma|triage)\b/i },
-        { name: 'Dr. Ananya Sen (Dermatology)', re: /\b(ananya|sen|dermatolog\w*)\b/i }
-      ];
+      var docs = [];
       docs.forEach(function (d) { if (d.re.test(t) && res.doctors.indexOf(d.name) === -1) res.doctors.push(d.name); });
 
       if (/\b(7\s*d|7\s*days|seven days|past week|last week)\b/i.test(t)) res.timeframes.push('7D');

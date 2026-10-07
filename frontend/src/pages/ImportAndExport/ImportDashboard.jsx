@@ -5,13 +5,7 @@ import KpiCard from '../shared/KpiCard';
 export default function ImportDashboard() {
   const [filter, setFilter] = useState('ALL');
 
-  const shipments = [
-    { bl: 'BL-IMP-9801', origin: 'Marseille, France', product: 'Royal Canin Veterinary Diet (2 x 40ft HQ)', port: 'Nhava Sheva (JNPT)', value: '₹48,50,000', customs: 'Cleared / Out of Charge', eta: 'Arrived at Central Hub', carrier: 'CMA CGM', status: 'Received' },
-    { bl: 'BL-IMP-9802', origin: 'Munich, Germany', product: 'Bravecto Antiparasitic Fluralaner (Air Reefer)', port: 'Bengaluru Air Cargo (BLR)', value: '₹34,20,000', customs: 'Under Inspection (ADC)', eta: 'Today, 18:00', carrier: 'Lufthansa Cargo', status: 'In Customs' },
-    { bl: 'BL-IMP-9803', origin: 'Milan, Italy', product: 'Bespoke Haute Couture Leather & Metal Hardware', port: 'Mumbai Air Cargo (BOM)', value: '₹14,80,000', customs: 'Bill of Entry Filed', eta: 'Oct 08, 2026', carrier: 'Emirates SkyCargo', status: 'In Transit' },
-    { bl: 'BL-IMP-9804', origin: 'Rotterdam, Netherlands', product: 'Nobivac DHPPi + Rabies Vaccines (Cold Chain)', port: 'Nhava Sheva (JNPT)', value: '₹62,00,000', customs: 'CDSCO NOC Granted', eta: 'Oct 11, 2026', carrier: 'Maersk Line', status: 'In Transit (Sea)' },
-    { bl: 'BL-IMP-9805', origin: 'Tokyo, Japan', product: 'Ultrasonic Dental Scalers & OT Diagnostics', port: 'Chennai Air Cargo (MAA)', value: '₹22,40,000', customs: 'Cleared', eta: 'Oct 04, 2026', carrier: 'ANA Cargo', status: 'Received' }
-  ];
+  const shipments = [];
 
   const filtered = filter === 'ALL' ? shipments : shipments.filter(s => s.status.toLowerCase().includes(filter.toLowerCase()));
 
@@ -24,7 +18,7 @@ export default function ImportDashboard() {
       title="Global Import Logistics & Cross-Border Supply"
       subtitle="International procurement manifests, ocean & air cargo shipments, CDSCO veterinary drug clearance, and customs duty tracking"
       icon="🌐"
-      badge="₹1.82 Cr MTD Imports"
+      badge="₹0 MTD Imports"
       actions={
         <button onClick={() => alert('New Import Shipment Manifest filing opened...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #0891b2', background: 'rgba(8,145,178,0.12)', color: '#0e7490', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + New Import Consignment
@@ -32,10 +26,10 @@ export default function ImportDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Import Procurement (MTD)" value="₹1.82 Crore" delta="12 Active Shipments" trend="up" subtext="CIF Valuation (Invoiced)" icon="🚢" />
+        <KpiCard label="Import Procurement (MTD)" value="₹0" delta="12 Active Shipments" trend="up" subtext="CIF Valuation (Invoiced)" icon="🚢" />
         <KpiCard label="Avg Customs Clearance Time" value="2.4 Days" delta="-0.8 days improvement" trend="up" subtext="Advance BE filing" icon="⚡" />
         <KpiCard label="Cold-Chain Sea Reefers" value="4 Containers" delta="2°C to 8°C Verified" trend="up" subtext="IoT GPS Telemetry" icon="❄️" />
-        <KpiCard label="Customs Duty & IGST Paid" value="₹28.40 Lakh" delta="YTD: ₹1.45 Cr" trend="neutral" subtext="Tariff code 3002/3004" icon="🏛️" />
+        <KpiCard label="Customs Duty & IGST Paid" value="₹0" delta="YTD: ₹0" trend="neutral" subtext="Tariff code 3002/3004" icon="🏛️" />
         <KpiCard label="CDSCO / Animal Quarantine NOC" value="100% Granted" delta="Zero compliance holds" trend="up" subtext="Veterinary import permit" icon="🛡️" />
         <KpiCard label="International Suppliers" value="16 Global Partners" delta="Europe, US & Japan" trend="up" subtext="Exclusive distribution" icon="🌍" />
       </div>
