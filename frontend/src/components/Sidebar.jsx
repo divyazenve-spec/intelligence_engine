@@ -260,10 +260,10 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
         display: 'flex',
         flexDirection: 'column',
         zIndex: 9999,
-        background: 'radial-gradient(circle at 85% 2%, rgba(14, 165, 233, 0.16) 0%, transparent 45%), linear-gradient(180deg, #070d18 0%, #030710 100%)',
-        color: '#f1f5f9',
-        borderRight: '1px solid rgba(56, 189, 248, 0.14)',
-        boxShadow: '4px 0 25px rgba(0, 0, 0, 0.45)',
+        background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
+        color: '#0f172a',
+        borderRight: '1px solid #e2e8f0',
+        boxShadow: '4px 0 20px rgba(0, 0, 0, 0.06)',
         padding: '16px 12px 12px 12px',
         overflowY: 'auto',
         overflowX: 'hidden',
@@ -279,7 +279,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
           alignItems: 'center',
           gap: '12px',
           paddingBottom: '14px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          borderBottom: '1px solid #e2e8f0',
           cursor: 'pointer',
           userSelect: 'none'
         }}
@@ -297,9 +297,9 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             width: '44px',
             height: '44px',
             borderRadius: '12px',
-            background: 'radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.24) 0%, #070e1c 85%)',
-            border: '1.5px solid rgba(245, 158, 11, 0.55)',
-            boxShadow: '0 0 16px rgba(245, 158, 11, 0.3), inset 0 0 8px rgba(245, 158, 11, 0.18)',
+            background: 'radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.15) 0%, #ffffff 85%)',
+            border: '1.5px solid rgba(245, 158, 11, 0.45)',
+            boxShadow: '0 2px 8px rgba(245, 158, 11, 0.15)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -315,7 +315,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
               width: '34px',
               height: '34px',
               objectFit: 'contain',
-              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
+              filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))'
             }}
           />
         </div>
@@ -326,11 +326,10 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
               margin: 0,
               fontSize: '20px',
               fontWeight: 800,
-              color: '#f7cb59',
+              color: '#d97706',
               letterSpacing: '0.06em',
               lineHeight: 1,
-              fontFamily: "'Sora', sans-serif",
-              textShadow: '0 2px 8px rgba(245, 158, 11, 0.4)'
+              fontFamily: "'Sora', sans-serif"
             }}
           >
             ZENVE
@@ -343,8 +342,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.18em',
-              color: '#7dd3fc',
-              opacity: 0.85
+              color: '#0284c7',
+              opacity: 0.9
             }}
           >
             PETS • HEALTH • CARE
@@ -367,7 +366,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             left: '10px',
             top: '50%',
             transform: 'translateY(-50%)',
-            color: '#38bdf8',
+            color: '#0284c7',
             pointerEvents: 'none',
             display: 'flex',
             alignItems: 'center'
@@ -387,10 +386,10 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             width: '100%',
             boxSizing: 'border-box',
             padding: '0 62px 0 32px',
-            background: 'rgba(15, 25, 45, 0.7)',
-            border: '1px solid rgba(56, 189, 248, 0.18)',
+            background: '#f1f5f9',
+            border: '1px solid #e2e8f0',
             borderRadius: '11px',
-            color: '#f8fafc',
+            color: '#0f172a',
             fontSize: '11.5px',
             outline: 'none'
           }}
@@ -402,13 +401,13 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             right: '8px',
             top: '50%',
             transform: 'translateY(-50%)',
-            background: 'rgba(30, 41, 59, 0.75)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            background: '#e2e8f0',
+            border: '1px solid #cbd5e1',
             borderRadius: '6px',
             padding: '2px 6px',
             fontSize: '9.5px',
             fontWeight: 600,
-            color: '#94a3b8',
+            color: '#475569',
             fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
             pointerEvents: 'none'
           }}
@@ -422,7 +421,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '5px',
+          gap: '4px',
           margin: '6px 0',
           flex: 1,
           overflowY: 'auto'
@@ -444,11 +443,11 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                   gap: '8px',
                   padding: '8px 10px',
                   borderRadius: '12px',
-                  border: isExpanded ? '1px solid rgba(0, 242, 254, 0.4)' : '1px solid rgba(255, 255, 255, 0.05)',
-                  borderLeft: isExpanded ? '3.5px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.05)',
-                  background: isExpanded ? 'linear-gradient(90deg, #093740 0%, #0a2538 100%)' : 'rgba(13, 22, 38, 0.75)',
-                  boxShadow: isExpanded ? '0 0 16px rgba(0, 242, 254, 0.22), inset 0 0 10px rgba(0, 242, 254, 0.08)' : 'none',
-                  color: isExpanded ? '#ffffff' : '#cbd5e1',
+                  border: isExpanded ? '1px solid #7dd3fc' : '1px solid transparent',
+                  borderLeft: isExpanded ? '3.5px solid #0284c7' : '1px solid transparent',
+                  background: isExpanded ? 'linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%)' : 'transparent',
+                  boxShadow: isExpanded ? '0 2px 8px rgba(2, 132, 199, 0.08)' : 'none',
+                  color: isExpanded ? '#0369a1' : '#334155',
                   fontSize: '11.5px',
                   fontWeight: 600,
                   cursor: 'pointer',
@@ -466,8 +465,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
-                    background: isExpanded ? 'rgba(0, 242, 254, 0.2)' : sec.bg,
-                    color: isExpanded ? '#00f2fe' : sec.color
+                    background: isExpanded ? '#bae6fd' : (sec.bg || '#f1f5f9'),
+                    color: isExpanded ? '#0284c7' : sec.color
                   }}
                 >
                   {sec.icon}
@@ -493,9 +492,9 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                     fontWeight: 700,
                     padding: '1.5px 6.5px',
                     borderRadius: '99px',
-                    background: isExpanded ? 'rgba(0, 242, 254, 0.22)' : 'rgba(30, 41, 59, 0.8)',
-                    color: isExpanded ? '#00f2fe' : '#94a3b8',
-                    border: isExpanded ? '1px solid rgba(0, 242, 254, 0.45)' : '1px solid rgba(255, 255, 255, 0.06)'
+                    background: isExpanded ? '#bae6fd' : '#e2e8f0',
+                    color: isExpanded ? '#0284c7' : '#475569',
+                    border: isExpanded ? '1px solid #7dd3fc' : '1px solid #cbd5e1'
                   }}
                 >
                   {sec.items.length}
@@ -506,7 +505,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    color: isExpanded ? '#00f2fe' : '#64748b',
+                    color: isExpanded ? '#0284c7' : '#94a3b8',
                     transform: isExpanded ? 'rotate(90deg)' : 'none',
                     transition: 'transform 0.18s ease'
                   }}
@@ -524,8 +523,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                     listStyle: 'none',
                     margin: '3px 0 6px 0',
                     padding: '6px 6px 6px 10px',
-                    background: 'rgba(8, 19, 35, 0.65)',
-                    border: '1px solid rgba(0, 242, 254, 0.18)',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
                     borderRadius: '11px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -558,8 +557,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                             padding: '5px 8px',
                             borderRadius: '6px',
                             border: 'none',
-                            background: isActive ? 'rgba(56, 189, 248, 0.12)' : 'transparent',
-                            color: isActive ? '#ffffff' : '#94a3b8',
+                            background: isActive ? '#e0f2fe' : 'transparent',
+                            color: isActive ? '#0284c7' : '#475569',
                             fontSize: '11px',
                             fontWeight: isActive ? 600 : 500,
                             cursor: 'pointer'
@@ -571,8 +570,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
                               width: '5.5px',
                               height: '5.5px',
                               borderRadius: '50%',
-                              background: '#00f2fe',
-                              boxShadow: '0 0 6px #00f2fe, 0 0 10px rgba(0, 242, 254, 0.6)',
+                              background: '#0284c7',
+                              boxShadow: '0 0 4px rgba(2, 132, 199, 0.4)',
                               flexShrink: 0
                             }}
                           />
@@ -605,9 +604,9 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
           style={{
             padding: '10px 12px',
             borderRadius: '13px',
-            background: 'linear-gradient(135deg, rgba(6, 78, 59, 0.45) 0%, rgba(4, 47, 46, 0.65) 100%)',
-            border: '1.5px solid rgba(16, 185, 129, 0.5)',
-            boxShadow: '0 0 16px rgba(16, 185, 129, 0.2)',
+            background: 'linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%)',
+            border: '1.5px solid #a7f3d0',
+            boxShadow: '0 2px 6px rgba(16, 185, 129, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -615,20 +614,20 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             cursor: 'pointer'
           }}
         >
-          <div className="sidebar-status-left" style={{ color: '#34d399', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          <div className="sidebar-status-left" style={{ color: '#059669', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
             </svg>
           </div>
           <div className="sidebar-status-mid" style={{ flex: 1 }}>
-            <p className="sidebar-status-title" style={{ margin: 0, fontSize: '10.5px', fontWeight: 800, color: '#34d399', letterSpacing: '0.05em', lineHeight: 1.2 }}>
+            <p className="sidebar-status-title" style={{ margin: 0, fontSize: '10.5px', fontWeight: 800, color: '#047857', letterSpacing: '0.05em', lineHeight: 1.2 }}>
               ALL SYSTEMS LIVE
             </p>
-            <p className="sidebar-status-sub" style={{ margin: '2px 0 0', fontSize: '9.5px', color: '#94a3b8' }}>
+            <p className="sidebar-status-sub" style={{ margin: '2px 0 0', fontSize: '9.5px', color: '#059669' }}>
               Private workspace synced
             </p>
           </div>
-          <div className="sidebar-status-right" style={{ color: '#34d399', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          <div className="sidebar-status-right" style={{ color: '#059669', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
               <path d="m9 12 2 2 4-4" />
@@ -642,8 +641,8 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
           style={{
             padding: '8px 10px',
             borderRadius: '13px',
-            background: 'rgba(10, 18, 32, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: '#f8fafc',
+            border: '1px solid #e2e8f0',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
@@ -663,20 +662,20 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
               display: 'grid',
               placeItems: 'center',
               flexShrink: 0,
-              boxShadow: '0 2px 8px rgba(79, 70, 229, 0.4)'
+              boxShadow: '0 2px 8px rgba(79, 70, 229, 0.25)'
             }}
           >
             EK
           </span>
           <div className="sidebar-profile-info" style={{ flex: 1 }}>
-            <p className="sidebar-profile-name" style={{ margin: 0, fontSize: '11.5px', fontWeight: 700, color: '#f8fafc' }}>
+            <p className="sidebar-profile-name" style={{ margin: 0, fontSize: '11.5px', fontWeight: 700, color: '#0f172a' }}>
               Executive
             </p>
             <p className="sidebar-profile-role" style={{ margin: '1px 0 0', fontSize: '9.5px', color: '#64748b' }}>
               Full access
             </p>
           </div>
-          <span className="sidebar-profile-chevron" style={{ color: '#64748b', display: 'flex', alignItems: 'center' }}>
+          <span className="sidebar-profile-chevron" style={{ color: '#94a3b8', display: 'flex', alignItems: 'center' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="m9 18 6-6-6-6" />
             </svg>

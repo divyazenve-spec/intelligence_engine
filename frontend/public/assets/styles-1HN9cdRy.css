@@ -17,7 +17,7 @@ html, body {
   -webkit-text-size-adjust: 100% !important;
 }
 
-/* 1. Permanent Docked Dark Luxury Sidebar across all screens */
+/* 1. Permanent Docked Light Luxury Sidebar across all screens */
 aside.sidebar-scope {
   position: fixed !important;
   top: 0 !important;
@@ -29,11 +29,10 @@ aside.sidebar-scope {
   transform: none !important;
   translate: 0 0 !important;
   z-index: 9999 !important;
-  background: radial-gradient(circle at 85% 2%, rgba(14, 165, 233, 0.16) 0%, transparent 45%),
-              linear-gradient(180deg, #070d18 0%, #030710 100%) !important;
-  color: #f1f5f9 !important;
-  border-right: 1px solid rgba(56, 189, 248, 0.14) !important;
-  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.45) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #0f172a !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.06) !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
   padding: 16px 12px 12px 12px !important;
@@ -174,11 +173,11 @@ footer.flex-col.sm\:flex-row {
   box-sizing: border-box !important;
 }
 
-/* 15. Zenve BI — Cyberpunk Midnight Luxury Dark Sidebar Components */
+/* 15. Zenve BI — Modern Light Theme Sidebar Components */
 /* Scrollbar */
 aside.sidebar-scope::-webkit-scrollbar,
 .sidebar-scope::-webkit-scrollbar {
-  width: 4px !important;
+  width: 5px !important;
 }
 aside.sidebar-scope::-webkit-scrollbar-track,
 .sidebar-scope::-webkit-scrollbar-track {
@@ -186,12 +185,12 @@ aside.sidebar-scope::-webkit-scrollbar-track,
 }
 aside.sidebar-scope::-webkit-scrollbar-thumb,
 .sidebar-scope::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.22) !important;
+  background: #cbd5e1 !important;
   border-radius: 4px !important;
 }
 aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-scope::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.45) !important;
+  background: #94a3b8 !important;
 }
 
 /* Header & Brand Logo */
@@ -200,7 +199,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   align-items: center !important;
   gap: 12px !important;
   padding-bottom: 14px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
   cursor: pointer !important;
   user-select: none !important;
 }
@@ -209,9 +208,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 44px !important;
   height: 44px !important;
   border-radius: 12px !important;
-  background: radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.24) 0%, #070e1c 85%) !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.55) !important;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.3), inset 0 0 8px rgba(245, 158, 11, 0.18) !important;
+  background: radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.15) 0%, #ffffff 85%) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -221,7 +220,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 }
 .sidebar-logo-frame:hover {
   transform: scale(1.04) !important;
-  box-shadow: 0 0 22px rgba(245, 158, 11, 0.45), inset 0 0 10px rgba(245, 158, 11, 0.25) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25) !important;
 }
 
 .sidebar-logo-frame img,
@@ -229,7 +228,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 34px !important;
   height: 34px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)) !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)) !important;
   border: none !important;
   box-shadow: none !important;
   background: transparent !important;
@@ -246,8 +245,8 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   font-weight: 800 !important;
   letter-spacing: 0.06em !important;
   line-height: 1 !important;
-  color: #f7cb59 !important;
-  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.4) !important;
+  color: #d97706 !important;
+  text-shadow: none !important;
 }
 .sidebar-brand-sub {
   margin: 4px 0 0 !important;
@@ -255,8 +254,8 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.18em !important;
-  color: #7dd3fc !important;
-  opacity: 0.85 !important;
+  color: #0284c7 !important;
+  opacity: 0.9 !important;
 }
 
 /* Search Box */
@@ -270,23 +269,23 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 0 62px 0 32px !important;
-  background: rgba(15, 25, 45, 0.7) !important;
-  border: 1px solid rgba(56, 189, 248, 0.18) !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 11px !important;
-  color: #f8fafc !important;
+  color: #0f172a !important;
   font-size: 11.5px !important;
   outline: none !important;
   transition: all 0.2s ease !important;
 }
 .sidebar-search-wrap input:focus,
 .sidebar-scope label input:focus {
-  border-color: #38bdf8 !important;
-  background: rgba(15, 27, 49, 0.95) !important;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25) !important;
+  border-color: #0284c7 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12) !important;
 }
 .sidebar-search-wrap input::placeholder,
 .sidebar-scope label input::placeholder {
-  color: #64748b !important;
+  color: #94a3b8 !important;
 }
 .sidebar-search-icon,
 .sidebar-scope label svg {
@@ -294,7 +293,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   left: 10px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  color: #38bdf8 !important;
+  color: #0284c7 !important;
   pointer-events: none !important;
 }
 .sidebar-search-kbd {
@@ -302,13 +301,13 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   right: 8px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  background: rgba(30, 41, 59, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
   border-radius: 6px !important;
   padding: 2px 6px !important;
   font-size: 9.5px !important;
   font-weight: 600 !important;
-  color: #94a3b8 !important;
+  color: #475569 !important;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
   pointer-events: none !important;
 }
@@ -317,7 +316,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-scope nav {
   display: flex !important;
   flex-direction: column !important;
-  gap: 5px !important;
+  gap: 4px !important;
   margin: 6px 0 !important;
 }
 
@@ -330,9 +329,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   gap: 8px !important;
   padding: 8px 10px !important;
   border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  background: rgba(13, 22, 38, 0.75) !important;
-  color: #cbd5e1 !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  color: #334155 !important;
   font-size: 11.5px !important;
   font-weight: 600 !important;
   cursor: pointer !important;
@@ -343,9 +342,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 
 .sidebar-scope nav > div > button:hover,
 .sidebar-nav-item:hover {
-  background: rgba(19, 32, 54, 0.95) !important;
-  border-color: rgba(56, 189, 248, 0.25) !important;
-  color: #f8fafc !important;
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
   transform: translateX(1px) !important;
 }
 
@@ -354,11 +353,11 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-scope nav > div > button.sidebar-nav-active,
 .sidebar-scope nav > div > button.zpanel-active,
 .sidebar-scope nav > div > button.zsd-active {
-  background: linear-gradient(90deg, #093740 0%, #0a2538 100%) !important;
-  border: 1px solid rgba(0, 242, 254, 0.4) !important;
-  border-left: 3.5px solid #00f2fe !important;
-  box-shadow: 0 0 16px rgba(0, 242, 254, 0.22), inset 0 0 10px rgba(0, 242, 254, 0.08) !important;
-  color: #ffffff !important;
+  background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%) !important;
+  border: 1px solid #7dd3fc !important;
+  border-left: 3.5px solid #0284c7 !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
+  color: #0369a1 !important;
 }
 
 /* Icon badge wrapper inside button */
@@ -370,13 +369,13 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: #f1f5f9 !important;
 }
 
 .sidebar-scope nav > div > button[aria-expanded="true"] .sidebar-icon-wrap,
 .sidebar-scope nav > div > button.sidebar-nav-active .sidebar-icon-wrap {
-  background: rgba(0, 242, 254, 0.2) !important;
-  color: #00f2fe !important;
+  background: #bae6fd !important;
+  color: #0284c7 !important;
 }
 
 /* Item label text */
@@ -396,29 +395,29 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   font-weight: 700 !important;
   padding: 1.5px 6.5px !important;
   border-radius: 99px !important;
-  background: rgba(30, 41, 59, 0.8) !important;
-  color: #94a3b8 !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: #e2e8f0 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
 }
 
 /* Active pill count in expanded button */
 .sidebar-scope nav > div > button[aria-expanded="true"] .sidebar-pill-count,
 .sidebar-scope nav > div > button[aria-expanded="true"] > span.text-\[9px\] {
-  background: rgba(0, 242, 254, 0.22) !important;
-  color: #00f2fe !important;
-  border-color: rgba(0, 242, 254, 0.45) !important;
+  background: #bae6fd !important;
+  color: #0284c7 !important;
+  border-color: #7dd3fc !important;
 }
 
 /* Chevron */
 .sidebar-chevron,
 .sidebar-scope nav > div > button > svg.size-3 {
-  color: #64748b !important;
+  color: #94a3b8 !important;
   transition: transform 0.18s ease, color 0.18s ease !important;
   flex-shrink: 0 !important;
 }
 .sidebar-scope nav > div > button[aria-expanded="true"] .sidebar-chevron,
 .sidebar-scope nav > div > button[aria-expanded="true"] > svg.size-3 {
-  color: #00f2fe !important;
+  color: #0284c7 !important;
 }
 
 /* Submenu container (tree view) */
@@ -427,8 +426,8 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   list-style: none !important;
   margin: 3px 0 6px 0 !important;
   padding: 6px 6px 6px 10px !important;
-  background: rgba(8, 19, 35, 0.65) !important;
-  border: 1px solid rgba(0, 242, 254, 0.18) !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 11px !important;
   display: flex !important;
   flex-direction: column !important;
@@ -450,7 +449,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   border-radius: 6px !important;
   border: none !important;
   background: transparent !important;
-  color: #94a3b8 !important;
+  color: #475569 !important;
   font-size: 11px !important;
   font-weight: 500 !important;
   cursor: pointer !important;
@@ -464,18 +463,19 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-sub-item-active,
 .sidebar-scope nav > div > ul li button.zsd-active,
 .sidebar-scope nav > div > ul li button.zpanel-active {
-  background: rgba(56, 189, 248, 0.12) !important;
-  color: #ffffff !important;
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  font-weight: 600 !important;
 }
 
-/* Glowing cyan sub-dot */
+/* Clean blue sub-dot */
 .sidebar-dot,
 .sidebar-scope nav > div > ul li button > span.size-1\.5 {
   width: 5.5px !important;
   height: 5.5px !important;
   border-radius: 50% !important;
-  background: #00f2fe !important;
-  box-shadow: 0 0 6px #00f2fe, 0 0 10px rgba(0, 242, 254, 0.6) !important;
+  background: #0284c7 !important;
+  box-shadow: 0 0 4px rgba(2, 132, 199, 0.4) !important;
   flex-shrink: 0 !important;
   display: inline-block !important;
 }
@@ -493,9 +493,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-status-card {
   padding: 10px 12px !important;
   border-radius: 13px !important;
-  background: linear-gradient(135deg, rgba(6, 78, 59, 0.45) 0%, rgba(4, 47, 46, 0.65) 100%) !important;
-  border: 1.5px solid rgba(16, 185, 129, 0.5) !important;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.2) !important;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%) !important;
+  border: 1.5px solid #a7f3d0 !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.08) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -504,11 +504,11 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   transition: all 0.2s ease !important;
 }
 .sidebar-status-card:hover {
-  border-color: rgba(16, 185, 129, 0.8) !important;
-  box-shadow: 0 0 22px rgba(16, 185, 129, 0.35) !important;
+  border-color: #6ee7b7 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15) !important;
 }
 .sidebar-status-left {
-  color: #34d399 !important;
+  color: #059669 !important;
   display: flex !important;
   align-items: center !important;
   flex-shrink: 0 !important;
@@ -520,17 +520,17 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   margin: 0 !important;
   font-size: 10.5px !important;
   font-weight: 800 !important;
-  color: #34d399 !important;
+  color: #047857 !important;
   letter-spacing: 0.05em !important;
   line-height: 1.2 !important;
 }
 .sidebar-status-sub {
   margin: 2px 0 0 !important;
   font-size: 9.5px !important;
-  color: #94a3b8 !important;
+  color: #059669 !important;
 }
 .sidebar-status-right {
-  color: #34d399 !important;
+  color: #059669 !important;
   display: flex !important;
   align-items: center !important;
   flex-shrink: 0 !important;
@@ -540,8 +540,8 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .sidebar-profile-card {
   padding: 8px 10px !important;
   border-radius: 13px !important;
-  background: rgba(10, 18, 32, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
@@ -549,8 +549,8 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   transition: all 0.15s ease !important;
 }
 .sidebar-profile-card:hover {
-  background: rgba(16, 27, 48, 0.95) !important;
-  border-color: rgba(56, 189, 248, 0.25) !important;
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
 }
 .sidebar-avatar {
   width: 32px !important;
@@ -563,7 +563,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   display: grid !important;
   place-items: center !important;
   flex-shrink: 0 !important;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25) !important;
 }
 .sidebar-profile-info {
   flex: 1 !important;
@@ -572,7 +572,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   margin: 0 !important;
   font-size: 11.5px !important;
   font-weight: 700 !important;
-  color: #f8fafc !important;
+  color: #0f172a !important;
 }
 .sidebar-profile-role {
   margin: 1px 0 0 !important;
@@ -580,34 +580,34 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   color: #64748b !important;
 }
 .sidebar-profile-chevron {
-  color: #64748b !important;
+  color: #94a3b8 !important;
   flex-shrink: 0 !important;
 }
 
-/* Domain specific icon colors */
-[data-domain="Executive Dashboard"] .sidebar-icon-wrap { color: #38bdf8 !important; background: rgba(56, 189, 248, 0.12) !important; }
-[data-domain="Revenue & Sales"] .sidebar-icon-wrap { color: #00f2fe !important; background: rgba(0, 242, 254, 0.15) !important; }
-[data-domain="Orders & Operations"] .sidebar-icon-wrap { color: #38bdf8 !important; background: rgba(56, 189, 248, 0.12) !important; }
-[data-domain="Products & Inventory"] .sidebar-icon-wrap { color: #a855f7 !important; background: rgba(168, 85, 247, 0.15) !important; }
-[data-domain="Pharmacy"] .sidebar-icon-wrap { color: #f97316 !important; background: rgba(249, 115, 22, 0.15) !important; }
-[data-domain="Veterinary Services"] .sidebar-icon-wrap { color: #ec4899 !important; background: rgba(236, 72, 153, 0.15) !important; }
-[data-domain="Doctors"] .sidebar-icon-wrap { color: #06b6d4 !important; background: rgba(6, 182, 212, 0.15) !important; }
-[data-domain="Clinics & Hospitals"] .sidebar-icon-wrap { color: #8b5cf6 !important; background: rgba(139, 92, 246, 0.15) !important; }
-[data-domain="Customers 360°"] .sidebar-icon-wrap { color: #10b981 !important; background: rgba(16, 185, 129, 0.15) !important; }
-[data-domain="Pets 360°"] .sidebar-icon-wrap { color: #f59e0b !important; background: rgba(245, 158, 11, 0.15) !important; }
-[data-domain="Employees & HR"] .sidebar-icon-wrap { color: #6366f1 !important; background: rgba(99, 102, 241, 0.15) !important; }
-[data-domain="Finance & Accounting"] .sidebar-icon-wrap { color: #eab308 !important; background: rgba(234, 179, 8, 0.15) !important; }
-[data-domain="Marketing"] .sidebar-icon-wrap { color: #f43f5e !important; background: rgba(244, 63, 94, 0.15) !important; }
-[data-domain="Vendors & Procurement"] .sidebar-icon-wrap { color: #14b8a6 !important; background: rgba(20, 184, 166, 0.15) !important; }
-[data-domain="Logistics & Delivery"] .sidebar-icon-wrap { color: #3b82f6 !important; background: rgba(59, 130, 246, 0.15) !important; }
-[data-domain="Zenve Fashion"] .sidebar-icon-wrap { color: #d946ef !important; background: rgba(217, 70, 239, 0.15) !important; }
-[data-domain="B2B / Enterprise"] .sidebar-icon-wrap { color: #0ea5e9 !important; background: rgba(14, 165, 233, 0.15) !important; }
-[data-domain="Import & Export"] .sidebar-icon-wrap { color: #84cc16 !important; background: rgba(132, 204, 22, 0.15) !important; }
-[data-domain="Subscriptions"] .sidebar-icon-wrap { color: #8b5cf6 !important; background: rgba(139, 92, 246, 0.15) !important; }
-[data-domain="Reports & Analytics"] .sidebar-icon-wrap { color: #38bdf8 !important; background: rgba(56, 189, 248, 0.15) !important; }
-[data-domain="AI Assistant"] .sidebar-icon-wrap { color: #a855f7 !important; background: rgba(168, 85, 247, 0.15) !important; }
-[data-domain="Alerts & Notifications"] .sidebar-icon-wrap { color: #ef4444 !important; background: rgba(239, 68, 68, 0.15) !important; }
-[data-domain="Audit & Compliance"] .sidebar-icon-wrap { color: #64748b !important; background: rgba(100, 116, 139, 0.15) !important; }
-[data-domain="System Health"] .sidebar-icon-wrap { color: #10b981 !important; background: rgba(16, 185, 129, 0.15) !important; }
-[data-domain="Settings"] .sidebar-icon-wrap { color: #94a3b8 !important; background: rgba(148, 163, 184, 0.15) !important; }
+/* Domain specific icon colors for light theme */
+[data-domain="Executive Dashboard"] .sidebar-icon-wrap { color: #0284c7 !important; background: rgba(2, 132, 199, 0.1) !important; }
+[data-domain="Revenue & Sales"] .sidebar-icon-wrap { color: #0d9488 !important; background: rgba(13, 148, 136, 0.1) !important; }
+[data-domain="Orders & Operations"] .sidebar-icon-wrap { color: #2563eb !important; background: rgba(37, 99, 235, 0.1) !important; }
+[data-domain="Products & Inventory"] .sidebar-icon-wrap { color: #9333ea !important; background: rgba(147, 51, 234, 0.1) !important; }
+[data-domain="Pharmacy"] .sidebar-icon-wrap { color: #ea580c !important; background: rgba(234, 88, 12, 0.1) !important; }
+[data-domain="Veterinary Services"] .sidebar-icon-wrap { color: #db2777 !important; background: rgba(219, 39, 119, 0.1) !important; }
+[data-domain="Doctors"] .sidebar-icon-wrap { color: #0891b2 !important; background: rgba(8, 145, 178, 0.1) !important; }
+[data-domain="Clinics & Hospitals"] .sidebar-icon-wrap { color: #7c3aed !important; background: rgba(124, 58, 237, 0.1) !important; }
+[data-domain="Customers 360°"] .sidebar-icon-wrap { color: #059669 !important; background: rgba(5, 150, 105, 0.1) !important; }
+[data-domain="Pets 360°"] .sidebar-icon-wrap { color: #d97706 !important; background: rgba(217, 119, 6, 0.1) !important; }
+[data-domain="Employees & HR"] .sidebar-icon-wrap { color: #4f46e5 !important; background: rgba(79, 70, 229, 0.1) !important; }
+[data-domain="Finance & Accounting"] .sidebar-icon-wrap { color: #ca8a04 !important; background: rgba(202, 138, 4, 0.1) !important; }
+[data-domain="Marketing"] .sidebar-icon-wrap { color: #e11d48 !important; background: rgba(225, 29, 72, 0.1) !important; }
+[data-domain="Vendors & Procurement"] .sidebar-icon-wrap { color: #0d9488 !important; background: rgba(13, 148, 136, 0.1) !important; }
+[data-domain="Logistics & Delivery"] .sidebar-icon-wrap { color: #2563eb !important; background: rgba(37, 99, 235, 0.1) !important; }
+[data-domain="Zenve Fashion"] .sidebar-icon-wrap { color: #c026d3 !important; background: rgba(192, 38, 211, 0.1) !important; }
+[data-domain="B2B / Enterprise"] .sidebar-icon-wrap { color: #0284c7 !important; background: rgba(2, 132, 199, 0.1) !important; }
+[data-domain="Import & Export"] .sidebar-icon-wrap { color: #65a30d !important; background: rgba(101, 163, 13, 0.1) !important; }
+[data-domain="Subscriptions"] .sidebar-icon-wrap { color: #7c3aed !important; background: rgba(124, 58, 237, 0.1) !important; }
+[data-domain="Reports & Analytics"] .sidebar-icon-wrap { color: #0284c7 !important; background: rgba(2, 132, 199, 0.1) !important; }
+[data-domain="AI Assistant"] .sidebar-icon-wrap { color: #9333ea !important; background: rgba(147, 51, 234, 0.1) !important; }
+[data-domain="Alerts & Notifications"] .sidebar-icon-wrap { color: #dc2626 !important; background: rgba(220, 38, 38, 0.1) !important; }
+[data-domain="Audit & Compliance"] .sidebar-icon-wrap { color: #475569 !important; background: rgba(71, 85, 105, 0.1) !important; }
+[data-domain="System Health"] .sidebar-icon-wrap { color: #059669 !important; background: rgba(5, 150, 105, 0.1) !important; }
+[data-domain="Settings"] .sidebar-icon-wrap { color: #64748b !important; background: rgba(100, 116, 139, 0.1) !important; }
 
