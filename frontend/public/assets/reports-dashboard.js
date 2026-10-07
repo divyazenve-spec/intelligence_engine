@@ -1856,8 +1856,35 @@
     syncSidebar(true, tabId);
   }
 
+  function loadLiveReports() {
+    fetch('/api/v1/reports')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data) && data.length > 0) {
+          var liveSets = data.map(function (rep) {
+            return {
+              id: rep.report_code || ('EXP-' + rep.id),
+              name: rep.title,
+              records: rep.category || 'Executive Analysis',
+              size: rep.file_size || '1.2 MB',
+              freq: rep.format + ' · Direct MySQL',
+              tags: [rep.category, rep.format, 'Audited']
+            };
+          });
+          D.exportDatasets = liveSets;
+          if (root && S.open) {
+            renderShell();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load reports from MySQL:', err);
+      });
+  }
+
   function open(tab) {
     ensureRoot();
+    loadLiveReports();
     S.open = true;
     if (tab) S.activeTab = tab;
 

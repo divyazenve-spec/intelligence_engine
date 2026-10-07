@@ -1,3 +1,0 @@
--- 02_sample_data.sql
--- Production Clean State: No mock data.
--- Connect live data ingestion pipeline or run custom migrations.

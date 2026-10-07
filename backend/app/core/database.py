@@ -1,14 +1,15 @@
-"""SQLAlchemy engine, session factory, and FastAPI dependency (SQLite backend)."""
-from pathlib import Path
-
+"""SQLAlchemy engine, session factory, and FastAPI dependency (MySQL backend)."""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from app.core.config import settings
 
+# Create engine with connection pooling and pre-ping for MySQL
 engine = create_engine(
     settings.database_url,
-    connect_args={"check_same_thread": False},  # required for SQLite + FastAPI
+    pool_size=10,
+    max_overflow=20,
+    pool_recycle=3600,
     pool_pre_ping=True,
 )
 
