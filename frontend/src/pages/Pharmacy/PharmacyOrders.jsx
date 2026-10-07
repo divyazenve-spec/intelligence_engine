@@ -77,12 +77,12 @@ export default function PharmacyOrders() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Pharmacy Orders" value="42 Orders" delta="In Fulfillment" trend="neutral" subtext="Across all 5 city hubs" icon="📦" />
-        <KpiCard label="60-Min Express Orders" value="18 Orders" delta="Avg 34 min SLA" trend="up" subtext="GPS active" icon="⚡" />
-        <KpiCard label="Clinic Counter Pickups" value="14 Orders" delta="Instant collection" trend="up" subtext="Walk-in dispensary" icon="🏥" />
-        <KpiCard label="Cold Chain Dispatches" value="8 Orders" delta="100% Validated" trend="up" subtext="Insulated gel packs" icon="❄️" />
-        <KpiCard label="Average Packing Time" value="8.4 Mins" delta="-1.6m vs target" trend="up" subtext="Pharmacist check to pack" icon="⏱️" />
-        <KpiCard label="Dispatch SLA Compliance" value="0.0%" delta="+0.4% MoM" trend="up" subtext="On-time delivery" icon="🎯" />
+        <KpiCard label="Active Pharmacy Orders" value="0 Orders" delta="0 Orders" trend="neutral" subtext="Across all 5 city hubs" icon="📦" />
+        <KpiCard label="60-Min Express Orders" value="0 Orders" delta="--" trend="neutral" subtext="GPS active" icon="⚡" />
+        <KpiCard label="Clinic Counter Pickups" value="0 Orders" delta="--" trend="neutral" subtext="Walk-in dispensary" icon="🏥" />
+        <KpiCard label="Cold Chain Dispatches" value="0 Orders" delta="0 logs" trend="neutral" subtext="Insulated gel packs" icon="❄️" />
+        <KpiCard label="Average Packing Time" value="0.0 Mins" delta="--" trend="neutral" subtext="Pharmacist check to pack" icon="⏱️" />
+        <KpiCard label="Dispatch SLA Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="On-time delivery" icon="🎯" />
       </div>
 
       {/* Orders Filter & Table */}
@@ -252,7 +252,7 @@ export default function PharmacyOrders() {
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: '12px',
             padding: '24px',
-            width: '90%',
+            width: '0%',
             maxWidth: '560px',
             maxHeight: '90vh',
             overflowY: 'auto'

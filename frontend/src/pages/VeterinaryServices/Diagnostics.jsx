@@ -50,7 +50,7 @@ export default function Diagnostics() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Lab Tests Processed" value="142 Tests" delta="+18.9% vs yday" trend="up" subtext="Across in-house lab analyzers" icon="🔬" />
+        <KpiCard label="Lab Tests Processed" value="0 Tests" delta="0.0%" trend="neutral" subtext="Across in-house lab analyzers" icon="🔬" />
         <KpiCard label="Avg Turnaround Time" value="0" delta="Target < 45m" trend="up" subtext="Sample collect to validated report" icon="⏱️" />
         <KpiCard label="Critical Value Alerts" value="6 Alerts" delta="Immediate vet notified" trend="neutral" subtext="Automated SMS & telemetry push" icon="⚠️" />
         <KpiCard label="Imaging Room Utilization" value="0.0%" delta="Digital DR & Doppler" trend="up" subtext="42 scans completed today" icon="🩻" />

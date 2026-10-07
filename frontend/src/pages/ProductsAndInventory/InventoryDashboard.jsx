@@ -16,9 +16,9 @@ export default function InventoryDashboard() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Total Stock Value" value="₹0" delta="0.0%" trend="up" subtext="Warehouse valuation" icon="💰" />
-        <KpiCard label="Active SKUs" value="0" delta="100% active" trend="neutral" subtext="Live catalog" icon="🏷️" />
-        <KpiCard label="Low Stock SKUs" value="0" delta="Action required" trend="down" subtext="Below reorder level" icon="⚠️" />
-        <KpiCard label="Expiring in 30 Days" value="12 batches" delta="Inspection due" trend="down" subtext="FEFO tracking" icon="⏳" />
+        <KpiCard label="Active SKUs" value="0" delta="0.0%" trend="neutral" subtext="Live catalog" icon="🏷️" />
+        <KpiCard label="Low Stock SKUs" value="0" delta="--" trend="down" subtext="Below reorder level" icon="⚠️" />
+        <KpiCard label="Expiring in 30 Days" value="0 batches" delta="0 expiring" trend="neutral" subtext="FEFO tracking" icon="⏳" />
       </div>
 
       <div style={{
@@ -41,7 +41,7 @@ export default function InventoryDashboard() {
             </tr>
           </thead>
           <tbody>
-            {stockItems.map((item) => (
+            {stockItems.length === 0 ? (<tr><td colSpan={7} style={{ padding: "24px", textAlign: "center", color: "#94a3b8" }}>No inventory records found</td></tr>) : stockItems.map((item) => (
               <tr key={item.sku} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
                 <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>{item.sku}</td>
                 <td style={{ padding: '12px', fontWeight: 600 }}>{item.name}</td>
@@ -60,7 +60,7 @@ export default function InventoryDashboard() {
                   }}>{item.status}</span>
                 </td>
               </tr>
-            ))}
+            )))}
           </tbody>
         </table>
       </div>

@@ -80,11 +80,11 @@ export default function Medicines() {
 
       {/* KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Formulated Drugs" value="642 SKUs" delta="+18 added MTD" trend="up" subtext="All therapeutic classes" icon="📚" />
-        <KpiCard label="Schedule H Drugs" value="284 SKUs" delta="Prescription Only" trend="neutral" subtext="Strict batch tracking" icon="⚠️" />
-        <KpiCard label="Cold Chain Drugs" value="86 SKUs" delta="2°C – 8°C Required" trend="neutral" subtext="Vaccines & biologics" icon="❄️" />
-        <KpiCard label="Average Drug Margin" value="0.0%" delta="+2.1% YoY" trend="up" subtext="MRP vs PTR spread" icon="📈" />
-        <KpiCard label="Low Stock Drugs" value="5 SKUs" delta="Below reorder point" trend="down" subtext="Immediate PO needed" icon="⚡" />
+        <KpiCard label="Formulated Drugs" value="0 SKUs" delta="0.0%" trend="neutral" subtext="All therapeutic classes" icon="📚" />
+        <KpiCard label="Schedule H Drugs" value="0 SKUs" delta="0 SKUs" trend="neutral" subtext="Strict batch tracking" icon="⚠️" />
+        <KpiCard label="Cold Chain Drugs" value="0 SKUs" delta="0 SKUs" trend="neutral" subtext="Vaccines & biologics" icon="❄️" />
+        <KpiCard label="Average Drug Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="MRP vs PTR spread" icon="📈" />
+        <KpiCard label="Low Stock Drugs" value="0 SKUs" delta="0 SKUs" trend="neutral" subtext="Immediate PO needed" icon="⚡" />
         <KpiCard label="Total Formulary Value" value="₹0" delta="Stock on hand" trend="up" subtext="12 dispensary units" icon="💎" />
       </div>
 
@@ -277,7 +277,7 @@ export default function Medicines() {
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: '12px',
             padding: '24px',
-            width: '90%',
+            width: '0%',
             maxWidth: '560px',
             maxHeight: '90vh',
             overflowY: 'auto'

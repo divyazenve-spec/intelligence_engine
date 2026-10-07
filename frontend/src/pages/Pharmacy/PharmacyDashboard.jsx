@@ -76,12 +76,12 @@ export default function PharmacyDashboard() {
     >
       {/* KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Pharmacy Revenue" value="₹0" delta="+18.4% vs last period" trend="up" subtext="24% of total Zenve revenue" icon="💊" />
-        <KpiCard label="Prescriptions Filled" value="1,840 Rx" delta="100% Doctor Signed" trend="up" subtext="0 Schedule H violations" icon="📋" />
-        <KpiCard label="Average Rx Basket" value="₹0" delta="+6.2% YoY" trend="up" subtext="2.8 medicines / ticket" icon="💰" />
-        <KpiCard label="Active Stocked Drugs" value="642 SKUs" delta="98.2% In-Stock SLA" trend="up" subtext="12 warehouses & clinics" icon="📦" />
-        <KpiCard label="Near-Expiry Batches" value="4 Batches" delta="Under 60 Days" trend="down" subtext="₹0 value" icon="⏳" />
-        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="3.4°C Mean Temp" trend="up" subtext="IoT telemetry verified" icon="❄️" />
+        <KpiCard label="Pharmacy Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="0% of total revenue" icon="💊" />
+        <KpiCard label="Prescriptions Filled" value="0 Rx" delta="0.0%" trend="neutral" subtext="0 Schedule H violations" icon="📋" />
+        <KpiCard label="Average Rx Basket" value="₹0" delta="0.0%" trend="neutral" subtext="0 medicines / ticket" icon="💰" />
+        <KpiCard label="Active Stocked Drugs" value="0 SKUs" delta="0.0%" trend="neutral" subtext="0 clinics" icon="📦" />
+        <KpiCard label="Near-Expiry Batches" value="0 Batches" delta="0 expiring" trend="neutral" subtext="₹0 value" icon="⏳" />
+        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="0 logs" trend="neutral" subtext="IoT telemetry verified" icon="❄️" />
       </div>
 
       {/* Main Grid: Categories & Compliance Radar */}
@@ -98,7 +98,7 @@ export default function PharmacyDashboard() {
               <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Therapeutic Category Contribution</h3>
               <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#94a3b8' }}>Revenue split and realized gross margins</p>
             </div>
-            <span style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: '#10b981', fontWeight: 600 }}>Avg Margin 41.2%</span>
+            <span style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: '#10b981', fontWeight: 600 }}>Avg Margin 0.0%</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -150,22 +150,22 @@ export default function PharmacyDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '16px' }}>
               <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>VCI Registered Doctors</span>
-                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#38bdf8' }}>48 / 48 Active</div>
+                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#38bdf8' }}>0 / 0 Active</div>
                 <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Licensure authenticated</div>
               </div>
               <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>Digital Rx Archival</span>
-                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#10b981' }}>100% Stored</div>
+                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#10b981' }}>0% Stored</div>
                 <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>7-Year statutory compliance</div>
               </div>
               <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>Active Cold Chain Probes</span>
-                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#06b6d4' }}>14 IoT Units</div>
+                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#06b6d4' }}>0 IoT Units</div>
                 <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>2.0°C – 7.8°C range logged</div>
               </div>
               <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>Scheduled Audits</span>
-                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#f59e0b' }}>Next: Oct 20</div>
+                <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#f59e0b' }}>Schedule Pending</div>
                 <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Drug Inspector mock ready</div>
               </div>
             </div>

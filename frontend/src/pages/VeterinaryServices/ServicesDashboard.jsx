@@ -72,10 +72,10 @@ export default function ServicesDashboard() {
 
       {/* KPI Highlights */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Clinical Revenue (MTD)" value="₹0" delta="+18.4% MoM" trend="up" subtext="18% total Zenve revenue" icon="💰" />
-        <KpiCard label="Completed Consults" value="1,420 Patients" delta="+14.2% MoM" trend="up" subtext="In-clinic, video & home visits" icon="🩺" />
+        <KpiCard label="Clinical Revenue (MTD)" value="₹0" delta="0.0%" trend="neutral" subtext="0% total revenue" icon="💰" />
+        <KpiCard label="Completed Consults" value="0 Patients" delta="0.0%" trend="neutral" subtext="In-clinic, video & home visits" icon="🩺" />
         <KpiCard label="Surgical Procedures" value="184 Surgeries" delta="100% Sterility" trend="up" subtext="Orthopedic, soft tissue, dental" icon="✂️" />
-        <KpiCard label="Clinical Profit Margin" value="0.0%" delta="+2.8% YoY" trend="up" subtext="High margin core business" icon="📈" />
+        <KpiCard label="Clinical Profit Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="High margin core business" icon="📈" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '16px' }}>
@@ -106,7 +106,7 @@ export default function ServicesDashboard() {
               <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>INPATIENT & ICU WARDS</div>
                 <div style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', margin: '4px 0' }}>18 Beds Occupied</div>
-                <div style={{ fontSize: '11px', color: '#ea580c', fontWeight: 600 }}>● 82% Ward Occupancy</div>
+                <div style={{ fontSize: '11px', color: '#ea580c', fontWeight: 600 }}>● 0% Ward Occupancy</div>
               </div>
               <div style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>PATHOLOGY & LAB DIAGNOSTICS</div>

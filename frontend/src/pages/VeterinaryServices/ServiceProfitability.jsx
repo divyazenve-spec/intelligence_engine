@@ -17,10 +17,10 @@ export default function ServiceProfitability() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.8% YoY" trend="up" subtext="Benchmark: 68.0%" icon="📈" />
-        <KpiCard label="Clinical Gross Profit" value="₹0" delta="+21.4% MoM" trend="up" subtext="From ₹0 revenue" icon="💰" />
-        <KpiCard label="Doctor Commission Ratio" value="0.0%" delta="Target < 18.0%" trend="up" subtext="Highly accretive payout model" icon="👨‍⚕️" />
-        <KpiCard label="EBITDA Contribution" value="₹0" delta="57.9% net yield" trend="up" subtext="After all hub operating overheads" icon="💎" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Benchmark: --" icon="📈" />
+        <KpiCard label="Clinical Gross Profit" value="₹0" delta="0.0%" trend="neutral" subtext="From ₹0 revenue" icon="💰" />
+        <KpiCard label="Doctor Commission Ratio" value="0.0%" delta="0.0%" trend="neutral" subtext="Highly accretive payout model" icon="👨‍⚕️" />
+        <KpiCard label="EBITDA Contribution" value="₹0" delta="0.0%" trend="neutral" subtext="After all hub operating overheads" icon="💎" />
       </div>
 
       <div style={{

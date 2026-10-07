@@ -41,10 +41,10 @@ export default function ServiceRevenue() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Clinical Revenue" value="₹0" delta="+18.4% MoM" trend="up" subtext="18% share of Zenve Group" icon="🩺" />
-        <KpiCard label="Avg Revenue per Case" value="₹0" delta="+8.2% vs Plan" trend="up" subtext="Blended consult + procedure" icon="💳" />
-        <KpiCard label="Surgery Contribution" value="₹0" delta="Highest grossing line" trend="up" subtext="32.4% of clinical billings" icon="✂️" />
-        <KpiCard label="Collection Realization" value="0.0%" delta="Zero bad debts" trend="up" subtext="Instant UPI / Insurance card" icon="🎯" />
+        <KpiCard label="Gross Clinical Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="0% of total revenue" icon="🩺" />
+        <KpiCard label="Avg Revenue per Case" value="₹0" delta="0.0%" trend="neutral" subtext="Blended consult + procedure" icon="💳" />
+        <KpiCard label="Surgery Contribution" value="₹0" delta="--" trend="neutral" subtext="0.0% of billings" icon="✂️" />
+        <KpiCard label="Collection Realization" value="0.0%" delta="--" trend="neutral" subtext="Instant UPI / Insurance card" icon="🎯" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '16px' }}>

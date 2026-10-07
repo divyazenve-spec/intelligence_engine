@@ -71,12 +71,12 @@ export default function PharmacyInventory() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Inventory at Cost" value="₹0" delta="+6.4% MoM" trend="up" subtext="Current asset valuation" icon="💰" />
-        <KpiCard label="Valuation at Retail (MRP)" value="₹0" delta="41.1% unrealized margin" trend="up" subtext="Expected realization" icon="💎" />
-        <KpiCard label="Active Cold Chain Items" value="86 SKUs" delta="100% 2°C–8°C Logged" trend="up" subtext="14 IoT refrigeration probes" icon="❄️" />
-        <KpiCard label="Inventory Turnover Ratio" value="12.4x / yr" delta="+1.8x YoY" trend="up" subtext="High capital velocity" icon="⚡" />
-        <KpiCard label="Critical Stockout Risk" value="2 SKUs" delta="Baytril & Rabisin" trend="down" subtext="Expedited PO dispatched" icon="⚠️" />
-        <KpiCard label="Average Days of Supply" value="24.6 Days" delta="Optimal buffer" trend="neutral" subtext="Zero capital lock-in" icon="📅" />
+        <KpiCard label="Inventory at Cost" value="₹0" delta="0.0%" trend="neutral" subtext="Current asset valuation" icon="💰" />
+        <KpiCard label="Valuation at Retail (MRP)" value="₹0" delta="0.0%" trend="neutral" subtext="Expected realization" icon="💎" />
+        <KpiCard label="Active Cold Chain Items" value="0 SKUs" delta="0.0%" trend="neutral" subtext="14 IoT refrigeration probes" icon="❄️" />
+        <KpiCard label="Inventory Turnover Ratio" value="0.0x / yr" delta="0.0%" trend="neutral" subtext="High capital velocity" icon="⚡" />
+        <KpiCard label="Critical Stockout Risk" value="0 SKUs" delta="0 SKUs" trend="neutral" subtext="Expedited PO dispatched" icon="⚠️" />
+        <KpiCard label="Average Days of Supply" value="0.0 Days" delta="--" trend="neutral" subtext="Zero capital lock-in" icon="📅" />
       </div>
 
       {/* Storage Zones Overview */}
@@ -90,7 +90,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#38bdf8' }}>Cold Chain Storage (2°C–8°C)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(6,182,212,0.2)', color: '#38bdf8' }}>Telemetry Normal</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>86 SKUs · ₹0 Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Core vaccines, rabies biologics, and feline interferons. Continuous probe logging.</p>
         </div>
 
@@ -99,7 +99,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#c084fc' }}>Schedule H Controlled Vault</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(168,85,247,0.2)', color: '#c084fc' }}>Biometric Access</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>284 SKUs · ₹0 Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Antibiotics, cardiac, chemotherapy, and pain management pharmaceuticals.</p>
         </div>
 
@@ -108,7 +108,7 @@ export default function PharmacyInventory() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#34d399' }}>Fast-Dispensary Ambient Bay</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(16,185,129,0.2)', color: '#34d399' }}>High Turnover</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>272 SKUs · ₹0 Value</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 SKUs · ₹0 Value</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Antiparasitics, topical medicated shampoos, supplements, and dental care.</p>
         </div>
       </div>

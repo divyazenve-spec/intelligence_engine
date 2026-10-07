@@ -42,10 +42,10 @@ export default function InventoryValuation() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Stock Cost Value" value="₹0" delta="+4.8% MTD" trend="up" subtext={`Using ${method} valuation`} icon="💰" />
+        <KpiCard label="Total Stock Cost Value" value="₹0" delta="0.0%" trend="neutral" subtext={`Using ${method} valuation`} icon="💰" />
         <KpiCard label="Projected Retail Value" value="₹0" delta="0.0%" trend="up" subtext="Current MRP realization" icon="🏷️" />
-        <KpiCard label="Unrealized Gross Margin" value="0.0%" delta="₹0" trend="up" subtext="Embedded profit potential" icon="📈" />
-        <KpiCard label="Annual Carrying Cost" value="0.0%" delta="-0.8%" trend="up" subtext="Holding & storage rate" icon="🛡️" />
+        <KpiCard label="Unrealized Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Embedded profit potential" icon="📈" />
+        <KpiCard label="Annual Carrying Cost" value="0.0%" delta="0.0%" trend="neutral" subtext="Holding & storage rate" icon="🛡️" />
       </div>
 
       {/* Valuation Mix by Category & Aging */}
@@ -91,22 +91,22 @@ export default function InventoryValuation() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600 }}>Fresh (0–30 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (74%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (0%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Peak turnover velocity</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(14,165,233,0.08)', border: '1px solid rgba(14,165,233,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#0ea5e9', fontWeight: 600 }}>Active (31–60 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (16%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (0%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Normal consumption</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#f59e0b', fontWeight: 600 }}>Slow Moving (61–90d)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (7%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (0%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Review promotional discount</div>
             </div>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#ef4444', fontWeight: 600 }}>At Risk (&gt;90 Days)</div>
-              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (3%)</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>₹0 (0%)</div>
               <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Reserve covered: ₹0</div>
             </div>
           </div>

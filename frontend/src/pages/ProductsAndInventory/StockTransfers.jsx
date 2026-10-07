@@ -67,10 +67,10 @@ export default function StockTransfers() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active In-Transit" value="4 Transfers" delta="₹0 value" trend="up" subtext="Live tracking online" icon="🚚" />
-        <KpiCard label="Completed (MTD)" value="38 Transfers" delta="99.4% SLA" trend="up" subtext="On-time delivery" icon="✅" />
-        <KpiCard label="Avg Transit Time" value="28.4 Hours" delta="-3.2h vs target" trend="up" subtext="Inter-city linehaul" icon="⚡" />
-        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="2°C–8°C logged" trend="up" subtext="IoT data logger verified" icon="❄️" />
+        <KpiCard label="Active In-Transit" value="0 Transfers" delta="₹0" trend="neutral" subtext="Live tracking online" icon="🚚" />
+        <KpiCard label="Completed (MTD)" value="0 Transfers" delta="0.0% SLA" trend="neutral" subtext="On-time delivery" icon="✅" />
+        <KpiCard label="Avg Transit Time" value="-- Hours" delta="--" trend="neutral" subtext="Inter-city linehaul" icon="⚡" />
+        <KpiCard label="Cold Chain Integrity" value="0.0%" delta="0 logs" trend="neutral" subtext="IoT data logger verified" icon="❄️" />
       </div>
 
       {/* Transfer Pipeline Overview */}

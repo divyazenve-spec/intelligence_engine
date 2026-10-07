@@ -72,11 +72,11 @@ export default function Prescriptions() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Prescriptions MTD" value="1,840 Rx" delta="+14.2% YoY" trend="up" subtext="Digital tamper-proof" icon="📋" />
-        <KpiCard label="Pending Pharmacist Queue" value="14 Rx" delta="Avg 4.2 min review" trend="neutral" subtext="Action required" icon="⏳" />
-        <KpiCard label="Dispensed Today" value="86 Rx" delta="100% on time" trend="up" subtext="Zero misdispenses" icon="✅" />
-        <KpiCard label="Chronic Refill Orders" value="38 Rx" delta="Automated reminder" trend="up" subtext="Heart, renal & endocrine" icon="🔄" />
-        <KpiCard label="Flagged Safety Alerts" value="2 Rx" delta="Drug Interaction" trend="down" subtext="Under doctor review" icon="⚠️" />
+        <KpiCard label="Prescriptions MTD" value="0 Rx" delta="0.0%" trend="neutral" subtext="Digital tamper-proof" icon="📋" />
+        <KpiCard label="Pending Pharmacist Queue" value="0 Rx" delta="--" trend="neutral" subtext="Action required" icon="⏳" />
+        <KpiCard label="Dispensed Today" value="0 Rx" delta="0.0%" trend="neutral" subtext="Zero misdispenses" icon="✅" />
+        <KpiCard label="Chronic Refill Orders" value="0 Rx" delta="0 reminders" trend="neutral" subtext="Heart, renal & endocrine" icon="🔄" />
+        <KpiCard label="Flagged Safety Alerts" value="0 Rx" delta="0 alerts" trend="neutral" subtext="Under doctor review" icon="⚠️" />
         <KpiCard label="Doctor Licensure" value="0.0%" delta="VCI Verified" trend="up" subtext="48 verified veterinarians" icon="👨‍⚕️" />
       </div>
 
@@ -224,7 +224,7 @@ export default function Prescriptions() {
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: '12px',
             padding: '24px',
-            width: '90%',
+            width: '0%',
             maxWidth: '620px',
             maxHeight: '90vh',
             overflowY: 'auto'

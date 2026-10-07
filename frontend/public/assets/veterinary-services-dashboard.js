@@ -113,7 +113,7 @@
       '    <div class="zvs-title-group">',
       '      <div class="zvs-title-row">',
       '        <h1 class="zvs-main-title">' + curMod.title + '</h1>',
-      '        <div class="zvs-status-badge"><span class="zvs-status-dot"></span> All 6 Hospitals Live & Accredited</div>',
+      '        <div class="zvs-status-badge"><span class="zvs-status-dot"></span> 6 Hospitals Connected</div>',
       '      </div>',
       '      <div class="zvs-subtitle">' + curMod.sub + '</div>',
       '    </div>',
@@ -176,20 +176,20 @@
   function renderOverview() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Revenue (MTD)</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹14.99 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.4% MoM</span><span class="zvs-subtext">18% total Zenve revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Total Consultations</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">1,420 Pets</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +14.2% MoM</span><span class="zvs-subtext">Outpatient & Video</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Procedures</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">184 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 100% OT Sterility</span><span class="zvs-subtext">Orthopedic & Soft Tissue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Profit Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">73.9%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +2.8% YoY</span><span class="zvs-subtext">Accretive high-yield unit</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Revenue (MTD)</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0.0% total revenue</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Total Consultations</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">0 Pets</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 Outpatient & Video</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Procedures</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">0 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 Procedures</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Profit Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0.0% unit yield</span></div></div>',
       '</div>',
 
       '<div class="zvs-grid-2">',
       '  <div class="zvs-card">',
       '    <div class="zvs-card-head"><div><h3 class="zvs-card-title">Live Hospital Floor Status & Capacity</h3><p class="zvs-card-sub">Real-time patient intake and facility load across all 6 clinical hospitals</p></div></div>',
       '    <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">OUTPATIENT CLINICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">48 Consults Today</div><div style="font-size:11px;color:#16a34a;font-weight:600;">● 18 Surgeons On Duty</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">STERILE THEATERS (OT)</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">3 OTs Active</div><div style="font-size:11px;color:#2563eb;font-weight:600;">● 14 Surgeries Scheduled</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">INPATIENT & ICU WARDS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">18 Pets Admitted</div><div style="font-size:11px;color:#ea580c;font-weight:600;">● 82% Bed Occupancy</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">PATHOLOGY DIAGNOSTICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">142 Tests MTD</div><div style="font-size:11px;color:#0284c7;font-weight:600;">● 38m Turnaround Time</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">OUTPATIENT CLINICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">0 Consults Today</div><div style="font-size:11px;color:#16a34a;font-weight:600;">● 0 Surgeons On Duty</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">STERILE THEATERS (OT)</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">0 OTs Active</div><div style="font-size:11px;color:#2563eb;font-weight:600;">● 0 Surgeries Scheduled</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">INPATIENT & ICU WARDS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">0 Pets Admitted</div><div style="font-size:11px;color:#ea580c;font-weight:600;">● 0% Bed Occupancy</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">PATHOLOGY DIAGNOSTICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">0 Tests MTD</div><div style="font-size:11px;color:#0284c7;font-weight:600;">● -- Turnaround Time</div></div>',
       '    </div>',
       '  </div>',
 
@@ -211,10 +211,10 @@
   function renderConsultations() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultations Today</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">48 Cases</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +14.2%</span><span class="zvs-subtext">34 In-Clinic • 11 Video • 3 Home</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Encounter Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">24.6 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Detailed care</span><span class="zvs-subtext">Benchmark: 20 mins</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Triage Queue</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">4 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 8m avg wait</span><span class="zvs-subtext">Fast-track emergency protocol</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultation CSAT</span><span class="zvs-kpi-icon">⭐</span></div><div class="zvs-kpi-val">4.94 / 5</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 98.8% satisfaction</span><span class="zvs-subtext">412 verified pet parent reviews</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultations Today</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">0 Cases</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 Consultations</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Encounter Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">0.0 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">Benchmark: --</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Triage Queue</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">0 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 wait</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultation CSAT</span><span class="zvs-kpi-icon">⭐</span></div><div class="zvs-kpi-val">0.0 / 5</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 verified reviews</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -254,10 +254,10 @@
   function renderAppointments() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booked Slots Today</span><span class="zvs-kpi-icon">📅</span></div><div class="zvs-kpi-val">76 Slots</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 94.2% occupancy</span><span class="zvs-subtext">Across 6 flagship hospitals</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Walk-In Intake</span><span class="zvs-kpi-icon">🚶</span></div><div class="zvs-kpi-val">12 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Zero bottleneck</span><span class="zvs-subtext">Fast-track triage buffer</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">No-Show Rate</span><span class="zvs-kpi-icon">📉</span></div><div class="zvs-kpi-val">2.8%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ -1.4% MoM</span><span class="zvs-subtext">Automated WhatsApp 2h reminder</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Punctuality</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">96.5%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Within 5 mins</span><span class="zvs-subtext">Strict clinic SLA</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booked Slots Today</span><span class="zvs-kpi-icon">📅</span></div><div class="zvs-kpi-val">0 Slots</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 hospitals</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Walk-In Intake</span><span class="zvs-kpi-icon">🚶</span></div><div class="zvs-kpi-val">0 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 intake</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">No-Show Rate</span><span class="zvs-kpi-icon">📉</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 reminders</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Punctuality</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -289,10 +289,10 @@
   function renderTreatments() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Inpatient Ward</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">18 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 82% Occupancy</span><span class="zvs-subtext">6 ICU • 7 Post-Op • 5 Medical</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Treatment Recovery Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">97.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +1.1% MoM</span><span class="zvs-subtext">Clinical recovery to discharge</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Hospital Stay</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">3.4 Days</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Optimal bed turnover</span><span class="zvs-subtext">Target: &lt; 4.0 Days</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Discharge Ready</span><span class="zvs-kpi-icon">🏡</span></div><div class="zvs-kpi-val">4 Pets Today</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Med summaries ready</span><span class="zvs-subtext">Post-op follow-up scheduled</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Inpatient Ward</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">0 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 ICU • 0 Post-Op</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Treatment Recovery Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Hospital Stay</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">0.0 Days</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">Target: --</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Discharge Ready</span><span class="zvs-kpi-icon">🏡</span></div><div class="zvs-kpi-val">0 Pets Today</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -324,10 +324,10 @@
   function renderVaccinations() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Vaccines Administered MTD</span><span class="zvs-kpi-icon">💉</span></div><div class="zvs-kpi-val">784 Doses</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +22.1% MoM</span><span class="zvs-subtext">512 Canine • 272 Feline</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Cold-Chain Adherence</span><span class="zvs-kpi-icon">❄️</span></div><div class="zvs-kpi-val">100.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 2-8°C Verified</span><span class="zvs-subtext">Zero heat excursion recorded</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booster Recall Rate</span><span class="zvs-kpi-icon">📲</span></div><div class="zvs-kpi-val">94.6%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +3.8% MoM</span><span class="zvs-subtext">Automated WhatsApp recall</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Passports Issued</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">768 Certs</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Govt Rabies Compliant</span><span class="zvs-subtext">QR code verifiable passport</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Vaccines Administered MTD</span><span class="zvs-kpi-icon">💉</span></div><div class="zvs-kpi-val">0 Doses</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 Doses</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Cold-Chain Adherence</span><span class="zvs-kpi-icon">❄️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booster Recall Rate</span><span class="zvs-kpi-icon">📲</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 recalls</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Passports Issued</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0 Certs</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 passports</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -360,10 +360,10 @@
   function renderDiagnostics() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Tests Processed MTD</span><span class="zvs-kpi-icon">🔬</span></div><div class="zvs-kpi-val">142 Tests</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.9% MoM</span><span class="zvs-subtext">Biochemistry, Hematology, DR</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Turnaround Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">38.4 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Target &lt; 45m</span><span class="zvs-subtext">Instant digital PACS sync</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Critical Lab Alerts</span><span class="zvs-kpi-icon">⚠️</span></div><div class="zvs-kpi-val">6 Alerts</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">● Stat notification</span><span class="zvs-subtext">Direct vet telemetry alert</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Imaging Usage</span><span class="zvs-kpi-icon">🩻</span></div><div class="zvs-kpi-val">88.2%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ DR & Ultrasound</span><span class="zvs-subtext">42 imaging runs completed</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Tests Processed MTD</span><span class="zvs-kpi-icon">🔬</span></div><div class="zvs-kpi-val">0 Tests</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 tests</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Turnaround Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">0.0 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Critical Lab Alerts</span><span class="zvs-kpi-icon">⚠️</span></div><div class="zvs-kpi-val">0 Alerts</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 alerts</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Imaging Usage</span><span class="zvs-kpi-icon">🩻</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 runs</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -396,10 +396,10 @@
   function renderProcedures() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgeries Today</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">14 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 100% OT Sterility</span><span class="zvs-subtext">4 Ortho • 6 Soft Tissue • 4 Dental</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">OT Theater Utilization</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">91.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ High throughput</span><span class="zvs-subtext">3 sterile surgical suites</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgeries Today</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">0 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 surgeries</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">OT Theater Utilization</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0 suites</span></div></div>',
       '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Anesthesia Safety Record</span><span class="zvs-kpi-icon">🫁</span></div><div class="zvs-kpi-val">99.98%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Multi-parameter monitoring</span><span class="zvs-subtext">Capnography & ECG logging</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Infection Rate</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Benchmark: 1.8%</span><span class="zvs-subtext">Autoclave biological spore pass</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Infection Rate</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -432,10 +432,10 @@
   function renderRevenue() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Gross Clinical Revenue</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹14.99 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.4% MoM</span><span class="zvs-subtext">18% total Zenve revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Revenue per Case</span><span class="zvs-kpi-icon">💳</span></div><div class="zvs-kpi-val">₹1,763</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +8.2% vs Plan</span><span class="zvs-subtext">Blended consult + surgery</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgery Billings</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">₹4.85 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Top clinical line</span><span class="zvs-subtext">32.4% share of billings</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Collection Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">99.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Zero bad debts</span><span class="zvs-subtext">Instant digital UPI / Card</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Gross Clinical Revenue</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0% total revenue</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Revenue per Case</span><span class="zvs-kpi-icon">💳</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgery Billings</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">0.0% share of billings</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Collection Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">--</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -466,10 +466,10 @@
   function renderProfitability() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Blended Gross Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">73.9%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +2.8% YoY</span><span class="zvs-subtext">Benchmark: 68.0%</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Gross Profit</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹11.08 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +21.4% MoM</span><span class="zvs-subtext">From ₹14.99L revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Commission Split</span><span class="zvs-kpi-icon">👨‍⚕️</span></div><div class="zvs-kpi-val">16.1%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Accretive payout model</span><span class="zvs-subtext">Target &lt; 18.0%</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">EBITDA Contribution</span><span class="zvs-kpi-icon">💎</span></div><div class="zvs-kpi-val">₹8.68 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 57.9% net yield</span><span class="zvs-subtext">After hospital overheads</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Blended Gross Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">Benchmark: --</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Gross Profit</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">From ₹0 revenue</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Commission Split</span><span class="zvs-kpi-icon">👨‍⚕️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">Target: --</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">EBITDA Contribution</span><span class="zvs-kpi-icon">💎</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">--</span><span class="zvs-subtext">After hospital overheads</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',

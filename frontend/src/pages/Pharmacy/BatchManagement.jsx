@@ -85,12 +85,12 @@ export default function BatchManagement() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Tracked Batches" value="342 Batches" delta="100% Barcoded" trend="up" subtext="Across 5 warehouse hubs" icon="🏷️" />
-        <KpiCard label="QC Passed & Released" value="334 Batches" delta="97.6% Compliance" trend="up" subtext="Verified COA signed" icon="✅" />
-        <KpiCard label="Quarantine Hold Bay" value="6 Batches" delta="Awaiting Lab Sign-off" trend="neutral" subtext="Zero dispensing leak" icon="⏳" />
-        <KpiCard label="Recalled / Blocked" value="2 Batches" delta="Safety quarantine" trend="down" subtext="Isolated in vault" icon="🚫" />
-        <KpiCard label="Mean Shelf Life" value="16.4 Months" delta="+1.2m vs SLA" trend="up" subtext="Fresh batch intake" icon="📅" />
-        <KpiCard label="GS1 Barcode Scans" value="0.0%" delta="Zero Manual Input" trend="up" subtext="Optical 2D datamatrix" icon="📱" />
+        <KpiCard label="Active Tracked Batches" value="0 Batches" delta="0.0%" trend="neutral" subtext="Across 5 warehouse hubs" icon="🏷️" />
+        <KpiCard label="QC Passed & Released" value="0 Batches" delta="0.0%" trend="neutral" subtext="Verified COA signed" icon="✅" />
+        <KpiCard label="Quarantine Hold Bay" value="0 Batches" delta="Awaiting Lab Sign-off" trend="neutral" subtext="Zero dispensing leak" icon="⏳" />
+        <KpiCard label="Recalled / Blocked" value="0 Batches" delta="Safety quarantine" trend="down" subtext="Isolated in vault" icon="🚫" />
+        <KpiCard label="Mean Shelf Life" value="0.0 Months" delta="--" trend="neutral" subtext="Fresh batch intake" icon="📅" />
+        <KpiCard label="GS1 Barcode Scans" value="0.0%" delta="0 logs" trend="neutral" subtext="Optical 2D datamatrix" icon="📱" />
       </div>
 
       {/* Batch Table Container */}
@@ -257,7 +257,7 @@ export default function BatchManagement() {
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: '12px',
             padding: '24px',
-            width: '90%',
+            width: '0%',
             maxWidth: '540px',
             maxHeight: '90vh',
             overflowY: 'auto'

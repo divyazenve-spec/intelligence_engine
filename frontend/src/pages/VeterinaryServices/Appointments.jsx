@@ -50,10 +50,10 @@ export default function Appointments() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Booked Slots Today" value="76 Slots" delta="94.2% capacity" trend="up" subtext="Across 6 urban hospitals" icon="📅" />
+        <KpiCard label="Booked Slots Today" value="0 Slots" delta="0.0%" trend="neutral" subtext="Across 6 urban hospitals" icon="📅" />
         <KpiCard label="Walk-In Intake" value="12 Pets" delta="Zero bottleneck" trend="up" subtext="Fast-track triage buffer" icon="🚶" />
-        <KpiCard label="No-Show Rate" value="0.0%" delta="-1.4% MoM" trend="up" subtext="Automated WhatsApp 2h alert" icon="📉" />
-        <KpiCard label="On-Time Consultation" value="0.0%" delta="Within 5 mins of slot" trend="up" subtext="Doctor punctuality SLA" icon="⏱️" />
+        <KpiCard label="No-Show Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Automated WhatsApp 2h alert" icon="📉" />
+        <KpiCard label="On-Time Consultation" value="0.0%" delta="--" trend="up" subtext="Doctor punctuality SLA" icon="⏱️" />
       </div>
 
       <div style={{

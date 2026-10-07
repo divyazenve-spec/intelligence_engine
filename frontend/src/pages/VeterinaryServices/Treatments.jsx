@@ -49,8 +49,8 @@ export default function Treatments() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Inpatient Ward" value="18 Patients" delta="82% Bed Occupancy" trend="up" subtext="6 ICU • 7 Post-Op • 5 General" icon="🏥" />
-        <KpiCard label="Treatment Success Rate" value="0.0%" delta="+1.1% MoM" trend="up" subtext="Clinical recovery & discharge" icon="🎯" />
+        <KpiCard label="Active Inpatient Ward" value="0 Patients" delta="0% Bed Occupancy" trend="neutral" subtext="6 ICU • 7 Post-Op • 5 General" icon="🏥" />
+        <KpiCard label="Treatment Success Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Clinical recovery & discharge" icon="🎯" />
         <KpiCard label="Average Hospital Stay" value="3.4 Days" delta="Optimal turnover" trend="up" subtext="Benchmark: 4.0 Days" icon="⏱️" />
         <KpiCard label="Ready for Discharge" value="4 Pets Today" delta="Discharge summaries ready" trend="up" subtext="Pet parent pickup scheduled" icon="🏡" />
       </div>

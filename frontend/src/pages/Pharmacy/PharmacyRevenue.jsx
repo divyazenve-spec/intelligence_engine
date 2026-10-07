@@ -68,12 +68,12 @@ export default function PharmacyRevenue() {
     >
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Pharmacy Sales" value="₹0" delta="+19.2% YoY" trend="up" subtext="Billed transaction total" icon="💵" />
-        <KpiCard label="Discounts & Promotions" value="-₹0" delta="5.0% discount rate" trend="neutral" subtext="Controlled chronic scheme" icon="🏷️" />
-        <KpiCard label="Net Realized Revenue" value="₹0" delta="+18.4% YoY" trend="up" subtext="104.8% of monthly target" icon="💎" />
-        <KpiCard label="Avg Revenue / Prescription" value="₹0" delta="+6.2% YoY" trend="up" subtext="Multi-item adherence" icon="📋" />
-        <KpiCard label="Direct Insurance Claims" value="₹0" delta="8.1% of revenue" trend="up" subtext="Cashless vet coverage" icon="🛡️" />
-        <KpiCard label="Consultation-to-Rx Rate" value="0.0%" delta="+2.6% vs target" trend="up" subtext="Dispensary capture rate" icon="📈" />
+        <KpiCard label="Gross Pharmacy Sales" value="₹0" delta="0.0%" trend="neutral" subtext="Billed transaction total" icon="💵" />
+        <KpiCard label="Discounts & Promotions" value="-₹0" delta="0.0%" trend="neutral" subtext="Controlled chronic scheme" icon="🏷️" />
+        <KpiCard label="Net Realized Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="0.0% of target" icon="💎" />
+        <KpiCard label="Avg Revenue / Prescription" value="₹0" delta="0.0%" trend="neutral" subtext="Multi-item adherence" icon="📋" />
+        <KpiCard label="Direct Insurance Claims" value="₹0" delta="0.0%" trend="neutral" subtext="Cashless vet coverage" icon="🛡️" />
+        <KpiCard label="Consultation-to-Rx Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Dispensary capture rate" icon="📈" />
       </div>
 
       {/* Revenue Waterfall & Geographic Contribution */}
@@ -150,7 +150,7 @@ export default function PharmacyRevenue() {
             <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Veterinary Prescription Revenue Attribution</h3>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#94a3b8' }}>Revenue generated per attending clinician & dispensary conversion rate</p>
           </div>
-          <span style={{ fontSize: '12px', color: '#10b981', fontWeight: 600 }}>Average Capture Rate: 91.4%</span>
+          <span style={{ fontSize: '12px', color: '#10b981', fontWeight: 600 }}>Average Capture Rate: 0.0%</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>

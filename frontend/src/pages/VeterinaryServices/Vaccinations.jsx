@@ -50,9 +50,9 @@ export default function Vaccinations() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Vaccines Given MTD" value="784 Doses" delta="+22.1% MoM" trend="up" subtext="512 Canine • 272 Feline" icon="💉" />
+        <KpiCard label="Vaccines Given MTD" value="0 Doses" delta="0.0%" trend="neutral" subtext="512 Canine • 272 Feline" icon="💉" />
         <KpiCard label="Cold-Chain Adherence" value="0.0%" delta="2-8°C Verified" trend="up" subtext="Zero heat excursion recorded" icon="❄️" />
-        <KpiCard label="Booster Recall Rate" value="0.0%" delta="+3.8% MoM" trend="up" subtext="Automated WhatsApp reminder" icon="📲" />
+        <KpiCard label="Booster Recall Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Automated WhatsApp reminder" icon="📲" />
         <KpiCard label="Digital Passports Issued" value="768 Certs" delta="Govt Rabies Compliant" trend="up" subtext="Instant QR verifiable" icon="🛡️" />
       </div>
 

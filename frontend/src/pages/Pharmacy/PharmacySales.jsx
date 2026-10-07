@@ -82,10 +82,10 @@ export default function PharmacySales() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Gross Pharmacy Sales" value="₹0" delta="0.0%" trend="up" subtext="MTD billing volume" icon="💵" />
-        <KpiCard label="Rx Prescription Sales" value="₹0" delta="74.0% share" trend="up" subtext="Doctor validated" icon="📋" />
-        <KpiCard label="OTC Pet Care Sales" value="₹0" delta="26.0% share" trend="up" subtext="Direct dispensary" icon="🛍️" />
+        <KpiCard label="Rx Prescription Sales" value="₹0" delta="0.0% share" trend="neutral" subtext="Doctor validated" icon="📋" />
+        <KpiCard label="OTC Pet Care Sales" value="₹0" delta="0.0% share" trend="neutral" subtext="Direct dispensary" icon="🛍️" />
         <KpiCard label="Avg Dispensary Bill" value="₹0" delta="+₹0" trend="up" subtext="2.6 products / order" icon="🧾" />
-        <KpiCard label="Units Dispensed" value="2,840 Units" delta="99.2% fulfillment" trend="up" subtext="Across 1,840 orders" icon="📦" />
+        <KpiCard label="Units Dispensed" value="0 Units" delta="0.0%" trend="neutral" subtext="Across 1,840 orders" icon="📦" />
         <KpiCard label="Repeat Rx Refills" value="0.0%" delta="0.0%" trend="up" subtext="Chronic & deworming" icon="🔄" />
       </div>
 
@@ -130,22 +130,22 @@ export default function PharmacySales() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>In-Clinic POS Counter</span>
-              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#38bdf8' }}>52.4%</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#38bdf8' }}>0.0%</div>
               <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · Direct consults</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>60-Min Express Delivery</span>
-              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#10b981' }}>28.2%</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#10b981' }}>0.0%</div>
               <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · Urgent delivery</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>App Scheduled Delivery</span>
-              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#a855f7' }}>14.1%</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#a855f7' }}>0.0%</div>
               <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · Chronic refills</div>
             </div>
             <div style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
               <span style={{ fontSize: '11px', color: '#94a3b8' }}>Partner Clinic Network</span>
-              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#f59e0b' }}>5.3%</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, marginTop: '4px', color: '#f59e0b' }}>0.0%</div>
               <div style={{ fontSize: '10px', color: '#64748b' }}>₹0 · B2B referral</div>
             </div>
           </div>
@@ -153,10 +153,10 @@ export default function PharmacySales() {
           <div style={{ padding: '12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.04)' }}>
             <span style={{ fontSize: '12px', fontWeight: 600, display: 'block', marginBottom: '8px' }}>Payment Mode Distribution</span>
             <div style={{ display: 'flex', gap: '16px', fontSize: '11px', color: '#94a3b8' }}>
-              <span>UPI: <b style={{ color: '#fff' }}>64%</b></span>
-              <span>Cards: <b style={{ color: '#fff' }}>22%</b></span>
-              <span>Insurance Claim: <b style={{ color: '#fff' }}>8%</b></span>
-              <span>Cash: <b style={{ color: '#fff' }}>6%</b></span>
+              <span>UPI: <b style={{ color: '#fff' }}>0%</b></span>
+              <span>Cards: <b style={{ color: '#fff' }}>0%</b></span>
+              <span>Insurance Claim: <b style={{ color: '#fff' }}>0%</b></span>
+              <span>Cash: <b style={{ color: '#fff' }}>0%</b></span>
             </div>
           </div>
         </div>

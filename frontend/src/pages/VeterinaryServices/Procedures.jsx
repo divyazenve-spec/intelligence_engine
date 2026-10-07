@@ -52,7 +52,7 @@ export default function Procedures() {
         <KpiCard label="Surgeries Today" value="14 Surgeries" delta="100% OT Sterility" trend="up" subtext="4 Orthopedic • 6 Soft Tissue • 4 Dental" icon="✂️" />
         <KpiCard label="OT Theater Utilization" value="0.0%" delta="Optimal turnover" trend="up" subtext="Across 3 sterile surgical suites" icon="🏥" />
         <KpiCard label="Anesthesia Safety Record" value="0.0%" delta="Multi-parameter capnography" trend="up" subtext="Continuous vitals logging" icon="🫁" />
-        <KpiCard label="Surgical Site Infection" value="0.0%" delta="Industry benchmark: 1.8%" trend="up" subtext="Autoclave spore test validated" icon="🛡️" />
+        <KpiCard label="Surgical Site Infection" value="0.0%" delta="--" trend="up" subtext="Autoclave spore test validated" icon="🛡️" />
       </div>
 
       <div style={{

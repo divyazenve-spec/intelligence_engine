@@ -26,7 +26,7 @@ export default function ExpiryTracking() {
   }
 
   function handleActivateDiscount(batchNo) {
-    setToast(`Auto-liquidation discount rule (30% off) published to prescription refill engine for ${batchNo}!`);
+    setToast(`Auto-liquidation discount rule (liquidation discount) published to prescription refill engine for ${batchNo}!`);
     setTimeout(() => setToast(''), 3500);
   }
 
@@ -77,12 +77,12 @@ export default function ExpiryTracking() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Near-Expiry Exposure" value="₹0" delta="-32% vs last month" trend="up" subtext="Total cost at risk" icon="⏳" />
-        <KpiCard label="Critical (<30 Days)" value="2 Batches" delta="Immediate action" trend="down" subtext="32 total units" icon="🚨" />
-        <KpiCard label="High Alert (30–60 Days)" value="4 Batches" delta="Auto-discount active" trend="neutral" subtext="49 units in buffer" icon="⚠️" />
-        <KpiCard label="Medium Alert (60–90 Days)" value="6 Batches" delta="SRA eligible" trend="neutral" subtext="105 units rotating" icon="🟡" />
-        <KpiCard label="Salvage Recovery Rate" value="0.0%" delta="+4.6% YoY" trend="up" subtext="Zero landfill waste" icon="♻️" />
-        <KpiCard label="FEFO Picking Adherence" value="0.0%" delta="System Enforced" trend="up" subtext="Oldest valid batch first" icon="🎯" />
+        <KpiCard label="Near-Expiry Exposure" value="₹0" delta="0.0%" trend="neutral" subtext="Total cost at risk" icon="⏳" />
+        <KpiCard label="Critical (<30 Days)" value="0 Batches" delta="Immediate action" trend="down" subtext="0 units" icon="🚨" />
+        <KpiCard label="High Alert (30–60 Days)" value="0 Batches" delta="Auto-discount active" trend="neutral" subtext="0 units" icon="⚠️" />
+        <KpiCard label="Medium Alert (60–90 Days)" value="0 Batches" delta="--" trend="neutral" subtext="0 units" icon="🟡" />
+        <KpiCard label="Salvage Recovery Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Zero landfill waste" icon="♻️" />
+        <KpiCard label="FEFO Picking Adherence" value="0.0%" delta="0.0%" trend="neutral" subtext="Oldest valid batch first" icon="🎯" />
       </div>
 
       {/* Expiry Risk Horizons Summary */}
@@ -96,7 +96,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#f87171' }}>Critical Zone (&lt; 30 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(239,68,68,0.2)', color: '#f87171' }}>Action Required</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>2 Batches · ₹0</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Rabies vaccines & Cardisure. Expedited clinic injection or immediate return.</p>
         </div>
 
@@ -105,7 +105,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#fbbf24' }}>High Alert (30 – 60 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(245,158,11,0.2)', color: '#fbbf24' }}>Auto Discount</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>4 Batches · ₹0</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Nobivac core vaccines & Malaseb shampoos. Prioritized in 60-min rapid packs.</p>
         </div>
 
@@ -114,7 +114,7 @@ export default function ExpiryTracking() {
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#60a5fa' }}>Medium Horizon (60 – 90 Days)</span>
             <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: 'rgba(59,130,246,0.2)', color: '#60a5fa' }}>SRA Window</span>
           </div>
-          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>6 Batches · ₹0</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, marginTop: '8px', color: '#fff' }}>0 Batches · ₹0</div>
           <p style={{ fontSize: '11px', color: '#94a3b8', margin: '4px 0 0' }}>Eligible for 100% manufacturer credit note if returned within 30 days.</p>
         </div>
       </div>

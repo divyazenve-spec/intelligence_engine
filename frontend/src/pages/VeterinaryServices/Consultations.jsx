@@ -50,10 +50,10 @@ export default function Consultations() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consultations Today" value="48 Cases" delta="+14.2% vs yesterday" trend="up" subtext="34 In-Clinic • 11 Video • 3 Home" icon="🩺" />
-        <KpiCard label="Avg Consultation Duration" value="0" delta="High patient care" trend="up" subtext="Benchmark: 20 mins" icon="⏱️" />
+        <KpiCard label="Consultations Today" value="0 Cases" delta="0.0%" trend="neutral" subtext="34 In-Clinic • 11 Video • 3 Home" icon="🩺" />
+        <KpiCard label="Avg Consultation Duration" value="0" delta="--" subtext="Benchmark: 20 mins" icon="⏱️" />
         <KpiCard label="Active Triage Queue" value="4 Patients" delta="Avg wait: 8 mins" trend="up" subtext="Zero critical wait time" icon="🏥" />
-        <KpiCard label="Consultation CSAT" value="4.94 / 5" delta="98.8% Positive" trend="up" subtext="Based on 412 verified ratings" icon="⭐" />
+        <KpiCard label="Consultation CSAT" value="0.0 / 5" delta="0.0%" trend="neutral" subtext="Based on 412 verified ratings" icon="⭐" />
       </div>
 
       <div style={{

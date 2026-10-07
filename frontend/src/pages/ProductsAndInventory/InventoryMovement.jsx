@@ -73,7 +73,7 @@ export default function InventoryMovement() {
       title="Inventory Movement & Stock Ledger"
       subtitle="Real-time stock ledger tracking goods receipts (GRN), customer dispatches, inter-hub linehaul, and inventory reconciliations"
       icon="📈"
-      badge="Live Telemetry: 142 Today"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -116,10 +116,10 @@ export default function InventoryMovement() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Inbound Stock Today" value="+108 Units" delta="2 GRNs received" trend="up" subtext="Vendor supplier receipts" icon="📥" />
-        <KpiCard label="Outbound Dispatched" value="-66 Units" delta="B2C & Clinic orders" trend="down" subtext="Fulfillment shipments" icon="📤" />
-        <KpiCard label="Net Stock Delta" value="+42 Units" delta="+2.4% net buffer" trend="up" subtext="Positive net replenishment" icon="⚖️" />
-        <KpiCard label="Adjustment Variance" value="-2 Units" delta="₹0 write-off" trend="up" subtext="Shrinkage & audit delta" icon="🔍" />
+        <KpiCard label="Inbound Stock Today" value="0 Units" delta="0 GRNs" trend="neutral" subtext="Vendor supplier receipts" icon="📥" />
+        <KpiCard label="Outbound Dispatched" value="0 Units" delta="0 orders" trend="neutral" subtext="Fulfillment shipments" icon="📤" />
+        <KpiCard label="Net Stock Delta" value="0 Units" delta="0.0%" trend="neutral" subtext="Positive net replenishment" icon="⚖️" />
+        <KpiCard label="Adjustment Variance" value="0 Units" delta="0 write-off" trend="neutral" subtext="Shrinkage & audit delta" icon="🔍" />
       </div>
 
       {/* 2-Column Velocity & Flow Balancing Section */}
@@ -156,40 +156,40 @@ export default function InventoryMovement() {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
                 <span style={{ color: '#10b981', fontWeight: 600 }}>Inbound Supplier GRN</span>
-                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>108 units · 62% Volume</span>
+                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>0 units · 0% Volume</span>
               </div>
               <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                <div style={{ width: '62%', height: '100%', background: '#10b981', borderRadius: '99px' }}></div>
+                <div style={{ width: '0%', height: '100%', background: '#10b981', borderRadius: '99px' }}></div>
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
                 <span style={{ color: '#ef4444', fontWeight: 600 }}>B2C &amp; Clinic Outbound</span>
-                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>66 units · 38% Volume</span>
+                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>0 units · 0% Volume</span>
               </div>
               <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                <div style={{ width: '38%', height: '100%', background: '#ef4444', borderRadius: '99px' }}></div>
+                <div style={{ width: '0%', height: '100%', background: '#ef4444', borderRadius: '99px' }}></div>
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
                 <span style={{ color: '#38bdf8', fontWeight: 600 }}>Inter-Hub Transfers</span>
-                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>100 units · Balanced Transit</span>
+                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>0 units · 0% Volume</span>
               </div>
               <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                <div style={{ width: '48%', height: '100%', background: '#38bdf8', borderRadius: '99px' }}></div>
+                <div style={{ width: '0%', height: '100%', background: '#38bdf8', borderRadius: '99px' }}></div>
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
                 <span style={{ color: '#f59e0b', fontWeight: 600 }}>Adjustments &amp; QC Returns</span>
-                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>-1 unit · 100% Reconciled</span>
+                <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>0 units · 0% Volume</span>
               </div>
               <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                <div style={{ width: '8%', height: '100%', background: '#f59e0b', borderRadius: '99px' }}></div>
+                <div style={{ width: '0%', height: '100%', background: '#f59e0b', borderRadius: '99px' }}></div>
               </div>
             </div>
           </div>
@@ -222,25 +222,25 @@ export default function InventoryMovement() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600 }}>Bengaluru Central Hub</div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>+43 units net</div>
-              <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '2px' }}>In: 48 · Out: 4 · Ret: 1 · Adj: -2</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 units net</div>
+              <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '2px' }}>In: 0 · Out: 0 · Ret: 0 · Adj: 0</div>
             </div>
 
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(56,189,248,0.06)', border: '1px solid rgba(56,189,248,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#38bdf8', fontWeight: 600 }}>Delhi NCR Hub</div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>+60 units net</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 units net</div>
               <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '2px' }}>Inbound supplier GRN receipt</div>
             </div>
 
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#ef4444', fontWeight: 600 }}>Mumbai West Hub</div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>-50 units net</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 units net</div>
               <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '2px' }}>Vaccine transfer out to Pune</div>
             </div>
 
             <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(168,85,247,0.06)', border: '1px solid rgba(168,85,247,0.2)' }}>
               <div style={{ fontSize: '11px', color: '#c084fc', fontWeight: 600 }}>Pune Express Hub</div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>+50 units net</div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 units net</div>
               <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '2px' }}>Transit inflow arrived safely</div>
             </div>
           </div>
