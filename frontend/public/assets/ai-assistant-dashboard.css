@@ -534,3 +534,230 @@ body.zai-locked {
   color: #6d28d9;
   border: 1px solid #ddd6fe;
 }
+
+/* ── Rich NLP & Generative Assistant Elements ───────────────────── */
+.zai-nlp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.zai-nlp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.zai-nlp-tag.intent {
+  background: #ede9fe;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+}
+
+.zai-nlp-tag.entity {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.zai-nlp-tag.grounding {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zai-kpi-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 10px;
+}
+
+.zai-kpi-pill {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  min-width: 95px;
+}
+
+.zai-kpi-pill-label {
+  font-size: 10px;
+  color: #64748b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.zai-kpi-pill-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-top: 2px;
+}
+
+.zai-kpi-pill.danger {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.zai-kpi-pill.danger .zai-kpi-pill-val {
+  color: #b91c1c;
+}
+
+.zai-kpi-pill.success {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+}
+
+.zai-kpi-pill.success .zai-kpi-pill-val {
+  color: #059669;
+}
+
+.zai-kpi-pill.warn {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.zai-kpi-pill.warn .zai-kpi-pill-val {
+  color: #d97706;
+}
+
+.zai-kpi-pill.info {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+}
+
+.zai-kpi-pill.info .zai-kpi-pill-val {
+  color: #4f46e5;
+}
+
+.zai-insights-list {
+  margin: 8px 0 12px 18px;
+  padding: 0;
+  color: #334155;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.zai-insights-list li {
+  margin-bottom: 5px;
+}
+
+.zai-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.zai-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.zai-action-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.zai-action-btn.primary {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+
+.zai-action-btn.primary:hover {
+  background: #4338ca;
+  border-color: #4338ca;
+}
+
+.zai-followups-box {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.zai-followup-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.zai-followup-btn {
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  font-size: 11px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+
+.zai-followup-btn:hover {
+  background: #ede9fe;
+  color: #6d28d9;
+  border-color: #c4b5fd;
+}
+
+.zai-action-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+  animation: zai-fade-in 0.2s ease;
+}
+
+@keyframes zai-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

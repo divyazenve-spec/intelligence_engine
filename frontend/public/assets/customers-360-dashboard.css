@@ -400,6 +400,118 @@ body.zc360-locked {
   border: 1px solid #fecaca;
 }
 
+.zc360-pill.success {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.zc360-pill.purple {
+  background: #faf5ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+}
+
+.zc360-pill.neutral {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.zc360-btn-sm {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.zc360-btn-sm:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.zc360-btn-sm.resolve {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+}
+
+.zc360-btn-sm.resolve:hover {
+  background: #047857;
+  border-color: #047857;
+}
+
+.zc360-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 20px;
+}
+
+.zc360-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.zc360-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.zc360-progress-fill.success { background: #10b981; }
+.zc360-progress-fill.info { background: #3b82f6; }
+.zc360-progress-fill.warning { background: #f59e0b; }
+.zc360-progress-fill.danger { background: #ef4444; }
+.zc360-progress-fill.purple { background: #8b5cf6; }
+
+.zc360-sop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.zc360-sop-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zc360-sop-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zc360-sop-rule {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.zc360-sop-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+
 /* Modal Dialog */
 .zc360-modal-overlay {
   position: fixed;

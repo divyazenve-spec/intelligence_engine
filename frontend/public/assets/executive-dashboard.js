@@ -18,7 +18,7 @@
   }
 
   var TABS = [
-    { id: 'dashboard',   label: 'Executive Dashboard', icon: '🏛️', hash: '#executive-dashboard', badge: 'All Systems Live', title: 'Executive Overview & Enterprise Vitals', sub: 'High-level executive metrics across veterinary care, pharmacy, diagnostics, and commerce' },
+    { id: 'dashboard',   label: '← Executive Dashboard (Home)', icon: '🏛️', hash: '#overview', badge: 'Original Home', title: 'Executive Control Center — Zenve BI', sub: 'Return to original home dashboard given at first' },
     { id: 'ceo-control', label: 'CEO Control Center',  icon: '👔', hash: '#ceo-control-center',   badge: 'Strategic OKRs',   title: 'CEO Strategic Command & Governance', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
     { id: 'overview',    label: 'Business Overview',   icon: '📊', hash: '#business-overview',    badge: 'Consolidated P&L', title: 'Business Overview & Segment Economics', sub: 'Multi-entity profit margins, geographic revenue distribution, and unit economics' },
     { id: 'kpi',         label: 'KPI Dashboard',       icon: '🎯', hash: '#kpi-dashboard',        badge: '36 Master KPIs',   title: 'Master Enterprise KPI Scorecard', sub: 'Balanced scorecard covering financial, clinical quality, customer sentiment, and logistics' }
@@ -26,10 +26,35 @@
 
   var S = {
     open: false,
-    tab: 'dashboard'
+    tab: 'ceo-control'
   };
 
   var root = null;
+
+  function redirectToHomeDashboard() {
+    close();
+    ['#zexec-root', '#zcust-root', '#zclinics-root', '#zpharma-root', '#zsales-root', '#zsettings-root'].forEach(function (sel) {
+      var node = document.querySelector(sel);
+      if (node) node.style.display = 'none';
+    });
+    document.documentElement.classList.remove('zexec-locked');
+    document.body.classList.remove('zexec-locked');
+
+    if (window.location.hash && window.location.hash !== '#' && window.location.hash !== '#overview') {
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (err) {
+        window.location.hash = '';
+      }
+    }
+
+    var homeEl = document.getElementById('overview') || document.querySelector('main');
+    if (homeEl) {
+      homeEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 
   function tabFromHash(hash) {
     if (!hash) return null;
@@ -38,9 +63,12 @@
       return null;
     }
     if (h === 'ceo-control-center' || h === 'ceo-control' || h === 'ceo' || h.indexOf('ceo') >= 0) return 'ceo-control';
-    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard') return 'dashboard';
     if (h === 'business-overview' || h === 'business') return 'overview';
     if (h === 'kpi-dashboard' || h === 'kpi' || h === 'kpis') return 'kpi';
+    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard' || h === 'overview') {
+      redirectToHomeDashboard();
+      return null;
+    }
     return null;
   }
 
@@ -52,7 +80,7 @@
     if (raw.indexOf('ceo control center') >= 0 || raw.indexOf('ceo control') >= 0 || raw === 'ceo') return 'ceo-control';
     if (raw.indexOf('business overview') >= 0) return 'overview';
     if (raw.indexOf('kpi dashboard') >= 0 || raw === 'kpis') return 'kpi';
-    if (raw.indexOf('executive dashboard') >= 0 || raw === 'executive') return 'dashboard';
+    if (raw === 'executive dashboard' || raw === 'executive' || raw === 'home dashboard' || raw === 'home') return 'home';
     return null;
   }
 
@@ -675,7 +703,7 @@
     for (var i = 0; i < TABS.length; i++) {
       if (TABS[i].id === S.tab) return TABS[i];
     }
-    return TABS[0];
+    return TABS[1];
   }
 
   function renderTabsBar() {
@@ -756,12 +784,16 @@
     var closeBtn = root.querySelector('#zexec-close-btn');
     if (closeBtn) {
       closeBtn.addEventListener('click', function () {
-        close();
+        redirectToHomeDashboard();
       });
     }
   }
 
   function switchTab(tid) {
+    if (tid === 'dashboard' || tid === 'home') {
+      redirectToHomeDashboard();
+      return;
+    }
     S.tab = tid;
     var current = getActiveTabConfig();
     if (window.location.hash !== current.hash) {
@@ -776,12 +808,17 @@
   }
 
   function open(tabId) {
+    if (tabId === 'dashboard' || tabId === 'home') {
+      redirectToHomeDashboard();
+      return;
+    }
     if (!root) {
       root = document.createElement('div');
       root.id = 'zexec-root';
       document.body.appendChild(root);
     }
     if (tabId) S.tab = tabId;
+    else if (!S.tab || S.tab === 'dashboard' || S.tab === 'home') S.tab = 'ceo-control';
     S.open = true;
     root.style.display = 'block';
     document.documentElement.classList.add('zexec-locked');
@@ -798,6 +835,11 @@
   }
 
   function onHashChange() {
+    var h = (window.location.hash || '').toLowerCase();
+    if (h === '#executive-dashboard' || h === '#executive' || h === '#exec-dashboard' || h === '#overview' || h === '#home') {
+      redirectToHomeDashboard();
+      return;
+    }
     var t = tabFromHash(window.location.hash);
     if (t) {
       open(t);
@@ -828,7 +870,11 @@
       if (isSidebar) {
         var txt = el.textContent || '';
         var t2 = tabFromText(txt);
-        if (t2) {
+        if (t2 === 'home') {
+          // Executive Dashboard subdomain clicked: redirect directly to original home dashboard given at first!
+          redirectToHomeDashboard();
+          return;
+        } else if (t2) {
           e.preventDefault();
           e.stopPropagation();
           open(t2);
@@ -837,7 +883,7 @@
     }, true);
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && S.open) close();
+      if (e.key === 'Escape' && S.open) redirectToHomeDashboard();
     });
 
     window.addEventListener('hashchange', onHashChange);
@@ -853,7 +899,8 @@
   window.ZenveExecutiveDashboard = {
     open: open,
     close: close,
-    switchTab: switchTab
+    switchTab: switchTab,
+    redirectToHome: redirectToHomeDashboard
   };
 
   if (document.readyState === 'loading') {
