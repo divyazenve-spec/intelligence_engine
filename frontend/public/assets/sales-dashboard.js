@@ -657,12 +657,12 @@
       channel: chCount,
       location: locCount,
       product: prodCount,
-      employee: EMPLOYEE_LIST.length,
-      doctor: DOCTOR_LIST.length,
+      employee: salesCount ? EMPLOYEE_LIST.length : 0,
+      doctor: salesCount ? DOCTOR_LIST.length : 0,
       customer: custCount,
-      funnel: '5 Stages',
-      targets: '6 Teams',
-      forecast: S.forecastHorizon + ' Mo'
+      funnel: salesCount ? '5 Stages' : '0',
+      targets: '0',
+      forecast: '0'
     };
 
     tabsEl.innerHTML = TABS.map(function (t) {
@@ -717,10 +717,10 @@
       }
     } else if (S.tab === 'targets') {
       if (titleEl) titleEl.textContent = '🎯 Sales Targets & Quota Realization';
-      if (sub) sub.innerHTML = 'Executive pacing command center, calendar elapsed tracking, and departmental quota fulfillment · <span style="color:#10b981;font-weight:700;">● Quota Pacing Mode</span>';
+      if (sub) sub.innerHTML = 'Executive pacing command center, calendar elapsed tracking, and departmental quota fulfillment · <span style="color:#10b981;font-weight:700;">● No Active Quota</span>';
     } else if (S.tab === 'forecast') {
       if (titleEl) titleEl.textContent = '📈 Predictive Revenue & Demand Forecast';
-      if (sub) sub.innerHTML = 'Machine learning time-series projections, veterinary healthcare seasonality cycles, and 90% confidence bands · <span style="color:#a78bfa;font-weight:700;">● 92.8% Confidence (R²)</span>';
+      if (sub) sub.innerHTML = 'Machine learning time-series projections, veterinary healthcare seasonality cycles, and 90% confidence bands · <span style="color:#a78bfa;font-weight:700;">● 0.0% Confidence (R²)</span>';
     } else {
       if (titleEl) titleEl.textContent = tabInfo.label;
       if (sub) {
@@ -1705,16 +1705,16 @@
 
     // Current period funnel stats
     var dl = downloads(S.from, S.to);
-    var installs = Math.max(dl > 0 ? dl : 0, Math.round(listAll.length * 16 + 240));
+    var installs = dl > 0 ? dl : (listAll.length ? Math.round(listAll.length * 16) : 0);
     var opens = Math.round(installs * 0.72);
-    var intent = Math.max(listAll.length * 2, Math.round(opens * 0.45));
+    var intent = Math.round(opens * 0.45);
     var checkout = listAll.length;
     var completed = pAll.length;
 
     var convE2E = installs > 0 ? (completed / installs * 100) : 0;
     var convCheckout = checkout > 0 ? (completed / checkout * 100) : 0;
     var pipelineVal = Math.round(totPaidAll * 3.2);
-    var lostVal = Math.round((checkout - completed) * (completed ? totPaidAll / completed : 1850));
+    var lostVal = Math.round((checkout - completed) * (completed ? totPaidAll / completed : 0));
     var aov = completed > 0 ? Math.round(totPaidAll / completed) : 0;
 
     // Prior period comparison
@@ -1723,13 +1723,13 @@
     var prevP = paid(prevList);
     var prevTotPaid = sum(prevP);
     var prevDl = downloads(pr.from, pr.to);
-    var prevInstalls = Math.max(prevDl > 0 ? prevDl : 0, Math.round(prevList.length * 16 + 240));
+    var prevInstalls = prevDl > 0 ? prevDl : (prevList.length ? Math.round(prevList.length * 16) : 0);
     var prevCheckout = prevList.length;
     var prevCompleted = prevP.length;
     var prevConvE2E = prevInstalls > 0 ? (prevCompleted / prevInstalls * 100) : 0;
     var prevConvCheckout = prevCheckout > 0 ? (prevCompleted / prevCheckout * 100) : 0;
     var prevPipelineVal = Math.round(prevTotPaid * 3.2);
-    var prevLostVal = Math.round((prevCheckout - prevCompleted) * (prevCompleted ? prevTotPaid / prevCompleted : 1850));
+    var prevLostVal = Math.round((prevCheckout - prevCompleted) * (prevCompleted ? prevTotPaid / prevCompleted : 0));
     var prevAov = prevCompleted > 0 ? Math.round(prevTotPaid / prevCompleted) : 0;
 
     // 1. Executive 6-Card KPI Grid (Matching Sales Dashboard format)
@@ -2016,102 +2016,28 @@
     var totPaid = sum(p);
 
     var days = Math.max(1, diffDays(S.from, S.to) + 1);
-    var baseTarget = Math.round((5000000 / 30) * days);
+    var baseTarget = 0;
     var targetMultiplier = 1 + (S.targetAdjustPct || 0) / 100;
-    var target = Math.round(baseTarget * targetMultiplier);
+    var target = 0;
 
-    var attainment = target > 0 ? (totPaid / target * 100) : 0;
-    var pacingDays = Math.min(days, 22);
-    var pacingPct = Math.round((pacingDays / days) * 100);
-    var netPacing = attainment - pacingPct;
-    var projectedFinish = pacingPct > 0 ? Math.round(totPaid / (pacingPct / 100)) : totPaid;
-    var gap = totPaid - target;
-
-    var kpiCards = [
-      ['Period Revenue Target', inr.format(target), '<div class="zsd-delta">' + days + ' days goal' + (S.targetAdjustPct ? ' (' + (S.targetAdjustPct > 0 ? '+' : '') + S.targetAdjustPct + '%)' : '') + '</div>'],
-      ['Realized Revenue', inr.format(totPaid), '<div class="zsd-delta up">' + p.length + ' paid sales</div>'],
-      ['Quota Attainment', attainment.toFixed(1) + '%', '<div class="zsd-delta ' + (attainment >= 100 ? 'up' : attainment >= 75 ? 'up' : 'down') + '">' + (attainment >= 100 ? '★ Quota Met' : (100 - attainment).toFixed(1) + '% to goal') + '</div>'],
-      ['Run-Rate Projection', inr.format(projectedFinish), '<div class="zsd-delta">' + (projectedFinish >= target ? 'Pacing above target' : 'Pacing below goal') + '</div>'],
-      ['Pacing Speed', (netPacing >= 0 ? '+' : '') + netPacing.toFixed(1) + '%', '<div class="zsd-delta ' + (netPacing >= 0 ? 'up' : 'down') + '">' + (netPacing >= 0 ? 'Ahead of calendar' : 'Behind calendar') + '</div>'],
-      ['Variance to Goal', (gap >= 0 ? '+' : '-') + inr.format(Math.abs(gap)), '<div class="zsd-delta ' + (gap >= 0 ? 'up' : 'down') + '">' + (gap >= 0 ? 'Surplus' : 'Remaining') + '</div>']
-    ];
-
-    // Teams target distribution
-    var TARGET_DEPARTMENTS = [];
-
-    var deptCards = TARGET_DEPARTMENTS.map(function (d, idx) {
-      var dTarget = Math.round(target * d.targetPct);
-      var dAssigned = p.filter(function (s, si) { return si % TARGET_DEPARTMENTS.length === idx; });
-      var dAchieved = sum(dAssigned);
-      if (dAchieved === 0 && totPaid > 0) dAchieved = Math.round(totPaid * d.targetPct * (0.85 + (idx % 3) * 0.1));
-      var dAttain = dTarget > 0 ? (dAchieved / dTarget * 100) : 0;
-      var statusClass = dAttain >= 100 ? 'exceeded' : dAttain >= 85 ? 'on-track' : dAttain >= 70 ? 'at-risk' : 'behind';
-      var statusText = dAttain >= 100 ? '★ Exceeded' : dAttain >= 85 ? 'On Track' : dAttain >= 70 ? 'Needs Attention' : 'At Risk';
-      return '<div class="zsd-stage-card">' +
-        '<div class="zsd-stage-step"><span style="font-weight:700;color:' + d.color + '">' + d.icon + ' ' + esc(d.name) + '</span><span class="zsd-attain-badge ' + statusClass + '">' + statusText + '</span></div>' +
-        '<div style="font-size:11px;color:var(--muted-foreground)">Lead: ' + esc(d.head) + '</div>' +
-        '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;">' +
-        '<div style="font-size:16px;font-weight:700;font-family:IBM Plex Mono,monospace;">' + inrShort(dAchieved) + '</div>' +
-        '<div style="font-size:11px;color:var(--muted-foreground)">Goal: ' + inrShort(dTarget) + '</div></div>' +
-        '<div class="zsd-progress" style="margin-top:4px;"><div class="zsd-progress-fill" style="width:' + Math.min(100, dAttain) + '%;background:' + d.color + '"></div></div>' +
-        '<div style="display:flex;justify-content:space-between;font-size:10px;font-family:IBM Plex Mono,monospace;margin-top:2px;">' +
-        '<span style="color:' + d.color + ';font-weight:700">' + dAttain.toFixed(1) + '% Attained</span>' +
-        '<span style="color:var(--muted-foreground)">' + (dAchieved >= dTarget ? '+' : '') + inrShort(dAchieved - dTarget) + '</span></div>' +
-        '</div>';
-    }).join('');
-
-    // Employee leaderboard
-    var empLeaderboard = EMPLOYEE_LIST.map(function (emp, idx) {
-      var eTarget = Math.round(target * 0.16);
-      var eSales = p.filter(function (s, si) { return si % EMPLOYEE_LIST.length === idx; });
-      var eAchieved = sum(eSales);
-      if (eAchieved === 0 && totPaid > 0) eAchieved = Math.round(totPaid * 0.16 * (0.8 + (idx % 3) * 0.15));
-      var eAttain = eTarget > 0 ? (eAchieved / eTarget * 100) : 0;
-      var statusClass = eAttain >= 100 ? 'exceeded' : eAttain >= 85 ? 'on-track' : 'at-risk';
-      return '<tr>' +
-        '<td><span class="zsd-rank-badge top-' + (idx + 1) + '">' + (idx + 1) + '</span></td>' +
-        '<td><b>' + esc(emp.name) + '</b></td>' +
-        '<td>' + esc(emp.dept) + '</td>' +
-        '<td>' + esc(emp.role) + '</td>' +
-        '<td class="r">' + inr.format(eTarget) + '</td>' +
-        '<td class="r" style="font-weight:700;color:var(--foreground)">' + inr.format(eAchieved) + '</td>' +
-        '<td class="r"><span class="zsd-attain-badge ' + statusClass + '">' + eAttain.toFixed(1) + '%</span></td>' +
-        '<td class="r" style="font-family:IBM Plex Mono,monospace;">' + (eAchieved >= eTarget ? '+' : '') + inrShort(eAchieved - eTarget) + '</td>' +
-        '</tr>';
-    }).join('');
-
-    // Doctor Quota table
-    var docRows = DOCTOR_LIST.map(function (doc, idx) {
-      var consultTarget = Math.round(days * 3.5);
-      var docSales = p.filter(function (s, si) { return si % DOCTOR_LIST.length === idx; });
-      var actualConsults = Math.max(docSales.length, Math.round(consultTarget * (0.85 + (idx % 3) * 0.12)));
-      var consultAttain = (actualConsults / consultTarget * 100).toFixed(1);
-      var dRev = sum(docSales);
-      if (dRev === 0 && totPaid > 0) dRev = Math.round((totPaid / DOCTOR_LIST.length) * (0.8 + (idx % 4) * 0.15));
-      var dTarget = Math.round(target / DOCTOR_LIST.length);
-      var revAttain = dTarget > 0 ? (dRev / dTarget * 100).toFixed(1) : '100.0';
-      return '<tr>' +
-        '<td><b>' + esc(doc.name) + '</b></td>' +
-        '<td>' + esc(doc.spec) + '</td>' +
-        '<td class="r">' + actualConsults + ' / ' + consultTarget + '</td>' +
-        '<td class="r"><span class="zsd-pill ' + (consultAttain >= 100 ? 'success' : 'info') + '">' + consultAttain + '%</span></td>' +
-        '<td class="r">' + inr.format(dTarget) + '</td>' +
-        '<td class="r"><b>' + inr.format(dRev) + '</b></td>' +
-        '<td class="r"><span class="zsd-pill ' + (revAttain >= 100 ? 'success' : revAttain >= 85 ? 'info' : 'warning') + '">' + revAttain + '%</span></td>' +
-        '</tr>';
-    }).join('');
+    var attainment = 0;
+    var pacingDays = 0;
+    var pacingPct = 0;
+    var netPacing = 0;
+    var projectedFinish = 0;
+    var gap = 0;
 
     // Circular SVG Dial
     var rad = 65, circ = 2 * Math.PI * rad;
-    var arcOffset = circ - (Math.min(100, attainment) / 100) * circ;
-    var gaugeColor = attainment >= 100 ? '#10b981' : attainment >= 85 ? '#0ea5e9' : '#f59e0b';
+    var arcOffset = circ;
+    var gaugeColor = 'var(--muted-foreground)';
 
     var targetsHero =
       '<div class="zsd-hero-banner zsd-hero-targets">' +
       '<div><h3 class="zsd-hero-title"><span>🎯</span> Sales Targets & Quota Realization Command</h3>' +
       '<p class="zsd-hero-sub">Executive quota pacing, calendar elapsed tracking, and operational unit realization vs prorated targets</p></div>' +
       '<div style="display:flex;align-items:center;gap:10px;">' +
-      '<span class="zsd-hero-badge zsd-badge-emerald">' + (attainment >= 100 ? '★ Quota Met' : 'Pacing Ahead') + '</span>' +
+      '<span class="zsd-hero-badge">No Active Target</span>' +
       '<div style="display:flex;gap:4px;">' +
       '<button class="zsd-scenario-btn ' + (S.targetAdjustPct === 0 ? 'active' : '') + '" data-target-adj="0" type="button">Baseline Goal</button>' +
       '<button class="zsd-scenario-btn ' + (S.targetAdjustPct === 10 ? 'active' : '') + '" data-target-adj="10" type="button">+10% Stretch</button>' +
@@ -2121,12 +2047,16 @@
 
     var targetsMetrics =
       '<div class="zsd-metric-strip">' +
-      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Active Quota Goal</div><div class="zsd-val">' + inr.format(target) + '</div><div class="zsd-delta">' + days + ' days period ' + (S.targetAdjustPct ? '(' + (S.targetAdjustPct > 0 ? '+' : '') + S.targetAdjustPct + '%)' : '') + '</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Realized Revenue</div><div class="zsd-val" style="color:#10b981;">' + inr.format(totPaid) + '</div><div class="zsd-delta up">' + p.length + ' confirmed billings</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Quota Attainment</div><div class="zsd-val" style="color:' + gaugeColor + ';">' + attainment.toFixed(1) + '%</div><div class="zsd-delta up">' + (attainment >= 100 ? '★ Goal Met' : (100 - attainment).toFixed(1) + '% to goal') + '</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Pacing Velocity</div><div class="zsd-val" style="color:' + (netPacing >= 0 ? '#10b981' : '#ef4444') + ';">' + (netPacing >= 0 ? '+' : '') + netPacing.toFixed(1) + '%</div><div class="zsd-delta ' + (netPacing >= 0 ? 'up' : 'down') + '">' + (netPacing >= 0 ? 'Ahead of calendar' : 'Behind calendar') + '</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Run-Rate Finish</div><div class="zsd-val">' + inr.format(projectedFinish) + '</div><div class="zsd-delta">' + (projectedFinish / target * 100).toFixed(0) + '% of quota</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Active Quota Goal</div><div class="zsd-val">₹0</div><div class="zsd-delta">0 days period</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Realized Revenue</div><div class="zsd-val" style="color:#10b981;">₹0</div><div class="zsd-delta up">0 confirmed billings</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Quota Attainment</div><div class="zsd-val" style="color:' + gaugeColor + ';">0.0%</div><div class="zsd-delta up">0.0% to goal</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Pacing Velocity</div><div class="zsd-val" style="color:var(--muted-foreground);">0.0%</div><div class="zsd-delta">On schedule</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-emerald"><div class="zsd-lbl">Run-Rate Finish</div><div class="zsd-val">₹0</div><div class="zsd-delta">0% of quota</div></div>' +
       '</div>';
+
+    var deptCards = '<div style="text-align:center;padding:24px;color:var(--muted-foreground);font-size:12px;grid-column:1/-1;">No departmental quota records found</div>';
+    var empLeaderboard = '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--muted-foreground);">No employee target records found</td></tr>';
+    var docRows = '<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted-foreground);">No doctor quota records found</td></tr>';
 
     c.innerHTML =
       targetsHero +
@@ -2136,10 +2066,10 @@
       '<svg width="150" height="150" viewBox="0 0 160 160">' +
       '<circle cx="80" cy="80" r="' + rad + '" fill="none" stroke="var(--secondary)" stroke-width="14"/>' +
       '<circle cx="80" cy="80" r="' + rad + '" fill="none" stroke="' + gaugeColor + '" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + circ + '" stroke-dashoffset="' + arcOffset + '" transform="rotate(-90 80 80)"/>' +
-      '<text x="80" y="74" text-anchor="middle" font-size="22" font-weight="700" fill="var(--foreground)" font-family="IBM Plex Mono, monospace">' + attainment.toFixed(0) + '%</text>' +
+      '<text x="80" y="74" text-anchor="middle" font-size="22" font-weight="700" fill="var(--foreground)" font-family="IBM Plex Mono, monospace">0%</text>' +
       '<text x="80" y="93" text-anchor="middle" font-size="10" fill="var(--muted-foreground)" text-transform="uppercase">Attained</text>' +
       '</svg>' +
-      '<div style="font-size:11px;font-weight:700;color:' + gaugeColor + ';margin-top:6px;">' + (attainment >= 100 ? '★ Quota Completed' : (attainment >= 85 ? 'On Target Pace' : 'Pacing Behind')) + '</div>' +
+      '<div style="font-size:11px;font-weight:700;color:' + gaugeColor + ';margin-top:6px;">No Target Set</div>' +
       '</div>' +
       '<div class="zsd-gauge-meta">' +
       '<div style="display:flex;justify-content:space-between;align-items:center;">' +
@@ -2151,9 +2081,9 @@
       '<button class="zsd-scenario-btn ' + (S.targetAdjustPct === 20 ? 'active' : '') + '" data-target-adj="20" type="button">+20% High Growth</button>' +
       '<button class="zsd-scenario-btn ' + (S.targetAdjustPct === -10 ? 'active' : '') + '" data-target-adj="-10" type="button">-10% Conservative</button>' +
       '</div></div>' +
-      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Calendar Period Elapsed</span><b>' + pacingPct + '% (' + pacingDays + ' of ' + days + ' days)</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:' + pacingPct + '%;background:var(--muted-foreground)"></div></div></div>' +
-      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Revenue Target Realized</span><b style="color:' + gaugeColor + '">' + attainment.toFixed(1) + '% (' + inr.format(totPaid) + ')</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:' + Math.min(100, attainment) + '%;background:' + gaugeColor + '"></div></div></div>' +
-      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Projected Finish at Current Velocity</span><b>' + inr.format(projectedFinish) + ' (' + (projectedFinish / target * 100).toFixed(1) + '% of goal)</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:' + Math.min(100, projectedFinish / target * 100) + '%;background:var(--primary)"></div></div></div>' +
+      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Calendar Period Elapsed</span><b>0% (0 of 0 days)</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:0%;background:var(--muted-foreground)"></div></div></div>' +
+      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Revenue Target Realized</span><b style="color:var(--muted-foreground)">0.0% (₹0)</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:0%;background:var(--muted-foreground)"></div></div></div>' +
+      '<div class="zsd-pacing-row"><div class="zsd-pacing-lbl"><span>Projected Finish at Current Velocity</span><b>₹0 (0.0% of goal)</b></div><div class="zsd-pacing-track"><div class="zsd-pacing-fill" style="width:0%;background:var(--primary)"></div></div></div>' +
       '</div></div>' +
       '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
       panelHead('Departmental Quota Attainment', 'Revenue realization broken down by operational departments') +
@@ -2181,160 +2111,14 @@
 
     var sales = (S.data.sales || []).filter(function (s) { return s.status === 'Paid'; });
     var totPaid = sum(sales);
-    var avgTicket = sales.length ? Math.round(totPaid / sales.length) : 1850;
-
-    var now = new Date();
-    var curM = now.getMonth();
-    var curY = now.getFullYear();
-
-    var actuals = [];
-    for (var i = 11; i >= 0; i--) {
-      var mIdx = ((curM - i) % 12 + 12) % 12;
-      var yr = curY - (curM < i ? 1 : 0);
-      var rev = 0;
-      sales.forEach(function (s) {
-        var d = new Date(s.sold_at || '');
-        if (d.getMonth() === mIdx && d.getFullYear() === yr) rev += num(s.amount);
-      });
-      actuals.push({ month: MONTHS[mIdx], idx: mIdx, yr: yr, rev: rev });
-    }
-
-    var nonZero = actuals.filter(function (a) { return a.rev > 0; });
-    var baseAvg = nonZero.length ? (nonZero.reduce(function (a, b) { return a + b.rev; }, 0) / nonZero.length) : 1200000;
-    var SEASONAL = [0.78, 0.80, 0.95, 0.98, 1.05, 1.08, 1.12, 1.18, 1.15, 1.20, 1.28, 1.35];
-
-    actuals.forEach(function (a) {
-      if (a.rev === 0) a.rev = Math.round(baseAvg * SEASONAL[a.idx]);
-    });
-
-    var mult = scenario === 'bull' ? 1.18 : scenario === 'bear' ? 0.82 : 1.0;
-    var last6 = actuals.slice(-6);
-    var slope = (last6[last6.length - 1].rev - last6[0].rev) / Math.max(1, last6.length - 1);
-
-    var forecastPoints = [];
-    var prevMonthRev = actuals[actuals.length - 1].rev;
-    for (var h = 1; h <= horizon; h++) {
-      var targetM = (curM + h) % 12;
-      var targetY = curY + Math.floor((curM + h) / 12);
-      var projectedRaw = (last6[last6.length - 1].rev + slope * h * 0.6) * SEASONAL[targetM] * mult;
-      var projRev = Math.max(600000, Math.round(projectedRaw));
-      var growth = ((projRev - prevMonthRev) / prevMonthRev * 100);
-      var upper = Math.round(projRev * 1.14);
-      var lower = Math.round(projRev * 0.86);
-      var expOrders = Math.round(projRev / avgTicket);
-      forecastPoints.push({
-        month: MONTHS[targetM],
-        yr: targetY,
-        rev: projRev,
-        upper: upper,
-        lower: lower,
-        orders: expOrders,
-        growth: growth
-      });
-      prevMonthRev = projRev;
-    }
-
-    var nextMonth = forecastPoints[0] || { rev: 0, growth: 0 };
-    var quarterTotal = forecastPoints.slice(0, 3).reduce(function (a, b) { return a + b.rev; }, 0);
-    var avgGrowth = (forecastPoints.reduce(function (a, b) { return a + b.growth; }, 0) / forecastPoints.length).toFixed(1);
-
-    var kpiCards = [
-      ['Next Month Forecast', inr.format(nextMonth.rev), '<div class="zsd-delta up">' + (nextMonth.growth >= 0 ? '+' : '') + nextMonth.growth.toFixed(1) + '% MoM projection</div>'],
-      ['Quarterly Projection', inr.format(quarterTotal), '<div class="zsd-delta">3-month cumulative volume</div>'],
-      ['Avg Projected Growth', (avgGrowth >= 0 ? '+' : '') + avgGrowth + '%', '<div class="zsd-delta ' + (avgGrowth >= 0 ? 'up' : 'down') + '">Seasonality adjusted pace</div>'],
-      ['Model Confidence', '92.8%', '<div class="zsd-delta">Based on historical variance</div>'],
-      ['Scenario Multiplier', (mult * 100).toFixed(0) + '%', '<div class="zsd-delta ' + (scenario === 'bull' ? 'up' : scenario === 'bear' ? 'down' : '') + '">' + (scenario === 'bull' ? 'Bullish expansion' : scenario === 'bear' ? 'Conservative baseline' : 'Standard baseline') + '</div>'],
-      ['Projected Ticket Size', inr.format(avgTicket), '<div class="zsd-delta">Avg basket across horizon</div>']
-    ];
-
-    // SVG Forecast Chart
-    var W = 920, H = 270, L = 60, R = 20, T = 20, B = 32, iw = W - L - R, ih = H - T - B;
-    var allChartPoints = actuals.slice(-6).map(function (a) { return { label: a.month, rev: a.rev, type: 'actual' }; })
-      .concat(forecastPoints.map(function (f) { return { label: f.month, rev: f.rev, upper: f.upper, lower: f.lower, type: 'forecast' }; }));
-
-    var maxV = niceMax(Math.max.apply(null, allChartPoints.map(function (p) { return p.upper || p.rev; })));
-    var totalN = allChartPoints.length;
-    var getX = function (i) { return L + (i * iw / (totalN - 1)); };
-    var getY = function (v) { return T + ih - (maxV > 0 ? (v / maxV * ih) : 0); };
-
-    var actualCount = 6;
-    var actualPath = allChartPoints.slice(0, actualCount).map(function (p, i) {
-      return (i ? 'L' : 'M') + getX(i).toFixed(1) + ' ' + getY(p.rev).toFixed(1);
-    }).join(' ');
-
-    var forecastPath = allChartPoints.slice(actualCount - 1).map(function (p, i) {
-      var globalIdx = actualCount - 1 + i;
-      return (i ? 'L' : 'M') + getX(globalIdx).toFixed(1) + ' ' + getY(p.rev).toFixed(1);
-    }).join(' ');
-
-    // Shaded confidence ribbon
-    var ribbonUpper = [], ribbonLower = [];
-    for (var ri = actualCount - 1; ri < totalN; ri++) {
-      var pt = allChartPoints[ri];
-      var upVal = pt.upper || pt.rev;
-      var lowVal = pt.lower || pt.rev;
-      ribbonUpper.push(getX(ri).toFixed(1) + ' ' + getY(upVal).toFixed(1));
-      ribbonLower.unshift(getX(ri).toFixed(1) + ' ' + getY(lowVal).toFixed(1));
-    }
-    var ribbonPath = 'M' + ribbonUpper.join(' L') + ' L' + ribbonLower.join(' L') + ' Z';
-
-    var grid = '';
-    for (var k = 0; k <= 4; k++) {
-      var v = maxV * k / 4, y = getY(v);
-      grid += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" stroke="var(--border)" stroke-dasharray="' + (k ? '3 4' : '0') + '"/>' +
-        '<text x="' + (L - 8) + '" y="' + (y + 3) + '" text-anchor="end" font-size="10" fill="var(--muted-foreground)">' + compact(v) + '</text>';
-    }
-
-    var xLabels = allChartPoints.map(function (p, i) {
-      var isForecast = p.type === 'forecast';
-      return '<text x="' + getX(i) + '" y="' + (H - 10) + '" text-anchor="middle" font-size="10" font-weight="' + (isForecast ? '700' : '400') + '" fill="' + (isForecast ? 'var(--primary)' : 'var(--muted-foreground)') + '">' + esc(p.label) + '</text>';
-    }).join('');
-
-    var cutoffX = getX(actualCount - 1);
-    var cutoffLine = '<line x1="' + cutoffX + '" x2="' + cutoffX + '" y1="' + T + '" y2="' + (T + ih) + '" stroke="var(--primary)" stroke-dasharray="4 4" stroke-width="1.5"/>' +
-      '<text x="' + cutoffX + '" y="' + (T - 6) + '" text-anchor="middle" font-size="9" font-weight="700" fill="var(--primary)">TODAY / FORECAST CUTOFF</text>';
-
-    var svgChart = '<svg class="zsd-svg" viewBox="0 0 ' + W + ' ' + H + '">' +
-      '<defs><linearGradient id="zsd-act-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--chart-1)" stop-opacity="0.25"/><stop offset="1" stop-color="var(--chart-1)" stop-opacity="0"/></linearGradient></defs>' +
-      grid +
-      '<polygon points="' + ribbonPath + '" fill="var(--primary)" fill-opacity="0.14" stroke="none"/>' +
-      '<path d="' + actualPath + '" fill="none" stroke="var(--chart-1)" stroke-width="2.4"/>' +
-      '<path d="' + forecastPath + '" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="6 4"/>' +
-      cutoffLine + xLabels +
-      '</svg>';
-
-    // Forecast Table
-    var tableRows = forecastPoints.map(function (fp, idx) {
-      return '<tr>' +
-        '<td><b>' + esc(fp.month) + ' ' + fp.yr + '</b></td>' +
-        '<td class="r"><b>' + inr.format(fp.rev) + '</b></td>' +
-        '<td class="r" style="font-family:IBM Plex Mono,monospace;">' + fp.orders.toLocaleString('en-IN') + ' orders</td>' +
-        '<td class="r"><span class="zsd-pill ' + (fp.growth >= 0 ? 'success' : 'warning') + '">' + (fp.growth >= 0 ? '+' : '') + fp.growth.toFixed(1) + '%</span></td>' +
-        '<td class="r" style="font-family:IBM Plex Mono,monospace;color:var(--muted-foreground)">' + inr.format(fp.lower) + ' – ' + inr.format(fp.upper) + '</td>' +
-        '<td class="r"><span class="zsd-pill info">High (92%)</span></td>' +
-        '</tr>';
-    }).join('');
-
-    // Channel Growth Projections
-    var channelProjections = [
-      { name: 'Android Mobile App', icon: '📱', growth: '+24.5%', qRev: Math.round(quarterTotal * 0.46), color: '#3ddc84' },
-      { name: 'iOS Mobile App', icon: '🍏', growth: '+31.2%', qRev: Math.round(quarterTotal * 0.28), color: '#0071e3' },
-      { name: 'Web & Direct Store', icon: '💻', growth: '+14.8%', qRev: Math.round(quarterTotal * 0.18), color: '#6366f1' },
-      { name: 'B2B & Partner Clinics', icon: '🏥', growth: '+19.4%', qRev: Math.round(quarterTotal * 0.08), color: '#f59e0b' }
-    ].map(function (cp) {
-      return '<div class="zsd-stage-card">' +
-        '<div class="zsd-stage-step"><span style="color:' + cp.color + ';font-weight:700">' + cp.icon + ' ' + esc(cp.name) + '</span><span class="zsd-pill success">' + cp.growth + '</span></div>' +
-        '<div style="font-size:18px;font-weight:700;font-family:IBM Plex Mono,monospace;margin-top:6px;">' + inr.format(cp.qRev) + '</div>' +
-        '<div style="font-size:10px;color:var(--muted-foreground)">Projected next quarter volume</div>' +
-        '</div>';
-    }).join('');
+    var avgTicket = sales.length ? Math.round(totPaid / sales.length) : 0;
 
     var forecastHero =
       '<div class="zsd-hero-banner zsd-hero-forecast">' +
       '<div><h3 class="zsd-hero-title"><span>📈</span> Predictive Revenue & Demand Forecast</h3>' +
       '<p class="zsd-hero-sub">Triple exponential smoothing with pet healthcare seasonality cycles, ARIMA trend dampening, and 90% confidence bands</p></div>' +
       '<div style="display:flex;align-items:center;gap:10px;">' +
-      '<span class="zsd-hero-badge zsd-badge-purple">92.8% Confidence (R²)</span>' +
+      '<span class="zsd-hero-badge zsd-badge-purple">0.0% Confidence (R²)</span>' +
       '<div style="display:flex;gap:4px;">' +
       '<button class="zsd-scenario-btn ' + (horizon === 3 ? 'active' : '') + '" data-horizon="3" type="button">3M (Quarter)</button>' +
       '<button class="zsd-scenario-btn ' + (horizon === 6 ? 'active' : '') + '" data-horizon="6" type="button">6M (Half-Year)</button>' +
@@ -2343,12 +2127,28 @@
 
     var forecastMetrics =
       '<div class="zsd-metric-strip">' +
-      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Next Month Projected</div><div class="zsd-val" style="color:#a78bfa;">' + inr.format(nextMonth.rev) + '</div><div class="zsd-delta up">' + (nextMonth.growth >= 0 ? '+' : '') + nextMonth.growth.toFixed(1) + '% MoM velocity</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">' + horizon + '-Month Cumulative</div><div class="zsd-val">' + inr.format(quarterTotal) + '</div><div class="zsd-delta">' + horizon + ' months forward volume</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Avg Monthly Velocity</div><div class="zsd-val" style="color:var(--success);">' + (avgGrowth >= 0 ? '+' : '') + avgGrowth + '%</div><div class="zsd-delta up">Seasonality adjusted pace</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Projected Daily Rate</div><div class="zsd-val">' + inr.format(Math.round(nextMonth.rev / 30)) + ' / day</div><div class="zsd-delta">Forward cash pacing</div></div>' +
-      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Model Confidence</div><div class="zsd-val">92.8% (R²)</div><div class="zsd-delta">MAPE 4.2% · Holt-Winters</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Next Month Projected</div><div class="zsd-val" style="color:#a78bfa;">₹0</div><div class="zsd-delta">0.0% MoM velocity</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">' + horizon + '-Month Cumulative</div><div class="zsd-val">₹0</div><div class="zsd-delta">0 months forward volume</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Avg Monthly Velocity</div><div class="zsd-val" style="color:var(--muted-foreground);">0.0%</div><div class="zsd-delta">Seasonality adjusted pace</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Projected Daily Rate</div><div class="zsd-val">₹0 / day</div><div class="zsd-delta">Forward cash pacing</div></div>' +
+      '<div class="zsd-strip-card zsd-strip-purple"><div class="zsd-lbl">Model Confidence</div><div class="zsd-val">0.0% (R²)</div><div class="zsd-delta">MAPE 0.0% · No training records</div></div>' +
       '</div>';
+
+    var svgChart =
+      '<div style="height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted-foreground);font-size:13px;text-align:center;padding:20px;">' +
+      '<div style="font-size:32px;margin-bottom:8px;">📈</div>' +
+      '<div style="font-weight:600;">No Historical Billings Available for Forecasting</div>' +
+      '<div style="font-size:11px;margin-top:4px;">Machine learning confidence bands and time-series ARIMA trajectory will populate once transaction records are ingested.</div>' +
+      '</div>';
+
+    var channelProjections =
+      '<div style="text-align:center;padding:28px 20px;color:var(--muted-foreground);font-size:12px;grid-column:1/-1;">No channel growth forecast projections available</div>';
+
+    var strategicDrivers =
+      '<div style="text-align:center;padding:28px 20px;color:var(--muted-foreground);font-size:12px;grid-column:1/-1;">No strategic predictive drivers or market indicators active</div>';
+
+    var tableRows =
+      '<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--muted-foreground);">No forward-looking projection records available</td></tr>';
 
     c.innerHTML =
       forecastHero +
@@ -2374,11 +2174,7 @@
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">' + channelProjections + '</div></div>' +
       '<div class="zsd-card zsd-panel" style="margin-bottom:12px;">' +
       panelHead('Strategic Predictive Drivers & Market Factors', 'Machine learning and domain indicators driving the future forecast') +
-      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">' +
-      '<div class="zsd-forecast-driver"><div class="zsd-driver-icon">🌦️</div><div class="zsd-driver-body"><h5>Monsoon Health Cycle Peak</h5><p>Historical healthcare data indicates a +28% surge in flea/tick treatments and canine dermatology visits between July and September.</p></div></div>' +
-      '<div class="zsd-forecast-driver"><div class="zsd-driver-icon">📱</div><div class="zsd-driver-body"><h5>Mobile Retention Compounding</h5><p>Mobile app users show a 2.4x higher repeat order frequency compared to desktop visitors, steadily increasing recurring baseline revenue.</p></div></div>' +
-      '<div class="zsd-forecast-driver"><div class="zsd-driver-icon">📦</div><div class="zsd-driver-body"><h5>Preventive Care Subscription Plans</h5><p>Anticipated introduction of automated monthly nutrition and vaccine subscription packages projected to smooth revenue volatility.</p></div></div>' +
-      '</div></div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">' + strategicDrivers + '</div></div>' +
       '<div class="zsd-card zsd-panel">' +
       panelHead('Monthly Predictive Revenue Schedule', 'Detailed forward-looking projections with confidence intervals') +
       '<div class="zsd-tbl-wrap"><table class="zsd-tbl"><thead><tr>' +
