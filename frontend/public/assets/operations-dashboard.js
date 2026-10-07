@@ -26,7 +26,8 @@
   };
 
   var TABS = [
-    { id: 'overview',      label: 'Operations Dashboard', icon: '🎛️', hash: '#operations-dashboard', badge: 'Live' },
+    { id: 'all-orders',    label: 'All Orders',           icon: '📋', hash: '#all-orders', badge: '' },
+    { id: 'overview',      label: 'Operations Dashboard', icon: '🎛️', hash: '#operations-dashboard', badge: '' },
     { id: 'management',    label: 'Order Management',     icon: '📦', hash: '#order-management', badge: '124' },
     { id: 'status',        label: 'Order Status',         icon: '📍', hash: '#order-status', badge: 'Live SLA' },
     { id: 'returns',       label: 'Returns & Refunds',    icon: '🔄', hash: '#returns-refunds', badge: '6 Pending' },
@@ -141,7 +142,7 @@
         id: s.transaction_ref || ('ZV-' + (11500 + idx)),
         dbId: s.id,
         date: s.sold_at || new Date().toISOString(),
-        customer: s.person || 'Dr. Pet Parent',
+        customer: s.person || 'Customer',
         pet: pet,
         phone: '+91 98' + String(10000000 + ((idx * 9481) % 89999999)),
         address: address,
@@ -183,8 +184,9 @@
         s.indexOf('delivery cost') >= 0 ||
         s.indexOf('failed deliver') >= 0) return null;
 
+    if (s === 'all orders' || s === 'all-orders' || s === 'all orders dashboard' || s === 'orders') return 'all-orders';
     if (s.indexOf('operations dashboard') >= 0 || s === 'operations') return 'overview';
-    if (s.indexOf('order management') >= 0 || s === 'orders management' || s === 'manage orders' || s === 'all orders') return 'management';
+    if (s.indexOf('order management') >= 0 || s === 'orders management' || s === 'manage orders') return 'management';
     if (s.indexOf('order status') >= 0 || s.indexOf('track order') >= 0 || s === 'tracking') return 'status';
     if (s.indexOf('returns & refunds') >= 0 || s.indexOf('returns') >= 0 || s.indexOf('refunds') >= 0) return 'returns';
     if (s.indexOf('cancellations') >= 0 || s.indexOf('cancellation') >= 0) return 'cancellations';
@@ -204,8 +206,9 @@
         hash.indexOf('delivery-cost') >= 0 ||
         hash.indexOf('failed-deliveries') >= 0) return null;
 
+    if (hash === '#all-orders' || hash === '#allorders' || hash === '#orders') return 'all-orders';
     if (hash === '#operations-dashboard' || hash === '#operations' || hash === '#ops') return 'overview';
-    if (hash === '#order-management' || hash === '#all-orders' || hash === '#orders') return 'management';
+    if (hash === '#order-management') return 'management';
     if (hash === '#order-status' || hash === '#tracking') return 'status';
     if (hash === '#returns-refunds' || hash === '#returns' || hash === '#refunds') return 'returns';
     if (hash === '#cancellations' || hash === '#cancelled') return 'cancellations';
@@ -495,7 +498,9 @@
     var container = root.querySelector('#zod-content');
     if (!container) return;
 
-    if (S.tab === 'overview') {
+    if (S.tab === 'all-orders') {
+      container.innerHTML = renderAllOrdersView();
+    } else if (S.tab === 'overview') {
       container.innerHTML = renderOverviewView();
     } else if (S.tab === 'management') {
       container.innerHTML = renderManagementView();
@@ -512,6 +517,71 @@
     }
 
     wireTabEvents();
+  }
+
+  /* =====================================================================
+     VIEW 0: All Orders Dashboard (Master Ledger)
+     ===================================================================== */
+  function renderAllOrdersView() {
+    return [
+      '<div class="zod-kpi-grid">',
+        kpi('Total Master Orders', '0', '0.0% MoM', 'neutral', '📋'),
+        kpi('Fulfilled & Delivered', '0', '0.0% Rate', 'neutral', '✅'),
+        kpi('Processing & Active', '0', '0 Active', 'neutral', '⚡'),
+        kpi('Cancelled / Returned', '0', '0.0% Rate', 'neutral', '🚫'),
+        kpi('Gross Order Value', '₹0', '0.0% YoY', 'neutral', '💰'),
+      '</div>',
+
+      '<div class="zod-card">',
+        '<div class="zod-card-head">',
+          '<div>',
+            '<h3 class="zod-card-title">All Orders Master Repository</h3>',
+            '<p class="zod-card-sub">Real-time audit log of all customer, B2B, pharmacy, clinical, and marketplace orders</p>',
+          '</div>',
+          '<span class="zod-badge">0 Records</span>',
+        '</div>',
+
+        '<div class="zod-filter-bar">',
+          '<input type="text" class="zod-input" placeholder="Search Order ID, Customer, Phone, SKU, Tracking No..." value="' + esc(S.searchQuery || '') + '" oninput="ZOD.setSearch(this.value)">',
+          '<select class="zod-select" onchange="ZOD.setHub(this.value)">',
+            '<option value="all">All Operations Hubs</option>',
+          '</select>',
+          '<select class="zod-select">',
+            '<option value="all">All Order Statuses</option>',
+            '<option value="paid">Paid & Confirmed</option>',
+            '<option value="processing">Processing</option>',
+            '<option value="packed">Packed</option>',
+            '<option value="shipped">Shipped</option>',
+            '<option value="delivered">Delivered</option>',
+            '<option value="cancelled">Cancelled</option>',
+          '</select>',
+          '<button class="zod-btn" onclick="alert(\'Exporting All Orders Master Ledger (CSV)...\')">📥 Export CSV</button>',
+        '</div>',
+
+        '<div class="zod-table-wrap">',
+          '<table class="zod-table">',
+            '<thead>',
+              '<tr>',
+                '<th>Order ID</th>',
+                '<th>Date & Time</th>',
+                '<th>Customer / Entity</th>',
+                '<th>Channel / Source</th>',
+                '<th>Items & Fulfillment</th>',
+                '<th style="text-align:right;">Order Amount</th>',
+                '<th style="text-align:center;">Payment Status</th>',
+                '<th style="text-align:center;">Fulfillment SLA</th>',
+                '<th style="text-align:center;">Action</th>',
+              '</tr>',
+            '</thead>',
+            '<tbody><tr><td colspan="100%" style="text-align:center;padding:36px;color:#94a3b8;">No records found</td></tr></tbody>',
+          '</table>',
+        '</div>',
+
+        '<div style="padding:14px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;color:#64748b;margin-top:16px;line-height:1.4;">',
+          '<strong>💡 Master Ledger Note:</strong> No order records exist in the database. New orders placed via web, app, pharmacy, or clinic counters will stream here in real time.',
+        '</div>',
+      '</div>'
+    ].join('');
   }
 
   /* =====================================================================
@@ -576,7 +646,7 @@
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:10px;">',
             renderAlertItem('⚡ 60-Min SLA Risk', 'Order ZV-11530 in Koramangala has 12m remaining. Rider rerouted to bypass Sony World junction.', 'amber', '10m ago'),
-            renderAlertItem('❄️ Cold-Chain Compliance', 'Batch ZO-942 (Zoetis Vaccines) passed 4°C temperature check. Ready for Express dispatch.', 'green', '24m ago'),
+            renderAlertItem('❄️ Cold-Chain Compliance', 'Vaccine batch passed 4°C temperature check. Ready for Express dispatch.', 'green', '24m ago'),
             renderAlertItem('🌧️ Weather Delay Warning', 'Heavy monsoon showers in Mumbai West (Bandra). Estimated delivery buffers increased +15m.', 'blue', '45m ago'),
             renderAlertItem('🔄 Reverse Pickup Scheduled', 'Return ZV-11497 (Harness exchange) assigned to Shadowfax Reverse. Customer notified.', 'purple', '1h ago'),
           '</div>',
@@ -1050,7 +1120,7 @@
                       '<td><span class="zod-badge red">' + (idx % 2 === 0 ? 'Within 5m' : 'Pre-Dispatch') + '</span></td>',
                       '<td class="r" style="font-family:IBM Plex Mono,monospace;font-weight:700;">' + inr.format(o.amount) + '</td>',
                       '<td class="r">',
-                        '<button type="button" class="zod-btn" style="height:26px;padding:0 8px;font-size:11px;" data-retention-credit="' + o.id + '">🎁 Offer ₹150 Credit</button>',
+                        '<button type="button" class="zod-btn" style="height:26px;padding:0 8px;font-size:11px;" data-retention-credit="' + o.id + '">🎁 Offer Store Credit</button>',
                       '</td>',
                     '</tr>'
                   ].join('');
@@ -1574,7 +1644,7 @@
     content.querySelectorAll('[data-retention-credit]').forEach(function (b) {
       b.onclick = function () {
         var id = b.getAttribute('data-retention-credit');
-        showToast('Dispatched ₹150 Zenve Pet Healthcare credit coupon code to customer!');
+        showToast('Dispatched store credit coupon code to customer!');
       };
     });
 
