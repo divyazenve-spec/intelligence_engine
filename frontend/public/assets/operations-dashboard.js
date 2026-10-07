@@ -1152,7 +1152,7 @@
               partners.map(function (p) {
                 return [
                   '<tr>',
-                    '<td><b style="color:#fff;">' + esc(p.name) + '</b></td>',
+                    '<td><b style="color:#000000;">' + esc(p.name) + '</b></td>',
                     '<td><span class="zod-badge ' + (p.type.indexOf('60-Min') >= 0 ? 'express' : 'blue') + '">' + esc(p.type) + '</span></td>',
                     '<td><strong style="color:#10b981;font-family:IBM Plex Mono,monospace;">' + esc(p.onTime) + '</strong></td>',
                     '<td>' + esc(p.avgTime) + '</td>',
