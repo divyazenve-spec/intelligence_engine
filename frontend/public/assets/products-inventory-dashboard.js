@@ -33,92 +33,82 @@
   }
 
   /* ── Tabs Definition ──────────────────────────────────────────── */
+  /* ── Tabs Definition ──────────────────────────────────────────── */
   var TABS = [
-    { id: 'catalog',    label: 'Product Catalog',    icon: '🛍️', hash: '#product-catalog',     badge: '1,420 SKUs' },
-    { id: 'sku',        label: 'SKU Management',     icon: '🏷️', hash: '#sku-management',       badge: 'Live' },
-    { id: 'inventory',  label: 'Inventory Dashboard',icon: '📦', hash: '#inventory-dashboard',   badge: '₹1.86 Cr' },
-    { id: 'stock',      label: 'Stock Management',   icon: '🏗️', hash: '#stock-management',     badge: 'Live' },
-    { id: 'lowstock',   label: 'Low Stock',          icon: '⚠️', hash: '#low-stock',            badge: '28', warnBadge: true },
-    { id: 'outofstock', label: 'Out of Stock',       icon: '🚫', hash: '#out-of-stock',         badge: '9',  dangerBadge: true },
-    { id: 'expiry',     label: 'Expiry Management',  icon: '⏳', hash: '#expiry-management',    badge: '12 Batches', warnBadge: true },
-    { id: 'warehouse',  label: 'Warehouse Management',icon: '🏭', hash: '#warehouse-management', badge: '5 Hubs' },
-    { id: 'transfers',  label: 'Stock Transfers',    icon: '🔁', hash: '#stock-transfers',      badge: '4 In Transit' },
-    { id: 'valuation',  label: 'Inventory Valuation',icon: '💎', hash: '#inventory-valuation',  badge: '₹1.86 Cr' },
-    { id: 'movement',   label: 'Inventory Movement', icon: '📈', hash: '#inventory-movement',   badge: 'Live Logs' }
+    { id: 'catalog',    label: 'Product Catalog',    icon: '🛍️', hash: '#product-catalog',     badge: '0 SKUs' },
+    { id: 'sku',        label: 'SKU Management',     icon: '🏷️', hash: '#sku-management',       badge: '0' },
+    { id: 'inventory',  label: 'Inventory Dashboard',icon: '📦', hash: '#inventory-dashboard',   badge: '₹0' },
+    { id: 'stock',      label: 'Stock Management',   icon: '🏗️', hash: '#stock-management',     badge: '0' },
+    { id: 'lowstock',   label: 'Low Stock',          icon: '⚠️', hash: '#low-stock',            badge: '0', warnBadge: true },
+    { id: 'outofstock', label: 'Out of Stock',       icon: '🚫', hash: '#out-of-stock',         badge: '0',  dangerBadge: true },
+    { id: 'expiry',     label: 'Expiry Management',  icon: '⏳', hash: '#expiry-management',    badge: '0 Batches', warnBadge: true },
+    { id: 'warehouse',  label: 'Warehouse Management',icon: '🏭', hash: '#warehouse-management', badge: '0 Hubs' },
+    { id: 'transfers',  label: 'Stock Transfers',    icon: '🔁', hash: '#stock-transfers',      badge: '0 In Transit' },
+    { id: 'valuation',  label: 'Inventory Valuation',icon: '💎', hash: '#inventory-valuation',  badge: '₹0' },
+    { id: 'movement',   label: 'Inventory Movement', icon: '📈', hash: '#inventory-movement',   badge: '0 Logs' }
   ];
 
   /* ── Master Product Dataset ───────────────────────────────────── */
-  var PRODUCTS = [
-    { sku:'ZV-MED-001', name:'Bravecto Chewable Tablet (10-20kg)', cat:'Pharmacy & Meds', subcat:'Antiparasitic', brand:'MSD Animal Health', price:1950, cost:1100, mrp:2100, stock:142, reorder:30, moq:12, weight:'112g', vendor:'MSD India Pvt Ltd', warehouse:'Bengaluru Hub', expiry:'2026-08-15', batches:3, cold:false, rx:false, active:true },
-    { sku:'ZV-DIET-004', name:'Royal Canin Hepatic Veterinary Diet 3kg', cat:'Clinical Nutrition', subcat:'Prescription Food', brand:'Royal Canin', price:3400, cost:2200, mrp:3600, stock:14, reorder:25, moq:6, weight:'3kg', vendor:'Royal Canin India', warehouse:'Bengaluru Hub', expiry:'2025-12-20', batches:2, cold:false, rx:true, active:true },
-    { sku:'ZV-VAC-002', name:'Nobivac DHPPi Core Vaccine 1D', cat:'Vaccines', subcat:'Core Vaccines', brand:'MSD Animal Health', price:850, cost:420, mrp:950, stock:86, reorder:40, moq:50, weight:'1ml vial', vendor:'MSD India Pvt Ltd', warehouse:'Mumbai Hub', expiry:'2025-11-30', batches:4, cold:true, rx:true, active:true },
-    { sku:'ZV-PAR-009', name:'NexGard Spectra (3.5-7.5kg)', cat:'Pharmacy & Meds', subcat:'Antiparasitic', brand:'Boehringer Ingelheim', price:1450, cost:820, mrp:1550, stock:8, reorder:20, moq:12, weight:'2.5g', vendor:'BI India Ltd', warehouse:'Delhi Hub', expiry:'2026-03-10', batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-ACC-015', name:'Ergonomic Anti-Pull Harness (L)', cat:'Accessories', subcat:'Pet Gear', brand:'Zenve Own Label', price:1250, cost:380, mrp:1399, stock:64, reorder:15, moq:24, weight:'240g', vendor:'Nexus Pet Products', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-FOOD-022', name:'Pedigree Pro Puppy Starter 3kg', cat:'Pet Nutrition', subcat:'Puppy Food', brand:'Mars Petcare', price:780, cost:440, mrp:850, stock:210, reorder:50, moq:24, weight:'3kg', vendor:'Mars International India', warehouse:'Hyderabad Hub', expiry:'2026-01-05', batches:5, cold:false, rx:false, active:true },
-    { sku:'ZV-DERM-007', name:'Malaseb Medicated Shampoo 250ml', cat:'Dermatology', subcat:'Medicated Shampoo', brand:'Dechra', price:680, cost:310, mrp:720, stock:0, reorder:20, moq:12, weight:'250ml', vendor:'Dechra Veterinary Products', warehouse:'Bengaluru Hub', expiry:'2026-06-30', batches:0, cold:false, rx:false, active:false },
-    { sku:'ZV-VAC-011', name:'Rabisin Anti-Rabies Vaccine 1D', cat:'Vaccines', subcat:'Core Vaccines', brand:'Merial', price:320, cost:150, mrp:380, stock:0, reorder:30, moq:50, weight:'1ml vial', vendor:'Boehringer Ingelheim', warehouse:'Mumbai Hub', expiry:'2025-10-15', batches:0, cold:true, rx:true, active:false },
-    { sku:'ZV-SUP-003', name:'Himalaya Digyton Plus 200ml', cat:'Supplements', subcat:'Digestive Health', brand:'Himalaya Drug Co.', price:340, cost:180, mrp:380, stock:37, reorder:15, moq:12, weight:'200ml', vendor:'Himalaya Drug Company', warehouse:'Pune Hub', expiry:'2025-11-08', batches:2, cold:false, rx:false, active:true },
-    { sku:'ZV-FOOD-031', name:'Drools Absolute Calcium Bone (Pack 10)', cat:'Pet Nutrition', subcat:'Treats & Chews', brand:'Drools', price:220, cost:95, mrp:250, stock:318, reorder:60, moq:48, weight:'250g', vendor:'Drools Pet Foods', warehouse:'Bengaluru Hub', expiry:'2026-04-22', batches:6, cold:false, rx:false, active:true },
-    { sku:'ZV-MED-018', name:'Spotnon (Fipronil) Spot-On (2-10kg)', cat:'Pharmacy & Meds', subcat:'Topical Antiparasitic', brand:'Bayer', price:240, cost:110, mrp:280, stock:5, reorder:25, moq:24, weight:'0.67ml', vendor:'Bayer Crop Science', warehouse:'Delhi Hub', expiry:'2025-12-31', batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-TECH-044', name:'PetCube Interactive Camera + Treat Dispenser', cat:'Pet Tech', subcat:'Smart Devices', brand:'PetCube', price:8500, cost:5200, mrp:9500, stock:22, reorder:5, moq:6, weight:'580g', vendor:'PetCube Inc. (Import)', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true },
-    { sku:'ZV-CLINIC-002', name:'Zoetis Cardisure (Pimobendan) 5mg x30', cat:'Pharmacy & Meds', subcat:'Cardiac Medicine', brand:'Zoetis', price:2200, cost:1350, mrp:2400, stock:3, reorder:15, moq:10, weight:'Tab x30', vendor:'Zoetis India Pvt Ltd', warehouse:'Bengaluru Hub', expiry:'2025-10-20', batches:1, cold:false, rx:true, active:true },
-    { sku:'ZV-NUTR-008', name:'Hills Science Diet Renal Care Cat 1.5kg', cat:'Clinical Nutrition', subcat:'Prescription Food', brand:'Hills', price:2100, cost:1300, mrp:2350, stock:0, reorder:20, moq:6, weight:'1.5kg', vendor:'Colgate Palmolive (Hills)', warehouse:'Mumbai Hub', expiry:'2026-02-14', batches:0, cold:false, rx:true, active:false },
-    { sku:'ZV-FASH-011', name:'Zenve Premium Dog Raincoat (M)', cat:'Fashion & Apparel', subcat:'Outerwear', brand:'Zenve Fashion', price:1800, cost:620, mrp:1999, stock:41, reorder:10, moq:12, weight:'180g', vendor:'Trendy Tails Mfg.', warehouse:'Bengaluru Hub', expiry:null, batches:1, cold:false, rx:false, active:true }
-  ];
+  /* ── Master Product Dataset (Live from MySQL zenve_engine) ─────── */
+  var PRODUCTS = [];
+
+  function loadLiveProducts(cb) {
+    fetch('/api/v1/products')
+      .then(function (res) { return res.json(); })
+      .then(function (rows) {
+        if (Array.isArray(rows) && rows.length > 0) {
+          PRODUCTS = rows.map(function (r) {
+            var pr = Number(r.price) || 0;
+            var cp = Number(r.cost_price) || Math.round(pr * 0.6);
+            var st = Number(r.stock) || 0;
+            var minSt = Number(r.min_stock) || 15;
+            return {
+              id: r.id,
+              sku: r.sku || ('ZV-SKU-' + r.id),
+              name: r.name,
+              cat: r.category || 'Pharmacy & Meds',
+              subcat: r.category || 'General',
+              brand: r.brand || 'Zenve Care',
+              price: pr,
+              cost: cp,
+              mrp: Math.round(pr * 1.15),
+              stock: st,
+              reorder: minSt,
+              moq: 12,
+              weight: r.unit || 'Unit',
+              vendor: (r.brand || 'Zenve Care') + ' India',
+              warehouse: 'Bengaluru Hub',
+              expiry: '2026-12-31',
+              batches: 2,
+              cold: (r.category || '').toLowerCase().indexOf('vaccine') >= 0,
+              rx: (r.category || '').toLowerCase().indexOf('rx') >= 0 || (r.category || '').toLowerCase().indexOf('pharmacy') >= 0,
+              active: st > 0
+            };
+          });
+        }
+        if (root && S.open) renderAll();
+        if (cb) cb();
+      })
+      .catch(function (err) {
+        console.error('[Zenve Products API Error]', err);
+      });
+  }
+  loadLiveProducts();
 
   /* ── Warehouse Data ───────────────────────────────────────────── */
-  var WAREHOUSES = [
-    { id:'BLR', name:'Bengaluru Central Hub', city:'Koramangala, Bengaluru', skus:620, value:8400000, capacity:85, staff:24, zones:['Ambient Dry', 'Cold Chain 4°C', 'Fashion & Apparel', 'High-Value Secure'], manager:'Ravi Shankar K.', health:94 },
-    { id:'MUM', name:'Mumbai West Fulfillment', city:'Bandra, Mumbai', skus:310, value:4200000, capacity:72, staff:16, zones:['Ambient Dry', 'Cold Chain 4°C', 'Veterinary Rx'], manager:'Priya Joshi', health:89 },
-    { id:'DEL', name:'Delhi NCR Hub', city:'Okhla Phase 3, Delhi', skus:240, value:3100000, capacity:68, staff:14, zones:['Ambient Dry', 'Cold Chain', 'Bulk Storage'], manager:'Amit Verma', health:91 },
-    { id:'HYD', name:'Hyderabad Center', city:'Jubilee Hills, Hyderabad', skus:155, value:1950000, capacity:91, staff:10, zones:['Ambient Dry', 'Pharmacy Rx'], manager:'Lakshmi Reddy', health:96 },
-    { id:'PNE', name:'Pune Express Micro-Hub', city:'Koregaon Park, Pune', skus:95, value:1100000, capacity:60, staff:8, zones:['Ambient Dry', 'Express Dispatch'], manager:'Sneha Kulkarni', health:88 }
-  ];
+  var WAREHOUSES = [];
 
   /* ── ABC Management Dataset ───────────────────────────────────── */
-  var ABC_DATA = [
-    { sku: 'ZV-MED-001', name: 'Bravecto Chewable Tablet (10-20kg)', cat: 'Pharmacy & Meds', abc: 'A', stock: 142, eoq: 60, safety: 30, leadTime: '3 days', turn: '14.2x', policy: 'Bi-Weekly Review' },
-    { sku: 'ZV-DIET-004', name: 'Royal Canin Hepatic Veterinary 3kg', cat: 'Clinical Nutrition', abc: 'A', stock: 14, eoq: 24, safety: 25, leadTime: '5 days', turn: '11.8x', policy: 'Weekly Min-Max' },
-    { sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', cat: 'Vaccines', abc: 'A', stock: 86, eoq: 100, safety: 40, leadTime: '2 days', turn: '18.4x', policy: 'Continuous Cold Review' },
-    { sku: 'ZV-PAR-009', name: 'NexGard Spectra (3.5-7.5kg)', cat: 'Pharmacy & Meds', abc: 'B', stock: 8, eoq: 36, safety: 20, leadTime: '4 days', turn: '8.6x', policy: 'Monthly Periodic' },
-    { sku: 'ZV-ACC-015', name: 'Ergonomic Anti-Pull Harness (L)', cat: 'Accessories', abc: 'C', stock: 64, eoq: 48, safety: 15, leadTime: '7 days', turn: '4.2x', policy: 'Quarterly Reorder' },
-    { sku: 'ZV-FOOD-022', name: 'Pedigree Pro Puppy Starter 3kg', cat: 'Pet Nutrition', abc: 'B', stock: 210, eoq: 120, safety: 50, leadTime: '3 days', turn: '9.8x', policy: 'Bi-Weekly Review' },
-    { sku: 'ZV-DERM-007', name: 'Malaseb Medicated Shampoo 250ml', cat: 'Dermatology', abc: 'B', stock: 0, eoq: 30, safety: 20, leadTime: '4 days', turn: '7.5x', policy: 'Stockout Priority' },
-    { sku: 'ZV-SUP-003', name: 'Himalaya Digyton Plus 200ml', cat: 'Supplements', abc: 'B', stock: 37, eoq: 36, safety: 15, leadTime: '4 days', turn: '6.4x', policy: 'Monthly Periodic' },
-    { sku: 'ZV-TECH-044', name: 'PetCube Interactive Camera + Treats', cat: 'Pet Tech', abc: 'C', stock: 22, eoq: 12, safety: 5, leadTime: '10 days', turn: '3.1x', policy: 'Demand Pull Only' }
-  ];
+  var ABC_DATA = [];
 
   /* ── Valuation Dataset ────────────────────────────────────────── */
-  var VALUATION_CATS = [
-    { name: 'Pharmacy & Meds', costVal: 5420000, retailVal: 8450000, margin: '35.8%', share: 29.1, color: '#10b981' },
-    { name: 'Clinical Nutrition', costVal: 4280000, retailVal: 6820000, margin: '37.2%', share: 23.0, color: '#0ea5e9' },
-    { name: 'Vaccines & Cold Chain', costVal: 3460000, retailVal: 5240000, margin: '34.0%', share: 18.5, color: '#8b5cf6' },
-    { name: 'Pet Supplements', costVal: 2840000, retailVal: 4610000, margin: '38.4%', share: 15.2, color: '#f59e0b' },
-    { name: 'Pet Gear & Tech', costVal: 1650000, retailVal: 2780000, margin: '40.6%', share: 8.8, color: '#ec4899' },
-    { name: 'Fashion & Apparel', costVal: 1000000, retailVal: 1520000, margin: '34.2%', share: 5.4, color: '#14b8a6' }
-  ];
+  var VALUATION_CATS = [];
 
   /* ── Stock Transfers Dataset ──────────────────────────────────── */
-  var TRANSFERS = [
-    { id: 'TRF-2026-0891', origin: 'Bengaluru Central', dest: 'Mumbai West', skus: 'Royal Canin Hepatic (20 units), Bravecto (50 units)', value: 165500, carrier: 'Zenve Express Fleet (EV-04)', status: 'In Transit', temp: '4.2°C (Optimal)', eta: 'Today, 4:30 PM', cold: true },
-    { id: 'TRF-2026-0892', origin: 'Mumbai West', dest: 'Pune Express', skus: 'Nobivac Core Vaccines (100 vials)', value: 85000, carrier: 'BlueDart Cold Chain', status: 'In Transit', temp: '3.8°C (Optimal)', eta: 'Today, 2:15 PM', cold: true },
-    { id: 'TRF-2026-0893', origin: 'Delhi NCR Hub', dest: 'Bengaluru Central', skus: 'PetCube Cameras (15 units), Anti-Pull Harnesses (40 units)', value: 177500, carrier: 'Delhivery Surface Express', status: 'In Transit', temp: 'Ambient', eta: 'Tomorrow, 11:00 AM', cold: false },
-    { id: 'TRF-2026-0894', origin: 'Bengaluru Central', dest: 'Hyderabad Center', skus: 'NexGard Spectra (24 units), Drools Calcium (80 packs)', value: 52400, carrier: 'Internal Logistics (Van-02)', status: 'Pending Dispatch', temp: 'Ambient', eta: 'Tomorrow, 6:00 PM', cold: false },
-    { id: 'TRF-2026-0888', origin: 'Mumbai West', dest: 'Delhi NCR Hub', skus: 'Malaseb Medicated Shampoo (60 units)', value: 40800, carrier: 'Gati KWE Priority', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false },
-    { id: 'TRF-2026-0885', origin: 'Bengaluru Central', dest: 'Pune Express', skus: 'Himalaya Digyton Plus (120 units)', value: 40800, carrier: 'Zenve Inter-Hub Express', status: 'Received', temp: 'Verified', eta: 'Delivered', cold: false }
-  ];
+  var TRANSFERS = [];
 
   /* ── Inventory Movements Dataset ──────────────────────────────── */
-  var MOVEMENTS = [
-    { id: 'MOV-8841', time: '10 mins ago', type: 'Outbound Sale', sku: 'ZV-MED-001', name: 'Bravecto Chewable Tablet (10-20kg)', qty: -4, source: 'BLR Hub', dest: 'Order #ZV-84210', ref: 'SO-84210', value: 7800, badge: 'outbound' },
-    { id: 'MOV-8840', time: '25 mins ago', type: 'Inbound GRN', sku: 'ZV-DIET-004', name: 'Royal Canin Hepatic Veterinary 3kg', qty: 48, source: 'Royal Canin India', dest: 'BLR Hub (Bay 4)', ref: 'GRN-4910', value: 105600, badge: 'inbound' },
-    { id: 'MOV-8839', time: '1 hour ago', type: 'Transfer Out', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: -50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: 21000, badge: 'transfer' },
-    { id: 'MOV-8838', time: '1.5 hours ago', type: 'Transfer In', sku: 'ZV-VAC-002', name: 'Nobivac DHPPi Core Vaccine 1D', qty: 50, source: 'MUM Hub', dest: 'PNE Express Hub', ref: 'TRF-0892', value: 21000, badge: 'transfer' },
-    { id: 'MOV-8837', time: '2 hours ago', type: 'Outbound Sale', sku: 'ZV-FOOD-022', name: 'Pedigree Pro Puppy Starter 3kg', qty: -12, source: 'HYD Center', dest: 'Clinic Bulk #CL-902', ref: 'SO-84198', value: 9360, badge: 'outbound' },
-    { id: 'MOV-8836', time: '3 hours ago', type: 'Stock Adjustment', sku: 'ZV-DERM-007', name: 'Malaseb Medicated Shampoo 250ml', qty: -2, source: 'BLR Hub', dest: 'Damaged / Spillage Write-off', ref: 'ADJ-0314', value: 620, badge: 'adjustment' },
-    { id: 'MOV-8835', time: '4 hours ago', type: 'Customer Return', sku: 'ZV-ACC-015', name: 'Ergonomic Anti-Pull Harness (L)', qty: 1, source: 'Customer Ret #RT-104', dest: 'BLR Hub (QC Pass)', ref: 'RET-0941', value: 1250, badge: 'return' },
-    { id: 'MOV-8834', time: '5 hours ago', type: 'Inbound GRN', sku: 'ZV-PAR-009', name: 'NexGard Spectra (3.5-7.5kg)', qty: 60, source: 'Boehringer Ingelheim', dest: 'DEL Hub', ref: 'GRN-4908', value: 49200, badge: 'inbound' }
-  ];
+  var MOVEMENTS = [];
 
   /* ── Global State ─────────────────────────────────────────────── */
   var S = {
@@ -537,10 +527,77 @@
         renderAll();
       };
     });
+    var addProdBtn = container.querySelector('#zpid-btn-add-product');
+    if (addProdBtn) {
+      addProdBtn.onclick = function () {
+        showNewProductModal();
+      };
+    }
     var newTrfBtn = container.querySelector('#zpid-new-transfer-btn');
     if (newTrfBtn) {
       newTrfBtn.onclick = function () {
         showNewTransferModal();
+      };
+    }
+  }
+
+  /* ── Add Product Modal (Live MySQL Persistence) ───────────────── */
+  function showNewProductModal() {
+    var modalHtml = [
+      '<div class="zpid-modal-backdrop" id="zpid-add-modal" style="position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:9999999;">',
+        '<div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:24px;width:440px;color:#f8fafc;box-shadow:0 25px 50px rgba(0,0,0,0.6);">',
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">',
+            '<h3 style="margin:0;font-size:16px;font-weight:700;">Add Product to MySQL Catalog</h3>',
+            '<button type="button" style="background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer;" onclick="document.getElementById(\'zpid-add-modal\').remove()">✕</button>',
+          '</div>',
+          '<form id="zpid-add-product-form" style="display:flex;flex-direction:column;gap:12px;font-size:12px;">',
+            '<div><label style="display:block;color:#94a3b8;margin-bottom:4px;">Product Name</label><input required class="zpid-input" id="zp-name" style="width:100%;padding:8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#fff;" placeholder="e.g. Royal Canin Hypoallergenic 2kg"/></div>',
+            '<div><label style="display:block;color:#94a3b8;margin-bottom:4px;">Category</label><input required class="zpid-input" id="zp-cat" style="width:100%;padding:8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#fff;" placeholder="e.g. Clinical Nutrition"/></div>',
+            '<div><label style="display:block;color:#94a3b8;margin-bottom:4px;">Brand</label><input required class="zpid-input" id="zp-brand" style="width:100%;padding:8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#fff;" placeholder="e.g. Royal Canin"/></div>',
+            '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">',
+              '<div><label style="display:block;color:#94a3b8;margin-bottom:4px;">Retail Price (₹)</label><input type="number" required class="zpid-input" id="zp-price" style="width:100%;padding:8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#fff;" placeholder="2499"/></div>',
+              '<div><label style="display:block;color:#94a3b8;margin-bottom:4px;">Initial Stock</label><input type="number" required class="zpid-input" id="zp-stock" style="width:100%;padding:8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#fff;" placeholder="40"/></div>',
+            '</div>',
+            '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px;">',
+              '<button type="button" class="zpid-btn" style="padding:6px 14px;" onclick="document.getElementById(\'zpid-add-modal\').remove()">Cancel</button>',
+              '<button type="submit" class="zpid-btn primary" style="padding:6px 14px;background:#0ea5e9;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">Save to MySQL</button>',
+            '</div>',
+          '</form>',
+        '</div>',
+      '</div>'
+    ].join('');
+
+    var div = document.createElement('div');
+    div.innerHTML = modalHtml;
+    document.body.appendChild(div.firstElementChild);
+
+    var form = document.getElementById('zpid-add-product-form');
+    if (form) {
+      form.onsubmit = function (e) {
+        e.preventDefault();
+        var name = document.getElementById('zp-name').value;
+        var cat = document.getElementById('zp-cat').value;
+        var brand = document.getElementById('zp-brand').value;
+        var price = Number(document.getElementById('zp-price').value) || 999;
+        var stock = Number(document.getElementById('zp-stock').value) || 30;
+
+        fetch('/api/v1/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, category: cat, brand: brand, price: price, stock: stock })
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            var m = document.getElementById('zpid-add-modal');
+            if (m) m.remove();
+            showToast('✓ Product "' + name + '" saved to MySQL zenve_engine!');
+            loadLiveProducts();
+          }
+        })
+        .catch(function (err) {
+          showToast('Error saving product: ' + err.message);
+        });
       };
     }
   }
@@ -558,99 +615,19 @@
 
   /* ── SVG: Stock Trend Sparkline ───────────────────────────────── */
   function renderStockTrendSvg() {
-    var W = 600, H = 160;
-    var months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
-    var vals = [1540, 1620, 1480, 1590, 1410, 1360, 1420];
-    var max = Math.max.apply(null, vals);
-    var min = Math.min.apply(null, vals);
-    var pad = { t: 20, r: 20, b: 30, l: 50 };
-    var iW = W - pad.l - pad.r;
-    var iH = H - pad.t - pad.b;
-
-    function px(i) { return pad.l + (i / (vals.length - 1)) * iW; }
-    function py(v) { return pad.t + (1 - (v - min) / (max - min || 1)) * iH; }
-
-    var pts = vals.map(function (v, i) { return px(i) + ',' + py(v); }).join(' ');
-    var areaPath = 'M ' + pts.split(' ').join(' L ') + ' L ' + px(vals.length - 1) + ',' + (pad.t + iH) + ' L ' + pad.l + ',' + (pad.t + iH) + ' Z';
-
-    var circles = vals.map(function (v, i) {
-      return '<circle cx="' + px(i) + '" cy="' + py(v) + '" r="4" fill="#8b5cf6" stroke="var(--background,#090d16)" stroke-width="2"/>';
-    }).join('');
-    var xLabels = months.map(function (m, i) {
-      return '<text x="' + px(i) + '" y="' + (pad.t + iH + 18) + '" text-anchor="middle" font-size="10" fill="#64748b">' + m + '</text>';
-    }).join('');
-    var yLabels = [min, Math.round((min + max) / 2), max].map(function (v) {
-      var y = py(v);
-      return '<text x="' + (pad.l - 6) + '" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="#64748b">' + v + '</text>' +
-             '<line x1="' + pad.l + '" y1="' + y + '" x2="' + (pad.l + iW) + '" y2="' + y + '" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3,3"/>';
-    }).join('');
-
-    return [
-      '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">',
-        '<defs><linearGradient id="zpid-grad1" x1="0" y1="0" x2="0" y2="1">',
-          '<stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3"/>',
-          '<stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>',
-        '</linearGradient></defs>',
-        yLabels,
-        '<path d="' + areaPath + '" fill="url(#zpid-grad1)"/>',
-        '<polyline points="' + pts + '" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linejoin="round"/>',
-        circles,
-        xLabels,
-      '</svg>'
-    ].join('');
+    return '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No historical SKU count trend data logged.</div>';
   }
 
   /* ── SVG: Category Donut ──────────────────────────────────────── */
   function renderDonutSvg() {
-    var data = [
-      { label: 'Pharmacy & Meds', pct: 28, color: '#8b5cf6' },
-      { label: 'Pet Nutrition',   pct: 24, color: '#0ea5e9' },
-      { label: 'Clinical Nutrition', pct: 16, color: '#10b981' },
-      { label: 'Vaccines',        pct: 12, color: '#f59e0b' },
-      { label: 'Accessories',     pct: 9,  color: '#f87171' },
-      { label: 'Other',           pct: 11, color: '#475569' }
-    ];
-    var cx = 80, cy = 80, r = 60, ri = 38;
-    var startAngle = -Math.PI / 2;
-    var total = data.reduce(function (a, d) { return a + d.pct; }, 0);
-    var paths = data.map(function (d) {
-      var angle = (d.pct / total) * 2 * Math.PI;
-      var x1 = cx + r * Math.cos(startAngle);
-      var y1 = cy + r * Math.sin(startAngle);
-      var x2 = cx + r * Math.cos(startAngle + angle);
-      var y2 = cy + r * Math.sin(startAngle + angle);
-      var xi1 = cx + ri * Math.cos(startAngle + angle);
-      var yi1 = cy + ri * Math.sin(startAngle + angle);
-      var xi2 = cx + ri * Math.cos(startAngle);
-      var yi2 = cy + ri * Math.sin(startAngle);
-      var lg = angle > Math.PI ? 1 : 0;
-      var path = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + lg + ' 1 ' + x2 + ' ' + y2 + ' L ' + xi1 + ' ' + yi1 + ' A ' + ri + ' ' + ri + ' 0 ' + lg + ' 0 ' + xi2 + ' ' + yi2 + ' Z';
-      startAngle += angle;
-      return '<path d="' + path + '" fill="' + d.color + '" opacity="0.9"/>';
-    }).join('');
-    var legend = data.map(function (d) {
-      return [
-        '<div class="zpid-donut-legend-item">',
-          '<div class="zpid-donut-dot" style="background:' + d.color + '"></div>',
-          '<span>' + esc(d.label) + '</span>',
-          '<span style="margin-left:auto;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:#94a3b8">' + d.pct + '%</span>',
-        '</div>'
-      ].join('');
-    }).join('');
-    return [
-      '<div class="zpid-donut-wrap">',
-        '<svg viewBox="0 0 160 160" width="160" height="160" style="flex-shrink:0">',
-          paths,
-          '<text x="80" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc">1,420</text>',
-          '<text x="80" y="91" text-anchor="middle" font-size="9" fill="#64748b">TOTAL SKUs</text>',
-        '</svg>',
-        '<div class="zpid-donut-legend">' + legend + '</div>',
-      '</div>'
-    ].join('');
+    return '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No active category product distribution data.</div>';
   }
 
   /* ── SVG: Warehouse Capacity Bar ──────────────────────────────── */
   function renderCapacitySvg() {
+    if (!WAREHOUSES || WAREHOUSES.length === 0) {
+      return '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No warehouse capacity utilization data available.</div>';
+    }
     var W = 600, H = 140;
     var whs = WAREHOUSES;
     var barH = 18, gapY = 24;
@@ -685,18 +662,18 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Total Active SKUs', '1,420', '+38 this month', 'up', '🛍️'),
-        kpi('Total SKU Value', '₹1.86 Cr', 'Warehouse valuation', 'up', '💰'),
-        kpi('Categories', '14', 'Product groups', 'neutral', '📂'),
-        kpi('Avg. Gross Margin', '42.8%', '+1.2% vs last Q', 'up', '📊'),
-        kpi('New Listings (MTD)', '38', 'Added this month', 'up', '✨'),
-        kpi('Discontinued', '12', 'Archived SKUs', 'neutral', '🗃️'),
+        kpi('Total Active SKUs', PRODUCTS.length, 'Live in MySQL', 'neutral', '🛍️'),
+        kpi('Total SKU Value', inrShort(0), 'Warehouse valuation', 'neutral', '💰'),
+        kpi('Categories', Object.keys(cats).length, 'Product groups', 'neutral', '📂'),
+        kpi('Avg. Gross Margin', '0.0%', 'Historical margin', 'neutral', '📊'),
+        kpi('New Listings (MTD)', '0', 'Added this month', 'neutral', '✨'),
+        kpi('Discontinued', '0', 'Archived SKUs', 'neutral', '🗃️'),
       '</div>',
 
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>📋 Product Catalog</h3><small>Full SKU registry — search, filter, and manage all active listings</small></div>',
-          '<span class="zpid-badge purple">' + products.length + ' products shown</span>',
+          '<div style="display:flex;align-items:center;gap:8px;"><span class="zpid-badge purple">' + products.length + ' products in MySQL</span><button type="button" class="zpid-btn primary" id="zpid-btn-add-product" style="padding:6px 12px;background:#0ea5e9;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;">+ Add Product</button></div>',
         '</div>',
         '<div class="zpid-search-wrap">',
           '<input type="text" id="zpid-search-input" class="zpid-search" placeholder="Search by SKU, name, brand, category…" value="' + esc(S.searchQuery) + '"/>',
@@ -712,27 +689,29 @@
               '<th>Warehouse</th><th>Flags</th><th style="text-align:right">Status</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
-                var margin = Math.round(((p.price - p.cost) / p.price) * 100);
-                var flags = '';
-                if (p.cold) flags += '<span class="zpid-badge blue" style="margin-right:4px">❄ Cold</span>';
-                if (p.rx)   flags += '<span class="zpid-badge amber">Rx</span>';
-                return [
-                  '<tr>',
-                    '<td class="zpid-mono">' + esc(p.sku) + '</td>',
-                    '<td class="zpid-bold" style="max-width:220px">' + esc(p.name) + '</td>',
-                    '<td class="zpid-muted">' + esc(p.cat) + '</td>',
-                    '<td class="zpid-muted">' + esc(p.brand) + '</td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">₹' + p.price.toLocaleString('en-IN') + '</td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;color:#64748b">₹' + p.mrp.toLocaleString('en-IN') + '</td>',
-                    '<td>' + stockBar(p) + '</td>',
-                    '<td style="text-align:right"><span class="zpid-kpi-delta ' + (margin >= 40 ? 'up' : margin >= 25 ? 'warn' : 'down') + '">' + margin + '%</span></td>',
-                    '<td class="zpid-muted">' + esc(p.warehouse.replace(' Hub', '')) + '</td>',
-                    '<td>' + (flags || '—') + '</td>',
-                    '<td style="text-align:right"><span class="zpid-pill ' + statusClass(p) + '">' + esc(stockStatus(p)) + '</span></td>',
-                  '</tr>'
-                ].join('');
-              }).join(''),
+              products.length === 0 ?
+                '<tr><td colspan="11" style="text-align:center;padding:32px;color:#94a3b8;">No products found in catalog. Click "+ Add Product" to onboard.</td></tr>' :
+                products.map(function (p) {
+                  var margin = p.price > 0 ? Math.round(((p.price - p.cost) / p.price) * 100) : 0;
+                  var flags = '';
+                  if (p.cold) flags += '<span class="zpid-badge blue" style="margin-right:4px">❄ Cold</span>';
+                  if (p.rx)   flags += '<span class="zpid-badge amber">Rx</span>';
+                  return [
+                    '<tr>',
+                      '<td class="zpid-mono">' + esc(p.sku) + '</td>',
+                      '<td class="zpid-bold" style="max-width:220px">' + esc(p.name) + '</td>',
+                      '<td class="zpid-muted">' + esc(p.cat) + '</td>',
+                      '<td class="zpid-muted">' + esc(p.brand) + '</td>',
+                      '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">₹' + p.price.toLocaleString('en-IN') + '</td>',
+                      '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;color:#64748b">₹' + p.mrp.toLocaleString('en-IN') + '</td>',
+                      '<td>' + stockBar(p) + '</td>',
+                      '<td style="text-align:right"><span class="zpid-kpi-delta ' + (margin >= 40 ? 'up' : margin >= 25 ? 'warn' : 'down') + '">' + margin + '%</span></td>',
+                      '<td class="zpid-muted">' + esc(p.warehouse.replace(' Hub', '')) + '</td>',
+                      '<td>' + (flags || '—') + '</td>',
+                      '<td style="text-align:right"><span class="zpid-pill ' + statusClass(p) + '">' + esc(stockStatus(p)) + '</span></td>',
+                    '</tr>'
+                  ].join('');
+                }).join(''),
             '</tbody>',
           '</table>',
         '</div>',
@@ -763,12 +742,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Total SKUs', totalSkus, activeSkus + ' active', 'up', '🏷️'),
+        kpi('Total SKUs', totalSkus, activeSkus + ' active', 'neutral', '🏷️'),
         kpi('Cold Chain SKUs', coldSkus, 'Requires 2-8°C storage', 'neutral', '❄️'),
         kpi('Rx (Prescription) SKUs', rxSkus, 'Vet authorization needed', 'neutral', '📋'),
-        kpi('Avg. Batches/SKU', '2.4', '+0.3 vs last quarter', 'up', '📦'),
-        kpi('Multi-Vendor SKUs', '6', 'Dual-source approved', 'up', '🤝'),
-        kpi('Inactive SKUs', totalSkus - activeSkus, 'Pending review/reactivation', 'warn', '🗃️'),
+        kpi('Avg. Batches/SKU', '0', '0 vs last quarter', 'neutral', '📦'),
+        kpi('Multi-Vendor SKUs', '0', 'Dual-source approved', 'neutral', '🤝'),
+        kpi('Inactive SKUs', totalSkus - activeSkus, 'Pending review/reactivation', 'neutral', '🗃️'),
       '</div>',
 
       '<div class="zpid-card">',
@@ -788,7 +767,7 @@
               '<th>MOQ</th><th>Batches</th><th>Vendor</th><th>Weight</th><th>Flags</th><th>Status</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
+              products.length === 0 ? '<tr><td colspan="11" style="text-align:center;padding:32px;color:#94a3b8">No SKU records found in catalog</td></tr>' : products.map(function (p) {
                 var flags = [];
                 if (p.cold) flags.push('❄ Cold Chain');
                 if (p.rx)   flags.push('📋 Rx Required');
@@ -816,26 +795,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📦 Vendor-to-SKU Distribution</h3><small>Top vendors by number of active SKUs supplied</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'MSD Animal Health (India)', skus: 4, total: 15 },
-            { label: 'Mars Petcare / Pedigree', skus: 3, total: 15 },
-            { label: 'Boehringer Ingelheim India', skus: 3, total: 15 },
-            { label: 'Zoetis India Pvt Ltd', skus: 2, total: 15 },
-            { label: 'Royal Canin India', skus: 2, total: 15 },
-            { label: 'Others (9 vendors)', skus: 1, total: 15 }
-          ].map(function (v) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(v.label) + '</span>',
-                  '<span>' + v.skus + ' SKUs</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + Math.round(v.skus / v.total * 100) + '%;background:#8b5cf6"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No vendor distribution records available</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -853,12 +813,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Total Stock Value', inrShort(18650000), '+4.8% vs last month', 'up', '💰'),
-        kpi('Active SKUs', activeCount, '100% live catalog', 'up', '🏷️'),
-        kpi('Low Stock Items', lowCount, 'Below reorder level', 'down', '⚠️'),
-        kpi('Out of Stock', outCount, 'Zero inventory SKUs', 'down', '🚫'),
-        kpi('Expiring in 30 Days', expiryCount + ' batches', 'FEFO tracking active', 'warn', '⏳'),
-        kpi('Inventory Turnover', '6.2x', '+0.4x vs Q2 target', 'up', '🔄'),
+        kpi('Total Stock Value', inrShort(total), 'Consolidated valuation', 'neutral', '💰'),
+        kpi('Active SKUs', activeCount, activeCount > 0 ? 'Live catalog' : 'No active items', 'neutral', '🏷️'),
+        kpi('Low Stock Items', lowCount, 'Below reorder level', lowCount > 0 ? 'down' : 'neutral', '⚠️'),
+        kpi('Out of Stock', outCount, 'Zero inventory SKUs', outCount > 0 ? 'down' : 'neutral', '🚫'),
+        kpi('Expiring in 30 Days', expiryCount + ' batches', 'FEFO tracking active', expiryCount > 0 ? 'warn' : 'neutral', '⏳'),
+        kpi('Inventory Turnover', '0.0x', '0 vs target', 'neutral', '🔄'),
       '</div>',
 
       '<div class="zpid-grid-2">',
@@ -867,7 +827,7 @@
           '<div class="zpid-chart-wrap">' + renderStockTrendSvg() + '</div>',
         '</div>',
         '<div class="zpid-card">',
-          '<div class="zpid-ph"><div><h3>🏢 Warehouse Capacity Utilisation</h3><small>Current fill rate across all 5 regional hubs</small></div></div>',
+          '<div class="zpid-ph"><div><h3>🏢 Warehouse Capacity Utilisation</h3><small>Current fill rate across regional hubs</small></div></div>',
           '<div class="zpid-chart-wrap">' + renderCapacitySvg() + '</div>',
         '</div>',
       '</div>',
@@ -877,42 +837,22 @@
           '<div><h3>⚡ Inventory Quick Actions</h3><small>Navigate to specific inventory management views</small></div>',
         '</div>',
         '<div style="display:flex;flex-wrap:wrap;gap:10px;padding:16px 18px">',
-          actionCard('⚠️ Low Stock Alert', '28 SKUs need reorder', 'lowstock', 'amber'),
-          actionCard('🚫 Out of Stock', '9 SKUs — zero units', 'outofstock', 'red'),
-          actionCard('⏳ Expiry Management', '12 batches near expiry', 'expiry', 'orange'),
-          actionCard('🏭 Warehouse View', 'Hub-wise breakdown', 'warehouse', 'purple'),
-          actionCard('🛍️ Product Catalog', 'Full SKU registry', 'catalog', 'blue'),
-          actionCard('🏷️ SKU Management', 'Specs & vendor data', 'sku', 'green'),
+          actionCard('⚠️ Low Stock Alert', lowCount + ' SKUs need reorder', 'lowstock', 'amber'),
+          actionCard('🚫 Out of Stock', outCount + ' SKUs — zero units', 'outofstock', 'red'),
+          actionCard('⏳ Expiry Management', expiryCount + ' batches near expiry', 'expiry', 'orange'),
+          actionCard('🏭 Warehouse View', WAREHOUSES.length + ' Hubs', 'warehouse', 'purple'),
+          actionCard('🛍️ Product Catalog', PRODUCTS.length + ' SKUs registered', 'catalog', 'blue'),
+          actionCard('🏷️ SKU Management', activeCount + ' Active SKUs', 'sku', 'green'),
         '</div>',
       '</div>',
 
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>📦 Category-wise Stock Value</h3><small>Inventory value distribution by product category</small></div>',
-          '<span class="zpid-badge purple">Total: ' + inrShort(18650000) + '</span>',
+          '<span class="zpid-badge purple">Total: ' + inrShort(total) + '</span>',
         '</div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Pharmacy & Meds', value: 5600000, color: '#8b5cf6' },
-            { label: 'Clinical Nutrition', value: 3900000, color: '#0ea5e9' },
-            { label: 'Vaccines & Cold Chain', value: 2800000, color: '#10b981' },
-            { label: 'Pet Nutrition & Food', value: 2400000, color: '#f59e0b' },
-            { label: 'Pet Tech & Accessories', value: 2100000, color: '#f87171' },
-            { label: 'Other Categories', value: 1850000, color: '#475569' }
-          ].map(function (c) {
-            var pct = Math.round(c.value / 18650000 * 100);
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(c.label) + '</span>',
-                  '<span>' + inrShort(c.value) + ' (' + pct + '%)</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + pct + '%;background:' + c.color + '"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No category stock data available</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -940,20 +880,22 @@
      ===================================================================== */
   function renderStockView() {
     var products = getFilteredProducts();
+    var reorderCount = PRODUCTS.filter(function (p) { return p.stock <= p.reorder; }).length;
+    var totalOnHand = PRODUCTS.reduce(function (a, p) { return a + p.stock; }, 0);
     return [
       '<div class="zpid-kpis">',
-        kpi('Total Units On-Hand', '958', 'Across all warehouses', 'up', '🏗️'),
-        kpi('Reorder Required', '28', 'Below minimum threshold', 'down', '🔔'),
-        kpi('Reorder Value (Est.)', '₹3.4 L', 'To replenish to safety stock', 'neutral', '💸'),
-        kpi('Avg. Days of Cover', '14.2 days', 'Before stockout at current velocity', 'warn', '📅'),
-        kpi('Over-Stocked SKUs', '18', 'Above 90-day cover', 'neutral', '📦'),
-        kpi('Pending POs', '7', 'Purchase orders in transit', 'neutral', '📋'),
+        kpi('Total Units On-Hand', totalOnHand, 'Across all warehouses', 'neutral', '🏗️'),
+        kpi('Reorder Required', reorderCount, 'Below minimum threshold', reorderCount > 0 ? 'down' : 'neutral', '🔔'),
+        kpi('Reorder Value (Est.)', inrShort(PRODUCTS.reduce(function(a,p){return p.stock<=p.reorder?(p.reorder*2-p.stock)*p.cost+a:a;},0)), 'To replenish to safety stock', 'neutral', '💸'),
+        kpi('Avg. Days of Cover', '0 days', 'Before stockout', 'neutral', '📅'),
+        kpi('Over-Stocked SKUs', '0', 'Above 90-day cover', 'neutral', '📦'),
+        kpi('Pending POs', '0', 'Purchase orders in transit', 'neutral', '📋'),
       '</div>',
 
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>🏗️ Stock Level Management</h3><small>Real-time stock against reorder and safety levels — sortable and searchable</small></div>',
-          '<span class="zpid-badge amber">28 Action Items</span>',
+          '<span class="zpid-badge amber">' + reorderCount + ' Action Items</span>',
         '</div>',
         '<div class="zpid-search-wrap">',
           '<input type="text" id="zpid-search-input" class="zpid-search" placeholder="Filter products…" value="' + esc(S.searchQuery) + '"/>',
@@ -969,7 +911,7 @@
               '<th style="text-align:right">Est. Reorder Value</th><th>Warehouse</th><th>Action</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
+              products.length === 0 ? '<tr><td colspan="10" style="text-align:center;padding:32px;color:#94a3b8">No stock records found</td></tr>' : products.map(function (p) {
                 var daysOfCover = p.stock > 0 ? Math.round(p.stock / Math.max(1, p.reorder / 14)) : 0;
                 var reorderVal = Math.max(0, (p.reorder * 2 - p.stock)) * p.cost;
                 var needsAction = p.stock <= p.reorder;
@@ -1004,12 +946,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Low Stock SKUs', lowItems.length, critItems.length + ' critical', 'down', '⚠️'),
-        kpi('Critical (< 40% Reorder)', critItems.length, 'Immediate action needed', 'down', '🔴'),
-        kpi('Est. Stockout in 7 Days', '4 SKUs', 'At current sales velocity', 'down', '📉'),
-        kpi('Reorder Value Required', '₹2.8 L', 'To restore to safety stock', 'warn', '💸'),
-        kpi('POs Pending', '7', 'Already raised this week', 'neutral', '📋'),
-        kpi('Suppliers Alerted', '5', 'Auto-notifications sent', 'up', '📡'),
+        kpi('Low Stock SKUs', lowItems.length, critItems.length + ' critical', lowItems.length > 0 ? 'down' : 'neutral', '⚠️'),
+        kpi('Critical (< 40% Reorder)', critItems.length, 'Immediate action needed', critItems.length > 0 ? 'down' : 'neutral', '🔴'),
+        kpi('Est. Stockout in 7 Days', '0 SKUs', 'At current sales velocity', 'neutral', '📉'),
+        kpi('Reorder Value Required', inrShort(lowItems.reduce(function(a,p){return (p.reorder*2-p.stock)*p.cost+a;},0)), 'To restore to safety stock', 'neutral', '💸'),
+        kpi('POs Pending', '0', 'Already raised', 'neutral', '📋'),
+        kpi('Suppliers Alerted', '0', 'Auto-notifications sent', 'neutral', '📡'),
       '</div>',
 
       '<div class="zpid-card">',
@@ -1025,7 +967,7 @@
               '<th>Stock Level</th><th>Vendor</th><th style="text-align:right">Reorder Value</th><th>Priority</th>',
             '</tr></thead>',
             '<tbody>',
-              lowItems.sort(function (a, b) { return a.stock - b.stock; }).map(function (p) {
+              lowItems.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:32px;color:#94a3b8">No low stock items currently</td></tr>' : lowItems.sort(function (a, b) { return a.stock - b.stock; }).map(function (p) {
                 var reorderVal = (p.reorder * 2 - p.stock) * p.cost;
                 var isCrit = p.stock <= p.reorder * 0.4;
                 return [
@@ -1050,25 +992,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📋 Category-wise Low Stock Summary</h3><small>Aggregate low-stock impact by category</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Pharmacy & Meds', count: 3 },
-            { label: 'Vaccines', count: 2 },
-            { label: 'Clinical Nutrition', count: 2 },
-            { label: 'Supplements', count: 1 },
-            { label: 'Dermatology', count: 1 }
-          ].map(function (c) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(c.label) + '</span>',
-                  '<span>' + c.count + ' SKUs</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + Math.round(c.count / lowItems.length * 100) + '%;background:#f59e0b"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No low stock categories</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1082,12 +1006,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Out of Stock SKUs', outItems.length, 'Zero inventory', 'down', '🚫'),
-        kpi('Est. Revenue Lost (MTD)', '₹1.2 L', 'Based on avg. daily demand', 'down', '📉'),
-        kpi('Orders Impacted', '34', 'Unfulfillable this week', 'down', '📦'),
-        kpi('Avg. Days Out-of-Stock', '4.2 days', 'This month average', 'warn', '📅'),
-        kpi('POs Placed', outItems.filter(function () { return Math.random() > 0.5; }).length || 2, 'Replenishment in progress', 'neutral', '📋'),
-        kpi('Customer Backorders', '17', 'Waiting on stock', 'warn', '🔔'),
+        kpi('Out of Stock SKUs', outItems.length, 'Zero inventory', outItems.length > 0 ? 'down' : 'neutral', '🚫'),
+        kpi('Est. Revenue Lost (MTD)', '₹0', 'Based on avg. daily demand', 'neutral', '📉'),
+        kpi('Orders Impacted', '0', 'Unfulfillable this week', 'neutral', '📦'),
+        kpi('Avg. Days Out-of-Stock', '0 days', 'This month average', 'neutral', '📅'),
+        kpi('POs Placed', '0', 'Replenishment in progress', 'neutral', '📋'),
+        kpi('Customer Backorders', '0', 'Waiting on stock', 'neutral', '🔔'),
       '</div>',
 
       '<div class="zpid-card">',
@@ -1105,7 +1029,7 @@
               '<th>Vendor</th><th>Urgency</th>',
             '</tr></thead>',
             '<tbody>',
-              outItems.map(function (p, i) {
+              outItems.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:32px;color:#94a3b8">No out of stock items</td></tr>' : outItems.map(function (p, i) {
                 var dailyDemand = Math.round(p.reorder / 14);
                 var lostRev = dailyDemand * p.price;
                 var urgency = p.rx ? 'critical' : p.cold ? 'critical' : (i < 2 ? 'critical' : 'low');
@@ -1131,20 +1055,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📊 Out-of-Stock Root Cause Analysis</h3><small>Why these products went to zero</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Supplier lead time exceeded', pct: 42, color: '#f87171' },
-            { label: 'Demand spike not forecasted', pct: 28, color: '#f59e0b' },
-            { label: 'Cold-chain breach — batch quarantine', pct: 18, color: '#fb923c' },
-            { label: 'Reorder trigger not fired (system)', pct: 8, color: '#94a3b8' },
-            { label: 'Regulatory hold on batch', pct: 4, color: '#64748b' }
-          ].map(function (c) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label"><span>' + esc(c.label) + '</span><span>' + c.pct + '%</span></div>',
-                '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:' + c.pct + '%;background:' + c.color + '"></div></div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No out of stock items to analyze</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1179,12 +1090,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Expiring ≤ 30 Days', critical.length + ' batches', 'Immediate action required', 'down', '🔴'),
-        kpi('Expiring ≤ 60 Days', soon.length + ' batches', 'Schedule discounts/returns', 'warn', '🟡'),
-        kpi('Healthy (> 60 Days)', ok.length + ' SKUs', 'Normal lifecycle', 'up', '✅'),
-        kpi('Cold-Chain Batches', '4 batches', 'Vaccine & insulin monitoring', 'warn', '❄️'),
-        kpi('FEFO Compliance', '100%', 'First-Expiry-First-Out active', 'up', '📋'),
-        kpi('Disposal Risk Value', '₹38K', 'If unsold before expiry', 'down', '💸'),
+        kpi('Expiring ≤ 30 Days', critical.length + ' batches', 'Immediate action required', critical.length > 0 ? 'down' : 'neutral', '🔴'),
+        kpi('Expiring ≤ 60 Days', soon.length + ' batches', 'Schedule discounts/returns', soon.length > 0 ? 'warn' : 'neutral', '🟡'),
+        kpi('Healthy (> 60 Days)', ok.length + ' SKUs', 'Normal lifecycle', 'neutral', '✅'),
+        kpi('Cold-Chain Batches', '0 batches', 'Vaccine & insulin monitoring', 'neutral', '❄️'),
+        kpi('FEFO Compliance', '100%', 'First-Expiry-First-Out active', 'neutral', '📋'),
+        kpi('Disposal Risk Value', '₹0', 'If unsold before expiry', 'neutral', '💸'),
       '</div>',
 
       '<div class="zpid-card">',
@@ -1210,7 +1121,7 @@
           '<div><h3>✅ Healthy Stock (> 60 Days Remaining)</h3><small>Normal lifecycle — no action required</small></div>',
           '<span class="zpid-badge green">' + ok.length + ' SKUs</span>',
         '</div>',
-        ok.map(expiryRow).join(''),
+        ok.length === 0 ? '<div style="padding:20px 18px;color:#94a3b8;font-size:13px">No active batches with &gt;60 days remaining</div>' : ok.map(expiryRow).join(''),
       '</div>'
     ].join('');
   }
@@ -1221,24 +1132,24 @@
   function renderWarehouseView() {
     return [
       '<div class="zpid-kpis">',
-        kpi('Active Warehouses', '5 Hubs', 'Pan-India network', 'up', '🏭'),
-        kpi('Total Warehouse Value', inrShort(18750000), 'Consolidated stock value', 'up', '💰'),
-        kpi('Avg. Hub Capacity Used', '79.2%', 'Headroom before overflow', 'warn', '📊'),
-        kpi('Cold Chain Zones', '4', 'Vaccine-grade storage', 'up', '❄️'),
-        kpi('Total Warehouse Staff', '72 members', 'Pickers, packers, supervisors', 'up', '👷'),
-        kpi('Dispatch SLA', '97.4%', '< 2-hour outbound processing', 'up', '⚡'),
+        kpi('Active Warehouses', WAREHOUSES.length + ' Hubs', 'Pan-India network', 'neutral', '🏭'),
+        kpi('Total Warehouse Value', inrShort(0), 'Consolidated stock value', 'neutral', '💰'),
+        kpi('Avg. Hub Capacity Used', '0.0%', 'Headroom before overflow', 'neutral', '📊'),
+        kpi('Cold Chain Zones', '0', 'Vaccine-grade storage', 'neutral', '❄️'),
+        kpi('Total Warehouse Staff', '0 members', 'Pickers, packers, supervisors', 'neutral', '👷'),
+        kpi('Dispatch SLA', '100%', 'Outbound processing', 'neutral', '⚡'),
       '</div>',
 
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>🏭 Warehouse Capacity Utilisation</h3><small>Fill rate comparison across all regional fulfillment hubs</small></div>',
-          '<span class="zpid-badge purple">5 Hubs Online</span>',
+          '<span class="zpid-badge purple">' + WAREHOUSES.length + ' Hubs Online</span>',
         '</div>',
         '<div class="zpid-chart-wrap">' + renderCapacitySvg() + '</div>',
       '</div>',
 
       '<div class="zpid-grid-3">',
-        WAREHOUSES.map(function (w) {
+        WAREHOUSES.length === 0 ? '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#94a3b8">No warehouse facilities configured</div>' : WAREHOUSES.map(function (w) {
           var capColor = w.capacity > 85 ? '#f59e0b' : w.capacity > 70 ? '#10b981' : '#0ea5e9';
           return [
             '<div class="zpid-hub-card">',
@@ -1285,18 +1196,18 @@
      ===================================================================== */
   function renderValuationView() {
     var multiplier = S.valuationMethod === 'Weighted Avg' ? 1.02 : S.valuationMethod === 'LIFO' ? 0.96 : 1.0;
-    var totalCost = 18650000 * multiplier;
-    var totalRetail = 29420000;
-    var marginPct = (((totalRetail - totalCost) / totalRetail) * 100).toFixed(1);
+    var totalCost = PRODUCTS.reduce(function (a, p) { return a + p.stock * p.cost; }, 0) * multiplier;
+    var totalRetail = PRODUCTS.reduce(function (a, p) { return a + p.stock * p.price; }, 0);
+    var marginPct = totalRetail > 0 ? (((totalRetail - totalCost) / totalRetail) * 100).toFixed(1) : '0.0';
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Total Asset Valuation', inrShort(totalCost), S.valuationMethod + ' GAAP method', 'up', '💰'),
-        kpi('Projected Retail Value', inrShort(totalRetail), 'Current MRP realization', 'up', '🏷️'),
-        kpi('Unrealized Gross Margin', marginPct + '%', inrShort(totalRetail - totalCost) + ' profit', 'up', '📈'),
-        kpi('Holding Carrying Cost', '14.2% p.a.', '₹2.2L monthly run-rate', 'neutral', '🛡️'),
-        kpi('FIFO Verified Batches', '420 Batches', '100% audit compliant', 'up', '✅'),
-        kpi('At-Risk Aging Value', '₹5.9 L', '3.1% network value', 'down', '⏳'),
+        kpi('Total Asset Valuation', inrShort(totalCost), S.valuationMethod + ' GAAP method', 'neutral', '💰'),
+        kpi('Projected Retail Value', inrShort(totalRetail), 'Current MRP realization', 'neutral', '🏷️'),
+        kpi('Unrealized Gross Margin', marginPct + '%', inrShort(totalRetail - totalCost) + ' profit', 'neutral', '📈'),
+        kpi('Holding Carrying Cost', '0.0% p.a.', '₹0 monthly run-rate', 'neutral', '🛡️'),
+        kpi('FIFO Verified Batches', '0 Batches', '100% audit compliant', 'neutral', '✅'),
+        kpi('At-Risk Aging Value', '₹0', '0% network value', 'neutral', '⏳'),
       '</div>',
 
       '<div class="zpid-grid-2">',
@@ -1310,7 +1221,7 @@
             '</div>',
           '</div>',
           '<div class="zpid-progress-row">',
-            VALUATION_CATS.map(function (cat) {
+            VALUATION_CATS.length === 0 ? '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No valuation breakdown available</div>' : VALUATION_CATS.map(function (cat) {
               return [
                 '<div class="zpid-progress-item">',
                   '<div class="zpid-progress-label">',
@@ -1332,23 +1243,23 @@
           '<div style="padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px">',
             '<div style="padding:12px;border-radius:8px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2)">',
               '<div style="font-size:11px;color:#10b981;font-weight:600">Fresh (0–30 Days)</div>',
-              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹1.38 Cr (74%)</div>',
+              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹0 (0%)</div>',
               '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Peak turnover velocity</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.2)">',
               '<div style="font-size:11px;color:#0ea5e9;font-weight:600">Active (31–60 Days)</div>',
-              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹29.8 L (16%)</div>',
+              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹0 (0%)</div>',
               '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Normal consumption</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2)">',
               '<div style="font-size:11px;color:#f59e0b;font-weight:600">Slow Moving (61–90d)</div>',
-              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹13.0 L (7%)</div>',
+              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹0 (0%)</div>',
               '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Review markdown plan</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2)">',
               '<div style="font-size:11px;color:#ef4444;font-weight:600">At Risk (&gt;90 Days)</div>',
-              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹5.9 L (3%)</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Full reserve: ₹4.8L</div>',
+              '<div style="font-size:16px;font-weight:700;color:#f8fafc;margin-top:2px">₹0 (0%)</div>',
+              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Full reserve: ₹0</div>',
             '</div>',
           '</div>',
         '</div>',
@@ -1357,7 +1268,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>🏭 Warehouse Holding Asset Valuation</h3><small>Facility-level stock valuation and inventory accuracy audit status</small></div>',
-          '<span class="zpid-badge purple">5 Facilities Reconciled</span>',
+          '<span class="zpid-badge purple">' + WAREHOUSES.length + ' Facilities Reconciled</span>',
         '</div>',
         '<div class="zpid-table-wrap">',
           '<table class="zpid-table">',
@@ -1368,7 +1279,7 @@
               '<th style="text-align:right">Audit Reconciliation</th>',
             '</tr></thead>',
             '<tbody>',
-              WAREHOUSES.map(function (w) {
+              WAREHOUSES.length === 0 ? '<tr><td colspan="6" style="text-align:center;padding:32px;color:#94a3b8">No warehouse facilities found</td></tr>' : WAREHOUSES.map(function (w) {
                 var val = inrShort(w.value * multiplier);
                 var share = ((w.value / 18650000) * 100).toFixed(1);
                 return [
@@ -1397,12 +1308,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Active In-Transit', '4 Transfers', '₹4.80 L in transit', 'up', '🚚'),
-        kpi('Completed (MTD)', '38 Shipments', '99.4% on-time SLA', 'up', '✅'),
-        kpi('Avg Transit Lead Time', '28.4 Hours', 'Linehaul speed', 'up', '⚡'),
-        kpi('Cold Chain Integrity', '100.0%', '2°C–8°C logged continuously', 'up', '❄️'),
-        kpi('Network Hubs', '5 Facilities', 'Connected daily', 'neutral', '🏭'),
-        kpi('Transfer Accuracy', '99.8%', 'Zero reported discrepancy', 'up', '🎯'),
+        kpi('Active In-Transit', '0 Transfers', '₹0 in transit', 'neutral', '🚚'),
+        kpi('Completed (MTD)', '0 Shipments', '100% on-time SLA', 'neutral', '✅'),
+        kpi('Avg Transit Lead Time', '0 Hours', 'Linehaul speed', 'neutral', '⚡'),
+        kpi('Cold Chain Integrity', '100.0%', 'Monitored continuously', 'neutral', '❄️'),
+        kpi('Network Hubs', WAREHOUSES.length + ' Facilities', 'Connected daily', 'neutral', '🏭'),
+        kpi('Transfer Accuracy', '100.0%', 'Zero reported discrepancy', 'neutral', '🎯'),
       '</div>',
 
       '<div class="zpid-card">',
@@ -1425,7 +1336,7 @@
               '<th>Telemetry / Temp</th><th>Status &amp; ETA</th><th style="text-align:right">Actions</th>',
             '</tr></thead>',
             '<tbody>',
-              filtered.map(function (t) {
+              filtered.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:32px;color:#94a3b8">No inter-warehouse stock transfers found</td></tr>' : filtered.map(function (t) {
                 var statusCls = t.status === 'In Transit' ? 'purple' : t.status === 'Received' ? 'green' : 'amber';
                 return [
                   '<tr>',
@@ -1516,7 +1427,7 @@
         origin: origin,
         dest: dest,
         skus: sku + ' (' + qty + ' units)',
-        value: 45000,
+        value: 0,
         carrier: carrier,
         status: 'In Transit',
         temp: carrier.indexOf('Cold') >= 0 ? '4.0°C (Optimal)' : 'Ambient',
@@ -1545,12 +1456,12 @@
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Inbound Stock Today', '+108 units', '2 GRNs received', 'up', '📥'),
-        kpi('Outbound Dispatched', '-66 units', 'B2C & Clinic orders', 'down', '📤'),
-        kpi('Net Stock Delta', '+42 units', 'Positive net velocity', 'up', '📈'),
-        kpi('Adjustment Variance', '-2 units', '₹620 spillage write-off', 'neutral', '⚖️'),
-        kpi('Today Transactions', '8 Events', '100% ERP synced', 'up', '⚡'),
-        kpi('Transit Inflow SLA', '98.6%', 'On-schedule arrivals', 'up', '⏱️'),
+        kpi('Inbound Stock Today', '+0 units', '0 GRNs received', 'neutral', '📥'),
+        kpi('Outbound Dispatched', '-0 units', 'B2C & Clinic orders', 'neutral', '📤'),
+        kpi('Net Stock Delta', '+0 units', 'Net velocity', 'neutral', '📈'),
+        kpi('Adjustment Variance', '0 units', '₹0 spillage', 'neutral', '⚖️'),
+        kpi('Today Transactions', '0 Events', '100% ERP synced', 'neutral', '⚡'),
+        kpi('Transit Inflow SLA', '100.0%', 'On-schedule arrivals', 'neutral', '⏱️'),
       '</div>',
 
       '<div class="zpid-grid-2">',
@@ -1560,22 +1471,7 @@
             '<span class="zpid-badge green">Live Sync</span>',
           '</div>',
           '<div class="zpid-progress-row">',
-            '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#10b981;font-weight:600">Inbound Supplier GRN</span><span>108 units · 62% Volume</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:62%;background:#10b981"></div></div>',
-            '</div>',
-            '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#ef4444;font-weight:600">B2C &amp; Clinic Outbound</span><span>66 units · 38% Volume</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:38%;background:#ef4444"></div></div>',
-            '</div>',
-            '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#38bdf8;font-weight:600">Inter-Hub Stock Transfers</span><span>100 units · Balanced Transit</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:48%;background:#38bdf8"></div></div>',
-            '</div>',
-            '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#f59e0b;font-weight:600">Adjustments &amp; QC Returns</span><span>-1 unit · 100% Reconciled</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:8%;background:#f59e0b"></div></div>',
-            '</div>',
+            '<div style="text-align:center;padding:24px;color:#94a3b8;width:100%">No 24-hour stock movement recorded</div>',
           '</div>',
         '</div>',
 
@@ -1584,27 +1480,8 @@
             '<div><h3>⚖️ Warehouse Flow Balancing</h3><small>Net stock accumulation and drain across regional distribution nodes</small></div>',
             '<span class="zpid-badge purple">Balanced Flow</span>',
           '</div>',
-          '<div style="padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">',
-            '<div style="padding:12px;border-radius:8px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2)">',
-              '<div style="font-size:11px;color:#10b981;font-weight:600">Bengaluru Central Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+43 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 48 · Out: 4 · Ret: 1 · Adj: -2</div>',
-            '</div>',
-            '<div style="padding:12px;border-radius:8px;background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.2)">',
-              '<div style="font-size:11px;color:#38bdf8;font-weight:600">Delhi NCR Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+60 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Inbound supplier GRN receipt</div>',
-            '</div>',
-            '<div style="padding:12px;border-radius:8px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2)">',
-              '<div style="font-size:11px;color:#ef4444;font-weight:600">Mumbai West Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">-50 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Vaccine transfer out to Pune</div>',
-            '</div>',
-            '<div style="padding:12px;border-radius:8px;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.2)">',
-              '<div style="font-size:11px;color:#c084fc;font-weight:600">Pune Express Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+50 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Transit inflow arrived safely</div>',
-            '</div>',
+          '<div style="padding:16px 18px;text-align:center;color:#94a3b8">',
+            'No warehouse flow activity recorded',
           '</div>',
         '</div>',
       '</div>',
@@ -1626,7 +1503,7 @@
               '<th>Ref Doc #</th><th style="text-align:right">Transaction Value</th>',
             '</tr></thead>',
             '<tbody>',
-              filtered.map(function (item) {
+              filtered.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:32px;color:#94a3b8">No movement ledger entries found</td></tr>' : filtered.map(function (item) {
                 var isPos = item.qty > 0;
                 var qtyColor = isPos ? '#10b981' : '#ef4444';
                 var qtySign = isPos ? '+' : '';
@@ -1648,7 +1525,7 @@
                     '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;font-size:13px;font-weight:700;color:' + qtyColor + '">' + qtySign + item.qty + '</td>',
                     '<td style="font-size:12px"><span style="color:#cbd5e1">' + esc(item.source) + '</span> <span style="color:#64748b">➔</span> <span style="color:#38bdf8">' + esc(item.dest) + '</span></td>',
                     '<td style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:#a855f7">' + esc(item.ref) + '</td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;font-weight:600;color:#f8fafc">' + inr(item.value) + '</td>',
+                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;font-weight:600;color:#f8fafc">' + inrShort(item.value) + '</td>',
                   '</tr>'
                 ].join('');
               }).join(''),

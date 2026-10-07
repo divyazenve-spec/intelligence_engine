@@ -1107,12 +1107,35 @@
     if (saveBtn) {
       saveBtn.onclick = function () {
         saveBtn.disabled = true;
-        saveBtn.textContent = 'Saving...';
-        setTimeout(function () {
+        saveBtn.textContent = 'Saving to MySQL...';
+
+        var nameInput = root.querySelector('#inp-comp-name');
+        var brandInput = root.querySelector('#inp-comp-brand');
+        var addrInput = root.querySelector('#inp-comp-addr');
+
+        var updates = [];
+        if (nameInput) updates.push({ setting_key: 'company_name', setting_value: nameInput.value });
+        if (brandInput) updates.push({ setting_key: 'brand_name', setting_value: brandInput.value });
+        if (addrInput) updates.push({ setting_key: 'hq_address', setting_value: addrInput.value });
+
+        var promises = updates.map(function (u) {
+          return fetch('/api/v1/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(u)
+          });
+        });
+
+        Promise.all(promises).then(function () {
           saveBtn.disabled = false;
           saveBtn.innerHTML = '<span>💾</span> Save Changes';
-          showToast('✓ All settings synchronized and saved successfully.');
-        }, 400);
+          showToast('✓ Settings updated and stored in MySQL!');
+          loadLiveSettings();
+        }).catch(function (err) {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = '<span>💾</span> Save Changes';
+          showToast('Failed to save settings: ' + err.message);
+        });
       };
     }
 
@@ -1376,8 +1399,32 @@
     }
   }
 
+  function loadLiveSettings() {
+    fetch('/api/v1/settings')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          data.forEach(function (s) {
+            if (s.setting_key === 'company_name' && s.setting_value) S.company.name = s.setting_value;
+            if (s.setting_key === 'brand_name' && s.setting_value) S.company.brand = s.setting_value;
+            if (s.setting_key === 'hq_address' && s.setting_value) S.company.address = s.setting_value;
+            if (s.setting_key === 'support_phone' && s.setting_value) S.company.supportPhone = s.setting_value;
+            if (s.setting_key === 'support_email' && s.setting_value) S.company.email = s.setting_value;
+            if (s.setting_key === 'currency_symbol' && s.setting_value) S.company.currency = s.setting_value;
+          });
+          if (root && S.open) {
+            renderShell();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load settings from MySQL:', err);
+      });
+  }
+
   /* ── Open / Close Controller ────────────────────────────────────── */
   function open(tab) {
+    loadLiveSettings();
     if (tab && MODULES.some(function (m) { return m.id === tab; })) {
       S.activeTab = tab;
     } else {

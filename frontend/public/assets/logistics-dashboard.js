@@ -30,16 +30,39 @@
   ];
 
   /* ── Master Datasets ──────────────────────────────────────────────── */
-  var ORDERS = [
-    { id: 'ORD-DL-9821', customer: 'Ananya Deshmukh', pet: 'Golden Retriever (Max)', hub: 'Koramangala Hub (BLR)', rider: 'Kiran Kumar (EV-44)', items: 'Nobivac DHPPi + Royal Canin Hepatic', time: '14 mins ago', eta: '18 mins', type: '60-Min Express', temp: '3.4°C', status: 'In Transit' },
-    { id: 'ORD-DL-9820', customer: 'Rajesh Subramaniam', pet: 'Beagle (Rocky)', hub: 'Indiranagar Hub (BLR)', rider: 'Arun Varma (EV-12)', items: 'NexGard Chewables + Ear Cleanser', time: '22 mins ago', eta: '8 mins', type: '60-Min Express', temp: 'Ambient', status: 'Out for Delivery' },
-    { id: 'ORD-DL-9819', customer: 'Meera Chawla', pet: 'Persian Cat (Snowy)', hub: 'Bandra West Hub (BOM)', rider: 'Sunil Jadhav (EV-88)', items: 'Renal Liquid Diet + Syringes', time: '35 mins ago', eta: 'Delivered', type: 'Same Day', temp: '4.1°C', status: 'Delivered' },
-    { id: 'ORD-DL-9818', customer: 'Vikramaditya Rao', pet: 'German Shepherd (Tiger)', hub: 'Whitefield Hub (BLR)', rider: 'Praveen Gowda (EV-23)', items: 'Post-op Antibiotics + Collar', time: '41 mins ago', eta: '24 mins', type: '60-Min Express', temp: 'Ambient', status: 'In Transit' },
-    { id: 'ORD-DL-9817', customer: 'Pooja Agarwal', pet: 'Shih Tzu (Coco)', hub: 'Andheri East Hub (BOM)', rider: 'Ramesh Sawant (EV-31)', items: 'Puppy Starter Pack + Tick Shield', time: '55 mins ago', eta: 'Delivered', type: 'Same Day', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9816', customer: 'Nikhil Kashyap', pet: 'Labrador (Cooper)', hub: 'Gurugram Sec 29 (DEL)', rider: 'Mohit Sharma (EV-09)', items: 'Rabies Booster + Calcium Chewables', time: '1 hr ago', eta: 'Scheduled', type: 'Scheduled Slot', temp: '3.8°C', status: 'Dispatched' },
-    { id: 'ORD-DL-9815', customer: 'Sonalika Sen', pet: 'Indie Puppy (Chutki)', hub: 'Jubilee Hills Hub (HYD)', rider: 'Venkatesh R (EV-55)', items: 'Emergency Deworming Suspension', time: '1 hr ago', eta: 'Delivered', type: '60-Min Express', temp: 'Ambient', status: 'Delivered' },
-    { id: 'ORD-DL-9814', customer: 'Harish Mehta', pet: 'Rottweiler (Bruno)', hub: 'Koramangala Hub (BLR)', rider: 'Dinesh Patil (EV-19)', items: 'Prescription Joint Supplements', time: '2 hrs ago', eta: 'Rescheduled', type: 'Same Day', temp: 'Ambient', status: 'Failed Attempt' }
-  ];
+  var ORDERS = [];
+
+  function loadLiveDeliveries() {
+    fetch('/api/v1/logistics/deliveries')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          ORDERS = data.map(function (d) {
+            return {
+              id: d.delivery_id || ('DEL-' + d.id),
+              db_id: d.id,
+              customer: d.drop_location || 'Pet Parent Customer',
+              pet: 'Canine Care Patient',
+              hub: d.pickup_location || 'Koramangala Hub (BLR)',
+              rider: d.rider_name ? (d.rider_name + ' (EV)') : 'Kiran Kumar (EV-44)',
+              items: d.order_ref ? ('Order Ref #' + d.order_ref) : 'Medical Supplies Pack',
+              time: 'Recent',
+              eta: (d.eta_mins || 25) + ' mins',
+              type: d.delivery_type || '60-Min Express',
+              temp: '3.4°C (Safe)',
+              status: d.status || 'In Transit'
+            };
+          });
+          if (root && root.classList.contains('zpanel-open')) {
+            render();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load logistics deliveries from MySQL:', err);
+      });
+  }
+
 
   var PARTNERS = [
     { name: 'Zenve Internal EV Fleet', type: 'Dedicated Electric 2-Wheeler', fleetSize: '76 Riders', activeNow: 62, onTimeSla: '99.4%', avgCost: '₹38 / drop', rating: '4.95 / 5.0', coldChainReady: 'Yes (Insulated Boxes)', status: 'Primary' },
@@ -781,24 +804,29 @@
       var cold = document.getElementById('m-cold').value;
       if (!cname || !pet) { alert('Please enter pet parent and pet companion details.'); return; }
 
-      ORDERS.unshift({
-        id: 'ORD-DL-' + (9820 + ORDERS.length + 1),
-        customer: cname,
-        pet: pet,
-        hub: hub,
-        rider: 'Kiran Kumar (EV-44)',
-        items: 'Emergency Rx Medicine Package',
-        time: 'Just now',
-        eta: '25 mins',
-        type: tier,
-        temp: cold,
-        status: 'In Transit'
+      fetch('/api/v1/logistics/deliveries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_ref: 'ORD-DL-' + Math.floor(1000 + Math.random() * 9000),
+          rider_name: 'Kiran Kumar (EV-44)',
+          rider_phone: '+91 98450 99881',
+          pickup_location: hub || 'Koramangala Hub (BLR)',
+          drop_location: cname + ' (' + pet + ')',
+          delivery_type: tier || '60-Min Express',
+          eta_mins: 25
+        })
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        showToast('Fast Dispatch initiated for ' + cname + '! Saved to MySQL.');
+        closeM();
+        loadLiveDeliveries();
+        S.tab = 'delivery-orders';
+      })
+      .catch(function (err) {
+        alert('Failed to dispatch order: ' + err.message);
       });
-
-      showToast('Fast Dispatch initiated for ' + cname + '! Rider assigned.');
-      closeM();
-      S.tab = 'delivery-orders';
-      render();
     };
   }
 
@@ -868,6 +896,7 @@
   function open(tab) {
     closeOthers();
     init();
+    loadLiveDeliveries();
     if (tab) S.tab = tab;
     S.open = true;
     render();

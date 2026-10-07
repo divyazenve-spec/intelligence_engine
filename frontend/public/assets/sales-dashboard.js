@@ -3,7 +3,7 @@
    Self-contained (no external libraries). Reads live data from the backend with offline fallback. */
 (function () {
   'use strict';
-  var FN = '/_serverFn/bcbf405abb63715daaf1487f2958492789217ff1449ff447570bc418404b6901';
+  var FN = '/api/v1/data';
   var FALLBACK = '/api/v1/data';
   var STATIC_FALLBACK = '/assets/sample-fallback.json';
 

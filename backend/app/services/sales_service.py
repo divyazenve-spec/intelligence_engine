@@ -31,11 +31,6 @@ def load_all(db: Session) -> dict:
     """Return all sales and daily_metrics as plain dicts."""
     sales = [sale_to_dict(s) for s in db.query(Sale).order_by(Sale.sold_at.desc()).all()]
     metrics = [metric_to_dict(m) for m in db.query(DailyMetric).order_by(DailyMetric.business_date).all()]
-
-    # If no data yet, return the bundled sample
-    if not sales:
-        return _load_sample_fallback()
-
     return {"sales": sales, "metrics": metrics}
 
 

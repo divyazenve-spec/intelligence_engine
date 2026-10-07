@@ -72,6 +72,7 @@ async def log_requests(request: Request, call_next):
 # Versioned API routes  →  /api/v1/*
 # ---------------------------------------------------------------------------
 app.include_router(v1_router, prefix="/api/v1")
+app.include_router(v1_router, prefix="/api")
 
 # ---------------------------------------------------------------------------
 # Legacy unversioned paths the compiled frontend calls
@@ -113,6 +114,8 @@ app.add_api_route("/api/pipeline/reset", pipeline.reset_to_sample, methods=["POS
 # Stub analytics / broadcast routes (kept for compiled UI compatibility)
 @app.api_route("/analytics/{_:path}", methods=["GET", "POST", "OPTIONS"])
 @app.api_route("/broadcast/{_:path}", methods=["GET", "POST", "OPTIONS"])
+@app.api_route("/~api/{_:path}", methods=["GET", "POST", "OPTIONS"])
+@app.api_route("/~api", methods=["GET", "POST", "OPTIONS"])
 async def _ok():
     return {"ok": True}
 

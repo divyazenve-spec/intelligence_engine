@@ -1,6 +1,6 @@
 """Application settings — reads from environment variables / .env file."""
+import urllib.parse
 from pathlib import Path
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Backend root: backend/
@@ -14,7 +14,14 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # SQLite database path (relative to backend dir)
+    # MySQL connection configuration
+    mysql_host: str = "127.0.0.1"
+    mysql_port: int = 3306
+    mysql_user: str = "root"
+    mysql_password: str = "Vasanth@zenve"
+    mysql_db: str = "zenve_engine"
+
+    # SQLite fallback path if needed
     db_path: str = str(_BACKEND_DIR / "zenvebi.db")
 
     # Gemini / AI (optional)
@@ -22,7 +29,12 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
-        return f"sqlite:///{self.db_path}"
+        # URL encode password to handle special characters like '@'
+        encoded_pwd = urllib.parse.quote_plus(self.mysql_password)
+        return (
+            f"mysql+pymysql://{self.mysql_user}:{encoded_pwd}@"
+            f"{self.mysql_host}:{self.mysql_port}/{self.mysql_db}?charset=utf8mb4"
+        )
 
     @property
     def frontend_dir(self) -> Path:

@@ -38,16 +38,38 @@
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var PRODUCTS = [
-    { sku: 'ZVF-HARN-01', name: 'Signature Italian Leather Harness', cat: 'Harnesses', petType: 'Dog (All Breeds)', sizes: 'S, M, L, XL', price: '₹3,450', cost: '₹1,090', stock: 184, margin: '68.4%', status: 'In Stock' },
-    { sku: 'ZVF-COAT-04', name: 'Monsoon Waterproof Reflective Parka', cat: 'Weatherwear', petType: 'Dog (Medium/Large)', sizes: 'M, L, XL, XXL', price: '₹2,850', cost: '₹980', stock: 240, margin: '65.6%', status: 'In Stock' },
-    { sku: 'ZVF-KNIT-09', name: 'Cashmere-Blend Cable Knit Sweater', cat: 'Winter Knits', petType: 'Dog & Cat', sizes: 'XS, S, M, L', price: '₹2,400', cost: '₹690', stock: 112, margin: '71.3%', status: 'In Stock' },
-    { sku: 'ZVF-COLL-02', name: 'Velvet Midnight Rose Gold Collar', cat: 'Collars', petType: 'Universal', sizes: 'S, M, L', price: '₹1,650', cost: '₹420', stock: 320, margin: '74.5%', status: 'In Stock' },
-    { sku: 'ZVF-BAND-05', name: 'Handcrafted Silk Festive Bandana', cat: 'Accessories', petType: 'Universal', sizes: 'XS, S, M, L', price: '₹850', cost: '₹185', stock: 450, margin: '78.2%', status: 'In Stock' },
-    { sku: 'ZVF-BOOT-03', name: 'All-Terrain Protective Paw Boots (Set of 4)', cat: 'Footwear', petType: 'Dog (Active)', sizes: 'S, M, L, XL', price: '₹1,950', cost: '₹620', stock: 85, margin: '68.2%', status: 'Low Stock' },
-    { sku: 'ZVF-ROBE-07', name: 'Post-Bath Microfiber Spa Robe', cat: 'Loungewear', petType: 'Dog & Cat', sizes: 'S, M, L, XL', price: '₹1,450', cost: '₹410', stock: 160, margin: '71.7%', status: 'In Stock' },
-    { sku: 'ZVF-TUX-11', name: 'Bespoke Satin Wedding Tuxedo & Bowtie', cat: 'Formal Atelier', petType: 'Custom Tailored', sizes: 'Made to Measure', price: '₹4,950', cost: '₹1,450', stock: 34, margin: '70.7%', status: 'Atelier Queue' }
-  ];
+  var PRODUCTS = [];
+
+  function loadLiveFashionProducts() {
+    fetch('/api/v1/fashion/products')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          PRODUCTS = data.map(function (p) {
+            return {
+              sku: p.sku || ('ZVF-PROD-' + p.id),
+              db_id: p.id,
+              name: p.name,
+              cat: p.category || 'Apparel',
+              petType: 'Universal Canine/Feline',
+              sizes: p.size || 'M, L, XL',
+              price: '₹' + Number(p.price || 0).toLocaleString('en-IN'),
+              cost: '₹' + Number((p.price || 1000) * 0.35).toFixed(0),
+              stock: p.stock || 40,
+              margin: '65.0%',
+              status: p.status || 'In Stock'
+            };
+          });
+          if (root && root.classList.contains('zfsh-open')) {
+            render();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load fashion products from MySQL:', err);
+      });
+  }
+
 
   var ORDERS = [
     { orderId: 'ORD-FSH-7102', customer: 'Ananya Deshmukh', pet: 'Koko (French Bulldog)', items: 'Italian Leather Harness (M) + Matching Leash', channel: 'Bandra Boutique', customDetails: 'Gold Embossed "KOKO"', value: '₹5,100', date: '2026-10-04', status: 'Delivered', payment: 'Paid (UPI)' },
@@ -676,17 +698,17 @@
         '<h3 class="zfsh-modal-title">👗 Add New Fashion Couture Style</h3>',
         '<button class="zfsh-btn" onclick="ZenveFashionDashboard.closeModal()">✕</button>',
       '</div>',
-      '<form onsubmit="event.preventDefault(); alert(\'New style added to Zenve Fashion master catalog!\'); ZenveFashionDashboard.closeModal();">',
-        '<div class="zfsh-form-group"><label>Product Title</label><input type="text" class="zfsh-input" placeholder="e.g. Royal Brocade Wedding Sherwani" required /></div>',
+      '<form id="zfsh-add-style-form">',
+        '<div class="zfsh-form-group"><label>Product Title</label><input type="text" id="zfsh-pname" class="zfsh-input" placeholder="e.g. Royal Brocade Wedding Sherwani" required /></div>',
         '<div class="zfsh-form-row">',
-          '<div class="zfsh-form-group"><label>Category</label><select class="zfsh-select"><option>Formal Atelier</option><option>Ergonomic Harnesses</option><option>Weatherwear</option><option>Winter Knits</option><option>Collars & Leashes</option></select></div>',
-          '<div class="zfsh-form-group"><label>Target Pet</label><select class="zfsh-select"><option>Dog (All Breeds)</option><option>Dog (Small / Toy)</option><option>Dog (Large)</option><option>Cat</option></select></div>',
+          '<div class="zfsh-form-group"><label>Category</label><select id="zfsh-pcat" class="zfsh-select"><option>Formal Atelier</option><option>Ergonomic Harnesses</option><option>Weatherwear</option><option>Winter Knits</option><option>Collars & Leashes</option></select></div>',
+          '<div class="zfsh-form-group"><label>Target Pet</label><select id="zfsh-ppet" class="zfsh-select"><option>Dog (All Breeds)</option><option>Dog (Small / Toy)</option><option>Dog (Large)</option><option>Cat</option></select></div>',
         '</div>',
         '<div class="zfsh-form-row">',
-          '<div class="zfsh-form-group"><label>Retail ASP (INR)</label><input type="text" class="zfsh-input" placeholder="₹3,450" required /></div>',
-          '<div class="zfsh-form-group"><label>Production COGS (INR)</label><input type="text" class="zfsh-input" placeholder="₹980" required /></div>',
+          '<div class="zfsh-form-group"><label>Retail ASP (INR)</label><input type="text" id="zfsh-pprice" class="zfsh-input" placeholder="3450" required /></div>',
+          '<div class="zfsh-form-group"><label>Production COGS (INR)</label><input type="text" id="zfsh-pcogs" class="zfsh-input" placeholder="980" required /></div>',
         '</div>',
-        '<div class="zfsh-form-group"><label>Fabric & Material Spec</label><input type="text" class="zfsh-input" placeholder="e.g. 100% Pure Silk with Zari Embroidery" required /></div>',
+        '<div class="zfsh-form-group"><label>Fabric & Material Spec</label><input type="text" id="zfsh-pfabric" class="zfsh-input" placeholder="e.g. 100% Pure Silk with Zari Embroidery" required /></div>',
         '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">',
           '<button type="button" class="zfsh-btn" onclick="ZenveFashionDashboard.closeModal()">Cancel</button>',
           '<button type="submit" class="zfsh-btn primary">Save & Publish</button>',
@@ -694,6 +716,39 @@
       '</form>'
     ].join('');
     showModal(formHtml);
+
+    var form = document.getElementById('zfsh-add-style-form');
+    if (form) {
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        var pname = document.getElementById('zfsh-pname').value;
+        var pcat = document.getElementById('zfsh-pcat').value;
+        var pprice = parseFloat(document.getElementById('zfsh-pprice').value.replace(/[^0-9.]/g, '')) || 2450.0;
+
+        fetch('/api/v1/fashion/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: pname,
+            category: pcat,
+            size: 'M, L, XL',
+            color: 'Teal / Navy',
+            price: pprice,
+            stock: 45,
+            brand: 'Zenve Pawshion'
+          })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          alert('Fashion style ' + pname + ' saved to MySQL catalog!');
+          ZenveFashionDashboard.closeModal();
+          loadLiveFashionProducts();
+        })
+        .catch(function (err) {
+          alert('Failed to save fashion style: ' + err.message);
+        });
+      };
+    }
   }
 
   function showBespokeOrderModal() {
@@ -758,6 +813,7 @@
     }
 
     build();
+    loadLiveFashionProducts();
     S.open = true;
     root.style.display = 'block';
     root.classList.add('zfsh-open', 'zpanel-open');

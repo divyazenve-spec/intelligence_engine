@@ -43,18 +43,39 @@
     { id: 'DEP-06', name: 'Customer Delight & Support', count: 22, lead: 'Pooja Hegde (CX Lead)', budget: '₹14,20,000', color: '#14b8a6', attendance: '95.6%', vacancies: 3 }
   ];
 
-  var EMPLOYEES = [
-    { id: 'EMP-1001', name: 'Dr. Priya Sharma', role: 'Chief Veterinary Officer', dept: 'Clinical', loc: 'Bengaluru Flagship', email: 'priya.s@zenve.in', phone: '+91 98450 11201', joined: '15 Jan 2023', status: 'Active', salary: '₹2,40,000/mo', rating: '5.0★' },
-    { id: 'EMP-1002', name: 'Dr. Rahul Mehta', role: 'Senior Vet Surgeon', dept: 'Clinical', loc: 'Mumbai Center', email: 'rahul.m@zenve.in', phone: '+91 98200 44312', joined: '10 Mar 2023', status: 'Active', salary: '₹1,95,000/mo', rating: '4.9★' },
-    { id: 'EMP-1003', name: 'Rohan Deshmukh', role: 'Head of Pharmacy', dept: 'Pharmacy', loc: 'Bengaluru Hub', email: 'rohan.d@zenve.in', phone: '+91 97401 88392', joined: '01 Jun 2023', status: 'Active', salary: '₹1,45,000/mo', rating: '4.8★' },
-    { id: 'EMP-1004', name: 'Sneha Chawla', role: 'Senior AI Engineer', dept: 'Technology', loc: 'Remote / HQ', email: 'sneha.c@zenve.in', phone: '+91 99102 77314', joined: '28 Sep 2026', status: 'Probation', salary: '₹1,80,000/mo', rating: '4.9★' },
-    { id: 'EMP-1005', name: 'Vikram Joshi', role: 'Fleet & Logistics Lead', dept: 'Logistics', loc: 'Bengaluru South', email: 'vikram.j@zenve.in', phone: '+91 98860 12093', joined: '12 Aug 2023', status: 'Active', salary: '₹95,000/mo', rating: '4.7★' },
-    { id: 'EMP-1006', name: 'Ananya Verma', role: 'Warehouse Ops Manager', dept: 'Warehouse', loc: 'Bhiwandi Hub', email: 'ananya.v@zenve.in', phone: '+91 98211 40592', joined: '05 Feb 2024', status: 'Active', salary: '₹1,10,000/mo', rating: '4.8★' },
-    { id: 'EMP-1007', name: 'Manish Rawat', role: 'Express Delivery Rider', dept: 'Logistics', loc: 'Mumbai Bandra', email: 'manish.r@zenve.in', phone: '+91 98330 67123', joined: '25 Sep 2026', status: 'Active', salary: '₹32,000/mo', rating: '4.9★' },
-    { id: 'EMP-1008', name: 'Dr. Aisha Khan', role: 'Consultant Dermatologist', dept: 'Clinical', loc: 'Delhi NCR Clinic', email: 'aisha.k@zenve.in', phone: '+91 98110 55421', joined: '14 Apr 2024', status: 'On Leave', salary: '₹1,15,000/mo', rating: '4.8★' },
-    { id: 'EMP-1009', name: 'Pooja Hegde', role: 'Support Team Lead', dept: 'Customer Delight', loc: 'Bengaluru HQ', email: 'pooja.h@zenve.in', phone: '+91 99001 22894', joined: '01 Nov 2023', status: 'Active', salary: '₹75,000/mo', rating: '4.7★' },
-    { id: 'EMP-1010', name: 'Kunal Sen', role: 'Inventory Controller', dept: 'Warehouse', loc: 'Bengaluru Hub', email: 'kunal.s@zenve.in', phone: '+91 96190 33412', joined: '18 Sep 2026', status: 'Active', salary: '₹65,000/mo', rating: '4.6★' }
-  ];
+  var EMPLOYEES = [];
+
+  function loadLiveEmployees() {
+    fetch('/api/v1/employees')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          EMPLOYEES = data.map(function (e) {
+            return {
+              id: e.employee_code || ('EMP-' + e.id),
+              db_id: e.id,
+              name: e.name,
+              role: e.designation || 'Staff',
+              dept: e.department || 'Operations',
+              loc: 'Bengaluru HQ',
+              email: e.email || '',
+              phone: e.phone || '',
+              joined: e.joining_date ? new Date(e.joining_date).toLocaleDateString('en-GB') : 'Active',
+              status: e.status || 'Active',
+              salary: '₹' + Number(e.salary || 0).toLocaleString('en-IN') + '/mo',
+              rating: '4.9★'
+            };
+          });
+          if (root && root.classList.contains('zpanel-open')) {
+            render();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load live employees from MySQL:', err);
+      });
+  }
+
 
   var LEAVE_REQUESTS = [
     { id: 'LR-8041', name: 'Dr. Aisha Khan', role: 'Vet Dermatologist', type: 'Sick Leave (Medical)', dates: '05 Oct – 08 Oct (4 days)', reason: 'Post-viral recovery & rest', status: 'Pending', bal: '8 SL left' },
@@ -709,23 +730,32 @@
       var loc = document.getElementById('m-loc').value;
       if (!name || !role) { alert('Please enter staff name and designation.'); return; }
 
-      EMPLOYEES.unshift({
-        id: 'EMP-' + (1000 + EMPLOYEES.length + 1),
-        name: name,
-        role: role,
-        dept: dept,
-        loc: loc || 'HQ Flagship',
-        email: name.toLowerCase().replace(/[^a-z]/g, '.') + '@zenve.in',
-        phone: '+91 98000 00000',
-        joined: 'Today',
-        status: 'Active',
-        salary: '₹85,000/mo',
-        rating: '5.0★'
+      var email = name.toLowerCase().replace(/[^a-z]/g, '.') + '@zenve.in';
+      var phone = '+91 98' + Math.floor(10000000 + Math.random() * 90000000);
+      var salary = 85000.0;
+
+      fetch('/api/v1/employees', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone,
+          department: dept || 'Operations',
+          designation: role,
+          salary: salary
+        })
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        showToast('Staff member ' + name + ' onboarded to MySQL.');
+        closeM();
+        loadLiveEmployees();
+        S.tab = 'directory';
+      })
+      .catch(function (err) {
+        alert('Failed to save staff: ' + err.message);
       });
-      showToast('Staff member ' + name + ' onboarded.');
-      closeM();
-      S.tab = 'directory';
-      render();
     };
   }
 
@@ -797,6 +827,7 @@
   function open(tab) {
     closeOthers();
     init();
+    loadLiveEmployees();
     if (tab) S.tab = tab;
     S.open = true;
     render();

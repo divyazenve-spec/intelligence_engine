@@ -1,12 +1,15 @@
 """API v1 router — aggregates all endpoint routers."""
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import chat, dashboard, health, inventory, pipeline, predict, sales
+from app.api.v1.endpoints import chat, dashboard, domains, health, inventory, pipeline, predict, sales
 
 router = APIRouter()
 
-# Dashboard / data
+# Dashboard / data (Live MySQL sales + metrics)
 router.add_api_route("/data", dashboard.load_data, methods=["GET", "POST"], tags=["dashboard"])
+
+# All 23 Domains REST CRUD (Direct MySQL)
+router.include_router(domains.router, tags=["domains"])
 
 # Health
 router.include_router(health.router, prefix="/health", tags=["health"])

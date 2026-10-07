@@ -42,56 +42,8 @@
     searchQuery: '',
 
     // 1. Critical Alerts
-    critical: [
-      {
-        id: 'CRIT-101',
-        title: 'Vaccine Cold-Chain Temperature Breach (> +8.0°C)',
-        hub: 'Bengaluru Central Cold Depot (Freezer #3)',
-        metric: '+8.6°C (Threshold: +2°C to +8°C)',
-        impact: '480 Doses Zoetis Vanguard 7-in-1 at risk (₹8,64,000)',
-        time: '12m ago',
-        slaCountdown: '18m left before batch write-off',
-        lead: 'Sneha Patel (Cold-Chain Supervisor)',
-        status: 'Active',
-        action: 'Backup dry-ice thermal units initiated'
-      },
-      {
-        id: 'CRIT-102',
-        title: 'Telemedicine Red-Flag: Canine Acute GDV Bloat Emergency',
-        hub: 'Indiranagar Urban Node (Patient #PT-8819)',
-        metric: 'Severe tympany, heart rate 180 bpm, retching',
-        impact: 'Life-threatening emergency · 4yo Golden Retriever',
-        time: '18m ago',
-        slaCountdown: 'Emergency surgical transit in progress',
-        lead: 'Dr. Priya Sharma (CMO on dispatch)',
-        status: 'Acknowledged',
-        action: 'Zenve Mobile ICU Ambulance #02 rerouted to location'
-      },
-      {
-        id: 'CRIT-103',
-        title: 'Payment Gateway Webhook Timeout: Razorpay Instant Refunds',
-        hub: 'Core Financial API Gateway',
-        metric: 'Error Rate: 28.4% on /webhook/refunds',
-        impact: '42 customer UPI refunds stuck (₹1,84,500 total)',
-        time: '34m ago',
-        slaCountdown: '26m to RBI 1-hour refund breach',
-        lead: 'Arjun Nair (FinTech Lead)',
-        status: 'Active',
-        action: 'Automatic failover to Cashfree retry queue triggered'
-      },
-      {
-        id: 'CRIT-104',
-        title: 'LIMS Pathology Equipment Offline: Koramangala ICU Analyzer',
-        hub: 'Koramangala 24/7 Super-Specialty Hospital',
-        metric: 'Mindray BC-5000 Vet Hematology dropped serial sync',
-        impact: '6 pre-operative surgical blood profiles stalled',
-        time: '52m ago',
-        slaCountdown: 'Surgery slot starts in 38m',
-        lead: 'Dr. Kavita Reddy (Pathology Lead)',
-        status: 'Active',
-        action: 'Biomedical engineer paged on WhatsApp emergency bridge'
-      }
-    ],
+    critical: [],
+
 
     // 2. Revenue Alerts
     revenue: [
@@ -1991,8 +1943,39 @@
     }
   }
 
+  function loadLiveAlerts() {
+    fetch('/api/v1/alerts')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data) && data.length > 0) {
+          S.critical = data.map(function (a) {
+            return {
+              id: a.alert_code || ('ALT-' + a.id),
+              db_id: a.id,
+              title: a.title,
+              hub: a.category + ' Hub',
+              metric: 'Severity: ' + a.severity,
+              impact: a.message,
+              time: 'Live',
+              slaCountdown: 'Active Telemetry',
+              lead: 'Zenve Operations Command',
+              status: a.status === 'Resolved' ? 'Resolved' : (a.status === 'Acknowledged' ? 'Acknowledged' : 'Active'),
+              action: 'Automated monitoring enabled'
+            };
+          });
+          if (root && S.open) {
+            renderShell();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load alerts from MySQL:', err);
+      });
+  }
+
   /* ── Open, Switch, Close Lifecycle ───────────────────────────────── */
   function open(tab) {
+    loadLiveAlerts();
     if (tab && MODULES.some(function (m) { return m.id === tab; })) {
       S.activeTab = tab;
     }

@@ -36,19 +36,48 @@
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var IMPORTS = [
-    { bl: 'BL-IMP-9801', origin: 'Marseille, France', product: 'Royal Canin Veterinary Diet (2 x 40ft HQ)', port: 'Nhava Sheva (JNPT)', value: '₹48,50,000', customs: 'Cleared / Out of Charge', eta: 'Central Hub', status: 'Received' },
-    { bl: 'BL-IMP-9802', origin: 'Munich, Germany', product: 'Bravecto Antiparasitic Fluralaner (Air Reefer)', port: 'Bengaluru Air Cargo (BLR)', value: '₹34,20,000', customs: 'Under Inspection (ADC)', eta: 'Today, 18:00', status: 'In Customs' },
-    { bl: 'BL-IMP-9803', origin: 'Milan, Italy', product: 'Bespoke Haute Couture Leather & Hardware', port: 'Mumbai Air Cargo (BOM)', value: '₹14,80,000', customs: 'Bill of Entry Filed', eta: 'Oct 08, 2026', status: 'In Transit' },
-    { bl: 'BL-IMP-9804', origin: 'Rotterdam, Netherlands', product: 'Nobivac Vaccines (Cold Chain Reefer)', port: 'Nhava Sheva (JNPT)', value: '₹62,00,000', customs: 'CDSCO NOC Granted', eta: 'Oct 11, 2026', status: 'In Transit (Sea)' }
-  ];
+  var IMPORTS = [];
+  var EXPORTS = [];
 
-  var EXPORTS = [
-    { sb: 'SB-EXP-4101', dest: 'Dubai, UAE', client: 'Royal Pets Hospital LLC', items: 'Haute Couture Leather Collars', fob: '₹14,50,000', status: 'Dispatched (Air)' },
-    { sb: 'SB-EXP-4102', dest: 'Singapore', client: 'PetLovers Centre APAC', items: 'Ayurvedic Herbal Grooming Range', fob: '₹22,80,000', status: 'On Board Vessel' },
-    { sb: 'SB-EXP-4103', dest: 'London, UK', client: 'Mayfair Canine Atelier', items: 'Bespoke Wedding Tuxedos', fob: '₹8,90,000', status: 'Delivered' },
-    { sb: 'SB-EXP-4104', dest: 'Riyadh, Saudi Arabia', client: 'Arabian Falcon Healthcare', items: 'Titanium Orthopedic Implants', fob: '₹18,20,000', status: 'In Flight' }
-  ];
+  function loadLiveShipments() {
+    fetch('/api/v1/import-export/shipments')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          IMPORTS = data.filter(function (s) { return (s.direction || 'Import') === 'Import'; }).map(function (s) {
+            return {
+              bl: s.shipment_code || ('BL-IMP-' + s.id),
+              db_id: s.id,
+              origin: s.origin_country || 'France',
+              product: 'Cargo Consignment #' + (s.container_id || 'ZV-99'),
+              port: s.destination_city || 'Nhava Sheva (JNPT)',
+              value: '₹' + Number(s.cargo_value || 3500000).toLocaleString('en-IN'),
+              customs: s.customs_status || 'Cleared',
+              eta: s.eta_date ? new Date(s.eta_date).toLocaleDateString('en-GB') : 'In Transit',
+              status: s.status || 'Received'
+            };
+          });
+          EXPORTS = data.filter(function (s) { return s.direction === 'Export'; }).map(function (s) {
+            return {
+              sb: s.shipment_code || ('SB-EXP-' + s.id),
+              db_id: s.id,
+              dest: s.destination_city || 'Dubai, UAE',
+              client: 'International Client Org',
+              items: 'Export Goods Bundle',
+              fob: '₹' + Number(s.cargo_value || 1500000).toLocaleString('en-IN'),
+              status: s.status || 'Dispatched (Air)'
+            };
+          });
+          if (root && root.classList.contains('zix-open')) {
+            render();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load import/export shipments from MySQL:', err);
+      });
+  }
+
 
   /* ── State ───────────────────────────────────────────────────────── */
   var S = {
@@ -431,12 +460,12 @@
         '<h3 class="zix-modal-title">🚢 Create Inbound Import Consignment</h3>',
         '<button class="zix-btn" onclick="ZenveImportExportDashboard.closeModal()">✕</button>',
       '</div>',
-      '<form onsubmit="event.preventDefault(); alert(\'Consignment created. Advance Bill of Entry generated for ICEGATE filing!\'); ZenveImportExportDashboard.closeModal();">',
-        '<div class="zix-form-group"><label>International Supplier</label><select class="zix-select"><option>Royal Canin SAS (France)</option><option>MSD Animal Health GmbH (Germany)</option><option>Zoetis Global LLC (USA)</option><option>Guccio Leather Atelier (Italy)</option></select></div>',
-        '<div class="zix-form-group"><label>Consignment Description / B/L</label><input type="text" class="zix-input" placeholder="e.g. 2 x 40ft HQ Reefer Container Nobivac DHPPi" required /></div>',
+      '<form id="zix-consignment-form">',
+        '<div class="zix-form-group"><label>International Supplier</label><select id="zix-supp" class="zix-select"><option value="France">Royal Canin SAS (France)</option><option value="Germany">MSD Animal Health GmbH (Germany)</option><option value="USA">Zoetis Global LLC (USA)</option><option value="Italy">Guccio Leather Atelier (Italy)</option></select></div>',
+        '<div class="zix-form-group"><label>Consignment Description / B/L</label><input type="text" id="zix-desc" class="zix-input" placeholder="e.g. 2 x 40ft HQ Reefer Container Nobivac DHPPi" required /></div>',
         '<div class="zix-form-row">',
-          '<div class="zix-form-group"><label>CIF Value (USD / EUR)</label><input type="text" class="zix-input" placeholder="€52,000 (~₹46.8L)" required /></div>',
-          '<div class="zix-form-group"><label>Port of Entry</label><select class="zix-select"><option>Nhava Sheva (JNPT)</option><option>Bengaluru Air Cargo (BLR)</option><option>Mumbai Air Cargo (BOM)</option><option>Chennai Port (MAA)</option></select></div>',
+          '<div class="zix-form-group"><label>CIF Value (USD / EUR)</label><input type="text" id="zix-val" class="zix-input" placeholder="4500000" required /></div>',
+          '<div class="zix-form-group"><label>Port of Entry</label><select id="zix-port" class="zix-select"><option>Nhava Sheva (JNPT)</option><option>Bengaluru Air Cargo (BLR)</option><option>Mumbai Air Cargo (BOM)</option><option>Chennai Port (MAA)</option></select></div>',
         '</div>',
         '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">',
           '<button type="button" class="zix-btn" onclick="ZenveImportExportDashboard.closeModal()">Cancel</button>',
@@ -445,6 +474,39 @@
       '</form>'
     ].join('');
     showModal(formHtml);
+
+    var form = document.getElementById('zix-consignment-form');
+    if (form) {
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        var supp = document.getElementById('zix-supp').value;
+        var desc = document.getElementById('zix-desc').value;
+        var val = parseFloat(document.getElementById('zix-val').value.replace(/[^0-9.]/g, '')) || 3500000.0;
+        var port = document.getElementById('zix-port').value;
+
+        fetch('/api/v1/import-export/shipments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            direction: 'Import',
+            origin_country: supp,
+            destination_city: port,
+            carrier: 'Lufthansa Cargo',
+            container_id: desc,
+            cargo_value: val
+          })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          alert('Import Consignment registered into MySQL database!');
+          ZenveImportExportDashboard.closeModal();
+          loadLiveShipments();
+        })
+        .catch(function (err) {
+          alert('Failed to register shipment: ' + err.message);
+        });
+      };
+    }
   }
 
   function showExportBookingModal() {
@@ -504,6 +566,7 @@
     }
 
     build();
+    loadLiveShipments();
     S.open = true;
     root.style.display = 'block';
     root.classList.add('zix-open', 'zpanel-open');

@@ -28,77 +28,48 @@
 
   var root = null;
 
-  /* ── Master Mock Clinical Datasets ────────────────────────────────── */
-  var CONSULTATIONS = [
-    { id: 'CNS-8801', pet: 'Bruno (Golden Retriever)', parent: 'Vikram Singhania', doctor: 'Dr. Priya Sharma', specialty: 'General Medicine', mode: 'In-Clinic', diagnosis: 'Dietary Indiscretion (Enteritis)', fee: '₹950', status: 'Completed', time: '09:30 AM' },
-    { id: 'CNS-8802', pet: 'Milo (Persian Cat)', parent: 'Ananya Deshmukh', doctor: 'Dr. Aisha Khan', specialty: 'Feline Medicine', mode: 'Video Telehealth', diagnosis: 'Early Feline Lower Urinary (FLUTD)', fee: '₹750', status: 'In Consultation', time: '10:15 AM' },
-    { id: 'CNS-8803', pet: 'Rocky (German Shepherd)', parent: 'Rohan Mehta', doctor: 'Dr. Rahul Mehta', specialty: 'Orthopedics', mode: 'In-Clinic', diagnosis: 'CCL Partial Ligament Tear', fee: '₹1,400', status: 'Completed', time: '11:00 AM' },
-    { id: 'CNS-8804', pet: 'Simba (Beagle)', parent: 'Pooja Nair', doctor: 'Dr. Karan Patel', specialty: 'Dermatology', mode: 'In-Clinic', diagnosis: 'Malassezia Otitis Externa & Atopy', fee: '₹1,100', status: 'Waiting in Triage', time: '11:45 AM' },
-    { id: 'CNS-8805', pet: 'Bella (Shih Tzu)', parent: 'Kavita Rao', doctor: 'Dr. Neha Singh', specialty: 'Cardiology', mode: 'In-Clinic', diagnosis: 'Stage B2 Mitral Valve Disease', fee: '₹1,800', status: 'Completed', time: '12:30 PM' },
-    { id: 'CNS-8806', pet: 'Leo (Indie Pup)', parent: 'Sameer Joshi', doctor: 'Dr. Priya Sharma', specialty: 'Pediatrics', mode: 'Home Visit', diagnosis: 'Puppy Wellness Exam & Deworm', fee: '₹1,250', status: 'Scheduled', time: '02:00 PM' },
-    { id: 'CNS-8807', pet: 'Oreo (Domestic Shorthair)', parent: 'Farhan Akhtar', doctor: 'Dr. Aisha Khan', specialty: 'Dental / Oral', mode: 'In-Clinic', diagnosis: 'Grade 3 Periodontitis & Calculus', fee: '₹1,150', status: 'Scheduled', time: '03:15 PM' },
-    { id: 'CNS-8808', pet: 'Max (Labrador)', parent: 'Siddharth Roy', doctor: 'Dr. Rahul Mehta', specialty: 'Emergency / Triage', mode: 'In-Clinic', diagnosis: 'Theobromine Toxicity (Stat Care)', fee: '₹2,200', status: 'Under Observation', time: '04:00 PM' }
-  ];
+  /* ── Live Consultation Data from MySQL zenve_engine ────────────── */
+  var CONSULTATIONS = [];
 
-  var APPOINTMENTS = [
-    { id: 'APT-1041', time: '09:00 AM', pet: 'Koko (Pug)', parent: 'Ramesh Sundaram', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Annual Check & Rabies Booster', type: 'Scheduled App', status: 'Confirmed' },
-    { id: 'APT-1042', time: '09:30 AM', pet: 'Ginger (Tabby Cat)', parent: 'Meera Sen', doctor: 'Dr. Aisha Khan', clinic: 'Indiranagar Care Center', service: 'Senior Feline Renal Profile', type: 'Scheduled App', status: 'In Session' },
-    { id: 'APT-1043', time: '10:00 AM', pet: 'Thor (Rottweiler)', parent: 'Deepak Varma', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Pre-Op Orthopedic Radiography', type: 'Referral', status: 'Arrived' },
-    { id: 'APT-1044', time: '10:30 AM', pet: 'Daisy (Lhasa Apso)', parent: 'Nandita Bose', doctor: 'Dr. Karan Patel', clinic: 'Bandra West Super-Clinic', service: 'Cytology & Medicated Bath', type: 'Walk-In Priority', status: 'Confirmed' },
-    { id: 'APT-1045', time: '11:15 AM', pet: 'Whiskey (Golden Ret)', parent: 'Amitabh Sen', doctor: 'Dr. Neha Singh', clinic: 'Gurugram Central Hospital', service: 'Echocardiogram & ECG Review', type: 'Scheduled App', status: 'Confirmed' },
-    { id: 'APT-1046', time: '12:00 PM', pet: 'Snowy (Maltese)', parent: 'Preeti Chawla', doctor: 'Dr. Priya Sharma', clinic: 'Koramangala Pet Hospital', service: 'Puppy Booster & Microchip', type: 'Scheduled App', status: 'Scheduled' },
-    { id: 'APT-1047', time: '01:30 PM', pet: 'Rocky (Doberman)', parent: 'Kabir Bakshi', doctor: 'Dr. Rahul Mehta', clinic: 'Whitefield Specialty OT', service: 'Post-Surgical Suture Removal', type: 'Follow-Up', status: 'Scheduled' }
-  ];
+  /* ── Live Appointments from MySQL zenve_engine ───────────────── */
+  var APPOINTMENTS = [];
 
-  var TREATMENTS = [
-    { id: 'TRT-401', pet: 'Casper (Husky)', parent: 'Aditya Oberoi', ward: 'Critical ICU Ward', vet: 'Dr. Neha Singh', protocol: 'Severe Heatstroke & Hyperthermia', days: 2, progress: '78%', status: 'Guarded Progress' },
-    { id: 'TRT-402', pet: 'Simba (Persian Cat)', parent: 'Rashmi Sen', ward: 'Feline Special Ward', vet: 'Dr. Aisha Khan', protocol: 'FLUTD Post-Catheterization Care', days: 3, progress: '92%', status: 'Discharge Ready' },
-    { id: 'TRT-403', pet: 'Shadow (Labrador)', parent: 'Manish Tiwari', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'Hemilaminectomy Spinal Rehab', days: 4, progress: '65%', status: 'Stable Recovery' },
-    { id: 'TRT-404', pet: 'Ginger (Golden Ret)', parent: 'Sunita Menon', ward: 'Medical Ward A', vet: 'Dr. Priya Sharma', protocol: 'Canine Parvovirus Fluid Resuscitation', days: 5, progress: '88%', status: 'Stable Recovery' },
-    { id: 'TRT-405', pet: 'Coco (Frenchie)', parent: 'Varun Grover', ward: 'Post-Op Surgical Ward', vet: 'Dr. Rahul Mehta', protocol: 'BOAS Staphylectomy Airway Post-Op', days: 1, progress: '70%', status: 'Under Observation' }
-  ];
+  function loadLiveAppointments(cb) {
+    fetch('/api/v1/veterinary/appointments')
+      .then(function (res) { return res.json(); })
+      .then(function (rows) {
+        if (Array.isArray(rows) && rows.length > 0) {
+          APPOINTMENTS = rows.map(function (a) {
+            return {
+              id: a.appointment_code || ('APT-' + a.id),
+              dbId: a.id,
+              time: a.appointment_time || '10:00 AM',
+              pet: a.pet_name + ' (' + (a.pet_type || 'Dog') + ')',
+              parent: a.parent_name + (a.parent_phone ? ' (' + a.parent_phone + ')' : ''),
+              doctor: a.doctor_name || 'Dr. Priya Sharma',
+              clinic: a.clinic_name || 'Koramangala Pet Hospital',
+              service: a.service_name || 'General Health Checkup',
+              type: 'Scheduled App',
+              status: a.status || 'Confirmed'
+            };
+          });
+        }
+        if (root && S.open) renderAll();
+        if (cb) cb();
+      })
+      .catch(function (err) {
+        console.error('[Zenve Vet API Error]', err);
+      });
+  }
+  loadLiveAppointments();
 
-  var VACCINATIONS = [
-    { id: 'VAC-991', pet: 'Cooper (Golden Ret)', species: 'Canine', vaccine: 'Nobivac DHPPi + L4 (9-in-1 Core)', batch: 'NBV-2026-X81', date: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Priya Sharma', temp: '3.4°C', cert: 'Issued' },
-    { id: 'VAC-992', pet: 'Luna (Persian Cat)', species: 'Feline', vaccine: 'Felocell 4 (FVRCP Core)', batch: 'ZTS-9410-F2', date: '05 Oct 2026', nextDue: '05 Oct 2027', vet: 'Dr. Aisha Khan', temp: '3.8°C', cert: 'Issued' },
-    { id: 'VAC-993', pet: 'Rocky (Rottweiler)', species: 'Canine', vaccine: 'Defensor 3 (Anti-Rabies Core)', batch: 'DEF-8820-R1', date: '04 Oct 2026', nextDue: '04 Oct 2029', vet: 'Dr. Rahul Mehta', temp: '4.1°C', cert: 'Issued' },
-    { id: 'VAC-994', pet: 'Bella (Shih Tzu Pup)', species: 'Canine', vaccine: 'Nobivac Puppy DP First Shot', batch: 'NBV-7714-P0', date: '04 Oct 2026', nextDue: '25 Oct 2026', vet: 'Dr. Priya Sharma', temp: '3.2°C', cert: 'Scheduled' },
-    { id: 'VAC-995', pet: 'Simba (British Cat)', species: 'Feline', vaccine: 'Rabisin (Inactivated Rabies)', batch: 'BOE-6102-RB', date: '03 Oct 2026', nextDue: '03 Oct 2027', vet: 'Dr. Aisha Khan', temp: '3.6°C', cert: 'Issued' }
-  ];
-
-  var DIAGNOSTICS = [
-    { id: 'LAB-5101', pet: 'Oscar (Beagle)', test: '18-Parameter Biochemistry + Electrolytes', modality: 'Biochemistry', vet: 'Dr. Priya Sharma', tat: '45 mins', flag: 'High BUN / Creatinine', status: 'Result Ready' },
-    { id: 'LAB-5102', pet: 'Bella (Persian Cat)', test: 'Digital Abdominal Ultrasonography (Doppler)', modality: 'Ultrasound', vet: 'Dr. Aisha Khan', tat: '30 mins', flag: 'Bilateral Renal Cysts', status: 'Report Signed' },
-    { id: 'LAB-5103', pet: 'Max (German Shep)', test: 'Orthopedic Digital Radiography (Stifle / Hip)', modality: 'Digital X-Ray', vet: 'Dr. Rahul Mehta', tat: '20 mins', flag: 'Joint Effusion & Osteophytes', status: 'Report Signed' },
-    { id: 'LAB-5104', pet: 'Simba (Golden Ret)', test: 'Complete Blood Count (CBC) with Reticulocytes', modality: 'Hematology', vet: 'Dr. Karan Patel', tat: '25 mins', flag: 'Leukocytosis (WBC 22.4K)', status: 'Result Ready' },
-    { id: 'LAB-5105', pet: 'Milo (Indie Pup)', test: 'CPV / CCV Antigen Rapid Fluorescence Immunoassay', modality: 'Pathogen PCR', vet: 'Dr. Priya Sharma', tat: '15 mins', flag: 'Parvovirus Negative', status: 'Result Ready' }
-  ];
-
-  var PROCEDURES = [
-    { id: 'SUR-701', patient: 'Thor (Rottweiler)', procedure: 'TPLO Left Stifle Reconstruction', theater: 'OT 1 (Orthopedic Suite)', surgeon: 'Dr. Rahul Mehta', duration: '95 mins', anesthesia: 'Isoflurane + Epidural', status: 'Completed' },
-    { id: 'SUR-702', patient: 'Daisy (Lhasa Apso)', procedure: 'Full Mouth Dental Prophylaxis & Polish', theater: 'Dental OT', surgeon: 'Dr. Priya Sharma', duration: '50 mins', anesthesia: 'Propofol Induction', status: 'Completed' },
-    { id: 'SUR-703', patient: 'Coco (Frenchie)', procedure: 'BOAS Corrective Staphylectomy', theater: 'OT 2 (Soft Tissue)', surgeon: 'Dr. Rahul Mehta', duration: '75 mins', anesthesia: 'Sevoflurane + Block', status: 'In Procedure' },
-    { id: 'SUR-704', patient: 'Cleo (Persian Cat)', procedure: 'Laparoscopic Assisted Ovariohysterectomy', theater: 'OT 2 (Soft Tissue)', surgeon: 'Dr. Aisha Khan', duration: '40 mins', anesthesia: 'Alfaxalone + Iso', status: 'Prep / Induction' },
-    { id: 'SUR-705', patient: 'Simba (Golden Pup)', procedure: 'Endoscopic Foreign Body Retrieval', theater: 'Endoscopy OT', surgeon: 'Dr. Priya Sharma', duration: '45 mins', anesthesia: 'Propofol TIVA', status: 'Scheduled' }
-  ];
-
-  var REVENUE_DATA = [
-    { specialty: 'Orthopedic & Soft Tissue Surgery', rev: '₹4,85,000', cases: 38, aov: '₹12,763', share: '32.4%', margin: '72.0%' },
-    { specialty: 'Outpatient Clinical Consultations', rev: '₹3,42,000', cases: 342, aov: '₹1,000', share: '22.8%', margin: '84.0%' },
-    { specialty: 'Laboratory Pathology & Diagnostics', rev: '₹2,68,000', cases: 214, aov: '₹1,252', share: '17.9%', margin: '68.5%' },
-    { specialty: 'Cardiology & Diagnostic Ultrasound', rev: '₹1,84,000', cases: 68, aov: '₹2,705', share: '12.3%', margin: '74.2%' },
-    { specialty: 'Dentistry & Ultrasonic Scaling', rev: '₹1,22,000', cases: 46, aov: '₹2,652', share: '8.1%', margin: '78.0%' },
-    { specialty: 'Vaccinations & Biologicals', rev: '₹98,000', cases: 142, aov: '₹690', share: '6.5%', margin: '58.0%' }
-  ];
-
-  var PROFIT_DATA = [
-    { service: 'Outpatient Consultations', rev: '₹3,42,000', cogs: '₹54,720', profit: '₹2,87,280', margin: '84.0%', tier: 'Highest Margin' },
-    { service: 'Dental & Oral Surgery', rev: '₹1,22,000', cogs: '₹26,840', profit: '₹95,160', margin: '78.0%', tier: 'High Margin' },
-    { service: 'Cardiology & Diagnostic Ultrasound', rev: '₹1,84,000', cogs: '₹47,472', profit: '₹1,36,528', margin: '74.2%', tier: 'High Margin' },
-    { service: 'Orthopedic & Soft Tissue Surgery', rev: '₹4,85,000', cogs: '₹1,35,800', profit: '₹3,49,200', margin: '72.0%', tier: 'High Absolute EBITDA' },
-    { service: 'In-House Laboratory Diagnostics', rev: '₹2,68,000', cogs: '₹84,420', profit: '₹1,83,580', margin: '68.5%', tier: 'Steady Margin' },
-    { service: 'Vaccinations & Biologicals', rev: '₹98,000', cogs: '₹41,160', profit: '₹56,840', margin: '58.0%', tier: 'Retention Anchor' }
-  ];
+  /* ── Live Clinical Datasets from MySQL zenve_engine ─────────────── */
+  var TREATMENTS = [];
+  var VACCINATIONS = [];
+  var DIAGNOSTICS = [];
+  var PROCEDURES = [];
+  var REVENUE_DATA = [];
+  var PROFIT_DATA = [];
 
   /* ── Tab Helpers ──────────────────────────────────────────────────── */
   function tabFromText(t) {
@@ -231,20 +202,20 @@
   function renderOverview() {
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Revenue (MTD)</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹14.99 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.4% MoM</span><span class="zvs-subtext">18% total Zenve revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Total Consultations</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">1,420 Pets</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +14.2% MoM</span><span class="zvs-subtext">Outpatient & Video</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Procedures</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">184 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 100% OT Sterility</span><span class="zvs-subtext">Orthopedic & Soft Tissue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Profit Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">73.9%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +2.8% YoY</span><span class="zvs-subtext">Accretive high-yield unit</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Revenue (MTD)</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0% vs Prev</span><span class="zvs-subtext">No transactions recorded</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Total Consultations</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">' + CONSULTATIONS.length + ' Pets</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0% MoM</span><span class="zvs-subtext">Outpatient & Video</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Procedures</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">' + PROCEDURES.length + ' Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 Active</span><span class="zvs-subtext">Orthopedic & Soft Tissue</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Profit Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0.0% YoY</span><span class="zvs-subtext">Awaiting operational data</span></div></div>',
       '</div>',
 
       '<div class="zvs-grid-2">',
       '  <div class="zvs-card">',
-      '    <div class="zvs-card-head"><div><h3 class="zvs-card-title">Live Hospital Floor Status & Capacity</h3><p class="zvs-card-sub">Real-time patient intake and facility load across all 6 clinical hospitals</p></div></div>',
+      '    <div class="zvs-card-head"><div><h3 class="zvs-card-title">Live Hospital Floor Status & Capacity</h3><p class="zvs-card-sub">Real-time patient intake and facility load across all clinical centers</p></div></div>',
       '    <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">OUTPATIENT CLINICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">48 Consults Today</div><div style="font-size:11px;color:#16a34a;font-weight:600;">● 18 Surgeons On Duty</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">STERILE THEATERS (OT)</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">3 OTs Active</div><div style="font-size:11px;color:#2563eb;font-weight:600;">● 14 Surgeries Scheduled</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">INPATIENT & ICU WARDS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">18 Pets Admitted</div><div style="font-size:11px;color:#ea580c;font-weight:600;">● 82% Bed Occupancy</div></div>',
-      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">PATHOLOGY DIAGNOSTICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">142 Tests MTD</div><div style="font-size:11px;color:#0284c7;font-weight:600;">● 38m Turnaround Time</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">OUTPATIENT CLINICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">' + CONSULTATIONS.length + ' Consults Today</div><div style="font-size:11px;color:#64748b;font-weight:600;">● 0 Surgeons On Duty</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">STERILE THEATERS (OT)</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">0 OTs Active</div><div style="font-size:11px;color:#64748b;font-weight:600;">● ' + PROCEDURES.length + ' Surgeries Scheduled</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">INPATIENT & ICU WARDS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">' + TREATMENTS.length + ' Pets Admitted</div><div style="font-size:11px;color:#64748b;font-weight:600;">● 0% Bed Occupancy</div></div>',
+      '      <div style="padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;"><div style="font-size:11px;color:#64748b;font-weight:700;">PATHOLOGY DIAGNOSTICS</div><div style="font-size:22px;font-weight:800;color:#0f172a;margin:4px 0;">' + DIAGNOSTICS.length + ' Tests MTD</div><div style="font-size:11px;color:#64748b;font-weight:600;">● -- Turnaround Time</div></div>',
       '    </div>',
       '  </div>',
 
@@ -264,12 +235,33 @@
   }
 
   function renderConsultations() {
+    var filtered = CONSULTATIONS.filter(function (c) {
+      if (!S.searchQuery) return true;
+      var q = S.searchQuery.toLowerCase();
+      return (c.pet && c.pet.toLowerCase().indexOf(q) >= 0) || (c.doctor && c.doctor.toLowerCase().indexOf(q) >= 0) || (c.diagnosis && c.diagnosis.toLowerCase().indexOf(q) >= 0);
+    });
+
+    var rowsHtml = filtered.length > 0 ? filtered.map(function (c) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + c.id + '</td>',
+        '  <td style="font-weight:700;color:#0f172a;">' + c.pet + '</td>',
+        '  <td style="color:#475569;">' + c.parent + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + c.doctor + ' <span style="font-size:11px;color:#64748b;">(' + (c.specialty || 'General') + ')</span></td>',
+        '  <td><span class="zvs-tag ' + (c.mode === 'Video Telehealth' ? 'blue' : c.mode === 'Home Visit' ? 'purple' : 'green') + '">' + c.mode + '</span></td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + c.diagnosis + '</td>',
+        '  <td style="font-family:monospace;font-weight:700;color:#0f172a;">' + c.fee + '</td>',
+        '  <td><span class="zvs-tag ' + (c.status === 'Completed' ? 'green' : c.status === 'In Consultation' ? 'blue' : 'yellow') + '">' + c.status + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="8" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">🩺</div>No consultation records found. New encounters will appear here.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultations Today</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">48 Cases</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +14.2%</span><span class="zvs-subtext">34 In-Clinic • 11 Video • 3 Home</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Encounter Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">24.6 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Detailed care</span><span class="zvs-subtext">Benchmark: 20 mins</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Triage Queue</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">4 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 8m avg wait</span><span class="zvs-subtext">Fast-track emergency protocol</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultation CSAT</span><span class="zvs-kpi-icon">⭐</span></div><div class="zvs-kpi-val">4.94 / 5</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 98.8% satisfaction</span><span class="zvs-subtext">412 verified pet parent reviews</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultations Today</span><span class="zvs-kpi-icon">🩺</span></div><div class="zvs-kpi-val">' + CONSULTATIONS.length + ' Cases</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0% Today</span><span class="zvs-subtext">Outpatient & Telehealth</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Encounter Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">-- mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No active visits</span><span class="zvs-subtext">Benchmark: 20 mins</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Triage Queue</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">0 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">Queue clear</span><span class="zvs-subtext">Fast-track protocol</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Consultation CSAT</span><span class="zvs-kpi-icon">⭐</span></div><div class="zvs-kpi-val">-- / 5</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No reviews yet</span><span class="zvs-subtext">Verified pet parent reviews</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -280,26 +272,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Encounter ID</th><th>Pet & Companion</th><th>Pet Parent</th><th>Attending Veterinarian</th><th>Mode</th><th>Diagnosis</th><th>Fee</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      CONSULTATIONS.filter(function (c) {
-        if (!S.searchQuery) return true;
-        var q = S.searchQuery.toLowerCase();
-        return c.pet.toLowerCase().indexOf(q) >= 0 || c.doctor.toLowerCase().indexOf(q) >= 0 || c.diagnosis.toLowerCase().indexOf(q) >= 0;
-      }).map(function (c) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + c.id + '</td>',
-          '  <td style="font-weight:700;color:#0f172a;">' + c.pet + '</td>',
-          '  <td style="color:#475569;">' + c.parent + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + c.doctor + ' <span style="font-size:11px;color:#64748b;">(' + c.specialty + ')</span></td>',
-          '  <td><span class="zvs-tag ' + (c.mode === 'Video Telehealth' ? 'blue' : c.mode === 'Home Visit' ? 'purple' : 'green') + '">' + c.mode + '</span></td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + c.diagnosis + '</td>',
-          '  <td style="font-family:monospace;font-weight:700;color:#0f172a;">' + c.fee + '</td>',
-          '  <td><span class="zvs-tag ' + (c.status === 'Completed' ? 'green' : c.status === 'In Consultation' ? 'blue' : 'yellow') + '">' + c.status + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -307,12 +280,26 @@
   }
 
   function renderAppointments() {
+    var rowsHtml = APPOINTMENTS.length > 0 ? APPOINTMENTS.map(function (a) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;font-family:monospace;color:#0f172a;">' + a.time + ' <span style="font-size:10px;color:#64748b;">(' + a.id + ')</span></td>',
+        '  <td style="font-weight:700;color:#0f172a;">' + a.pet + '</td>',
+        '  <td style="color:#475569;">' + a.parent + '</td>',
+        '  <td style="font-weight:600;color:#2563eb;">' + a.doctor + '</td>',
+        '  <td style="color:#334155;">' + a.clinic + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + a.service + '</td>',
+        '  <td><span class="zvs-tag ' + (a.status === 'Confirmed' ? 'green' : a.status === 'In Session' ? 'blue' : 'yellow') + '">' + a.status + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">📅</div>No appointments scheduled. Click "+ Book Appointment" above to create one.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booked Slots Today</span><span class="zvs-kpi-icon">📅</span></div><div class="zvs-kpi-val">76 Slots</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 94.2% occupancy</span><span class="zvs-subtext">Across 6 flagship hospitals</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Walk-In Intake</span><span class="zvs-kpi-icon">🚶</span></div><div class="zvs-kpi-val">12 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Zero bottleneck</span><span class="zvs-subtext">Fast-track triage buffer</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">No-Show Rate</span><span class="zvs-kpi-icon">📉</span></div><div class="zvs-kpi-val">2.8%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ -1.4% MoM</span><span class="zvs-subtext">Automated WhatsApp 2h reminder</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Punctuality</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">96.5%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Within 5 mins</span><span class="zvs-subtext">Strict clinic SLA</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booked Slots Today</span><span class="zvs-kpi-icon">📅</span></div><div class="zvs-kpi-val">' + APPOINTMENTS.length + ' Slots</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0% occupancy</span><span class="zvs-subtext">Across clinical centers</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Walk-In Intake</span><span class="zvs-kpi-icon">🚶</span></div><div class="zvs-kpi-val">0 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No walk-in bottleneck</span><span class="zvs-subtext">Triage queue ready</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">No-Show Rate</span><span class="zvs-kpi-icon">📉</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 cancellations</span><span class="zvs-subtext">Automated reminder system</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Punctuality</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">--%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">Awaiting appointments</span><span class="zvs-subtext">Strict clinic SLA</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -320,21 +307,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Time & Slot</th><th>Pet & Patient</th><th>Parent</th><th>Doctor</th><th>Hospital Branch</th><th>Requested Service</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      APPOINTMENTS.map(function (a) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;font-family:monospace;color:#0f172a;">' + a.time + ' <span style="font-size:10px;color:#64748b;">(' + a.id + ')</span></td>',
-          '  <td style="font-weight:700;color:#0f172a;">' + a.pet + '</td>',
-          '  <td style="color:#475569;">' + a.parent + '</td>',
-          '  <td style="font-weight:600;color:#2563eb;">' + a.doctor + '</td>',
-          '  <td style="color:#334155;">' + a.clinic + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + a.service + '</td>',
-          '  <td><span class="zvs-tag ' + (a.status === 'Confirmed' ? 'green' : a.status === 'In Session' ? 'blue' : 'yellow') + '">' + a.status + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -342,12 +315,26 @@
   }
 
   function renderTreatments() {
+    var rowsHtml = TREATMENTS.length > 0 ? TREATMENTS.map(function (t) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#0f172a;">' + t.pet + ' <span style="font-size:11px;color:#64748b;">(' + t.id + ')</span></td>',
+        '  <td><span class="zvs-tag ' + (t.ward.indexOf('ICU') >= 0 ? 'red' : 'blue') + '">' + t.ward + '</span></td>',
+        '  <td style="font-weight:600;color:#2563eb;">' + t.vet + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + t.protocol + '</td>',
+        '  <td style="font-family:monospace;color:#475569;">Day ' + t.days + '</td>',
+        '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + t.progress + '</td>',
+        '  <td><span class="zvs-tag ' + (t.status === 'Discharge Ready' ? 'green' : 'blue') + '">' + t.status + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">🏥</div>No inpatient treatment records found.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Inpatient Ward</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">18 Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 82% Occupancy</span><span class="zvs-subtext">6 ICU • 7 Post-Op • 5 Medical</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Treatment Recovery Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">97.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +1.1% MoM</span><span class="zvs-subtext">Clinical recovery to discharge</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Hospital Stay</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">3.4 Days</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Optimal bed turnover</span><span class="zvs-subtext">Target: &lt; 4.0 Days</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Discharge Ready</span><span class="zvs-kpi-icon">🏡</span></div><div class="zvs-kpi-val">4 Pets Today</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Med summaries ready</span><span class="zvs-subtext">Post-op follow-up scheduled</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Active Inpatient Ward</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">' + TREATMENTS.length + ' Patients</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0% Occupancy</span><span class="zvs-subtext">All wards available</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Treatment Recovery Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No active cases</span><span class="zvs-subtext">Clinical recovery to discharge</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Hospital Stay</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">-- Days</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">Optimal bed turnover</span><span class="zvs-subtext">Target: &lt; 4.0 Days</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Discharge Ready</span><span class="zvs-kpi-icon">🏡</span></div><div class="zvs-kpi-val">0 Pets Today</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No discharges pending</span><span class="zvs-subtext">Post-op follow-up clear</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -355,21 +342,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Patient & Case</th><th>Ward Bed</th><th>Attending Vet</th><th>Clinical Regimen</th><th>Stay Duration</th><th>Recovery</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      TREATMENTS.map(function (t) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#0f172a;">' + t.pet + ' <span style="font-size:11px;color:#64748b;">(' + t.id + ')</span></td>',
-          '  <td><span class="zvs-tag ' + (t.ward.indexOf('ICU') >= 0 ? 'red' : 'blue') + '">' + t.ward + '</span></td>',
-          '  <td style="font-weight:600;color:#2563eb;">' + t.vet + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + t.protocol + '</td>',
-          '  <td style="font-family:monospace;color:#475569;">Day ' + t.days + '</td>',
-          '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + t.progress + '</td>',
-          '  <td><span class="zvs-tag ' + (t.status === 'Discharge Ready' ? 'green' : 'blue') + '">' + t.status + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -377,12 +350,27 @@
   }
 
   function renderVaccinations() {
+    var rowsHtml = VACCINATIONS.length > 0 ? VACCINATIONS.map(function (v) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + v.id + '</td>',
+        '  <td style="font-weight:700;color:#0f172a;">' + v.pet + ' <span style="font-size:11px;color:#64748b;">(' + v.species + ')</span></td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + v.vaccine + '</td>',
+        '  <td style="font-family:monospace;color:#334155;">' + v.batch + '</td>',
+        '  <td style="color:#475569;">' + v.date + '</td>',
+        '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + v.nextDue + '</td>',
+        '  <td><span class="zvs-tag cyan">❄️ ' + v.temp + '</span></td>',
+        '  <td><span class="zvs-tag ' + (v.cert === 'Issued' ? 'green' : 'yellow') + '">' + v.cert + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="8" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">💉</div>No immunization records found.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Vaccines Administered MTD</span><span class="zvs-kpi-icon">💉</span></div><div class="zvs-kpi-val">784 Doses</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +22.1% MoM</span><span class="zvs-subtext">512 Canine • 272 Feline</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Cold-Chain Adherence</span><span class="zvs-kpi-icon">❄️</span></div><div class="zvs-kpi-val">100.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 2-8°C Verified</span><span class="zvs-subtext">Zero heat excursion recorded</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booster Recall Rate</span><span class="zvs-kpi-icon">📲</span></div><div class="zvs-kpi-val">94.6%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +3.8% MoM</span><span class="zvs-subtext">Automated WhatsApp recall</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Passports Issued</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">768 Certs</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Govt Rabies Compliant</span><span class="zvs-subtext">QR code verifiable passport</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Vaccines Administered MTD</span><span class="zvs-kpi-icon">💉</span></div><div class="zvs-kpi-val">' + VACCINATIONS.length + ' Doses</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 doses MTD</span><span class="zvs-subtext">Canine & Feline</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Cold-Chain Adherence</span><span class="zvs-kpi-icon">❄️</span></div><div class="zvs-kpi-val">100.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 2-8°C Verified</span><span class="zvs-subtext">IoT cold-chain online</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Booster Recall Rate</span><span class="zvs-kpi-icon">📲</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 reminders sent</span><span class="zvs-subtext">Automated recall ready</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Passports Issued</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0 Certs</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 issued</span><span class="zvs-subtext">QR code verifiable passport</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -390,22 +378,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Cert ID</th><th>Pet & Species</th><th>Vaccine Product</th><th>Batch / Lot No</th><th>Date</th><th>Next Booster</th><th>Cold Chain</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      VACCINATIONS.map(function (v) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + v.id + '</td>',
-          '  <td style="font-weight:700;color:#0f172a;">' + v.pet + ' <span style="font-size:11px;color:#64748b;">(' + v.species + ')</span></td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + v.vaccine + '</td>',
-          '  <td style="font-family:monospace;color:#334155;">' + v.batch + '</td>',
-          '  <td style="color:#475569;">' + v.date + '</td>',
-          '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + v.nextDue + '</td>',
-          '  <td><span class="zvs-tag cyan">❄️ ' + v.temp + '</span></td>',
-          '  <td><span class="zvs-tag ' + (v.cert === 'Issued' ? 'green' : 'yellow') + '">' + v.cert + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -413,12 +386,27 @@
   }
 
   function renderDiagnostics() {
+    var rowsHtml = DIAGNOSTICS.length > 0 ? DIAGNOSTICS.map(function (d) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + d.id + '</td>',
+        '  <td style="font-weight:700;color:#0f172a;">' + d.pet + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + d.test + '</td>',
+        '  <td><span class="zvs-tag ' + (d.modality === 'Biochemistry' ? 'green' : d.modality === 'Ultrasound' ? 'purple' : 'blue') + '">' + d.modality + '</span></td>',
+        '  <td style="color:#475569;">' + d.vet + '</td>',
+        '  <td style="font-family:monospace;color:#334155;">' + d.tat + '</td>',
+        '  <td><span class="zvs-tag ' + (d.flag && d.flag.indexOf('High') >= 0 ? 'red' : 'yellow') + '">' + d.flag + '</span></td>',
+        '  <td><span class="zvs-tag ' + (d.status === 'Report Signed' ? 'green' : 'blue') + '">' + d.status + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="8" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">🔬</div>No diagnostic lab orders or imaging tests recorded. Click "Order Diagnostic" to create.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Tests Processed MTD</span><span class="zvs-kpi-icon">🔬</span></div><div class="zvs-kpi-val">142 Tests</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.9% MoM</span><span class="zvs-subtext">Biochemistry, Hematology, DR</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Turnaround Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">38.4 mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Target &lt; 45m</span><span class="zvs-subtext">Instant digital PACS sync</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Critical Lab Alerts</span><span class="zvs-kpi-icon">⚠️</span></div><div class="zvs-kpi-val">6 Alerts</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">● Stat notification</span><span class="zvs-subtext">Direct vet telemetry alert</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Imaging Usage</span><span class="zvs-kpi-icon">🩻</span></div><div class="zvs-kpi-val">88.2%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ DR & Ultrasound</span><span class="zvs-subtext">42 imaging runs completed</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Tests Processed MTD</span><span class="zvs-kpi-icon">🔬</span></div><div class="zvs-kpi-val">' + DIAGNOSTICS.length + ' Tests</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 MTD</span><span class="zvs-subtext">Biochemistry, Hematology, DR</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Turnaround Time</span><span class="zvs-kpi-icon">⏱️</span></div><div class="zvs-kpi-val">-- mins</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">Target &lt; 45m</span><span class="zvs-subtext">Digital PACS sync</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Critical Lab Alerts</span><span class="zvs-kpi-icon">⚠️</span></div><div class="zvs-kpi-val">0 Alerts</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">No stat alerts</span><span class="zvs-subtext">Direct vet telemetry</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Digital Imaging Usage</span><span class="zvs-kpi-icon">🩻</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">DR & Ultrasound</span><span class="zvs-subtext">0 imaging runs</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -426,22 +414,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Order ID</th><th>Pet & Patient</th><th>Investigation / Panel</th><th>Modality</th><th>Referral Vet</th><th>Turnaround</th><th>Findings</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      DIAGNOSTICS.map(function (d) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + d.id + '</td>',
-          '  <td style="font-weight:700;color:#0f172a;">' + d.pet + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + d.test + '</td>',
-          '  <td><span class="zvs-tag ' + (d.modality === 'Biochemistry' ? 'green' : d.modality === 'Ultrasound' ? 'purple' : 'blue') + '">' + d.modality + '</span></td>',
-          '  <td style="color:#475569;">' + d.vet + '</td>',
-          '  <td style="font-family:monospace;color:#334155;">' + d.tat + '</td>',
-          '  <td><span class="zvs-tag ' + (d.flag.indexOf('High') >= 0 ? 'red' : 'yellow') + '">' + d.flag + '</span></td>',
-          '  <td><span class="zvs-tag ' + (d.status === 'Report Signed' ? 'green' : 'blue') + '">' + d.status + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -449,12 +422,27 @@
   }
 
   function renderProcedures() {
+    var rowsHtml = PROCEDURES.length > 0 ? PROCEDURES.map(function (p) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + p.id + '</td>',
+        '  <td style="font-weight:700;color:#0f172a;">' + p.patient + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;">' + p.procedure + '</td>',
+        '  <td><span class="zvs-tag blue">' + p.theater + '</span></td>',
+        '  <td style="font-weight:600;color:#2563eb;">' + p.surgeon + '</td>',
+        '  <td style="font-family:monospace;color:#475569;">' + p.duration + '</td>',
+        '  <td style="font-size:11px;color:#334155;">' + p.anesthesia + '</td>',
+        '  <td><span class="zvs-tag ' + (p.status === 'Completed' ? 'green' : p.status === 'In Procedure' ? 'red' : 'yellow') + '">' + p.status + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="8" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">✂️</div>No surgical procedures scheduled. Operating theaters are ready.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgeries Today</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">14 Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 100% OT Sterility</span><span class="zvs-subtext">4 Ortho • 6 Soft Tissue • 4 Dental</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">OT Theater Utilization</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">91.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ High throughput</span><span class="zvs-subtext">3 sterile surgical suites</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Anesthesia Safety Record</span><span class="zvs-kpi-icon">🫁</span></div><div class="zvs-kpi-val">99.98%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Multi-parameter monitoring</span><span class="zvs-subtext">Capnography & ECG logging</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Infection Rate</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Benchmark: 1.8%</span><span class="zvs-subtext">Autoclave biological spore pass</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgeries Today</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">' + PROCEDURES.length + ' Surgeries</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">100% OT Sterility</span><span class="zvs-subtext">Theaters clean & ready</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">OT Theater Utilization</span><span class="zvs-kpi-icon">🏥</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 active sessions</span><span class="zvs-subtext">Sterile surgical suites</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Anesthesia Safety Record</span><span class="zvs-kpi-icon">🫁</span></div><div class="zvs-kpi-val">100.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">Monitoring online</span><span class="zvs-subtext">Capnography & ECG logging</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgical Infection Rate</span><span class="zvs-kpi-icon">🛡️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">Benchmark: 0.0%</span><span class="zvs-subtext">Autoclave biological spore pass</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -462,22 +450,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Surgical ID</th><th>Patient</th><th>Procedure Details</th><th>Theater</th><th>Lead Surgeon</th><th>Duration</th><th>Anesthesia</th><th>Status</th></tr></thead>',
-      '      <tbody>',
-      PROCEDURES.map(function (p) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#2563eb;font-family:monospace;">' + p.id + '</td>',
-          '  <td style="font-weight:700;color:#0f172a;">' + p.patient + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;">' + p.procedure + '</td>',
-          '  <td><span class="zvs-tag blue">' + p.theater + '</span></td>',
-          '  <td style="font-weight:600;color:#2563eb;">' + p.surgeon + '</td>',
-          '  <td style="font-family:monospace;color:#475569;">' + p.duration + '</td>',
-          '  <td style="font-size:11px;color:#334155;">' + p.anesthesia + '</td>',
-          '  <td><span class="zvs-tag ' + (p.status === 'Completed' ? 'green' : p.status === 'In Procedure' ? 'red' : 'yellow') + '">' + p.status + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -485,12 +458,25 @@
   }
 
   function renderRevenue() {
+    var rowsHtml = REVENUE_DATA.length > 0 ? REVENUE_DATA.map(function (r) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#0f172a;">' + r.specialty + '</td>',
+        '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + r.rev + '</td>',
+        '  <td style="font-family:monospace;color:#334155;">' + r.cases + '</td>',
+        '  <td style="color:#64748b;font-family:monospace;">' + r.aov + '</td>',
+        '  <td style="font-weight:600;color:#2563eb;">' + r.share + '</td>',
+        '  <td style="font-weight:700;color:#16a34a;">' + r.margin + '</td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">💰</div>No clinical revenue transactions recorded. New billings will be calculated automatically.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Gross Clinical Revenue</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹14.99 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +18.4% MoM</span><span class="zvs-subtext">18% total Zenve revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Revenue per Case</span><span class="zvs-kpi-icon">💳</span></div><div class="zvs-kpi-val">₹1,763</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +8.2% vs Plan</span><span class="zvs-subtext">Blended consult + surgery</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgery Billings</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">₹4.85 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Top clinical line</span><span class="zvs-subtext">32.4% share of billings</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Collection Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">99.4%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Zero bad debts</span><span class="zvs-subtext">Instant digital UPI / Card</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Gross Clinical Revenue</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">₹0 MTD</span><span class="zvs-subtext">Awaiting billings</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Avg Revenue per Case</span><span class="zvs-kpi-icon">💳</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 cases</span><span class="zvs-subtext">Blended consult + surgery</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Surgery Billings</span><span class="zvs-kpi-icon">✂️</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 share</span><span class="zvs-subtext">Clinical billings</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Collection Rate</span><span class="zvs-kpi-icon">🎯</span></div><div class="zvs-kpi-val">100.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">Zero bad debts</span><span class="zvs-subtext">Instant digital UPI / Card</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -498,20 +484,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Specialty</th><th>Monthly Billings</th><th>Cases</th><th>Avg Realization (AOV)</th><th>Share of Clinical Billings</th><th>Gross Margin</th></tr></thead>',
-      '      <tbody>',
-      REVENUE_DATA.map(function (r) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#0f172a;">' + r.specialty + '</td>',
-          '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + r.rev + '</td>',
-          '  <td style="font-family:monospace;color:#334155;">' + r.cases + '</td>',
-          '  <td style="color:#64748b;font-family:monospace;">' + r.aov + '</td>',
-          '  <td style="font-weight:600;color:#2563eb;">' + r.share + '</td>',
-          '  <td style="font-weight:700;color:#16a34a;">' + r.margin + '</td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -519,12 +492,25 @@
   }
 
   function renderProfitability() {
+    var rowsHtml = PROFIT_DATA.length > 0 ? PROFIT_DATA.map(function (p) {
+      return [
+        '<tr>',
+        '  <td style="font-weight:700;color:#0f172a;">' + p.service + '</td>',
+        '  <td style="font-weight:600;color:#0f172a;font-family:monospace;">' + p.rev + '</td>',
+        '  <td style="color:#dc2626;font-family:monospace;">' + p.cogs + '</td>',
+        '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + p.profit + '</td>',
+        '  <td style="font-weight:700;color:#2563eb;">' + p.margin + '</td>',
+        '  <td><span class="zvs-tag ' + (p.tier && p.tier.indexOf('Highest') >= 0 ? 'green' : 'blue') + '">' + p.tier + '</span></td>',
+        '</tr>'
+      ].join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:48px 20px;color:#94a3b8;font-size:13px;"><div style="font-size:26px;margin-bottom:8px;">📈</div>No service profitability data recorded. Margins will calculate with incoming revenue.</td></tr>';
+
     return [
       '<div class="zvs-kpi-grid">',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Blended Gross Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">73.9%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +2.8% YoY</span><span class="zvs-subtext">Benchmark: 68.0%</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Gross Profit</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹11.08 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ +21.4% MoM</span><span class="zvs-subtext">From ₹14.99L revenue</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Commission Split</span><span class="zvs-kpi-icon">👨‍⚕️</span></div><div class="zvs-kpi-val">16.1%</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ Accretive payout model</span><span class="zvs-subtext">Target &lt; 18.0%</span></div></div>',
-      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">EBITDA Contribution</span><span class="zvs-kpi-icon">💎</span></div><div class="zvs-kpi-val">₹8.68 L</div><div class="zvs-kpi-bottom"><span class="zvs-delta up">↑ 57.9% net yield</span><span class="zvs-subtext">After hospital overheads</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Blended Gross Margin</span><span class="zvs-kpi-icon">📈</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0.0% YoY</span><span class="zvs-subtext">Awaiting clinical billings</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Clinical Gross Profit</span><span class="zvs-kpi-icon">💰</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">₹0 MTD</span><span class="zvs-subtext">Revenue minus COGS</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">Doctor Commission Split</span><span class="zvs-kpi-icon">👨‍⚕️</span></div><div class="zvs-kpi-val">0.0%</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">0 payouts</span><span class="zvs-subtext">Accretive model</span></div></div>',
+      '  <div class="zvs-kpi"><div class="zvs-kpi-top"><span class="zvs-kpi-label">EBITDA Contribution</span><span class="zvs-kpi-icon">💎</span></div><div class="zvs-kpi-val">₹0</div><div class="zvs-kpi-bottom"><span class="zvs-delta neutral">₹0 net yield</span><span class="zvs-subtext">After hospital overheads</span></div></div>',
       '</div>',
 
       '<div class="zvs-card">',
@@ -532,20 +518,7 @@
       '  <div class="zvs-table-wrap">',
       '    <table class="zvs-table">',
       '      <thead><tr><th>Service Line</th><th>Revenue</th><th>Direct Cost / COGS</th><th>Gross Profit</th><th>Margin %</th><th>Margin Tier</th></tr></thead>',
-      '      <tbody>',
-      PROFIT_DATA.map(function (p) {
-        return [
-          '<tr>',
-          '  <td style="font-weight:700;color:#0f172a;">' + p.service + '</td>',
-          '  <td style="font-weight:600;color:#0f172a;font-family:monospace;">' + p.rev + '</td>',
-          '  <td style="color:#dc2626;font-family:monospace;">' + p.cogs + '</td>',
-          '  <td style="font-weight:700;color:#16a34a;font-family:monospace;">' + p.profit + '</td>',
-          '  <td style="font-weight:700;color:#2563eb;">' + p.margin + '</td>',
-          '  <td><span class="zvs-tag ' + (p.tier.indexOf('Highest') >= 0 ? 'green' : 'blue') + '">' + p.tier + '</span></td>',
-          '</tr>'
-        ].join('');
-      }).join(''),
-      '      </tbody>',
+      '      <tbody>' + rowsHtml + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -603,21 +576,32 @@
       var r = document.getElementById('vm-reason').value;
       if (!p || !pet) { alert('Please enter pet parent and pet companion details.'); return; }
 
-      APPOINTMENTS.unshift({
-        id: 'APT-' + (1050 + APPOINTMENTS.length),
-        time: 'Just Now',
-        pet: pet,
-        parent: p,
-        doctor: d,
-        clinic: c,
-        service: r || 'General Clinical Consultation',
-        type: 'Express Booking',
-        status: 'Confirmed'
+      fetch('/api/v1/veterinary/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pet_name: pet,
+          pet_type: 'Canine',
+          parent_name: p,
+          parent_phone: '+91 98450 12345',
+          doctor_name: d,
+          service_name: r || 'General Consultation',
+          appointment_date: new Date().toISOString().slice(0, 10),
+          appointment_time: '11:00 AM',
+          clinic_name: c
+        })
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        showToast('✓ Appointment booked in MySQL database!');
+        closeM();
+        loadLiveAppointments(function () {
+          switchTab('appointments');
+        });
+      })
+      .catch(function (err) {
+        showToast('Booking error: ' + err.message);
       });
-
-      showToast('Appointment booked for ' + pet + '! Slot confirmed.');
-      closeM();
-      switchTab('appointments');
     };
   }
 

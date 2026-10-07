@@ -36,14 +36,37 @@
   ];
 
   /* ── Master Datasets ─────────────────────────────────────────────── */
-  var ACCOUNTS = [
-    { id: 'CORP-8801', name: 'K-9 National Police & Paramilitary Kennels', category: 'Security & Govt', contractVal: '₹18,50,000', mtdOrders: '₹2,40,000', terms: 'Net 60', creditLimit: '₹25,00,000', status: 'Active (Tier 1)', rm: 'Vikram Mehta' },
-    { id: 'CORP-8802', name: 'Bangalore Canine Breeding & Genetics Club', category: 'Breeder Co-op', contractVal: '₹12,80,000', mtdOrders: '₹1,95,000', terms: 'Net 45', creditLimit: '₹15,00,000', status: 'Active (Tier 1)', rm: 'Aarav Sen' },
-    { id: 'CORP-8803', name: 'Urban Mutts Luxury Daycare & Hospitality', category: 'Hospitality', contractVal: '₹8,40,000', mtdOrders: '₹1,12,000', terms: 'Net 30', creditLimit: '₹10,00,000', status: 'Active (Tier 2)', rm: 'Sneha Rao' },
-    { id: 'CORP-8804', name: 'PetCare Hospital Network (12 Centers)', category: 'Hospital Chain', contractVal: '₹24,00,000', mtdOrders: '₹3,85,000', terms: 'Net 30', creditLimit: '₹30,00,000', status: 'Active (Key Client)', rm: 'Vikram Mehta' },
-    { id: 'CORP-8805', name: 'Infosys Employee Pets Corporate Wellness', category: 'Corporate Benefits', contractVal: '₹9,60,000', mtdOrders: '₹1,40,000', terms: 'Net 30', creditLimit: '₹12,00,000', status: 'Active (Tier 2)', rm: 'Sneha Rao' },
-    { id: 'CORP-8806', name: 'Wipro Campus Canine Security Force', category: 'Security & Govt', contractVal: '₹6,50,000', mtdOrders: '₹82,000', terms: 'Net 45', creditLimit: '₹8,00,000', status: 'Renewal Due', rm: 'Vikram Mehta' }
-  ];
+  var ACCOUNTS = [];
+
+  function loadLiveB2BAccounts() {
+    fetch('/api/v1/b2b/accounts')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data)) {
+          ACCOUNTS = data.map(function (a) {
+            return {
+              id: a.account_code || ('CORP-' + a.id),
+              db_id: a.id,
+              name: a.company_name,
+              category: a.business_type || 'Hospital Chain',
+              contractVal: '₹' + Number(a.annual_deal_value || 1500000).toLocaleString('en-IN'),
+              mtdOrders: '₹' + Number((a.annual_deal_value || 1500000) / 10).toLocaleString('en-IN'),
+              terms: 'Net 30',
+              creditLimit: '₹' + Number(a.credit_limit || 500000).toLocaleString('en-IN'),
+              status: a.status || 'Active',
+              rm: a.contact_name || 'Vikram Mehta'
+            };
+          });
+          if (root && root.classList.contains('zb2b-open')) {
+            render();
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error('Failed to load B2B accounts from MySQL:', err);
+      });
+  }
+
 
   var ORDERS = [
     { po: 'PO-B2B-4401', client: 'PetCare Hospital Network', items: 'Nobivac Vaccines (200v) + Bravecto (80p)', val: '₹3,45,000', orderDate: '2026-10-04', dispatchDate: '2026-10-05', status: 'Dispatched', terms: 'Net 30' },
@@ -487,15 +510,15 @@
         '<h3 class="zb2b-modal-title">🏢 Onboard New Enterprise Account</h3>',
         '<button class="zb2b-btn" onclick="ZenveB2BDashboard.closeModal()">✕</button>',
       '</div>',
-      '<form onsubmit="event.preventDefault(); alert(\'Enterprise client onboarded. Master Services Agreement generated!\'); ZenveB2BDashboard.closeModal();">',
-        '<div class="zb2b-form-group"><label>Organization Legal Entity Name</label><input type="text" class="zb2b-input" placeholder="e.g. Apollo Veterinary Hospitals Pvt Ltd" required /></div>',
+      '<form id="zb2b-onboard-form">',
+        '<div class="zb2b-form-group"><label>Organization Legal Entity Name</label><input type="text" id="zb2b-cname" class="zb2b-input" placeholder="e.g. Apollo Veterinary Hospitals Pvt Ltd" required /></div>',
         '<div class="zb2b-form-row">',
-          '<div class="zb2b-form-group"><label>Corporate GSTIN</label><input type="text" class="zb2b-input" placeholder="29AAACP8912K1Z8" required /></div>',
-          '<div class="zb2b-form-group"><label>Enterprise Category</label><select class="zb2b-select"><option>Veterinary Hospital Chain</option><option>Security & Govt Kennels</option><option>Breeder Co-op</option><option>Corporate Benefits</option></select></div>',
+          '<div class="zb2b-form-group"><label>Corporate GSTIN</label><input type="text" id="zb2b-gstin" class="zb2b-input" placeholder="29AAACP8912K1Z8" required /></div>',
+          '<div class="zb2b-form-group"><label>Enterprise Category</label><select id="zb2b-category" class="zb2b-select"><option>Veterinary Hospital Chain</option><option>Security & Govt Kennels</option><option>Breeder Co-op</option><option>Corporate Benefits</option></select></div>',
         '</div>',
         '<div class="zb2b-form-row">',
-          '<div class="zb2b-form-group"><label>Approved Credit Limit (INR)</label><input type="text" class="zb2b-input" placeholder="₹25,00,000" required /></div>',
-          '<div class="zb2b-form-group"><label>Assigned Relationship Manager</label><select class="zb2b-select"><option>Vikram Mehta (VP)</option><option>Sneha Rao (Senior RM)</option><option>Aarav Sen</option></select></div>',
+          '<div class="zb2b-form-group"><label>Approved Credit Limit (INR)</label><input type="text" id="zb2b-credit" class="zb2b-input" placeholder="2500000" required /></div>',
+          '<div class="zb2b-form-group"><label>Assigned Relationship Manager</label><select id="zb2b-rm" class="zb2b-select"><option>Vikram Mehta (VP)</option><option>Sneha Rao (Senior RM)</option><option>Aarav Sen</option></select></div>',
         '</div>',
         '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">',
           '<button type="button" class="zb2b-btn" onclick="ZenveB2BDashboard.closeModal()">Cancel</button>',
@@ -504,6 +527,39 @@
       '</form>'
     ].join('');
     showModal(formHtml);
+
+    var form = document.getElementById('zb2b-onboard-form');
+    if (form) {
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        var cname = document.getElementById('zb2b-cname').value;
+        var cat = document.getElementById('zb2b-category').value;
+        var rm = document.getElementById('zb2b-rm').value;
+        var credit = parseFloat(document.getElementById('zb2b-credit').value.replace(/[^0-9.]/g, '')) || 2500000.0;
+
+        fetch('/api/v1/b2b/accounts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company_name: cname,
+            business_type: cat,
+            contact_name: rm,
+            contact_phone: '+91 80 4455 6677',
+            annual_deal_value: 2400000.0,
+            credit_limit: credit
+          })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          alert('Enterprise client ' + cname + ' onboarded to MySQL!');
+          ZenveB2BDashboard.closeModal();
+          loadLiveB2BAccounts();
+        })
+        .catch(function (err) {
+          alert('Failed to onboard enterprise account: ' + err.message);
+        });
+      };
+    }
   }
 
   /* ── Open & Close Mechanics ──────────────────────────────────────── */
@@ -542,6 +598,7 @@
     }
 
     build();
+    loadLiveB2BAccounts();
     S.open = true;
     root.style.display = 'block';
     root.classList.add('zb2b-open', 'zpanel-open');
