@@ -92,7 +92,7 @@
     var downloads = curMetrics.reduce(function (a, m) {
       return a + num(m.android_downloads) + num(m.ios_downloads);
     }, 0);
-    var downloadTarget = 3000;
+    var downloadTarget = 0;
 
     return {
       monthly: monthly,
@@ -105,7 +105,7 @@
       downloads: downloads,
       downloadTarget: downloadTarget,
       curOrders: curMonSales.length,
-      orderTarget: 200,
+      orderTarget: 0,
     };
   }
 
@@ -132,6 +132,11 @@
 
   /* ── monthly bar chart ─────────────────────────────────────────── */
   function monthlyChart(monthly, targets) {
+    var months = MONTHS.slice(0, new Date().getMonth() + 1);
+    var hasAny = months.some(function (m) { return (monthly[m] || 0) > 0 || (targets[m] || 0) > 0; });
+    if (!hasAny) {
+      return '<div style="padding:48px 20px;text-align:center;color:var(--muted-foreground);font-size:13px;">No monthly sales or targets recorded</div>';
+    }
     var W = 600, H = 160;
     var pad = { l: 48, r: 16, t: 16, b: 32 };
     var iW = W - pad.l - pad.r;
@@ -231,7 +236,7 @@
 
           '<div class="zp-card zp-panel">',
             '<div class="zp-ph"><h3>Team Targets</h3><small>Individual achievement vs monthly target</small></div>',
-            a.teamActuals.map(function (t) {
+            (a.teamActuals.length > 0 ? a.teamActuals.map(function (t) {
               var p = t.target > 0 ? Math.min((t.achieved / t.target) * 100, 135) : 0;
               var c = RING_C(p);
               return [
@@ -248,7 +253,7 @@
                   '</div>',
                 '</div>'
               ].join('');
-            }).join(''),
+            }).join('') : '<div style="padding:28px 20px;text-align:center;color:var(--muted-foreground);font-size:12px;">No team targets recorded</div>'),
           '</div>',
 
           /* achievement summary */

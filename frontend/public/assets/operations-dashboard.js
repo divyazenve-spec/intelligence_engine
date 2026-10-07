@@ -28,12 +28,12 @@
   var TABS = [
     { id: 'all-orders',    label: 'All Orders',           icon: '📋', hash: '#all-orders', badge: '' },
     { id: 'overview',      label: 'Operations Dashboard', icon: '🎛️', hash: '#operations-dashboard', badge: '' },
-    { id: 'management',    label: 'Order Management',     icon: '📦', hash: '#order-management', badge: '124' },
-    { id: 'status',        label: 'Order Status',         icon: '📍', hash: '#order-status', badge: 'Live SLA' },
-    { id: 'returns',       label: 'Returns & Refunds',    icon: '🔄', hash: '#returns-refunds', badge: '6 Pending' },
-    { id: 'cancellations',  label: 'Cancellations',        icon: '🚫', hash: '#cancellations', badge: '3.4%' },
-    { id: 'delivery',      label: 'Delivery Performance', icon: '🚚', hash: '#delivery-performance', badge: '96.2%' },
-    { id: 'express',       label: '60-Minute Delivery',   icon: '⚡', hash: '#60-minute-delivery', badge: 'Active', pulse: true }
+    { id: 'management',    label: 'Order Management',     icon: '📦', hash: '#order-management', badge: '' },
+    { id: 'status',        label: 'Order Status',         icon: '📍', hash: '#order-status', badge: '' },
+    { id: 'returns',       label: 'Returns & Refunds',    icon: '🔄', hash: '#returns-refunds', badge: '' },
+    { id: 'cancellations',  label: 'Cancellations',        icon: '🚫', hash: '#cancellations', badge: '' },
+    { id: 'delivery',      label: 'Delivery Performance', icon: '🚚', hash: '#delivery-performance', badge: '' },
+    { id: 'express',       label: '60-Minute Delivery',   icon: '⚡', hash: '#60-minute-delivery', badge: '', pulse: true }
   ];
 
   var HUBS = [
@@ -597,33 +597,33 @@
     var cancelled = all.filter(function (o) { return o.status === 'Cancelled'; });
 
     var totalRevenue = all.reduce(function (a, o) { return a + o.amount; }, 0);
-    var expressSlaPct = 95.8;
-    var onTimePct = 96.4;
+    var expressSlaPct = 0.0;
+    var onTimePct = 0.0;
 
     return [
       '<div class="zod-kpis">',
-        kpi('Total Orders (MTD)', all.length.toLocaleString('en-IN'), '+14.2% vs last month', 'up', '📦'),
-        kpi('Active In-Fulfillment', (inTransit.length + processing.length), processing.length + ' packing, ' + inTransit.length + ' on-road', 'warn', '🚚'),
-        kpi('On-Time Delivery Rate', onTimePct + '%', 'Target: >95.0% SLA met', 'up', '🎯'),
-        kpi('60-Min Express SLA', expressSlaPct + '%', 'Avg 41 mins delivery time', 'up', '⚡'),
-        kpi('Return Rate', ((returned.length / (all.length || 1)) * 100).toFixed(1) + '%', 'Benchmark <3.5% (Healthy)', 'up', '🔄'),
-        kpi('Cancellation Rate', ((cancelled.length / (all.length || 1)) * 100).toFixed(1) + '%', 'Lost Rev: ' + inrShort(cancelled.reduce(function (a, o) { return a + o.amount; }, 0)), 'down', '🚫'),
+        kpi('Total Orders (MTD)', all.length.toLocaleString('en-IN'), '--', 'neutral', '📦'),
+        kpi('Active In-Fulfillment', (inTransit.length + processing.length), processing.length + ' packing, ' + inTransit.length + ' on-road', 'neutral', '🚚'),
+        kpi('On-Time Delivery Rate', '0.0%', '--', 'neutral', '🎯'),
+        kpi('60-Min Express SLA', '0.0%', '--', 'neutral', '⚡'),
+        kpi('Return Rate', '0.0%', '--', 'neutral', '🔄'),
+        kpi('Cancellation Rate', '0.0%', '--', 'neutral', '🚫'),
       '</div>',
 
       /* Fulfillment Pipeline */
       '<div class="zod-card zod-panel zod-pipeline-wrap">',
         '<div class="zod-ph">',
-          '<div><h3>🔄 Live Order Fulfillment Stream</h3><small>Real-time lifecycle distribution across all 5 operational micro-centers</small></div>',
-          '<span class="zod-badge green">All Systems Normal</span>',
+          '<div><h3>🔄 Live Order Fulfillment Stream</h3><small>Real-time lifecycle distribution across operational micro-centers</small></div>',
+          '<span class="zod-badge">Pipeline Idle</span>',
         '</div>',
         '<div class="zod-pipeline-grid">',
-          pipelineStage('📥 Placed / Paid', all.length, '100% verified', 'overview'),
-          pipelineStage('🩺 Pharmacy QA', processing.length + 3, 'Prescription check', 'management'),
-          pipelineStage('📦 Packed at Hub', processing.length, 'Cold-chain sealed', 'management'),
-          pipelineStage('🚚 Out for Delivery', inTransit.length, 'Active fleet riders', 'status'),
-          pipelineStage('⚡ 60-Min Express', express.length, 'Avg 39.4m dispatch', 'express'),
-          pipelineStage('✅ Delivered', delivered.length, 'Customer OTP verified', 'management'),
-          pipelineStage('⚠️ Returns / Claims', returned.length, 'Inspection queue', 'returns'),
+          pipelineStage('📥 Placed / Paid', all.length, '0 verified', 'overview'),
+          pipelineStage('🩺 Pharmacy QA', processing.length, '0 pending QA', 'management'),
+          pipelineStage('📦 Packed at Hub', processing.length, '0 packed', 'management'),
+          pipelineStage('🚚 Out for Delivery', inTransit.length, '0 on road', 'status'),
+          pipelineStage('⚡ 60-Min Express', express.length, '0 dispatch', 'express'),
+          pipelineStage('✅ Delivered', delivered.length, '0 delivered', 'management'),
+          pipelineStage('⚠️ Returns / Claims', returned.length, '0 claims', 'returns'),
         '</div>',
       '</div>',
 
@@ -633,7 +633,6 @@
         '<div class="zod-card zod-panel">',
           '<div class="zod-ph">',
             '<div><h3>📈 Dispatch Velocity vs Delivery SLA</h3><small>Hourly delivery fulfillment throughput vs 60-minute benchmark target</small></div>',
-            '<div class="zod-seg"><button class="on">Hourly</button><button>Daily</button></div>',
           '</div>',
           renderThroughputSvg(),
         '</div>',
@@ -642,14 +641,9 @@
         '<div class="zod-card zod-panel">',
           '<div class="zod-ph">',
             '<div><h3>🔔 Operations Alert Center</h3><small>Real-time telemetry exceptions &amp; automated resolutions</small></div>',
-            '<span class="zod-badge red">3 Action Items</span>',
+            '<span class="zod-badge">0 Alerts</span>',
           '</div>',
-          '<div style="display:flex;flex-direction:column;gap:10px;">',
-            renderAlertItem('⚡ 60-Min SLA Risk', 'Order ZV-11530 in Koramangala has 12m remaining. Rider rerouted to bypass Sony World junction.', 'amber', '10m ago'),
-            renderAlertItem('❄️ Cold-Chain Compliance', 'Vaccine batch passed 4°C temperature check. Ready for Express dispatch.', 'green', '24m ago'),
-            renderAlertItem('🌧️ Weather Delay Warning', 'Heavy monsoon showers in Mumbai West (Bandra). Estimated delivery buffers increased +15m.', 'blue', '45m ago'),
-            renderAlertItem('🔄 Reverse Pickup Scheduled', 'Return ZV-11497 (Harness exchange) assigned to Shadowfax Reverse. Customer notified.', 'purple', '1h ago'),
-          '</div>',
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No active operational alerts</div>',
         '</div>',
       '</div>',
 
@@ -657,74 +651,14 @@
       '<div class="zod-card zod-panel" style="margin-top:16px;">',
         '<div class="zod-ph">',
           '<div><h3>🏢 Regional Micro-Fulfillment Centers (Dark Stores)</h3><small>Stock levels, fleet utilization, and on-time dispatch SLA per regional node</small></div>',
-          '<button class="zod-btn" id="zod-jump-express">⚡ View 60-Min Express Hubs</button>',
         '</div>',
-        '<div class="zod-grid-3">',
-          renderHubCard('Bengaluru Express Hub (Koramangala)', '98.4%', '18 Riders On Road', '94% Stock Health', '38m Avg Speed', '#10b981'),
-          renderHubCard('Mumbai West Center (Bandra)', '95.2%', '14 Riders On Road', '91% Stock Health', '44m Avg Speed', '#0ea5e9'),
-          renderHubCard('Delhi NCR Hub (Okhla Phase 3)', '94.6%', '16 Riders On Road', '89% Stock Health', '46m Avg Speed', '#f59e0b'),
-          renderHubCard('Hyderabad Central (Jubilee Hills)', '96.8%', '12 Riders On Road', '96% Stock Health', '40m Avg Speed', '#10b981'),
-          renderHubCard('Pune Micro-Center (Koregaon)', '97.1%', '10 Riders On Road', '93% Stock Health', '36m Avg Speed', '#10b981'),
-        '</div>',
+        '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No micro-fulfillment dark store data recorded</div>',
       '</div>'
     ].join('');
   }
 
   function renderThroughputSvg() {
-    var hours = ['8 AM', '10 AM', '12 PM', '2 PM', '4 PM', '6 PM', '8 PM', '10 PM'];
-    var expressVals = [14, 28, 45, 38, 52, 68, 59, 32];
-    var standardVals = [22, 35, 60, 48, 70, 85, 78, 42];
-    var max = 100;
-
-    var w = 780, h = 220, padL = 40, padR = 20, padT = 20, padB = 30;
-    var innerW = w - padL - padR;
-    var innerH = h - padT - padB;
-
-    function getCoords(vals) {
-      return vals.map(function (v, i) {
-        var x = padL + (i / (vals.length - 1)) * innerW;
-        var y = padT + innerH - (v / max) * innerH;
-        return [x, y];
-      });
-    }
-
-    var c1 = getCoords(expressVals);
-    var c2 = getCoords(standardVals);
-
-    var path1 = c1.map(function (p, i) { return (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
-    var path2 = c2.map(function (p, i) { return (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
-
-    var area1 = path1 + ' L' + (padL + innerW) + ',' + (padT + innerH) + ' L' + padL + ',' + (padT + innerH) + ' Z';
-
-    return [
-      '<svg class="zp-svg" viewBox="0 0 ' + w + ' ' + h + '" style="max-height:220px;">',
-        '<defs>',
-          '<linearGradient id="zodGrad1" x1="0" y1="0" x2="0" y2="1">',
-            '<stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.3"/>',
-            '<stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>',
-          '</linearGradient>',
-        '</defs>',
-        /* Horizontal grid lines */
-        '<line x1="' + padL + '" y1="' + padT + '" x2="' + (padL + innerW) + '" y2="' + padT + '" stroke="rgba(255,255,255,0.06)"/>',
-        '<line x1="' + padL + '" y1="' + (padT + innerH * 0.5) + '" x2="' + (padL + innerW) + '" y2="' + (padT + innerH * 0.5) + '" stroke="rgba(255,255,255,0.06)"/>',
-        '<line x1="' + padL + '" y1="' + (padT + innerH) + '" x2="' + (padL + innerW) + '" y2="' + (padT + innerH) + '" stroke="rgba(255,255,255,0.1)"/>',
-        /* Areas & Lines */
-        '<path d="' + area1 + '" fill="url(#zodGrad1)"/>',
-        '<path d="' + path2 + '" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4"/>',
-        '<path d="' + path1 + '" fill="none" stroke="#38bdf8" stroke-width="3"/>',
-        /* Dots on express */
-        c1.map(function (p) {
-          return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" fill="#38bdf8" stroke="#090d16" stroke-width="2"/>';
-        }).join(''),
-        /* Labels */
-        hours.map(function (hr, i) {
-          var x = padL + (i / (hours.length - 1)) * innerW;
-          return '<text x="' + x + '" y="' + (h - 8) + '" text-anchor="middle" font-size="10" fill="#94a3b8">' + hr + '</text>';
-        }).join(''),
-        '<text x="' + padL + '" y="' + (padT + 12) + '" font-size="9" fill="#38bdf8">● 60-Min Express Deliveries</text>',
-        '<text x="' + (padL + 160) + '" y="' + (padT + 12) + '" font-size="9" fill="#94a3b8">-- Standard Dispatches</text>',
-      '</svg>'
-    ].join('');
+    return '<div style="padding:60px 20px;text-align:center;color:#94a3b8;font-size:13px;">No hourly dispatch throughput records available</div>';
   }
 
   function renderAlertItem(title, desc, tone, time) {
@@ -971,21 +905,15 @@
      ===================================================================== */
   function renderReturnsView() {
     var returnsList = S.orders.filter(function (o) { return o.status === 'Returned' || o.returnReason; });
-    if (!returnsList.length) {
-      returnsList = S.orders.slice(0, 10).map(function (o) {
-        return Object.assign({}, o, { status: 'Returned', returnReason: 'Pet rejected formulation / flavor', refundStatus: 'Pending Approval', refundMode: 'Instant UPI' });
-      });
-    }
-
     var totalRefundVal = returnsList.reduce(function (a, o) { return a + o.amount; }, 0);
 
     return [
       '<div class="zod-kpis">',
-        kpi('Total Returns (MTD)', returnsList.length, '-0.4% vs benchmark', 'up', '🔄'),
-        kpi('Return Rate', '2.1%', 'Target <3.5% (Optimal)', 'up', '📊'),
-        kpi('Total Refunds Value', inrShort(totalRefundVal), 'Instant UPI & Wallet', 'warn', '💳'),
-        kpi('Avg Refund Turnaround', '1.4 Hours', '98.2% Instant settlement', 'up', '⚡'),
-        kpi('Pending QA Inspection', '4 Items', 'Cold-chain checks in progress', 'warn', '🔍'),
+        kpi('Total Returns (MTD)', returnsList.length, '--', 'neutral', '🔄'),
+        kpi('Return Rate', '0.0%', '--', 'neutral', '📊'),
+        kpi('Total Refunds Value', inrShort(totalRefundVal), '--', 'neutral', '💳'),
+        kpi('Avg Refund Turnaround', '--', '--', 'neutral', '⚡'),
+        kpi('Pending QA Inspection', '0 Items', '--', 'neutral', '🔍'),
       '</div>',
 
       '<div class="zod-grid-main">',
@@ -993,7 +921,7 @@
         '<div class="zod-card zod-panel">',
           '<div class="zod-ph">',
             '<div><h3>🔄 Reverse Logistics &amp; Refund Approval Queue</h3><small>Approve quality inspection and release instant UPI or Wallet refunds</small></div>',
-            '<span class="zod-badge amber">' + returnsList.filter(function(o){ return o.refundStatus === 'Pending Approval'; }).length + ' Action Required</span>',
+            '<span class="zod-badge">' + returnsList.filter(function(o){ return o.refundStatus === 'Pending Approval'; }).length + ' Action Required</span>',
           '</div>',
           '<div class="zod-tbl-wrap">',
             '<table class="zod-tbl">',
@@ -1010,7 +938,7 @@
                 '</tr>',
               '</thead>',
               '<tbody>',
-                returnsList.map(function (o) {
+                (returnsList.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No return or refund records found</td></tr>' : returnsList.map(function (o) {
                   var isPending = o.refundStatus === 'Pending Approval';
                   return [
                     '<tr>',
@@ -1028,7 +956,7 @@
                       '</td>',
                     '</tr>'
                   ].join('');
-                }).join(''),
+                }).join('')),
               '</tbody>',
             '</table>',
           '</div>',
@@ -1039,17 +967,7 @@
           '<div class="zod-ph">',
             '<div><h3>📊 Root Cause Categorization</h3><small>Return drivers across pet clinical products</small></div>',
           '</div>',
-          '<div style="display:flex;flex-direction:column;gap:12px;">',
-            renderBarBreakdown('Pet rejected taste/kibble size', '38%', '#f59e0b'),
-            renderBarBreakdown('Incorrect collar/harness measurement', '26%', '#0ea5e9'),
-            renderBarBreakdown('Veterinarian changed medication dosage', '18%', '#10b981'),
-            renderBarBreakdown('Transit seal tampering during transit', '11%', '#ef4444'),
-            renderBarBreakdown('Accidental order duplication', '7%', '#a855f7'),
-          '</div>',
-          '<div style="margin-top:20px;padding:12px;border-radius:8px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);">',
-            '<b style="color:#34d399;font-size:12px;">💡 AI Quality Insight:</b>',
-            '<p style="font-size:11px;color:#94a3b8;margin:4px 0 0 0;">Food taste rejections reduced by 22% after implementing pet breed-specific sample trials on Android app checkout.</p>',
-          '</div>',
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No return root cause records found</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1072,21 +990,15 @@
      ===================================================================== */
   function renderCancellationsView() {
     var cancelledList = S.orders.filter(function (o) { return o.status === 'Cancelled' || o.cancelReason; });
-    if (!cancelledList.length) {
-      cancelledList = S.orders.slice(0, 8).map(function (o) {
-        return Object.assign({}, o, { status: 'Cancelled', cancelReason: 'Customer changed mind / ordered by mistake' });
-      });
-    }
-
     var lostRev = cancelledList.reduce(function (a, o) { return a + o.amount; }, 0);
 
     return [
       '<div class="zod-kpis">',
-        kpi('Total Cancellations (MTD)', cancelledList.length, '-0.8% MoM improvement', 'up', '🚫'),
-        kpi('Cancellation Rate', '3.4%', 'Industry average: 4.8%', 'up', '📉'),
-        kpi('Lost Gross Revenue', inrShort(lostRev), 'Before retention recovery', 'down', '💸'),
-        kpi('Recovered Revenue', inrShort(Math.round(lostRev * 0.38)), 'Via instant pet clinic credit', 'up', '🛡️'),
-        kpi('Pre-Dispatch Cancel %', '88.4%', 'Cancelled <5m after order', 'warn', '⏱️'),
+        kpi('Total Cancellations (MTD)', cancelledList.length, '--', 'neutral', '🚫'),
+        kpi('Cancellation Rate', '0.0%', '--', 'neutral', '📉'),
+        kpi('Lost Gross Revenue', inrShort(lostRev), '--', 'neutral', '💸'),
+        kpi('Recovered Revenue', inrShort(0), '--', 'neutral', '🛡️'),
+        kpi('Pre-Dispatch Cancel %', '0.0%', '--', 'neutral', '⏱️'),
       '</div>',
 
       '<div class="zod-grid-main">',
@@ -1110,7 +1022,7 @@
                 '</tr>',
               '</thead>',
               '<tbody>',
-                cancelledList.map(function (o, idx) {
+                (cancelledList.length === 0 ? '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No cancellation records found</td></tr>' : cancelledList.map(function (o, idx) {
                   return [
                     '<tr>',
                       '<td><strong style="color:#f87171;font-family:IBM Plex Mono,monospace;">' + o.id + '</strong></td>',
@@ -1124,7 +1036,7 @@
                       '</td>',
                     '</tr>'
                   ].join('');
-                }).join(''),
+                }).join('')),
               '</tbody>',
             '</table>',
           '</div>',
@@ -1135,17 +1047,7 @@
           '<div class="zod-ph">',
             '<div><h3>🔍 Primary Cancellation Drivers</h3><small>Where drop-offs occur and how to prevent them</small></div>',
           '</div>',
-          '<div style="display:flex;flex-direction:column;gap:12px;">',
-            renderBarBreakdown('Accidental order / Changed mind', '42%', '#f87171'),
-            renderBarBreakdown('Urgent clinic purchase made locally', '24%', '#fb923c'),
-            renderBarBreakdown('Selected standard delivery instead of 60-Min', '18%', '#38bdf8'),
-            renderBarBreakdown('Payment gateway duplicate trigger', '11%', '#a855f7'),
-            renderBarBreakdown('Incorrect delivery address entered', '5%', '#64748b'),
-          '</div>',
-          '<div style="margin-top:20px;padding:12px;border-radius:8px;background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.2);">',
-            '<b style="color:#38bdf8;font-size:12px;">💡 Recommended Retention Rule:</b>',
-            '<p style="font-size:11px;color:#94a3b8;margin:4px 0 0 0;">When a customer clicks Cancel due to delivery time, offer an automated free upgrade to Zenve 60-Minute Express delivery to retain 34% of at-risk orders.</p>',
-          '</div>',
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No cancellation drivers recorded</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1159,11 +1061,11 @@
 
     return [
       '<div class="zod-kpis">',
-        kpi('Overall On-Time SLA', '--', 'No delivery data', 'neutral', '🚚'),
-        kpi('Avg Delivery Time (Express)', '--', 'Target: <60 Mins', 'neutral', '⚡'),
-        kpi('First Attempt Success (FADR)', '--', 'No data', 'neutral', '🎯'),
-        kpi('Active Delivery Riders', '0 Riders', '100% Electric vehicle fleet', 'neutral', '🛵'),
-        kpi('Carbon Saved (MTD)', '0 kg CO₂', 'Via EV local delivery', 'neutral', '🌱'),
+        kpi('Overall On-Time SLA', '0.0%', '--', 'neutral', '🚚'),
+        kpi('Avg Delivery Time (Express)', '--', '--', 'neutral', '⚡'),
+        kpi('First Attempt Success (FADR)', '0.0%', '--', 'neutral', '🎯'),
+        kpi('Active Delivery Riders', '0 Riders', '--', 'neutral', '🛵'),
+        kpi('Carbon Saved (MTD)', '0 kg CO₂', '--', 'neutral', '🌱'),
       '</div>',
 
       '<div class="zod-card zod-panel" style="margin-bottom:16px;">',
@@ -1186,7 +1088,7 @@
               '</tr>',
             '</thead>',
             '<tbody>',
-              partners.map(function (p) {
+              (partners.length === 0 ? '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No carrier performance records found</td></tr>' : partners.map(function (p) {
                 return [
                   '<tr>',
                     '<td><b style="color:#000000;">' + esc(p.name) + '</b></td>',
@@ -1199,7 +1101,7 @@
                     '<td class="r"><span class="zod-badge green">● Operational</span></td>',
                   '</tr>'
                 ].join('');
-              }).join(''),
+              }).join('')),
             '</tbody>',
           '</table>',
         '</div>',
@@ -1210,34 +1112,13 @@
         /* City Performance */
         '<div class="zod-card zod-panel">',
           '<div class="zod-ph"><div><h3>📍 Metro City Delivery Performance</h3><small>On-time completion rates across Indian urban clusters</small></div></div>',
-          '<div style="display:flex;flex-direction:column;gap:12px;">',
-            renderBarBreakdown('Bengaluru Metro (3,420 orders)', '97.8% On-Time', '#10b981'),
-            renderBarBreakdown('Mumbai Metropolitan Region (2,890 orders)', '95.6% On-Time', '#0ea5e9'),
-            renderBarBreakdown('Delhi NCR & Gurgaon (2,410 orders)', '94.2% On-Time', '#f59e0b'),
-            renderBarBreakdown('Hyderabad Cyberabad (1,840 orders)', '96.9% On-Time', '#10b981'),
-            renderBarBreakdown('Pune Urban Area (1,510 orders)', '97.2% On-Time', '#10b981'),
-          '</div>',
+          '<div style="padding:28px 20px;text-align:center;color:#94a3b8;font-size:12px;">No metro city delivery performance records found</div>',
         '</div>',
 
         /* Top Riders Leaderboard */
         '<div class="zod-card zod-panel">',
           '<div class="zod-ph"><div><h3>🏆 Top Fleet Champions Leaderboard</h3><small>Recognized for highest customer ratings and zero SLA breaches</small></div></div>',
-          '<div style="display:flex;flex-direction:column;gap:10px;">',
-            RIDERS.map(function (r, idx) {
-              return [
-                '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);">',
-                  '<div style="display:flex;align-items:center;gap:10px;">',
-                    '<span style="font-family:IBM Plex Mono,monospace;font-size:12px;font-weight:700;color:#f59e0b;">#' + (idx + 1) + '</span>',
-                    '<div><b style="font-size:12px;color:#fff;">' + esc(r.name) + '</b><br><small style="color:#94a3b8;">' + r.hub.toUpperCase() + ' • ' + r.vehicle + '</small></div>',
-                  '</div>',
-                  '<div style="text-align:right;">',
-                    '<div style="color:#10b981;font-weight:700;font-size:12px;">★ ' + r.rating + '</div>',
-                    '<small style="color:#94a3b8;">' + r.completed + ' delivered</small>',
-                  '</div>',
-                '</div>'
-              ].join('');
-            }).join(''),
-          '</div>',
+          '<div style="padding:28px 20px;text-align:center;color:#94a3b8;font-size:12px;">No fleet rider records found</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1248,15 +1129,14 @@
      ===================================================================== */
   function renderExpressView() {
     var expressOrders = S.orders.filter(function (o) { return o.speed === '60-Min Express'; });
-    if (!expressOrders.length) expressOrders = S.orders.slice(0, 12);
 
     return [
       '<div class="zod-kpis">',
-        kpi('Active 60-Min Deliveries', expressOrders.length, 'Real-time countdown active', 'up', '⚡'),
-        kpi('Average Delivery Speed', '39.4 Minutes', 'Target: <60 Minutes SLA', 'up', '⏱️'),
-        kpi('Express SLA Compliance', '97.2%', 'Only 2.8% delayed >60m', 'up', '🎯'),
-        kpi('Cold-Chain Assurance', '100% Passed', 'Insulin & vaccine calibrated', 'up', '❄️'),
-        kpi('Active Express EV Fleet', '42 Electric Bikes', 'Across 5 metro centers', 'up', '🛵'),
+        kpi('Active 60-Min Deliveries', expressOrders.length, '--', 'neutral', '⚡'),
+        kpi('Average Delivery Speed', '--', '--', 'neutral', '⏱️'),
+        kpi('Express SLA Compliance', '0.0%', '--', 'neutral', '🎯'),
+        kpi('Cold-Chain Assurance', '0.0%', '--', 'neutral', '❄️'),
+        kpi('Active Express EV Fleet', '0 Electric Bikes', '--', 'neutral', '🛵'),
       '</div>',
 
       /* Live Active 60-Minute Delivery Board */
@@ -1266,10 +1146,10 @@
             '<h3>⚡ Active 60-Minute Delivery Live Board</h3>',
             '<small>Live countdown timers, rider assignments, and delivery coordinates</small>',
           '</div>',
-          '<span class="zod-live-indicator"><span class="zod-pulse-dot"></span> Radar Active</span>',
+          '<span class="zod-live-indicator">Radar Standby</span>',
         '</div>',
 
-        '<div class="zod-grid-3">',
+        (expressOrders.length === 0 ? '<div style="padding:48px 20px;text-align:center;color:#94a3b8;font-size:13px;">No active 60-minute express deliveries in progress</div>' : '<div class="zod-grid-3">' +
           expressOrders.slice(0, 6).map(function (o, idx) {
             var remaining = o.minRemaining || (25 - idx * 4);
             var isUrgent = remaining < 15;
@@ -1296,24 +1176,15 @@
                 '</div>',
               '</div>'
             ].join('');
-          }).join(''),
-        '</div>',
+          }).join('') + '</div>'),
       '</div>',
 
       /* Dark Stores / Micro Fulfillment Centers Radar */
       '<div class="zod-card zod-panel">',
         '<div class="zod-ph">',
           '<div><h3>📡 Micro-Fulfillment Dark Stores &amp; Coverage Radius</h3><small>15-minute dispatch radius from high-density pet population centers</small></div>',
-          '<span class="zod-badge green">100% In-Stock Critical Meds</span>',
         '</div>',
-        '<div class="zod-grid-3">',
-          renderDarkStoreCard('Indiranagar Express Hub', 'Bengaluru', '4.2 km Radius', '14 EV Riders Available', '99.1% SLA Compliance', '#10b981'),
-          renderDarkStoreCard('Koramangala 4th Block Node', 'Bengaluru', '5.0 km Radius', '18 EV Riders Available', '98.5% SLA Compliance', '#10b981'),
-          renderDarkStoreCard('Bandra West Micro-Store', 'Mumbai', '4.5 km Radius', '12 EV Riders Available', '96.8% SLA Compliance', '#0ea5e9'),
-          renderDarkStoreCard('Hauz Khas Express Node', 'Delhi NCR', '5.5 km Radius', '16 EV Riders Available', '95.4% SLA Compliance', '#f59e0b'),
-          renderDarkStoreCard('Jubilee Hills Healthcare Hub', 'Hyderabad', '6.0 km Radius', '11 EV Riders Available', '97.6% SLA Compliance', '#10b981'),
-          renderDarkStoreCard('Koregaon Park Express Center', 'Pune', '4.8 km Radius', '9 EV Riders Available', '98.0% SLA Compliance', '#10b981'),
-        '</div>',
+        '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No micro-fulfillment dark stores recorded</div>',
       '</div>'
     ].join('');
   }

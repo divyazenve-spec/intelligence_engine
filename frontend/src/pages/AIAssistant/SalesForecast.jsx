@@ -25,10 +25,10 @@ export default function SalesForecast() {
       badge="Proprietary Time-Series Model"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next 30-Day Forecast (p50)" value="₹0" delta="+18.8% vs Sept" trend="up" subtext="Expected trajectory" icon="📈" />
-        <KpiCard label="Optimistic Scenario (p90)" value="₹0" delta="+24.2% Growth" trend="up" subtext="High-demand bound" icon="🚀" />
-        <KpiCard label="Conservative Bound (p10)" value="₹0" delta="+11.5% Floor" trend="neutral" subtext="Downside buffer" icon="🛡️" />
-        <KpiCard label="Model Backtest Accuracy" value="0.0%" delta="MAPE: 4.6%" trend="up" subtext="Last 90 days test" icon="🎯" />
+        <KpiCard label="Next 30-Day Forecast (p50)" value="₹0" delta="--" trend="neutral" subtext="No baseline data" icon="📈" />
+        <KpiCard label="Optimistic Scenario (p90)" value="₹0" delta="--" trend="neutral" subtext="No upside bound" icon="🚀" />
+        <KpiCard label="Conservative Bound (p10)" value="₹0" delta="--" trend="neutral" subtext="No downside buffer" icon="🛡️" />
+        <KpiCard label="Model Backtest Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No test data" icon="🎯" />
       </div>
 
       <div style={cardStyle}>
@@ -69,20 +69,28 @@ export default function SalesForecast() {
               </tr>
             </thead>
             <tbody>
-              {projections.map((p, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{p.period}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', color: '#64748b' }}>{p.p10}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#2563eb' }}>{p.p50}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#059669' }}>{p.p90}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, color: '#059669' }}>{p.growth}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'center' }}>
-                    <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: '#ecfdf5', color: '#047857' }}>
-                      {p.confidence}
-                    </span>
+              {projections.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '24px', color: '#64748b' }}>
+                    No projection records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                projections.map((p, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{p.period}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', color: '#64748b' }}>{p.p10}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#2563eb' }}>{p.p50}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#059669' }}>{p.p90}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, color: '#059669' }}>{p.growth}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'center' }}>
+                      <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: '#ecfdf5', color: '#047857' }}>
+                        {p.confidence}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -15,10 +15,10 @@ export default function DeliveryPerformance() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network CSAT Score" value="4.92 / 5" delta="+0.04 MoM" trend="up" subtext="Based on 18,400 ratings" icon="⭐" />
-        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="+0.6% MoM" trend="up" subtext="Across all 76 EV riders" icon="⏱️" />
-        <KpiCard label="Avg Rider Velocity" value="26.8 km/h" delta="Green eco-speed" trend="up" subtext="Zero safety incidents" icon="⚡" />
-        <KpiCard label="Cold-Chain Audit Pass" value="0.0%" delta="Zero spoilage" trend="up" subtext="14,800 vaccine deliveries" icon="❄️" />
+        <KpiCard label="Network CSAT Score" value="0.0 / 5" delta="--" trend="neutral" subtext="0 ratings recorded" icon="⭐" />
+        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="--" trend="neutral" subtext="Across 0 EV riders" icon="⏱️" />
+        <KpiCard label="Avg Rider Velocity" value="0.0 km/h" delta="--" trend="neutral" subtext="No speed incidents" icon="⚡" />
+        <KpiCard label="Cold-Chain Audit Pass" value="0.0%" delta="--" trend="neutral" subtext="0 vaccine deliveries" icon="❄️" />
       </div>
 
       <div style={{
@@ -49,32 +49,40 @@ export default function DeliveryPerformance() {
               </tr>
             </thead>
             <tbody>
-              {topRiders.map(r => (
-                <tr key={r.rank} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px 16px', textAlign: 'center', fontWeight: 700, color: r.rank === 1 ? '#eab308' : r.rank === 2 ? '#94a3b8' : '#b45309' }}>
-                    {r.rank === 1 ? '🥇' : r.rank === 2 ? '🥈' : r.rank === 3 ? '🥉' : '#' + r.rank}
-                  </td>
-                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{r.name}</td>
-                  <td style={{ padding: '12px 16px', color: '#0284c7', fontFamily: '"IBM Plex Mono", monospace' }}>{r.vehicleId}</td>
-                  <td style={{ padding: '12px 16px', color: '#475569' }}>{r.hub}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.deliveries}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.onTime}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#334155' }}>{r.avgSpeed}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#d97706', fontWeight: 700 }}>{r.csat}</td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{
-                      padding: '4px 9px',
-                      borderRadius: '12px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: '#fef3c7',
-                      color: '#b45309'
-                    }}>
-                      ⭐ {r.badge}
-                    </span>
+              {topRiders.length === 0 ? (
+                <tr>
+                  <td colSpan="9" style={{ textAlign: 'center', padding: '24px', color: '#64748b' }}>
+                    No rider performance records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                topRiders.map(r => (
+                  <tr key={r.rank} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px 16px', textAlign: 'center', fontWeight: 700, color: r.rank === 1 ? '#eab308' : r.rank === 2 ? '#94a3b8' : '#b45309' }}>
+                      {r.rank === 1 ? '🥇' : r.rank === 2 ? '🥈' : r.rank === 3 ? '🥉' : '#' + r.rank}
+                    </td>
+                    <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{r.name}</td>
+                    <td style={{ padding: '12px 16px', color: '#0284c7', fontFamily: '"IBM Plex Mono", monospace' }}>{r.vehicleId}</td>
+                    <td style={{ padding: '12px 16px', color: '#475569' }}>{r.hub}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.deliveries}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{r.onTime}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#334155' }}>{r.avgSpeed}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#d97706', fontWeight: 700 }}>{r.csat}</td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <span style={{
+                        padding: '4px 9px',
+                        borderRadius: '12px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: '#fef3c7',
+                        color: '#b45309'
+                      }}>
+                        ⭐ {r.badge}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

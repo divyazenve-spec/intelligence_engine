@@ -3,21 +3,25 @@ import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
 export default function TargetsAndAchievement() {
-  const [targetAdjust, setTargetAdjust] = useState(0); // 0 = baseline, 10 = +10%, 20 = +20%, -10 = -10%
+  const [targetAdjust, setTargetAdjust] = useState(0);
   const [selectedDept, setSelectedDept] = useState('all');
 
-  const basePeriodTarget = 5000000;
+  const basePeriodTarget = 0;
   const targetMultiplier = 1 + targetAdjust / 100;
   const adjustedTarget = Math.round(basePeriodTarget * targetMultiplier);
-  const realizedRevenue = 5050000;
-  const attainment = ((realizedRevenue / adjustedTarget) * 100);
-  const calendarElapsedPct = 73.3; // 22 of 30 days
-  const pacingDiff = attainment - calendarElapsedPct;
-  const projectedFinish = Math.round(realizedRevenue / (calendarElapsedPct / 100));
-  const surplusDeficit = realizedRevenue - adjustedTarget;
+  const realizedRevenue = 0;
+  const attainment = adjustedTarget > 0 ? ((realizedRevenue / adjustedTarget) * 100) : 0;
+  const calendarElapsedPct = 0;
+  const pacingDiff = 0;
+  const projectedFinish = 0;
+  const surplusDeficit = 0;
 
   // Department targets
   const departments = [];
+  const filteredDepts = [];
+
+  // Team Reps & Coordinators
+  const reps = [];
 
   // Doctors Quotas
   const doctors = [];
@@ -25,9 +29,9 @@ export default function TargetsAndAchievement() {
   // Circular gauge calculations
   const rad = 65;
   const circ = 2 * Math.PI * rad;
-  const cappedAttain = Math.min(100, Math.max(0, attainment));
-  const arcOffset = circ - (cappedAttain / 100) * circ;
-  const dialColor = attainment >= 100 ? '#10b981' : attainment >= 90 ? '#0ea5e9' : '#f59e0b';
+  const cappedAttain = 0;
+  const arcOffset = circ;
+  const dialColor = '#64748b';
 
   return (
     <DashboardLayout
@@ -36,7 +40,7 @@ export default function TargetsAndAchievement() {
       title="Sales Targets & Quota Realization"
       subtitle="Executive pacing command center, calendar elapsed pacing, and departmental quota attainment"
       icon="🎯"
-      badge={attainment >= 100 ? 'Quota Met' : 'Pacing On-Track'}
+      badge="No Active Quota"
       actions={
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', fontWeight: 600 }}>Scenario:</span>
@@ -103,41 +107,41 @@ export default function TargetsAndAchievement() {
       }}>
         <KpiCard
           label="Active Target Quota"
-          value={`₹${(adjustedTarget / 100000).toFixed(2)}L`}
-          delta={targetAdjust === 0 ? 'Baseline (30d)' : `${targetAdjust > 0 ? '+' : ''}${targetAdjust}% Adjusted`}
+          value="₹0"
+          delta="--"
           trend="neutral"
-          subtext="Configured milestone"
+          subtext="No target configured"
           icon="🎯"
         />
         <KpiCard
           label="Realized Revenue"
-          value={`₹${(realizedRevenue / 100000).toFixed(2)}L`}
-          delta={`${attainment.toFixed(1)}% Attained`}
-          trend={attainment >= 100 ? 'up' : 'neutral'}
-          subtext="Confirmed billings"
+          value="₹0"
+          delta="0.0% Attained"
+          trend="neutral"
+          subtext="0 confirmed billings"
           icon="🏆"
         />
         <KpiCard
           label="Pacing vs Calendar"
-          value={`${pacingDiff >= 0 ? '+' : ''}${pacingDiff.toFixed(1)}%`}
-          delta="Day 22 / 30"
-          trend={pacingDiff >= 0 ? 'up' : 'down'}
-          subtext={pacingDiff >= 0 ? 'Ahead of calendar' : 'Behind calendar'}
+          value="0.0%"
+          delta="--"
+          trend="neutral"
+          subtext="No pacing variance"
           icon="⚡"
         />
         <KpiCard
           label="Projected Finish"
-          value={`₹${(projectedFinish / 100000).toFixed(2)}L`}
-          delta={`${((projectedFinish / adjustedTarget) * 100).toFixed(1)}% of Goal`}
-          trend={projectedFinish >= adjustedTarget ? 'up' : 'down'}
+          value="₹0"
+          delta="0.0% of Goal"
+          trend="neutral"
           subtext="Run-rate projection"
           icon="🚀"
         />
         <KpiCard
           label="Net Quota Variance"
-          value={`${surplusDeficit >= 0 ? '+' : '-'}₹${(Math.abs(surplusDeficit) / 1000).toFixed(0)}K`}
-          delta={surplusDeficit >= 0 ? 'Surplus' : 'Deficit'}
-          trend={surplusDeficit >= 0 ? 'up' : 'down'}
+          value="₹0"
+          delta="--"
+          trend="neutral"
           subtext="Balance to target"
           icon="📊"
         />
@@ -170,7 +174,7 @@ export default function TargetsAndAchievement() {
             left: 0,
             right: 0,
             height: '4px',
-            background: `linear-gradient(90deg, ${dialColor}, #3b82f6)`
+            background: 'rgba(255,255,255,0.1)'
           }} />
 
           <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--muted-foreground, #94a3b8)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>
@@ -198,7 +202,6 @@ export default function TargetsAndAchievement() {
                 strokeDasharray={circ}
                 strokeDashoffset={arcOffset}
                 transform="rotate(-90 80 80)"
-                style={{ transition: 'stroke-dashoffset 0.8s ease' }}
               />
             </svg>
             <div style={{
@@ -210,18 +213,16 @@ export default function TargetsAndAchievement() {
               justifyContent: 'center'
             }}>
               <span style={{ fontSize: '28px', fontWeight: 800, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--foreground, #f8fafc)' }}>
-                {attainment.toFixed(1)}%
+                0.0%
               </span>
-              <span style={{ fontSize: '11px', color: dialColor, fontWeight: 700, textTransform: 'uppercase', marginTop: '2px' }}>
-                {attainment >= 100 ? '★ Quota Met' : 'In Progress'}
+              <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', fontWeight: 700, textTransform: 'uppercase', marginTop: '2px' }}>
+                No Target Set
               </span>
             </div>
           </div>
 
           <div style={{ marginTop: '16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)', maxWidth: '240px' }}>
-            {attainment >= 100
-              ? `Surpassed monthly benchmark by ₹${(surplusDeficit / 1000).toFixed(0)}K with 8 days remaining.`
-              : `Pacing requires ₹${(Math.abs(surplusDeficit) / 8000).toFixed(0)}K daily revenue over next 8 days.`}
+            No revenue targets or active quota benchmarks configured for this cycle.
           </div>
         </div>
 
@@ -241,18 +242,18 @@ export default function TargetsAndAchievement() {
               <div>
                 <h3 style={{ margin: '0 0 4px', fontSize: '16px', fontWeight: 700 }}>Calendar Pacing & Velocity Index</h3>
                 <p style={{ margin: 0, fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>
-                  Tracking realized run-rate against calendar time elapsed (Day 22 of 30)
+                  Tracking realized run-rate against calendar time elapsed
                 </p>
               </div>
               <div style={{
-                background: pacingDiff >= 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-                color: pacingDiff >= 0 ? '#10b981' : '#ef4444',
+                background: 'rgba(255,255,255,0.06)',
+                color: 'var(--muted-foreground, #94a3b8)',
                 padding: '4px 10px',
                 borderRadius: '99px',
                 fontSize: '11px',
                 fontWeight: 700
               }}>
-                {pacingDiff >= 0 ? `+${pacingDiff.toFixed(1)}% Ahead of Schedule` : `${pacingDiff.toFixed(1)}% Lagging`}
+                -- Pacing
               </div>
             </div>
 
@@ -260,31 +261,31 @@ export default function TargetsAndAchievement() {
             <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px' }}>
-                  <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>📅 Calendar Period Elapsed (22 / 30 Days)</span>
-                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{calendarElapsedPct}%</span>
+                  <span style={{ color: 'var(--muted-foreground, #94a3b8)' }}>📅 Calendar Period Elapsed</span>
+                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>0.0%</span>
                 </div>
                 <div style={{ height: '8px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                  <div style={{ width: `${calendarElapsedPct}%`, height: '100%', background: '#64748b', borderRadius: '99px' }} />
+                  <div style={{ width: '0%', height: '100%', background: '#64748b', borderRadius: '99px' }} />
                 </div>
               </div>
 
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px' }}>
-                  <span style={{ color: dialColor, fontWeight: 600 }}>🎯 Revenue Target Realized ({attainment.toFixed(1)}%)</span>
-                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: dialColor }}>₹{(realizedRevenue / 100000).toFixed(2)}L / ₹{(adjustedTarget / 100000).toFixed(2)}L</span>
+                  <span style={{ color: 'var(--muted-foreground, #94a3b8)', fontWeight: 600 }}>🎯 Revenue Target Realized (0.0%)</span>
+                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>₹0 / ₹0</span>
                 </div>
                 <div style={{ height: '8px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                  <div style={{ width: `${Math.min(100, attainment)}%`, height: '100%', background: dialColor, borderRadius: '99px' }} />
+                  <div style={{ width: '0%', height: '100%', background: '#64748b', borderRadius: '99px' }} />
                 </div>
               </div>
 
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px' }}>
-                  <span style={{ color: '#3b82f6', fontWeight: 600 }}>🚀 Projected Month-End Run Rate</span>
-                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: '#3b82f6' }}>₹{(projectedFinish / 100000).toFixed(2)}L ({((projectedFinish / adjustedTarget) * 100).toFixed(0)}%)</span>
+                  <span style={{ color: 'var(--muted-foreground, #94a3b8)', fontWeight: 600 }}>🚀 Projected Month-End Run Rate</span>
+                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>₹0 (0%)</span>
                 </div>
                 <div style={{ height: '8px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                  <div style={{ width: `${Math.min(100, (projectedFinish / adjustedTarget) * 100)}%`, height: '100%', background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)', borderRadius: '99px' }} />
+                  <div style={{ width: '0%', height: '100%', background: '#64748b', borderRadius: '99px' }} />
                 </div>
               </div>
             </div>
@@ -301,7 +302,7 @@ export default function TargetsAndAchievement() {
           }}>
             <span style={{ fontSize: '20px' }}>💡</span>
             <span style={{ fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)', lineHeight: 1.5 }}>
-              <b style={{ color: 'var(--foreground, #f8fafc)' }}>Executive Pacing Note:</b> Realized sales velocity is currently outperforming linear calendar pacing by <b>{pacingDiff.toFixed(1)} percentage points</b>, driven by high pet pharmacy repeat orders and surgical consults.
+              <b style={{ color: 'var(--foreground, #f8fafc)' }}>Executive Pacing Note:</b> No active targets or revenue records found for this period.
             </span>
           </div>
         </div>
@@ -319,107 +320,30 @@ export default function TargetsAndAchievement() {
             <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Departmental Quota Realization</h3>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Individual operating business units and their prorated targets</p>
           </div>
-          <div style={{ display: 'flex', gap: '6px' }}>
-            <button
-              onClick={() => setSelectedDept('all')}
-              style={{
-                padding: '4px 10px',
-                borderRadius: '6px',
-                border: '1px solid var(--border, rgba(255,255,255,0.1))',
-                background: selectedDept === 'all' ? 'var(--primary, #3b82f6)' : 'rgba(0,0,0,0.2)',
-                color: '#fff',
-                fontSize: '11px',
-                cursor: 'pointer'
-              }}
-            >All Units</button>
-            {departments.map(d => (
-              <button
-                key={d.id}
-                onClick={() => setSelectedDept(d.id)}
-                style={{
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  border: '1px solid var(--border, rgba(255,255,255,0.1))',
-                  background: selectedDept === d.id ? 'var(--primary, #3b82f6)' : 'rgba(0,0,0,0.2)',
-                  color: '#fff',
-                  fontSize: '11px',
-                  cursor: 'pointer'
-                }}
-              >{d.icon} {d.name.split(' ')[0]}</button>
+        </div>
+
+        {filteredDepts.length === 0 ? (
+          <div style={{ padding: '36px 20px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+            No departmental targets recorded
+          </div>
+        ) : (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '14px'
+          }}>
+            {filteredDepts.map(dept => (
+              <div key={dept.id} style={{
+                background: 'rgba(0,0,0,0.18)',
+                border: '1px solid var(--border, rgba(255,255,255,0.06))',
+                borderRadius: '10px',
+                padding: '16px'
+              }}>
+                <div style={{ fontWeight: 700, fontSize: '14px' }}>{dept.name}</div>
+              </div>
             ))}
           </div>
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '14px'
-        }}>
-          {filteredDepts.map(dept => (
-            <div key={dept.id} style={{
-              background: 'rgba(0,0,0,0.18)',
-              border: `1px solid ${selectedDept === dept.id ? dept.color : 'var(--border, rgba(255,255,255,0.06))'}`,
-              borderRadius: '10px',
-              padding: '16px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              position: 'relative'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontWeight: 700, fontSize: '14px', color: 'var(--foreground, #f8fafc)' }}>
-                  {dept.icon} {dept.name}
-                </span>
-                <span style={{
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  color: dept.statusColor,
-                  background: `color-mix(in oklab, ${dept.statusColor} 18%, transparent)`,
-                  padding: '2px 8px',
-                  borderRadius: '99px',
-                  border: `1px solid color-mix(in oklab, ${dept.statusColor} 30%, transparent)`
-                }}>
-                  {dept.status}
-                </span>
-              </div>
-
-              <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>
-                Operational Lead: <b style={{ color: 'var(--foreground, #f8fafc)' }}>{dept.lead}</b>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '4px' }}>
-                <div>
-                  <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>Achieved</div>
-                  <div style={{ fontSize: '17px', fontWeight: 800, fontFamily: '"IBM Plex Mono", monospace', color: dept.color }}>
-                    ₹{(dept.achieved / 100000).toFixed(2)}L
-                  </div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>Target Quota</div>
-                  <div style={{ fontSize: '13px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>
-                    ₹{(dept.target / 100000).toFixed(2)}L
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                <div style={{
-                  height: '100%',
-                  width: `${Math.min(100, dept.attain)}%`,
-                  background: dept.color,
-                  borderRadius: '99px'
-                }} />
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace' }}>
-                <span style={{ color: dept.statusColor, fontWeight: 700 }}>{dept.attain.toFixed(1)}% Attained</span>
-                <span style={{ color: dept.variance >= 0 ? '#10b981' : '#f59e0b' }}>
-                  {dept.variance >= 0 ? '+' : '-'}₹{(Math.abs(dept.variance) / 1000).toFixed(0)}K
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        )}
       </div>
 
       {/* Two Columns: Rep Leaderboard & Doctor Quotas */}
@@ -450,39 +374,19 @@ export default function TargetsAndAchievement() {
                 </tr>
               </thead>
               <tbody>
-                {reps.map(rep => {
-                  const repAttain = ((rep.achieved / rep.target) * 100).toFixed(1);
-                  return (
-                    <tr key={rep.rank} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                      <td style={{ padding: '10px 6px', fontWeight: 700 }}>{rep.medal}</td>
-                      <td style={{ padding: '10px' }}>
-                        <div style={{ fontWeight: 600, color: 'var(--foreground, #f8fafc)' }}>{rep.name}</div>
-                        <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>{rep.dept}</div>
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>
-                        ₹{(rep.target / 100000).toFixed(2)}L
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--foreground, #f8fafc)' }}>
-                        ₹{(rep.achieved / 100000).toFixed(2)}L
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right' }}>
-                        <span style={{
-                          padding: '2px 6px',
-                          borderRadius: '4px',
-                          fontSize: '10px',
-                          fontWeight: 700,
-                          background: repAttain >= 100 ? 'rgba(16,185,129,0.15)' : 'rgba(14,165,233,0.15)',
-                          color: repAttain >= 100 ? '#10b981' : '#0ea5e9'
-                        }}>
-                          {repAttain}%
-                        </span>
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right', fontSize: '11px', color: '#10b981', fontWeight: 600 }}>
-                        {rep.bonus}
-                      </td>
+                {reps.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '24px', color: 'var(--muted-foreground, #94a3b8)' }}>
+                      No coordinator quota records found
+                    </td>
+                  </tr>
+                ) : (
+                  reps.map(rep => (
+                    <tr key={rep.rank}>
+                      <td>{rep.name}</td>
                     </tr>
-                  );
-                })}
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -508,41 +412,19 @@ export default function TargetsAndAchievement() {
                 </tr>
               </thead>
               <tbody>
-                {doctors.map(doc => {
-                  const cRate = ((doc.consultActual / doc.consultTarget) * 100).toFixed(0);
-                  const bRate = ((doc.revActual / doc.revTarget) * 100).toFixed(1);
-                  return (
-                    <tr key={doc.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                      <td style={{ padding: '10px' }}>
-                        <div style={{ fontWeight: 600, color: 'var(--foreground, #f8fafc)' }}>{doc.name}</div>
-                        <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>{doc.spec}</div>
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>
-                        <b>{doc.consultActual}</b> / {doc.consultTarget}
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right' }}>
-                        <span style={{
-                          padding: '2px 6px',
-                          borderRadius: '4px',
-                          fontSize: '10px',
-                          fontWeight: 700,
-                          background: cRate >= 100 ? 'rgba(16,185,129,0.15)' : 'rgba(59,130,246,0.15)',
-                          color: cRate >= 100 ? '#10b981' : '#3b82f6'
-                        }}>
-                          {cRate}%
-                        </span>
-                      </td>
-                      <td style={{ padding: '10px', textAlign: 'right' }}>
-                        <div style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: bRate >= 100 ? '#10b981' : '#0ea5e9' }}>
-                          ₹{(doc.revActual / 100000).toFixed(2)}L
-                        </div>
-                        <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>
-                          {bRate}% of ₹{(doc.revTarget / 100000).toFixed(2)}L
-                        </div>
-                      </td>
+                {doctors.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" style={{ textAlign: 'center', padding: '24px', color: 'var(--muted-foreground, #94a3b8)' }}>
+                      No doctor quota records found
+                    </td>
+                  </tr>
+                ) : (
+                  doctors.map(doc => (
+                    <tr key={doc.name}>
+                      <td>{doc.name}</td>
                     </tr>
-                  );
-                })}
+                  ))
+                )}
               </tbody>
             </table>
           </div>

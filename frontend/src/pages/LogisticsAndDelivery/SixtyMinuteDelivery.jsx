@@ -15,10 +15,10 @@ export default function SixtyMinuteDelivery() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Avg Doorstep Time" value="0" delta="Target <60m" trend="up" subtext="Order placement to OTP" icon="⏱️" />
-        <KpiCard label="Rapid SLA Compliance" value="0.0%" delta="+1.2% MoM" trend="up" subtext="Delivered within 60 mins" icon="⚡" />
-        <KpiCard label="Pick & Pack Velocity" value="0" delta="Lightning fast" trend="up" subtext="Pharmacist bag-ready time" icon="📦" />
-        <KpiCard label="60-Min Volume" value="604 Orders" delta="62.4% total mix" trend="up" subtext="Highest customer loyalty tier" icon="🚀" />
+        <KpiCard label="Avg Doorstep Time" value="--" delta="--" trend="neutral" subtext="No delivery records" icon="⏱️" />
+        <KpiCard label="Rapid SLA Compliance" value="0.0%" delta="--" trend="neutral" subtext="No express deliveries" icon="⚡" />
+        <KpiCard label="Pick & Pack Velocity" value="--" delta="--" trend="neutral" subtext="No packing records" icon="📦" />
+        <KpiCard label="60-Min Volume" value="0 Orders" delta="--" trend="neutral" subtext="0 total orders" icon="🚀" />
       </div>
 
       <div style={{
@@ -48,18 +48,26 @@ export default function SixtyMinuteDelivery() {
               </tr>
             </thead>
             <tbody>
-              {hubMetrics.map(h => (
-                <tr key={h.hub} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{h.hub}</td>
-                  <td style={{ padding: '12px 16px', color: '#64748b' }}>{h.city}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.orders60m}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#2563eb', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{h.avgFulfillment}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#475569', fontFamily: '"IBM Plex Mono", monospace' }}>{h.dispatchTime}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: h.breachCount > 2 ? '#dc2626' : '#64748b', fontWeight: 600 }}>{h.breachCount}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{h.slaCompliance}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'center', color: '#0284c7', fontWeight: 600 }}>{h.peakCapacity}</td>
+              {hubMetrics.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '24px', color: '#64748b' }}>
+                    No micro-hub records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                hubMetrics.map(h => (
+                  <tr key={h.hub} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>{h.hub}</td>
+                    <td style={{ padding: '12px 16px', color: '#64748b' }}>{h.city}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.orders60m}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#2563eb', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{h.avgFulfillment}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#475569', fontFamily: '"IBM Plex Mono", monospace' }}>{h.dispatchTime}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: h.breachCount > 2 ? '#dc2626' : '#64748b', fontWeight: 600 }}>{h.breachCount}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{h.slaCompliance}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'center', color: '#0284c7', fontWeight: 600 }}>{h.peakCapacity}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

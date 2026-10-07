@@ -14,14 +14,14 @@ export default function EmployeeTargets() {
       title="Quota Attainment & Target Leaderboard"
       subtitle="Monthly & quarterly revenue quotas, clinical case targets, operational delivery SLAs, and incentive tiers"
       icon="🎯"
-      badge={`${filterPeriod} · 106.8% Org Attainment`}
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Quota Attainment" value="0.0%" delta="+6.8% over plan" trend="up" subtext="Across all quota-bearing roles" icon="🏆" />
-        <KpiCard label="Team Members Surpassing Target" value="142 Staff" delta="68.2% of cohort" trend="up" subtext="Eligible for tier incentives" icon="🚀" />
-        <KpiCard label="Incentive Pool Allocated" value="₹0" delta="Fully funded" trend="neutral" subtext="To be disbursed with payroll" icon="💰" />
-        <KpiCard label="Quota Deficit Cases" value="8 Personnel" delta="Coaching plan initiated" trend="down" subtext="Under 90% attainment" icon="⚠️" />
+        <KpiCard label="Blended Quota Attainment" value="0.0%" delta="--" trend="neutral" subtext="No quota records" icon="🏆" />
+        <KpiCard label="Team Members Surpassing Target" value="0 Staff" delta="--" trend="neutral" subtext="0 staff recorded" icon="🚀" />
+        <KpiCard label="Incentive Pool Allocated" value="₹0" delta="--" trend="neutral" subtext="No incentive pool" icon="💰" />
+        <KpiCard label="Quota Deficit Cases" value="0 Personnel" delta="--" trend="neutral" subtext="0 deficit cases" icon="⚠️" />
       </div>
 
       {/* Period Selection */}
@@ -58,74 +58,48 @@ export default function EmployeeTargets() {
             </button>
           ))}
         </div>
-        <span style={{ fontSize: '11px', color: '#34d399', fontWeight: 600 }}>● Live Quota Tracking Synced</span>
       </div>
 
-      {/* Targets Table */}
+      {/* Table Section */}
       <div style={{
         background: 'var(--card, #1e293b)',
         border: '1px solid var(--border, rgba(255,255,255,0.08))',
         borderRadius: '12px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginTop: '16px'
       }}>
-        <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Target Attainment Leaderboard ({targets.length})</h3>
-          <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>Individual goal achievements</span>
+        <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Quota Delivery Matrix</h3>
+          <p style={{ margin: '2px 0 0', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Individual staff quota targets and achievement breakdown</p>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)', color: 'var(--muted-foreground, #94a3b8)' }}>
-                <th style={{ padding: '12px 16px' }}>Team Member</th>
-                <th style={{ padding: '12px 16px' }}>Target Metric</th>
-                <th style={{ padding: '12px 16px' }}>Set Quota</th>
-                <th style={{ padding: '12px 16px' }}>Achieved</th>
-                <th style={{ padding: '12px 16px', width: '180px' }}>Attainment %</th>
-                <th style={{ padding: '12px 16px' }}>Status</th>
+              <tr style={{ background: 'rgba(0,0,0,0.2)', color: 'var(--muted-foreground, #94a3b8)', fontSize: '11px', textTransform: 'uppercase' }}>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Team Member</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Target Metric</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Set Quota</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Achieved</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left', width: '180px' }}>Attainment %</th>
+                <th style={{ padding: '12px 16px', textAlign: 'left' }}>Status</th>
                 <th style={{ padding: '12px 16px', textAlign: 'right' }}>Incentive Tier</th>
               </tr>
             </thead>
             <tbody>
-              {targets.map(t => {
-                const isOver = t.pct >= 100;
-                return (
-                  <tr key={t.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{t.name}</div>
-                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{t.role}</div>
-                    </td>
-                    <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{t.metric}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{t.target}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#f8fafc' }}>{t.achieved}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ flex: 1, height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '99px', overflow: 'hidden' }}>
-                          <div style={{ width: `${Math.min(100, t.pct)}%`, height: '100%', background: isOver ? '#10b981' : '#f59e0b', borderRadius: '99px' }}></div>
-                        </div>
-                        <span style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: isOver ? '#10b981' : '#f59e0b' }}>
-                          {t.pct}%
-                        </span>
-                      </div>
-                    </td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <span style={{
-                        padding: '3px 8px',
-                        borderRadius: '99px',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        background: isOver ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)',
-                        color: isOver ? '#10b981' : '#f59e0b'
-                      }}>
-                        {t.status}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 600, color: '#93c5fd' }}>
-                      {t.tier}
-                    </td>
+              {targets.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: 'center', padding: '24px', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No quota records found
+                  </td>
+                </tr>
+              ) : (
+                targets.map(t => (
+                  <tr key={t.name}>
+                    <td>{t.name}</td>
                   </tr>
-                );
-              })}
+                ))
+              )}
             </tbody>
           </table>
         </div>

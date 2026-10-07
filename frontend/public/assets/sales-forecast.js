@@ -58,21 +58,26 @@
       actuals.push({ month: mn, idx: mIdx, yr: yr, rev: rev });
     }
 
-    /* Fill zero months with seasonal estimate based on non-zero avg */
     var nonZero = actuals.filter(function (a) { return a.rev > 0; });
     var avgRev  = nonZero.length > 0
       ? nonZero.reduce(function (s, a) { return s + a.rev; }, 0) / nonZero.length
-      : 800000;
-
-    actuals.forEach(function (a) {
-      if (a.rev === 0) a.rev = Math.round(avgRev * SEASONAL[a.idx]);
-    });
+      : 0;
 
     return { actuals: actuals, avgRev: avgRev, curM: curM, curY: curY };
   }
 
   /* ── weighted moving average forecast ───────────────────────── */
   function forecast(series, horizon, scenario) {
+    var hasActuals = series.actuals.some(function (a) { return a.rev > 0; });
+    if (!hasActuals) {
+      var pts = [];
+      for (var pi = 1; pi <= horizon; pi++) {
+        var pIdx = (series.curM + pi) % 12;
+        var pYr = series.curY + Math.floor((series.curM + pi) / 12);
+        pts.push({ month: MONTHS[pIdx], idx: pIdx, yr: pYr, proj: 0, lo: 0, hi: 0 });
+      }
+      return pts;
+    }
     var actuals = series.actuals;
     var n = actuals.length;
 
@@ -116,6 +121,10 @@
 
   /* ── SVG forecast chart ──────────────────────────────────────── */
   function forecastChart(actuals, projections) {
+    var hasData = actuals.some(function (a) { return a.rev > 0; }) || projections.some(function (p) { return p.proj > 0; });
+    if (!hasData) {
+      return '<div style="padding:60px 20px;text-align:center;color:var(--muted-foreground);font-size:13px;">No sales data recorded to generate forecast trajectory</div>';
+    }
     var W = 700, H = 220;
     var pad = { l: 62, r: 24, t: 20, b: 36 };
     var iW = W - pad.l - pad.r;
@@ -267,12 +276,12 @@
 
         /* KPIs */
         '<div class="zp-kpis">',
-          kpi('Forecast (' + S.horizon + 'M Total)', inrShort(totalForecast), (isGrowth ? '↑' : '↓') + ' ' + Math.abs(growthPct) + '% vs prior period', isGrowth ? 'up' : 'down'),
-          kpi('Month 1 Projection', inrShort(proj[0] ? proj[0].proj : 0),
-            proj[0] ? inrShort(proj[0].lo) + ' – ' + inrShort(proj[0].hi) + ' confidence' : '', ''),
+          kpi('Forecast (' + S.horizon + 'M Total)', totalForecast > 0 ? inrShort(totalForecast) : '₹0', totalForecast > 0 ? ((isGrowth ? '↑' : '↓') + ' ' + Math.abs(growthPct) + '% vs prior period') : '--', totalForecast > 0 ? (isGrowth ? 'up' : 'down') : 'neutral'),
+          kpi('Month 1 Projection', (proj[0] && proj[0].proj > 0) ? inrShort(proj[0].proj) : '₹0',
+            (proj[0] && proj[0].proj > 0) ? inrShort(proj[0].lo) + ' – ' + inrShort(proj[0].hi) + ' confidence' : '--', ''),
           kpi('Scenario', SCEN_ICONS[S.scenario] + ' ' + SCEN_LABELS[S.scenario],
-            S.scenario === 'bull' ? '+18% growth assumption' : S.scenario === 'bear' ? '-18% conservative' : 'Trend-based neutral', ''),
-          kpi('Seasonal Factor', (SEASONAL[(series.curM + 1) % 12] * 100).toFixed(0) + '%', 'Next month index', ''),
+            'Trend-based neutral', ''),
+          kpi('Seasonal Factor', totalForecast > 0 ? ((SEASONAL[(series.curM + 1) % 12] * 100).toFixed(0) + '%') : '0.0%', 'Next month index', ''),
         '</div>',
 
         /* chart */
@@ -299,7 +308,7 @@
             '<div class="zp-tbl-wrap"><table class="zp-tbl"><thead><tr>',
               '<th>Month</th><th class="r">Low</th><th class="r">Forecast</th><th class="r">High</th><th class="r">Growth</th>',
             '</tr></thead><tbody>',
-            proj.map(function (p, i) {
+            (totalForecast === 0 ? '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted-foreground)">No forecast projections available</td></tr>' : proj.map(function (p, i) {
               var prev = i === 0 ? series.actuals[series.actuals.length - 1].rev : proj[i - 1].proj;
               var g = prev > 0 ? ((p.proj - prev) / prev * 100).toFixed(1) : '0.0';
               var gColor = num(g) >= 0 ? 'var(--success)' : 'var(--destructive)';
@@ -310,7 +319,7 @@
                 '<td class="r" style="color:var(--muted-foreground);font-family:IBM Plex Mono,monospace">' + inrShort(p.hi) + '</td>' +
                 '<td class="r" style="font-family:IBM Plex Mono,monospace;color:' + gColor + ';font-weight:700">' + (num(g) >= 0 ? '+' : '') + g + '%</td>' +
                 '</tr>';
-            }).join('') +
+            }).join('')) +
             '</tbody></table></div>',
           '</div>',
 
@@ -347,6 +356,10 @@
   }
 
   function insightsPanel(series, proj, scenario) {
+    var hasData = series.actuals.some(function (a) { return a.rev > 0; }) || proj.some(function (p) { return p.proj > 0; });
+    if (!hasData) {
+      return '<div style="padding:24px;text-align:center;color:var(--muted-foreground);font-size:12px;">No historical or forward forecast insights available</div>';
+    }
     var trend = series.actuals.slice(-3).reduce(function (a, m) { return a + m.rev; }, 0) /
                 series.actuals.slice(-6, -3).reduce(function (a, m) { return a + m.rev; }, 0);
     var trendDir = trend >= 1.05 ? 'bullish' : trend >= 0.95 ? 'stable' : 'declining';

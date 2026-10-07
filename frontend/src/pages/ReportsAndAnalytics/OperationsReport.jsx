@@ -72,10 +72,10 @@ export default function OperationsReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated On-Time SLA" value="0.0%" delta="+1.1% vs last week" trend="up" subtext="Target: 95.0%" icon="⚡" />
-        <KpiCard label="Average Dispatch Dwell" value="3.8 Mins" delta="Under 4.0m SLA" trend="up" subtext="Dark store automated" icon="⏱️" />
-        <KpiCard label="Active Dedicated Fleet" value="80 EV Riders" delta="Ather & Ola EV" trend="neutral" subtext="Zero fuel emissions" icon="🛵" />
-        <KpiCard label="Blended Cost / Delivery" value="₹0" delta="-₹0" trend="up" subtext="Route optimized" icon="📉" />
+        <KpiCard label="Consolidated On-Time SLA" value="0.0%" delta="--" trend="neutral" subtext="No delivery records" icon="⚡" />
+        <KpiCard label="Average Dispatch Dwell" value="--" delta="--" trend="neutral" subtext="No dispatch records" icon="⏱️" />
+        <KpiCard label="Active Dedicated Fleet" value="0 EV Riders" delta="--" trend="neutral" subtext="0 active riders" icon="🛵" />
+        <KpiCard label="Blended Cost / Delivery" value="₹0" delta="--" trend="neutral" subtext="0 delivery cost" icon="📉" />
       </div>
 
       {/* Table Section */}
@@ -101,18 +101,26 @@ export default function OperationsReport() {
               </tr>
             </thead>
             <tbody>
-              {hubs.map((h) => (
-                <tr key={h.hub} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{h.hub}</td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{h.city}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{h.orders.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{h.onTimeRate}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.avgDispatchMins} mins</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{h.riderCount}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>₹{h.deliveryCostPerOrder}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{h.returnsPct}</td>
+              {hubs.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '24px', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No fulfillment hub records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                hubs.map((h, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{h.hub}</td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{h.city}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.orders}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.onTimeRate}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.avgDispatchMins}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.riderCount}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.deliveryCostPerOrder}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>{h.returnsPct}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
