@@ -40,7 +40,7 @@ export default function NewCustomers() {
               </tr>
             </thead>
             <tbody>
-              {newSignups.map((n, idx) => (
+              {newSignups.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No new customer registration records found</td></tr>) : newSignups.map((n, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{n.id}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{n.name}</td>

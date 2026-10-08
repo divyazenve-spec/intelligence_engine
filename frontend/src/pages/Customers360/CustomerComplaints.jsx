@@ -119,61 +119,8 @@ export default function CustomerComplaints() {
             <span style={{ fontSize: '11px', fontWeight: 700, padding: '3px 8px', borderRadius: '12px', background: '#ecfdf5', color: '#059669' }}>Real-Time Telemetry</span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>
-                <span>🚚 Dark Store & Delivery Delay (Rain / Gate Access)</span>
-                <span style={{ fontWeight: 700 }}>42% (8 cases)</span>
-              </div>
-              <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: '42%', height: '100%', background: '#f59e0b', borderRadius: '4px' }} />
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 12.4 mins · Automatic ₹0 compensation applied</div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>
-                <span>📦 Product Packaging & Outer Bag Tears</span>
-                <span style={{ fontWeight: 700 }}>24% (4 cases)</span>
-              </div>
-              <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: '24%', height: '100%', background: '#3b82f6', borderRadius: '4px' }} />
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 17.5 mins · Instant dark store replacement dispatched</div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>
-                <span>🏥 Clinic OPD Scheduling & Doctor Reschedules</span>
-                <span style={{ fontWeight: 700 }}>16% (3 cases)</span>
-              </div>
-              <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: '16%', height: '100%', background: '#8b5cf6', borderRadius: '4px' }} />
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 19.8 mins · Priority evening slot booking confirmed</div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>
-                <span>💳 Loyalty Club Points & Billing Sync</span>
-                <span style={{ fontWeight: 700 }}>12% (2 cases)</span>
-              </div>
-              <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: '12%', height: '100%', background: '#10b981', borderRadius: '4px' }} />
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 5.2 mins · Instant ledger balance re-index</div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>
-                <span>❄️ Cold-Chain Pharmacy & Medicine Temperature</span>
-                <span style={{ fontWeight: 700 }}>6% (1 case)</span>
-              </div>
-              <div style={{ height: '8px', background: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ width: '6%', height: '100%', background: '#ef4444', borderRadius: '4px' }} />
-              </div>
-              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '3px' }}>Avg. resolution: 8.0 mins · Zero tolerance protocol: replaced immediately</div>
-            </div>
+          <div style={{ textAlign: 'center', padding: '36px', color: '#94a3b8', fontSize: '13px' }}>
+            No grievance telemetry records found
           </div>
         </div>
 

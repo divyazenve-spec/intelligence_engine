@@ -38,7 +38,7 @@ export default function ActiveCustomers() {
               </tr>
             </thead>
             <tbody>
-              {activeCohorts.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No active customer cohorts found</td></tr>) : activeCohorts.map((c, idx) => (
+              {activeCohorts.length === 0 ? (<tr><td colSpan="6" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No active customer cohorts found</td></tr>) : activeCohorts.map((c, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.cohort}</td>
                   <td style={{ padding: '10px', fontWeight: 700, color: '#2563eb' }}>{c.count}</td>

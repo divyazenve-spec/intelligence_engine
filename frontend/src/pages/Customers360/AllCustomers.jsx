@@ -87,7 +87,7 @@ export default function AllCustomers() {
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer directory records found</td></tr>) : filtered.map(c => (
+              {filtered.length === 0 ? (<tr><td colSpan="10" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer directory records found</td></tr>) : filtered.map(c => (
                 <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.name}</td>

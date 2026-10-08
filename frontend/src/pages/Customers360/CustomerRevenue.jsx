@@ -38,7 +38,7 @@ export default function CustomerRevenue() {
               </tr>
             </thead>
             <tbody>
-              {revStreams.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer revenue records found</td></tr>) : revStreams.map((r, idx) => (
+              {revStreams.length === 0 ? (<tr><td colSpan="6" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer revenue records found</td></tr>) : revStreams.map((r, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{r.channel}</td>
                   <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{r.mtdRev}</td>

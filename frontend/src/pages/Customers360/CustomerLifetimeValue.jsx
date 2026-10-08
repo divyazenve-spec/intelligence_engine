@@ -39,7 +39,7 @@ export default function CustomerLifetimeValue() {
               </tr>
             </thead>
             <tbody>
-              {ltvSegments.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No LTV segment records found</td></tr>) : ltvSegments.map((s, idx) => (
+              {ltvSegments.length === 0 ? (<tr><td colSpan="7" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No LTV segment records found</td></tr>) : ltvSegments.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.segment}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.customers.toLocaleString()}</td>

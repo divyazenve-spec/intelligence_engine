@@ -38,7 +38,7 @@ export default function RepeatCustomers() {
               </tr>
             </thead>
             <tbody>
-              {repeatMetrics.map((r, idx) => (
+              {repeatMetrics.length === 0 ? (<tr><td colSpan="6" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No repeat customer records found</td></tr>) : repeatMetrics.map((r, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{r.tier}</td>
                   <td style={{ padding: '10px', fontWeight: 700, color: '#2563eb' }}>{r.count.toLocaleString()}</td>

@@ -39,7 +39,7 @@ export default function CustomerSegmentation() {
               </tr>
             </thead>
             <tbody>
-              {segments.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No persona segment records found</td></tr>) : segments.map((s, idx) => (
+              {segments.length === 0 ? (<tr><td colSpan="7" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No persona segment records found</td></tr>) : segments.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.name}</td>
                   <td style={{ padding: '10px', fontWeight: 600, color: '#2563eb' }}>{s.count.toLocaleString()}</td>

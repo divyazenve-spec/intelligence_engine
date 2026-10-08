@@ -39,7 +39,7 @@ export default function CustomerRetention() {
               </tr>
             </thead>
             <tbody>
-              {retentionCohorts.map((c, idx) => (
+              {retentionCohorts.length === 0 ? (<tr><td colSpan="7" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer retention cohort records found</td></tr>) : retentionCohorts.map((c, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.cohortMonth}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.initialSize.toLocaleString()}</td>
