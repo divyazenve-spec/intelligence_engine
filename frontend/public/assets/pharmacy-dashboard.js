@@ -159,7 +159,6 @@
         '<div class="zph-head-actions">',
           '<button type="button" class="zph-btn primary" id="zph-action-verify"><span>📋</span> Verify e-Rx</button>',
           '<button type="button" class="zph-btn" id="zph-action-export"><span>📥</span> Export Report</button>',
-          '<button type="button" class="zph-btn danger" id="zph-close-btn"><span>✕</span> Close Panel</button>',
         '</div>',
       '</div>',
       '<div class="zph-tabs-bar">' + tabsHtml + '</div>',

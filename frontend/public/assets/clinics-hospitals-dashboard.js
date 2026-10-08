@@ -808,7 +808,6 @@
         '<div class="zch-head-actions">',
           '<button class="zch-btn" onclick="alert(\'Refreshing live clinical census across all 14 facilities...\')">🔄 Refresh Vitals</button>',
           '<button class="zch-btn primary zch-context-action">+ Add Facility</button>',
-          '<button class="zch-btn danger" onclick="ZenveClinicsDashboard.close()">✕ Exit Dashboard</button>',
         '</div>',
       '</header>',
       '<nav class="zch-tabs-bar" aria-label="Clinics & Hospitals Subdomains"></nav>',

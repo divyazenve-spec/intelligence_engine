@@ -146,7 +146,6 @@
       '    <button type="button" class="zlog-btn zlog-btn-secondary" id="zlog-export-btn">📊 Export CSV</button>',
       '    <button type="button" class="zlog-btn zlog-btn-secondary" id="zlog-track-btn">📍 Live Telematics</button>',
       '    <button type="button" class="zlog-btn zlog-btn-primary" id="zlog-dispatch-btn">+ Fast Dispatch</button>',
-      '    <button type="button" class="zlog-btn-close" id="zlog-close-btn" title="Close Dashboard (Esc)">✕</button>',
       '  </div>',
       '</header>',
       '<nav class="zlog-nav-bar">' + chipsHtml + '</nav>',

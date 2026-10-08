@@ -160,7 +160,6 @@
       '    <button type="button" class="zmkt-btn zmkt-btn-secondary" id="zmkt-calc-btn"><span>⚡</span> ROAS Calculator</button>',
       '    <button type="button" class="zmkt-btn zmkt-btn-secondary" id="zmkt-export-btn"><span>📥</span> Export CSV</button>',
       '    <button type="button" class="zmkt-btn zmkt-btn-primary" id="zmkt-add-campaign-btn"><span>🚀</span> Launch Campaign</button>',
-      '    <button type="button" class="zmkt-btn-icon" id="zmkt-close-btn" title="Close Marketing Control Center">✕</button>',
       '  </div>',
       '</div>',
 

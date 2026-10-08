@@ -585,7 +585,6 @@
         '<div class="zfsh-head-actions">',
           '<button class="zfsh-btn" onclick="ZenveFashionDashboard.showBespokeOrderModal()">+ Bespoke Order</button>',
           '<button class="zfsh-btn primary" onclick="ZenveFashionDashboard.showAddStyleModal()">+ New Style</button>',
-          '<button class="zfsh-btn" onclick="ZenveFashionDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

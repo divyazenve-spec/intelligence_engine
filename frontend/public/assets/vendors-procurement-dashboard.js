@@ -647,7 +647,6 @@
         '<div class="zvp-head-actions">',
           '<button class="zvp-btn" onclick="ZenveVendorsDashboard.showPOModal()">+ New PO</button>',
           '<button class="zvp-btn primary" onclick="ZenveVendorsDashboard.showRegisterVendorModal()">+ Register Vendor</button>',
-          '<button class="zvp-btn" onclick="ZenveVendorsDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

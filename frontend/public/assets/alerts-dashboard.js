@@ -202,7 +202,6 @@
           '<button type="button" class="zalt-btn zalt-btn-outline" id="zalt-toggle-chime-btn" title="Toggle Audio Alert Chime">',
             '<span>' + (S.chimesEnabled ? '🔊 Chime On' : '🔇 Chime Muted') + '</span>',
           '</button>',
-          '<button type="button" class="zalt-close-btn" id="zalt-close-btn" title="Close (Esc)">✕</button>',
         '</div>',
       '</header>',
 

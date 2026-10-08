@@ -332,7 +332,6 @@
         '</div>',
         '<div class="zsub-head-actions">',
           '<button class="zsub-btn primary" onclick="ZenveSubscriptionsDashboard.showNewPlanModal()">+ New Plan</button>',
-          '<button class="zsub-btn" onclick="ZenveSubscriptionsDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

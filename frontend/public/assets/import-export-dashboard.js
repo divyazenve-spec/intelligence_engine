@@ -362,7 +362,6 @@
         '<div class="zix-head-actions">',
           '<button class="zix-btn" onclick="ZenveImportExportDashboard.showExportBookingModal()">+ Book Export</button>',
           '<button class="zix-btn primary" onclick="ZenveImportExportDashboard.showNewConsignmentModal()">+ New Consignment</button>',
-          '<button class="zix-btn" onclick="ZenveImportExportDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

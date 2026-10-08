@@ -391,7 +391,6 @@
         '<div class="zb2b-head-actions">',
           '<button class="zb2b-btn" onclick="ZenveB2BDashboard.showPOModal()">+ New PO</button>',
           '<button class="zb2b-btn primary" onclick="ZenveB2BDashboard.showOnboardModal()">+ Onboard Client</button>',
-          '<button class="zb2b-btn" onclick="ZenveB2BDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

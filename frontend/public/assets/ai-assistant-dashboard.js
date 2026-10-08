@@ -1474,7 +1474,6 @@
         '<div class="zai-head-actions">',
           '<button class="zai-btn" onclick="alert(\'Retraining neural embeddings on live October transaction ledgers...\')">🔄 Refresh Models</button>',
           '<button class="zai-btn primary" onclick="alert(\'Executive AI Intelligence Packet generated (PDF).\')">📊 Download Briefing</button>',
-          '<button class="zai-btn" id="zai-close-btn" title="Close AI Assistant">✕</button>',
         '</div>',
       '</header>',
       '<nav class="zai-tabs-bar">',

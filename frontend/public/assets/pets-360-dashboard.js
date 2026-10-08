@@ -66,7 +66,6 @@
       '  <div class="zpet-header-right">',
       '    <button type="button" class="zpet-btn zpet-btn-secondary" onclick="window.ZenvePetsDashboard.showAddModal()">➕ Add Pet</button>',
       '    <button type="button" class="zpet-btn zpet-btn-primary" onclick="window.ZenvePetsDashboard.exportTabCSV()">⬇️ Export CSV</button>',
-      '    <button type="button" class="zpet-btn-close" onclick="window.ZenvePetsDashboard.close()" title="Close Dashboard">✕</button>',
       '  </div>',
       '</header>',
       '<nav class="zpet-nav-bar" id="zpet-nav-chips"></nav>',

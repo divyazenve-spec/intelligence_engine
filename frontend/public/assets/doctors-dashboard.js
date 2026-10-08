@@ -337,7 +337,6 @@
         '</div>',
         '<div class="zdoc-head-actions">',
           '<button class="zdoc-btn primary" onclick="ZenveDoctorsDashboard.showOnboardModal()">+ Add Clinician</button>',
-          '<button class="zdoc-btn" onclick="ZenveDoctorsDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

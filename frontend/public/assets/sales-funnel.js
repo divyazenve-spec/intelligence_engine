@@ -210,7 +210,6 @@
             '<button class="' + (S.period === '30d' ? 'on' : '') + '" data-p="30d">30D</button>',
             '<button class="' + (S.period === '90d' ? 'on' : '') + '" data-p="90d">90D</button>',
           '</div>',
-          '<button class="zp-btn" id="zf-close">✕ Close</button>',
         '</div>',
       '</div>',
 
@@ -322,8 +321,6 @@
         render();
       });
     }
-    var closeBtn = root.querySelector('#zf-close');
-    if (closeBtn) closeBtn.addEventListener('click', close);
   }
 
   function kpi(label, value, delta, trend) {

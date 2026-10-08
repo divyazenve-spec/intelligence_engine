@@ -127,7 +127,6 @@
         '<div class="zaud-header-actions">',
           '<button class="zaud-btn zaud-btn-secondary" id="zaud-btn-verify">🔍 Run Verification</button>',
           '<button class="zaud-btn zaud-btn-secondary" id="zaud-btn-export">📥 Export Compliance Audit</button>',
-          '<button class="zaud-btn zaud-btn-close" id="zaud-btn-close" title="Close Dashboard">✕</button>',
         '</div>',
       '</div>'
     ].join('');

@@ -243,7 +243,6 @@
           '<button type="button" class="zrep-btn zrep-btn-outline" id="zrep-action-export">' +
             '<span>📥</span> Export Center' +
           '</button>' +
-          '<button type="button" class="zrep-btn-close" id="zrep-close" title="Close Reports Center">✕</button>' +
         '</div>' +
       '</header>' +
       '<nav class="zrep-nav-ribbon" id="zrep-nav-ribbon">' +
