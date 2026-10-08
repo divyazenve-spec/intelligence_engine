@@ -33,7 +33,7 @@
   var TABS = [
     { id: 'dashboard',   label: 'Clinics Dashboard',   icon: '🏥', hash: '#clinics-dashboard',   badge: 'Command Center', title: 'Clinics Dashboard', sub: 'Veterinary Hospitals & Clinics Command Center — Healthcare delivery, inpatient census, and OT utilization' },
     { id: 'all-clinics', label: 'All Clinics',         icon: '🏨', hash: '#all-clinics',         badge: '11 Outpatient', title: 'All Clinics', sub: 'Outpatient Care Directory — Daycare suites, lead veterinarians, diagnostics tier, and daily footfall' },
-    { id: 'hospitals',   label: 'Hospitals',           icon: '🚨', hash: '#hospitals',           badge: '3 Tertiary 24x7', title: 'Hospitals', sub: '24x7 Tertiary Care Referral Centers — Modular OTs, ICU pods, isolation bays, blood bank, and imaging' },
+    { id: 'hospitals',   label: 'Hospitals',           icon: '🚨', hash: '#hospitals',           badge: '', title: 'Hospitals', sub: '24x7 Tertiary Care Referral Centers — Modular OTs, ICU pods, isolation bays, blood bank, and imaging' },
     { id: 'performance', label: 'Clinic Performance',  icon: '📊', hash: '#clinic-performance',  badge: '99.2% Success', title: 'Clinic Performance', sub: 'Clinical Quality & Operational Benchmarking — OPD throughput, wait times, bed turnaround, and CSAT' },
     { id: 'revenue',     label: 'Clinic Revenue',      icon: '💎', hash: '#clinic-revenue',      badge: '₹78.4 L/mo', title: 'Clinic Revenue', sub: 'Healthcare Financials & Department Billings — OT Surgeries (37.5%), OPD (25.7%), Diagnostics (20%), and ICU (16.8%)' },
     { id: 'orders',      label: 'Clinic Orders',       icon: '📦', hash: '#clinic-orders',       badge: '16 Requisitions', title: 'Clinic Orders', sub: 'Clinical Supply Requisitions & Purchase Orders — Titanium implants, inhalation gases, and suture packs' },
@@ -250,23 +250,25 @@
             '<div><h3 class="zch-card-title">24x7 Tertiary Flagship Hospitals</h3><p class="zch-card-sub">Advanced diagnostic imaging (CT/MRI), blood banking, and multi-specialty surgery</p></div>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:12px;">',
-            FACILITIES.filter(function (f) { return f.type.includes('Tertiary'); }).map(function (h) {
-              return '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;">' +
-                '<div style="display:flex;justify-content:space-between;align-items:flex-start;">' +
-                  '<div>' +
-                    '<span style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;">' + esc(h.city) + ' REGIONAL HUB</span>' +
-                    '<h4 style="margin:2px 0 4px;font-size:15px;color:#fff;">' + esc(h.name) + '</h4>' +
-                    '<div style="font-size:12px;color:#94a3b8;">Medical Director: <strong style="color:#cbd5e1;">' + esc(h.lead) + '</strong></div>' +
+            (FACILITIES.filter(function (f) { return f.type.includes('Tertiary'); }).length === 0 ?
+              '<div style="text-align:center;padding:28px;color:#94a3b8;">No hospital records found</div>' :
+              FACILITIES.filter(function (f) { return f.type.includes('Tertiary'); }).map(function (h) {
+                return '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;">' +
+                  '<div style="display:flex;justify-content:space-between;align-items:flex-start;">' +
+                    '<div>' +
+                      '<span style="font-size:10px;color:#38bdf8;font-weight:700;text-transform:uppercase;">' + esc(h.city) + ' REGIONAL HUB</span>' +
+                      '<h4 style="margin:2px 0 4px;font-size:15px;color:#fff;">' + esc(h.name) + '</h4>' +
+                      '<div style="font-size:12px;color:#94a3b8;">Medical Director: <strong style="color:#cbd5e1;">' + esc(h.lead) + '</strong></div>' +
+                    '</div>' +
+                    '<span class="zch-badge green">24x7 Active</span>' +
                   '</div>' +
-                  '<span class="zch-badge green">24x7 Active</span>' +
-                '</div>' +
-                '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;">' +
-                  '<div><span style="color:#64748b;">Bed Census:</span><div style="font-weight:700;color:#fff;font-family:IBM Plex Mono,monospace;">' + esc(h.beds) + '</div></div>' +
-                  '<div><span style="color:#64748b;">Surgical OT:</span><div style="font-weight:700;color:#38bdf8;font-family:IBM Plex Mono,monospace;">' + esc(h.ot) + '</div></div>' +
-                  '<div><span style="color:#64748b;">Daily Revenue:</span><div style="font-weight:700;color:#10b981;font-family:IBM Plex Mono,monospace;">' + esc(h.rev) + '</div></div>' +
-                '</div>' +
-              '</div>';
-            }).join(''),
+                  '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;">' +
+                    '<div><span style="color:#64748b;">Bed Census:</span><div style="font-weight:700;color:#fff;font-family:IBM Plex Mono,monospace;">' + esc(h.beds) + '</div></div>' +
+                    '<div><span style="color:#64748b;">Surgical OT:</span><div style="font-weight:700;color:#38bdf8;font-family:IBM Plex Mono,monospace;">' + esc(h.ot) + '</div></div>' +
+                    '<div><span style="color:#64748b;">Daily Revenue:</span><div style="font-weight:700;color:#10b981;font-family:IBM Plex Mono,monospace;">' + esc(h.rev) + '</div></div>' +
+                  '</div>' +
+                '</div>';
+              }).join('')),
           '</div>',
         '</div>',
 
@@ -279,10 +281,7 @@
             '<table class="zch-table">',
               '<thead><tr><th>Patient & Surgery</th><th>OT Suite</th><th>Surgeon</th><th>Anesthetist</th><th>Schedule</th></tr></thead>',
               '<tbody>',
-                '<tr><td><b>Bruno (Labrador)</b><br><span style="color:#f87171;">TPLO Cruciate Repair</span></td><td>OT-1 (Koramangala)</td><td>Dr. Priya Sharma</td><td>Dr. Arun V.</td><td><span class="zch-badge red">In Progress</span></td></tr>',
-                '<tr><td><b>Simba (Persian Cat)</b><br><span style="color:#38bdf8;">Perineal Urethrostomy</span></td><td>OT-1 (Bandra)</td><td>Dr. Rahul Mehta</td><td>Dr. Preethi</td><td><span class="zch-badge amber">11:30 AM</span></td></tr>',
-                '<tr><td><b>Rocky (German Shep)</b><br><span style="color:#c084fc;">Hemilaminectomy L2-L3</span></td><td>OT-2 (Delhi Okhla)</td><td>Dr. Aisha Khan</td><td>Dr. Ajay</td><td><span class="zch-badge amber">02:00 PM</span></td></tr>',
-                '<tr><td><b>Coco (Pug)</b><br><span style="color:#34d399;">Soft Palate & Nares</span></td><td>OT-2 (Koramangala)</td><td>Dr. Arun V.</td><td>Dr. Sneha</td><td><span class="zch-badge green">Completed</span></td></tr>',
+                '<tr><td colspan="5" style="text-align:center;padding:28px;color:#94a3b8;">No scheduled surgical procedures</td></tr>',
               '</tbody>',
             '</table>',
           '</div>',
