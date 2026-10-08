@@ -175,14 +175,9 @@ body.zexec-locked {
 }
 
 /* Tabs Bar */
-.zexec-tabs-bar {
-  display: flex;
-  gap: 6px;
-  padding: 10px 28px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  overflow-x: auto;
-  white-space: nowrap;
+.zexec-tabs-bar,
+.zexec-tab {
+  display: none !important;
 }
 
 .zexec-tab {
