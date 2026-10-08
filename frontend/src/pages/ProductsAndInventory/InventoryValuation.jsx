@@ -62,19 +62,25 @@ export default function InventoryValuation() {
         }}>
           <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: 700 }}>Category Asset Breakdown</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {categories.map(cat => (
-              <div key={cat.name}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                  <span style={{ fontWeight: 600, color: '#f8fafc' }}>{cat.name}</span>
-                  <span style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#94a3b8' }}>
-                    {cat.costVal} <span style={{ color: '#10b981' }}>({cat.margin} margin)</span>
-                  </span>
-                </div>
-                <div style={{ height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '4px', overflow: 'hidden' }}>
-                  <div style={{ width: `${cat.share * 2.5}%`, height: '100%', background: cat.color, borderRadius: '4px' }}></div>
-                </div>
+            {categories.length === 0 ? (
+              <div style={{ padding: '16px', textAlign: 'center', color: '#94a3b8', fontSize: '12px' }}>
+                No category asset records found
               </div>
-            ))}
+            ) : (
+              categories.map(cat => (
+                <div key={cat.name}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
+                    <span style={{ fontWeight: 600, color: '#f8fafc' }}>{cat.name}</span>
+                    <span style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#94a3b8' }}>
+                      {cat.costVal} <span style={{ color: '#10b981' }}>({cat.margin} margin)</span>
+                    </span>
+                  </div>
+                  <div style={{ height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{ width: `${cat.share * 2.5}%`, height: '100%', background: cat.color, borderRadius: '4px' }}></div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -134,27 +140,35 @@ export default function InventoryValuation() {
               </tr>
             </thead>
             <tbody>
-              {warehouseVal.map(w => (
-                <tr key={w.hub} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>🏭 {w.hub}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.units.toLocaleString()}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: '#10b981' }}>{w.costVal}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.share}%</td>
-                  <td style={{ padding: '12px', color: '#94a3b8' }}>{w.manager}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
-                    <span style={{
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: 'rgba(16,185,129,0.15)',
-                      color: '#10b981'
-                    }}>
-                      ✓ Verified
-                    </span>
+              {warehouseVal.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No warehouse valuation records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                warehouseVal.map(w => (
+                  <tr key={w.hub} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>🏭 {w.hub}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.units.toLocaleString()}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: '#10b981' }}>{w.costVal}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.share}%</td>
+                    <td style={{ padding: '12px', color: '#94a3b8' }}>{w.manager}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: 'rgba(16,185,129,0.15)',
+                        color: '#10b981'
+                      }}>
+                        ✓ Verified
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

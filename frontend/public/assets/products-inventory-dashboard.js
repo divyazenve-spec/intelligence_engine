@@ -20,10 +20,16 @@
   /* ── Currency Helpers ─────────────────────────────────────────── */
   function inrShort(n) {
     n = Number(n) || 0;
-    if (n >= 1e7) return '&#8377;' + (n / 1e7).toFixed(2) + ' Cr';
-    if (n >= 1e5) return '&#8377;' + (n / 1e5).toFixed(1) + ' L';
-    if (n >= 1000) return '&#8377;' + (n / 1000).toFixed(1) + 'K';
-    return '&#8377;' + n.toLocaleString('en-IN');
+    if (n === 0) return '₹0';
+    if (n >= 1e7) return '₹' + (n / 1e7).toFixed(2) + ' Cr';
+    if (n >= 1e5) return '₹' + (n / 1e5).toFixed(1) + ' L';
+    if (n >= 1000) return '₹' + (n / 1000).toFixed(1) + 'K';
+    return '₹' + n.toLocaleString('en-IN');
+  }
+
+  function inr(n) {
+    n = Number(n) || 0;
+    return '₹' + n.toLocaleString('en-IN');
   }
 
   function esc(s) {
@@ -512,7 +518,7 @@
   function renderStockTrendSvg() {
     var W = 600, H = 160;
     var months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
-    var vals = [1540, 1620, 1480, 1590, 1410, 1360, 1420];
+    var vals = [0, 0, 0, 0, 0, 0, 0];
     var max = Math.max.apply(null, vals);
     var min = Math.min.apply(null, vals);
     var pad = { t: 20, r: 20, b: 30, l: 50 };
@@ -554,49 +560,14 @@
 
   /* ── SVG: Category Donut ──────────────────────────────────────── */
   function renderDonutSvg() {
-    var data = [
-      { label: 'Pharmacy & Meds', pct: 28, color: '#8b5cf6' },
-      { label: 'Pet Nutrition',   pct: 24, color: '#0ea5e9' },
-      { label: 'Clinical Nutrition', pct: 16, color: '#10b981' },
-      { label: 'Vaccines',        pct: 12, color: '#f59e0b' },
-      { label: 'Accessories',     pct: 9,  color: '#f87171' },
-      { label: 'Other',           pct: 11, color: '#475569' }
-    ];
-    var cx = 80, cy = 80, r = 60, ri = 38;
-    var startAngle = -Math.PI / 2;
-    var total = data.reduce(function (a, d) { return a + d.pct; }, 0);
-    var paths = data.map(function (d) {
-      var angle = (d.pct / total) * 2 * Math.PI;
-      var x1 = cx + r * Math.cos(startAngle);
-      var y1 = cy + r * Math.sin(startAngle);
-      var x2 = cx + r * Math.cos(startAngle + angle);
-      var y2 = cy + r * Math.sin(startAngle + angle);
-      var xi1 = cx + ri * Math.cos(startAngle + angle);
-      var yi1 = cy + ri * Math.sin(startAngle + angle);
-      var xi2 = cx + ri * Math.cos(startAngle);
-      var yi2 = cy + ri * Math.sin(startAngle);
-      var lg = angle > Math.PI ? 1 : 0;
-      var path = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + lg + ' 1 ' + x2 + ' ' + y2 + ' L ' + xi1 + ' ' + yi1 + ' A ' + ri + ' ' + ri + ' 0 ' + lg + ' 0 ' + xi2 + ' ' + yi2 + ' Z';
-      startAngle += angle;
-      return '<path d="' + path + '" fill="' + d.color + '" opacity="0.9"/>';
-    }).join('');
-    var legend = data.map(function (d) {
-      return [
-        '<div class="zpid-donut-legend-item">',
-          '<div class="zpid-donut-dot" style="background:' + d.color + '"></div>',
-          '<span>' + esc(d.label) + '</span>',
-          '<span style="margin-left:auto;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:#94a3b8">' + d.pct + '%</span>',
-        '</div>'
-      ].join('');
-    }).join('');
     return [
-      '<div class="zpid-donut-wrap">',
+      '<div class="zpid-donut-wrap" style="justify-content:center;padding:24px 0">',
         '<svg viewBox="0 0 160 160" width="160" height="160" style="flex-shrink:0">',
-          paths,
-          '<text x="80" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc">1,420</text>',
+          '<circle cx="80" cy="80" r="49" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="22"/>',
+          '<text x="80" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc">0</text>',
           '<text x="80" y="91" text-anchor="middle" font-size="9" fill="#64748b">TOTAL SKUs</text>',
         '</svg>',
-        '<div class="zpid-donut-legend">' + legend + '</div>',
+        '<div class="zpid-donut-legend" style="display:flex;align-items:center;color:#94a3b8;font-size:12px">No category SKU records found</div>',
       '</div>'
     ].join('');
   }
@@ -605,6 +576,9 @@
   function renderCapacitySvg() {
     var W = 600, H = 140;
     var whs = WAREHOUSES;
+    if (whs.length === 0) {
+      return '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No warehouse capacity records found</div>';
+    }
     var barH = 18, gapY = 24;
     var labelW = 160, padL = 170, padR = 80, padT = 10;
 
@@ -664,7 +638,7 @@
               '<th>Warehouse</th><th>Flags</th><th style="text-align:right">Status</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
+              products.length === 0 ? '<tr><td colspan="11" style="padding:24px;text-align:center;color:#94a3b8">No products found</td></tr>' : products.map(function (p) {
                 var margin = Math.round(((p.price - p.cost) / p.price) * 100);
                 var flags = '';
                 if (p.cold) flags += '<span class="zpid-badge blue" style="margin-right:4px">❄ Cold</span>';
@@ -740,7 +714,7 @@
               '<th>MOQ</th><th>Batches</th><th>Vendor</th><th>Weight</th><th>Flags</th><th>Status</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
+              products.length === 0 ? '<tr><td colspan="11" style="padding:24px;text-align:center;color:#94a3b8">No SKUs found</td></tr>' : products.map(function (p) {
                 var flags = [];
                 if (p.cold) flags.push('❄ Cold Chain');
                 if (p.rx)   flags.push('📋 Rx Required');
@@ -768,26 +742,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📦 Vendor-to-SKU Distribution</h3><small>Top vendors by number of active SKUs supplied</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'MSD Animal Health (India)', skus: 4, total: 15 },
-            { label: 'Mars Petcare / Pedigree', skus: 3, total: 15 },
-            { label: 'Boehringer Ingelheim India', skus: 3, total: 15 },
-            { label: 'Zoetis India Pvt Ltd', skus: 2, total: 15 },
-            { label: 'Royal Canin India', skus: 2, total: 15 },
-            { label: 'Others (9 vendors)', skus: 1, total: 15 }
-          ].map(function (v) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(v.label) + '</span>',
-                  '<span>' + v.skus + ' SKUs</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + Math.round(v.skus / v.total * 100) + '%;background:#8b5cf6"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No vendor SKU records found</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -841,30 +796,10 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>📦 Category-wise Stock Value</h3><small>Inventory value distribution by product category</small></div>',
-          '<span class="zpid-badge purple">Total: ' + inrShort(18650000) + '</span>',
+          '<span class="zpid-badge purple">Total: ₹0</span>',
         '</div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Pharmacy & Meds', value: 5600000, color: '#8b5cf6' },
-            { label: 'Clinical Nutrition', value: 3900000, color: '#0ea5e9' },
-            { label: 'Vaccines & Cold Chain', value: 2800000, color: '#10b981' },
-            { label: 'Pet Nutrition & Food', value: 2400000, color: '#f59e0b' },
-            { label: 'Pet Tech & Accessories', value: 2100000, color: '#f87171' },
-            { label: 'Other Categories', value: 1850000, color: '#475569' }
-          ].map(function (c) {
-            var pct = Math.round(c.value / 18650000 * 100);
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(c.label) + '</span>',
-                  '<span>' + inrShort(c.value) + ' (' + pct + '%)</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + pct + '%;background:' + c.color + '"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No category stock value records found</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -921,7 +856,7 @@
               '<th style="text-align:right">Est. Reorder Value</th><th>Warehouse</th><th>Action</th>',
             '</tr></thead>',
             '<tbody>',
-              products.map(function (p) {
+              products.length === 0 ? '<tr><td colspan="10" style="padding:24px;text-align:center;color:#94a3b8">No stock records found</td></tr>' : products.map(function (p) {
                 var daysOfCover = p.stock > 0 ? Math.round(p.stock / Math.max(1, p.reorder / 14)) : 0;
                 var reorderVal = Math.max(0, (p.reorder * 2 - p.stock)) * p.cost;
                 var needsAction = p.stock <= p.reorder;
@@ -977,7 +912,7 @@
               '<th>Stock Level</th><th>Vendor</th><th style="text-align:right">Reorder Value</th><th>Priority</th>',
             '</tr></thead>',
             '<tbody>',
-              lowItems.sort(function (a, b) { return a.stock - b.stock; }).map(function (p) {
+              lowItems.length === 0 ? '<tr><td colspan="9" style="padding:24px;text-align:center;color:#94a3b8">No low stock items</td></tr>' : lowItems.sort(function (a, b) { return a.stock - b.stock; }).map(function (p) {
                 var reorderVal = (p.reorder * 2 - p.stock) * p.cost;
                 var isCrit = p.stock <= p.reorder * 0.4;
                 return [
@@ -1002,25 +937,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📋 Category-wise Low Stock Summary</h3><small>Aggregate low-stock impact by category</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Pharmacy & Meds', count: 0 },
-            { label: 'Vaccines', count: 0 },
-            { label: 'Clinical Nutrition', count: 0 },
-            { label: 'Supplements', count: 0 },
-            { label: 'Dermatology', count: 0 }
-          ].map(function (c) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label">',
-                  '<span>' + esc(c.label) + '</span>',
-                  '<span>' + c.count + ' SKUs</span>',
-                '</div>',
-                '<div class="zpid-progress-track">',
-                  '<div class="zpid-progress-fill" style="width:' + Math.round(c.count / lowItems.length * 100) + '%;background:#f59e0b"></div>',
-                '</div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No low stock categories</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1057,7 +974,7 @@
               '<th>Vendor</th><th>Urgency</th>',
             '</tr></thead>',
             '<tbody>',
-              outItems.map(function (p, i) {
+              outItems.length === 0 ? '<tr><td colspan="9" style="padding:24px;text-align:center;color:#94a3b8">No out of stock items</td></tr>' : outItems.map(function (p, i) {
                 var dailyDemand = Math.round(p.reorder / 14);
                 var lostRev = dailyDemand * p.price;
                 var urgency = p.rx ? 'critical' : p.cold ? 'critical' : (i < 2 ? 'critical' : 'low');
@@ -1083,20 +1000,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph"><div><h3>📊 Out-of-Stock Root Cause Analysis</h3><small>Why these products went to zero</small></div></div>',
         '<div class="zpid-progress-row">',
-          [
-            { label: 'Supplier lead time exceeded', pct: 42, color: '#f87171' },
-            { label: 'Demand spike not forecasted', pct: 28, color: '#f59e0b' },
-            { label: 'Cold-chain breach — batch quarantine', pct: 18, color: '#fb923c' },
-            { label: 'Reorder trigger not fired (system)', pct: 8, color: '#94a3b8' },
-            { label: 'Regulatory hold on batch', pct: 4, color: '#64748b' }
-          ].map(function (c) {
-            return [
-              '<div class="zpid-progress-item">',
-                '<div class="zpid-progress-label"><span>' + esc(c.label) + '</span><span>' + c.pct + '%</span></div>',
-                '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:' + c.pct + '%;background:' + c.color + '"></div></div>',
-              '</div>'
-            ].join('');
-          }).join(''),
+          '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No out-of-stock incidents recorded</div>',
         '</div>',
       '</div>'
     ].join('');
@@ -1190,7 +1094,7 @@
       '</div>',
 
       '<div class="zpid-grid-3">',
-        WAREHOUSES.map(function (w) {
+        WAREHOUSES.length === 0 ? '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;grid-column:1/-1;">No warehouse facilities registered</div>' : WAREHOUSES.map(function (w) {
           var capColor = w.capacity > 85 ? '#f59e0b' : w.capacity > 70 ? '#10b981' : '#0ea5e9';
           return [
             '<div class="zpid-hub-card">',
@@ -1237,15 +1141,15 @@
      ===================================================================== */
   function renderValuationView() {
     var multiplier = S.valuationMethod === 'Weighted Avg' ? 1.02 : S.valuationMethod === 'LIFO' ? 0.96 : 1.0;
-    var totalCost = 18650000 * multiplier;
-    var totalRetail = 29420000;
-    var marginPct = (((totalRetail - totalCost) / totalRetail) * 100).toFixed(1);
+    var totalCost = 0;
+    var totalRetail = 0;
+    var marginPct = '0.0';
 
     return [
       '<div class="zpid-kpis">',
-        kpi('Total Asset Valuation', inrShort(totalCost), S.valuationMethod + ' GAAP method', 'up', '💰'),
-        kpi('Projected Retail Value', inrShort(totalRetail), 'Current MRP realization', 'up', '🏷️'),
-        kpi('Unrealized Gross Margin', marginPct + '%', inrShort(totalRetail - totalCost) + ' profit', 'up', '📈'),
+        kpi('Total Asset Valuation', inrShort(totalCost), S.valuationMethod + ' GAAP method', 'neutral', '💰'),
+        kpi('Projected Retail Value', inrShort(totalRetail), 'Current MRP realization', 'neutral', '🏷️'),
+        kpi('Unrealized Gross Margin', marginPct + '%', '₹0 profit', 'neutral', '📈'),
         kpi('Holding Carrying Cost', '0.0%', '₹0 monthly run-rate', 'neutral', '🛡️'),
         kpi('FIFO Verified Batches', '0 Batches', '0 audit records', 'neutral', '✅'),
         kpi('At-Risk Aging Value', '₹0', '0.0%', 'neutral', '⏳'),
@@ -1262,17 +1166,19 @@
             '</div>',
           '</div>',
           '<div class="zpid-progress-row">',
-            VALUATION_CATS.map(function (cat) {
-              return [
-                '<div class="zpid-progress-item">',
-                  '<div class="zpid-progress-label">',
-                    '<span style="font-weight:600">' + esc(cat.name) + '</span>',
-                    '<span>' + inrShort(cat.costVal * multiplier) + ' <span style="color:#10b981">(' + cat.margin + ')</span></span>',
-                  '</div>',
-                  '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:' + (cat.share * 2.8) + '%;background:' + cat.color + '"></div></div>',
-                '</div>'
-              ].join('');
-            }).join(''),
+            VALUATION_CATS.length === 0
+              ? '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:12px;">No category asset records found</div>'
+              : VALUATION_CATS.map(function (cat) {
+                  return [
+                    '<div class="zpid-progress-item">',
+                      '<div class="zpid-progress-label">',
+                        '<span style="font-weight:600">' + esc(cat.name) + '</span>',
+                        '<span>' + inrShort(cat.costVal * multiplier) + ' <span style="color:#10b981">(' + cat.margin + ')</span></span>',
+                      '</div>',
+                      '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:' + (cat.share * 2.8) + '%;background:' + cat.color + '"></div></div>',
+                    '</div>'
+                  ].join('');
+                }).join(''),
           '</div>',
         '</div>',
 
@@ -1309,7 +1215,7 @@
       '<div class="zpid-card">',
         '<div class="zpid-ph">',
           '<div><h3>🏭 Warehouse Holding Asset Valuation</h3><small>Facility-level stock valuation and inventory accuracy audit status</small></div>',
-          '<span class="zpid-badge purple">0 Facilities Reconciled</span>',
+          '<span class="zpid-badge purple">' + WAREHOUSES.length + ' Facilities Reconciled</span>',
         '</div>',
         '<div class="zpid-table-wrap">',
           '<table class="zpid-table">',
@@ -1320,20 +1226,22 @@
               '<th style="text-align:right">Audit Reconciliation</th>',
             '</tr></thead>',
             '<tbody>',
-              WAREHOUSES.map(function (w) {
-                var val = inrShort(w.value * multiplier);
-                var share = ((w.value / 18650000) * 100).toFixed(1);
-                return [
-                  '<tr>',
-                    '<td><strong>🏭 ' + esc(w.name) + '</strong></td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">' + (w.skus * 12).toLocaleString() + '</td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;font-weight:700;color:#10b981">' + val + '</td>',
-                    '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">' + share + '%</td>',
-                    '<td style="color:#94a3b8">' + esc(w.manager) + '</td>',
-                    '<td style="text-align:right"><span class="zpid-badge green">✓ Audit Reconciled</span></td>',
-                  '</tr>'
-                ].join('');
-              }).join(''),
+              WAREHOUSES.length === 0
+                ? '<tr><td colspan="6" style="padding:24px;text-align:center;color:#94a3b8">No warehouse valuation records found</td></tr>'
+                : WAREHOUSES.map(function (w) {
+                    var val = inrShort(w.value * multiplier);
+                    var share = '0.0';
+                    return [
+                      '<tr>',
+                        '<td><strong>🏭 ' + esc(w.name) + '</strong></td>',
+                        '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">' + (w.skus * 12).toLocaleString() + '</td>',
+                        '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace;font-weight:700;color:#10b981">' + val + '</td>',
+                        '<td style="text-align:right;font-family:\'IBM Plex Mono\',monospace">' + share + '%</td>',
+                        '<td style="color:#94a3b8">' + esc(w.manager) + '</td>',
+                        '<td style="text-align:right"><span class="zpid-badge green">✓ Audit Reconciled</span></td>',
+                      '</tr>'
+                    ].join('');
+                  }).join(''),
             '</tbody>',
           '</table>',
         '</div>',
@@ -1377,7 +1285,7 @@
               '<th>Telemetry / Temp</th><th>Status &amp; ETA</th><th style="text-align:right">Actions</th>',
             '</tr></thead>',
             '<tbody>',
-              filtered.map(function (t) {
+              filtered.length === 0 ? '<tr><td colspan="8" style="padding:24px;text-align:center;color:#94a3b8">No transfer manifests found</td></tr>' : filtered.map(function (t) {
                 var statusCls = t.status === 'In Transit' ? 'purple' : t.status === 'Received' ? 'green' : 'amber';
                 return [
                   '<tr>',
@@ -1521,12 +1429,12 @@
               '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:0%;background:#ef4444"></div></div>',
             '</div>',
             '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#38bdf8;font-weight:600">Inter-Hub Stock Transfers</span><span>100 units · Balanced Transit</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:48%;background:#38bdf8"></div></div>',
+              '<div class="zpid-progress-label"><span style="color:#38bdf8;font-weight:600">Inter-Hub Stock Transfers</span><span>0 units · 0% Volume</span></div>',
+              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:0%;background:#38bdf8"></div></div>',
             '</div>',
             '<div class="zpid-progress-item">',
-              '<div class="zpid-progress-label"><span style="color:#f59e0b;font-weight:600">Adjustments &amp; QC Returns</span><span>-1 unit · 100% Reconciled</span></div>',
-              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:8%;background:#f59e0b"></div></div>',
+              '<div class="zpid-progress-label"><span style="color:#f59e0b;font-weight:600">Adjustments &amp; QC Returns</span><span>0 units · 0% Volume</span></div>',
+              '<div class="zpid-progress-track"><div class="zpid-progress-fill" style="width:0%;background:#f59e0b"></div></div>',
             '</div>',
           '</div>',
         '</div>',
@@ -1539,23 +1447,23 @@
           '<div style="padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">',
             '<div style="padding:12px;border-radius:8px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2)">',
               '<div style="font-size:11px;color:#10b981;font-weight:600">Bengaluru Central Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+43 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 48 · Out: 4 · Ret: 1 · Adj: -2</div>',
+              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">0 units net</div>',
+              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 0 · Out: 0 · Ret: 0 · Adj: 0</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.2)">',
               '<div style="font-size:11px;color:#38bdf8;font-weight:600">Delhi NCR Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+60 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Inbound supplier GRN receipt</div>',
+              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">0 units net</div>',
+              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 0 · Out: 0 · Ret: 0 · Adj: 0</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2)">',
               '<div style="font-size:11px;color:#ef4444;font-weight:600">Mumbai West Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">-50 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Vaccine transfer out to Pune</div>',
+              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">0 units net</div>',
+              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 0 · Out: 0 · Ret: 0 · Adj: 0</div>',
             '</div>',
             '<div style="padding:12px;border-radius:8px;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.2)">',
               '<div style="font-size:11px;color:#c084fc;font-weight:600">Pune Express Hub</div>',
-              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">+50 units net</div>',
-              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">Transit inflow arrived safely</div>',
+              '<div style="font-size:18px;font-weight:700;color:#f8fafc;margin-top:2px">0 units net</div>',
+              '<div style="font-size:10px;color:#94a3b8;margin-top:2px">In: 0 · Out: 0 · Ret: 0 · Adj: 0</div>',
             '</div>',
           '</div>',
         '</div>',
@@ -1578,7 +1486,7 @@
               '<th>Ref Doc #</th><th style="text-align:right">Transaction Value</th>',
             '</tr></thead>',
             '<tbody>',
-              filtered.map(function (item) {
+              filtered.length === 0 ? '<tr><td colspan="8" style="padding:24px;text-align:center;color:#94a3b8">No movement records found</td></tr>' : filtered.map(function (item) {
                 var isPos = item.qty > 0;
                 var qtyColor = isPos ? '#10b981' : '#ef4444';
                 var qtySign = isPos ? '+' : '';
