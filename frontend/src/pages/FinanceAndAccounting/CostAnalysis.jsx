@@ -38,12 +38,12 @@ export default function CostAnalysis() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network Monthly Breakeven" value="₹0" delta="Actual: ₹0" trend="up" subtext="Breakeven reached on Day 18" icon="⚖️" />
-        <KpiCard label="Margin of Safety" value="0.0%" delta="+4.2% pts YoY" trend="up" subtext="Substantial cushion" icon="🛡️" />
-        <KpiCard label="Cost / Inpatient Bed-Day" value="₹0" delta="-16.4% vs Industry" trend="up" subtext="Optimized nurse-to-pet ratio" icon="🛏️" />
-        <KpiCard label="Cost / Surgical OT Hour" value="₹0 / hr" delta="High throughput" trend="up" subtext="3 Modular OTs" icon="🩺" />
-        <KpiCard label="Fixed Cost Ratio" value="0.0%" delta="Lean real estate" trend="up" subtext="₹0 fixed base" icon="🏢" />
-        <KpiCard label="Variable Cost Ratio" value="0.0%" delta="High elasticity" trend="up" subtext="Low risk capital model" icon="📉" />
+        <KpiCard label="Network Monthly Breakeven" value="₹0" delta="Actual: ₹0" trend="neutral" subtext="No breakeven data" icon="⚖️" />
+        <KpiCard label="Margin of Safety" value="0.0%" delta="0.0%" trend="neutral" subtext="Substantial cushion" icon="🛡️" />
+        <KpiCard label="Cost / Inpatient Bed-Day" value="₹0" delta="0.0%" trend="neutral" subtext="Optimized nurse-to-pet ratio" icon="🛏️" />
+        <KpiCard label="Cost / Surgical OT Hour" value="₹0 / hr" delta="High throughput" trend="neutral" subtext="Operating theatres" icon="🩺" />
+        <KpiCard label="Fixed Cost Ratio" value="0.0%" delta="Lean real estate" trend="neutral" subtext="₹0 fixed base" icon="🏢" />
+        <KpiCard label="Variable Cost Ratio" value="0.0%" delta="High elasticity" trend="neutral" subtext="Low risk capital model" icon="📉" />
       </div>
 
       <div style={{

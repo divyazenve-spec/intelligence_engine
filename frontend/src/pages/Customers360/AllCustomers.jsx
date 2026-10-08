@@ -29,10 +29,10 @@ export default function AllCustomers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Master Customer Records" value="12,480 Profiles" delta="+9.8% YoY" trend="up" subtext="100% verified mobile KYC" icon="📋" />
-        <KpiCard label="Primary Bengaluru Hub" value="0.0%" delta="10,500 accounts" trend="neutral" subtext="Expanding to Hyderabad & Pune" icon="📍" />
-        <KpiCard label="Multi-Pet Households" value="0.0%" delta="4,800 families" trend="up" subtext="High ARPU multiple" icon="🐾" />
-        <KpiCard label="Verified Email & WhatsApp" value="0.0%" delta="Opt-in compliance" trend="up" subtext="DPDP Act 2023 aligned" icon="🛡️" />
+        <KpiCard label="Master Customer Records" value="0" delta="0.0%" trend="neutral" subtext="No verified accounts" icon="📋" />
+        <KpiCard label="Primary Bengaluru Hub" value="0.0%" delta="--" trend="neutral" subtext="Expanding to Hyderabad & Pune" icon="📍" />
+        <KpiCard label="Multi-Pet Households" value="0.0%" delta="--" trend="neutral" subtext="High ARPU multiple" icon="🐾" />
+        <KpiCard label="Verified Email & WhatsApp" value="0.0%" delta="0.0%" trend="neutral" subtext="DPDP Act aligned" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>
@@ -87,7 +87,7 @@ export default function AllCustomers() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer directory records found</td></tr>) : filtered.map(c => (
                 <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.name}</td>

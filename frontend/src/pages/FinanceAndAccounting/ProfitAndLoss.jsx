@@ -14,7 +14,7 @@ export default function ProfitAndLoss() {
       title="Profit & Loss Statement (P&L / Income Statement)"
       subtitle="Audited GAAP & Ind-AS income statement, operating revenue streams, cost absorption, and net profit margins"
       icon="📈"
-      badge="PAT Margin: 11.8%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <select
@@ -52,12 +52,12 @@ export default function ProfitAndLoss() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Revenue" value="₹0" delta="+5.7% vs Budget" trend="up" subtext="100.0% top line" icon="💰" />
-        <KpiCard label="Cost of Goods Sold" value="₹0" delta="44.0% of Rev" trend="up" subtext="Target: <46%" icon="📦" />
-        <KpiCard label="Gross Profit" value="₹0" delta="56.0% Margin" trend="up" subtext="+14.9% vs Plan" icon="📊" />
-        <KpiCard label="Operating OPEX" value="₹0" delta="35.9% of Rev" trend="up" subtext="Disciplined burn" icon="🏢" />
-        <KpiCard label="Operating EBITDA" value="₹0" delta="20.0% Margin" trend="up" subtext="+49.5% vs Plan" icon="⚡" />
-        <KpiCard label="Net Profit (PAT)" value="₹0" delta="11.8% PAT Margin" trend="up" subtext="Clean net earnings" icon="🏆" />
+        <KpiCard label="Gross Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Top line" icon="💰" />
+        <KpiCard label="Cost of Goods Sold" value="₹0" delta="0.0%" trend="neutral" subtext="Cost of goods" icon="📦" />
+        <KpiCard label="Gross Profit" value="₹0" delta="0.0%" trend="neutral" subtext="Gross margin" icon="📊" />
+        <KpiCard label="Operating OPEX" value="₹0" delta="0.0%" trend="neutral" subtext="Disciplined burn" icon="🏢" />
+        <KpiCard label="Operating EBITDA" value="₹0" delta="0.0%" trend="neutral" subtext="EBITDA margin" icon="⚡" />
+        <KpiCard label="Net Profit (PAT)" value="₹0" delta="0.0%" trend="neutral" subtext="Clean net earnings" icon="🏆" />
       </div>
 
       <div style={{

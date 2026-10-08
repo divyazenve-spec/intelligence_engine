@@ -20,14 +20,14 @@ export default function EmployeePerformance() {
       title="Performance Governance & Appraisal Scorecards"
       subtitle="Quarterly review cycles, clinical and operational KPI delivery, customer satisfaction indices, and merit ratings"
       icon="⭐"
-      badge="Q3 2026 Cycle · 92.4% Completion"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average Org KPI Score" value="93.8 / 100" delta="+2.4% vs Q2" trend="up" subtext="Across all 208 staff" icon="🎯" />
-        <KpiCard label="Top Tier Performers (5★)" value="34 Staff" delta="16.3% of workforce" trend="up" subtext="Eligible for merit bonus" icon="🌟" />
-        <KpiCard label="Customer / Pet CSAT" value="4.86 / 5.0" delta="Top quartile benchmark" trend="up" subtext="Based on 14,800+ ratings" icon="❤️" />
-        <KpiCard label="Appraisal Reviews Completed" value="192 / 208" delta="92.3% closed" trend="neutral" subtext="16 reviews pending" icon="📝" />
+        <KpiCard label="Average Org KPI Score" value="0.0" delta="0.0%" trend="neutral" subtext="No staff registered" icon="🎯" />
+        <KpiCard label="Top Tier Performers" value="0" delta="0.0%" trend="neutral" subtext="Eligible for merit bonus" icon="🌟" />
+        <KpiCard label="Customer / Pet CSAT" value="0.0" delta="--" trend="neutral" subtext="No ratings recorded" icon="❤️" />
+        <KpiCard label="Appraisal Reviews Completed" value="0" delta="0.0%" trend="neutral" subtext="No reviews pending" icon="📝" />
       </div>
 
       {/* Cycle Selector & Filter Bar */}
@@ -82,9 +82,9 @@ export default function EmployeePerformance() {
             }}
           >
             <option value="ALL">All Ratings</option>
-            <option value="5★">Exceptional (5★)</option>
-            <option value="4★">Exceeds (4★)</option>
-            <option value="3★">Meets (3★)</option>
+            <option value="Tier 1">Exceptional</option>
+            <option value="Tier 2">Exceeds</option>
+            <option value="Tier 3">Meets</option>
           </select>
         </div>
       </div>

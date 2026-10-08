@@ -16,7 +16,7 @@ export default function FinancialForecast() {
       title="Financial Forecasting & Predictive Runway"
       subtitle="12-month rolling balance sheet and P&L modeling, multi-scenario Monte Carlo simulations, and capital expenditure roadmap"
       icon="🔮"
-      badge="FY28 ARR: ₹0"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <select
@@ -32,7 +32,7 @@ export default function FinancialForecast() {
             }}
           >
             <option value="Base Case">Scenario: Base Case (Realistic)</option>
-            <option value="Bull Case">Scenario: Bull Case (+4 Hubs)</option>
+            <option value="Bull Case">Scenario: Bull Case</option>
             <option value="Bear Case">Scenario: Conservative / Bear</option>
           </select>
           <button
@@ -54,12 +54,12 @@ export default function FinancialForecast() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next 12M Projected Revenue" value="₹0" delta="+26.0% YoY" trend="up" subtext="Base expansion path" icon="🔮" />
-        <KpiCard label="Projected FY28 EBITDA" value="₹0" delta="26.3% Margin" trend="up" subtext="Operating leverage" icon="⚡" />
-        <KpiCard label="12M Free Cash Flow" value="₹0" delta="Post all CAPEX" trend="up" subtext="Self-funded pipeline" icon="💧" />
-        <KpiCard label="Total Planned CAPEX" value="₹0" delta="4 New Facilities" trend="up" subtext="+65 Inpatient Beds" icon="🏗️" />
-        <KpiCard label="Target Breakeven / Bed" value="2.8 Months" delta="-0.6 mo faster" trend="up" subtext="Capital efficiency" icon="⏱️" />
-        <KpiCard label="Sensitivity Risk Score" value="Low Risk (1.18)" delta="Debt Service >12x" trend="up" subtext="Stress-tested" icon="🛡️" />
+        <KpiCard label="Next 12M Projected Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Base expansion path" icon="🔮" />
+        <KpiCard label="Projected FY28 EBITDA" value="₹0" delta="0.0%" trend="neutral" subtext="Operating leverage" icon="⚡" />
+        <KpiCard label="12M Free Cash Flow" value="₹0" delta="Post all CAPEX" trend="neutral" subtext="Self-funded pipeline" icon="💧" />
+        <KpiCard label="Total Planned CAPEX" value="₹0" delta="--" trend="neutral" subtext="No new beds" icon="🏗️" />
+        <KpiCard label="Target Breakeven / Bed" value="0 Months" delta="0.0%" trend="neutral" subtext="Capital efficiency" icon="⏱️" />
+        <KpiCard label="Sensitivity Risk Score" value="0.0" delta="--" trend="neutral" subtext="Stress-tested" icon="🛡️" />
       </div>
 
       <div style={{

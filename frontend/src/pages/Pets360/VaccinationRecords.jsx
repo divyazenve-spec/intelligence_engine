@@ -49,10 +49,10 @@ export default function VaccinationRecords() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Doses Administered" value="0" delta="0.0%" trend="up" subtext="YTD across network" icon="💉" />
-        <KpiCard label="Immunity Compliance" value="0.0%" delta="High" trend="up" subtext="Protected population" icon="🛡️" />
-        <KpiCard label="Due Within 30 Days" value="84 Pets" delta="Recalls sent" trend="neutral" subtext="WhatsApp & SMS alerts" icon="🔔" />
-        <KpiCard label="Cold-Chain Lot Tracked" value="0.0%" delta="Zoetis / MSD" trend="up" subtext="IoT 2-8°C verified" icon="❄️" />
+        <KpiCard label="Doses Administered" value="0" delta="0.0%" trend="neutral" subtext="YTD across network" icon="💉" />
+        <KpiCard label="Immunity Compliance" value="0.0%" delta="High" trend="neutral" subtext="Protected population" icon="🛡️" />
+        <KpiCard label="Due Within 30 Days" value="0" delta="--" trend="neutral" subtext="WhatsApp & SMS alerts" icon="🔔" />
+        <KpiCard label="Cold-Chain Lot Tracked" value="0.0%" delta="Zoetis / MSD" trend="neutral" subtext="IoT monitored" icon="❄️" />
       </div>
 
       <div style={{

@@ -18,10 +18,10 @@ export default function Departments() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Operating Units" value="6 Core Divisions" delta="Full org coverage" trend="neutral" subtext="Clinical, logistics & tech" icon="🏛️" />
-        <KpiCard label="Total Monthly Budget" value="₹0 / mo" delta="98.2% utilization" trend="neutral" subtext="Direct payroll & incentives" icon="💳" />
-        <KpiCard label="Open Requisitions" value="25 Positions" delta="Active hiring pipeline" trend="up" subtext="Across all 6 departments" icon="📢" />
-        <KpiCard label="Average Org Health" value="94.7 / 100" delta="+1.8 pts QoQ" trend="up" subtext="Blended satisfaction & SLA" icon="⭐" />
+        <KpiCard label="Total Operating Units" value="0" delta="--" trend="neutral" subtext="Clinical, logistics & tech" icon="🏛️" />
+        <KpiCard label="Total Monthly Budget" value="₹0 / mo" delta="0.0%" trend="neutral" subtext="Direct payroll & incentives" icon="💳" />
+        <KpiCard label="Open Requisitions" value="0" delta="--" trend="neutral" subtext="No departments" icon="📢" />
+        <KpiCard label="Average Org Health" value="0.0" delta="0.0%" trend="neutral" subtext="Blended satisfaction & SLA" icon="⭐" />
       </div>
 
       {/* Department Cards Grid */}

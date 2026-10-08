@@ -75,12 +75,12 @@ export default function ClinicPatients() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Admitted Inpatients" value="66 Pets" delta="86.8% Bed Occupancy" trend="up" subtext="Across 3 tertiary hospitals" icon="🛏️" />
-        <KpiCard label="Critical ICU Pods" value="14 Pets" delta="1-on-1 Vet Nursing" trend="neutral" subtext="Continuous vitals telemetry" icon="💓" />
-        <KpiCard label="Daily OPD Consults" value="482 Pets" delta="+18.4% YoY" trend="up" subtext="Across 14 network clinics" icon="🐾" />
-        <KpiCard label="Planned Discharges" value="18 Pets" delta="Expected Today" trend="up" subtext="Post-op recovery cleared" icon="🏡" />
-        <KpiCard label="Average Length of Stay" value="2.8 Days" delta="-0.4d vs target" trend="up" subtext="Rapid patient stabilization" icon="📅" />
-        <KpiCard label="Hospital Infection Rate" value="0.0%" delta="Zero outbreak" trend="up" subtext="UV-C sterilized wards" icon="🛡️" />
+        <KpiCard label="Admitted Inpatients" value="0" delta="0.0%" trend="neutral" subtext="No inpatients admitted" icon="🛏️" />
+        <KpiCard label="Critical ICU Pods" value="0" delta="--" trend="neutral" subtext="Continuous vitals telemetry" icon="💓" />
+        <KpiCard label="Daily OPD Consults" value="0" delta="0.0%" trend="neutral" subtext="No OPD visits logged" icon="🐾" />
+        <KpiCard label="Planned Discharges" value="0" delta="--" trend="neutral" subtext="Post-op recovery cleared" icon="🏡" />
+        <KpiCard label="Average Length of Stay" value="0 Days" delta="0.0%" trend="neutral" subtext="Rapid patient stabilization" icon="📅" />
+        <KpiCard label="Hospital Infection Rate" value="0.0%" delta="--" trend="neutral" subtext="UV-C sterilized wards" icon="🛡️" />
       </div>
 
       {/* Patients Filter & Inpatient Census Table */}
@@ -149,7 +149,7 @@ export default function ClinicPatients() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((pt, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No patient records found</td></tr>) : filtered.map((pt, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px' }}>
                     <div style={{ fontWeight: 600, color: '#fff' }}>{pt.petName}</div>

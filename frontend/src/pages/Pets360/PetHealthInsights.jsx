@@ -79,11 +79,11 @@ export default function PetHealthInsights() {
 
       {/* KPI Ribbon */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
-        <KpiCard label="Population Health Index" value="91.2/100" delta="Optimal Health Band" trend="up" subtext="Aggregated clinical wellness score" icon="🧠" />
-        <KpiCard label="Active Surveillance Triggers" value="5 Live Alerts" delta="2 Critical, 3 Warnings" trend="neutral" subtext="Epidemiological clusters" icon="🚨" />
-        <KpiCard label="Early Morbidity Staging" value="0.0%" delta="+6.2 pts YoY" trend="up" subtext="Averts late-stage hospitalization" icon="🛡️" />
-        <KpiCard label="Parent Recall Action Rate" value="0.0%" delta="642 Recalls Sent" trend="up" subtext="WhatsApp & push response" icon="📱" />
-        <KpiCard label="Chronic Care Cohort" value="142 Pets" delta="Cardiac & Renal" trend="neutral" subtext="Enrolled in remote monitoring" icon="🩺" />
+        <KpiCard label="Population Health Index" value="0.0" delta="Optimal Health Band" trend="neutral" subtext="Aggregated clinical wellness score" icon="🧠" />
+        <KpiCard label="Active Surveillance Triggers" value="0" delta="--" trend="neutral" subtext="Epidemiological clusters" icon="🚨" />
+        <KpiCard label="Early Morbidity Staging" value="0.0%" delta="0.0%" trend="neutral" subtext="Averts late-stage hospitalization" icon="🛡️" />
+        <KpiCard label="Parent Recall Action Rate" value="0.0%" delta="0 Recalls" trend="neutral" subtext="WhatsApp & push response" icon="📱" />
+        <KpiCard label="Chronic Care Cohort" value="0" delta="--" trend="neutral" subtext="Enrolled in remote monitoring" icon="🩺" />
       </div>
 
       {/* Filter and Search Bar */}

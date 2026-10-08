@@ -46,10 +46,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Gross Payroll Run</div><div class="zhr-card-value">₹1,64,30,000</div><div class="zhr-card-sub" style="color:#34d399;">100% processed</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">PF & ESI Remittances</div><div class="zhr-card-value">₹19,71,600</div><div class="zhr-card-sub">Statutory deposit ready</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">TDS Tax Deducted</div><div class="zhr-card-value">₹24,80,000</div><div class="zhr-card-sub">Sec 192 compliance</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Net Disbursed to Bank</div><div class="zhr-card-value">₹1,19,78,400</div><div class="zhr-card-sub" style="color:#34d399;">208 accounts credited</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Gross Payroll Run</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">PF & ESI Remittances</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">TDS Tax Deducted</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Net Disbursed to Bank</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -117,4 +117,3 @@
     if (window.location.hash === '#payroll') setTimeout(open, 150);
   }
 })();
-

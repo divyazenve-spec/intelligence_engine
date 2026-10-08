@@ -16,7 +16,7 @@ export default function GrossProfit() {
       title="Gross Profit & Contribution Margin Intelligence"
       subtitle="Unit economics by medical service, gross margin expansion across therapeutic specialties, and pricing leverage"
       icon="💎"
-      badge="Blended Margin: 56.0%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -38,12 +38,12 @@ export default function GrossProfit() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Gross Profit" value="₹0" delta="+14.9% vs Budget" trend="up" subtext="Revenue - COGS" icon="💎" />
-        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.2% pts YoY" trend="up" subtext="Target: >52.0%" icon="📈" />
-        <KpiCard label="Surgical Gross Margin" value="0.0%" delta="Highest margin unit" trend="up" subtext="Specialist OTs" icon="🩺" />
-        <KpiCard label="Diagnostics Margin" value="0.0%" delta="High capital efficiency" trend="up" subtext="In-house blood lab" icon="🔬" />
-        <KpiCard label="Pharmacy Gross Margin" value="0.0%" delta="+1.8% pts QoQ" trend="up" subtext="Direct OEM sourcing" icon="💊" />
-        <KpiCard label="Price Realization Index" value="0" delta="+3.4% YoY" trend="up" subtext="Zero discounting in OTs" icon="🛡️" />
+        <KpiCard label="Total Gross Profit" value="₹0" delta="0.0%" trend="neutral" subtext="Revenue - COGS" icon="💎" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Gross margin" icon="📈" />
+        <KpiCard label="Surgical Gross Margin" value="0.0%" delta="Highest margin unit" trend="neutral" subtext="Specialist OTs" icon="🩺" />
+        <KpiCard label="Diagnostics Margin" value="0.0%" delta="High capital efficiency" trend="neutral" subtext="In-house blood lab" icon="🔬" />
+        <KpiCard label="Pharmacy Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Direct OEM sourcing" icon="💊" />
+        <KpiCard label="Price Realization Index" value="0" delta="0.0%" trend="neutral" subtext="Zero discounting in OTs" icon="🛡️" />
       </div>
 
       <div style={{

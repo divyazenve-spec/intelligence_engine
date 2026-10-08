@@ -42,11 +42,11 @@ export default function ClinicNetwork() {
             }}
           >
             <option value="All">All Metro Clusters</option>
-            <option value="Bengaluru">Bengaluru (4 Facilities)</option>
-            <option value="Mumbai">Mumbai MMR (2 Facilities)</option>
-            <option value="Delhi NCR">Delhi NCR (2 Facilities)</option>
-            <option value="Hyderabad">Hyderabad (1 Facility)</option>
-            <option value="Pune">Pune (1 Facility)</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Mumbai">Mumbai MMR</option>
+            <option value="Delhi NCR">Delhi NCR</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Pune">Pune</option>
           </select>
           <select
             value={selectedTier}
@@ -62,7 +62,7 @@ export default function ClinicNetwork() {
             }}
           >
             <option value="All">All Facility Tiers</option>
-            <option value="Tertiary Flagship">Tertiary Flagships (24x7 Trauma)</option>
+            <option value="Tertiary Flagship">Tertiary Flagships</option>
             <option value="Secondary Specialty">Secondary Specialty Spokes</option>
             <option value="Primary Express">Primary Express OPD / Daycare</option>
           </select>
@@ -89,15 +89,15 @@ export default function ClinicNetwork() {
           title="Active Healthcare Facilities"
           value="0"
           change="3 Flagships + 11 Spokes"
-          trend="up"
+          trend="neutral"
           description="Operational licensed veterinary centers"
           icon="🏥"
         />
         <KpiCard
           title="ALS Pet Ambulance Fleet"
-          value="8 Units"
+          value="0"
           change="3 On Call | 5 Stationed"
-          trend="up"
+          trend="neutral"
           description="GPS-monitored mobile ICU vehicles"
           icon="🚑"
         />
@@ -105,7 +105,7 @@ export default function ClinicNetwork() {
           title="Inter-Facility Transfers"
           value="0"
           change="+18.4% vs last month"
-          trend="up"
+          trend="neutral"
           description="Primary clinic to tertiary ICU referrals"
           icon="🔄"
         />
@@ -113,7 +113,7 @@ export default function ClinicNetwork() {
           title="Avg Emergency Transit Time"
           value="0"
           change="-4.2 min faster"
-          trend="up"
+          trend="neutral"
           description="Point of pickup to tertiary triage intake"
           icon="⏱️"
         />
@@ -121,15 +121,15 @@ export default function ClinicNetwork() {
           title="Network System Uptime"
           value="0.0%"
           change="Tier 4 Cloud EMR Sync"
-          trend="up"
+          trend="neutral"
           description="Continuous EMR, PACS & telemetry link"
           icon="📶"
         />
         <KpiCard
           title="Expansion Pipeline"
-          value="4 In Build"
+          value="0"
           change="+65 Beds Capacity 2027"
-          trend="up"
+          trend="neutral"
           description="Active construction & MEP fitout stage"
           icon="🏗️"
         />
@@ -280,7 +280,7 @@ export default function ClinicNetwork() {
               </tr>
             </thead>
             <tbody>
-              {filteredFacilities.map((f, idx) => (
+              {filteredFacilities.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No network facility records found</td></tr>) : filteredFacilities.map((f, idx) => (
                 <tr
                   key={f.id}
                   style={{
@@ -387,7 +387,7 @@ export default function ClinicNetwork() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {ambulanceFleet.map((amb) => (
+            {ambulanceFleet.length === 0 ? (<div style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No active ambulance units</div>) : ambulanceFleet.map((amb) => (
               <div
                 key={amb.id}
                 style={{

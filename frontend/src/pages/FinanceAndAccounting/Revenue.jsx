@@ -18,7 +18,7 @@ export default function Revenue() {
       title="Revenue Intelligence & Commercial Inflow"
       subtitle="Multi-channel revenue recognition, annual recurring run-rate (ARR), clinical stream mix, and metro city contribution"
       icon="💰"
-      badge="ARR: ₹0"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -40,12 +40,12 @@ export default function Revenue() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Run-Rate (MRR)" value="₹0" delta="+18.4% YoY" trend="up" subtext="Current monthly intake" icon="💰" />
-        <KpiCard label="Annualized Run-Rate (ARR)" value="₹0" delta="+22.1% YoY" trend="up" subtext="14 Network Facilities" icon="🌐" />
-        <KpiCard label="Avg Revenue / Consultation" value="₹0" delta="+8.4% ticket size" trend="up" subtext="Diagnosis + Rx add-on" icon="🐾" />
-        <KpiCard label="Surgical Revenue / Case" value="₹0" delta="High-margin neuro/ortho" trend="up" subtext="90% OT utilization" icon="🩺" />
-        <KpiCard label="Pharmacy Attachment Rate" value="0.0%" delta="+4.2% MoM" trend="up" subtext="Inpatient & OPD Rx" icon="💊" />
-        <KpiCard label="Recognized Under ASC 606" value="0.0%" delta="Audited Ind-AS 115" trend="up" subtext="Zero revenue leakage" icon="🛡️" />
+        <KpiCard label="Monthly Run-Rate (MRR)" value="₹0" delta="0.0%" trend="neutral" subtext="Current monthly intake" icon="💰" />
+        <KpiCard label="Annualized Run-Rate (ARR)" value="₹0" delta="0.0%" trend="neutral" subtext="Network facilities" icon="🌐" />
+        <KpiCard label="Avg Revenue / Consultation" value="₹0" delta="0.0%" trend="neutral" subtext="Diagnosis + Rx add-on" icon="🐾" />
+        <KpiCard label="Surgical Revenue / Case" value="₹0" delta="High-margin neuro/ortho" trend="neutral" subtext="OT utilization" icon="🩺" />
+        <KpiCard label="Pharmacy Attachment Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Inpatient & OPD Rx" icon="💊" />
+        <KpiCard label="Recognized Under ASC 606" value="0.0%" delta="--" trend="neutral" subtext="Zero revenue leakage" icon="🛡️" />
       </div>
 
       <div style={{

@@ -16,14 +16,14 @@ export default function SalaryCost() {
       title="Workforce CTC & Departmental Compensation Analytics"
       subtitle="Executive Cost-to-Company (CTC) breakdown, salary band stratification, employer statutory liabilities, and annual payroll forecast"
       icon="💰"
-      badge="₹0 Annualized CTC · 208 Headcount"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Total CTC Burn" value="₹0 / mo" delta="98% within plan" trend="neutral" subtext="Direct compensation & benefits" icon="💵" />
-        <KpiCard label="Annualized Payroll Commitment" value="₹0" delta="+12.4% vs FY25" trend="up" subtext="Projected for full financial year" icon="📊" />
+        <KpiCard label="Monthly Total CTC Burn" value="₹0 / mo" delta="0.0%" trend="neutral" subtext="Direct compensation & benefits" icon="💵" />
+        <KpiCard label="Annualized Payroll Commitment" value="₹0" delta="0.0%" trend="neutral" subtext="Projected for full financial year" icon="📊" />
         <KpiCard label="Average CTC per Employee" value="₹0" delta="Median: ₹0" trend="neutral" subtext="Blended clinical, tech & fleet" icon="🏷️" />
-        <KpiCard label="Employer Statutory Match" value="₹0 / mo" delta="PF 12% + Insurance" trend="neutral" subtext="Fully provisioned on balance sheet" icon="🏛️" />
+        <KpiCard label="Employer Statutory Match" value="₹0 / mo" delta="--" trend="neutral" subtext="Fully provisioned on balance sheet" icon="🏛️" />
       </div>
 
       {/* View Switcher */}
@@ -98,7 +98,7 @@ export default function SalaryCost() {
                 </tr>
               </thead>
               <tbody>
-                {deptCosts.map(d => (
+                {deptCosts.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No department cost records found</td></tr>) : deptCosts.map(d => (
                   <tr key={d.dept} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                     <td style={{ padding: '12px 16px', fontWeight: 600, color: d.color }}>{d.dept}</td>
                     <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{d.headcount} staff</td>

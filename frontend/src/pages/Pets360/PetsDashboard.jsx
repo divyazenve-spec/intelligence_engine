@@ -38,11 +38,11 @@ export default function PetsDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Registered Pets" value="0" delta="0.0%" trend="up" subtext="Canine & Feline" icon="🐾" />
-        <KpiCard label="Canine Population" value="970 Dogs" delta="78.2% Share" trend="neutral" subtext="Primary demographic" icon="🐕" />
-        <KpiCard label="Feline Population" value="241 Cats" delta="19.4% Share" trend="up" subtext="+32% YoY growth" icon="🐈" />
-        <KpiCard label="Immunization Compliance" value="0.0%" delta="1,163 Active" trend="up" subtext="Vaccine passports valid" icon="💉" />
-        <KpiCard label="Microchip Enrollment" value="0.0%" delta="1,072 Chipped" trend="up" subtext="RFID registered" icon="🏷️" />
+        <KpiCard label="Total Registered Pets" value="0" delta="0.0%" trend="neutral" subtext="Canine & Feline" icon="🐾" />
+        <KpiCard label="Canine Population" value="0" delta="0.0%" trend="neutral" subtext="Primary demographic" icon="🐕" />
+        <KpiCard label="Feline Population" value="0" delta="0.0%" trend="neutral" subtext="No growth" icon="🐈" />
+        <KpiCard label="Immunization Compliance" value="0.0%" delta="0 Active" trend="neutral" subtext="Vaccine passports valid" icon="💉" />
+        <KpiCard label="Microchip Enrollment" value="0.0%" delta="0 Chipped" trend="neutral" subtext="RFID registered" icon="🏷️" />
       </div>
 
       {/* Subcategory Grid */}

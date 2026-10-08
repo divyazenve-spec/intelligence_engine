@@ -16,7 +16,7 @@ export default function Payroll() {
       title="Payroll Ledger, Disbursals & Statutory Compliance"
       subtitle="Monthly salary register, PF, ESI, professional tax, TDS deductions, and automated direct-to-bank NEFT/RTGS batch processing"
       icon="💵"
-      badge={`${selectedMonth} · 100% Disbursed`}
+      badge=""
       actions={
         <button
           onClick={() => alert('Bank NEFT batch export initiated for all 208 accounts.')}
@@ -40,10 +40,10 @@ export default function Payroll() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Payroll Disbursal" value="₹0" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
-        <KpiCard label="Statutory Deductions (PF/ESI)" value="₹0" delta="PF: 12% · ESI: 0.75%" trend="neutral" subtext="Remitted to EPFO & ESIC" icon="🏛️" />
-        <KpiCard label="Income Tax TDS Deducted" value="₹0" delta="Sec 192 compliance" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
-        <KpiCard label="Net Disbursed to Bank" value="₹0" delta="208 Accounts Credited" trend="up" subtext="Zero transaction failures" icon="✅" />
+        <KpiCard label="Gross Payroll Disbursal" value="₹0" delta="0.0%" trend="neutral" subtext="Current period" icon="💵" />
+        <KpiCard label="Statutory Deductions (PF/ESI)" value="₹0" delta="--" trend="neutral" subtext="Remitted to EPFO & ESIC" icon="🏛️" />
+        <KpiCard label="Income Tax TDS Deducted" value="₹0" delta="0.0%" trend="neutral" subtext="Tax deposit ready" icon="🧾" />
+        <KpiCard label="Net Disbursed to Bank" value="₹0" delta="0 Accounts" trend="neutral" subtext="Zero transaction failures" icon="✅" />
       </div>
 
       {/* Month Selector Bar */}

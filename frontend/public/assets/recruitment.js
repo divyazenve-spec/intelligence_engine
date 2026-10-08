@@ -48,10 +48,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Open Requisitions</div><div class="zhr-card-value">24 Vacancies</div><div class="zhr-card-sub">Across 6 roles</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Applicant Funnel</div><div class="zhr-card-value">420 Resumes</div><div class="zhr-card-sub" style="color:#34d399;">+64 this week</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Interviews in Flight</div><div class="zhr-card-value">44 Candidates</div><div class="zhr-card-sub">Technical & culture</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Avg Time-to-Hire</div><div class="zhr-card-value">18.4 Days</div><div class="zhr-card-sub" style="color:#34d399;">-3.2 days vs avg</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Open Requisitions</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Applicant Funnel</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Interviews in Flight</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Avg Time-to-Hire</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -119,4 +119,3 @@
     if (window.location.hash === '#recruitment') setTimeout(open, 150);
   }
 })();
-

@@ -38,12 +38,12 @@ export default function AccountsReceivable() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Receivables (AR)" value="₹0" delta="-8.4% MoM" trend="up" subtext="7 Institutional Debtors" icon="📥" />
-        <KpiCard label="Days Sales Outstanding (DSO)" value="22 Days" delta="-4 Days faster" trend="up" subtext="Industry avg: 45d" icon="⏱️" />
-        <KpiCard label="Current (0–30 Days)" value="₹0" delta="68.2% of Total" trend="up" subtext="Healthy collection" icon="🛡️" />
-        <KpiCard label="31–60 Days Overdue" value="₹0" delta="19.7% of Total" trend="up" subtext="Active follow-up" icon="⚡" />
-        <KpiCard label="Overdue >60 Days" value="₹0" delta="12.1% of Total" trend="down" subtext="Escalated collections" icon="🚨" />
-        <KpiCard label="Bad Debt Provision" value="₹0" delta="0.12% write-off" trend="up" subtext="Exceptionally low risk" icon="💎" />
+        <KpiCard label="Total Receivables (AR)" value="₹0" delta="0.0%" trend="neutral" subtext="No debtors" icon="📥" />
+        <KpiCard label="Days Sales Outstanding (DSO)" value="0 Days" delta="0.0%" trend="neutral" subtext="Industry average benchmark" icon="⏱️" />
+        <KpiCard label="Current (0–30 Days)" value="₹0" delta="0.0%" trend="neutral" subtext="Healthy collection" icon="🛡️" />
+        <KpiCard label="31–60 Days Overdue" value="₹0" delta="0.0%" trend="neutral" subtext="Active follow-up" icon="⚡" />
+        <KpiCard label="Overdue >60 Days" value="₹0" delta="0.0%" trend="neutral" subtext="Escalated collections" icon="🚨" />
+        <KpiCard label="Bad Debt Provision" value="₹0" delta="0.0%" trend="neutral" subtext="Exceptionally low risk" icon="💎" />
       </div>
 
       <div style={{

@@ -69,12 +69,12 @@ export default function ClinicCommissions() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Commissions Settled MTD" value="₹0" delta="+16.2% YoY" trend="up" subtext="Direct to partner bank accounts" icon="💸" />
-        <KpiCard label="Scheduled for Friday" value="₹0" delta="2 Payout Batches" trend="neutral" subtext="Pre-audited & verified" icon="📅" />
-        <KpiCard label="Partner Clinic Cases" value="149 Cases" delta="+22% referral volume" trend="up" subtext="Advanced CT & surgeries" icon="🤝" />
-        <KpiCard label="Surgeon Honorariums" value="₹0" delta="Visiting super-specialists" trend="up" subtext="TPLO, THR & neuro" icon="🔪" />
-        <KpiCard label="TDS Tax Withheld (194J)" value="₹0" delta="100% Tax Compliant" trend="up" subtext="Form 16A auto-generated" icon="🏛️" />
-        <KpiCard label="On-Time Settlement SLA" value="0.0%" delta="Zero overdue claims" trend="up" subtext="Every Friday cycle" icon="🎯" />
+        <KpiCard label="Commissions Settled MTD" value="₹0" delta="0.0%" trend="neutral" subtext="Direct to partner bank accounts" icon="💸" />
+        <KpiCard label="Scheduled for Friday" value="₹0" delta="--" trend="neutral" subtext="Pre-audited & verified" icon="📅" />
+        <KpiCard label="Partner Clinic Cases" value="0" delta="0.0%" trend="neutral" subtext="Advanced CT & surgeries" icon="🤝" />
+        <KpiCard label="Surgeon Honorariums" value="₹0" delta="Visiting super-specialists" trend="neutral" subtext="TPLO, THR & neuro" icon="🔪" />
+        <KpiCard label="TDS Tax Withheld (194J)" value="₹0" delta="--" trend="neutral" subtext="Form 16A auto-generated" icon="🏛️" />
+        <KpiCard label="On-Time Settlement SLA" value="0.0%" delta="--" trend="neutral" subtext="Every Friday cycle" icon="🎯" />
       </div>
 
       {/* Commission Ledger Table */}
@@ -143,7 +143,7 @@ export default function ClinicCommissions() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((item, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No commission records found</td></tr>) : filtered.map((item, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px' }}>
                     <div style={{ fontWeight: 600, color: '#fff' }}>{item.partner}</div>

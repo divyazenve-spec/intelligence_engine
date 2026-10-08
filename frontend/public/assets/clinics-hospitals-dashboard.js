@@ -135,12 +135,12 @@
   function renderDashboard() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Network Inpatients', '86 / 98 Beds', '87.8% Occupancy', 'up', 'Across 14 Facilities', '🛏️'),
-        kpiHtml('Active Surgical Theatres', '9 / 10 OTs', '90% Utilization', 'up', '3 Advanced Modular OTs', '🩺'),
-        kpiHtml('Clinical Quality Index', '99.2%', '+0.4% MoM', 'up', 'Zero Surgical Site Infections', '🛡️'),
-        kpiHtml('Emergency Admissions', '24 Today', '6 Critical GDV/Trauma', 'warn', 'Avg Triage Time: 4.8 min', '🚨'),
-        kpiHtml('Network Monthly Revenue', '₹78.40 Lakh', '+14.8% YoY', 'up', 'Surgeries + Inpatient + OPD', '💎'),
-        kpiHtml('Emergency Ambulances', '8 Units', '3 Dispatched | 5 Ready', 'up', 'GPS Fleet Live', '🚑'),
+        kpiHtml('Network Inpatients', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🛏️'),
+        kpiHtml('Active Surgical Theatres', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Clinical Quality Index', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Emergency Admissions', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🚨'),
+        kpiHtml('Network Monthly Revenue', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💎'),
+        kpiHtml('Emergency Ambulances', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🚑'),
       '</div>',
 
       '<div class="zch-grid-2">',
@@ -197,10 +197,10 @@
   function renderAllClinics() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Outpatient Facilities', '11 Clinics', 'Primary & Secondary', 'up', 'Neighbourhood pet wellness', '🏨'),
-        kpiHtml('Daily OPD Footfall', '342 Visits', '+12.4% vs last mo', 'up', 'Consultations & Vaccinations', '👥'),
-        kpiHtml('Average Consultation Time', '18.4 mins', 'Thorough clinical workup', 'up', 'Target: 15–20 mins', '⏱️'),
-        kpiHtml('Outpatient Revenue', '₹28.40 Lakh', '36.2% of network total', 'up', 'Pharmacy + Diagnostic add-on', '💰'),
+        kpiHtml('Outpatient Facilities', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🏨'),
+        kpiHtml('Daily OPD Footfall', '0', '0.0%', 'neutral', 'neutral', 'No active records', '👥'),
+        kpiHtml('Average Consultation Time', '0 mins', '0.0%', 'neutral', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Outpatient Revenue', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
       '</div>',
 
       '<div class="zch-card">',
@@ -238,10 +238,10 @@
   function renderHospitals() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Tertiary Referral Hospitals', '3 Flagships', '24x7 Multi-Specialty', 'up', 'BLR, BOM, DEL Hubs', '🚨'),
-        kpiHtml('Total Licensed Beds', '76 Beds', '19 Dedicated ICU Pods', 'up', 'Oxygenated & Isolations', '🛏️'),
-        kpiHtml('Modular Operating Theatres', '7 Theatres', 'C-Arm & Laparoscopy', 'up', '100% HEPA Class 10,000', '🩺'),
-        kpiHtml('Emergency Blood Bank', '38 Units Ready', 'Dog & Cat Blood Bank', 'up', 'Stored at 4°C with crossmatch', '🩸'),
+        kpiHtml('Tertiary Referral Hospitals', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🚨'),
+        kpiHtml('Total Licensed Beds', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🛏️'),
+        kpiHtml('Modular Operating Theatres', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Emergency Blood Bank', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🩸'),
       '</div>',
 
       '<div class="zch-grid-2">',
@@ -295,10 +295,10 @@
   function renderPerformance() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Surgical Success Rate', '99.2%', '+0.3% YoY', 'up', 'Benchmark target: >98.5%', '🩺'),
-        kpiHtml('Client CSAT Score', '4.94 / 5.0', '1,420 Reviews', 'up', 'Post-discharge satisfaction', '⭐'),
-        kpiHtml('Average Wait Time', '7.4 mins', '-2.1 mins MoM', 'up', 'Target: Under 10 minutes', '⏱️'),
-        kpiHtml('Clinical Audit Compliance', '98.8%', 'VCI & ISO Accredited', 'up', '100% Sterilization Pass', '📋'),
+        kpiHtml('Surgical Success Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Client CSAT Score', '0.0', '0.0%', 'neutral', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Average Wait Time', '0 mins', '0.0%', 'neutral', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Clinical Audit Compliance', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📋'),
       '</div>',
 
       '<div class="zch-card">',
@@ -337,12 +337,12 @@
   function renderRevenue() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Total Network Revenue', '₹78.40 Lakh', '+14.8% YoY', 'up', 'Current Month Net Billings', '💰'),
-        kpiHtml('Surgeries & Procedures', '₹29.40 Lakh', '37.5% Share', 'up', 'High-margin surgical theatre', '🩺'),
-        kpiHtml('Outpatient Consultations', '₹20.15 Lakh', '25.7% Share', 'up', 'Primary preventive footfall', '👥'),
-        kpiHtml('Diagnostic Imaging & Lab', '₹15.68 Lakh', '20.0% Share', 'up', 'CT, USG, Digital X-Ray, Blood', '🔬'),
-        kpiHtml('Inpatient ICU & Wards', '₹13.17 Lakh', '16.8% Share', 'up', 'Critical care bed days', '🛏️'),
-        kpiHtml('Avg Ticket Size / Pet', '₹3,420', '+8.2% YoY', 'up', 'Integrated medical pathway', '📈'),
+        kpiHtml('Total Network Revenue', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
+        kpiHtml('Surgeries & Procedures', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Outpatient Consultations', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '👥'),
+        kpiHtml('Diagnostic Imaging & Lab', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🔬'),
+        kpiHtml('Inpatient ICU & Wards', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🛏️'),
+        kpiHtml('Avg Ticket Size / Pet', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '📈'),
       '</div>',
 
       '<div class="zch-grid-2">',
@@ -398,10 +398,10 @@
   function renderOrders() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Clinical PO Volume', '₹4,82,000', '16 Requisitions', 'up', 'Surgeries, implants, consumables', '📦'),
-        kpiHtml('Critical Implants & Ortho', '12 Kits', 'Titanium TPLO / Plates', 'up', '100% Sterilized Stocked', '🔩'),
-        kpiHtml('Medical Gases (O2 & N2O)', '48 Cylinders', '100% Hospital Reserves', 'up', 'Dual manifold backup', '💨'),
-        kpiHtml('Pending Approvals', '3 POs', 'Requires Medical Director Signoff', 'warn', 'Immediate Action', '⏳'),
+        kpiHtml('Clinical PO Volume', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '📦'),
+        kpiHtml('Critical Implants & Ortho', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🔩'),
+        kpiHtml('Medical Gases (O2 & N2O)', '0', '0.0%', 'neutral', 'neutral', 'No active records', '💨'),
+        kpiHtml('Pending Approvals', '0 POs', '0.0%', 'neutral', 'neutral', 'No active records', '⏳'),
       '</div>',
 
       '<div class="zch-card">',
@@ -437,10 +437,10 @@
   function renderPatients() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Active Inpatients', '86 Patients', 'Across 14 facilities', 'up', 'Canine: 62 | Feline: 24', '🐾'),
-        kpiHtml('Critical Care ICU', '14 Pets', 'Continuous ECG & Arterial BP', 'warn', '1:1 Nurse Nursing Ratio', '❤️'),
-        kpiHtml('Average Length of Stay', '2.8 Days', '-0.4 days faster recovery', 'up', 'Early mobility protocol', '📅'),
-        kpiHtml('Discharges Planned Today', '18 Pets', 'Homecare kits prepared', 'up', 'Post-op discharge clearance', '🏠'),
+        kpiHtml('Active Inpatients', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🐾'),
+        kpiHtml('Critical Care ICU', '0', '0.0%', 'neutral', 'neutral', 'No active records', '❤️'),
+        kpiHtml('Average Length of Stay', '0', '0.0%', 'neutral', 'neutral', 'No active records', '📅'),
+        kpiHtml('Discharges Planned Today', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🏠'),
       '</div>',
 
       '<div class="zch-card">',
@@ -490,12 +490,12 @@
 
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Registered Veterinary Doctors', '48 Clinicians', '100% VCI Verified', 'up', 'Resident & Specialist Staff', '👨‍⚕️'),
-        kpiHtml('Specialist Surgeons', '14 Surgeons', 'Ortho, Neuro & Soft Tissue', 'up', 'Board-Certified M.V.Sc', '🔪'),
-        kpiHtml('Clinicians On-Duty Now', '32 Active', 'Morning & Evening Shifts', 'up', 'All 14 Centers Staffed', '⚡'),
-        kpiHtml('In Surgery Right Now', '6 Surgeons', 'Modular OTs Active', 'warn', 'Zero SSI Infection Rate', '🩺'),
-        kpiHtml('Doctor Patient CSAT', '4.95 / 5.0', '5,420 Verified Reviews', 'up', 'Top Clinical Empathy', '⭐'),
-        kpiHtml('Monthly Consultations', '4,820 Visits', '+14.2% MoM Throughput', 'up', 'Avg 18m / Consultation', '🐾'),
+        kpiHtml('Registered Veterinary Doctors', '0', '0.0%', 'neutral', 'neutral', 'No active records', '👨‍⚕️'),
+        kpiHtml('Specialist Surgeons', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🔪'),
+        kpiHtml('Clinicians On-Duty Now', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('In Surgery Right Now', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Doctor Patient CSAT', '0.0', '0.0%', 'neutral', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Monthly Consultations', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🐾'),
       '</div>',
 
       '<div class="zch-card">',
@@ -633,10 +633,10 @@
   function renderCommissions() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Total Partner Payouts', '₹8,42,000', 'Current Month Accrual', 'up', 'Partner clinics & consultants', '🤝'),
-        kpiHtml('Referral Cases Handled', '68 Surgeries', '+22% vs Last Mo', 'up', 'High-complexity referrals', '🔄'),
-        kpiHtml('Average Commission Rate', '11.8%', 'Standard 10% B2B Referral', 'up', 'Surgical revenue basis', '📊'),
-        kpiHtml('Statutory TDS Deducted', '₹84,200', '10% Section 194J', 'up', 'Tax compliance remitted', '🏛️'),
+        kpiHtml('Total Partner Payouts', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🤝'),
+        kpiHtml('Referral Cases Handled', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Average Commission Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📊'),
+        kpiHtml('Statutory TDS Deducted', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🏛️'),
       '</div>',
 
       '<div class="zch-card">',
@@ -673,19 +673,19 @@
   function renderNetwork() {
     return [
       '<div class="zch-kpi-grid">',
-        kpiHtml('Active Network Facilities', '14 Centers', '3 Flagships + 11 Spokes', 'up', 'Operating across 5 Metros', '🌐'),
-        kpiHtml('ALS Pet Ambulance Fleet', '8 Units', '3 Dispatched | 5 Ready', 'up', 'GPS mobile ICU vehicles', '🚑'),
-        kpiHtml('Inter-Facility Transfers', '184 / mo', '+18.4% MoM', 'up', 'Peripheral to tertiary hubs', '🔄'),
-        kpiHtml('Avg Emergency Transit Time', '24.6 mins', '-4.2 mins faster', 'up', 'Dedicated veterinary corridor', '⏱️'),
-        kpiHtml('Cloud Tele-PACS Sync', '99.96%', 'Tier 4 Cloud EMR', 'up', 'Sub-second digital X-ray sync', '📶'),
-        kpiHtml('Expansion Pipeline', '4 In Build', 'Whitefield, Powai, Gachibowli', 'up', '+65 Beds Capacity 2027', '🏗️'),
+        kpiHtml('Active Network Facilities', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🌐'),
+        kpiHtml('ALS Pet Ambulance Fleet', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🚑'),
+        kpiHtml('Inter-Facility Transfers', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Avg Emergency Transit Time', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Cloud Tele-PACS Sync', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📶'),
+        kpiHtml('Expansion Pipeline', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🏗️'),
       '</div>',
 
       '<div class="zch-grid-2">',
         '<div class="zch-card">',
           '<div class="zch-card-head">',
             '<div><h3 class="zch-card-title">Hub-and-Spoke Regional Corridors</h3><p class="zch-card-sub">Tertiary hubs anchor specialized neuro, ortho, and oncologic care</p></div>',
-            '<span class="zch-badge green">100% TELEMED READY</span>',
+            '<span class="zch-badge">0% TELEMED</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:12px;">',
             '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">' +
@@ -709,10 +709,10 @@
         '<div class="zch-card">',
           '<div class="zch-card-head">',
             '<div><h3 class="zch-card-title">24x7 ALS Mobile ICU Pet Ambulances</h3><p class="zch-card-sub">GPS tracked veterinary emergency response units</p></div>',
-            '<span class="zch-badge green">8 UNITS LIVE</span>',
+            '<span class="zch-badge">0 UNITS LIVE</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:10px;">',
-            AMBULANCE_FLEET.map(function (amb) {
+            (AMBULANCE_FLEET.length ? AMBULANCE_FLEET : []).map(function (amb) {
               return '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
                   '<div><b style="color:#fff;font-size:13px;">🚑 ' + esc(amb.vehicle) + '</b> <span style="font-family:IBM Plex Mono,monospace;font-size:10px;color:#64748b;">(' + esc(amb.id) + ')</span></div>' +

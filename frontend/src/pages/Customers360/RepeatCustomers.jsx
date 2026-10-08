@@ -17,10 +17,10 @@ export default function RepeatCustomers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Repeat Purchase Rate" value="0.0%" delta="+3.1% YoY" trend="up" subtext="78 out of 100 reorder within 60D" icon="🔄" />
-        <KpiCard label="Repeat Customer Revenue" value="₹0 MTD" delta="82.4% total GMV" trend="up" subtext="Predictable recurring baseline" icon="💰" />
-        <KpiCard label="Avg Order Count / User" value="6.4 Orders" delta="+1.2 orders vs FY25" trend="up" subtext="Annualized frequency" icon="🛒" />
-        <KpiCard label="Reorder Retention 90D" value="0.0%" delta="High brand fidelity" trend="up" subtext="Zero churn in 6+ order club" icon="🛡️" />
+        <KpiCard label="Overall Repeat Purchase Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="No reorders logged" icon="🔄" />
+        <KpiCard label="Repeat Customer Revenue" value="₹0 MTD" delta="0.0%" trend="neutral" subtext="Predictable recurring baseline" icon="💰" />
+        <KpiCard label="Avg Order Count / User" value="0 Orders" delta="0.0%" trend="neutral" subtext="Annualized frequency" icon="🛒" />
+        <KpiCard label="Reorder Retention 90D" value="0.0%" delta="0.0%" trend="neutral" subtext="No loyalty club logged" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>

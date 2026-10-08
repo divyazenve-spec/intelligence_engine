@@ -49,10 +49,10 @@ export default function PetHealthRecords() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Medical Records" value="0" delta="0.0%" trend="up" subtext="All time logged" icon="📋" />
-        <KpiCard label="Records Added This Month" value="0" delta="0.0%" trend="up" subtext="Current period" icon="📅" />
+        <KpiCard label="Total Medical Records" value="0" delta="0.0%" trend="neutral" subtext="All time logged" icon="📋" />
+        <KpiCard label="Records Added This Month" value="0" delta="0.0%" trend="neutral" subtext="Current period" icon="📅" />
         <KpiCard label="Active Chronic Regimens" value="0" delta="Monitored" trend="neutral" subtext="Renal, cardio, endocrine" icon="💊" />
-        <KpiCard label="Vital Signs Compliance" value="0.0%" delta="Standard" trend="up" subtext="Temp, HR, Wt recorded" icon="🩺" />
+        <KpiCard label="Vital Signs Compliance" value="0.0%" delta="Standard" trend="neutral" subtext="Temp, HR, Wt recorded" icon="🩺" />
       </div>
 
       <div style={{

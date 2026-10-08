@@ -39,12 +39,12 @@ export default function BalanceSheet() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Assets" value="₹0" delta="+2.8% QoQ" trend="up" subtext="Fully balanced" icon="🏛️" />
-        <KpiCard label="Shareholders Equity" value="₹0" delta="66.2% of Capital" trend="up" subtext="Strong net worth" icon="💎" />
-        <KpiCard label="Current Ratio" value="3.59x" delta="Standard > 1.5x" trend="up" subtext="High liquidity buffer" icon="💧" />
-        <KpiCard label="Quick Ratio" value="3.24x" delta="Excluding inventory" trend="up" subtext="Instant solvency" icon="⚡" />
-        <KpiCard label="Debt to Equity" value="0.11x" delta="Conservative" trend="up" subtext="Term debt: ₹0" icon="🛡️" />
-        <KpiCard label="Working Capital" value="₹0" delta="+27.4% QoQ" trend="up" subtext="Current A - Current L" icon="📈" />
+        <KpiCard label="Total Assets" value="₹0" delta="0.0%" trend="neutral" subtext="Fully balanced" icon="🏛️" />
+        <KpiCard label="Shareholders Equity" value="₹0" delta="0.0%" trend="neutral" subtext="Strong net worth" icon="💎" />
+        <KpiCard label="Current Ratio" value="0.0x" delta="--" trend="neutral" subtext="High liquidity buffer" icon="💧" />
+        <KpiCard label="Quick Ratio" value="0.0x" delta="--" trend="neutral" subtext="Instant solvency" icon="⚡" />
+        <KpiCard label="Debt to Equity" value="0.0x" delta="Conservative" trend="neutral" subtext="No term debt" icon="🛡️" />
+        <KpiCard label="Working Capital" value="₹0" delta="0.0%" trend="neutral" subtext="Current A - Current L" icon="📈" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))', gap: '20px' }}>

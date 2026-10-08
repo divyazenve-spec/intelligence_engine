@@ -51,11 +51,11 @@ export default function AllPets() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Registered Pets" value="0" delta="0.0%" trend="up" subtext="Canine, Feline & Exotic" icon="🐾" />
-        <KpiCard label="Canine Share" value="0.0%" delta="970 Dogs" trend="neutral" subtext="Primary demographic" icon="🐕" />
-        <KpiCard label="Feline Share" value="0.0%" delta="241 Cats" trend="up" subtext="+32% YoY growth" icon="🐈" />
-        <KpiCard label="Vaccine Compliant" value="0.0%" delta="1,163 Active" trend="up" subtext="Health pass verified" icon="💉" />
-        <KpiCard label="Microchip Enrolled" value="0.0%" delta="1,072 Chipped" trend="up" subtext="ISO 11784 RFID standard" icon="🏷️" />
+        <KpiCard label="Total Registered Pets" value="0" delta="0.0%" trend="neutral" subtext="Canine, Feline & Exotic" icon="🐾" />
+        <KpiCard label="Canine Share" value="0.0%" delta="0 Dogs" trend="neutral" subtext="Primary demographic" icon="🐕" />
+        <KpiCard label="Feline Share" value="0.0%" delta="0 Cats" trend="neutral" subtext="No growth" icon="🐈" />
+        <KpiCard label="Vaccine Compliant" value="0.0%" delta="0 Active" trend="neutral" subtext="Health pass verified" icon="💉" />
+        <KpiCard label="Microchip Enrolled" value="0.0%" delta="0 Chipped" trend="neutral" subtext="ISO 11784 RFID standard" icon="🏷️" />
       </div>
 
       <div style={{

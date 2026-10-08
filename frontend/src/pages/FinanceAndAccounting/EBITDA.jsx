@@ -38,12 +38,12 @@ export default function EBITDA() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Operating EBITDA (MTD)" value="₹0" delta="+49.5% vs Plan" trend="up" subtext="20.02% of Revenue" icon="⚡" />
-        <KpiCard label="Normalized Adjusted EBITDA" value="₹0" delta="22.3% Adj Margin" trend="up" subtext="Adding non-recurring" icon="💎" />
-        <KpiCard label="Annualized EBITDA Run-rate" value="₹0" delta="+28.4% YoY" trend="up" subtext="Debt service coverage >15x" icon="📈" />
-        <KpiCard label="EBITDA-to-Cash Conversion" value="0.0%" delta="High cash flow" trend="up" subtext="CFO / EBITDA" icon="💧" />
-        <KpiCard label="Flagship Tertiary EBITDA" value="0.0%" delta="Koramangala 24x7" trend="up" subtext="Highest volume center" icon="🏥" />
-        <KpiCard label="Break-Even Hospital Month" value="3.2 Months" delta="-1.4 mo faster" trend="up" subtext="Average new center" icon="⏱️" />
+        <KpiCard label="Operating EBITDA (MTD)" value="₹0" delta="0.0%" trend="neutral" subtext="Operating profit" icon="⚡" />
+        <KpiCard label="Normalized Adjusted EBITDA" value="₹0" delta="0.0%" trend="neutral" subtext="Adding non-recurring" icon="💎" />
+        <KpiCard label="Annualized EBITDA Run-rate" value="₹0" delta="0.0%" trend="neutral" subtext="Coverage metric" icon="📈" />
+        <KpiCard label="EBITDA-to-Cash Conversion" value="0.0%" delta="High cash flow" trend="neutral" subtext="CFO / EBITDA" icon="💧" />
+        <KpiCard label="Flagship Tertiary EBITDA" value="0.0%" delta="--" trend="neutral" subtext="Highest volume center" icon="🏥" />
+        <KpiCard label="Break-Even Hospital Month" value="0 Months" delta="0.0%" trend="neutral" subtext="Average new center" icon="⏱️" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))', gap: '20px' }}>

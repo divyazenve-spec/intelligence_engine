@@ -47,12 +47,12 @@ export default function ClinicPerformance() {
     >
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average OPD Wait Time" value="13.5 Mins" delta="-4.2m vs SLA" trend="up" subtext="From check-in to consultation" icon="⏱️" />
-        <KpiCard label="Surgical Success Rate" value="0.0%" delta="+0.4% YoY" trend="up" subtext="Zero intra-op fatalities" icon="🔪" />
-        <KpiCard label="Patient CSAT Score" value="4.92 / 5.0" delta="85 Net Promoter Score" trend="up" subtext="Based on 4,210 verified reviews" icon="⭐" />
-        <KpiCard label="30-Day Readmission Rate" value="0.0%" delta="-0.3% vs target" trend="up" subtext="Post-surgical recovery" icon="🔄" />
-        <KpiCard label="Diagnostic Turnaround" value="38 Mins" delta="In-house lab SLA" trend="up" subtext="Blood & imaging reports" icon="🔬" />
-        <KpiCard label="Daily OPD Throughput" value="482 Pets" delta="+18.4% YoY" trend="up" subtext="Across 14 network facilities" icon="🐾" />
+        <KpiCard label="Average OPD Wait Time" value="0 Mins" delta="0.0%" trend="neutral" subtext="From check-in to consultation" icon="⏱️" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Zero intra-op fatalities" icon="🔪" />
+        <KpiCard label="Patient CSAT Score" value="0.0" delta="0.0 NPS" trend="neutral" subtext="No reviews recorded" icon="⭐" />
+        <KpiCard label="30-Day Readmission Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Post-surgical recovery" icon="🔄" />
+        <KpiCard label="Diagnostic Turnaround" value="0 Mins" delta="--" trend="neutral" subtext="Blood & imaging reports" icon="🔬" />
+        <KpiCard label="Daily OPD Throughput" value="0" delta="0.0%" trend="neutral" subtext="No facilities active" icon="🐾" />
       </div>
 
       {/* Benchmarking Table */}
@@ -110,7 +110,7 @@ export default function ClinicPerformance() {
               </tr>
             </thead>
             <tbody>
-              {sortedData.map((row, idx) => (
+              {sortedData.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No clinical performance records found</td></tr>) : sortedData.map((row, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px', fontWeight: 600, color: '#fff' }}>{row.name}</td>
                   <td style={{ padding: '10px 12px', color: '#94a3b8' }}>{row.city}</td>

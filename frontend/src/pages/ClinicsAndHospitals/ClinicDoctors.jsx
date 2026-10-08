@@ -75,12 +75,12 @@ export default function ClinicDoctors() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network Clinicians" value="48 Veterinarians" delta="100% VCI Verified" trend="up" subtext="Across all 14 centers" icon="👨‍⚕️" />
-        <KpiCard label="Specialist Surgeons" value="14 Specialists" delta="Orthopedic & Soft-tissue" trend="neutral" subtext="Board-certified M.V.Sc" icon="🔪" />
-        <KpiCard label="Clinicians On-Duty Now" value="32 Active" delta="12 Shift Handover" trend="up" subtext="All OPD suites staffed" icon="⚡" />
-        <KpiCard label="Daily Consults / Doc" value="16.2 Pets" delta="Optimal consult load" trend="up" subtext="Avg 18m / patient" icon="🩺" />
-        <KpiCard label="Doctor Patient CSAT" value="4.93 / 5.0" delta="Top Clinical Rating" trend="up" subtext="4,210 verified reviews" icon="⭐" />
-        <KpiCard label="CME Training Credits" value="100% Up to Date" delta="Continuing Education" trend="up" subtext="Annual surgical workshops" icon="📚" />
+        <KpiCard label="Network Clinicians" value="0" delta="--" trend="neutral" subtext="No centers active" icon="👨‍⚕️" />
+        <KpiCard label="Specialist Surgeons" value="0" delta="--" trend="neutral" subtext="Board-certified M.V.Sc" icon="🔪" />
+        <KpiCard label="Clinicians On-Duty Now" value="0" delta="--" trend="neutral" subtext="All OPD suites staffed" icon="⚡" />
+        <KpiCard label="Daily Consults / Doc" value="0" delta="--" trend="neutral" subtext="No consults logged" icon="🩺" />
+        <KpiCard label="Doctor Patient CSAT" value="0.0" delta="--" trend="neutral" subtext="No reviews recorded" icon="⭐" />
+        <KpiCard label="CME Training Credits" value="0.0%" delta="--" trend="neutral" subtext="Annual surgical workshops" icon="📚" />
       </div>
 
       {/* Clinicians Table */}
@@ -176,7 +176,7 @@ export default function ClinicDoctors() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((d, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No doctor records found</td></tr>) : filtered.map((d, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '14px 24px' }}>
                     <div style={{ fontWeight: 600, color: '#fff' }}>{d.name}</div>

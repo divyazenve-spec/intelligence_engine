@@ -17,10 +17,10 @@ export default function CustomerOrders() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Customer Orders" value="28,420 Orders" delta="+24.2% YoY" trend="up" subtext="Across app, clinic & web" icon="🛒" />
-        <KpiCard label="Average Order Value" value="₹0" delta="+11.5% vs FY25" trend="up" subtext="Combined retail & medical basket" icon="💰" />
-        <KpiCard label="60-Minute Fast Delivery" value="0.0%" delta="98.2% on-time" trend="up" subtext="Hyperlocal quick-commerce" icon="⚡" />
-        <KpiCard label="Omni-Basket Attach Rate" value="0.0%" delta="Food + Meds + Spa" trend="up" subtext="High multi-category cross-sell" icon="📦" />
+        <KpiCard label="Total Customer Orders" value="0" delta="0.0%" trend="neutral" subtext="Across app, clinic & web" icon="🛒" />
+        <KpiCard label="Average Order Value" value="₹0" delta="0.0%" trend="neutral" subtext="Combined retail & medical basket" icon="💰" />
+        <KpiCard label="60-Minute Fast Delivery" value="0.0%" delta="0.0%" trend="neutral" subtext="Hyperlocal quick-commerce" icon="⚡" />
+        <KpiCard label="Omni-Basket Attach Rate" value="0.0%" delta="Food + Meds + Spa" trend="neutral" subtext="High multi-category cross-sell" icon="📦" />
       </div>
 
       <div style={cardStyle}>
@@ -40,7 +40,7 @@ export default function CustomerOrders() {
               </tr>
             </thead>
             <tbody>
-              {customerOrdersList.map((o, idx) => (
+              {customerOrdersList.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer order records found</td></tr>) : customerOrdersList.map((o, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{o.orderId || o.id}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{o.parent}</td>

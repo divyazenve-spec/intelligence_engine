@@ -117,12 +117,12 @@
   function renderDashboard() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Total Customer Base', '12,480 Families', '+1,120 MTD', 'up', '18,650 registered pets', '👥'),
-        kpiHtml('Active 30-Day Transactors', '8,420 Users', '67.5% engagement', 'up', 'Purchased or visited clinic', '⚡'),
-        kpiHtml('Avg. Lifetime Value (LTV)', '₹68,400', '+14.2% YoY', 'up', 'Calculated across cohorts', '💎'),
-        kpiHtml('Repeat Purchase Rate', '78.4%', '+2.6% vs Q2', 'up', 'High loyalty stickiness', '🔄'),
-        kpiHtml('Customer CSAT Score', '96.2%', 'CSAT 4.9/5', 'up', '4,800 survey responses', '⭐'),
-        kpiHtml('Net Churn Rate', '1.18%', '-0.32% MoM', 'up', 'Industry leading retention', '📉'),
+        kpiHtml('Total Customer Base', '0', '0.0%', 'neutral', 'neutral', 'No active records', '👥'),
+        kpiHtml('Active 30-Day Transactors', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Avg. Lifetime Value (LTV)', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💎'),
+        kpiHtml('Repeat Purchase Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Customer CSAT Score', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Net Churn Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📉'),
       '</div>',
 
       '<div class="zc360-card">',
@@ -137,7 +137,7 @@
           '<table class="zc360-table">',
             '<thead><tr><th>Customer ID</th><th>Pet Parent Name</th><th>Registered Pets</th><th>Loyalty Tier</th><th>Lifetime Value</th><th>Orders</th><th>MTD Spend</th><th>Last Touch</th><th>Risk</th><th>Status</th></tr></thead>',
             '<tbody>',
-              CUSTOMERS.map(function(c) {
+              (CUSTOMERS.length ? CUSTOMERS : []).map(function(c) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(c.id) + '</td>' +
                   '<td style="font-weight:600;">' + esc(c.name) + '</td>' +
@@ -161,10 +161,10 @@
   function renderAllCustomers() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Master Customer Profiles', '12,480 Records', '+9.8% YoY', 'up', '100% verified mobile KYC', '📋'),
-        kpiHtml('Bengaluru Core Base', '84.2%', '10,500 accounts', 'up', 'Expanding to Hyd & Pune', '📍'),
-        kpiHtml('Multi-Pet Households', '38.5%', '4,800 families', 'up', 'High ARPU multiple', '🐾'),
-        kpiHtml('Verified Email & WhatsApp', '97.4%', 'Opt-in compliance', 'up', 'DPDP Act 2023 aligned', '🛡️'),
+        kpiHtml('Master Customer Profiles', '0', '0.0%', 'neutral', 'neutral', 'No active records', '📋'),
+        kpiHtml('Bengaluru Core Base', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📍'),
+        kpiHtml('Multi-Pet Households', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🐾'),
+        kpiHtml('Verified Email & WhatsApp', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🛡️'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">📋 Comprehensive Customer Directory</h3></div>',
@@ -185,10 +185,10 @@
   function renderNewCustomers() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('New Customers (MTD)', '1,120 Pet Parents', '+22.4% MoM', 'up', 'Target: 950 accounts', '✨'),
-        kpiHtml('Blended CAC', '₹284 / Acq', '-14.2% YoY', 'up', 'High organic referral mix', '📉'),
-        kpiHtml('Day-1 Activation Rate', '84.2%', 'First purchase within 24h', 'up', 'Instant onboarding attach', '⚡'),
-        kpiHtml('First Order Avg Basket', '₹3,480', '+8.6% vs FY25', 'up', 'Welcome bundle attach', '🛒'),
+        kpiHtml('New Customers (MTD)', '0', '0.0%', 'neutral', 'neutral', 'No active records', '✨'),
+        kpiHtml('Blended CAC', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '📉'),
+        kpiHtml('Day-1 Activation Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('First Order Avg Basket', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '🛒'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">✨ Recent New Customer Conversions</h3></div>',
@@ -209,10 +209,10 @@
   function renderActiveCustomers() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Monthly Active Customers', '8,420 MAU', '67.5% total base', 'up', 'Transacting or visiting', '⚡'),
-        kpiHtml('DAU / MAU Stickiness', '33.7%', 'Top decile app', 'up', 'Daily app utility', '📱'),
-        kpiHtml('Avg Order Interval', '18.2 Days', '-3.4 days vs FY25', 'up', 'Faster replenishment', '⏱️'),
-        kpiHtml('Omni-Channel Engaged', '58.4%', 'App + Physical Clinic', 'up', 'Highest LTV bracket', '🏬'),
+        kpiHtml('Monthly Active Customers', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('DAU / MAU Stickiness', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📱'),
+        kpiHtml('Avg Order Interval', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Omni-Channel Engaged', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🏬'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">⚡ Active Cadence & Platform Cohorts</h3></div>',
@@ -233,10 +233,10 @@
   function renderRepeatCustomers() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Overall Repeat Purchase Rate', '78.4%', '+3.1% YoY', 'up', '78/100 reorder within 60D', '🔄'),
-        kpiHtml('Repeat Customer Revenue', '₹1.42 Cr MTD', '82.4% total GMV', 'up', 'Predictable recurring baseline', '💰'),
-        kpiHtml('Avg Order Count / User', '6.4 Orders', '+1.2 orders vs FY25', 'up', 'Annualized frequency', '🛒'),
-        kpiHtml('Reorder Retention 90D', '84.6%', 'High brand fidelity', 'up', 'Zero churn in 6+ club', '🛡️'),
+        kpiHtml('Overall Repeat Purchase Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Repeat Customer Revenue', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
+        kpiHtml('Avg Order Count / User', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🛒'),
+        kpiHtml('Reorder Retention 90D', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🛡️'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">🔄 Customer Order Frequency Ladder</h3></div>',
@@ -258,10 +258,10 @@
   function renderLifetimeValue() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Average Blended LTV', '₹68,400', '+14.2% YoY', 'up', 'Across 12,480 accounts', '💎'),
-        kpiHtml('Blended LTV : CAC Multiple', '5.8x', '+0.8x vs FY25', 'up', 'Payback: 2.1 months', '📈'),
-        kpiHtml('Avg Customer Lifespan', '26.4 Months', '+4.2 months YoY', 'up', 'Increasing retention', '⏳'),
-        kpiHtml('Cumulative Cohort GMV', '₹85.3 Cr', 'Realized value', 'up', 'Since platform inception', '💰'),
+        kpiHtml('Average Blended LTV', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💎'),
+        kpiHtml('Blended LTV : CAC Multiple', '0', '0.0%', 'neutral', 'neutral', 'No active records', '📈'),
+        kpiHtml('Avg Customer Lifespan', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⏳'),
+        kpiHtml('Cumulative Cohort GMV', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">💎 Lifetime Value (LTV) Tier Breakdown</h3></div>',
@@ -282,10 +282,10 @@
   function renderSegmentation() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Persona Clusters', '5 Segments', 'RFM Analyzed', 'up', 'Dynamic daily refresh', '🧩'),
-        kpiHtml('Multi-Pet Cluster Share', '30.8%', '3,840 households', 'up', 'Highest value cohort', '🐾'),
-        kpiHtml('Senior & Chronic Care', '17.5%', 'High Rx attach', 'up', '94% recurring monthly spend', '🩺'),
-        kpiHtml('Segment Campaign ROAS', '5.8x', '+1.2x vs unsegmented', 'up', 'Personalized playbook', '🎯'),
+        kpiHtml('Persona Clusters', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🧩'),
+        kpiHtml('Multi-Pet Cluster Share', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🐾'),
+        kpiHtml('Senior & Chronic Care', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🩺'),
+        kpiHtml('Segment Campaign ROAS', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🎯'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">🧩 Behavioral Cohort Matrix</h3></div>',
@@ -306,10 +306,10 @@
   function renderOrders() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Total Customer Orders', '28,420 Orders', '+24.2% YoY', 'up', 'App, clinic & web', '🛒'),
-        kpiHtml('Average Order Value', '₹3,840', '+11.5% vs FY25', 'up', 'Retail & medical mix', '💰'),
-        kpiHtml('60-Min Fast Delivery', '64.2%', '98.2% on-time', 'up', 'Hyperlocal delivery', '⚡'),
-        kpiHtml('Omni-Basket Attach', '44.8%', 'Food + Meds + Spa', 'up', 'Multi-category basket', '📦'),
+        kpiHtml('Total Customer Orders', '0', '0.0%', 'neutral', 'neutral', 'No active records', '🛒'),
+        kpiHtml('Average Order Value', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
+        kpiHtml('60-Min Fast Delivery', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Omni-Basket Attach', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📦'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">🛒 Recent Customer Purchases & Services</h3></div>',
@@ -330,10 +330,10 @@
   function renderRevenue() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Customer Revenue (MTD)', '₹1.71 Cr', '+24.8% YoY', 'up', 'All retail & clinic streams', '💰'),
-        kpiHtml('Monthly User ARPU', '₹4,620', '+11.2% MoM', 'up', 'Across active transactors', '📈'),
-        kpiHtml('Blended Gross Margin', '44.2%', '+2.1% vs FY25', 'up', 'High clinical margin', '💎'),
-        kpiHtml('Subscription Recurring', '10.7%', 'Predictable baseline', 'up', 'Targeting 18% FY27', '🔄'),
+        kpiHtml('Customer Revenue (MTD)', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '💰'),
+        kpiHtml('Monthly User ARPU', '₹0', '0.0%', 'neutral', 'neutral', 'No active records', '📈'),
+        kpiHtml('Blended Gross Margin', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '💎'),
+        kpiHtml('Subscription Recurring', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">💰 Customer Revenue by Channel</h3></div>',
@@ -355,10 +355,10 @@
   function renderRetention() {
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Month-1 Cohort Retention', '91.2%', '+3.4% YoY', 'up', 'Benchmark: 68%', '🛡️'),
-        kpiHtml('Annual Churn Rate', '1.18%', '-0.24% vs FY25', 'up', 'Subscribers & repeat clients', '📉'),
-        kpiHtml('Win-Back Success', '38.4%', 'Re-activated within 30D', 'up', 'Automated reminder triggers', '🔄'),
-        kpiHtml('Net Revenue Retention', '124.6%', '+6.2% YoY', 'up', 'Expansion revenue attached', '💎'),
+        kpiHtml('Month-1 Cohort Retention', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Annual Churn Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '📉'),
+        kpiHtml('Win-Back Success', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Net Revenue Retention', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '💎'),
       '</div>',
       '<div class="zc360-card">',
         '<div class="zc360-card-head"><h3 class="zc360-card-title">🛡️ Longitudinal Cohort Retention Analysis</h3></div>',
@@ -402,12 +402,12 @@
 
     return [
       '<div class="zc360-kpi-grid">',
-        kpiHtml('Total Grievance Tickets', totalTickets + ' Tickets (MTD)', '-24% MoM', 'up', '0.06% of total orders', '⚠️'),
-        kpiHtml('First Contact Resolution', '94.2%', '+3.1% MoM', 'up', 'Resolved in initial call', '⚡'),
-        kpiHtml('Avg. Resolution Time', '14.8 mins', '-4.2 mins vs SLA', 'up', 'Target SLA < 25 mins', '⏱️'),
-        kpiHtml('Post-Resolution CSAT', '4.88 / 5.0', '+0.14 vs Q2', 'up', '98.2% customer delight', '⭐'),
-        kpiHtml('Cold-Chain / Rx SLA', '100.0%', 'Zero breaches', 'up', 'Insulin & emergency triage', '❄️'),
-        kpiHtml('Sentiment Recovery', '96.4%', '+4.8% YoY', 'up', 'Retained pet parents', '❤️'),
+        kpiHtml('Total Grievance Tickets', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⚠️'),
+        kpiHtml('First Contact Resolution', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Avg. Resolution Time', '0', '0.0%', 'neutral', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Post-Resolution CSAT', '0.0', '0.0%', 'neutral', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Cold-Chain / Rx SLA', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '❄️'),
+        kpiHtml('Sentiment Recovery', '0.0%', '0.0%', 'neutral', 'neutral', 'No active records', '❤️'),
       '</div>',
 
       '<div class="zc360-grid-2">',

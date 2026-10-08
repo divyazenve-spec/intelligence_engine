@@ -17,10 +17,10 @@ export default function CustomerRetention() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Month-1 Cohort Retention" value="0.0%" delta="+3.4% YoY" trend="up" subtext="Industry benchmark: 68%" icon="🛡️" />
-        <KpiCard label="Annual Churn Rate" value="0.0%" delta="-0.24% vs FY25" trend="up" subtext="Subscribers & repeat clients" icon="📉" />
-        <KpiCard label="Win-Back Campaign Success" value="0.0%" delta="Re-activated within 30D" trend="up" subtext="Automated reminder triggers" icon="🔄" />
-        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="+6.2% YoY" trend="up" subtext="Expansion revenue from existing base" icon="💎" />
+        <KpiCard label="Month-1 Cohort Retention" value="0.0%" delta="0.0%" trend="neutral" subtext="Benchmark tracked" icon="🛡️" />
+        <KpiCard label="Annual Churn Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Subscribers & repeat clients" icon="📉" />
+        <KpiCard label="Win-Back Campaign Success" value="0.0%" delta="--" trend="neutral" subtext="Automated reminder triggers" icon="🔄" />
+        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="0.0%" trend="neutral" subtext="Expansion revenue from existing base" icon="💎" />
       </div>
 
       <div style={cardStyle}>

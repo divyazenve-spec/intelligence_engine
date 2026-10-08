@@ -18,10 +18,10 @@ export default function EmployeeProductivity() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average Active Shift Time" value="0" delta="98.2% productive" trend="up" subtext="Excluding designated breaks" icon="⏱️" />
-        <KpiCard label="Overall Efficiency Index" value="0.0%" delta="+1.9% MoM" trend="up" subtext="Output per scheduled hour" icon="📈" />
-        <KpiCard label="Network Throughput" value="1,840 Units/Day" delta="Consults, Rx & parcels" trend="up" subtext="Cross-functional total" icon="📦" />
-        <KpiCard label="Idle / Down Capacity" value="0.0%" delta="-0.8% reduction" trend="up" subtext="Lowest quarterly baseline" icon="📉" />
+        <KpiCard label="Average Active Shift Time" value="0" delta="0.0%" trend="neutral" subtext="Excluding designated breaks" icon="⏱️" />
+        <KpiCard label="Overall Efficiency Index" value="0.0%" delta="0.0%" trend="neutral" subtext="Output per scheduled hour" icon="📈" />
+        <KpiCard label="Network Throughput" value="0" delta="--" trend="neutral" subtext="Cross-functional total" icon="📦" />
+        <KpiCard label="Idle / Down Capacity" value="0.0%" delta="0.0%" trend="neutral" subtext="Lowest quarterly baseline" icon="📉" />
       </div>
 
       {/* Productivity by Functional Unit Table */}

@@ -51,12 +51,12 @@ export default function DoctorsDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Veterinary Doctors" value="24 Doctors" delta="100% Licensed" trend="up" subtext="Across 6 clinic centers" icon="👨‍⚕️" />
-        <KpiCard label="Monthly Patient Consults" value="2,148 Pets" delta="+18.4% MoM" trend="up" subtext="Avg 89 consults/doc" icon="🐾" />
-        <KpiCard label="Doctor Attributed Revenue" value="₹0" delta="+14.2% YoY" trend="up" subtext="Consults, meds & surgery" icon="💰" />
-        <KpiCard label="Doctor Commissions Paid" value="₹0" delta="20% standard rate" trend="neutral" subtext="Settled bi-weekly" icon="📋" />
-        <KpiCard label="Avg. Patient Satisfaction" value="4.92 / 5.0" delta="1,840 ratings" trend="up" subtext="Top in feline & canine care" icon="⭐" />
-        <KpiCard label="Surgical Success Rate" value="0.0%" delta="284 procedures" trend="up" subtext="Zero cross-contamination" icon="🛡️" />
+        <KpiCard label="Active Veterinary Doctors" value="0" delta="0.0%" trend="neutral" subtext="Across 0 clinic centers" icon="👨‍⚕️" />
+        <KpiCard label="Monthly Patient Consults" value="0" delta="0.0%" trend="neutral" subtext="No consults recorded" icon="🐾" />
+        <KpiCard label="Doctor Attributed Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="No revenue recorded" icon="💰" />
+        <KpiCard label="Doctor Commissions Paid" value="₹0" delta="0.0%" trend="neutral" subtext="No commissions paid" icon="📋" />
+        <KpiCard label="Avg. Patient Satisfaction" value="0.0" delta="0 ratings" trend="neutral" subtext="No ratings recorded" icon="⭐" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="0 procedures" trend="neutral" subtext="No procedures recorded" icon="🛡️" />
       </div>
 
       <div style={cardStyle}>
@@ -110,30 +110,38 @@ export default function DoctorsDashboard() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(d => (
-                <tr key={d.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{d.id}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{d.name}</td>
-                  <td style={{ padding: '10px' }}>{d.spec}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{d.clinic}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{d.patientsMtd} pets</td>
-                  <td style={{ padding: '10px', fontWeight: 600, color: '#059669' }}>{d.revMtd}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{d.comm}</td>
-                  <td style={{ padding: '10px', color: '#d97706', fontWeight: 600 }}>★ {d.rating}</td>
-                  <td style={{ padding: '10px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: d.status === 'On Duty' ? 'rgba(16,185,129,0.12)' : d.status === 'In Surgery' ? 'rgba(59,130,246,0.12)' : 'rgba(245,158,11,0.12)',
-                      color: d.status === 'On Duty' ? '#047857' : d.status === 'In Surgery' ? '#1d4ed8' : '#b45309'
-                    }}>
-                      {d.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="9" style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)' }}>
+                    No practitioner records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(d => (
+                  <tr key={d.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{d.id}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{d.name}</td>
+                    <td style={{ padding: '10px' }}>{d.spec}</td>
+                    <td style={{ padding: '10px', color: '#64748b' }}>{d.clinic}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{d.patientsMtd} pets</td>
+                    <td style={{ padding: '10px', fontWeight: 600, color: '#059669' }}>{d.revMtd}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{d.comm}</td>
+                    <td style={{ padding: '10px', color: '#d97706', fontWeight: 600 }}>★ {d.rating}</td>
+                    <td style={{ padding: '10px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: d.status === 'On Duty' ? 'rgba(16,185,129,0.12)' : d.status === 'In Surgery' ? 'rgba(59,130,246,0.12)' : 'rgba(245,158,11,0.12)',
+                        color: d.status === 'On Duty' ? '#047857' : d.status === 'In Surgery' ? '#1d4ed8' : '#b45309'
+                      }}>
+                        {d.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

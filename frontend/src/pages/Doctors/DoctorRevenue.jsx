@@ -17,10 +17,10 @@ export default function DoctorRevenue() {
       badge="₹0 Total Revenue"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Doctor Billed Revenue" value="₹0" delta="+16.8% MoM" trend="up" subtext="Direct physician billing" icon="💰" />
-        <KpiCard label="Procedure Billings" value="₹0" delta="52.6% of doctor rev" trend="up" subtext="Surgeries & diagnostics" icon="🩺" />
-        <KpiCard label="Consultation Fees" value="₹0" delta="30.4% of doctor rev" trend="up" subtext="Outpatient OPD fee" icon="📋" />
-        <KpiCard label="Pharmacy & Rx Uplift" value="₹0" delta="17.0% attach rate" trend="up" subtext="Prescriptions filled in-house" icon="💊" />
+        <KpiCard label="Doctor Billed Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="No doctor billing" icon="💰" />
+        <KpiCard label="Procedure Billings" value="₹0" delta="0.0%" trend="neutral" subtext="No procedure billing" icon="🩺" />
+        <KpiCard label="Consultation Fees" value="₹0" delta="0.0%" trend="neutral" subtext="No consultation fees" icon="📋" />
+        <KpiCard label="Pharmacy & Rx Uplift" value="₹0" delta="0.0%" trend="neutral" subtext="No prescription revenue" icon="💊" />
       </div>
 
       <div style={cardStyle}>
@@ -40,18 +40,26 @@ export default function DoctorRevenue() {
               </tr>
             </thead>
             <tbody>
-              {revStreams.map((r, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{r.doctor}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{r.spec}</td>
-                  <td style={{ padding: '10px' }}>{r.consultsRev}</td>
-                  <td style={{ padding: '10px' }}>{r.procRev}</td>
-                  <td style={{ padding: '10px' }}>{r.medsRev}</td>
-                  <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{r.totalRev}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{r.margin}</td>
-                  <td style={{ padding: '10px', color: '#4f46e5', fontWeight: 600 }}>{r.share}</td>
+              {revStreams.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)' }}>
+                    No revenue records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                revStreams.map((r, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{r.doctor}</td>
+                    <td style={{ padding: '10px', color: '#64748b' }}>{r.spec}</td>
+                    <td style={{ padding: '10px' }}>{r.consultsRev}</td>
+                    <td style={{ padding: '10px' }}>{r.procRev}</td>
+                    <td style={{ padding: '10px' }}>{r.medsRev}</td>
+                    <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{r.totalRev}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{r.margin}</td>
+                    <td style={{ padding: '10px', color: '#4f46e5', fontWeight: 600 }}>{r.share}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

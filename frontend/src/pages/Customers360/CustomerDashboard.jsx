@@ -46,12 +46,12 @@ export default function CustomerDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Customer Base" value="12,480 Families" delta="+1,120 MTD" trend="up" subtext="18,650 registered pets" icon="👥" />
-        <KpiCard label="Active 30-Day Transactors" value="8,420 Users" delta="67.5% engagement" trend="up" subtext="Purchased or visited clinic" icon="⚡" />
-        <KpiCard label="Avg. Lifetime Value (LTV)" value="₹0" delta="+14.2% YoY" trend="up" subtext="Calculated across all cohorts" icon="💎" />
-        <KpiCard label="Repeat Purchase Rate" value="0.0%" delta="+2.6% vs Q2" trend="up" subtext="High loyalty stickiness" icon="🔄" />
-        <KpiCard label="Customer Satisfaction Score" value="0.0%" delta="CSAT 4.9/5" trend="up" subtext="Over 4,800 survey responses" icon="⭐" />
-        <KpiCard label="Net Churn Rate" value="0.0%" delta="-0.32% MoM" trend="up" subtext="Industry leading retention" icon="📉" />
+        <KpiCard label="Total Customer Base" value="0" delta="--" trend="neutral" subtext="No registered pets" icon="👥" />
+        <KpiCard label="Active 30-Day Transactors" value="0" delta="0.0%" trend="neutral" subtext="Purchased or visited clinic" icon="⚡" />
+        <KpiCard label="Avg. Lifetime Value (LTV)" value="₹0" delta="0.0%" trend="neutral" subtext="Calculated across all cohorts" icon="💎" />
+        <KpiCard label="Repeat Purchase Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="High loyalty stickiness" icon="🔄" />
+        <KpiCard label="Customer Satisfaction Score" value="0.0%" delta="--" trend="neutral" subtext="No survey responses" icon="⭐" />
+        <KpiCard label="Net Churn Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Industry leading retention" icon="📉" />
       </div>
 
       <div style={cardStyle}>
@@ -106,7 +106,7 @@ export default function CustomerDashboard() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer directory records found</td></tr>) : filtered.map(c => (
                 <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.name}</td>

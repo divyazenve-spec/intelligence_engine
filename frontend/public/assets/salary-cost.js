@@ -48,10 +48,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Monthly CTC Burn</div><div class="zhr-card-value">₹1.64 Cr / mo</div><div class="zhr-card-sub" style="color:#34d399;">98% within plan</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Annualized Commitment</div><div class="zhr-card-value">₹19.66 Cr</div><div class="zhr-card-sub">+12.4% vs FY25</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Avg CTC per Employee</div><div class="zhr-card-value">₹9,45,000</div><div class="zhr-card-sub">Median: ₹7,80,000</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Employer PF Match</div><div class="zhr-card-value">₹19.72 L / mo</div><div class="zhr-card-sub" style="color:#34d399;">Fully provisioned</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Monthly CTC Burn</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Annualized Commitment</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Avg CTC per Employee</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Employer PF Match</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -119,4 +119,3 @@
     if (window.location.hash === '#salary-cost') setTimeout(open, 150);
   }
 })();
-

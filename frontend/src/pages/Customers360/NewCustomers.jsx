@@ -14,13 +14,13 @@ export default function NewCustomers() {
       title="New Customer Acquisition & First-Order Velocity"
       subtitle="New pet parent signups, onboarding funnel progression, acquisition channels, and CAC efficiency"
       icon="✨"
-      badge="+1,120 New MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="New Customers (MTD)" value="1,120 Pet Parents" delta="+22.4% MoM" trend="up" subtext="Target: 950 accounts" icon="✨" />
-        <KpiCard label="Blended CAC" value="₹0 / Acq" delta="-14.2% YoY" trend="up" subtext="High organic referral mix" icon="📉" />
-        <KpiCard label="Day 1 Activation Rate" value="0.0%" delta="Immediate first purchase" trend="up" subtext="Within 24 hours of install" icon="⚡" />
-        <KpiCard label="First Order Avg. Basket" value="₹0" delta="+8.6% vs FY25" trend="up" subtext="Welcome bundle attach" icon="🛒" />
+        <KpiCard label="New Customers (MTD)" value="0" delta="0.0%" trend="neutral" subtext="No accounts active" icon="✨" />
+        <KpiCard label="Blended CAC" value="₹0 / Acq" delta="0.0%" trend="neutral" subtext="High organic referral mix" icon="📉" />
+        <KpiCard label="Day 1 Activation Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="No installs active" icon="⚡" />
+        <KpiCard label="First Order Avg. Basket" value="₹0" delta="0.0%" trend="neutral" subtext="Welcome bundle attach" icon="🛒" />
       </div>
 
       <div style={cardStyle}>

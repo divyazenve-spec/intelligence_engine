@@ -38,12 +38,12 @@ export default function CashFlow() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Closing Cash Balance" value="₹0" delta="+₹0 MTD" trend="up" subtext="HDFC + ICICI + Axis" icon="🏦" />
-        <KpiCard label="Operating Cash (CFO)" value="+₹0" delta="Positive OCF" trend="up" subtext="Strong cash conversion" icon="⚡" />
-        <KpiCard label="Free Cash Flow (FCF)" value="+₹0" delta="CFO - CAPEX" trend="up" subtext="Self-funding expansion" icon="💎" />
-        <KpiCard label="Monthly Net Burn" value="₹0 (Profitable)" delta="Net Cash Flow +" trend="up" subtext="Self-sustaining" icon="🛡️" />
-        <KpiCard label="Cash Runway" value="14.2 Months" delta="Zero dilution needed" trend="up" subtext="Conservative buffer" icon="⏳" />
-        <KpiCard label="Operating Cash Ratio" value="2.98x" delta="High coverage" trend="up" subtext="CFO / Current Liab" icon="📈" />
+        <KpiCard label="Closing Cash Balance" value="₹0" delta="+₹0 MTD" trend="neutral" subtext="HDFC + ICICI + Axis" icon="🏦" />
+        <KpiCard label="Operating Cash (CFO)" value="+₹0" delta="Positive OCF" trend="neutral" subtext="Strong cash conversion" icon="⚡" />
+        <KpiCard label="Free Cash Flow (FCF)" value="+₹0" delta="CFO - CAPEX" trend="neutral" subtext="Self-funding expansion" icon="💎" />
+        <KpiCard label="Monthly Net Burn" value="₹0 (Profitable)" delta="Net Cash Flow +" trend="neutral" subtext="Self-sustaining" icon="🛡️" />
+        <KpiCard label="Cash Runway" value="0 Months" delta="Zero dilution needed" trend="neutral" subtext="Conservative buffer" icon="⏳" />
+        <KpiCard label="Operating Cash Ratio" value="0.0x" delta="High coverage" trend="neutral" subtext="CFO / Current Liab" icon="📈" />
       </div>
 
       <div style={{

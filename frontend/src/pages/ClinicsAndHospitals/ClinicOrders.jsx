@@ -83,12 +83,12 @@ export default function ClinicOrders() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Requisitions" value="28 POs" delta="In Fulfillment" trend="neutral" subtext="Across all 14 facilities" icon="📦" />
-        <KpiCard label="Procurement Value" value="₹0" delta="MTD Budget" trend="up" subtext="Consumables & implants" icon="💰" />
-        <KpiCard label="Surgical Implants" value="12 Orders" delta="Orthopedic & TPLO" trend="up" subtext="Titanium plates & pins" icon="🦴" />
-        <KpiCard label="Diagnostic Reagents" value="8 Orders" delta="IDEXX & Roche" trend="up" subtext="Zero stockout SLA" icon="🔬" />
-        <KpiCard label="On-Time Delivery SLA" value="0.0%" delta="+1.2% MoM" trend="up" subtext="Surgical readiness maintained" icon="⏱️" />
-        <KpiCard label="Average PO Turnaround" value="18.6 Hours" delta="Requisition to arrival" trend="up" subtext="Fast-track approval" icon="⚡" />
+        <KpiCard label="Active Requisitions" value="0" delta="--" trend="neutral" subtext="No requisitions active" icon="📦" />
+        <KpiCard label="Procurement Value" value="₹0" delta="--" trend="neutral" subtext="Consumables & implants" icon="💰" />
+        <KpiCard label="Surgical Implants" value="0" delta="--" trend="neutral" subtext="Titanium plates & pins" icon="🦴" />
+        <KpiCard label="Diagnostic Reagents" value="0" delta="--" trend="neutral" subtext="Zero stockout SLA" icon="🔬" />
+        <KpiCard label="On-Time Delivery SLA" value="0.0%" delta="0.0%" trend="neutral" subtext="Surgical readiness maintained" icon="⏱️" />
+        <KpiCard label="Average PO Turnaround" value="0 Hours" delta="--" trend="neutral" subtext="Fast-track approval" icon="⚡" />
       </div>
 
       {/* Orders Filter & Table */}
@@ -175,7 +175,7 @@ export default function ClinicOrders() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((req, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No requisition records found</td></tr>) : filtered.map((req, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#38bdf8' }}>{req.id}</td>
                   <td style={{ padding: '10px 12px', fontWeight: 600 }}>{req.facility}</td>

@@ -24,7 +24,7 @@ export default function PurchaseHistory() {
       title="Pet Nutrition, Pharmacy & Merchandise Purchases"
       subtitle="Complete ledger of food, prescription diets, tick & flea treatments, and accessories purchased across omni-channels"
       icon="🐾"
-      badge="₹0 LTV Tracked"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {['ALL', 'Food & Nutrition', 'Prescription Diet', 'Pharmacy & Wellness', 'Delivered'].map(f => (
@@ -49,10 +49,10 @@ export default function PurchaseHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Pet Orders" value="0" delta="0.0%" trend="up" subtext="All categories" icon="📦" />
-        <KpiCard label="Average Pet Spend / Yr" value="₹0" delta="0.0%" trend="up" subtext="Annualized LTV" icon="💰" />
+        <KpiCard label="Total Pet Orders" value="0" delta="0.0%" trend="neutral" subtext="All categories" icon="📦" />
+        <KpiCard label="Average Pet Spend / Yr" value="₹0" delta="0.0%" trend="neutral" subtext="Annualized LTV" icon="💰" />
         <KpiCard label="Prescription Diet Share" value="0.0%" delta="Clinical nutrition" trend="neutral" subtext="High margin" icon="🥗" />
-        <KpiCard label="Auto-Ship Recurring" value="0.0%" delta="514 Pets" trend="up" subtext="High retention" icon="🔄" />
+        <KpiCard label="Auto-Ship Recurring" value="0.0%" delta="0 Pets" trend="neutral" subtext="High retention" icon="🔄" />
       </div>
 
       <div style={{

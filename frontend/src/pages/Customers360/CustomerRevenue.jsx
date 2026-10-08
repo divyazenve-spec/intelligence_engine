@@ -14,13 +14,13 @@ export default function CustomerRevenue() {
       title="Customer Revenue & Monetization Streams"
       subtitle="Total customer-generated gross revenue, channel share, ARPU trajectory, and category margin analysis"
       icon="💰"
-      badge="₹0 MTD Revenue"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Customer Billed Revenue" value="₹0 MTD" delta="+24.8% YoY" trend="up" subtext="All retail and clinical channels" icon="💰" />
-        <KpiCard label="Monthly ARPU" value="₹0 / User" delta="+11.2% MoM" trend="up" subtext="Across active transactors" icon="📈" />
-        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+2.1% vs FY25" trend="up" subtext="High margin clinical services" icon="💎" />
-        <KpiCard label="Subscription Recurring Share" value="0.0%" delta="High predictable baseline" trend="up" subtext="Aiming for 18% in FY27" icon="🔄" />
+        <KpiCard label="Customer Billed Revenue" value="₹0 MTD" delta="0.0%" trend="neutral" subtext="All retail and clinical channels" icon="💰" />
+        <KpiCard label="Monthly ARPU" value="₹0 / User" delta="0.0%" trend="neutral" subtext="Across active transactors" icon="📈" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="High margin clinical services" icon="💎" />
+        <KpiCard label="Subscription Recurring Share" value="0.0%" delta="0.0%" trend="neutral" subtext="Recurring baseline" icon="🔄" />
       </div>
 
       <div style={cardStyle}>
@@ -38,7 +38,7 @@ export default function CustomerRevenue() {
               </tr>
             </thead>
             <tbody>
-              {revStreams.map((r, idx) => (
+              {revStreams.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No customer revenue records found</td></tr>) : revStreams.map((r, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{r.channel}</td>
                   <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{r.mtdRev}</td>

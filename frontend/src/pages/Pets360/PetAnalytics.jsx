@@ -56,11 +56,11 @@ export default function PetAnalytics() {
     >
       {/* KPI Ribbon */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
-        <KpiCard label="Registered Population" value="1,240 Pets" delta="+26.4% YoY" trend="up" subtext="72.5% Dogs, 21.8% Cats" icon="🐾" />
-        <KpiCard label="Sterilization Rate" value="0.0%" delta="848 Desexed" trend="up" subtext="Reduces behavioral & cancer risks" icon="✂️" />
-        <KpiCard label="Microchip RFID Rate" value="0.0%" delta="945 Registered" trend="up" subtext="ISO 11784/11785 compliant" icon="📡" />
-        <KpiCard label="Average Body Condition" value="5.2 / 9" delta="Optimal Band" trend="neutral" subtext="58.6% in ideal 4-5 score" icon="⚖️" />
-        <KpiCard label="Preventive Compliance" value="0.0%" delta="+4.8 pts" trend="up" subtext="Vaccine & deworming adherence" icon="🛡️" />
+        <KpiCard label="Registered Population" value="0" delta="0.0%" trend="neutral" subtext="No registered pets" icon="🐾" />
+        <KpiCard label="Sterilization Rate" value="0.0%" delta="0 Desexed" trend="neutral" subtext="Reduces behavioral & cancer risks" icon="✂️" />
+        <KpiCard label="Microchip RFID Rate" value="0.0%" delta="0 Registered" trend="neutral" subtext="ISO 11784/11785 compliant" icon="📡" />
+        <KpiCard label="Average Body Condition" value="0.0" delta="Optimal Band" trend="neutral" subtext="Standard condition" icon="⚖️" />
+        <KpiCard label="Preventive Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="Vaccine & deworming adherence" icon="🛡️" />
       </div>
 
       {/* Cohort & Life-Stage Analytics */}

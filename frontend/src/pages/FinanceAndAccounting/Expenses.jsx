@@ -38,12 +38,12 @@ export default function Expenses() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Monthly OPEX" value="₹0" delta="+2.5% vs Plan" trend="up" subtext="35.9% of Revenue" icon="🏢" />
-        <KpiCard label="Clinical Staffing Payroll" value="₹0" delta="54.6% of OPEX" trend="up" subtext="Doctors, Nurses, Care" icon="👨‍⚕️" />
-        <KpiCard label="Facility Rental Leases" value="₹0" delta="22.0% of OPEX" trend="up" subtext="14 Network locations" icon="📍" />
-        <KpiCard label="Marketing & CAC" value="₹0" delta="-7.1% under plan" trend="up" subtext="Blended CAC: ₹0" icon="📣" />
-        <KpiCard label="Hospital Utilities" value="₹0" delta="+9.1% (Oxygen load)" trend="down" subtext="Bio-waste + power" icon="⚡" />
-        <KpiCard label="Budget Adherence" value="0.0%" delta="High compliance" trend="up" subtext="Within ±5% variance" icon="🛡️" />
+        <KpiCard label="Total Monthly OPEX" value="₹0" delta="0.0%" trend="neutral" subtext="Operating burn" icon="🏢" />
+        <KpiCard label="Clinical Staffing Payroll" value="₹0" delta="0.0%" trend="neutral" subtext="Doctors, Nurses, Care" icon="👨‍⚕️" />
+        <KpiCard label="Facility Rental Leases" value="₹0" delta="0.0%" trend="neutral" subtext="Network locations" icon="📍" />
+        <KpiCard label="Marketing & CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Blended CAC: ₹0" icon="📣" />
+        <KpiCard label="Hospital Utilities" value="₹0" delta="0.0%" trend="down" subtext="Bio-waste + power" icon="⚡" />
+        <KpiCard label="Budget Adherence" value="0.0%" delta="High compliance" trend="neutral" subtext="Budget variance" icon="🛡️" />
       </div>
 
       <div style={{

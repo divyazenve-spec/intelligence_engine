@@ -18,7 +18,7 @@ export default function FinanceDashboard() {
       title="Financial Intelligence & Executive Control Center"
       subtitle="Network-wide GAAP profit and loss, operating liquidity, working capital aging, and statutory tax compliance"
       icon="💰"
-      badge="EBITDA: 20.02%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
@@ -61,12 +61,12 @@ export default function FinanceDashboard() {
     >
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Invoiced Revenue" value="₹0" delta="+18.4% YoY" trend="up" subtext="Across 14 facilities + App" icon="💰" />
-        <KpiCard label="Net Operating EBITDA" value="₹0" delta="20.02% margin" trend="up" subtext="Operating surplus" icon="⚡" />
-        <KpiCard label="Net Profit (PAT)" value="₹0" delta="11.8% Net Margin" trend="up" subtext="Post tax & depreciation" icon="🏆" />
-        <KpiCard label="Cash & Bank Balances" value="₹0" delta="14.2 mo runway" trend="up" subtext="Zero short-term debt" icon="🏦" />
-        <KpiCard label="Accounts Receivable (AR)" value="₹0" delta="DSO: 22 Days" trend="up" subtext="96.5% current" icon="📥" />
-        <KpiCard label="Accounts Payable (AP)" value="₹0" delta="DPO: 34 Days" trend="up" subtext="Optimal working capital" icon="📤" />
+        <KpiCard label="Gross Invoiced Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="All channels" icon="💰" />
+        <KpiCard label="Net Operating EBITDA" value="₹0" delta="0.0%" trend="neutral" subtext="Operating surplus" icon="⚡" />
+        <KpiCard label="Net Profit (PAT)" value="₹0" delta="0.0%" trend="neutral" subtext="Post tax & depreciation" icon="🏆" />
+        <KpiCard label="Cash & Bank Balances" value="₹0" delta="--" trend="neutral" subtext="Zero short-term debt" icon="🏦" />
+        <KpiCard label="Accounts Receivable (AR)" value="₹0" delta="0.0%" trend="neutral" subtext="Aging status" icon="📥" />
+        <KpiCard label="Accounts Payable (AP)" value="₹0" delta="0.0%" trend="neutral" subtext="Optimal working capital" icon="📤" />
       </div>
 
       {/* Grid: P&L Statement and Working Capital Aging */}

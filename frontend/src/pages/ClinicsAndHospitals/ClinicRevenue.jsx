@@ -66,12 +66,12 @@ export default function ClinicRevenue() {
     >
       {/* KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Clinical Billings" value="₹0" delta="+18.2% YoY" trend="up" subtext="Across 14 network facilities" icon="💰" />
-        <KpiCard label="Surgical Theatre Revenue" value="₹0" delta="37.5% total share" trend="up" subtext="Orthopedic, soft-tissue, neuro" icon="🔪" />
-        <KpiCard label="Outpatient Consultations" value="₹0" delta="25.7% total share" trend="up" subtext="Routine & specialty OPD" icon="🩺" />
-        <KpiCard label="Diagnostics & Imaging" value="₹0" delta="20.0% total share" trend="up" subtext="CT, ultrasound, in-house lab" icon="🔬" />
-        <KpiCard label="Inpatient ICU / Daycare" value="₹0" delta="16.8% total share" trend="up" subtext="Critical care hospitalization" icon="🛏️" />
-        <KpiCard label="Avg Revenue / Case" value="₹0" delta="+8.4% YoY" trend="up" subtext="High multi-service adoption" icon="🧾" />
+        <KpiCard label="Gross Clinical Billings" value="₹0" delta="0.0%" trend="neutral" subtext="No facilities active" icon="💰" />
+        <KpiCard label="Surgical Theatre Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Orthopedic, soft-tissue, neuro" icon="🔪" />
+        <KpiCard label="Outpatient Consultations" value="₹0" delta="0.0%" trend="neutral" subtext="Routine & specialty OPD" icon="🩺" />
+        <KpiCard label="Diagnostics & Imaging" value="₹0" delta="0.0%" trend="neutral" subtext="CT, ultrasound, in-house lab" icon="🔬" />
+        <KpiCard label="Inpatient ICU / Daycare" value="₹0" delta="0.0%" trend="neutral" subtext="Critical care hospitalization" icon="🛏️" />
+        <KpiCard label="Avg Revenue / Case" value="₹0" delta="0.0%" trend="neutral" subtext="High multi-service adoption" icon="🧾" />
       </div>
 
       {/* Revenue Split & Payer Distribution */}
@@ -170,7 +170,7 @@ export default function ClinicRevenue() {
               </tr>
             </thead>
             <tbody>
-              {facilityRevenue.map((row, idx) => (
+              {facilityRevenue.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No facility revenue records found</td></tr>) : facilityRevenue.map((row, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px', fontWeight: 600, color: '#fff' }}>{row.name}</td>
                   <td style={{ padding: '10px 12px', color: '#94a3b8' }}>{row.city}</td>

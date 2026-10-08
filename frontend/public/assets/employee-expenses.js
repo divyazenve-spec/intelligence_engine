@@ -52,10 +52,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Monthly Claims Disbursed</div><div class="zhr-card-value">₹4,28,400</div><div class="zhr-card-sub" style="color:#34d399;">100% within policy</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Pending Approval</div><div class="zhr-card-value">2 Claims</div><div class="zhr-card-sub" style="color:#fbbf24;">₹23,000 value</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">GST Input Reclaimed</div><div class="zhr-card-value">₹65,300</div><div class="zhr-card-sub">18% blended GST</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Policy Compliance</div><div class="zhr-card-value">99.2%</div><div class="zhr-card-sub" style="color:#34d399;">Zero fraud flagged</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Monthly Claims Disbursed</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Pending Approval</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">GST Input Reclaimed</div><div class="zhr-card-value">₹0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Policy Compliance</div><div class="zhr-card-value">0.0%</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -137,4 +137,3 @@
     if (window.location.hash === '#employee-expenses') setTimeout(open, 150);
   }
 })();
-

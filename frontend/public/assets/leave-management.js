@@ -51,10 +51,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Currently on Leave</div><div class="zhr-card-value">6 Staff</div><div class="zhr-card-sub">2.8% of headcount</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Pending Approval</div><div class="zhr-card-value">3 Requests</div><div class="zhr-card-sub" style="color:#fbbf24;">Action required</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Avg Org PTO Balance</div><div class="zhr-card-value">14.2 Days</div><div class="zhr-card-sub" style="color:#34d399;">Healthy burn rate</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Upcoming Q4 Holidays</div><div class="zhr-card-value">5 Days</div><div class="zhr-card-sub">Rosters planned</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Currently on Leave</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Pending Approval</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Avg Org PTO Balance</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Upcoming Q4 Holidays</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -136,4 +136,3 @@
     if (window.location.hash === '#leave-management') setTimeout(open, 150);
   }
 })();
-

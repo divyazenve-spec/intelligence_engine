@@ -16,7 +16,7 @@ export default function NetProfit() {
       title="Net Profit (PAT) & Bottom-Line Intelligence"
       subtitle="Final statutory earnings after tax and financing obligations, quarterly profit expansion, and dividend retention"
       icon="🏆"
-      badge="PAT Margin: 11.8%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -38,12 +38,12 @@ export default function NetProfit() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Net Profit (PAT)" value="₹0" delta="+52.2% vs Plan" trend="up" subtext="Current month surplus" icon="🏆" />
-        <KpiCard label="Net Profit Margin" value="0.0%" delta="+3.1% pts YoY" trend="up" subtext="Target: >10.0%" icon="📈" />
-        <KpiCard label="Profit Before Tax (PBT)" value="₹0" delta="15.8% PBT Margin" trend="up" subtext="Operating surplus" icon="💼" />
-        <KpiCard label="Effective Tax Rate" value="0.0%" delta="Section 115BAA" trend="up" subtext="Standard corporate slab" icon="🏛️" />
-        <KpiCard label="Annualized PAT Run-rate" value="₹0" delta="100% Retained" trend="up" subtext="For hospital builds" icon="🏗️" />
-        <KpiCard label="Earnings Per Share (EPS)" value="₹0 / share" delta="+20.9% QoQ" trend="up" subtext="25,00,000 shares" icon="💎" />
+        <KpiCard label="Net Profit (PAT)" value="₹0" delta="0.0%" trend="neutral" subtext="Current month surplus" icon="🏆" />
+        <KpiCard label="Net Profit Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Net margin" icon="📈" />
+        <KpiCard label="Profit Before Tax (PBT)" value="₹0" delta="0.0%" trend="neutral" subtext="Operating surplus" icon="💼" />
+        <KpiCard label="Effective Tax Rate" value="0.0%" delta="--" trend="neutral" subtext="Standard corporate slab" icon="🏛️" />
+        <KpiCard label="Annualized PAT Run-rate" value="₹0" delta="0.0%" trend="neutral" subtext="For hospital builds" icon="🏗️" />
+        <KpiCard label="Earnings Per Share (EPS)" value="₹0 / share" delta="0.0%" trend="neutral" subtext="Common shares" icon="💎" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))', gap: '20px' }}>

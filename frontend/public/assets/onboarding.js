@@ -51,10 +51,10 @@
       '</div>',
       '<div class="zhr-body">',
       '  <div class="zhr-kpi-grid">',
-      '    <div class="zhr-card"><div class="zhr-card-label">Active Cohort</div><div class="zhr-card-value">6 Personnel</div><div class="zhr-card-sub">Joined in 30 days</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Day-1 Readiness</div><div class="zhr-card-value">98.5%</div><div class="zhr-card-sub" style="color:#34d399;">Hardware & logins active</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Background Checks</div><div class="zhr-card-value">100% Clear</div><div class="zhr-card-sub">Zero adverse flags</div></div>',
-      '    <div class="zhr-card"><div class="zhr-card-label">Buddy Allocation</div><div class="zhr-card-value">100%</div><div class="zhr-card-sub" style="color:#34d399;">Senior mentor assigned</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Active Cohort</div><div class="zhr-card-value">0</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Day-1 Readiness</div><div class="zhr-card-value">0.0%</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Background Checks</div><div class="zhr-card-value">0.0%</div><div class="zhr-card-sub">No records</div></div>',
+      '    <div class="zhr-card"><div class="zhr-card-label">Buddy Allocation</div><div class="zhr-card-value">0.0%</div><div class="zhr-card-sub">No records</div></div>',
       '  </div>',
       '  <div class="zhr-table-container">',
       '    <div class="zhr-table-head">',
@@ -122,4 +122,3 @@
     if (window.location.hash === '#onboarding') setTimeout(open, 150);
   }
 })();
-

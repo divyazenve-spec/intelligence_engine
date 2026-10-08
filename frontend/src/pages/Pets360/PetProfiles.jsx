@@ -16,7 +16,7 @@ export default function PetProfiles() {
       title="Comprehensive Longitudinal Pet Profiles"
       subtitle="Holistic biometric identifiers, ownership records, insurance policies, clinical notes, and nutritional profiles"
       icon="🐾"
-      badge="Full Biological Passport"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           {profiles.map(p => (
@@ -42,8 +42,8 @@ export default function PetProfiles() {
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
         <KpiCard label="Selected Pet" value={pet.name} delta={pet.species} trend="neutral" subtext={pet.id} icon="🐾" />
-        <KpiCard label="Weight & Condition" value={pet.weight} delta="BCS 5/9 Ideal" trend="up" subtext="Monthly weighed" icon="⚖️" />
-        <KpiCard label="Vaccine Status" value={pet.vaxStatus} delta="Verified" trend="up" subtext="Biological passport" icon="💉" />
+        <KpiCard label="Weight & Condition" value={pet.weight} delta="--" trend="neutral" subtext="Monthly weighed" icon="⚖️" />
+        <KpiCard label="Vaccine Status" value={pet.vaxStatus} delta="Verified" trend="neutral" subtext="Biological passport" icon="💉" />
         <KpiCard label="Attending Vet" value={pet.primaryVet.split(' ')[0] + ' ' + pet.primaryVet.split(' ')[1]} delta={pet.clinic.split(' ')[0]} trend="neutral" subtext="Assigned clinician" icon="👨‍⚕️" />
       </div>
 

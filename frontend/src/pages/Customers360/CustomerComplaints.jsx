@@ -102,12 +102,12 @@ export default function CustomerComplaints() {
     >
       {/* 6 Executive KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Grievances (MTD)" value={`${tickets.length} Tickets`} delta="-24% MoM" trend="up" subtext="Only 0.06% of total orders" icon="⚠️" />
-        <KpiCard label="First Contact Resolution" value="0.0%" delta="+3.1% MoM" trend="up" subtext="Resolved in initial interaction" icon="⚡" />
-        <KpiCard label="Avg. SLA Resolution Time" value="0" delta="-4.2 mins vs SLA" trend="up" subtext="Target SLA < 25 mins" icon="⏱️" />
-        <KpiCard label="Post-Resolution CSAT" value="4.88 / 5.0" delta="+0.14 vs Q2" trend="up" subtext="98.2% customer delight" icon="⭐" />
-        <KpiCard label="Cold-Chain / Rx SLA" value="0.0%" delta="Zero breaches" trend="up" subtext="Insulin & emergency Rx" icon="❄️" />
-        <KpiCard label="Sentiment Recovery" value="0.0%" delta="+4.8% YoY" trend="up" subtext="Retained pet parent accounts" icon="❤️" />
+        <KpiCard label="Total Grievances (MTD)" value="0" delta="0.0%" trend="neutral" subtext="No order grievances" icon="⚠️" />
+        <KpiCard label="First Contact Resolution" value="0.0%" delta="0.0%" trend="neutral" subtext="Resolved in initial interaction" icon="⚡" />
+        <KpiCard label="Avg. SLA Resolution Time" value="0" delta="0.0%" trend="neutral" subtext="Standard SLA" icon="⏱️" />
+        <KpiCard label="Post-Resolution CSAT" value="0.0" delta="0.0%" trend="neutral" subtext="No delight ratings" icon="⭐" />
+        <KpiCard label="Cold-Chain / Rx SLA" value="0.0%" delta="Zero breaches" trend="neutral" subtext="Insulin & emergency Rx" icon="❄️" />
+        <KpiCard label="Sentiment Recovery" value="0.0%" delta="0.0%" trend="neutral" subtext="Retained pet parent accounts" icon="❤️" />
       </div>
 
       {/* 2-Column Root Cause and SOP Remedy Cards */}
@@ -452,7 +452,7 @@ export default function CustomerComplaints() {
                     style={{ width: '100%', padding: '9px 12px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px', boxSizing: 'border-box' }}
                   >
                     <option value="Critical">Critical (Immediate Triage)</option>
-                    <option value="High">High (Within 15 mins)</option>
+                    <option value="High">High Priority</option>
                     <option value="Medium">Medium (Standard)</option>
                     <option value="Low">Low (Informational)</option>
                   </select>

@@ -16,7 +16,7 @@ export default function Taxes() {
       title="Statutory Tax Compliance, GST & TDS Ledger"
       subtitle="GST e-way bills & GSTR-1/3B filings, Section 194J/194C withholding tax remittances, and corporate tax provisioning"
       icon="🏛️"
-      badge="Compliance: 100%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -38,12 +38,12 @@ export default function Taxes() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="GST Output Liability" value="₹0" delta="18% Outward GST" trend="up" subtext="Current month gross" icon="🏛️" />
-        <KpiCard label="Input Tax Credit (ITC)" value="₹0" delta="100% GSTR-2B match" trend="up" subtext="Zero disputed credit" icon="📥" />
-        <KpiCard label="Net GST Cash Payable" value="₹0" delta="Settled via PMT-06" trend="up" subtext="Due Oct 20, 2026" icon="💰" />
-        <KpiCard label="TDS Deducted & Deposited" value="₹0" delta="100% Remitted" trend="up" subtext="Challan ITNS 281" icon="📑" />
-        <KpiCard label="Advance Income Tax" value="₹0" delta="Q2 Installment Paid" trend="up" subtext="Section 115BAA rate" icon="🛡️" />
-        <KpiCard label="Statutory Compliance Score" value="100 / 100" delta="Zero penalties/notices" trend="up" subtext="Tier-1 clean audit" icon="⭐" />
+        <KpiCard label="GST Output Liability" value="₹0" delta="0.0%" trend="neutral" subtext="Current month gross" icon="🏛️" />
+        <KpiCard label="Input Tax Credit (ITC)" value="₹0" delta="0.0%" trend="neutral" subtext="Zero disputed credit" icon="📥" />
+        <KpiCard label="Net GST Cash Payable" value="₹0" delta="--" trend="neutral" subtext="Statutory due date" icon="💰" />
+        <KpiCard label="TDS Deducted & Deposited" value="₹0" delta="0.0%" trend="neutral" subtext="Challan ITNS 281" icon="📑" />
+        <KpiCard label="Advance Income Tax" value="₹0" delta="--" trend="neutral" subtext="Section 115BAA rate" icon="🛡️" />
+        <KpiCard label="Statutory Compliance Score" value="0 / 100" delta="--" trend="neutral" subtext="Tier-1 clean audit" icon="⭐" />
       </div>
 
       <div style={{
@@ -75,7 +75,7 @@ export default function Taxes() {
               </tr>
             </thead>
             <tbody>
-              {gstFilings.map((g, idx) => (
+              {gstFilings.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No GST filing records found</td></tr>) : gstFilings.map((g, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '12px 20px', color: '#fff', fontWeight: 600 }}>{g.form}</td>
                   <td style={{ padding: '12px 14px', color: '#38bdf8' }}>{g.period}</td>

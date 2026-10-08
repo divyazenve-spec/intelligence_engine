@@ -20,14 +20,14 @@ export default function Attendance() {
       title="Biometric Punch Telemetry & Shift Roster"
       subtitle="Live facial & fingerprint biometric terminal logs, geo-fenced mobile punches, shift rosters, and punctuality monitoring"
       icon="⏰"
-      badge="Today: 198 Clocked In · 96.8% Punctuality"
+      badge=""
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Present on Duty Today" value="198 / 208 Staff" delta="95.2% workforce" trend="up" subtext="Across 7 clinic/hub nodes" icon="🟢" />
-        <KpiCard label="Punctuality Rate" value="0.0%" delta="+1.2% this month" trend="up" subtext="Arrived before shift grace period" icon="⏱️" />
-        <KpiCard label="Late Arrivals Today" value="4 Personnel" delta="Within 15-min grace" trend="neutral" subtext="Rider transit delays" icon="⚠️" />
-        <KpiCard label="Approved Leaves Today" value="6 Staff" delta="Planned absence" trend="neutral" subtext="Rosters balanced" icon="🏖️" />
+        <KpiCard label="Present on Duty Today" value="0" delta="0.0%" trend="neutral" subtext="No hub nodes" icon="🟢" />
+        <KpiCard label="Punctuality Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Arrived before shift grace period" icon="⏱️" />
+        <KpiCard label="Late Arrivals Today" value="0" delta="--" trend="neutral" subtext="Rider transit delays" icon="⚠️" />
+        <KpiCard label="Approved Leaves Today" value="0" delta="--" trend="neutral" subtext="Rosters balanced" icon="🏖️" />
       </div>
 
       {/* Roster Filter Bar */}

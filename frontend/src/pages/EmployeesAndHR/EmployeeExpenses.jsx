@@ -27,10 +27,10 @@ export default function EmployeeExpenses() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Claims Disbursed" value="₹0" delta="100% within budget" trend="neutral" subtext="Across all 6 divisions" icon="💵" />
-        <KpiCard label="Pending Approval Queue" value="2 Claims" delta="₹0" trend="neutral" subtext="Avg manager SLA: 18h" icon="⏳" />
-        <KpiCard label="GST Input Credit Reclaimed" value="₹0" delta="18% blended GST" trend="up" subtext="Direct tax savings for Zenve" icon="🏛️" />
-        <KpiCard label="Policy Compliance Rate" value="0.0%" delta="Zero fraud detected" trend="up" subtext="Automated OCR receipt scan" icon="🛡️" />
+        <KpiCard label="Monthly Claims Disbursed" value="₹0" delta="0.0%" trend="neutral" subtext="No divisions" icon="💵" />
+        <KpiCard label="Pending Approval Queue" value="0" delta="₹0" trend="neutral" subtext="Standard manager SLA" icon="⏳" />
+        <KpiCard label="GST Input Credit Reclaimed" value="₹0" delta="0.0%" trend="neutral" subtext="Direct tax savings for Zenve" icon="🏛️" />
+        <KpiCard label="Policy Compliance Rate" value="0.0%" delta="Zero fraud detected" trend="neutral" subtext="Automated OCR receipt scan" icon="🛡️" />
       </div>
 
       {/* Expense Filter Bar */}

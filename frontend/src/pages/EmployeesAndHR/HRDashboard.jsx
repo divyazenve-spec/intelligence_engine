@@ -148,10 +148,10 @@ export default function HRDashboard() {
         <div>
           {/* Top Level KPIs */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-            <KpiCard label="Active Headcount" value="208 Staff" delta="+14 this quarter" trend="up" subtext="Across 6 core divisions" icon="👥" />
-            <KpiCard label="Monthly Payroll Burn" value="₹0" delta="98.2% budget adherence" trend="neutral" subtext="Salaries, PF, ESI & bonuses" icon="💵" />
-            <KpiCard label="Workforce Retention Rate" value="0.0%" delta="+2.1% YoY gain" trend="up" subtext="Top-quartile benchmark" icon="🤝" />
-            <KpiCard label="eNPS Pulse Score" value="+68 eNPS" delta="Top quartile morale" trend="up" subtext="Quarterly employee pulse" icon="❤️" />
+            <KpiCard label="Active Headcount" value="0" delta="0.0%" trend="neutral" subtext="No core divisions" icon="👥" />
+            <KpiCard label="Monthly Payroll Burn" value="₹0" delta="0.0%" trend="neutral" subtext="Salaries, PF, ESI & bonuses" icon="💵" />
+            <KpiCard label="Workforce Retention Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Top-quartile benchmark" icon="🤝" />
+            <KpiCard label="eNPS Pulse Score" value="0.0 eNPS" delta="--" trend="neutral" subtext="Quarterly employee pulse" icon="❤️" />
           </div>
 
           {/* Department Stratification & Vital Signs */}
@@ -401,10 +401,10 @@ export default function HRDashboard() {
       {activeTab === 'payroll' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-            <KpiCard label="Monthly Gross Disbursal" value="₹0" delta="100% processed" trend="neutral" subtext="Month of September 2026" icon="💵" />
+            <KpiCard label="Monthly Gross Disbursal" value="₹0" delta="0.0%" trend="neutral" subtext="Current period" icon="💵" />
             <KpiCard label="PF &amp; ESI Statutory" value="₹0" delta="Remitted to EPFO" trend="neutral" subtext="Zero compliance default" icon="🏛️" />
-            <KpiCard label="TDS Tax Deducted" value="₹0" delta="Sec 192 compliant" trend="neutral" subtext="Form 24Q deposit ready" icon="🧾" />
-            <KpiCard label="Annualized CTC Spend" value="₹0" delta="Budget: ₹0" trend="up" subtext="FY 2026-2027 plan" icon="💰" />
+            <KpiCard label="TDS Tax Deducted" value="₹0" delta="0.0%" trend="neutral" subtext="Tax deposit ready" icon="🧾" />
+            <KpiCard label="Annualized CTC Spend" value="₹0" delta="0.0%" trend="neutral" subtext="Current financial plan" icon="💰" />
           </div>
 
           <div style={{
@@ -515,10 +515,10 @@ export default function HRDashboard() {
       {activeTab === 'performance' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-            <KpiCard label="Avg Org KPI Score" value="93.8 / 100" delta="+2.4% vs Q2" trend="up" subtext="Across all 208 staff" icon="🎯" />
-            <KpiCard label="Top Performers (5★)" value="34 Staff" delta="16.3% of cohort" trend="up" subtext="Eligible for merit bonus" icon="🌟" />
-            <KpiCard label="Pet Parent CSAT" value="4.86 / 5.0" delta="Top quartile benchmark" trend="up" subtext="14,800+ reviews" icon="❤️" />
-            <KpiCard label="Appraisals Completed" value="192 / 208" delta="92.3% closed" trend="neutral" subtext="16 reviews pending" icon="📝" />
+            <KpiCard label="Avg Org KPI Score" value="0.0" delta="0.0%" trend="neutral" subtext="No staff registered" icon="🎯" />
+            <KpiCard label="Top Performers" value="0" delta="0.0%" trend="neutral" subtext="Eligible for merit bonus" icon="🌟" />
+            <KpiCard label="Pet Parent CSAT" value="0.0" delta="--" trend="neutral" subtext="No reviews recorded" icon="❤️" />
+            <KpiCard label="Appraisals Completed" value="0" delta="0.0%" trend="neutral" subtext="No reviews pending" icon="📝" />
           </div>
 
           <div style={{

@@ -20,10 +20,10 @@ export default function Onboarding() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Onboarding Cohort" value="6 Personnel" delta="Joined within 30 days" trend="neutral" subtext="Clinical, tech & operations" icon="👥" />
-        <KpiCard label="Average Day-1 Readiness" value="0.0%" delta="Hardware & logins live" trend="up" subtext="Zero downtime on joining day" icon="💻" />
-        <KpiCard label="Background Checks (BGV)" value="100% Clear" delta="Zero adverse flags" trend="up" subtext="SpringVerify certified" icon="🛡️" />
-        <KpiCard label="Buddy Allocation Rate" value="0.0%" delta="1:1 senior mentor assigned" trend="up" subtext="Accelerates time-to-productivity" icon="🤝" />
+        <KpiCard label="Active Onboarding Cohort" value="0" delta="--" trend="neutral" subtext="Clinical, tech & operations" icon="👥" />
+        <KpiCard label="Average Day-1 Readiness" value="0.0%" delta="--" trend="neutral" subtext="Zero downtime on joining day" icon="💻" />
+        <KpiCard label="Background Checks (BGV)" value="0.0%" delta="--" trend="neutral" subtext="SpringVerify certified" icon="🛡️" />
+        <KpiCard label="Buddy Allocation Rate" value="0.0%" delta="--" trend="neutral" subtext="Accelerates time-to-productivity" icon="🤝" />
       </div>
 
       {/* Onboarding Recruits Table */}
@@ -55,7 +55,7 @@ export default function Onboarding() {
               </tr>
             </thead>
             <tbody>
-              {recruits.map(r => (
+              {recruits.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No onboarding records found</td></tr>) : recruits.map(r => (
                 <tr key={r.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '12px 16px' }}>
                     <div style={{ fontWeight: 600, color: '#f8fafc' }}>{r.name}</div>

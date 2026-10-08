@@ -50,10 +50,10 @@ export default function PrescriptionHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Rx Generated" value="0" delta="0.0%" trend="up" subtext="Digital tamper-proof" icon="💊" />
+        <KpiCard label="Total Rx Generated" value="0" delta="0.0%" trend="neutral" subtext="Digital tamper-proof" icon="💊" />
         <KpiCard label="Active Chronic Refills" value="0" delta="Auto-scheduled" trend="neutral" subtext="Cardiac, renal, thyroid" icon="🔄" />
-        <KpiCard label="Dispense Turnaround" value="8.4 Mins" delta="-2.1m YoY" trend="up" subtext="In-house pharmacy" icon="⏱️" />
-        <KpiCard label="Drug Safety Adherence" value="0.0%" delta="Zero errors" trend="up" subtext="Species-weight verified" icon="🛡️" />
+        <KpiCard label="Dispense Turnaround" value="0 Mins" delta="0.0%" trend="neutral" subtext="In-house pharmacy" icon="⏱️" />
+        <KpiCard label="Drug Safety Adherence" value="0.0%" delta="Zero errors" trend="neutral" subtext="Species-weight verified" icon="🛡️" />
       </div>
 
       <div style={{

@@ -144,11 +144,11 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Total Registered Pets</span><span class="zpet-kpi-icon">🐾</span></div><div class="zpet-kpi-val">1,240</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+26.4%</span> Canine & Feline census</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Canine Share</span><span class="zpet-kpi-icon">🐕</span></div><div class="zpet-kpi-val">78.2%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">970 Dogs</span> Active patients</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Feline Share</span><span class="zpet-kpi-icon">🐈</span></div><div class="zpet-kpi-val">19.4%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+32% YoY</span> 241 Cats</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Vaccine Compliance</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">93.8%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">1,163 Active</span> Valid passports</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Microchip Enrolled</span><span class="zpet-kpi-icon">🏷️</span></div><div class="zpet-kpi-val">86.5%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">1,072 Chipped</span> ISO 11784 RFID</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Total Registered Pets</span><span class="zpet-kpi-icon">🐾</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Canine & Feline census</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Canine Share</span><span class="zpet-kpi-icon">🐕</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Active patients</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Feline Share</span><span class="zpet-kpi-icon">🐈</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> No cats recorded</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Vaccine Compliance</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Valid passports</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Microchip Enrolled</span><span class="zpet-kpi-icon">🏷️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> ISO 11784 RFID</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
       '  <div class="zpet-search-wrap">',
@@ -203,10 +203,10 @@
     var p = PETS[0];
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Selected Profile</span><span class="zpet-kpi-icon">🐕</span></div><div class="zpet-kpi-val">' + p.name + '</div><div class="zpet-kpi-sub">' + p.breed + '</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Body Condition</span><span class="zpet-kpi-icon">⚖️</span></div><div class="zpet-kpi-val">32.4 kg</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">BCS 5/9 Ideal</span> Weight stable</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Biological Passport</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">Compliant</div><div class="zpet-kpi-sub">DHPPiL & Rabies verified</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Primary Physician</span><span class="zpet-kpi-icon">👨‍⚕️</span></div><div class="zpet-kpi-val">Dr. Priya S.</div><div class="zpet-kpi-sub">Koramangala Super Clinic</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Selected Profile</span><span class="zpet-kpi-icon">🐕</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">' + p.breed + '</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Body Condition</span><span class="zpet-kpi-icon">⚖️</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Weight stable</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Biological Passport</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">DHPPiL & Rabies verified</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Primary Physician</span><span class="zpet-kpi-icon">👨‍⚕️</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">Koramangala Super Clinic</div></div>',
       '</div>',
       '<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">',
       '  <div class="zpet-card" style="padding:24px;">',
@@ -257,10 +257,10 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cumulative EHRs</span><span class="zpet-kpi-icon">📋</span></div><div class="zpet-kpi-val">9,410</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+18.5%</span> Longitudinal logs</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Monthly Admissions</span><span class="zpet-kpi-icon">📅</span></div><div class="zpet-kpi-val">384</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+12.4%</span> Current cycle</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Active Chronic Regimens</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">142</div><div class="zpet-kpi-sub">Renal, cardiac, endocrine</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Vitals Compliance</span><span class="zpet-kpi-icon">🩺</span></div><div class="zpet-kpi-val">99.4%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">Standard</span> Complete telemetry</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cumulative EHRs</span><span class="zpet-kpi-icon">📋</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Longitudinal logs</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Monthly Admissions</span><span class="zpet-kpi-icon">📅</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Current cycle</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Active Chronic Regimens</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">Renal, cardiac, endocrine</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Vitals Compliance</span><span class="zpet-kpi-icon">🩺</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Complete telemetry</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
       '  <div class="zpet-search-wrap">',
@@ -311,10 +311,10 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Immunization Doses</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">3,892</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+22.1%</span> YTD administered</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Herd Immunity Rate</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">94.2%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">High</span> Protected cohort</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Due Within 30d</span><span class="zpet-kpi-icon">🔔</span></div><div class="zpet-kpi-val">84 Pets</div><div class="zpet-kpi-sub">WhatsApp recalls sent</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cold-Chain Verified</span><span class="zpet-kpi-icon">❄️</span></div><div class="zpet-kpi-val">100%</div><div class="zpet-kpi-sub">IoT 2-8°C logged</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Immunization Doses</span><span class="zpet-kpi-icon">💉</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> YTD administered</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Herd Immunity Rate</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Protected cohort</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Due Within 30d</span><span class="zpet-kpi-icon">🔔</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">No recalls sent</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cold-Chain Verified</span><span class="zpet-kpi-icon">❄️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">Temperature monitored</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
       '  <div class="zpet-search-wrap">',
@@ -365,9 +365,9 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Treatments Logged</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">1,840</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+16.8%</span> Medical & surgical</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Recovery Rate</span><span class="zpet-kpi-icon">📈</span></div><div class="zpet-kpi-val">98.2%</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">High success</span> Safely discharged</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Inpatient Stay</span><span class="zpet-kpi-icon">⏱️</span></div><div class="zpet-kpi-val">1.8 Days</div><div class="zpet-kpi-sub">-0.4d YoY optimized</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Treatments Logged</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Medical & surgical</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Recovery Rate</span><span class="zpet-kpi-icon">📈</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Safely discharged</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Inpatient Stay</span><span class="zpet-kpi-icon">⏱️</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">No stay data</div></div>',
       '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Surgical Sepsis Rate</span><span class="zpet-kpi-icon">🏥</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">Sterile theater protocol</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
@@ -419,10 +419,10 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Rx Generated</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">2,940</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+15.3%</span> Tamper-proof logs</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Chronic Refills</span><span class="zpet-kpi-icon">🔄</span></div><div class="zpet-kpi-val">312</div><div class="zpet-kpi-sub">Auto-scheduled delivery</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Dispense SLA</span><span class="zpet-kpi-icon">⏱️</span></div><div class="zpet-kpi-val">8.4 Mins</div><div class="zpet-kpi-sub">-2.1m YoY turnaround</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Drug Interaction Check</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">100%</div><div class="zpet-kpi-sub">AI safety verified</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Rx Generated</span><span class="zpet-kpi-icon">💊</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Tamper-proof logs</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Chronic Refills</span><span class="zpet-kpi-icon">🔄</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">Auto-scheduled delivery</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Dispense SLA</span><span class="zpet-kpi-icon">⏱️</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">Standard SLA</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Drug Interaction Check</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">AI safety verified</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
       '  <div class="zpet-search-wrap">',
@@ -473,10 +473,10 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cumulative Orders</span><span class="zpet-kpi-icon">🛍️</span></div><div class="zpet-kpi-val">4,820</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+28.4%</span> Omni-channel</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Pet LTV / Yr</span><span class="zpet-kpi-icon">💰</span></div><div class="zpet-kpi-val">₹32,400</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+14.2%</span> Annualized spend</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Rx Diet Penetration</span><span class="zpet-kpi-icon">🥗</span></div><div class="zpet-kpi-val">34.2%</div><div class="zpet-kpi-sub">High margin retention</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Auto-Ship Subscribers</span><span class="zpet-kpi-icon">🔄</span></div><div class="zpet-kpi-val">41.5%</div><div class="zpet-kpi-sub">514 Active subscriptions</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Cumulative Orders</span><span class="zpet-kpi-icon">🛍️</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Omni-channel</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Pet LTV / Yr</span><span class="zpet-kpi-icon">💰</span></div><div class="zpet-kpi-val">₹0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Annualized spend</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Rx Diet Penetration</span><span class="zpet-kpi-icon">🥗</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">High margin retention</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Auto-Ship Subscribers</span><span class="zpet-kpi-icon">🔄</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">No active subscriptions</div></div>',
       '</div>',
       '<div class="zpet-toolbar">',
       '  <div class="zpet-search-wrap">',
@@ -533,11 +533,11 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Registered Cohort</span><span class="zpet-kpi-icon">📊</span></div><div class="zpet-kpi-val">1,240 Pets</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">+26.4% YoY</span> 72.5% Dogs • 21.8% Cats</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Sterilization Rate</span><span class="zpet-kpi-icon">✂️</span></div><div class="zpet-kpi-val">68.4%</div><div class="zpet-kpi-sub">848 Desexed pets</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Microchip RFID Rate</span><span class="zpet-kpi-icon">📡</span></div><div class="zpet-kpi-val">76.2%</div><div class="zpet-kpi-sub">945 ISO Tagged</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Body Condition</span><span class="zpet-kpi-icon">⚖️</span></div><div class="zpet-kpi-val">5.2 / 9</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">Ideal</span> 58.6% in 4-5 band</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Preventive Adherence</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">84.6%</div><div class="zpet-kpi-sub">+4.8 pts vaccine compliance</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Registered Cohort</span><span class="zpet-kpi-icon">📊</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> No registered cohort</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Sterilization Rate</span><span class="zpet-kpi-icon">✂️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">No sterilization records</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Microchip RFID Rate</span><span class="zpet-kpi-icon">📡</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">No tagged pets</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Avg Body Condition</span><span class="zpet-kpi-icon">⚖️</span></div><div class="zpet-kpi-val">0.0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Standard condition</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Preventive Adherence</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">No compliance data</div></div>',
       '</div>',
 
       '<div style="display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-bottom:20px;">',
@@ -688,11 +688,11 @@
 
     container.innerHTML = [
       '<div class="zpet-kpi-grid">',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Population Health Index</span><span class="zpet-kpi-icon">🧠</span></div><div class="zpet-kpi-val">91.2/100</div><div class="zpet-kpi-sub"><span class="zpet-badge-pos">Optimal</span> Low morbidity risk</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Active Surveillance</span><span class="zpet-kpi-icon">🚨</span></div><div class="zpet-kpi-val">5 Live Alerts</div><div class="zpet-kpi-sub">2 Critical, 3 Warnings</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Early Morbidity Staging</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">88.5%</div><div class="zpet-kpi-sub">+6.2 pts YoY detection rate</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Parent Recall Action</span><span class="zpet-kpi-icon">📱</span></div><div class="zpet-kpi-val">81.4%</div><div class="zpet-kpi-sub">642 Recalls sent</div></div>',
-      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Chronic Care Cohort</span><span class="zpet-kpi-icon">🩺</span></div><div class="zpet-kpi-val">142 Pets</div><div class="zpet-kpi-sub">Remote health telemetry</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Population Health Index</span><span class="zpet-kpi-icon">🧠</span></div><div class="zpet-kpi-val">0.0</div><div class="zpet-kpi-sub"><span class="zpet-badge-neu">0.0%</span> Low morbidity risk</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Active Surveillance</span><span class="zpet-kpi-icon">🚨</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">No active warnings</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Early Morbidity Staging</span><span class="zpet-kpi-icon">🛡️</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">Standard monitoring</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Parent Recall Action</span><span class="zpet-kpi-icon">📱</span></div><div class="zpet-kpi-val">0.0%</div><div class="zpet-kpi-sub">No recalls sent</div></div>',
+      '  <div class="zpet-kpi"><div class="zpet-kpi-top"><span class="zpet-kpi-label">Chronic Care Cohort</span><span class="zpet-kpi-icon">🩺</span></div><div class="zpet-kpi-val">0</div><div class="zpet-kpi-sub">Remote health telemetry</div></div>',
       '</div>',
 
       '<div class="zpet-toolbar">',

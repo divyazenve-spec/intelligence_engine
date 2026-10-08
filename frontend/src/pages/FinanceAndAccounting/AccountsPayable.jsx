@@ -36,12 +36,12 @@ export default function AccountsPayable() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Payables (AP)" value="₹0" delta="Optimal working cap" trend="up" subtext="7 Primary OEM Vendors" icon="📤" />
-        <KpiCard label="Days Payable Outstanding (DPO)" value="34 Days" delta="Target: 30–40d" trend="up" subtext="Vendor terms maximized" icon="⏱️" />
-        <KpiCard label="Approved for Immediate Run" value="₹0" delta="71.0% verified" trend="up" subtext="Full 3-way match OK" icon="✅" />
-        <KpiCard label="Early Settlement Discounts" value="₹0" delta="2/10 Net 30" trend="up" subtext="Cash savings captured" icon="🎁" />
-        <KpiCard label="Pending 3-Way GRN Match" value="₹0" delta="1 Inbound batch" trend="up" subtext="Warehouse verification" icon="🔍" />
-        <KpiCard label="Disputed Invoices" value="₹0" delta="1 Clinical query" trend="down" subtext="Biohazard waste billing" icon="⚠️" />
+        <KpiCard label="Total Payables (AP)" value="₹0" delta="Optimal working cap" trend="neutral" subtext="No vendors" icon="📤" />
+        <KpiCard label="Days Payable Outstanding (DPO)" value="0 Days" delta="--" trend="neutral" subtext="Vendor terms maximized" icon="⏱️" />
+        <KpiCard label="Approved for Immediate Run" value="₹0" delta="0.0%" trend="neutral" subtext="Full match verified" icon="✅" />
+        <KpiCard label="Early Settlement Discounts" value="₹0" delta="--" trend="neutral" subtext="Cash savings captured" icon="🎁" />
+        <KpiCard label="Pending GRN Match" value="₹0" delta="--" trend="neutral" subtext="Warehouse verification" icon="🔍" />
+        <KpiCard label="Disputed Invoices" value="₹0" delta="--" trend="neutral" subtext="Biohazard waste billing" icon="⚠️" />
       </div>
 
       <div style={{
@@ -72,7 +72,7 @@ export default function AccountsPayable() {
               </tr>
             </thead>
             <tbody>
-              {payables.map((p, idx) => (
+              {payables.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No accounts payable records found</td></tr>) : payables.map((p, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '12px 20px', color: '#fff', fontWeight: 600 }}>
                     <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontSize: '10px', color: '#38bdf8', marginRight: '6px' }}>{p.id}</span>

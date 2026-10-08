@@ -17,10 +17,10 @@ export default function ActiveCustomers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Active Customers" value="8,420 MAU" delta="67.5% total base" trend="up" subtext="Transacting or visiting" icon="⚡" />
-        <KpiCard label="DAU / MAU Stickiness" value="0.0%" delta="Top decile consumer app" trend="up" subtext="High daily app utility" icon="📱" />
-        <KpiCard label="Avg Order Interval" value="18.2 Days" delta="-3.4 days vs FY25" trend="up" subtext="Faster replenishment" icon="⏱️" />
-        <KpiCard label="Omni-Channel Engaged" value="0.0%" delta="App + Physical Clinic" trend="up" subtext="Highest LTV customer bracket" icon="🏬" />
+        <KpiCard label="Monthly Active Customers" value="0" delta="0.0%" trend="neutral" subtext="Transacting or visiting" icon="⚡" />
+        <KpiCard label="DAU / MAU Stickiness" value="0.0%" delta="Top decile consumer app" trend="neutral" subtext="High daily app utility" icon="📱" />
+        <KpiCard label="Avg Order Interval" value="0 Days" delta="--" trend="neutral" subtext="Faster replenishment" icon="⏱️" />
+        <KpiCard label="Omni-Channel Engaged" value="0.0%" delta="App + Physical Clinic" trend="neutral" subtext="Highest LTV customer bracket" icon="🏬" />
       </div>
 
       <div style={cardStyle}>
@@ -38,7 +38,7 @@ export default function ActiveCustomers() {
               </tr>
             </thead>
             <tbody>
-              {activeCohorts.map((c, idx) => (
+              {activeCohorts.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No active customer cohorts found</td></tr>) : activeCohorts.map((c, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{c.cohort}</td>
                   <td style={{ padding: '10px', fontWeight: 700, color: '#2563eb' }}>{c.count}</td>

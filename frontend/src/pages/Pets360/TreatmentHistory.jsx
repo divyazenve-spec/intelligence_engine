@@ -49,10 +49,10 @@ export default function TreatmentHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Total Procedures Logged" value="0" delta="0.0%" trend="up" subtext="Medical & surgical" icon="💊" />
-        <KpiCard label="Average Recovery Rate" value="0.0%" delta="High success" trend="up" subtext="Discharged safely" icon="📈" />
-        <KpiCard label="Avg Inpatient Stay" value="1.8 Days" delta="-0.4d YoY" trend="up" subtext="Optimized recovery" icon="⏱️" />
-        <KpiCard label="Surgical Success Rate" value="0.0%" delta="Zero sepsis" trend="up" subtext="Sterile theater suite" icon="🏥" />
+        <KpiCard label="Total Procedures Logged" value="0" delta="0.0%" trend="neutral" subtext="Medical & surgical" icon="💊" />
+        <KpiCard label="Average Recovery Rate" value="0.0%" delta="High success" trend="neutral" subtext="Discharged safely" icon="📈" />
+        <KpiCard label="Avg Inpatient Stay" value="0 Days" delta="0.0%" trend="neutral" subtext="Optimized recovery" icon="⏱️" />
+        <KpiCard label="Surgical Success Rate" value="0.0%" delta="Zero sepsis" trend="neutral" subtext="Sterile theater suite" icon="🏥" />
       </div>
 
       <div style={{

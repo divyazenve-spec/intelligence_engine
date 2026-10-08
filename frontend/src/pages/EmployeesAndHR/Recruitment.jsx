@@ -18,10 +18,10 @@ export default function Recruitment() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Open Requisitions" value="24 Vacancies" delta="Across 6 roles" trend="neutral" subtext="Clinical, logistics & tech" icon="📢" />
-        <KpiCard label="Active Applicants Funnel" value="420 Resumes" delta="+64 this week" trend="up" subtext="LinkedIn, IIM/VCI job boards" icon="📥" />
-        <KpiCard label="Interviews in Flight" value="44 Candidates" delta="Technical & cultural" trend="neutral" subtext="Scheduled this fortnight" icon="🎙️" />
-        <KpiCard label="Average Time to Hire" value="18.4 Days" delta="-3.2 days faster" trend="up" subtext="Industry average: 32 days" icon="⚡" />
+        <KpiCard label="Open Requisitions" value="0" delta="--" trend="neutral" subtext="Clinical, logistics & tech" icon="📢" />
+        <KpiCard label="Active Applicants Funnel" value="0" delta="0.0%" trend="neutral" subtext="LinkedIn, IIM/VCI job boards" icon="📥" />
+        <KpiCard label="Interviews in Flight" value="0" delta="--" trend="neutral" subtext="Scheduled this fortnight" icon="🎙️" />
+        <KpiCard label="Average Time to Hire" value="0 Days" delta="0.0%" trend="neutral" subtext="Industry average benchmark" icon="⚡" />
       </div>
 
       {/* Requisitions Pipeline Table */}

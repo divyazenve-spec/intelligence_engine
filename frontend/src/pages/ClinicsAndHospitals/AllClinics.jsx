@@ -78,12 +78,12 @@ export default function AllClinics() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Outpatient Clinics" value="11 Clinics" delta="5 Key Metros" trend="neutral" subtext="Own & operated" icon="🩺" />
-        <KpiCard label="Consultation Rooms" value="33 Suites" delta="88% Utilization" trend="up" subtext="Equipped with exam tables" icon="🚪" />
-        <KpiCard label="Active Attending Vets" value="28 Doctors" delta="Full duty roster" trend="up" subtext="VCI registered clinicians" icon="👨‍⚕️" />
-        <KpiCard label="Daily OPD Footfall" value="374 Pets / Day" delta="+16.4% YoY" trend="up" subtext="Avg 34 pets / clinic" icon="🐾" />
-        <KpiCard label="Avg Patient Wait Time" value="14.2 Mins" delta="-3.5m vs target" trend="up" subtext="Appointment slotted" icon="⏱️" />
-        <KpiCard label="Total Clinics Revenue" value="₹0" delta="MTD Billings" trend="up" subtext="Consults, labs & pharmacy" icon="💰" />
+        <KpiCard label="Outpatient Clinics" value="0" delta="--" trend="neutral" subtext="Own & operated" icon="🩺" />
+        <KpiCard label="Consultation Rooms" value="0" delta="--" trend="neutral" subtext="Equipped with exam tables" icon="🚪" />
+        <KpiCard label="Active Attending Vets" value="0" delta="--" trend="neutral" subtext="VCI registered clinicians" icon="👨‍⚕️" />
+        <KpiCard label="Daily OPD Footfall" value="0" delta="0.0%" trend="neutral" subtext="No visits logged" icon="🐾" />
+        <KpiCard label="Avg Patient Wait Time" value="0 Mins" delta="0.0%" trend="neutral" subtext="Appointment slotted" icon="⏱️" />
+        <KpiCard label="Total Clinics Revenue" value="₹0" delta="MTD Billings" trend="neutral" subtext="Consults, labs & pharmacy" icon="💰" />
       </div>
 
       {/* Filter and Search Bar */}
@@ -166,7 +166,7 @@ export default function AllClinics() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((c, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No clinic records found</td></tr>) : filtered.map((c, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px' }}>
                     <div style={{ fontWeight: 600, color: '#fff' }}>{c.name}</div>

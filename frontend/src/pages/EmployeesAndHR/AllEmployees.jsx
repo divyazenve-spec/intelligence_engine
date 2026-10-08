@@ -25,7 +25,7 @@ export default function AllEmployees() {
       title="Employee Directory & Workforce Master"
       subtitle="Complete centralized registry of clinical specialists, field logistics, pharmacy, and engineering staff"
       icon="👥"
-      badge={`${employees.length} Registered Staff · 95% Active`}
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -51,10 +51,10 @@ export default function AllEmployees() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Staff Members" value="208 Personnel" delta="+6 this month" trend="up" subtext="6 divisions nationwide" icon="👥" />
-        <KpiCard label="Active on Duty" value="198 Staff" delta="95.2% active" trend="up" subtext="In clinic, warehouse & field" icon="🟢" />
-        <KpiCard label="On Approved Leave" value="6 Personnel" delta="3 PTO · 3 Sick" trend="neutral" subtext="Adequately backed up" icon="🏖️" />
-        <KpiCard label="Probation / Onboarding" value="4 Recruits" delta="30-day review cycle" trend="neutral" subtext="All mentoring on track" icon="🐣" />
+        <KpiCard label="Total Staff Members" value="0" delta="0.0%" trend="neutral" subtext="No divisions active" icon="👥" />
+        <KpiCard label="Active on Duty" value="0" delta="0.0%" trend="neutral" subtext="In clinic, warehouse & field" icon="🟢" />
+        <KpiCard label="On Approved Leave" value="0" delta="--" trend="neutral" subtext="Adequately backed up" icon="🏖️" />
+        <KpiCard label="Probation / Onboarding" value="0" delta="--" trend="neutral" subtext="All mentoring on track" icon="🐣" />
       </div>
 
       {/* Filter and Search Bar */}
@@ -154,7 +154,7 @@ export default function AllEmployees() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(emp => (
+              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No employee records found</td></tr>) : filtered.map(emp => (
                 <tr key={emp.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '12px 16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

@@ -38,12 +38,12 @@ export default function COGS() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Monthly COGS" value="₹0" delta="-4.2% under plan" trend="up" subtext="44.0% of revenue" icon="📦" />
-        <KpiCard label="Pharma Procurement" value="₹0" delta="42.0% of COGS" trend="up" subtext="Vaccines & cold chain" icon="💊" />
-        <KpiCard label="Surgical Hardware" value="₹0" delta="28.4% of COGS" trend="up" subtext="Titanium TPLO & Pins" icon="🔩" />
-        <KpiCard label="Diagnostics Consumables" value="₹0" delta="15.7% of COGS" trend="up" subtext="IDEXX lab cartridges" icon="🔬" />
-        <KpiCard label="Manufacturer Rebates" value="₹0" delta="Annualized pool" trend="up" subtext="Direct margin credit" icon="🎁" />
-        <KpiCard label="Inventory Waste / Spoilage" value="0.0%" delta="Industry: 1.8%" trend="up" subtext="Strict FEFO control" icon="🛡️" />
+        <KpiCard label="Total Monthly COGS" value="₹0" delta="0.0%" trend="neutral" subtext="Procurement cost" icon="📦" />
+        <KpiCard label="Pharma Procurement" value="₹0" delta="0.0%" trend="neutral" subtext="Vaccines & cold chain" icon="💊" />
+        <KpiCard label="Surgical Hardware" value="₹0" delta="0.0%" trend="neutral" subtext="Titanium TPLO & Pins" icon="🔩" />
+        <KpiCard label="Diagnostics Consumables" value="₹0" delta="0.0%" trend="neutral" subtext="IDEXX lab cartridges" icon="🔬" />
+        <KpiCard label="Manufacturer Rebates" value="₹0" delta="Annualized pool" trend="neutral" subtext="Direct margin credit" icon="🎁" />
+        <KpiCard label="Inventory Waste / Spoilage" value="0.0%" delta="0.0%" trend="neutral" subtext="Strict FEFO control" icon="🛡️" />
       </div>
 
       <div style={{

@@ -64,17 +64,17 @@ export default function Hospitals() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Tertiary Hospitals" value="3 Hospitals" delta="24x7 Open" trend="neutral" subtext="Bengaluru, Mumbai, Delhi" icon="🏢" />
-        <KpiCard label="Inpatient Census" value="66 / 76 Beds" delta="86.8% Occupancy" trend="up" subtext="Across ICU & post-op wards" icon="🛏️" />
-        <KpiCard label="Operating Theatres" value="12 OT Suites" delta="88.0% Utilized" trend="up" subtext="Laminar airflow Class 100" icon="🔪" />
-        <KpiCard label="Critical Care Pods" value="18 ICU Pods" delta="100% telemetry" trend="up" subtext="Continuous vitals logging" icon="💓" />
-        <KpiCard label="Blood Bank Inventory" value="26 Units" delta="Safe Reserves" trend="up" subtext="Canine & feline matched" icon="🩸" />
-        <KpiCard label="Hospital Billings MTD" value="₹0" delta="+21.4% YoY" trend="up" subtext="Inpatient & surgical care" icon="💰" />
+        <KpiCard label="Tertiary Hospitals" value="0" delta="--" trend="neutral" subtext="Bengaluru, Mumbai, Delhi" icon="🏢" />
+        <KpiCard label="Inpatient Census" value="0" delta="0.0%" trend="neutral" subtext="Across ICU & post-op wards" icon="🛏️" />
+        <KpiCard label="Operating Theatres" value="0" delta="0.0%" trend="neutral" subtext="No surgical suites active" icon="🔪" />
+        <KpiCard label="Critical Care Pods" value="0" delta="--" trend="neutral" subtext="Continuous vitals logging" icon="💓" />
+        <KpiCard label="Blood Bank Inventory" value="0 Units" delta="--" trend="neutral" subtext="Canine & feline matched" icon="🩸" />
+        <KpiCard label="Hospital Billings MTD" value="₹0" delta="0.0%" trend="neutral" subtext="Inpatient & surgical care" icon="💰" />
       </div>
 
       {/* Flagship Hospital Profiles */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '18px' }}>
-        {filteredHospitals.map((h, idx) => (
+        {filteredHospitals.length === 0 ? (<div style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No hospital records found</div>) : filteredHospitals.map((h, idx) => (
           <div key={idx} style={{
             background: 'var(--card, #1e293b)',
             border: '1px solid var(--border, rgba(255,255,255,0.08))',
@@ -178,7 +178,7 @@ export default function Hospitals() {
               </tr>
             </thead>
             <tbody>
-              {otSchedule.map((s, idx) => (
+              {otSchedule.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No scheduled surgical procedures</td></tr>) : otSchedule.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px', fontWeight: 600, color: '#38bdf8' }}>{s.ot}</td>
                   <td style={{ padding: '10px 12px', fontWeight: 600 }}>{s.patient}</td>

@@ -74,12 +74,12 @@ export default function ClinicsDashboard() {
     >
       {/* Network Overview KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Network Facilities" value="14 Facilities" delta="6 Metros" trend="neutral" subtext="3 Hospitals, 11 Outpatient" icon="🏥" />
-        <KpiCard label="Network Inpatient Beds" value="76 / 86 Beds" delta="88.4% Occupancy" trend="up" subtext="24x7 ICU, HDU & Isolation" icon="🛏️" />
-        <KpiCard label="OT Surgical Utilization" value="0.0%" delta="+5.4% YoY" trend="up" subtext="12 Active Operating Theatres" icon="⚡" />
-        <KpiCard label="In-Clinic Monthly Billings" value="₹0" delta="+18.2% YoY" trend="up" subtext="OPD, Surgeries & ICU" icon="💰" />
-        <KpiCard label="Daily OPD Consults" value="482 Pets" delta="Avg 18m wait time" trend="up" subtext="Across all OPD desks" icon="🐾" />
-        <KpiCard label="Emergency Response SLA" value="4.8 Mins" delta="Triage to Vet" trend="up" subtext="Critical care protocol" icon="🚨" />
+        <KpiCard label="Network Facilities" value="0" delta="--" trend="neutral" subtext="No facilities active" icon="🏥" />
+        <KpiCard label="Network Inpatient Beds" value="0" delta="0.0%" trend="neutral" subtext="No beds occupied" icon="🛏️" />
+        <KpiCard label="OT Surgical Utilization" value="0.0%" delta="0.0%" trend="neutral" subtext="No active surgeries" icon="⚡" />
+        <KpiCard label="In-Clinic Monthly Billings" value="₹0" delta="0.0%" trend="neutral" subtext="OPD, Surgeries & ICU" icon="💰" />
+        <KpiCard label="Daily OPD Consults" value="0" delta="--" trend="neutral" subtext="Across all OPD desks" icon="🐾" />
+        <KpiCard label="Emergency Response SLA" value="0 Mins" delta="--" trend="neutral" subtext="Critical care protocol" icon="🚨" />
       </div>
 
       {/* Facilities & Surgical Theatres Grid */}
@@ -100,7 +100,7 @@ export default function ClinicsDashboard() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {facilityHighlights.map((f, i) => (
+            {facilityHighlights.length === 0 ? (<div style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No facility highlight records found</div>) : facilityHighlights.map((f, i) => (
               <div key={i} style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 600 }}>
                   <span>{f.name}</span>
@@ -231,7 +231,7 @@ export default function ClinicsDashboard() {
               </tr>
             </thead>
             <tbody>
-              {liveAdmissions.map((adm, idx) => (
+              {liveAdmissions.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No admission records found</td></tr>) : liveAdmissions.map((adm, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '10px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#38bdf8' }}>{adm.id}</td>
                   <td style={{ padding: '10px 12px', fontWeight: 600 }}>{adm.pet}</td>

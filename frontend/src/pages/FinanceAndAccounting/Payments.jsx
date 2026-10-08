@@ -16,7 +16,7 @@ export default function Payments() {
       title="Inbound Payments, Gateways & Collections"
       subtitle="Real-time multi-gateway payment processing, merchant discount rate (MDR) audit, POS terminal census, and bank settlement reconciliation"
       icon="💳"
-      badge="Reconciliation: 100%"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -38,12 +38,12 @@ export default function Payments() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Digital Collections" value="₹0" delta="+18.2% MoM" trend="up" subtext="Inbound MTD flow" icon="💳" />
-        <KpiCard label="UPI Payment Share" value="0.0%" delta="Zero MDR rate" trend="up" subtext="4,120 instant scans" icon="📱" />
-        <KpiCard label="Card & POS Volume" value="₹0" delta="30.0% of total" trend="up" subtext="Pine Labs smart terminals" icon="🏧" />
-        <KpiCard label="Blended MDR Cost" value="0.0%" delta="-0.08% pts YoY" trend="up" subtext="Minimal fee leakage" icon="💰" />
-        <KpiCard label="Failed / Dropped Txns" value="0.0%" delta="99.68% Success" trend="up" subtext="High gateway uptime" icon="🛡️" />
-        <KpiCard label="Settlement Window" value="T+1 Morning" delta="Auto-cleared" trend="up" subtext="Direct HDFC sweep" icon="⚡" />
+        <KpiCard label="Gross Digital Collections" value="₹0" delta="0.0%" trend="neutral" subtext="Inbound MTD flow" icon="💳" />
+        <KpiCard label="UPI Payment Share" value="0.0%" delta="0.0%" trend="neutral" subtext="No payment scans" icon="📱" />
+        <KpiCard label="Card & POS Volume" value="₹0" delta="0.0%" trend="neutral" subtext="Pine Labs smart terminals" icon="🏧" />
+        <KpiCard label="Blended MDR Cost" value="0.0%" delta="0.0%" trend="neutral" subtext="Minimal fee leakage" icon="💰" />
+        <KpiCard label="Failed / Dropped Txns" value="0.0%" delta="0.0%" trend="neutral" subtext="High gateway uptime" icon="🛡️" />
+        <KpiCard label="Settlement Window" value="T+0" delta="--" trend="neutral" subtext="Direct HDFC sweep" icon="⚡" />
       </div>
 
       <div style={{

@@ -10,48 +10,60 @@ export default function DoctorActivity() {
   return (
     <DashboardLayout
       category="Doctors"
-      subcategory="Clinical Operations & Telemetry"
+      subcategory="Clinical Telemetry"
       title="Doctor Real-Time Activity & Shift Telemetry"
-      subtitle="Live consultation logs, ongoing surgical interventions, digital prescription dispatches, and emergency calls"
+      subtitle="Live operating theater status, ongoing consultations, outpatient pacing, and urgent case queues"
       icon="⚡"
-      badge="Live Telemetry Active"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Doctors Currently On Duty" value="18 Clinicians" delta="Full evening coverage" trend="up" subtext="Across all 6 hospitals" icon="👨‍⚕️" />
-        <KpiCard label="Surgeries in Progress" value="3 OTs Active" delta="Indiranagar & Koramangala" trend="neutral" subtext="All monitors normal" icon="🩺" />
-        <KpiCard label="OPD Consults Today" value="142 Completed" delta="Avg 16 min/consult" trend="up" subtext="Pacing on schedule" icon="📋" />
-        <KpiCard label="Tele-Consult Queue" value="2 Waiting" delta="Under 4 min wait" trend="up" subtext="Live mobile video vet" icon="📱" />
+        <KpiCard label="Doctors Currently On Duty" value="0" delta="--" trend="neutral" subtext="No clinicians on duty" icon="👨‍⚕️" />
+        <KpiCard label="Surgeries in Progress" value="0" delta="--" trend="neutral" subtext="No active surgeries" icon="🩺" />
+        <KpiCard label="OPD Consults Today" value="0" delta="--" trend="neutral" subtext="No consults today" icon="📋" />
+        <KpiCard label="Tele-Consult Queue" value="0" delta="--" trend="neutral" subtext="No tele-consults waiting" icon="📱" />
       </div>
 
       <div style={cardStyle}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>⚡ Live Physician Activity & Case Audit Stream</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>⚡ Live Physician Activity Feed</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--border, #e2e8f0)', textAlign: 'left', color: 'var(--muted-foreground, #475569)' }}>
                 <th style={{ padding: '10px' }}>Timestamp</th>
-                <th style={{ padding: '10px' }}>Clinician</th>
-                <th style={{ padding: '10px' }}>Clinical Action</th>
-                <th style={{ padding: '10px' }}>Case Description & Notes</th>
-                <th style={{ padding: '10px' }}>Facility / Room</th>
-                <th style={{ padding: '10px' }}>Clinical Status</th>
+                <th style={{ padding: '10px' }}>Doctor Name</th>
+                <th style={{ padding: '10px' }}>Activity Type</th>
+                <th style={{ padding: '10px' }}>Patient / Case</th>
+                <th style={{ padding: '10px' }}>Clinic / OT Location</th>
+                <th style={{ padding: '10px' }}>Vitals / Alert Status</th>
+                <th style={{ padding: '10px' }}>Duration</th>
+                <th style={{ padding: '10px' }}>Current State</th>
               </tr>
             </thead>
             <tbody>
-              {liveActivities.map((a, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600, color: '#059669' }}>{a.time}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{a.doctor}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{a.action}</td>
-                  <td style={{ padding: '10px', color: '#475569' }}>{a.details}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{a.location}</td>
-                  <td style={{ padding: '10px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, background: '#ecfdf5', color: '#047857' }}>
-                      {a.status}
-                    </span>
+              {liveActivities.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)' }}>
+                    No live doctor activity records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                liveActivities.map((a, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '10px', fontFamily: 'monospace' }}>{a.time}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{a.doctor}</td>
+                    <td style={{ padding: '10px' }}>{a.type}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{a.patient}</td>
+                    <td style={{ padding: '10px', color: '#64748b' }}>{a.location}</td>
+                    <td style={{ padding: '10px' }}>{a.vitals}</td>
+                    <td style={{ padding: '10px' }}>{a.duration}</td>
+                    <td style={{ padding: '10px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, background: 'rgba(59,130,246,0.12)', color: '#1d4ed8' }}>
+                        {a.state}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

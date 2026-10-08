@@ -26,10 +26,10 @@ export default function LeaveManagement() {
     >
       {/* Top Level KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Currently on Leave" value="6 Personnel" delta="2.8% of headcount" trend="neutral" subtext="All roles covered by backup" icon="🏖️" />
-        <KpiCard label="Pending Approval Queue" value="3 Requests" delta="Require manager signoff" trend="neutral" subtext="Avg response time 4.2h" icon="⏳" />
-        <KpiCard label="Avg Org PTO Balance" value="14.2 Days" delta="Healthy burn rate" trend="up" subtext="Prevents year-end encashment spike" icon="📅" />
-        <KpiCard label="Upcoming Public Holidays" value="5 Holidays" delta="In Q4 2026" trend="neutral" subtext="Hospital rosters planned" icon="🎉" />
+        <KpiCard label="Currently on Leave" value="0" delta="0.0%" trend="neutral" subtext="All roles covered by backup" icon="🏖️" />
+        <KpiCard label="Pending Approval Queue" value="0" delta="--" trend="neutral" subtext="Standard response time" icon="⏳" />
+        <KpiCard label="Avg Org PTO Balance" value="0 Days" delta="--" trend="neutral" subtext="Prevents year-end encashment spike" icon="📅" />
+        <KpiCard label="Upcoming Public Holidays" value="0" delta="--" trend="neutral" subtext="Hospital rosters planned" icon="🎉" />
       </div>
 
       {/* Leave Approval Ledger */}

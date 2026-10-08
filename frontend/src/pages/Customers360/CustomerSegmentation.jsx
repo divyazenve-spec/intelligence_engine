@@ -17,10 +17,10 @@ export default function CustomerSegmentation() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Persona Segments" value="5 Clusters" delta="RFM Analyzed" trend="neutral" subtext="Dynamic daily cluster updates" icon="🧩" />
-        <KpiCard label="Multi-Pet Cluster Share" value="0.0%" delta="Highest value cohort" trend="up" subtext="3,840 households" icon="🐾" />
-        <KpiCard label="Senior & Chronic Care" value="0.0%" delta="High Rx attach rate" trend="up" subtext="94% recurring monthly spend" icon="🩺" />
-        <KpiCard label="Segment Campaign ROAS" value="5.8x" delta="+1.2x vs unsegmented" trend="up" subtext="Hyper-personalized recommendations" icon="🎯" />
+        <KpiCard label="Total Persona Segments" value="0" delta="--" trend="neutral" subtext="Dynamic daily cluster updates" icon="🧩" />
+        <KpiCard label="Multi-Pet Cluster Share" value="0.0%" delta="0.0%" trend="neutral" subtext="No households" icon="🐾" />
+        <KpiCard label="Senior & Chronic Care" value="0.0%" delta="0.0%" trend="neutral" subtext="No recurring spend" icon="🩺" />
+        <KpiCard label="Segment Campaign ROAS" value="0.0x" delta="--" trend="neutral" subtext="Hyper-personalized recommendations" icon="🎯" />
       </div>
 
       <div style={cardStyle}>
@@ -39,7 +39,7 @@ export default function CustomerSegmentation() {
               </tr>
             </thead>
             <tbody>
-              {segments.map((s, idx) => (
+              {segments.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No persona segment records found</td></tr>) : segments.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.name}</td>
                   <td style={{ padding: '10px', fontWeight: 600, color: '#2563eb' }}>{s.count.toLocaleString()}</td>

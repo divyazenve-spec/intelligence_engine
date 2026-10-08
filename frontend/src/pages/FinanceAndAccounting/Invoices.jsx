@@ -24,7 +24,7 @@ export default function Invoices() {
       title="GST Tax Invoices & Digital Billing Hub"
       subtitle="Compliant GST e-invoices, QR code payment links, automated PDF generation, and customer billing records"
       icon="🧾"
-      badge="e-Invoice Live (IRN)"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -46,12 +46,12 @@ export default function Invoices() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Invoices Issued (MTD)" value="1,842 Invoices" delta="+14.2% MoM" trend="up" subtext="100% GST Compliant" icon="🧾" />
-        <KpiCard label="Total Invoiced Value" value="₹0" delta="₹0 GST Output" trend="up" subtext="18% GST Applicable" icon="💰" />
-        <KpiCard label="Settled / Paid" value="₹0" delta="92.3% Realization" trend="up" subtext="Instant digital pay" icon="✅" />
-        <KpiCard label="Pending Settlement" value="₹0" delta="Corporate B2B terms" trend="up" subtext="Within credit window" icon="⏳" />
-        <KpiCard label="Overdue Invoices" value="₹0" delta="1 Institutional account" trend="down" subtext="Follow-up notice sent" icon="⚠️" />
-        <KpiCard label="e-Invoice IRN Portal Sync" value="0.0%" delta="Sub-second sync" trend="up" subtext="NIC e-Invoice portal" icon="📶" />
+        <KpiCard label="Invoices Issued (MTD)" value="0" delta="0.0%" trend="neutral" subtext="GST Compliant" icon="🧾" />
+        <KpiCard label="Total Invoiced Value" value="₹0" delta="₹0 GST Output" trend="neutral" subtext="Standard GST" icon="💰" />
+        <KpiCard label="Settled / Paid" value="₹0" delta="0.0%" trend="neutral" subtext="Instant digital pay" icon="✅" />
+        <KpiCard label="Pending Settlement" value="₹0" delta="Corporate B2B terms" trend="neutral" subtext="Within credit window" icon="⏳" />
+        <KpiCard label="Overdue Invoices" value="₹0" delta="--" trend="down" subtext="Follow-up notice sent" icon="⚠️" />
+        <KpiCard label="e-Invoice IRN Portal Sync" value="0.0%" delta="Sub-second sync" trend="neutral" subtext="NIC e-Invoice portal" icon="📶" />
       </div>
 
       <div style={{

@@ -105,11 +105,11 @@
   function renderDashboard() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Active Veterinary Doctors', '0', '0.0%', 'neutral', 'up', 'Across 6 clinic centers'),
-        kpiHtml('Monthly Patient Consults', '0', '0.0%', 'neutral', 'up', 'Avg 89 consults/doc'),
+        kpiHtml('Active Veterinary Doctors', '0', '0.0%', 'neutral', 'neutral', 'Across 0 clinic centers'),
+        kpiHtml('Monthly Patient Consults', '0', '0.0%', 'neutral', 'neutral', 'No consults recorded'),
         kpiHtml('Doctor Attributed Revenue', '0', '0.0%', 'neutral', 'up', 'Consults, meds & surgery'),
         kpiHtml('Doctor Commissions Paid', '0', '0.0%', 'neutral', 'up', 'Settled bi-weekly'),
-        kpiHtml('Avg. Patient Satisfaction', '4.92 / 5.0', '1,840 ratings', 'up', 'Top in feline & canine care', '⭐'),
+        kpiHtml('Avg. Patient Satisfaction', '0.0 / 5.0', '0 ratings', 'neutral', 'No ratings recorded', '⭐'),
         kpiHtml('Surgical Success Rate', '0', '0.0%', 'neutral', 'up', 'Zero cross-contamination'),
       '</div>',
 
@@ -169,7 +169,7 @@
     return [
       '<div class="zdoc-kpi-grid">',
         kpiHtml('Overall Quota Attainment', '0', '0.0%', 'neutral', 'up', 'All practitioners above goal'),
-        kpiHtml('Clinical Net Promoter Score', '0', '0.0%', 'neutral', 'up', 'Based on 1,420 pet reviews'),
+        kpiHtml('Clinical Net Promoter Score', '0', '0.0%', 'neutral', 'neutral', 'No reviews recorded'),
         kpiHtml('Avg. Consultation Wait Time', '0', '0.0%', 'neutral', 'up', 'Strict appointment pacing'),
         kpiHtml('Overall Surgical Success', '0', '0.0%', 'neutral', 'up', 'NABH protocol compliant'),
       '</div>',
@@ -228,8 +228,8 @@
   function renderOrders() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Physician Orders Raised', '1,480 Orders', '+15.2% MoM', 'up', 'Direct doctor requisitions', '📦'),
-        kpiHtml('Order Fulfillment Rate', '0', '0.0%', 'neutral', 'up', 'Under 12 mins at clinic'),
+        kpiHtml('Physician Orders Raised', '0', '0.0%', 'neutral', 'No requisitions raised', '📦'),
+        kpiHtml('Order Fulfillment Rate', '0.0%', '0.0%', 'neutral', 'neutral', 'No orders recorded'),
         kpiHtml('Order Value Generated', '0', '0.0%', 'neutral', 'up', 'Pharmacy attach value'),
         kpiHtml('Formulary Adherence', '0', '0.0%', 'neutral', 'up', 'NABH quality standards'),
       '</div>',
@@ -253,7 +253,7 @@
     return [
       '<div class="zdoc-kpi-grid">',
         kpiHtml('Total Commission Disbursed', '0', '0.0%', 'neutral', 'up', 'Bi-weekly direct transfer'),
-        kpiHtml('Avg. Physician Earning', '₹1.22 Lakh/mo', '+11.4% YoY', 'up', 'Excluding fixed retainers', '📈'),
+        kpiHtml('Avg. Physician Earning', '₹0', '0.0%', 'neutral', 'No earnings recorded', '📈'),
         kpiHtml('TDS Deducted (Sec 194J)', '₹0', '0.0%', 'neutral', 'Form 16A filed auto', '🏛️'),
         kpiHtml('Payment Reconciliation', '0', '0.0%', 'neutral', 'up', 'Automated audit'),
       '</div>',
@@ -276,10 +276,10 @@
   function renderActivity() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Doctors Currently On Duty', '18 Clinicians', 'Full evening coverage', 'up', 'Across all 6 hospitals', '👨‍⚕️'),
-        kpiHtml('Surgeries in Progress', '3 OTs Active', 'Indiranagar & Koramangala', 'up', 'All vitals normal', '🩺'),
-        kpiHtml('OPD Consults Today', '142 Completed', 'Avg 16 min/consult', 'up', 'Pacing on schedule', '📋'),
-        kpiHtml('Tele-Consult Queue', '2 Waiting', 'Under 4 min wait', 'up', 'Live mobile video vet', '📱'),
+        kpiHtml('Doctors Currently On Duty', '0', '--', 'neutral', 'No clinicians on duty', '👨‍⚕️'),
+        kpiHtml('Surgeries in Progress', '0', '--', 'neutral', 'No active surgeries', '🩺'),
+        kpiHtml('OPD Consults Today', '0', '--', 'neutral', 'No consults logged', '📋'),
+        kpiHtml('Tele-Consult Queue', '0', '--', 'neutral', 'No queue active', '📱'),
       '</div>',
       '<div class="zdoc-card">',
         '<div class="zdoc-card-head"><h3 class="zdoc-card-title">⚡ Live Physician Activity & Case Audit Stream</h3></div>',
@@ -300,9 +300,9 @@
   function renderNetwork() {
     return [
       '<div class="zdoc-kpi-grid">',
-        kpiHtml('Affiliated Hospital Hubs', '5 Centers', 'Bangalore Metro', 'up', 'Equipped with sterile OTs', '🏥'),
-        kpiHtml('Total Medical Staff', '46 Clinicians', '+6 Resident interns', 'up', '24 Senior Consultants', '👨‍⚕️'),
-        kpiHtml('Inter-Hospital Referrals', '184 Patients', 'Cross-center specialty', 'up', 'Seamless EHR transfers', '🔄'),
+        kpiHtml('Affiliated Hospital Hubs', '0', '--', 'neutral', 'No affiliated centers', '🏥'),
+        kpiHtml('Total Medical Staff', '0', '--', 'neutral', 'No medical staff', '👨‍⚕️'),
+        kpiHtml('Inter-Hospital Referrals', '0', '--', 'neutral', 'No referrals logged', '🔄'),
         kpiHtml('Network Bed Utilization', '0', '0.0%', 'neutral', 'up', 'Emergency surge ready'),
       '</div>',
       '<div class="zdoc-card">',

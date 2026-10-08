@@ -17,10 +17,10 @@ export default function CustomerLifetimeValue() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average Blended LTV" value="₹0" delta="+14.2% YoY" trend="up" subtext="Across 12,480 active accounts" icon="💎" />
-        <KpiCard label="Blended LTV : CAC Multiple" value="5.8x" delta="+0.8x vs FY25" trend="up" subtext="Payback period: 2.1 months" icon="📈" />
-        <KpiCard label="Average Customer Lifespan" value="26.4 Months" delta="+4.2 months YoY" trend="up" subtext="Increasing membership retention" icon="⏳" />
-        <KpiCard label="Cumulative Cohort GMV" value="₹0" delta="Historic realized value" trend="up" subtext="Since platform inception" icon="💰" />
+        <KpiCard label="Average Blended LTV" value="₹0" delta="0.0%" trend="neutral" subtext="No active accounts" icon="💎" />
+        <KpiCard label="Blended LTV : CAC Multiple" value="0.0x" delta="--" trend="neutral" subtext="Standard payback" icon="📈" />
+        <KpiCard label="Average Customer Lifespan" value="0 Months" delta="0.0%" trend="neutral" subtext="Increasing membership retention" icon="⏳" />
+        <KpiCard label="Cumulative Cohort GMV" value="₹0" delta="Historic realized value" trend="neutral" subtext="Since platform inception" icon="💰" />
       </div>
 
       <div style={cardStyle}>
@@ -39,7 +39,7 @@ export default function CustomerLifetimeValue() {
               </tr>
             </thead>
             <tbody>
-              {ltvSegments.map((s, idx) => (
+              {ltvSegments.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No LTV segment records found</td></tr>) : ltvSegments.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.segment}</td>
                   <td style={{ padding: '10px', fontWeight: 600 }}>{s.customers.toLocaleString()}</td>

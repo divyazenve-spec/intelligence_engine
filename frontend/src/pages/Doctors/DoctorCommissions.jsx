@@ -10,56 +10,56 @@ export default function DoctorCommissions() {
   return (
     <DashboardLayout
       category="Doctors"
-      subcategory="Physician Incentives & Payouts"
+      subcategory="Incentive Settlements"
       title="Doctor Commissions & Compensation Settlement"
-      subtitle="Bi-weekly professional fee disbursements, incentive slabs, surgical bonus tiers, and statutory TDS deduction ledgers"
+      subtitle="Bi-weekly incentive disbursements, surgical bonus slabs, consult rev-shares, and statutory TDS deduction ledgers"
       icon="💵"
-      badge="₹0 Settled MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Commission Disbursed" value="₹0" delta="100% on schedule" trend="up" subtext="Bi-weekly direct bank transfer" icon="💵" />
-        <KpiCard label="Avg. Physician Earning" value="₹0/mo" delta="+11.4% YoY" trend="up" subtext="Excluding fixed base retainers" icon="📈" />
-        <KpiCard label="TDS Deducted (Section 194J)" value="₹0" delta="10% statutory tax" trend="neutral" subtext="Form 16A filed automatically" icon="🏛️" />
-        <KpiCard label="Payment Reconciliation" value="0.0%" delta="Zero dispute log" trend="up" subtext="Automated ledger audit" icon="✅" />
+        <KpiCard label="Total Commission Disbursed" value="₹0" delta="--" trend="neutral" subtext="No commissions disbursed" icon="💵" />
+        <KpiCard label="Avg. Physician Earning" value="₹0" delta="0.0%" trend="neutral" subtext="No earnings recorded" icon="📈" />
+        <KpiCard label="TDS Deducted (Section 194J)" value="₹0" delta="0.0%" trend="neutral" subtext="No tax withheld" icon="🏛️" />
+        <KpiCard label="Payment Reconciliation" value="0.0%" delta="--" trend="neutral" subtext="No settlements logged" icon="✅" />
       </div>
 
       <div style={cardStyle}>
-        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>💵 Professional Fee Settlements & Remittance Register</h3>
+        <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>💵 Clinician Settlement Ledger & TDS Withholding</h3>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--border, #e2e8f0)', textAlign: 'left', color: 'var(--muted-foreground, #475569)' }}>
                 <th style={{ padding: '10px' }}>Settlement ID</th>
                 <th style={{ padding: '10px' }}>Doctor Name</th>
-                <th style={{ padding: '10px' }}>Specialty</th>
-                <th style={{ padding: '10px' }}>Gross Attributed</th>
-                <th style={{ padding: '10px' }}>Commission Slab</th>
-                <th style={{ padding: '10px' }}>Gross Comm.</th>
-                <th style={{ padding: '10px' }}>TDS (10%)</th>
-                <th style={{ padding: '10px' }}>Net Remitted</th>
-                <th style={{ padding: '10px' }}>Disbursal Date</th>
-                <th style={{ padding: '10px' }}>Status</th>
+                <th style={{ padding: '10px' }}>Department</th>
+                <th style={{ padding: '10px' }}>Total Clinical Billing</th>
+                <th style={{ padding: '10px' }}>Commission Rate</th>
+                <th style={{ padding: '10px' }}>Gross Incentive</th>
+                <th style={{ padding: '10px' }}>TDS Withheld (10%)</th>
+                <th style={{ padding: '10px' }}>Net Bank Payout</th>
               </tr>
             </thead>
             <tbody>
-              {settlements.map((s, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{s.id}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{s.doctor}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{s.spec}</td>
-                  <td style={{ padding: '10px' }}>{s.grossBilled}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{s.slab}</td>
-                  <td style={{ padding: '10px', fontWeight: 600 }}>{s.commTotal}</td>
-                  <td style={{ padding: '10px', color: '#b91c1c' }}>-{s.tds}</td>
-                  <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{s.netPay}</td>
-                  <td style={{ padding: '10px', color: '#64748b' }}>{s.payoutDate}</td>
-                  <td style={{ padding: '10px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, background: '#f0fdf4', color: '#16a34a' }}>
-                      {s.status}
-                    </span>
+              {settlements.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)' }}>
+                    No settlement records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                settlements.map((s, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '10px', fontFamily: 'monospace', fontWeight: 600 }}>{s.id}</td>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{s.doctor}</td>
+                    <td style={{ padding: '10px', color: '#64748b' }}>{s.spec}</td>
+                    <td style={{ padding: '10px' }}>{s.billed}</td>
+                    <td style={{ padding: '10px' }}>{s.rate}</td>
+                    <td style={{ padding: '10px' }}>{s.gross}</td>
+                    <td style={{ padding: '10px', color: '#dc2626' }}>{s.tds}</td>
+                    <td style={{ padding: '10px', fontWeight: 700, color: '#059669' }}>{s.net}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
