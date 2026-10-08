@@ -9,6 +9,7 @@ export default function DashboardLayout({
   badge,
   actions,
   noPadding,
+  hideHeader = false,
   children
 }) {
   const containerPadding = noPadding ? 0 : '24px 28px 48px';
@@ -25,15 +26,16 @@ export default function DashboardLayout({
       fontFamily: 'var(--font-sans, "Manrope", sans-serif)'
     }}>
       {/* Header section */}
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        gap: '16px',
-        borderBottom: '1px solid var(--border, #e2e8f0)',
-        paddingBottom: '16px'
-      }}>
+      {!hideHeader && (
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'flex-start',
+          justifyContent: 'space-between',
+          gap: '16px',
+          borderBottom: '1px solid var(--border, #e2e8f0)',
+          paddingBottom: '16px'
+        }}>
         <div>
           <div style={{
             display: 'flex',
@@ -91,6 +93,7 @@ export default function DashboardLayout({
           </div>
         )}
       </div>
+      )}
 
       {/* Main Content Area */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

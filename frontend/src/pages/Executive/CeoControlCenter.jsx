@@ -29,6 +29,7 @@ export default function CeoControlCenter() {
       subtitle="Strategic enterprise OKRs, multi-entity performance pacing, capital allocation decisions, and risk governance sentinel"
       icon="👔"
       badge="Strategic Command"
+      hideHeader
     >
       {/* Top Executive Cockpit Vitals */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px' }}>

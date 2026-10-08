@@ -21,6 +21,7 @@ export default function KpiDashboard() {
       subtitle="Strategic performance indicators across financial growth, operational velocity, clinical care, and customer satisfaction"
       icon="📊"
       badge="Scorecard Standard"
+      hideHeader
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Overall Scorecard Health" value="0.0%" delta="0 of 0 Met" trend="neutral" subtext="No active metrics" icon="✅" />

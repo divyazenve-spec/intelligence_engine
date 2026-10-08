@@ -64,20 +64,16 @@ body.zexec-locked {
   background: #94a3b8;
 }
 
-/* Header Area */
-.zexec-head {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 18px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+/* Header Area (Removed) */
+.zexec-head,
+.zexec-head-left,
+.zexec-title-row,
+.zexec-title,
+.zexec-live-badge,
+.zexec-pulse-dot,
+.zexec-sub,
+.zexec-head-actions {
+  display: none !important;
 }
 
 .zexec-head-left {
@@ -176,13 +172,18 @@ body.zexec-locked {
 
 /* Tabs Bar */
 .zexec-tabs-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
+  align-items: center;
   gap: 6px;
   padding: 10px 28px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   overflow-x: auto;
   white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
 .zexec-tab {

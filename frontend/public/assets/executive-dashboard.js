@@ -18,10 +18,10 @@
   }
 
   var TABS = [
-    { id: 'dashboard',   label: '← Executive Dashboard (Home)', icon: '🏛️', hash: '#overview', badge: '', title: 'Executive Control Center — Zenve BI', sub: 'Return to original home dashboard given at first' },
-    { id: 'ceo-control', label: 'CEO Control Center',  icon: '👔', hash: '#ceo-control-center',   badge: '',   title: 'CEO Strategic Command & Governance', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
+    { id: 'dashboard',   label: 'Executive Dashboard', icon: '🏛️', hash: '#executive-dashboard', badge: '', title: 'Executive Control Center — Zenve BI', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
+    { id: 'ceo-control', label: 'CEO Control Center',  icon: '👔', hash: '#ceo-control-center',   badge: '', title: 'CEO Strategic Command & Governance', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
     { id: 'overview',    label: 'Business Overview',   icon: '📊', hash: '#business-overview',    badge: '', title: 'Business Overview & Segment Economics', sub: 'Multi-entity profit margins, geographic revenue distribution, and unit economics' },
-    { id: 'kpi',         label: 'KPI Dashboard',       icon: '🎯', hash: '#kpi-dashboard',        badge: '',   title: 'Master Enterprise KPI Scorecard', sub: 'Balanced scorecard covering financial, clinical quality, customer sentiment, and logistics' }
+    { id: 'kpi',         label: 'KPI Dashboard',       icon: '🎯', hash: '#kpi-dashboard',        badge: '', title: 'Master Enterprise KPI Scorecard', sub: 'Balanced scorecard covering financial, clinical quality, customer sentiment, and logistics' }
   ];
 
   var S = {
@@ -65,10 +65,7 @@
     if (h === 'ceo-control-center' || h === 'ceo-control' || h === 'ceo' || h.indexOf('ceo') >= 0) return 'ceo-control';
     if (h === 'business-overview' || h === 'business') return 'overview';
     if (h === 'kpi-dashboard' || h === 'kpi' || h === 'kpis') return 'kpi';
-    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard' || h === 'overview') {
-      redirectToHomeDashboard();
-      return null;
-    }
+    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard') return 'dashboard';
     return null;
   }
 
@@ -80,7 +77,7 @@
     if (raw.indexOf('ceo control center') >= 0 || raw.indexOf('ceo control') >= 0 || raw === 'ceo') return 'ceo-control';
     if (raw.indexOf('business overview') >= 0) return 'overview';
     if (raw.indexOf('kpi dashboard') >= 0 || raw === 'kpis') return 'kpi';
-    if (raw === 'executive dashboard' || raw === 'executive' || raw === 'home dashboard' || raw === 'home') return 'home';
+    if (raw === 'executive dashboard' || raw === 'executive') return 'dashboard';
     return null;
   }
 
@@ -382,7 +379,7 @@
     for (var i = 0; i < TABS.length; i++) {
       if (TABS[i].id === S.tab) return TABS[i];
     }
-    return TABS[1];
+    return TABS[0];
   }
 
   function renderTabsBar() {
@@ -392,7 +389,7 @@
         '<button type="button" class="zexec-tab ' + (isActive ? 'active' : '') + '" data-tab="' + t.id + '">',
           '<span>' + t.icon + '</span>',
           '<span>' + esc(t.label) + '</span>',
-          '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>',
+          (t.badge ? '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>' : ''),
         '</button>'
       ].join('');
     }).join('');
@@ -410,25 +407,13 @@
 
   function render() {
     if (!root) return;
-    var current = getActiveTabConfig();
 
     root.innerHTML = [
-      '<header class="zexec-head">',
-        '<div class="zexec-head-left">',
-          '<div class="zexec-title-row">',
-            '<h1 class="zexec-title">' + esc(current.title) + '</h1>',
-            '<span class="zexec-live-badge"><span class="zexec-pulse-dot"></span> Live Enterprise</span>',
-          '</div>',
-          '<p class="zexec-sub">' + esc(current.sub) + '</p>',
-        '</div>',
-        '<div class="zexec-head-actions">',
-          '<button class="zexec-btn" onclick="alert(\'Syncing enterprise financials with ERP ledgers...\')">🔄 Sync Ledgers</button>',
-          '<button class="zexec-btn primary" onclick="alert(\'Executive Board Brief downloaded (PDF).\')">📊 Download Board Brief</button>',
-          '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard">✕</button>',
-        '</div>',
-      '</header>',
       '<nav class="zexec-tabs-bar">',
         renderTabsBar(),
+        '<div style="margin-left:auto;display:flex;align-items:center;gap:8px;">',
+          '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard" style="padding:6px 12px;font-size:12px;">✕ Close</button>',
+        '</div>',
       '</nav>',
       '<div class="zexec-body">',
         renderBody(),
@@ -469,7 +454,7 @@
   }
 
   function switchTab(tid) {
-    if (tid === 'dashboard' || tid === 'home') {
+    if (tid === 'home') {
       redirectToHomeDashboard();
       return;
     }
@@ -487,17 +472,13 @@
   }
 
   function open(tabId) {
-    if (tabId === 'dashboard' || tabId === 'home') {
-      redirectToHomeDashboard();
-      return;
-    }
     if (!root) {
       root = document.createElement('div');
       root.id = 'zexec-root';
       document.body.appendChild(root);
     }
-    if (tabId) S.tab = tabId;
-    else if (!S.tab || S.tab === 'dashboard' || S.tab === 'home') S.tab = 'ceo-control';
+    if (tabId && tabId !== 'home') S.tab = tabId;
+    else if (!S.tab) S.tab = 'dashboard';
     S.open = true;
     root.style.display = 'block';
     document.documentElement.classList.add('zexec-locked');
@@ -515,7 +496,7 @@
 
   function onHashChange() {
     var h = (window.location.hash || '').toLowerCase();
-    if (h === '#executive-dashboard' || h === '#executive' || h === '#exec-dashboard' || h === '#overview' || h === '#home') {
+    if (h === '#overview' || h === '#home') {
       redirectToHomeDashboard();
       return;
     }
@@ -549,11 +530,7 @@
       if (isSidebar) {
         var txt = el.textContent || '';
         var t2 = tabFromText(txt);
-        if (t2 === 'home') {
-          // Executive Dashboard subdomain clicked: redirect directly to original home dashboard given at first!
-          redirectToHomeDashboard();
-          return;
-        } else if (t2) {
+        if (t2) {
           e.preventDefault();
           e.stopPropagation();
           open(t2);

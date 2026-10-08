@@ -21,6 +21,7 @@ export default function ExecutiveDashboard() {
       subtitle="Complete private business intelligence for healthier, happier pets across all healthcare and commerce operations"
       icon="🏛️"
       badge="All Systems Live"
+      hideHeader
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
