@@ -556,7 +556,6 @@
         '</div>',
         '<div class="zc360-head-actions">',
           '<button class="zc360-btn primary" onclick="ZenveCustomersDashboard.showOnboardModal()">+ Add Customer</button>',
-          '<button class="zc360-btn" onclick="ZenveCustomersDashboard.close()">✕ Close</button>',
         '</div>',
       '</header>',
 

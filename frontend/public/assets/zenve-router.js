@@ -528,31 +528,8 @@
 
   function ensureReturnButton() {
     var btn = document.getElementById('zenve-global-return-btn');
-    if (!btn) {
-      btn = document.createElement('button');
-      btn.id = 'zenve-global-return-btn';
-      btn.type = 'button';
-      btn.innerHTML = '<svg style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Executive Center';
-      btn.style.cssText = 'position:fixed;bottom:24px;left:240px;z-index:9999;display:none;align-items:center;padding:8px 16px;background:rgba(15,23,42,0.88);color:#38bdf8;border:1px solid rgba(56,189,248,0.3);border-radius:9999px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;backdrop-filter:blur(12px);box-shadow:0 10px 25px -5px rgba(0,0,0,0.5),0 0 15px rgba(56,189,248,0.15);transition:all 0.2s;';
-      btn.onmouseenter = function () {
-        btn.style.background = 'rgba(56,189,248,0.2)';
-        btn.style.borderColor = 'rgba(56,189,248,0.6)';
-        btn.style.transform = 'translateY(-2px)';
-      };
-      btn.onmouseleave = function () {
-        btn.style.background = 'rgba(15,23,42,0.88)';
-        btn.style.borderColor = 'rgba(56,189,248,0.3)';
-        btn.style.transform = 'translateY(0)';
-      };
-      btn.onclick = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeAllDashboards();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      };
-      document.body.appendChild(btn);
-    }
-    return btn;
+    if (btn) btn.remove();
+    return null;
   }
 
   function closeAllDashboards(exceptRootId) {

@@ -43,7 +43,6 @@
       '  </div>',
       '  <div style="display:flex;align-items:center;gap:10px;">',
       '    <span class="zhr-badge zhr-badge-success">● ₹19.66 Cr Annualized CTC</span>',
-      '    <button class="zhr-btn" id="zhr-close-btn">✕ Close</button>',
       '  </div>',
       '</div>',
       '<div class="zhr-body">',
@@ -66,8 +65,6 @@
       '</div>'
     ].join('');
 
-    var closeBtn = root.querySelector('#zhr-close-btn');
-    if (closeBtn) closeBtn.onclick = close;
   }
 
   function open() {

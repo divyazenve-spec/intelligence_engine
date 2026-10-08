@@ -267,8 +267,6 @@
             '<button class="' + (S.scenario === 'base' ? 'on' : '') + '" data-s="base">📊 Base</button>',
             '<button class="' + (S.scenario === 'bull' ? 'on' : '') + '" data-s="bull">🚀 Bull</button>',
           '</div>',
-
-          '<button class="zp-btn" id="zfc-close">✕ Close</button>',
         '</div>',
       '</div>',
 
@@ -343,8 +341,6 @@
       var btn = e.target.closest('button[data-s]');
       if (btn) { S.scenario = btn.dataset.s; render(); }
     });
-    var closeBtn = root.querySelector('#zfc-close');
-    if (closeBtn) closeBtn.addEventListener('click', close);
   }
 
   function kpi(label, value, delta, trend) {

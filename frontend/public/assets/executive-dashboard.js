@@ -386,7 +386,16 @@
   }
 
   function renderTabsBar() {
-    return '';
+    return TABS.map(function (t) {
+      var isActive = t.id === S.tab;
+      return [
+        '<button type="button" class="zexec-tab ' + (isActive ? 'active' : '') + '" data-tab="' + t.id + '">',
+          '<span>' + t.icon + '</span>',
+          '<span>' + esc(t.label) + '</span>',
+          '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>',
+        '</button>'
+      ].join('');
+    }).join('');
   }
 
   function renderBody() {
@@ -415,9 +424,11 @@
         '<div class="zexec-head-actions">',
           '<button class="zexec-btn" onclick="alert(\'Syncing enterprise financials with ERP ledgers...\')">🔄 Sync Ledgers</button>',
           '<button class="zexec-btn primary" onclick="alert(\'Executive Board Brief downloaded (PDF).\')">📊 Download Board Brief</button>',
-          '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard">✕</button>',
         '</div>',
       '</header>',
+      '<nav class="zexec-tabs-bar">',
+        renderTabsBar(),
+      '</nav>',
       '<div class="zexec-body">',
         renderBody(),
       '</div>'

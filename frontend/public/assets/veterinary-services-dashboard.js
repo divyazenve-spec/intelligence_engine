@@ -122,7 +122,6 @@
       '    <button type="button" class="zvs-btn zvs-btn-secondary" id="zvs-export-btn">📊 Export CSV</button>',
       '    <button type="button" class="zvs-btn zvs-btn-secondary" id="zvs-order-lab-btn">🔬 Order Diagnostic</button>',
       '    <button type="button" class="zvs-btn zvs-btn-primary" id="zvs-book-apt-btn">+ Book Appointment</button>',
-      '    <button type="button" class="zvs-btn-close" id="zvs-close-btn" title="Close Dashboard (Esc)">✕</button>',
       '  </div>',
       '</header>',
       '<nav class="zvs-nav-bar">' + chipsHtml + '</nav>',
@@ -141,9 +140,6 @@
         switchTab(t);
       };
     });
-
-    var closeBtn = root.querySelector('#zvs-close-btn');
-    if (closeBtn) closeBtn.onclick = function () { close(); };
 
     var expBtn = root.querySelector('#zvs-export-btn');
     if (expBtn) expBtn.onclick = function () { exportTabCSV(); };

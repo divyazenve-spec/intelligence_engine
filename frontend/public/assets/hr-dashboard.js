@@ -156,7 +156,6 @@
       '    <button type="button" class="zhr-btn zhr-btn-secondary" id="zhr-sync-btn">',
       '      <span>🔄</span> Sync HRIS',
       '    </button>',
-      '    <button type="button" class="zhr-close-btn" id="zhr-close-btn" title="Close Dashboard">✕</button>',
       '  </div>',
       '</header>',
       '<div class="zhr-chip-bar">' + chipsHtml + '</div>',

@@ -281,7 +281,6 @@
           '<button type="button" class="zset-btn zset-btn-primary" id="zset-save-all-btn">',
             '<span>💾</span> Save Changes',
           '</button>',
-          '<button type="button" class="zset-close-btn" id="zset-close-btn" title="Close Settings (Esc)">✕</button>',
         '</div>',
       '</header>',
 
@@ -1109,10 +1108,6 @@
         });
       };
     }
-
-    // 3. Close Button
-    var closeBtn = root.querySelector('#zset-close-btn');
-    if (closeBtn) closeBtn.onclick = close;
 
     // 4. Tab Specific Event Handlers
     wireTabSpecificEvents();

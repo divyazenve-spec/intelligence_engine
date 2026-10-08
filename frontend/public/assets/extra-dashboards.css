@@ -228,3 +228,36 @@
   .zp-kpis { grid-template-columns: 1fr 1fr; }
   .zp-head  { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── Universal Dashboard Exit / Close Button Removal ─────────────── */
+#zenve-global-return-btn,
+.zvs-btn-close:not(#vm-close):not(#lm-close),
+.zsys-btn-close,
+.zset-close-btn:not(#m-close-btn),
+.zrep-btn-close:not(#zrep-modal-close),
+.zpet-btn-close:not([onclick*="zpet-add-modal"]),
+.zlog-btn-close:not(#m-close),
+.zmkt-btn-icon#zmkt-close-btn,
+.zhr-close-btn#zhr-close-btn,
+#zhr-close-btn,
+#zexec-close-btn,
+.zaud-btn-close,
+.zalt-close-btn:not(#zalt-modal-close),
+#zai-close-btn,
+#zph-close-btn,
+#zf-close,
+#zt-close,
+#zfc-close,
+button[onclick*="ZenveFinanceDashboard.close()"],
+button[onclick*="ZenveImportExportDashboard.close()"],
+button[onclick*="ZenveSubscriptionsDashboard.close()"],
+button[onclick*="ZenveVendorsDashboard.close()"],
+button[onclick*="ZenveB2BDashboard.close()"],
+button[onclick*="ZenveFashionDashboard.close()"],
+button[onclick*="ZenveDoctorsDashboard.close()"],
+button[onclick*="ZenveClinicsDashboard.close()"],
+button[onclick*="ZenveCustomersDashboard.close()"],
+button[onclick*="ZenvePetsDashboard.close()"] {
+  display: none !important;
+}
+

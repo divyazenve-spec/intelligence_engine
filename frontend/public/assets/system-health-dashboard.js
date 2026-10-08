@@ -145,7 +145,6 @@
         '<div class="zsys-header-actions">',
           '<button class="zsys-btn zsys-btn-secondary" id="zsys-btn-diag">⚡ Run Diagnostics</button>',
           '<button class="zsys-btn zsys-btn-secondary" id="zsys-btn-export">📥 Export Audit</button>',
-          '<button class="zsys-btn zsys-btn-close" id="zsys-btn-close" title="Close Dashboard">✕</button>',
         '</div>',
       '</div>'
     ].join('');
@@ -542,9 +541,6 @@
     root.innerHTML = renderHeader() + renderTabsBar() + '<div class="zsys-body">' + content + '</div>';
 
     // Wire up events
-    var closeBtn = document.getElementById('zsys-btn-close');
-    if (closeBtn) closeBtn.onclick = close;
-
     var diagBtn = document.getElementById('zsys-btn-diag');
     if (diagBtn) {
       diagBtn.onclick = function () {

@@ -689,7 +689,6 @@
         '<div class="zfa-head-actions">',
           '<button class="zfa-btn" onclick="alert(\'Refreshing live treasury balances and general ledger accounts...\')">🔄 Refresh Ledgers</button>',
           '<button class="zfa-btn primary zfa-context-action">+ Add Transaction</button>',
-          '<button class="zfa-btn danger" onclick="ZenveFinanceDashboard.close()">✕ Exit Dashboard</button>',
         '</div>',
       '</header>',
       '<nav class="zfa-tabs-bar" aria-label="Finance & Accounting Subdomains"></nav>',

@@ -210,9 +210,6 @@
           '<h1 class="zp-title">🎯 Targets & Achievement</h1>',
           '<p class="zp-sub">' + a.curMonth + ' Performance · Live data</p>',
         '</div>',
-        '<div class="zp-head-actions">',
-          '<button class="zp-btn" id="zt-close">✕ Close</button>',
-        '</div>',
       '</div>',
 
       '<div class="zp-body">',
@@ -266,9 +263,6 @@
 
       '</div>'
     ].join('');
-
-    var closeBtn = root.querySelector('#zt-close');
-    if (closeBtn) closeBtn.addEventListener('click', close);
   }
 
   function kpiRing(label, value, sub, pctVal, color) {
