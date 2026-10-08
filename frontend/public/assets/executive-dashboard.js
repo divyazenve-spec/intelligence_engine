@@ -383,16 +383,7 @@
   }
 
   function renderTabsBar() {
-    return TABS.map(function (t) {
-      var isActive = t.id === S.tab;
-      return [
-        '<button type="button" class="zexec-tab ' + (isActive ? 'active' : '') + '" data-tab="' + t.id + '">',
-          '<span>' + t.icon + '</span>',
-          '<span>' + esc(t.label) + '</span>',
-          (t.badge ? '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>' : ''),
-        '</button>'
-      ].join('');
-    }).join('');
+    return '';
   }
 
   function renderBody() {
@@ -409,12 +400,7 @@
     if (!root) return;
 
     root.innerHTML = [
-      '<nav class="zexec-tabs-bar">',
-        renderTabsBar(),
-        '<div style="margin-left:auto;display:flex;align-items:center;gap:8px;">',
-          '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard" style="padding:6px 12px;font-size:12px;">✕ Close</button>',
-        '</div>',
-      '</nav>',
+      '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard" style="position:fixed;top:16px;right:24px;z-index:100;padding:6px 14px;font-size:12px;background:#ffffff;border:1px solid #cbd5e1;box-shadow:0 1px 4px rgba(0,0,0,0.06);cursor:pointer;">✕ Close</button>',
       '<div class="zexec-body">',
         renderBody(),
       '</div>'
