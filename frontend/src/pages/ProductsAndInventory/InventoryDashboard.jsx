@@ -60,7 +60,7 @@ export default function InventoryDashboard() {
                   }}>{item.status}</span>
                 </td>
               </tr>
-            )))}
+            ))}
           </tbody>
         </table>
       </div>
