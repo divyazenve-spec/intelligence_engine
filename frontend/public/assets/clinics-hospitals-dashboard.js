@@ -32,15 +32,15 @@
   /* ── 10 Tabs Definition with Explicit Titles & Subtitles ────────── */
   var TABS = [
     { id: 'dashboard',   label: 'Clinics Dashboard',   icon: '🏥', hash: '#clinics-dashboard',   badge: 'Command Center', title: 'Clinics Dashboard', sub: 'Veterinary Hospitals & Clinics Command Center — Healthcare delivery, inpatient census, and OT utilization' },
-    { id: 'all-clinics', label: 'All Clinics',         icon: '🏨', hash: '#all-clinics',         badge: '11 Outpatient', title: 'All Clinics', sub: 'Outpatient Care Directory — Daycare suites, lead veterinarians, diagnostics tier, and daily footfall' },
+    { id: 'all-clinics', label: 'All Clinics',         icon: '🏨', hash: '#all-clinics',         badge: '', title: 'All Clinics', sub: 'Outpatient Care Directory — Daycare suites, lead veterinarians, diagnostics tier, and daily footfall' },
     { id: 'hospitals',   label: 'Hospitals',           icon: '🚨', hash: '#hospitals',           badge: '', title: 'Hospitals', sub: '24x7 Tertiary Care Referral Centers — Modular OTs, ICU pods, isolation bays, blood bank, and imaging' },
-    { id: 'performance', label: 'Clinic Performance',  icon: '📊', hash: '#clinic-performance',  badge: '99.2% Success', title: 'Clinic Performance', sub: 'Clinical Quality & Operational Benchmarking — OPD throughput, wait times, bed turnaround, and CSAT' },
+    { id: 'performance', label: 'Clinic Performance',  icon: '📊', hash: '#clinic-performance',  badge: '', title: 'Clinic Performance', sub: 'Clinical Quality & Operational Benchmarking — OPD throughput, wait times, bed turnaround, and CSAT' },
     { id: 'revenue',     label: 'Clinic Revenue',      icon: '💎', hash: '#clinic-revenue',      badge: '', title: 'Clinic Revenue', sub: 'Healthcare Financials & Department Billings — Departmental billing realization, surgical monetization, and diagnostics' },
-    { id: 'orders',      label: 'Clinic Orders',       icon: '📦', hash: '#clinic-orders',       badge: '16 Requisitions', title: 'Clinic Orders', sub: 'Clinical Supply Requisitions & Purchase Orders — Titanium implants, inhalation gases, and suture packs' },
-    { id: 'patients',    label: 'Clinic Patients',     icon: '🐾', hash: '#clinic-patients',     badge: '86 Inpatients', title: 'Clinic Patients', sub: 'Inpatient Ward Census & Telemetry Roster — Admitted pets, ICU monitoring, surgical recovery, and vitals' },
-    { id: 'doctors',     label: 'Clinic Doctors',      icon: '👨‍⚕️', hash: '#clinic-doctors',      badge: '48 Clinicians', title: 'Clinic Doctors', sub: 'Veterinary Clinicians, Surgeons, Specialists & Rosters — 48 registered clinicians, VCI licenses, and shifts' },
-    { id: 'commissions', label: 'Clinic Commissions',  icon: '🤝', hash: '#clinic-commissions',  badge: '₹8.42 L Payouts', title: 'Clinic Commissions', sub: 'B2B Partner Clinic Referrals & Specialist Settlements — 10% statutory TDS, gross commission, and disbursement' },
-    { id: 'network',     label: 'Clinic Network',      icon: '🌐', hash: '#clinic-network',      badge: '5 Metros / 8 AMBs', title: 'Clinic Network', sub: 'Regional Hub-and-Spoke Infrastructure — 5 Metro clusters, 8 ALS veterinary ambulances, and expansion pipeline' }
+    { id: 'orders',      label: 'Clinic Orders',       icon: '📦', hash: '#clinic-orders',       badge: '', title: 'Clinic Orders', sub: 'Clinical Supply Requisitions & Purchase Orders — Titanium implants, inhalation gases, and suture packs' },
+    { id: 'patients',    label: 'Clinic Patients',     icon: '🐾', hash: '#clinic-patients',     badge: '', title: 'Clinic Patients', sub: 'Inpatient Ward Census & Telemetry Roster — Admitted pets, ICU monitoring, surgical recovery, and vitals' },
+    { id: 'doctors',     label: 'Clinic Doctors',      icon: '👨‍⚕️', hash: '#clinic-doctors',      badge: '', title: 'Clinic Doctors', sub: 'Veterinary Clinicians, Surgeons, Specialists & Rosters — Registered clinicians, VCI licenses, and shifts' },
+    { id: 'commissions', label: 'Clinic Commissions',  icon: '🤝', hash: '#clinic-commissions',  badge: '', title: 'Clinic Commissions', sub: 'B2B Partner Clinic Referrals & Specialist Settlements — 10% statutory TDS, gross commission, and disbursement' },
+    { id: 'network',     label: 'Clinic Network',      icon: '🌐', hash: '#clinic-network',      badge: '', title: 'Clinic Network', sub: 'Regional Hub-and-Spoke Infrastructure — Metro clusters, ALS veterinary ambulances, and expansion pipeline' }
   ];
 
   /* ── Datasets ─────────────────────────────────────────────────── */
@@ -489,7 +489,7 @@
             '<p class="zch-card-sub">State Veterinary Council (VCI) registrations, hospital assignments, shift rosters, and surgical performance</p>',
           '</div>',
           '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">',
-            '<button class="zch-btn" onclick="alert(\'Exporting weekly doctor duty roster across all 14 hospitals...\')">📅 Export Shift Schedule</button>',
+            '<button class="zch-btn" onclick="alert(\'Exporting weekly doctor duty roster...\')">📅 Export Shift Schedule</button>',
             '<button class="zch-btn primary" onclick="ZenveClinicsDashboard.showAddDoctorModal()">+ Register New Doctor</button>',
           '</div>',
         '</div>',
@@ -533,34 +533,36 @@
               '</tr>',
             '</thead>',
             '<tbody>',
-              filtered.map(function (d) {
-                var statusClass = d.status === 'On Duty' ? 'green' : d.status === 'In Surgery' ? 'red' : d.status === 'On Call' ? 'amber' : 'purple';
-                return '<tr>' +
-                  '<td>' +
-                    '<div style="display:flex;align-items:center;gap:10px;">' +
-                      '<div style="width:32px;height:32px;border-radius:50%;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">' + esc(d.name.split(' ').map(function(n){ return n[0]; }).join('').replace('D', '')) + '</div>' +
-                      '<div>' +
-                        '<b style="color:#fff;">' + esc(d.name) + '</b>' +
-                        '<div style="font-family:IBM Plex Mono,monospace;font-size:10px;color:#38bdf8;">' + esc(d.id) + '</div>' +
-                      '</div>' +
-                    '</div>' +
-                  '</td>' +
-                  '<td>' +
-                    '<div style="font-weight:600;color:#60a5fa;">' + esc(d.spec) + '</div>' +
-                    '<div style="font-size:11px;color:#94a3b8;">' + esc(d.qual) + '</div>' +
-                  '</td>' +
-                  '<td style="font-family:IBM Plex Mono,monospace;color:#c084fc;font-weight:600;">' + esc(d.vci) + '</td>' +
-                  '<td><span class="zch-badge blue">' + esc(d.base) + '</span></td>' +
-                  '<td><span style="color:#cbd5e1;font-size:11px;">' + esc(d.shift) + '</span></td>' +
-                  '<td style="text-align:right;font-family:IBM Plex Mono,monospace;font-weight:600;">' + esc(d.consults) + '</td>' +
-                  '<td style="text-align:right;font-family:IBM Plex Mono,monospace;font-weight:700;color:#10b981;">' + esc(d.surgeries) + '</td>' +
-                  '<td style="text-align:right;color:#fbbf24;font-weight:700;">' + esc(d.csat) + '</td>' +
-                  '<td><span class="zch-badge ' + statusClass + '">' + esc(d.status) + '</span></td>' +
-                  '<td style="text-align:center;">' +
-                    '<button class="zch-btn" onclick="ZenveClinicsDashboard.showDoctorBioModal(\'' + esc(d.id) + '\')">View Bio</button>' +
-                  '</td>' +
-                '</tr>';
-              }).join(''),
+              filtered.length === 0
+                ? '<tr><td colspan="10" style="text-align:center;padding:32px;color:#94a3b8;">No registered doctor records found</td></tr>'
+                : filtered.map(function (d) {
+                    var statusClass = d.status === 'On Duty' ? 'green' : d.status === 'In Surgery' ? 'red' : d.status === 'On Call' ? 'amber' : 'purple';
+                    return '<tr>' +
+                      '<td>' +
+                        '<div style="display:flex;align-items:center;gap:10px;">' +
+                          '<div style="width:32px;height:32px;border-radius:50%;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">' + esc(d.name.split(' ').map(function(n){ return n[0]; }).join('').replace('D', '')) + '</div>' +
+                          '<div>' +
+                            '<b style="color:#fff;">' + esc(d.name) + '</b>' +
+                            '<div style="font-family:IBM Plex Mono,monospace;font-size:10px;color:#38bdf8;">' + esc(d.id) + '</div>' +
+                          '</div>' +
+                        '</div>' +
+                      '</td>' +
+                      '<td>' +
+                        '<div style="font-weight:600;color:#60a5fa;">' + esc(d.spec) + '</div>' +
+                        '<div style="font-size:11px;color:#94a3b8;">' + esc(d.qual) + '</div>' +
+                      '</td>' +
+                      '<td style="font-family:IBM Plex Mono,monospace;color:#c084fc;font-weight:600;">' + esc(d.vci) + '</td>' +
+                      '<td><span class="zch-badge blue">' + esc(d.base) + '</span></td>' +
+                      '<td><span style="color:#cbd5e1;font-size:11px;">' + esc(d.shift) + '</span></td>' +
+                      '<td style="text-align:right;font-family:IBM Plex Mono,monospace;font-weight:600;">' + esc(d.consults) + '</td>' +
+                      '<td style="text-align:right;font-family:IBM Plex Mono,monospace;font-weight:700;color:#10b981;">' + esc(d.surgeries) + '</td>' +
+                      '<td style="text-align:right;color:#fbbf24;font-weight:700;">' + esc(d.csat) + '</td>' +
+                      '<td><span class="zch-badge ' + statusClass + '">' + esc(d.status) + '</span></td>' +
+                      '<td style="text-align:center;">' +
+                        '<button class="zch-btn" onclick="ZenveClinicsDashboard.showDoctorBioModal(\'' + esc(d.id) + '\')">View Bio</button>' +
+                      '</td>' +
+                    '</tr>';
+                  }).join(''),
             '</tbody>',
           '</table>',
         '</div>',
@@ -571,41 +573,30 @@
         '<div class="zch-card">',
           '<div class="zch-card-head">',
             '<div><h3 class="zch-card-title">🚨 Emergency & 24x7 Night Trauma Roster</h3><p class="zch-card-sub">Immediate on-call coverage for critical emergency surgical interventions</p></div>',
-            '<span class="zch-badge red">24x7 ACTIVE</span>',
+            '<span class="zch-badge">INACTIVE</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:10px;">',
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">',
-              '<div><b style="color:#fff;">Dr. Vikram Malhotra</b><div style="font-size:11px;color:#94a3b8;">Koramangala 24x7 Trauma • Ext 102</div></div>',
-              '<span class="zch-badge green">On Station</span>',
-            '</div>',
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">',
-              '<div><b style="color:#fff;">Dr. Rahul Mehta (Neurosurgeon)</b><div style="font-size:11px;color:#94a3b8;">Bandra Specialty • Priority Dispatch</div></div>',
-              '<span class="zch-badge red">In OT (Case 3)</span>',
-            '</div>',
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;">',
-              '<div><b style="color:#fff;">Dr. Aisha Khan (Oncology & Critical)</b><div style="font-size:11px;color:#94a3b8;">Okhla Hospital • Tele-Triage Desk</div></div>',
-              '<span class="zch-badge green">On Duty</span>',
-            '</div>',
+            '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No active emergency doctor assignments</div>',
           '</div>',
         '</div>',
 
         '<div class="zch-card">',
           '<div class="zch-card-head">',
             '<div><h3 class="zch-card-title">📚 Continuing Veterinary Medical Education (CME)</h3><p class="zch-card-sub">Clinical accreditation status, surgical simulations, and peer case audits</p></div>',
-            '<span class="zch-badge blue">100% COMPLIANT</span>',
+            '<span class="zch-badge">0% COMPLIANT</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:12px;padding:4px 0;">',
             '<div>',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Small Animal Arthroscopy & TPLO Hands-on</span><strong style="color:#38bdf8;">14/14 Surgeons Certified</strong></div>',
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:100%;background:#38bdf8;"></div></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Small Animal Arthroscopy & TPLO Hands-on</span><strong style="color:#38bdf8;">0/0 Surgeons Certified</strong></div>',
+              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:0%;background:#38bdf8;"></div></div>',
             '</div>',
             '<div>',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Feline Friendly Clinical Handling Protocol</span><strong style="color:#34d399;">48/48 Clinicians Completed</strong></div>',
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:100%;background:#34d399;"></div></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Feline Friendly Clinical Handling Protocol</span><strong style="color:#34d399;">0/0 Clinicians Completed</strong></div>',
+              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:0%;background:#34d399;"></div></div>',
             '</div>',
             '<div>',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Antimicrobial Stewardship & Infection Control</span><strong style="color:#c084fc;">Annual Audit Score: 99.2%</strong></div>',
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:99.2%;background:#c084fc;"></div></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Antimicrobial Stewardship & Infection Control</span><strong style="color:#c084fc;">Annual Audit Score: 0.0%</strong></div>',
+              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:0%;background:#c084fc;"></div></div>',
             '</div>',
           '</div>',
         '</div>',
@@ -672,21 +663,7 @@
             '<span class="zch-badge">0% TELEMED</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:12px;">',
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">' +
-              '<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><b style="color:#38bdf8;">Southern Hub: Koramangala 24x7</b><span class="zch-badge blue">32 Beds | 3 OTs</span></div>' +
-              '<div style="font-size:12px;color:#94a3b8;margin-bottom:8px;">Connected Spokes: Indiranagar Care (12 min ALS), Jayanagar OPD (18 min ALS), Whitefield Tech Hub (32 min ALS)</div>' +
-              '<div style="font-size:11px;color:#34d399;">● Real-time Tele-radiology & Emergency Referral Corridor Active</div>' +
-            '</div>' +
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">' +
-              '<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><b style="color:#c084fc;">Western Hub: Bandra Multi-Specialty</b><span class="zch-badge purple">24 Beds | 2 OTs</span></div>' +
-              '<div style="font-size:12px;color:#94a3b8;margin-bottom:8px;">Connected Spokes: Andheri West Express (15 min ALS), Koregaon Park Clinic Pune (Tele-PACS Link)</div>' +
-              '<div style="font-size:11px;color:#34d399;">● 24x7 Neuro-Surgical Referral & Advanced Critical Care Link</div>' +
-            '</div>' +
-            '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">' +
-              '<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><b style="color:#fbbf24;">Northern Hub: Okhla Animal Hospital</b><span class="zch-badge amber">20 Beds | 2 OTs</span></div>' +
-              '<div style="font-size:12px;color:#94a3b8;margin-bottom:8px;">Connected Spokes: Gurgaon Sector 29 Clinic (22 min ALS), DLF Phase 5 (Opening Q2 2027)</div>' +
-              '<div style="font-size:11px;color:#34d399;">● Regional Veterinary Oncology & Chemotherapy Tumor Board Hub</div>' +
-            '</div>' +
+            '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No regional hub or spoke corridor records found</div>',
           '</div>',
         '</div>',
 
@@ -696,7 +673,7 @@
             '<span class="zch-badge">0 UNITS LIVE</span>',
           '</div>',
           '<div style="display:flex;flex-direction:column;gap:10px;">',
-            (AMBULANCE_FLEET.length ? AMBULANCE_FLEET : []).map(function (amb) {
+            (AMBULANCE_FLEET.length ? AMBULANCE_FLEET.map(function (amb) {
               return '<div style="background:#090e17;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
                   '<div><b style="color:#fff;font-size:13px;">🚑 ' + esc(amb.vehicle) + '</b> <span style="font-family:IBM Plex Mono,monospace;font-size:10px;color:#64748b;">(' + esc(amb.id) + ')</span></div>' +
@@ -712,7 +689,7 @@
                   '<span style="color:#38bdf8;font-weight:700;font-family:IBM Plex Mono,monospace;">' + esc(amb.eta) + '</span>' +
                 '</div>' +
               '</div>';
-            }).join(''),
+            }).join('') : '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:12px;">No active ambulance units</div>'),
           '</div>',
         '</div>',
       '</div>'
@@ -801,12 +778,12 @@
         '<div class="zch-head-left">',
           '<div class="zch-title-row">',
             '<h1 class="zch-title">Clinics Dashboard</h1>',
-            '<span class="zch-live-badge"><span class="zch-pulse-dot"></span> 14 Facilities Active</span>',
+            '<span class="zch-live-badge"><span class="zch-pulse-dot"></span> Active</span>',
           '</div>',
           '<p class="zch-sub">Veterinary Hospitals & Clinics Command Center</p>',
         '</div>',
         '<div class="zch-head-actions">',
-          '<button class="zch-btn" onclick="alert(\'Refreshing live clinical census across all 14 facilities...\')">🔄 Refresh Vitals</button>',
+          '<button class="zch-btn" onclick="alert(\'Refreshing live clinical census...\')">🔄 Refresh Vitals</button>',
           '<button class="zch-btn primary zch-context-action">+ Add Facility</button>',
         '</div>',
       '</header>',
@@ -904,7 +881,8 @@
 
   /* ── Interactive Modals ────────────────────────────────────────── */
   function showDoctorBioModal(docId) {
-    var d = DOCTORS.find(function (it) { return it.id === docId; }) || DOCTORS[0];
+    var d = DOCTORS.find(function (it) { return it.id === docId; });
+    if (!d) return;
     var modalHtml = [
       '<div class="zch-modal-backdrop" id="zch-doc-bio-modal">',
         '<div class="zch-modal">',

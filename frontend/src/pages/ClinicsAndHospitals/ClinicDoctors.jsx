@@ -33,7 +33,7 @@ export default function ClinicDoctors() {
       category="Clinics & Hospitals"
       subcategory="Clinic Doctors"
       title="Clinic Doctors"
-      subtitle="Veterinary Clinicians, Surgeons, Specialists & Rosters — 48 registered clinicians, VCI licenses, and shifts"
+      subtitle="Veterinary Clinicians, Surgeons, Specialists & Rosters — Registered clinicians, VCI licenses, and shifts"
       icon="👨‍⚕️"
       badge=""
       actions={
@@ -176,7 +176,7 @@ export default function ClinicDoctors() {
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No doctor records found</td></tr>) : filtered.map((d, idx) => (
+              {filtered.length === 0 ? (<tr><td colSpan="9" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No doctor records found</td></tr>) : filtered.map((d, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '14px 24px' }}>
                     <div style={{ fontWeight: 600, color: '#fff' }}>{d.name}</div>

@@ -88,7 +88,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="Active Healthcare Facilities"
           value="0"
-          change="3 Flagships + 11 Spokes"
+          change="--"
           trend="neutral"
           description="Operational licensed veterinary centers"
           icon="🏥"
@@ -96,7 +96,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="ALS Pet Ambulance Fleet"
           value="0"
-          change="3 On Call | 5 Stationed"
+          change="--"
           trend="neutral"
           description="GPS-monitored mobile ICU vehicles"
           icon="🚑"
@@ -104,7 +104,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="Inter-Facility Transfers"
           value="0"
-          change="+18.4% vs last month"
+          change="--"
           trend="neutral"
           description="Primary clinic to tertiary ICU referrals"
           icon="🔄"
@@ -112,7 +112,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="Avg Emergency Transit Time"
           value="0"
-          change="-4.2 min faster"
+          change="--"
           trend="neutral"
           description="Point of pickup to tertiary triage intake"
           icon="⏱️"
@@ -120,7 +120,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="Network System Uptime"
           value="0.0%"
-          change="Tier 4 Cloud EMR Sync"
+          change="--"
           trend="neutral"
           description="Continuous EMR, PACS & telemetry link"
           icon="📶"
@@ -128,7 +128,7 @@ export default function ClinicNetwork() {
         <KpiCard
           title="Expansion Pipeline"
           value="0"
-          change="+65 Beds Capacity 2027"
+          change="--"
           trend="neutral"
           description="Active construction & MEP fitout stage"
           icon="🏗️"
@@ -160,89 +160,12 @@ export default function ClinicNetwork() {
             borderRadius: '12px',
             fontWeight: 600
           }}>
-            100% Tele-PACS Connected
+            Tele-PACS Network Grid
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-          {/* South Hub */}
-          <div style={{ background: '#131f38', border: '1px solid #1e293b', borderRadius: '10px', padding: '16px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-              <div>
-                <span style={{ fontSize: '10px', color: '#38bdf8', fontWeight: 700, textTransform: 'uppercase' }}>Southern Flagship Anchor</span>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>Zenve Hospital Koramangala</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8' }}>32 Beds | 3 OTs | 24x7 Trauma & CT Scanner</div>
-              </div>
-              <span style={{ background: '#3b82f620', color: '#60a5fa', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>Hub Core</span>
-            </div>
-            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '10px', marginTop: '10px' }}>
-              <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, marginBottom: '6px' }}>CONNECTED SPOKES:</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Indiranagar Care Center</span>
-                  <span style={{ color: '#10b981' }}>12 min ALS transit</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Jayanagar OPD & Daycare</span>
-                  <span style={{ color: '#10b981' }}>18 min ALS transit</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Whitefield Tech Hub Clinic</span>
-                  <span style={{ color: '#f59e0b' }}>32 min ALS transit</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* West Hub */}
-          <div style={{ background: '#131f38', border: '1px solid #1e293b', borderRadius: '10px', padding: '16px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-              <div>
-                <span style={{ fontSize: '10px', color: '#a855f7', fontWeight: 700, textTransform: 'uppercase' }}>Western Flagship Anchor</span>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>Zenve Multi-Specialty Bandra</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8' }}>24 Beds | 2 OTs | Neuro & Ortho Specialty</div>
-              </div>
-              <span style={{ background: '#a855f720', color: '#c084fc', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>Hub Core</span>
-            </div>
-            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '10px', marginTop: '10px' }}>
-              <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, marginBottom: '6px' }}>CONNECTED SPOKES:</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Andheri West Express</span>
-                  <span style={{ color: '#10b981' }}>15 min ALS transit</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Koregaon Park Clinic (Pune)</span>
-                  <span style={{ color: '#38bdf8' }}>Tele-PACS + Shared Referral</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* North Hub */}
-          <div style={{ background: '#131f38', border: '1px solid #1e293b', borderRadius: '10px', padding: '16px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-              <div>
-                <span style={{ fontSize: '10px', color: '#f59e0b', fontWeight: 700, textTransform: 'uppercase' }}>Northern Flagship Anchor</span>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>Zenve Animal Hospital Okhla</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8' }}>20 Beds | 2 OTs | Oncology & Critical Care</div>
-              </div>
-              <span style={{ background: '#f59e0b20', color: '#fbbf24', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>Hub Core</span>
-            </div>
-            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '10px', marginTop: '10px' }}>
-              <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, marginBottom: '6px' }}>CONNECTED SPOKES:</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>Gurgaon Sector 29 Clinic</span>
-                  <span style={{ color: '#10b981' }}>22 min ALS transit</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1' }}>
-                  <span>DLF Phase 5 (Upcoming)</span>
-                  <span style={{ color: '#64748b' }}>Opens Q2 2027</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)', fontSize: '13px' }}>
+          No regional healthcare hub records found
         </div>
       </div>
 
@@ -382,7 +305,7 @@ export default function ClinicNetwork() {
               borderRadius: '8px',
               fontWeight: 600
             }}>
-              8 Ambulances Live
+              Ambulance Telemetry
             </span>
           </div>
 
@@ -478,7 +401,11 @@ export default function ClinicNetwork() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {expansionRoadmap.map((exp, i) => (
+            {expansionRoadmap.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)', fontSize: '13px' }}>
+                No expansion roadmap records found
+              </div>
+            ) : expansionRoadmap.map((exp, i) => (
               <div
                 key={i}
                 style={{
