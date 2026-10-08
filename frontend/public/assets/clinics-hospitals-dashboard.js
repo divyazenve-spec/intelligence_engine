@@ -35,7 +35,7 @@
     { id: 'all-clinics', label: 'All Clinics',         icon: '🏨', hash: '#all-clinics',         badge: '11 Outpatient', title: 'All Clinics', sub: 'Outpatient Care Directory — Daycare suites, lead veterinarians, diagnostics tier, and daily footfall' },
     { id: 'hospitals',   label: 'Hospitals',           icon: '🚨', hash: '#hospitals',           badge: '', title: 'Hospitals', sub: '24x7 Tertiary Care Referral Centers — Modular OTs, ICU pods, isolation bays, blood bank, and imaging' },
     { id: 'performance', label: 'Clinic Performance',  icon: '📊', hash: '#clinic-performance',  badge: '99.2% Success', title: 'Clinic Performance', sub: 'Clinical Quality & Operational Benchmarking — OPD throughput, wait times, bed turnaround, and CSAT' },
-    { id: 'revenue',     label: 'Clinic Revenue',      icon: '💎', hash: '#clinic-revenue',      badge: '₹78.4 L/mo', title: 'Clinic Revenue', sub: 'Healthcare Financials & Department Billings — OT Surgeries (37.5%), OPD (25.7%), Diagnostics (20%), and ICU (16.8%)' },
+    { id: 'revenue',     label: 'Clinic Revenue',      icon: '💎', hash: '#clinic-revenue',      badge: '', title: 'Clinic Revenue', sub: 'Healthcare Financials & Department Billings — Departmental billing realization, surgical monetization, and diagnostics' },
     { id: 'orders',      label: 'Clinic Orders',       icon: '📦', hash: '#clinic-orders',       badge: '16 Requisitions', title: 'Clinic Orders', sub: 'Clinical Supply Requisitions & Purchase Orders — Titanium implants, inhalation gases, and suture packs' },
     { id: 'patients',    label: 'Clinic Patients',     icon: '🐾', hash: '#clinic-patients',     badge: '86 Inpatients', title: 'Clinic Patients', sub: 'Inpatient Ward Census & Telemetry Roster — Admitted pets, ICU monitoring, surgical recovery, and vitals' },
     { id: 'doctors',     label: 'Clinic Doctors',      icon: '👨‍⚕️', hash: '#clinic-doctors',      badge: '48 Clinicians', title: 'Clinic Doctors', sub: 'Veterinary Clinicians, Surgeons, Specialists & Rosters — 48 registered clinicians, VCI licenses, and shifts' },
@@ -349,24 +349,7 @@
           '<div class="zch-card-head">',
             '<div><h3 class="zch-card-title">Departmental Revenue Contribution</h3><p class="zch-card-sub">Clinical billing distribution across major practice streams</p></div>',
           '</div>',
-          '<div style="display:flex;flex-direction:column;gap:14px;padding:8px 0;">',
-            '<div>' +
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Surgical & Anesthetic Procedures</span><strong style="color:#38bdf8;">₹29,40,000 (37.5%)</strong></div>' +
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:37.5%;background:#38bdf8;"></div></div>' +
-            '</div>' +
-            '<div>' +
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Outpatient Consultations & Vaccinations</span><strong style="color:#34d399;">₹20,15,000 (25.7%)</strong></div>' +
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:25.7%;background:#34d399;"></div></div>' +
-            '</div>' +
-            '<div>' +
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Diagnostics, Ultrasound & CT Imaging</span><strong style="color:#c084fc;">₹15,68,000 (20.0%)</strong></div>' +
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:20.0%;background:#c084fc;"></div></div>' +
-            '</div>' +
-            '<div>' +
-              '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span>Inpatient Critical Care & ICU Stays</span><strong style="color:#fbbf24;">₹13,17,000 (16.8%)</strong></div>' +
-              '<div class="zch-progress-bar"><div class="zch-progress-fill" style="width:16.8%;background:#fbbf24;"></div></div>' +
-            '</div>' +
-          '</div>',
+          '<div style="text-align:center;padding:36px 20px;color:#94a3b8;font-size:13px;">No departmental revenue contribution data</div>',
         '</div>',
 
         '<div class="zch-card">',
@@ -377,14 +360,16 @@
             '<table class="zch-table">',
               '<thead><tr><th>Facility</th><th>City</th><th>Monthly Billings</th><th>Growth YoY</th></tr></thead>',
               '<tbody>',
-                FACILITIES.map(function (f) {
-                  return '<tr>' +
-                    '<td><b>' + esc(f.name) + '</b></td>' +
-                    '<td><span class="zch-badge blue">' + esc(f.city) + '</span></td>' +
-                    '<td style="font-family:IBM Plex Mono,monospace;font-weight:700;color:#10b981;">' + esc(f.rev) + '</td>' +
-                    '<td><span style="color:#10b981;font-weight:600;">+14.2%</span></td>' +
-                  '</tr>';
-                }).join(''),
+                (FACILITIES.length === 0 ?
+                  '<tr><td colspan="4" style="text-align:center;padding:28px;color:#94a3b8;">No facility revenue records found</td></tr>' :
+                  FACILITIES.map(function (f) {
+                    return '<tr>' +
+                      '<td><b>' + esc(f.name) + '</b></td>' +
+                      '<td><span class="zch-badge blue">' + esc(f.city) + '</span></td>' +
+                      '<td style="font-family:IBM Plex Mono,monospace;font-weight:700;color:#10b981;">' + esc(f.rev) + '</td>' +
+                      '<td><span style="color:#10b981;font-weight:600;">+14.2%</span></td>' +
+                    '</tr>';
+                  }).join('')),
               '</tbody>',
             '</table>',
           '</div>',

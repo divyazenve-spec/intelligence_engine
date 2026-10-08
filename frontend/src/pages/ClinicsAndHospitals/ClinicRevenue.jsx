@@ -14,7 +14,7 @@ export default function ClinicRevenue() {
       title="Hospital & Clinic Revenue Intelligence"
       subtitle="Departmental billing realization, surgical monetization, diagnostic revenue, and pet insurance settlements"
       icon="💰"
-      badge="₹0 MTD"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <div style={{
@@ -86,23 +86,8 @@ export default function ClinicRevenue() {
           <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 700 }}>Revenue by Clinical Service Line</h3>
           <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#94a3b8' }}>Breakdown of hospital and clinic billing departments</p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Surgeries & Operating Theatres</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#10b981' }}>₹0 (37.5%)</strong>
-            </div>
-            <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Outpatient Consultations (OPD)</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>₹0 (25.7%)</strong>
-            </div>
-            <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Advanced Diagnostics, CT & Lab</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#a855f7' }}>₹0 (20.0%)</strong>
-            </div>
-            <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>Inpatient ICU & Hospitalization</span>
-              <strong style={{ fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>₹0 (16.8%)</strong>
-            </div>
+          <div style={{ textAlign: 'center', padding: '32px', color: 'var(--muted-foreground, #64748b)' }}>
+            No revenue distribution data
           </div>
         </div>
 
