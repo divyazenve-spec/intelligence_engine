@@ -303,6 +303,10 @@
     else if (!document.body.contains(root)) document.body.appendChild(root);
 
     S.open = true;
+    try {
+      root.style.removeProperty('display');
+      root.style.display = 'block';
+    } catch (e) {}
     root.classList.add('zpid-open');
     root.scrollTop = 0;
 
@@ -319,10 +323,13 @@
     if (!root || !S.open) return;
     S.open = false;
     root.classList.remove('zpid-open');
+    try {
+      root.style.display = 'none';
+    } catch (e) {}
     markSidebar(false);
     try {
       var h = location.hash;
-      if (h.indexOf('product') >= 0 || h.indexOf('sku') >= 0 || h.indexOf('inventory') >= 0 || h.indexOf('stock') >= 0 || h.indexOf('expiry') >= 0 || h.indexOf('warehouse') >= 0) {
+      if (h.indexOf('product') >= 0 || h.indexOf('sku') >= 0 || h.indexOf('inventory') >= 0 || h.indexOf('stock') >= 0 || h.indexOf('expiry') >= 0 || h.indexOf('warehouse') >= 0 || h.indexOf('transfers') >= 0 || h.indexOf('valuation') >= 0 || h.indexOf('movement') >= 0) {
         history.pushState(null, '', location.pathname + location.search);
       }
     } catch (e) {}

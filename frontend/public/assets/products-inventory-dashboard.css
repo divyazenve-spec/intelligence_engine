@@ -12,19 +12,23 @@
    ===================================================================== */
 
 #zpid-root {
-  position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;
-  z-index: 50;
-  overflow-y: auto;
-  background: var(--background, #090d16);
-  color: var(--foreground, #f8fafc);
-  font-family: var(--font-sans, "Manrope", sans-serif);
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 60 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: var(--background, #090d16) !important;
+  color: var(--foreground, #f8fafc) !important;
+  font-family: var(--font-sans, "Manrope", sans-serif) !important;
   display: none;
   animation: zpidFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
-#zpid-root.zpid-open { display: block; }
+#zpid-root.zpid-open { display: block !important; }
 
 @keyframes zpidFadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -32,7 +36,11 @@
 }
 
 @media (min-width: 1024px) {
-  #zpid-root { left: 224px; }
+  #zpid-root {
+    left: 224px !important;
+    width: calc(100vw - 224px) !important;
+    max-width: calc(100vw - 224px) !important;
+  }
 }
 
 #zpid-root * { box-sizing: border-box; }

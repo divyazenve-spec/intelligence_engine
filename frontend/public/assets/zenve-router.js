@@ -59,17 +59,23 @@
     'operations dashboard': { controller: 'ZenveOperationsDashboard', tab: 'overview', hash: '#operations-dashboard' },
 
     // Products & Inventory
-    'product catalog': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog' },
-    'sku management': { controller: 'ZenveProductsInventory', tab: 'sku', hash: '#sku-management' },
-    'inventory dashboard': { controller: 'ZenveProductsInventory', tab: 'inventory', hash: '#inventory-dashboard' },
-    'stock management': { controller: 'ZenveProductsInventory', tab: 'stock', hash: '#stock-management' },
-    'low stock': { controller: 'ZenveProductsInventory', tab: 'lowstock', hash: '#low-stock' },
-    'out of stock': { controller: 'ZenveProductsInventory', tab: 'outofstock', hash: '#out-of-stock' },
-    'expiry management': { controller: 'ZenveProductsInventory', tab: 'expiry', hash: '#expiry-management' },
-    'warehouse management': { controller: 'ZenveProductsInventory', tab: 'warehouse', hash: '#warehouse-management' },
-    'stock transfers': { controller: 'ZenveProductsInventory', tab: 'transfers', hash: '#stock-transfers' },
-    'inventory valuation': { controller: 'ZenveProductsInventory', tab: 'valuation', hash: '#inventory-valuation' },
-    'inventory movement': { controller: 'ZenveProductsInventory', tab: 'movement', hash: '#inventory-movement' },
+    'product catalog': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
+    'products catalog': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
+    'all products': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
+    'sku management': { controller: 'ZenveProductsInventory', tab: 'sku', hash: '#sku-management', rootId: 'zpid-root' },
+    'inventory dashboard': { controller: 'ZenveProductsInventory', tab: 'inventory', hash: '#inventory-dashboard', rootId: 'zpid-root' },
+    'inventory': { controller: 'ZenveProductsInventory', tab: 'inventory', hash: '#inventory-dashboard', rootId: 'zpid-root' },
+    'stock management': { controller: 'ZenveProductsInventory', tab: 'stock', hash: '#stock-management', rootId: 'zpid-root' },
+    'low stock': { controller: 'ZenveProductsInventory', tab: 'lowstock', hash: '#low-stock', rootId: 'zpid-root' },
+    'out of stock': { controller: 'ZenveProductsInventory', tab: 'outofstock', hash: '#out-of-stock', rootId: 'zpid-root' },
+    'expiry management': { controller: 'ZenveProductsInventory', tab: 'expiry', hash: '#expiry-management', rootId: 'zpid-root' },
+    'warehouse management': { controller: 'ZenveProductsInventory', tab: 'warehouse', hash: '#warehouse-management', rootId: 'zpid-root' },
+    'stock transfers': { controller: 'ZenveProductsInventory', tab: 'transfers', hash: '#stock-transfers', rootId: 'zpid-root' },
+    'inventory valuation': { controller: 'ZenveProductsInventory', tab: 'valuation', hash: '#inventory-valuation', rootId: 'zpid-root' },
+    'inventory movement': { controller: 'ZenveProductsInventory', tab: 'movement', hash: '#inventory-movement', rootId: 'zpid-root' },
+    'products & inventory': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
+    'products & inventory dashboard': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
+    'products and inventory': { controller: 'ZenveProductsInventory', tab: 'catalog', hash: '#product-catalog', rootId: 'zpid-root' },
 
     // Pharmacy
     'pharmacy dashboard': { controller: 'ZenvePharmacyDashboard', tab: 'dashboard', hash: '#pharmacy-dashboard' },
@@ -493,6 +499,15 @@
       var ctrl = window[route.controller];
       if (ctrl && typeof ctrl.open === 'function') {
         try {
+          var targetEl = route.rootId ? document.getElementById(route.rootId) : null;
+          if (!targetEl && route.controller === 'ZenveProductsInventory') {
+            targetEl = document.getElementById('zpid-root');
+          }
+          if (targetEl) {
+            targetEl.style.removeProperty('display');
+            targetEl.style.display = 'block';
+          }
+
           if (route.tab) {
             ctrl.open(route.tab);
           } else {
@@ -544,7 +559,7 @@
 
   function handleHash() {
     var hash = window.location.hash;
-    if (!hash || hash === '#' || hash === '#overview' || hash === '#daily' || hash === '#ledger' || hash === '#inventory' || hash === '#ai' || hash === '#apps') {
+    if (!hash || hash === '#' || hash === '#overview' || hash === '#daily' || hash === '#ledger' || hash === '#ai' || hash === '#apps') {
       if (hash === '#' || hash === '#overview' || !hash) {
         closeAllDashboards();
       }
@@ -631,6 +646,13 @@
       var cardTitle = card ? card.querySelector('h3, h2, .font-semibold') : null;
       if (cardTitle) {
         var tText = cardTitle.textContent.toLowerCase();
+        if (tText.indexOf('inventory') !== -1 || tText.indexOf('stock') !== -1) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          openDashboard('Products & Inventory', 'Inventory Dashboard');
+          return;
+        }
         if (tText.indexOf('product') !== -1) {
           e.preventDefault();
           e.stopPropagation();
