@@ -117,12 +117,12 @@
   function renderDashboard() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Fashion Gross Revenue (MTD)', '₹14.25 L', '+34.8% MoM', 'up', 'Combined online & boutique', '🎀'),
-        kpiHtml('Apparel Units Sold', '730 Items', '+22.4% vs last month', 'up', 'Average 2.4 items/cart', '👗'),
-        kpiHtml('Blended Gross Margin', '68.2%', '+3.1% YoY', 'up', 'High atelier contribution', '💎'),
-        kpiHtml('Flagship Showroom Footfall', '1,640 Visitors', '+18.5% conversion', 'up', 'BLR & MUM Boutiques', '🛍️'),
-        kpiHtml('Bespoke Atelier Orders', '64 Custom', 'Fit guarantee 100%', 'up', 'Handcrafted tailored fit', '✂️'),
-        kpiHtml('Return & Exchange Rate', '3.1%', '-1.4% improvement', 'up', 'Precision 3D pet sizing', '📐'),
+        kpiHtml('Fashion Gross Revenue (MTD)', '₹0', '0.0%', 'neutral', 'No active records', '🎀'),
+        kpiHtml('Apparel Units Sold', '0', '0.0%', 'neutral', 'No active records', '👗'),
+        kpiHtml('Blended Gross Margin', '0', '0.0%', 'neutral', 'No active records', '💎'),
+        kpiHtml('Flagship Showroom Footfall', '0', '0.0%', 'neutral', 'No active records', '🛍️'),
+        kpiHtml('Bespoke Atelier Orders', '0', '0.0%', 'neutral', 'No active records', '✂️'),
+        kpiHtml('Return & Exchange Rate', '0', '0.0%', 'neutral', 'No active records', '📐'),
       '</div>',
 
       '<div class="zfsh-grid-2">',
@@ -185,12 +185,12 @@
   function renderProducts() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Active Fashion SKUs', '142 Styles', '6 Core Categories', 'up', 'Bespoke + Ready-to-wear', '👗'),
-        kpiHtml('Avg. Retail Price (ASP)', '₹2,240', '+12.4% YoY', 'up', 'Premium fabric upgrade', '🏷️'),
-        kpiHtml('Average Product Margin', '69.4%', '+2.8% vs FY25', 'up', 'In-house artisan atelier', '💎'),
+        kpiHtml('Active Fashion SKUs', '0', '0.0%', 'neutral', 'No active records', '👗'),
+        kpiHtml('Avg. Retail Price (ASP)', '₹0', '0.0%', 'neutral', 'No active records', '🏷️'),
+        kpiHtml('Average Product Margin', '0', '0.0%', 'neutral', 'No active records', '💎'),
         kpiHtml('Eco-Certified Fabrics', '100% Cotton/Wool', 'OEKO-TEX Class 1', 'up', 'Hypoallergenic pet-safe', '🌱'),
-        kpiHtml('Low Stock Styles', '4 SKUs', 'Under 30 days cover', 'warn', 'Production run ordered', '⚠️'),
-        kpiHtml('Custom Atelier Queue', '34 Orders', '7-day tailoring TAT', 'up', 'Wedding & gala apparel', '✂️'),
+        kpiHtml('Low Stock Styles', '0', '0.0%', 'neutral', 'No active records', '⚠️'),
+        kpiHtml('Custom Atelier Queue', '0', '0.0%', 'neutral', 'No active records', '✂️'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -230,12 +230,12 @@
   function renderOrders() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Fashion Orders (MTD)', '730 Orders', '+24.6% MoM', 'up', 'Showroom & e-commerce', '🛍️'),
-        kpiHtml('Average Order Value', '₹3,420', '+₹380 vs FY25', 'up', 'Bundled collar & harness', '💳'),
-        kpiHtml('Monogram Customization', '48.5%', '354 personalized items', 'up', 'Custom name embroidery', '✨'),
-        kpiHtml('In-Store Trial Conversion', '76.2%', '+4.1% conversion', 'up', 'Pet dressing rooms', '🐕'),
-        kpiHtml('Atelier Turnaround (TAT)', '4.8 Days', '-1.2d faster', 'up', 'Bespoke made-to-measure', '⏱️'),
-        kpiHtml('On-Time Delivery Rate', '98.8%', 'Zero transit damage', 'up', 'Luxury packaging', '📦'),
+        kpiHtml('Fashion Orders (MTD)', '0', '0.0%', 'neutral', 'No active records', '🛍️'),
+        kpiHtml('Average Order Value', '₹0', '0.0%', 'neutral', 'No active records', '💳'),
+        kpiHtml('Monogram Customization', '0', '0.0%', 'neutral', 'No active records', '✨'),
+        kpiHtml('In-Store Trial Conversion', '0', '0.0%', 'neutral', 'No active records', '🐕'),
+        kpiHtml('Atelier Turnaround (TAT)', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('On-Time Delivery Rate', '0', '0.0%', 'neutral', 'No active records', '📦'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -272,21 +272,16 @@
   }
 
   function renderCustomers() {
-    var vips = [
-      { id: 'CUST-FSH-01', name: 'Natasha Poonawalla', pet: 'Princess & Chloe', breed: 'Maltipoo', ltv: '₹84,500', orders: 18, tier: 'Platinum Atelier' },
-      { id: 'CUST-FSH-02', name: 'Vikramaditya Singhania', pet: 'Simba', breed: 'Golden Retriever', ltv: '₹62,400', orders: 12, tier: 'Platinum Atelier' },
-      { id: 'CUST-FSH-03', name: 'Ananya Deshmukh', pet: 'Koko', breed: 'French Bulldog', ltv: '₹48,900', orders: 9, tier: 'Gold Couture' },
-      { id: 'CUST-FSH-04', name: 'Kunal Kapoor', pet: 'Diesel', breed: 'Doberman', ltv: '₹41,200', orders: 8, tier: 'Gold Couture' }
-    ];
+    var vips = [];
 
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Total Couture Clients', '1,840 Parents', '+16.4% YoY', 'up', 'Registered size profiles', '👥'),
-        kpiHtml('Average Client LTV', '₹38,200', '+₹4,800 vs FY25', 'up', 'Across apparel & accessories', '💎'),
-        kpiHtml('Repeat Purchase Rate', '64.8%', '+5.2% MoM', 'up', 'Seasonal capsule drops', '🔄'),
-        kpiHtml('Platinum VIP Members', '142 Clients', 'Spend > ₹50,000/yr', 'up', 'Bespoke atelier priority', '👑'),
-        kpiHtml('Personal Stylist Bookings', '88 Sessions', '94% satisfaction', 'up', 'In-showroom fittings', '✂️'),
-        kpiHtml('Pet Sizing Accuracy', '98.9%', 'Precision 3D guide', 'up', 'Virtually zero fit returns', '📐'),
+        kpiHtml('Total Couture Clients', '0', '0.0%', 'neutral', 'No active records', '👥'),
+        kpiHtml('Average Client LTV', '₹0', '0.0%', 'neutral', 'No active records', '💎'),
+        kpiHtml('Repeat Purchase Rate', '0', '0.0%', 'neutral', 'No active records', '🔄'),
+        kpiHtml('Platinum VIP Members', '0', '0.0%', 'neutral', 'No active records', '👑'),
+        kpiHtml('Personal Stylist Bookings', '0', '0.0%', 'neutral', 'No active records', '✂️'),
+        kpiHtml('Pet Sizing Accuracy', '0', '0.0%', 'neutral', 'No active records', '📐'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -302,7 +297,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Client ID</th><th>Pet Parent</th><th>Pet & Breed</th><th>Total LTV</th><th>Orders</th><th>VIP Tier</th><th>Action</th></tr></thead>',
             '<tbody>',
-              vips.map(function (v) {
+              (vips.length ? vips.map(function (v) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(v.id) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
@@ -312,7 +307,7 @@
                   '<td><span class="zfsh-tag ' + (v.tier === 'Platinum Atelier' ? 'pink' : 'amber') + '">' + esc(v.tier) + '</span></td>' +
                   '<td><button class="zfsh-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Opening 3D sizing profile for ' + esc(v.pet) + '.\')">View Measurements</button></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No VIP client records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -323,12 +318,12 @@
   function renderInventory() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Finished Apparel Valuation', '₹33.15 L', '1,746 Units', 'up', 'Across all 3 locations', '💎'),
-        kpiHtml('Raw Fabric Inventory', '₹8.40 L', 'Premium certified rolls', 'up', 'Italian leather & cashmere', '🧵'),
-        kpiHtml('Sizing Completeness Rate', '94.2%', 'XS - XXL coverage', 'up', 'Zero stockouts on core sizes', '📐'),
-        kpiHtml('Low Stock Styles (<20u)', '2 Styles', 'Knit & Boots', 'warn', 'Replenishment in progress', '⚠️'),
-        kpiHtml('Showroom Display Stock', '₹11.20 L', 'Bandra + Indiranagar', 'up', 'Trial room samples', '🛍️'),
-        kpiHtml('Inventory Turnover Ratio', '4.6x', '+0.8x vs FY25', 'up', 'Rapid fashion cycles', '⚡'),
+        kpiHtml('Finished Apparel Valuation', '₹0', '0.0%', 'neutral', 'No active records', '💎'),
+        kpiHtml('Raw Fabric Inventory', '₹0', '0.0%', 'neutral', 'No active records', '🧵'),
+        kpiHtml('Sizing Completeness Rate', '0', '0.0%', 'neutral', 'No active records', '📐'),
+        kpiHtml('Low Stock Styles (<20u)', '0', '0.0%', 'neutral', 'No active records', '⚠️'),
+        kpiHtml('Showroom Display Stock', '₹0', '0.0%', 'neutral', 'No active records', '🛍️'),
+        kpiHtml('Inventory Turnover Ratio', '0', '0.0%', 'neutral', 'No active records', '⚡'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -365,12 +360,12 @@
   function renderShowrooms() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Showroom Revenue (MTD)', '₹17.10 L', '+26.8% YoY', 'up', 'Across all 4 experience centers', '🛍️'),
-        kpiHtml('Pet Footfall (MTD)', '1,950 Pets', '+18.2% vs last month', 'up', 'In-store visits with parents', '🐾'),
-        kpiHtml('Dressing Room Trials', '1,297 Trials', '66.5% trial-to-buy rate', 'up', 'Fitting room conversion', '👗'),
+        kpiHtml('Showroom Revenue (MTD)', '₹0', '0.0%', 'neutral', 'No active records', '🛍️'),
+        kpiHtml('Pet Footfall (MTD)', '0', '0.0%', 'neutral', 'No active records', '🐾'),
+        kpiHtml('Dressing Room Trials', '0', '0.0%', 'neutral', 'No active records', '👗'),
         kpiHtml('Avg. Revenue per Sq Ft', '₹272 / sqft', '+₹34 vs industry', 'up', 'Premium retail density', '📐'),
-        kpiHtml('On-Spot Customization', '284 Orders', 'Hot-foil monogramming', 'up', 'Atelier personalization', '✨'),
-        kpiHtml('Showroom Client Rating', '4.86 ★', 'Based on 480 reviews', 'up', '5-star pet luxury standard', '⭐'),
+        kpiHtml('On-Spot Customization', '0', '0.0%', 'neutral', 'No active records', '✨'),
+        kpiHtml('Showroom Client Rating', '0', '0.0%', 'neutral', 'No active records', '⭐'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -411,10 +406,10 @@
   function renderOnlineSales() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Online Fashion Revenue', '₹28.42 L', '+38.2% YoY', 'up', 'iOS, Android & Social Shop', '📱'),
-        kpiHtml('Online Orders (MTD)', '836 Orders', '+21.5% MoM', 'up', 'Average 1.8 items per cart', '🛍️'),
-        kpiHtml('Average Online AOV', '₹3,399', '+₹420 vs FY25', 'up', 'Accessory add-on bundle', '💳'),
-        kpiHtml('E-Commerce Conversion', '3.02%', '+0.45% MoM', 'up', 'Industry benchmark 1.8%', '⚡'),
+        kpiHtml('Online Fashion Revenue', '₹0', '0.0%', 'neutral', 'No active records', '📱'),
+        kpiHtml('Online Orders (MTD)', '0', '0.0%', 'neutral', 'No active records', '🛍️'),
+        kpiHtml('Average Online AOV', '₹0', '0.0%', 'neutral', 'No active records', '💳'),
+        kpiHtml('E-Commerce Conversion', '0', '0.0%', 'neutral', 'No active records', '⚡'),
         kpiHtml('3D AI Pet Sizing Assist', '78.4% Adoption', '3,210 scans completed', 'up', 'Camera dimension scan', '📐'),
         kpiHtml('60-Min Rush Delivery', '42.8% of Orders', 'Metro hub express', 'up', 'Same-day party wear', '🚀'),
       '</div>',
@@ -458,12 +453,12 @@
   function renderRevenue() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Fashion Gross Revenue (FYTD)', '₹45.50 L', '+36.4% YoY', 'up', '7 months financial actuals', '💵'),
+        kpiHtml('Fashion Gross Revenue (FYTD)', '₹0', '0.0%', 'neutral', 'No active records', '💵'),
         kpiHtml('Monthly Revenue Run-Rate', '₹7.20 L / Mo', '+28.5% vs FY25', 'up', 'Accelerating into Q3', '📈'),
         kpiHtml('Showroom vs Online Mix', '58% : 42%', 'Healthy omnichannel', 'neutral', 'Boutiques driving high AOV', '⚖️'),
         kpiHtml('Festive Season Surge', '+64.2%', 'Diwali & wedding peak', 'up', 'High-margin couture', '✨'),
-        kpiHtml('Blended Average Order Value', '₹3,410', '+₹390 YoY', 'up', 'Cross-category basket', '🛒'),
-        kpiHtml('Fashion Revenue / Pet Parent', '₹4,890', '+18.2% expansion', 'up', 'Multi-item wardrobe repeat', '💎'),
+        kpiHtml('Blended Average Order Value', '₹0', '0.0%', 'neutral', 'No active records', '🛒'),
+        kpiHtml('Fashion Revenue / Pet Parent', '₹0', '0.0%', 'neutral', 'No active records', '💎'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -497,12 +492,12 @@
   function renderProfitability() {
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Blended Gross Margin', '68.2%', '+3.1% YoY', 'up', 'Direct atelier sourcing', '💎'),
-        kpiHtml('Net Contribution Margin', '55.8%', '+4.2% expansion', 'up', 'After showroom OPEX', '📊'),
-        kpiHtml('Full-Price Sell-Through', '94.6%', 'Markdowns < 5.4%', 'up', 'No discount brand equity', '🏷️'),
-        kpiHtml('Custom Monogram Margin', '84.5%', '₹450 add-on fee', 'up', 'Artisan laser embroidery', '✨'),
+        kpiHtml('Blended Gross Margin', '0', '0.0%', 'neutral', 'No active records', '💎'),
+        kpiHtml('Net Contribution Margin', '0', '0.0%', 'neutral', 'No active records', '📊'),
+        kpiHtml('Full-Price Sell-Through', '0', '0.0%', 'neutral', 'No active records', '🏷️'),
+        kpiHtml('Custom Monogram Margin', '0', '0.0%', 'neutral', 'No active records', '✨'),
         kpiHtml('Sizing Exchange Cost', '1.8% of Rev', '-0.8% reduction', 'up', 'Precise 3D size fitting', '📐'),
-        kpiHtml('Fashion Operating EBITDA', '₹16.80 L', '36.9% EBITDA margin', 'up', 'Highly lucrative luxury line', '⚡'),
+        kpiHtml('Fashion Operating EBITDA', '₹0', '0.0%', 'neutral', 'No active records', '⚡'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -529,21 +524,16 @@
   }
 
   function renderCollections() {
-    var cols = [
-      { id: 'COL-2026-03', name: 'Monsoon Canine Splash Capsule', season: 'Monsoon 2026', styles: 12, sellThrough: '94.2%', rev: '₹8,45,000', designer: 'Aarushi Mehta', status: 'Archive' },
-      { id: 'COL-2026-04', name: 'Royal Velvet & Zari Festive Collection', season: 'Festive / Diwali 2026', styles: 18, sellThrough: '82.5%', rev: '₹14,20,000', designer: 'Zoya Qureshi', status: 'Active Drop' },
-      { id: 'COL-2026-05', name: 'Alpine Cashmere Winter Luxe', season: 'Winter 2026-27', styles: 14, sellThrough: '48.6%', rev: '₹6,80,000', designer: 'Karan Sen', status: 'Active Drop' },
-      { id: 'COL-2026-06', name: 'Bespoke Pet Wedding & Gala Runway', season: 'Annual Signature Line', styles: 8, sellThrough: '91.0%', rev: '₹9,60,000', designer: 'Pravin Varma', status: 'Permanent Line' }
-    ];
+    var cols = [];
 
     return [
       '<div class="zfsh-kpi-grid">',
         kpiHtml('Active Capsule Collections', '3 Live Drops', 'Festive + Winter + Gala', 'up', 'Current retail circulation', '✨'),
-        kpiHtml('Avg. Drop Sell-Through', '86.8%', '+5.4% YoY', 'up', 'Zero deadstock policy', '🎯'),
-        kpiHtml('Highest Grossing Drop', '₹14.20 L', 'Royal Velvet Festive', 'up', 'Sold out in 22 days', '👑'),
-        kpiHtml('Design-to-Rack Lead Time', '28 Days', '-8 days faster', 'up', 'In-house artisan studio', '⏱️'),
-        kpiHtml('VIP Pre-Order Conversion', '44.2%', 'Platinum member reserve', 'up', 'Sold prior to public launch', '💎'),
-        kpiHtml('Runway Pet Models', '36 Verified', 'Brand ambassador pets', 'up', 'Instagram campaign reach', '📸'),
+        kpiHtml('Avg. Drop Sell-Through', '0', '0.0%', 'neutral', 'No active records', '🎯'),
+        kpiHtml('Highest Grossing Drop', '₹0', '0.0%', 'neutral', 'No active records', '👑'),
+        kpiHtml('Design-to-Rack Lead Time', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('VIP Pre-Order Conversion', '0', '0.0%', 'neutral', 'No active records', '💎'),
+        kpiHtml('Runway Pet Models', '0', '0.0%', 'neutral', 'No active records', '📸'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -559,7 +549,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Collection ID</th><th>Collection Name</th><th>Season</th><th>Styles</th><th>Sell-Through</th><th>Revenue</th><th>Lead Designer</th><th>Status</th></tr></thead>',
             '<tbody>',
-              cols.map(function (c) {
+              (cols.length ? cols.map(function (c) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(c.id) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.name) + '</td>' +
@@ -570,7 +560,7 @@
                   '<td style="color:#a78bfa;">' + esc(c.designer) + '</td>' +
                   '<td><span class="zfsh-tag ' + (c.status === 'Active Drop' ? 'green' : 'purple') + '">' + esc(c.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No capsule collection records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',

@@ -300,11 +300,7 @@
           kpis: [],
           insights: [],
           actions: [],
-          followups: [
-            'Why did sales drop in Delhi NCR?',
-            'Which clinic generated the highest EBITDA this month?',
-            'What is the forecast for Bravecto chewables inventory?'
-          ],
+          followups: [],
           context: {
             intent: 'CONVERSATION',
             location: null,
@@ -1538,11 +1534,7 @@
               grounding: 'Live ERP Telemetry',
               confidence: '99.9%'
             },
-            followups: [
-              'Why did sales drop in Delhi NCR?',
-              'Which clinic generated the highest EBITDA this month?',
-              'What is the forecast for Bravecto chewables inventory?'
-            ]
+            followups: []
           }
         ];
         S.lastContext = { intent: 'GENERAL_OVERVIEW', location: null, timeframe: 'MTD' };

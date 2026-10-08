@@ -123,12 +123,12 @@
   function renderDashboard() {
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Active Suppliers', '24 Vendors', '100% GST compliant', 'up', 'Direct pharma & pet diets', '🏭'),
-        kpiHtml('Open Purchase Orders', '₹18.40 L', '8 active POs in transit', 'up', 'October fulfillment', '📑'),
-        kpiHtml('Procurement Savings', '₹18.40 L', '+108.2% vs target', 'up', 'Cumulative FYTD value', '💰'),
-        kpiHtml('Vendor On-Time SLA', '96.8%', '+1.2% MoM', 'up', 'Delivery compliance benchmark', '⏱️'),
-        kpiHtml('3-Way Match Rate', '98.6%', 'PO-GRN-Invoice audit', 'up', 'Automated tax reconciliation', '🎯'),
-        kpiHtml('Upcoming AP Payouts', '₹24.02 L', 'Next 14 days due', 'warn', 'Capturing ₹44,840 discounts', '💳'),
+        kpiHtml('Active Suppliers', '0', '0.0%', 'neutral', 'No active records', '🏭'),
+        kpiHtml('Open Purchase Orders', '₹0', '0.0%', 'neutral', 'No active records', '📑'),
+        kpiHtml('Procurement Savings', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
+        kpiHtml('Vendor On-Time SLA', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('3-Way Match Rate', '0', '0.0%', 'neutral', 'No active records', '🎯'),
+        kpiHtml('Upcoming AP Payouts', '₹0', '0.0%', 'neutral', 'No active records', '💳'),
       '</div>',
 
       '<div class="zvp-grid-2">',
@@ -196,10 +196,10 @@
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Registered Vendors', '24 Suppliers', '100% KYC verified', 'up', 'Direct manufacturer network', '🏭'),
-        kpiHtml('Preferred AAA Vendors', '6 Suppliers', 'Tier 1 Priority', 'up', 'MSD, Zoetis, Synthes, BI', '⭐'),
-        kpiHtml('Active Geographies', '12 Cities', 'Direct cold chain hubs', 'up', 'Bengaluru, Mumbai, Delhi, Hyd', '📍'),
-        kpiHtml('Avg. Supplier Tenure', '22 Months', '+4.2 mo retention', 'up', 'Long-term contracts', '🤝'),
+        kpiHtml('Registered Vendors', '0', '0.0%', 'neutral', 'No active records', '🏭'),
+        kpiHtml('Preferred AAA Vendors', '0', '0.0%', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Active Geographies', '0', '0.0%', 'neutral', 'No active records', '📍'),
+        kpiHtml('Avg. Supplier Tenure', '0', '0.0%', 'neutral', 'No active records', '🤝'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -250,12 +250,12 @@
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Avg. On-Time Delivery', '96.8%', '+1.2% MoM', 'up', 'Across all suppliers', '⏱️'),
-        kpiHtml('Avg. Fill Rate', '97.1%', '+0.8% MoM', 'up', 'Complete order fulfillment', '📦'),
-        kpiHtml('Avg. Quality Defect Rate', '0.22%', '-0.04% MoM', 'up', 'Zero cold chain compromise', '🎯'),
-        kpiHtml('Avg. Order Lead Time', '5.4 Days', '-0.6d improvement', 'up', 'Order placement to GRN', '🚛'),
-        kpiHtml('Top Tier SLA Score', '99.5%', 'MSD Animal Health', 'up', 'Highest rated partner', '⭐'),
-        kpiHtml('Below Target Vendors', '2 Vendors', 'Improvement plan active', 'warn', 'Intas & Bayer Animal Health', '⚠️'),
+        kpiHtml('Avg. On-Time Delivery', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Avg. Fill Rate', '0', '0.0%', 'neutral', 'No active records', '📦'),
+        kpiHtml('Avg. Quality Defect Rate', '0', '0.0%', 'neutral', 'No active records', '🎯'),
+        kpiHtml('Avg. Order Lead Time', '0', '0.0%', 'neutral', 'No active records', '🚛'),
+        kpiHtml('Top Tier SLA Score', '0', '0.0%', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Below Target Vendors', '0', '0.0%', 'neutral', 'No active records', '⚠️'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -300,12 +300,12 @@
   function renderVendorPayments() {
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Total Outstanding AP', '₹24.02 L', '6 verified invoices', 'warn', 'Accounts payable ledger', '💳'),
-        kpiHtml('Due This Week (<7d)', '₹9.97 L', 'MSD & Boehringer', 'warn', 'Scheduled for NEFT release', '⏳'),
-        kpiHtml('Cash Discounts Captured', '₹39,840', '2/10 Net 30 terms', 'up', 'Early payment savings', '⚡'),
-        kpiHtml('Avg. Payment Cycle (DPO)', '34 Days', 'Target: 30-45 days', 'up', 'Working capital optimization', '⏱️'),
-        kpiHtml('Electronic Payment SLA', '100%', 'HDFC Core CMS / RTGS', 'up', 'Zero manual check delays', '🏦'),
-        kpiHtml('Pending 3-Way Match', '₹4.10 L', 'Royal Canin GRN review', 'warn', 'Hub batch count in progress', '📑'),
+        kpiHtml('Total Outstanding AP', '₹0', '0.0%', 'neutral', 'No active records', '💳'),
+        kpiHtml('Due This Week (<7d)', '₹0', '0.0%', 'neutral', 'No active records', '⏳'),
+        kpiHtml('Cash Discounts Captured', '₹0', '0.0%', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Avg. Payment Cycle (DPO)', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Electronic Payment SLA', '0', '0.0%', 'neutral', 'No active records', '🏦'),
+        kpiHtml('Pending 3-Way Match', '₹0', '0.0%', 'neutral', 'No active records', '📑'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -352,11 +352,11 @@
     return [
       '<div class="zvp-kpi-grid">',
         kpiHtml('Open Purchase Orders', '18 Active POs', '₹34.80 L total value', 'up', 'October procurement pipeline', '📑'),
-        kpiHtml('POs in Transit', '6 Orders', '₹12.60 L shipment value', 'up', 'Cold chain monitored', '🚛'),
-        kpiHtml('GRN Verified (MTD)', '14 POs', '₹28.40 L checked into stock', 'up', 'Full batch scan completed', '✅'),
-        kpiHtml('Urgent OT Ortho Orders', '2 Critical', 'Surgery OT priority', 'warn', 'Same-day flight cargo', '🚨'),
-        kpiHtml('Avg. Approval Duration', '4.2 Hours', '-1.8h vs FY25', 'up', 'Automated workflow threshold', '⏱️'),
-        kpiHtml('Fulfillment Accuracy', '99.2%', 'Exact SKU & quantity match', 'up', 'Zero short shipments', '🎯'),
+        kpiHtml('POs in Transit', '0', '0.0%', 'neutral', 'No active records', '🚛'),
+        kpiHtml('GRN Verified (MTD)', '0', '0.0%', 'neutral', 'No active records', '✅'),
+        kpiHtml('Urgent OT Ortho Orders', '0', '0.0%', 'neutral', 'No active records', '🚨'),
+        kpiHtml('Avg. Approval Duration', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Fulfillment Accuracy', '0', '0.0%', 'neutral', 'No active records', '🎯'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -407,12 +407,12 @@
   function renderProcurement() {
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Total Requisitions', '43 Requests', '+8 vs last month', 'up', 'Cross-clinic demand pipeline', '📋'),
-        kpiHtml('POs Issued (MTD)', '18 POs', '₹34.8 L total value', 'up', 'Oct 2026', '📑'),
-        kpiHtml('Requisition to PO Time', '2.4 Days', '-0.6d improvement', 'up', 'End-to-end turnaround', '⏱️'),
-        kpiHtml('3-Way Match Rate', '98.6%', '+0.4% MoM', 'up', 'PO-GRN-Invoice matching', '🎯'),
-        kpiHtml('Urgent Requisitions', '3 Critical', 'Surgery OT + Pharma', 'warn', 'Fast-track approval active', '🚨'),
-        kpiHtml('Cycle Cost Savings', '₹4.85 L', '+18.4% vs target', 'up', 'Negotiation & volume leverage', '💰'),
+        kpiHtml('Total Requisitions', '0', '0.0%', 'neutral', 'No active records', '📋'),
+        kpiHtml('POs Issued (MTD)', '0', '0.0%', 'neutral', 'No active records', '📑'),
+        kpiHtml('Requisition to PO Time', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('3-Way Match Rate', '0', '0.0%', 'neutral', 'No active records', '🎯'),
+        kpiHtml('Urgent Requisitions', '0', '0.0%', 'neutral', 'No active records', '🚨'),
+        kpiHtml('Cycle Cost Savings', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -452,12 +452,12 @@
   function renderPurchaseHistory() {
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Cumulative Spend (FYTD)', '₹89.90 L', '+18.4% YoY', 'up', '71 POs fulfilled', '💰'),
-        kpiHtml('Fulfilled Orders', '71 Orders', '100% GRN verified', 'up', 'Zero lost shipments', '📦'),
-        kpiHtml('Avg. Order Ticket', '₹1.27 L', '+4.2% vs FY25', 'up', 'Bulk order consolidation', '📊'),
-        kpiHtml('Historical Fulfillment SLA', '97.1%', '+1.8% vs last year', 'up', 'On-time delivery', '⏱️'),
-        kpiHtml('Invoice Match Accuracy', '99.4%', 'Three-way PO/GRN/Inv', 'up', 'Statutory audit compliant', '🛡️'),
-        kpiHtml('Direct Manufacturer Mix', '91.2%', 'Eliminated middle-tier markups', 'up', 'Pharma direct network', '🏭'),
+        kpiHtml('Cumulative Spend (FYTD)', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
+        kpiHtml('Fulfilled Orders', '0', '0.0%', 'neutral', 'No active records', '📦'),
+        kpiHtml('Avg. Order Ticket', '₹0', '0.0%', 'neutral', 'No active records', '📊'),
+        kpiHtml('Historical Fulfillment SLA', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Invoice Match Accuracy', '0', '0.0%', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Direct Manufacturer Mix', '0', '0.0%', 'neutral', 'No active records', '🏭'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -502,24 +502,16 @@
   }
 
   function renderSupplierPricing() {
-    var skus = [
-      { sku: 'MED-VACC-001', name: 'Nobivac Puppy DP Vaccine', vendor: 'MSD Animal Health', cat: 'Vaccines', msrp: '₹420', contracted: '₹315', disc: '25.0%', moq: '50 vials', lock: '2027-03-31', parity: 'Best Price' },
-      { sku: 'MED-PARA-014', name: 'Bravecto Chewable 20-40kg', vendor: 'MSD Animal Health', cat: 'Antiparasitic', msrp: '₹2,450', contracted: '₹1,880', disc: '23.3%', moq: '20 packs', lock: '2026-12-31', parity: 'Best Price' },
-      { sku: 'MED-VACC-004', name: 'Eurican DAPPi-L Multi-Antigen', vendor: 'Boehringer Ingelheim', cat: 'Vaccines', msrp: '₹480', contracted: '₹375', disc: '21.9%', moq: '40 vials', lock: '2027-02-28', parity: 'Negotiated' },
-      { sku: 'MED-ANTI-008', name: 'NexGard Spectra Medium (7.5-15kg)', vendor: 'Boehringer Ingelheim', cat: 'Antiparasitic', msrp: '₹1,980', contracted: '₹1,520', disc: '23.2%', moq: '25 boxes', lock: '2027-01-31', parity: 'Best Price' },
-      { sku: 'MED-SURG-022', name: 'Titanium LCP 2.4mm Recon Plate', vendor: 'Synthes Vet India', cat: 'Surgical Implants', msrp: '₹8,500', contracted: '₹6,400', disc: '24.7%', moq: '5 units', lock: '2027-06-30', parity: 'Exclusive' },
-      { sku: 'NUT-DIET-005', name: 'Veterinary Diet Renal Dry 4kg', vendor: 'Royal Canin India', cat: 'Nutrition', msrp: '₹3,600', contracted: '₹2,950', disc: '18.1%', moq: '15 bags', lock: '2026-11-30', parity: 'Review Due' },
-      { sku: 'MED-GEN-019', name: 'Meloxicam Injection 5mg/ml (100ml)', vendor: 'Intas Pharma', cat: 'Generic NSAID', msrp: '₹320', contracted: '₹210', disc: '34.4%', moq: '60 vials', lock: '2027-05-31', parity: 'Best Price' }
-    ];
+    var skus = [];
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Contracted SKUs', '1,420 Items', '100% price locked', 'up', 'Master agreements in place', '📋'),
-        kpiHtml('Avg. Discount vs MSRP', '23.6%', '+2.4% vs FY25', 'up', 'Network purchasing leverage', '🏷️'),
-        kpiHtml('Active Price Locks', '94.2%', 'Protected through FY27', 'up', 'Inflation hedge protection', '🔒'),
-        kpiHtml('Price Reviews Due (<60d)', '2 Agreements', 'Royal Canin Nutrition', 'warn', 'Renewal talks scheduled', '⏳'),
-        kpiHtml('Generic Arbitrage Margin', '33.4%', '+12.8% vs branded', 'up', 'NSAIDs & Antibiotics', '💊'),
-        kpiHtml('Volume Rebates Earned', '₹3.18 L', 'Tier 2 & 3 order bonuses', 'up', 'Annual cash back', '💵'),
+        kpiHtml('Contracted SKUs', '0', '0.0%', 'neutral', 'No active records', '📋'),
+        kpiHtml('Avg. Discount vs MSRP', '0', '0.0%', 'neutral', 'No active records', '🏷️'),
+        kpiHtml('Active Price Locks', '0', '0.0%', 'neutral', 'No active records', '🔒'),
+        kpiHtml('Price Reviews Due (<60d)', '0', '0.0%', 'neutral', 'No active records', '⏳'),
+        kpiHtml('Generic Arbitrage Margin', '0', '0.0%', 'neutral', 'No active records', '💊'),
+        kpiHtml('Volume Rebates Earned', '₹0', '0.0%', 'neutral', 'No active records', '💵'),
       '</div>',
 
       '<div class="zvp-card">',
@@ -535,7 +527,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>SKU Code</th><th>Product Description</th><th>Vendor</th><th>Category</th><th>MSRP List</th><th>Contracted</th><th>Discount %</th><th>MOQ</th><th>Price Lock Until</th><th>Parity Status</th></tr></thead>',
             '<tbody>',
-              skus.map(function (s) {
+              (skus.length ? skus.map(function (s) {
                 var pColor = s.parity === 'Best Price' ? 'green' : s.parity === 'Exclusive' ? 'purple' : s.parity === 'Review Due' ? 'amber' : 'blue';
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(s.sku) + '</td>' +
@@ -549,7 +541,7 @@
                   '<td style="color:#64748b;font-size:11px;">' + esc(s.lock) + '</td>' +
                   '<td><span class="zvp-tag ' + pColor + '">' + esc(s.parity) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="10" style="text-align:center;padding:24px;color:#94a3b8;">No contracted SKU pricing records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -558,24 +550,15 @@
   }
 
   function renderSupplierPerformance() {
-    var supList = [
-      { id: 'SUP-01', name: 'MSD Animal Health India', tier: 'Tier 1 Strategic', otif: 99.4, coldChain: 100.0, ppm: 18, invAcc: 99.8, lead: 3.2, cert: 'WHO-GMP & ISO 13485', status: 'Excellent' },
-      { id: 'SUP-02', name: 'Boehringer Ingelheim Vet', tier: 'Tier 1 Strategic', otif: 98.6, coldChain: 99.8, ppm: 24, invAcc: 99.5, lead: 4.1, cert: 'EU-GMP & Schedule M', status: 'Excellent' },
-      { id: 'SUP-03', name: 'Synthes Vet India', tier: 'Tier 1 Strategic', otif: 99.1, coldChain: 100.0, ppm: 12, invAcc: 99.6, lead: 4.8, cert: 'ISO 13485 & CE Mark', status: 'Excellent' },
-      { id: 'SUP-04', name: 'Zoetis India Ltd.', tier: 'Tier 1 Strategic', otif: 97.9, coldChain: 99.4, ppm: 32, invAcc: 99.1, lead: 4.3, cert: 'US-FDA & WHO-GMP', status: 'Good' },
-      { id: 'SUP-05', name: "Hill's Pet Nutrition", tier: 'Tier 2 Preferred', otif: 96.8, coldChain: 100.0, ppm: 45, invAcc: 98.4, lead: 5.8, cert: 'HACCP & ISO 22000', status: 'Good' },
-      { id: 'SUP-06', name: 'Royal Canin India', tier: 'Tier 2 Preferred', otif: 96.2, coldChain: 100.0, ppm: 52, invAcc: 98.2, lead: 5.5, cert: 'FSSC 22000 & ISO 9001', status: 'Good' },
-      { id: 'SUP-07', name: 'Virbac India Pvt. Ltd.', tier: 'Tier 2 Preferred', otif: 95.8, coldChain: 98.9, ppm: 64, invAcc: 97.9, lead: 6.8, cert: 'Schedule M & ISO 9001', status: 'Good' },
-      { id: 'SUP-08', name: 'Intas Pharmaceuticals', tier: 'Tier 2 Preferred', otif: 94.6, coldChain: 99.1, ppm: 88, invAcc: 97.5, lead: 7.6, cert: 'WHO-GMP & UK-MHRA', status: 'Acceptable' }
-    ];
+    var supList = [];
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Network OTIF Delivery Rate', '97.3%', '+1.4% MoM', 'up', 'On-Time In-Full benchmark', '⏱️'),
-        kpiHtml('Cold-Chain Compliance', '99.5%', 'Zero breaches YTD', 'up', '2°C - 8°C vaccine integrity', '❄️'),
-        kpiHtml('Avg. Defect PPM', '48 PPM', '-12 PPM vs target', 'up', 'Pharmaceutical specification', '🛡️'),
-        kpiHtml('Invoice Match Accuracy', '98.7%', 'Three-way match', 'up', 'Discrepancy < 1.3%', '📑'),
-        kpiHtml('Strategic Tier 1 Partners', '4 Vendors', '68% of spend volume', 'up', 'Direct manufacturing lines', '⭐'),
+        kpiHtml('Network OTIF Delivery Rate', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Cold-Chain Compliance', '0', '0.0%', 'neutral', 'No active records', '❄️'),
+        kpiHtml('Avg. Defect PPM', '0', '0.0%', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Invoice Match Accuracy', '0', '0.0%', 'neutral', 'No active records', '📑'),
+        kpiHtml('Strategic Tier 1 Partners', '0', '0.0%', 'neutral', 'No active records', '⭐'),
         kpiHtml('Audit Certifications', '100% Passed', '8 of 8 certified', 'up', 'WHO-GMP & ISO 13485', '📜'),
       '</div>',
 
@@ -592,7 +575,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>ID</th><th>Supplier Name</th><th>QBR Tier</th><th>OTIF Rate</th><th>Cold Chain SLA</th><th>Defect PPM</th><th>Invoice Match</th><th>Lead Time</th><th>GMP & Certifications</th><th>Status</th></tr></thead>',
             '<tbody>',
-              supList.map(function (s) {
+              (supList.length ? supList.map(function (s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(s.id) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(s.name) + '</td>' +
@@ -605,7 +588,7 @@
                   '<td style="color:var(--muted-foreground,#64748b);font-size:11px;">' + esc(s.cert) + '</td>' +
                   '<td><span class="zvp-tag ' + (s.status === 'Excellent' ? 'green' : s.status === 'Good' ? 'blue' : 'amber') + '">' + esc(s.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="10" style="text-align:center;padding:24px;color:#94a3b8;">No supplier scorecards found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -614,28 +597,22 @@
   }
 
   function renderSavings() {
-    var levers = [
-      { lever: 'Volume Aggregation & Bulk POs', realized: '₹6.80 L', target: '₹6.00 L', achievement: '113%', color: '#38bdf8', desc: 'Centralized ordering across Koramangala, Bandra, Okhla and Whitefield clinics.' },
-      { lever: 'Generic Medication Substitution', realized: '₹4.90 L', target: '₹4.50 L', achievement: '109%', color: '#34d399', desc: 'Switching select NSAIDs and broad-spectrum antibiotics to certified high-potency generics.' },
-      { lever: 'Contract Renegotiations & Price Locks', realized: '₹3.65 L', target: '₹3.50 L', achievement: '104%', color: '#a78bfa', desc: 'Annual master purchasing agreements with MSD Animal Health, Zoetis, and Synthes Vet.' },
-      { lever: 'Early Settlement Cash Discounts (2/10 Net 30)', realized: '₹1.85 L', target: '₹2.00 L', achievement: '93%', color: '#fbbf24', desc: 'Capturing 2% cash discount on invoices settled within 10 days of verified GRN.' },
-      { lever: 'Freight & Route Consolidation', realized: '₹1.20 L', target: '₹1.00 L', achievement: '120%', color: '#10b981', desc: 'Direct-to-hub deliveries eliminating local middle-mile distributor handling markups.' }
-    ];
+    var levers = [];
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Realized Savings (FYTD)', '₹18.40 L', '+108.2% vs target', 'up', 'Across all 5 levers', '💰'),
-        kpiHtml('Savings % of Spend', '16.8%', '+2.3% YoY', 'up', 'Total addressable spend', '📉'),
-        kpiHtml('Cost Avoidance (Inflation)', '₹4.60 L', 'Price locks preserved', 'up', 'Market inflation hedge', '🛡️'),
-        kpiHtml('Generic Substitution Arbitrage', '₹4.90 L', '33.4% lower unit cost', 'up', 'Pharma & antibiotics', '💊'),
-        kpiHtml('Early Pay Discounts Captured', '₹1.85 L', '92.5% capture rate', 'up', '2/10 Net 30 terms', '⚡'),
-        kpiHtml('Savings in Pipeline (H2)', '₹5.80 L', '3 active RFPs', 'up', 'Targeted for closure', '🎯'),
+        kpiHtml('Realized Savings (FYTD)', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
+        kpiHtml('Savings % of Spend', '0', '0.0%', 'neutral', 'No active records', '📉'),
+        kpiHtml('Cost Avoidance (Inflation)', '₹0', '0.0%', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Generic Substitution Arbitrage', '₹0', '0.0%', 'neutral', 'No active records', '💊'),
+        kpiHtml('Early Pay Discounts Captured', '₹0', '0.0%', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Savings in Pipeline (H2)', '₹0', '0.0%', 'neutral', 'No active records', '🎯'),
       '</div>',
 
       '<div class="zvp-card">',
         '<h3 class="zvp-card-title" style="margin-bottom:16px;">🎯 Procurement Savings by Strategic Lever</h3>',
         '<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:14px;">',
-          levers.map(function (l) {
+          (levers.length ? levers.map(function (l) {
             return '<div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px;">' +
               '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
                 '<strong style="font-size:13px;color:var(--foreground,#0f172a);">' + esc(l.lever) + '</strong>' +
@@ -647,7 +624,7 @@
               '</div>' +
               '<p style="margin:0;font-size:11px;color:var(--muted-foreground,#64748b);line-height:1.4;">' + esc(l.desc) + '</p>' +
             '</div>';
-          }).join(''),
+          }).join('') : '<div style="text-align:center;padding:28px;color:#94a3b8;">No procurement savings levers found</div>'),
         '</div>',
       '</div>'
     ].join('');

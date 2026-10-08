@@ -24,178 +24,78 @@
 
   /* ── 1. Module Registry ──────────────────────────────────────────── */
   var MODULES = [
-    { id: 'sales',       label: 'Sales Reports',      icon: '📊', hash: '#sales-reports',      badge: '₹14.18Cr' },
-    { id: 'revenue',     label: 'Revenue Reports',    icon: '💼', hash: '#revenue-reports',    badge: '104.2%' },
-    { id: 'customer',    label: 'Customer Reports',   icon: '👥', hash: '#customer-reports',   badge: '142.5k' },
-    { id: 'pet',         label: 'Pet Reports',        icon: '🐾', hash: '#pet-reports',        badge: '186.4k' },
-    { id: 'doctor',      label: 'Doctor Reports',     icon: '🩺', hash: '#doctor-reports',     badge: '18 Vets' },
-    { id: 'clinic',      label: 'Clinic Reports',     icon: '🏥', hash: '#clinic-reports',     badge: '5 Hospitals' },
-    { id: 'product',     label: 'Product Reports',    icon: '🏷️', hash: '#product-reports',    badge: '4,200 SKUs' },
-    { id: 'inventory',   label: 'Inventory Reports',  icon: '📦', hash: '#inventory-reports',  badge: '₹16.64Cr' },
-    { id: 'finance',     label: 'Finance Reports',    icon: '💰', hash: '#finance-reports',    badge: '17.7% EBITDA' },
-    { id: 'hr',          label: 'HR Reports',         icon: '🧑‍💼', hash: '#hr-reports',         badge: '300 Staff' },
-    { id: 'marketing',   label: 'Marketing Reports',  icon: '📣', hash: '#marketing-reports',  badge: '4.7x ROAS' },
-    { id: 'operations',  label: 'Operations Reports', icon: '🚚', hash: '#operations-reports', badge: '96.2% SLA' },
-    { id: 'vendor',      label: 'Vendor Reports',     icon: '🤝', hash: '#vendor-reports',     badge: '48 Vendors' },
-    { id: 'custom',      label: 'Custom Reports',     icon: '⚙️', hash: '#custom-reports',     badge: 'Query Builder' },
-    { id: 'scheduled',   label: 'Scheduled Reports',  icon: '⏰', hash: '#scheduled-reports',  badge: '6 Active' },
-    { id: 'export',      label: 'Export Center',      icon: '📥', hash: '#export-center',      badge: '10 Datasets' }
+    { id: 'sales',       label: 'Sales Reports',      icon: '📊', hash: '#sales-reports',      badge: '' },
+    { id: 'revenue',     label: 'Revenue Reports',    icon: '💼', hash: '#revenue-reports',    badge: '' },
+    { id: 'customer',    label: 'Customer Reports',   icon: '👥', hash: '#customer-reports',   badge: '' },
+    { id: 'pet',         label: 'Pet Reports',        icon: '🐾', hash: '#pet-reports',        badge: '' },
+    { id: 'doctor',      label: 'Doctor Reports',     icon: '🩺', hash: '#doctor-reports',     badge: '' },
+    { id: 'clinic',      label: 'Clinic Reports',     icon: '🏥', hash: '#clinic-reports',     badge: '' },
+    { id: 'product',     label: 'Product Reports',    icon: '🏷️', hash: '#product-reports',    badge: '' },
+    { id: 'inventory',   label: 'Inventory Reports',  icon: '📦', hash: '#inventory-reports',  badge: '' },
+    { id: 'finance',     label: 'Finance Reports',    icon: '💰', hash: '#finance-reports',    badge: '' },
+    { id: 'hr',          label: 'HR Reports',         icon: '🧑‍💼', hash: '#hr-reports',         badge: '' },
+    { id: 'marketing',   label: 'Marketing Reports',  icon: '📣', hash: '#marketing-reports',  badge: '' },
+    { id: 'operations',  label: 'Operations Reports', icon: '🚚', hash: '#operations-reports', badge: '' },
+    { id: 'vendor',      label: 'Vendor Reports',     icon: '🤝', hash: '#vendor-reports',     badge: '' },
+    { id: 'custom',      label: 'Custom Reports',     icon: '⚙️', hash: '#custom-reports',     badge: '' },
+    { id: 'scheduled',   label: 'Scheduled Reports',  icon: '⏰', hash: '#scheduled-reports',  badge: '' },
+    { id: 'export',      label: 'Export Center',      icon: '📥', hash: '#export-center',      badge: '' }
   ];
 
   /* ── 2. Data Store ───────────────────────────────────────────────── */
   var D = {
     // 1. Sales Data
     salesSummary: {
-      grossSales: '₹14,80,45,200',
-      discounts: '₹62,40,000',
-      netSales: '₹14,18,05,200',
-      refunds: '₹19,85,000',
-      aov: '₹1,842',
-      ordersCount: '77,010'
+      grossSales: '₹0',
+      discounts: '₹0',
+      netSales: '₹0',
+      refunds: '₹0',
+      aov: '₹0',
+      ordersCount: '0'
     },
-    salesChannels: [
-      { channel: 'Online Store & Mobile Apps', orders: '48,200', gross: '₹8,92,40,000', net: '₹8,55,10,000', share: '60.3%' },
-      { channel: 'Super-Specialty Clinics OPD', orders: '14,850', gross: '₹3,42,10,000', net: '₹3,38,50,000', share: '23.8%' },
-      { channel: '60-Min Express Tele-Meds', orders: '9,410', gross: '₹1,56,80,000', net: '₹1,48,20,000', share: '10.5%' },
-      { channel: 'Corporate & B2B Veterinary', orders: '4,550', gross: '₹89,15,200', net: '₹76,25,200', share: '5.4%' }
-    ],
+    salesChannels: [],
 
     // 2. Revenue Data
-    revenueBUs: [
-      { unit: 'Pet Products & Nutrition', target: '₹6,00,00,000', achieved: '₹6,42,80,000', attainment: '107.1%', margin: '38.4%', trend: '+14.2%' },
-      { unit: 'Prescription Pharmacy', target: '₹3,80,00,000', achieved: '₹3,94,20,000', attainment: '103.7%', margin: '44.2%', trend: '+8.6%' },
-      { unit: 'Veterinary Clinical Services', target: '₹2,50,00,000', achieved: '₹2,68,50,000', attainment: '107.4%', margin: '58.2%', trend: '+18.1%' },
-      { unit: 'Zenve Fashion & Wearables', target: '₹80,00,000', achieved: '₹74,10,000', attainment: '92.6%', margin: '52.0%', trend: '+4.5%' },
-      { unit: 'B2B Enterprise Accounts', target: '₹40,00,000', achieved: '₹38,45,200', attainment: '96.1%', margin: '29.5%', trend: '+12.0%' }
-    ],
+    revenueBUs: [],
 
     // 3. Customer Data
-    customerCohorts: [
-      { cohort: 'Jan 2026', users: '14,200', m1: '48.2%', m3: '42.1%', m6: '38.5%', m12: '35.2%', ltv: '₹9,840' },
-      { cohort: 'Feb 2026', users: '15,800', m1: '51.4%', m3: '44.8%', m6: '40.2%', m12: '36.8%', ltv: '₹10,250' },
-      { cohort: 'Mar 2026', users: '17,100', m1: '53.0%', m3: '46.2%', m6: '41.8%', m12: '37.4%', ltv: '₹10,680' },
-      { cohort: 'Apr 2026', users: '18,500', m1: '54.6%', m3: '47.5%', m6: '42.9%', m12: '38.2%', ltv: '₹11,100' }
-    ],
+    customerCohorts: [],
 
     // 4. Pet Epidemiology
-    petBreeds: [
-      { breed: 'Labrador Retriever', species: 'Dog', count: '42,500', avgAge: '4.2 yrs', topCondition: 'Hip Dysplasia & Diet', adherence: '94.2%' },
-      { breed: 'Golden Retriever', species: 'Dog', count: '31,200', avgAge: '3.8 yrs', topCondition: 'Allergic Dermatitis', adherence: '92.8%' },
-      { breed: 'Persian Cat', species: 'Cat', count: '24,800', avgAge: '2.9 yrs', topCondition: 'Hairball & Renal Care', adherence: '89.4%' },
-      { breed: 'Shih Tzu', species: 'Dog', count: '19,400', avgAge: '3.1 yrs', topCondition: 'Ophthalmology & Teeth', adherence: '95.1%' },
-      { breed: 'Indie / Mixed Breed', species: 'Dog', count: '18,600', avgAge: '4.8 yrs', topCondition: 'Vaccinations & Ticks', adherence: '91.7%' }
-    ],
+    petBreeds: [],
 
     // 5. Doctor Data
-    doctors: [
-      { name: 'Dr. Priya Sharma', specialty: 'Chief Veterinary Surgeon', consults: '1,420', surgeries: '148', satisfaction: '4.95 / 5.0', commission: '₹4,82,000' },
-      { name: 'Dr. Rahul Mehta', specialty: 'Senior Orthopedic Vet', consults: '1,180', surgeries: '162', satisfaction: '4.92 / 5.0', commission: '₹4,25,000' },
-      { name: 'Dr. Aisha Khan', specialty: 'Head of Veterinary Dermatology', consults: '1,340', surgeries: '24', satisfaction: '4.89 / 5.0', commission: '₹3,75,000' },
-      { name: 'Dr. Karan Patel', specialty: 'Critical Care & Anesthesiology', consults: '980', surgeries: '112', satisfaction: '4.88 / 5.0', commission: '₹3,40,000' },
-      { name: 'Dr. Neha Singh', specialty: 'Internal Medicine & Ultrasound', consults: '1,210', surgeries: '42', satisfaction: '4.86 / 5.0', commission: '₹3,15,000' }
-    ],
+    doctors: [],
 
     // 6. Clinic Data
-    clinics: [
-      { name: 'Koramangala 24/7 Super-Specialty', beds: '28', occupancy: '89.3%', opdDaily: '142', labTAT: '38 mins', revenue: '₹98,40,000' },
-      { name: 'Indiranagar Urban Care Center', beds: '16', occupancy: '84.2%', opdDaily: '98', labTAT: '42 mins', revenue: '₹68,20,000' },
-      { name: 'Whitefield Tech Corridor Hospital', beds: '22', occupancy: '82.0%', opdDaily: '114', labTAT: '40 mins', revenue: '₹74,50,000' },
-      { name: 'Jayanagar Wellness & Diagnostics', beds: '12', occupancy: '76.4%', opdDaily: '78', labTAT: '46 mins', revenue: '₹49,80,000' },
-      { name: 'HSR Layout Surgical Pavilion', beds: '18', occupancy: '81.5%', opdDaily: '88', labTAT: '44 mins', revenue: '₹57,60,000' }
-    ],
+    clinics: [],
 
     // 7. Product Data
-    topProducts: [
-      { sku: 'ZV-VET-001', name: 'Royal Canin Maxi Adult Dog Food 15kg', cat: 'Nutrition', units: '8,420', rev: '₹92,62,000', margin: '38.2%', abc: 'A' },
-      { sku: 'ZV-MED-012', name: 'Bravecto Chewable Dog 20-40kg', cat: 'Pharmacy', units: '4,850', rev: '₹72,75,000', margin: '46.5%', abc: 'A' },
-      { sku: 'ZV-VAC-004', name: 'Zoetis Vanguard Plus 5/L Vaccine 25-Dose', cat: 'Clinical', units: '3,200', rev: '₹57,60,000', margin: '52.0%', abc: 'A' },
-      { sku: 'ZV-NUT-088', name: 'Farmina N&D Grain-Free Pumpkin Lamb 12kg', cat: 'Nutrition', units: '4,100', rev: '₹45,10,000', margin: '39.0%', abc: 'B' },
-      { sku: 'ZV-MED-099', name: 'NexGard Spectra Medium 7.5-15kg', cat: 'Pharmacy', units: '3,950', rev: '₹39,50,000', margin: '48.2%', abc: 'B' }
-    ],
+    topProducts: [],
 
     // 8. Inventory Data
-    inventoryDepots: [
-      { hub: 'Bengaluru Central Mega Depot', skus: '4,180', val: '₹10,24,00,000', dsi: '22.4 days', expiryNear: '₹4,80,000', space: '84.2%' },
-      { hub: 'Indiranagar Urban Dark Store', skus: '1,420', val: '₹1,84,00,000', dsi: '16.8 days', expiryNear: '₹85,000', space: '76.5%' },
-      { hub: 'Whitefield Quick-Commerce Hub', skus: '1,350', val: '₹1,72,00,000', dsi: '18.1 days', expiryNear: '₹92,000', space: '74.0%' },
-      { hub: 'Koramangala 24/7 Clinical Depot', skus: '1,890', val: '₹2,10,00,000', dsi: '19.5 days', expiryNear: '₹1,12,000', space: '78.2%' },
-      { hub: 'Jayanagar Micro-Fulfillment', skus: '1,120', val: '₹74,00,000', dsi: '14.2 days', expiryNear: '₹38,000', space: '69.0%' }
-    ],
+    inventoryDepots: [],
 
     // 9. Finance GAAP P&L
-    financePnL: [
-      { line: 'Gross Revenue from Operations', mtd: '₹14,80,45,200', qtd: '₹43,12,80,000', pct: '100.0%', note: 'Gross billing across all channels' },
-      { line: 'Less: Promotional Discounts & Subsidies', mtd: '-₹62,40,000', qtd: '-₹1,82,40,000', pct: '-4.2%', note: 'App promotional cashback and coupons' },
-      { line: 'Net Operating Revenue', mtd: '₹14,18,05,200', qtd: '₹41,30,40,000', pct: '95.8%', note: 'Audited baseline top-line' },
-      { line: 'Cost of Goods Sold (COGS & Pharmacy)', mtd: '-₹8,25,30,000', qtd: '-₹24,18,00,000', pct: '-55.8%', note: 'Wholesale procurement + packaging' },
-      { line: 'Gross Profit', mtd: '₹5,92,75,200', qtd: '₹17,12,40,000', pct: '41.8%', note: 'Gross margin expansion of +240 bps' },
-      { line: 'Staff & Medical Specialist Payroll', mtd: '-₹1,87,40,000', qtd: '-₹5,62,20,000', pct: '-12.7%', note: '300 Full-time equivalent employees' },
-      { line: 'Logistics, Dark Store & Rent Expenses', mtd: '-₹1,15,60,000', qtd: '-₹3,46,80,000', pct: '-7.8%', note: 'Hub leases and 60-min rider fleet' },
-      { line: 'Sales, Marketing & CAC Attribution', mtd: '-₹38,50,000', qtd: '-₹1,15,50,000', pct: '-2.6%', note: 'Performance marketing ROAS 4.7x' },
-      { line: 'EBITDA (Earnings Before Int, Tax, Dep)', mtd: '₹2,51,25,200', qtd: '₹6,87,90,000', pct: '17.7%', note: 'Operating cash surplus' },
-      { line: 'Depreciation, Amortization & Taxes', mtd: '-₹62,80,000', qtd: '-₹1,88,40,000', pct: '-4.4%', note: 'Medical equipment & corporate tax' },
-      { line: 'Audited Net Profit After Tax (PAT)', mtd: '₹1,88,45,200', qtd: '₹4,99,50,000', pct: '13.3%', note: 'Net bottom line profit' }
-    ],
+    financePnL: [],
 
     // 10. HR & Workforce
-    hrDepartments: [
-      { dept: 'Veterinary Doctors & Specialists', count: 42, payroll: '₹54,60,000', attendance: '98.2%', turn: '1.2%' },
-      { dept: 'ICU & Veterinary Nursing Staff', count: 68, payroll: '₹34,00,000', attendance: '97.5%', turn: '2.1%' },
-      { dept: 'Pharmacy & Dispensing Chemists', count: 38, payroll: '₹22,80,000', attendance: '98.8%', turn: '1.0%' },
-      { dept: 'Logistics, Riders & Warehouse Ops', count: 84, payroll: '₹37,80,000', attendance: '96.4%', turn: '3.2%' },
-      { dept: 'HQ, Tech, Product & Administration', count: 68, payroll: '₹38,20,000', attendance: '99.1%', turn: '0.8%' }
-    ],
+    hrDepartments: [],
 
     // 11. Marketing Attribution
-    marketingChannels: [
-      { channel: 'Google Search & Shopping (High Intent)', spend: '₹14,50,000', rev: '₹78,40,000', roas: '5.4x', cac: '₹310', newUsers: '4,680' },
-      { channel: 'Meta (Instagram & Facebook Pet Reels)', spend: '₹12,80,000', rev: '₹56,32,000', roas: '4.4x', cac: '₹385', newUsers: '3,320' },
-      { channel: 'Pet Influencer & Breeder Partnerships', spend: '₹5,40,000', rev: '₹25,92,000', roas: '4.8x', cac: '₹340', newUsers: '1,590' },
-      { channel: 'Organic Viral Referral & Loyalty', spend: '₹2,10,000', rev: '₹14,70,000', roas: '7.0x', cac: '₹120', newUsers: '1,750' },
-      { channel: 'Offline Clinic Pet Parent Events', spend: '₹3,70,000', rev: '₹12,21,000', roas: '3.3x', cac: '₹460', newUsers: '804' }
-    ],
+    marketingChannels: [],
 
     // 12. Operations & Delivery SLAs
-    operationsHubs: [
-      { hub: 'Bengaluru Central Dark Store', orders: '18,400', avgMins: '38.4m', slaPass: '97.4%', activeRiders: '26', rating: '4.94' },
-      { hub: 'Indiranagar Urban Node', orders: '12,900', avgMins: '34.2m', slaPass: '98.1%', activeRiders: '18', rating: '4.96' },
-      { hub: 'Whitefield Express Staging', orders: '14,200', avgMins: '44.8m', slaPass: '95.2%', activeRiders: '20', rating: '4.88' },
-      { hub: 'Koramangala 24/7 Dispatch', orders: '16,100', avgMins: '36.1m', slaPass: '96.8%', activeRiders: '22', rating: '4.92' },
-      { hub: 'Jayanagar Rapid Hub', orders: '9,800', avgMins: '39.5m', slaPass: '96.0%', activeRiders: '14', rating: '4.90' }
-    ],
+    operationsHubs: [],
 
     // 13. Vendor Scorecards
-    vendors: [
-      { name: 'Zoetis India Animal Health', category: 'Biologicals & Vaccines', poVolume: '₹2,84,00,000', fillRate: '98.8%', otif: '97.5%', rebate: '4.5%' },
-      { name: 'Royal Canin Pet Health Nutrition', category: 'Specialized Nutrition', poVolume: '₹3,45,00,000', fillRate: '99.1%', otif: '98.2%', rebate: '5.2%' },
-      { name: 'Boehringer Ingelheim Animal Health', category: 'Therapeutics & Parasiticides', poVolume: '₹1,98,00,000', fillRate: '96.4%', otif: '95.0%', rebate: '4.0%' },
-      { name: 'Mars Petcare (Pedigree & Whiskas)', category: 'Commercial Nutrition', poVolume: '₹1,42,00,000', fillRate: '98.5%', otif: '97.8%', rebate: '3.8%' },
-      { name: 'Virbac Animal Health India', category: 'Dermatology & Supplements', poVolume: '₹94,00,000', fillRate: '97.0%', otif: '96.2%', rebate: '4.2%' }
-    ],
+    vendors: [],
 
     // 14. Scheduled Reports
-    schedules: [
-      { id: 'SCH-01', title: 'Daily Executive GMV Flash Briefing', cron: '0 08:00 * * *', recipients: 'Board, CXOs, Finance', format: 'PDF + CSV', active: true, lastRun: 'Today, 08:00 IST' },
-      { id: 'SCH-02', title: 'Weekly Cold-Chain & Expiry Risk Audit', cron: '0 09:00 * * 1', recipients: 'Supply Chain, Pharmacy Lead', format: 'XLSX + CSV', active: true, lastRun: 'Monday, 09:00 IST' },
-      { id: 'SCH-03', title: 'Monthly GAAP Financial Reconciliation', cron: '0 07:00 1 * *', recipients: 'Finance Controllers, External Auditors', format: 'Audited PDF + CSV', active: true, lastRun: '1st of Month' },
-      { id: 'SCH-04', title: 'Hourly 60-Minute Delivery SLA Telemetry', cron: '0 * * * *', recipients: 'Operations Heads, Dark Store Leads', format: 'Real-Time Alert Feed', active: true, lastRun: '12m ago' },
-      { id: 'SCH-05', title: 'Doctor Consultation & Surgical Roster Summary', cron: '0 21:00 * * *', recipients: 'Medical Directors, Clinic Managers', format: 'PDF Report', active: true, lastRun: 'Yesterday, 21:00 IST' },
-      { id: 'SCH-06', title: 'Marketing ROAS & CAC Multi-Touch Digest', cron: '0 10:00 * * 5', recipients: 'Growth Marketing, Performance Leads', format: 'CSV Data Pack', active: false, lastRun: 'Paused' }
-    ],
+    schedules: [],
 
     // 15. Export Datasets
-    exportDatasets: [
-      { id: 'EXP-01', name: 'Master Sales & Billing Ledger', records: '77,010 rows', size: '14.2 MB', freq: 'Real-time updated', tags: ['Sales', 'Finance', 'Orders'] },
-      { id: 'EXP-02', name: 'Customer 360° Profile & Cohorts', records: '142,500 rows', size: '28.6 MB', freq: 'Daily sync', tags: ['Customers', 'LTV', 'Cohorts'] },
-      { id: 'EXP-03', name: 'Pet Master & Epidemiology Register', records: '186,400 rows', size: '36.1 MB', freq: 'Daily sync', tags: ['Pets', 'Breeds', 'Clinical'] },
-      { id: 'EXP-04', name: 'Inventory Batch Valuation & Expiry Audit', records: '18,450 rows', size: '4.8 MB', freq: 'Hourly sync', tags: ['Inventory', 'Warehouse', 'Batches'] },
-      { id: 'EXP-05', name: 'Doctor Consultations & Surgical Telemetry', records: '24,600 rows', size: '5.2 MB', freq: 'Daily sync', tags: ['Doctors', 'Clinical', 'Surgeries'] },
-      { id: 'EXP-06', name: 'Clinic Bed Occupancy & OPD Logs', records: '12,800 rows', size: '2.9 MB', freq: 'Daily sync', tags: ['Clinics', 'Hospitals', 'ICU'] },
-      { id: 'EXP-07', name: 'GAAP P&L Statement & General Ledger Items', records: '4,850 rows', size: '1.2 MB', freq: 'Audited monthly', tags: ['Finance', 'GAAP', 'EBITDA'] },
-      { id: 'EXP-08', name: 'Workforce Attendance, Roster & Payroll', records: '3,600 rows', size: '920 KB', freq: 'Bi-weekly sync', tags: ['HR', 'Payroll', 'Attendance'] },
-      { id: 'EXP-09', name: 'Marketing Attribution & ROAS Data Pack', records: '48,200 rows', size: '8.4 MB', freq: 'Daily sync', tags: ['Marketing', 'ROAS', 'CAC'] },
-      { id: 'EXP-10', name: '60-Minute Express SLA GPS Telemetry', records: '112,400 rows', size: '22.8 MB', freq: 'Real-time updated', tags: ['Operations', 'SLA', 'Riders'] }
-    ]
+    exportDatasets: []
   };
 
   /* ── 3. Application State ────────────────────────────────────────── */
@@ -415,7 +315,7 @@
 
   /* ── Subpage 1: Sales Reports ────────────────────────────────────── */
   function renderSalesReport() {
-    var chRows = D.salesChannels.map(function (c) {
+    var chRows = (D.salesChannels.length ? D.salesChannels.map(function (c) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + c.channel + '</td>' +
@@ -425,7 +325,7 @@
           '<td><span class="zrep-pill zrep-pill-purple">' + c.share + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No sales channel records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -477,7 +377,7 @@
 
   /* ── Subpage 2: Revenue Reports ──────────────────────────────────── */
   function renderRevenueReport() {
-    var buRows = D.revenueBUs.map(function (b) {
+    var buRows = (D.revenueBUs.length ? D.revenueBUs.map(function (b) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + b.unit + '</td>' +
@@ -488,7 +388,7 @@
           '<td style="color:#16a34a; font-weight:600;">' + b.trend + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No business unit revenue records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -540,7 +440,7 @@
 
   /* ── Subpage 3: Customer Reports ─────────────────────────────────── */
   function renderCustomerReport() {
-    var cohortRows = D.customerCohorts.map(function (c) {
+    var cohortRows = (D.customerCohorts.length ? D.customerCohorts.map(function (c) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + c.cohort + '</td>' +
@@ -552,7 +452,7 @@
           '<td style="font-weight:700; color:#4f46e5;">' + c.ltv + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No customer cohort records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -604,7 +504,7 @@
 
   /* ── Subpage 4: Pet Reports ──────────────────────────────────────── */
   function renderPetReport() {
-    var breedRows = D.petBreeds.map(function (p) {
+    var breedRows = (D.petBreeds.length ? D.petBreeds.map(function (p) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + p.breed + '</td>' +
@@ -615,7 +515,7 @@
           '<td><span class="zrep-pill zrep-pill-green">' + p.adherence + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No pet epidemiology records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -667,7 +567,7 @@
 
   /* ── Subpage 5: Doctor Reports ───────────────────────────────────── */
   function renderDoctorReport() {
-    var docRows = D.doctors.map(function (d) {
+    var docRows = (D.doctors.length ? D.doctors.map(function (d) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + d.name + '</td>' +
@@ -678,7 +578,7 @@
           '<td style="font-weight:700; color:#0f172a;">' + d.commission + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No doctor clinical records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -736,7 +636,7 @@
     // Clinic satisfaction & NABH data
     var satisfData = [];
 
-    var deptRows = deptData.map(function (d) {
+    var deptRows = (deptData.length ? deptData.map(function (d) {
       var npsColor = parseInt(d.nps) >= 75 ? 'zrep-pill-green' : (parseInt(d.nps) >= 70 ? 'zrep-pill-blue' : 'zrep-pill-amber');
       var infColor = parseFloat(d.infectionRate) <= 0.06 ? 'zrep-pill-green' : (parseFloat(d.infectionRate) <= 0.10 ? 'zrep-pill-blue' : 'zrep-pill-amber');
       return (
@@ -750,9 +650,9 @@
           '<td><span class="zrep-pill ' + infColor + '">' + d.infectionRate + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No clinical department records found</td></tr>');
 
-    var satisfRows = satisfData.map(function (s) {
+    var satisfRows = (satisfData.length ? satisfData.map(function (s) {
       var nabh = s.nabh === 'Accredited' ? 'zrep-pill-green' : 'zrep-pill-amber';
       return (
         '<tr>' +
@@ -764,7 +664,7 @@
           '<td style="font-weight:700; color:#0f172a;">' + s.repeat + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No clinic quality records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -836,7 +736,7 @@
 
   /* ── Subpage 7: Product Reports ──────────────────────────────────── */
   function renderProductReport() {
-    var prodRows = D.topProducts.map(function (p) {
+    var prodRows = (D.topProducts.length ? D.topProducts.map(function (p) {
       return (
         '<tr>' +
           '<td style="font-family:monospace; font-size:11px;">' + p.sku + '</td>' +
@@ -848,7 +748,7 @@
           '<td><span class="zrep-pill ' + (p.abc === 'A' ? 'zrep-pill-purple' : 'zrep-pill-blue') + '">Class ' + p.abc + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No top product records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -900,7 +800,7 @@
 
   /* ── Subpage 8: Inventory Reports ────────────────────────────────── */
   function renderInventoryReport() {
-    var invRows = D.inventoryDepots.map(function (d) {
+    var invRows = (D.inventoryDepots.length ? D.inventoryDepots.map(function (d) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + d.hub + '</td>' +
@@ -911,7 +811,7 @@
           '<td><span class="zrep-pill zrep-pill-gray">' + d.space + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No inventory depot records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -963,7 +863,7 @@
 
   /* ── Subpage 9: Finance Reports ──────────────────────────────────── */
   function renderFinanceReport() {
-    var pnlRows = D.financePnL.map(function (p) {
+    var pnlRows = (D.financePnL.length ? D.financePnL.map(function (p) {
       var isNegative = p.mtd.charAt(0) === '-';
       var isHighlight = p.line.indexOf('Profit') >= 0 || p.line.indexOf('EBITDA') >= 0 || p.line.indexOf('Net Operating') >= 0;
       return (
@@ -975,7 +875,7 @@
           '<td style="font-size:11.5px; color:#64748b;">' + p.note + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No GAAP P&L statement records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1027,7 +927,7 @@
 
   /* ── Subpage 10: HR Reports ──────────────────────────────────────── */
   function renderHRReport() {
-    var hrRows = D.hrDepartments.map(function (h) {
+    var hrRows = (D.hrDepartments.length ? D.hrDepartments.map(function (h) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + h.dept + '</td>' +
@@ -1037,7 +937,7 @@
           '<td><span class="zrep-pill zrep-pill-blue">' + h.turn + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No workforce department records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1089,7 +989,7 @@
 
   /* ── Subpage 11: Marketing Reports ───────────────────────────────── */
   function renderMarketingReport() {
-    var mktRows = D.marketingChannels.map(function (m) {
+    var mktRows = (D.marketingChannels.length ? D.marketingChannels.map(function (m) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + m.channel + '</td>' +
@@ -1100,7 +1000,7 @@
           '<td style="font-weight:600;">' + m.newUsers + '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No marketing attribution records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1152,7 +1052,7 @@
 
   /* ── Subpage 12: Operations Reports ──────────────────────────────── */
   function renderOperationsReport() {
-    var opsRows = D.operationsHubs.map(function (o) {
+    var opsRows = (D.operationsHubs.length ? D.operationsHubs.map(function (o) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + o.hub + '</td>' +
@@ -1163,7 +1063,7 @@
           '<td><span class="zrep-pill zrep-pill-green">★ ' + o.rating + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No operations hub records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1215,7 +1115,7 @@
 
   /* ── Subpage 13: Vendor Reports ──────────────────────────────────── */
   function renderVendorReport() {
-    var vRows = D.vendors.map(function (v) {
+    var vRows = (D.vendors.length ? D.vendors.map(function (v) {
       return (
         '<tr>' +
           '<td style="font-weight:600; color:#0f172a;">' + v.name + '</td>' +
@@ -1226,7 +1126,7 @@
           '<td><span class="zrep-pill zrep-pill-purple">' + v.rebate + '</span></td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No vendor scorecard records found</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1370,7 +1270,7 @@
 
   /* ── Subpage 15: Scheduled Reports ───────────────────────────────── */
   function renderScheduledReports() {
-    var schedCards = D.schedules.map(function (s) {
+    var schedCards = (D.schedules.length ? D.schedules.map(function (s) {
       return (
         '<div class="zrep-sched-card">' +
           '<div>' +
@@ -1399,7 +1299,7 @@
           '</div>' +
         '</div>'
       );
-    }).join('');
+    }).join('') : '<div style="text-align:center;padding:32px;color:#94a3b8;">No scheduled reports configured</div>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1425,7 +1325,7 @@
 
   /* ── Subpage 16: Export Center ───────────────────────────────────── */
   function renderExportCenter() {
-    var expRows = D.exportDatasets.map(function (e) {
+    var expRows = (D.exportDatasets.length ? D.exportDatasets.map(function (e) {
       var tagPills = e.tags.map(function (t) {
         return '<span class="zrep-pill zrep-pill-gray" style="margin-right:4px;">' + t + '</span>';
       }).join('');
@@ -1447,7 +1347,7 @@
           '</td>' +
         '</tr>'
       );
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No export datasets available</td></tr>');
 
     return (
       '<div class="zrep-view-panel active">' +
@@ -1541,13 +1441,7 @@
     if (btnDlClinic) {
       btnDlClinic.addEventListener('click', function () {
         var rows = [];
-        var satisfDataLocal = [
-          ['Koramangala 24/7 Super-Specialty', '76', '4.82/5', 'Accredited', '0.4%', '68.2%'],
-          ['Indiranagar Urban Care Center', '79', '4.88/5', 'Accredited', '0.3%', '71.4%'],
-          ['Whitefield Tech Corridor Hospital', '72', '4.76/5', 'In Progress', '0.6%', '64.8%'],
-          ['Jayanagar Wellness & Diagnostics', '68', '4.71/5', 'Accredited', '0.8%', '62.1%'],
-          ['HSR Layout Surgical Pavilion', '74', '4.80/5', 'Accredited', '0.5%', '66.9%']
-        ];
+        var satisfDataLocal = [];
         satisfDataLocal.forEach(function (r) { rows.push(r); });
         downloadCSV('zenve-clinic-satisfaction-nabh.csv', rows);
       });
@@ -1558,14 +1452,7 @@
     if (btnDlClinicDept) {
       btnDlClinicDept.addEventListener('click', function () {
         var rows = [];
-        var deptLocal = [
-          ['Cardiology & Cardiovascular ICU', '1,840', '3.2 days', '91.4%', '1:3', '74', '0.08%'],
-          ['Orthopedics & Rehabilitation', '2,210', '4.1 days', '87.6%', '1:4', '78', '0.06%'],
-          ['Neurology & Critical Care', '980', '5.8 days', '84.2%', '1:2', '71', '0.12%'],
-          ['Dermatology & Allergy OPD', '3,640', '1.0 days', '72.0%', '1:6', '82', '0.02%'],
-          ['Internal Medicine & Endocrinology', '2,900', '2.6 days', '88.9%', '1:4', '76', '0.09%'],
-          ['Diagnostic Imaging & Pathology Lab', '5,820', '0.5 days', '68.0%', '1:8', '80', '0.01%']
-        ];
+        var deptLocal = [];
         deptLocal.forEach(function (r) { rows.push(r); });
         downloadCSV('zenve-clinic-department-throughput.csv', rows);
       });

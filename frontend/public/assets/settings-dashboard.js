@@ -84,13 +84,7 @@
       { module: 'User Management & Security Access', view: true, create: true, edit: true, del: true, exp: true, app: true },
       { module: 'System API & Webhook Configuration', view: true, create: true, edit: true, del: false, exp: true, app: true }
     ],
-    workflows: [
-      { id: 'WF-01', name: 'High-Value Customer Refund (> ₹5,000)', trigger: 'Refund Request', steps: 'Care Coordinator → Ops Manager → Finance Lead', timeout: '4 Hours', status: 'Active' },
-      { id: 'WF-02', name: 'Controlled Narcotic / Schedule-X Dispense', trigger: 'Rx Written', steps: 'Consulting Vet → CMO Dual Sign-Off', timeout: 'Immediate (30m)', status: 'Active' },
-      { id: 'WF-03', name: 'Purchase Order Issuance (> ₹1,00,000)', trigger: 'PO Created', steps: 'Procurement Specialist → CFO Approval', timeout: '12 Hours', status: 'Active' },
-      { id: 'WF-04', name: 'Cold-Chain Spoilage / Expired Stock Write-off', trigger: 'Quality Breach', steps: 'Warehouse Manager → QA Lead → CFO', timeout: '6 Hours', status: 'Active' },
-      { id: 'WF-05', name: 'Breeder / Commercial VIP Discount (> 20%)', trigger: 'Cart Override', steps: 'Sales Manager → Head of Commercial', timeout: '2 Hours', status: 'Active' }
-    ],
+    workflows: [],
     pendingApprovals: [],
     notifications: {
       whatsapp: true,
@@ -153,11 +147,7 @@
       sessionTimeoutMins: 15,
       ipWhitelist: '103.21.144.0/24 (Bangalore Hospital), 14.143.12.18 (Mumbai Surgical)',
       auditLogsRetentionDays: 365,
-      activeSessions: [
-        { device: 'MacBook Pro 16" (macOS 14.5)', browser: 'Chrome 126.0', ip: '103.21.144.12', location: 'Bengaluru, India', time: 'Active now', current: true },
-        { device: 'iPad Pro 12.9" (iPadOS 17.5)', browser: 'Safari Mobile', ip: '103.21.144.45', location: 'Bengaluru Clinic Floor', time: '18m ago', current: false },
-        { device: 'Windows 11 Workstation', browser: 'Edge 126.0', ip: '14.143.12.18', location: 'Mumbai Surgical Desk', time: '1h ago', current: false }
-      ]
+      activeSessions: []
     },
     backup: {
       primaryRegion: 'AWS Mumbai (ap-south-1)',
@@ -165,12 +155,7 @@
       rpo: '< 2 Minutes',
       rto: '< 10 Minutes',
       pitrRetention: '35 Days',
-      snapshots: [
-        { id: 'SNAP-2024-1005-0400', date: 'Today, 04:00 AM', size: '4.82 GB', type: 'Automated Daily WAL', checksum: 'sha256:7f9a8b1...', status: 'Verified' },
-        { id: 'SNAP-2024-1004-0400', date: 'Oct 04, 04:00 AM', size: '4.78 GB', type: 'Automated Daily WAL', checksum: 'sha256:2b1c4e9...', status: 'Verified' },
-        { id: 'SNAP-2024-1003-0400', date: 'Oct 03, 04:00 AM', size: '4.75 GB', type: 'Automated Daily WAL', checksum: 'sha256:9c8d3f2...', status: 'Verified' },
-        { id: 'SNAP-2024-1002-0400', date: 'Oct 02, 04:00 AM', size: '4.71 GB', type: 'Automated Daily WAL', checksum: 'sha256:4a5f6e8...', status: 'Verified' }
-      ]
+      snapshots: []
     }
   };
 
@@ -599,7 +584,7 @@
 
   /* ── Tab 6: Approval Workflows ───────────────────────────────────── */
   function renderApprovalWorkflows() {
-    var wfRows = S.workflows.map(function (wf) {
+    var wfRows = S.workflows.length ? (S.workflows.map(function (wf) {
       return '<tr>' +
         '<td class="font-mono" style="font-weight:600;color:#38bdf8;">' + esc(wf.id) + '</td>' +
         '<td><strong>' + esc(wf.name) + '</strong></td>' +
@@ -608,7 +593,7 @@
         '<td class="font-mono">' + esc(wf.timeout) + '</td>' +
         '<td><span class="zset-badge zset-badge-success">' + esc(wf.status) + '</span></td>' +
       '</tr>';
-    }).join('');
+    }).join('')) : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No approval workflows configured</td></tr>';
 
     var pendingCards = S.pendingApprovals.map(function (p, idx) {
       return '<div class="zset-switch-row" style="margin-bottom:8px;">' +
@@ -958,7 +943,7 @@
   /* ── Tab 13: Security ────────────────────────────────────────────── */
   function renderSecurity() {
     var sec = S.security;
-    var sessRows = sec.activeSessions.map(function (s) {
+    var sessRows = sec.activeSessions.length ? (sec.activeSessions.map(function (s) {
       return '<tr>' +
         '<td><strong>' + esc(s.device) + '</strong><br><small style="color:#94a3b8;">' + esc(s.browser) + '</small></td>' +
         '<td class="font-mono">' + esc(s.ip) + '</td>' +
@@ -966,7 +951,7 @@
         '<td class="font-mono">' + esc(s.time) + '</td>' +
         '<td>' + (s.current ? '<span class="zset-badge zset-badge-success">Current Session</span>' : '<button type="button" class="zset-btn zset-btn-danger" style="padding:2px 8px;font-size:10px;">Revoke</button>') + '</td>' +
       '</tr>';
-    }).join('');
+    }).join('')) : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No active sessions found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -1014,7 +999,7 @@
   /* ── Tab 14: Backup & Recovery ───────────────────────────────────── */
   function renderBackup() {
     var b = S.backup;
-    var snapRows = b.snapshots.map(function (s) {
+    var snapRows = b.snapshots.length ? (b.snapshots.map(function (s) {
       return '<tr>' +
         '<td class="font-mono" style="font-weight:600;color:#38bdf8;">' + esc(s.id) + '</td>' +
         '<td>' + esc(s.date) + '</td>' +
@@ -1024,7 +1009,7 @@
         '<td><span class="zset-badge zset-badge-success">' + esc(s.status) + '</span></td>' +
         '<td><button type="button" class="zset-btn zset-btn-secondary" style="padding:2px 8px;font-size:11px;">⬇ Download</button></td>' +
       '</tr>';
-    }).join('');
+    }).join('')) : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No backup snapshots found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',

@@ -29,7 +29,7 @@
     { id: 'hr',         label: 'HR Alerts',          icon: '🧑‍💼', hash: '#hr-alerts',          badge: '2 Critical' },
     { id: 'system',     label: 'System Alerts',      icon: '🖥️', hash: '#system-alerts',      badge: '5 Active' },
     { id: 'rules',      label: 'Alert Rules',        icon: '⚙️', hash: '#alert-rules',        badge: '8 Rules' },
-    { id: 'notifs',     label: 'Notification Center',icon: '🔔', hash: '#notification-center', badge: '3 Unread' }
+    { id: 'notifs',     label: 'Notification Center',icon: '🔔', hash: '#notification-center', badge: '' }
   ];
 
   /* ── In-Memory Alert Intelligence State ──────────────────────────── */
@@ -72,85 +72,7 @@
     rules: [],
 
     // 11. Notification Center
-    notifs: [
-      {
-        id: 'NOTIF-901',
-        title: 'Emergency P1: Freezer #3 Vaccine Temperature (+8.6°C)',
-        channel: 'WhatsApp & SMS',
-        recipient: 'Sneha Patel (Cold-Chain Head)',
-        time: '12m ago',
-        read: false,
-        severity: 'Critical',
-        body: 'Temperature threshold exceeded in Koramangala Central Depot. 480 doses Zoetis Vanguard at immediate risk.',
-        status: 'Delivered (Read by User)'
-      },
-      {
-        id: 'NOTIF-902',
-        title: '60-Min Express ETA Warning: Order #ZV-98214',
-        channel: 'Rider Push & SMS',
-        recipient: 'Rider Karthik M. & Customer Priya Nair',
-        time: '18m ago',
-        read: false,
-        severity: 'Warning',
-        body: 'Order elapsed time 52 mins. Silk Board flyover rain slowdown. Live GPS link sent to customer phone.',
-        status: 'Delivered'
-      },
-      {
-        id: 'NOTIF-903',
-        title: 'Prescription Verification Required (28 orders queued)',
-        channel: 'In-App & Slack #pharma-ops',
-        recipient: 'Clinical Duty Pharmacists',
-        time: '34m ago',
-        read: true,
-        severity: 'Warning',
-        body: 'Peak order intake has created a 35-minute verification queue. Schedule-H antibiotic verification pending.',
-        status: 'Acknowledged'
-      },
-      {
-        id: 'NOTIF-904',
-        title: 'Razorpay UPI Webhook Degradation (Error Rate 28.4%)',
-        channel: 'Slack #devops-critical',
-        recipient: 'Arjun Nair & DevOps On-Call',
-        time: '48m ago',
-        read: true,
-        severity: 'Critical',
-        body: '42 refund webhooks failed due to NPCI switch timeout. Automatic fallback to Cashfree queue engaged.',
-        status: 'Resolved'
-      },
-      {
-        id: 'NOTIF-905',
-        title: 'B2B Invoice Overdue Notice: PetCare Clinic Network',
-        channel: 'Email & WhatsApp Dunning',
-        recipient: 'Dr. Ramesh Rao (Clinic Owner)',
-        time: '2h ago',
-        read: false,
-        severity: 'Warning',
-        body: 'Invoice #INV-2024-8841 for ₹1,20,000 has crossed 30 days. Auto-payment link generated.',
-        status: 'Delivered'
-      },
-      {
-        id: 'NOTIF-906',
-        title: 'Low Stock Auto-Replenishment Triggered: Bravecto Chewables',
-        channel: 'Email PO',
-        recipient: 'Procurement & Boehringer Ingelheim Rep',
-        time: '4h ago',
-        read: true,
-        severity: 'Info',
-        body: 'Stock dropped below 40 units in Indiranagar dark store. Automated PO #PO-8812 sent for 100 units.',
-        status: 'Delivered (PO Confirmed)'
-      },
-      {
-        id: 'NOTIF-907',
-        title: 'Executive Daily Revenue Pacing Briefing Ready',
-        channel: 'In-App Feed',
-        recipient: 'Executive Leadership',
-        time: '6h ago',
-        read: true,
-        severity: 'Info',
-        body: 'Today GMV pacing at ₹28.4L (94.2% of target). Top category: Pet Nutrition (34%).',
-        status: 'Delivered'
-      }
-    ]
+    notifs: []
   };
 
   var root = null;
@@ -1046,7 +968,7 @@
       return true;
     });
 
-    var items = filtered.map(function (n) {
+    var items = filtered.length ? (filtered.map(function (n) {
       var unreadCls = n.read ? '' : ' unread';
       var badgeHtml = n.severity === 'Critical' ? '<span class="zalt-badge-sev1">Critical</span>' : (n.severity === 'Warning' ? '<span class="zalt-badge-sev2">Warning</span>' : '<span class="zalt-badge-sev3">Info</span>');
 
@@ -1073,7 +995,7 @@
           '<span style="color:#2563eb;font-weight:600;">' + (n.read ? 'Mark as Unread' : 'Mark as Read') + '</span>' +
         '</div>' +
       '</div>';
-    }).join('');
+    }).join('')) : '<div style="text-align:center;padding:36px;color:#94a3b8;">No notifications found</div>';
 
     return [
       '<div class="zalt-kpi-grid">',
@@ -1084,17 +1006,17 @@
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Dispatched Today</span><span class="zalt-kpi-icon">🚀</span></div>',
-          '<div class="zalt-kpi-value">1,420 Alerts</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">99.8% Delivered</span><span class="zalt-kpi-subtext">All 5 channels</span></div>',
+          '<div class="zalt-kpi-value">0 Alerts</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0.0% Delivered</span><span class="zalt-kpi-subtext">All 5 channels</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">WhatsApp Business</span><span class="zalt-kpi-icon">💬</span></div>',
-          '<div class="zalt-kpi-value">99.9%</div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
           '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Meta Green Tier</span><span class="zalt-kpi-subtext">Gupshup Cloud API</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">SMS Gateway Latency</span><span class="zalt-kpi-icon">📱</span></div>',
-          '<div class="zalt-kpi-value">1.2s</div>',
+          '<div class="zalt-kpi-value">--</div>',
           '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">DLT Registered</span><span class="zalt-kpi-subtext">Transactional route</span></div>',
         '</div>',
       '</div>',
