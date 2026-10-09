@@ -17,10 +17,10 @@ export default function ExpiringSubscriptions() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Subscriptions Due in 30D" value="14 Plans" delta="₹0 Annualized" trend="warn" subtext="Annual membership tier" icon="⏳" />
-        <KpiCard label="Pre-Renewal Confirmation" value="0.0%" delta="10 of 14 confirmed" trend="up" subtext="Automated outreach response" icon="✅" />
-        <KpiCard label="Card Token Expirations" value="2 Cards" delta="Mandate token expired" trend="warn" subtext="NPCI bank notification" icon="💳" />
-        <KpiCard label="Concierge Retention Save Rate" value="0.0%" delta="Direct vet nurse call" trend="up" subtext="Zero passive drop-off" icon="🛡️" />
+        <KpiCard label="Subscriptions Due in 30D" value="0 Plans" delta="" trend="neutral" subtext="Annual membership tier" icon="⏳" />
+        <KpiCard label="Pre-Renewal Confirmation" value="0.0%" delta="" trend="neutral" subtext="Automated outreach response" icon="✅" />
+        <KpiCard label="Card Token Expirations" value="0 Cards" delta="" trend="neutral" subtext="NPCI bank notification" icon="💳" />
+        <KpiCard label="Concierge Retention Save Rate" value="0.0%" delta="" trend="neutral" subtext="Zero passive drop-off" icon="🛡️" />
       </div>
 
       <div style={card}>
@@ -40,17 +40,25 @@ export default function ExpiringSubscriptions() {
               </tr>
             </thead>
             <tbody>
-              {expiring.map(e => (
-                <tr key={e.subId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{e.subId}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{e.pet || e.petName}</td>
-                  <td style={{ padding: '12px' }}>{e.parent}</td>
-                  <td style={{ padding: '12px' }}>{e.plan}</td>
-                  <td style={{ padding: '12px', color: '#d97706', fontWeight: 600 }}>{e.expiryDate}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{e.val}</td>
-                  <td style={{ padding: '12px' }}>{e.action}</td>
+              {expiring.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No expiring subscription records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                expiring.map(e => (
+                  <tr key={e.subId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{e.subId}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{e.pet || e.petName}</td>
+                    <td style={{ padding: '12px' }}>{e.parent}</td>
+                    <td style={{ padding: '12px' }}>{e.plan}</td>
+                    <td style={{ padding: '12px', color: '#d97706', fontWeight: 600 }}>{e.expiryDate}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{e.val}</td>
+                    <td style={{ padding: '12px' }}>{e.action}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

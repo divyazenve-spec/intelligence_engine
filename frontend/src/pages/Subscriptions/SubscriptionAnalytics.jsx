@@ -17,10 +17,10 @@ export default function SubscriptionAnalytics() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended LTV / CAC" value="5.4x" delta="World-class > 3.0x" trend="up" subtext="Healthy acquisition engine" icon="📊" />
-        <KpiCard label="Average Customer Lifetime" value="18.2 Months" delta="+2.6 mo vs FY25" trend="up" subtext="Long-term pet relationship" icon="⏱️" />
-        <KpiCard label="Quick Ratio (Growth / Churn)" value="7.7x" delta="New MRR vs Lost MRR" trend="up" subtext="Extremely healthy growth" icon="🚀" />
-        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="+14.2% expansion" trend="up" subtext="Negative net churn" icon="📈" />
+        <KpiCard label="Blended LTV / CAC" value="0.0x" delta="" trend="neutral" subtext="Healthy acquisition engine" icon="📊" />
+        <KpiCard label="Average Customer Lifetime" value="0.0 Months" delta="" trend="neutral" subtext="Long-term pet relationship" icon="⏱️" />
+        <KpiCard label="Quick Ratio (Growth / Churn)" value="0.0x" delta="" trend="neutral" subtext="Growth vs churn velocity" icon="🚀" />
+        <KpiCard label="Net Revenue Retention (NRR)" value="0.0%" delta="0.0%" trend="neutral" subtext="Net retention rate" icon="📈" />
       </div>
 
       <div style={card}>
@@ -40,21 +40,29 @@ export default function SubscriptionAnalytics() {
               </tr>
             </thead>
             <tbody>
-              {cohorts.map(c => (
-                <tr key={c.cohort} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{c.cohort}</td>
-                  <td style={{ padding: '12px' }}>{c.startingUsers} Pets</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m3Ret}</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m6Ret}</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m9Ret}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{c.cumulativeLtv}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {c.ltvCacRatio}
-                    </span>
+              {cohorts.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No subscriber cohort retention records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                cohorts.map(c => (
+                  <tr key={c.cohort} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{c.cohort}</td>
+                    <td style={{ padding: '12px' }}>{c.startingUsers} Pets</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m3Ret}</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m6Ret}</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{c.m9Ret}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{c.cumulativeLtv}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {c.ltvCacRatio}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

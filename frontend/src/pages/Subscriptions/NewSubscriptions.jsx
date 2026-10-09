@@ -17,10 +17,10 @@ export default function NewSubscriptions() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="New Subscriptions (MTD)" value="108 Signups" delta="+34% vs last month" trend="up" subtext="Target: 90 signups" icon="✨" />
-        <KpiCard label="Blended CAC per Subscriber" value="₹0" delta="-18% YoY" trend="up" subtext="Clinic referral advantage" icon="🎯" />
-        <KpiCard label="New MRR Added" value="₹0" delta="+28% MoM" trend="up" subtext="Pure recurring ARR boost" icon="💰" />
-        <KpiCard label="Avg Payback Period" value="16.4 Days" delta="Instant unit profitability" trend="up" subtext="First month margin positive" icon="⏱️" />
+        <KpiCard label="New Subscriptions (MTD)" value="0 Signups" delta="" trend="neutral" subtext="Target: 0 signups" icon="✨" />
+        <KpiCard label="Blended CAC per Subscriber" value="₹0" delta="0.0%" trend="neutral" subtext="Clinic referral advantage" icon="🎯" />
+        <KpiCard label="New MRR Added" value="₹0" delta="0.0%" trend="neutral" subtext="Pure recurring ARR boost" icon="💰" />
+        <KpiCard label="Avg Payback Period" value="0.0 Days" delta="" trend="neutral" subtext="First month margin positive" icon="⏱️" />
       </div>
 
       <div style={card}>
@@ -39,20 +39,28 @@ export default function NewSubscriptions() {
               </tr>
             </thead>
             <tbody>
-              {acquisitions.map(a => (
-                <tr key={a.channel} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{a.channel}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{a.newSubs} Subs</td>
-                  <td style={{ padding: '12px' }}>{a.cac}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{a.conversion}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{a.mrrAdded}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {a.payback}
-                    </span>
+              {acquisitions.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No new subscriber acquisition records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                acquisitions.map(a => (
+                  <tr key={a.channel} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{a.channel}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{a.newSubs} Subs</td>
+                    <td style={{ padding: '12px' }}>{a.cac}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{a.conversion}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{a.mrrAdded}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {a.payback}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

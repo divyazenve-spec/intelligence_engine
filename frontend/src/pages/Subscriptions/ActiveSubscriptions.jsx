@@ -29,10 +29,10 @@ export default function ActiveSubscriptions() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Active Subscriptions" value="824 Pets" delta="+68 net this month" trend="up" subtext="Across Bangalore & Mumbai" icon="✅" />
-        <KpiCard label="Auto-Debit E-Mandate Success" value="0.0%" delta="NPCI UPI & E-NACH" trend="up" subtext="Automated tokenization" icon="💳" />
-        <KpiCard label="Average Subscriber Longevity" value="14.2 Months" delta="+2.4 months YoY" trend="up" subtext="High brand stickiness" icon="⏱️" />
-        <KpiCard label="Active MRR Realization" value="₹0" delta="100% collectable" trend="up" subtext="Zero manual collection" icon="💰" />
+        <KpiCard label="Total Active Subscriptions" value="0 Pets" delta="" trend="neutral" subtext="Across all regions" icon="✅" />
+        <KpiCard label="Auto-Debit E-Mandate Success" value="0.0%" delta="NPCI UPI & E-NACH" trend="neutral" subtext="Automated tokenization" icon="💳" />
+        <KpiCard label="Average Subscriber Longevity" value="0.0 Months" delta="" trend="neutral" subtext="High brand stickiness" icon="⏱️" />
+        <KpiCard label="Active MRR Realization" value="₹0" delta="0.0%" trend="neutral" subtext="Zero manual collection" icon="💰" />
       </div>
 
       <div style={card}>
@@ -85,22 +85,30 @@ export default function ActiveSubscriptions() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(s => (
-                <tr key={s.subId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.subId}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.petName}</td>
-                  <td style={{ padding: '12px' }}>{s.parent}</td>
-                  <td style={{ padding: '12px' }}>{s.plan}</td>
-                  <td style={{ padding: '12px' }}>{s.autoDebit}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.monthlyFee}</td>
-                  <td style={{ padding: '12px' }}>{s.nextRenewal}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {s.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No active subscriber records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(s => (
+                  <tr key={s.subId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.subId}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.petName}</td>
+                    <td style={{ padding: '12px' }}>{s.parent}</td>
+                    <td style={{ padding: '12px' }}>{s.plan}</td>
+                    <td style={{ padding: '12px' }}>{s.autoDebit}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.monthlyFee}</td>
+                    <td style={{ padding: '12px' }}>{s.nextRenewal}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {s.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

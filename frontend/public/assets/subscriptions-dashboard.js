@@ -91,7 +91,7 @@
         '</div>',
         '<div class="zsub-kpi-val">' + esc(val) + '</div>',
         '<div class="zsub-kpi-bottom">',
-          '<span class="zsub-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : 'warn') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
+          '<span class="zsub-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : 'neutral') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
           '<span class="zsub-subtext">' + esc(subtext) + '</span>',
         '</div>',
       '</div>'
@@ -102,12 +102,12 @@
   function renderDashboard() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Monthly Recurring Rev (MRR)', '₹11.51 Lakh', '+24.8% MoM', 'up', 'Annualized ARR: ₹1.38 Cr', '🔄'),
-        kpiHtml('Active Paying Subscribers', '824 Pets', '+68 net new this mo', 'up', 'Across 5 recurring plans', '👥'),
-        kpiHtml('Subscriber Renewal Rate', '95.4%', '+1.2% improvement', 'up', 'Automated UPI / Card mandates', '🛡️'),
-        kpiHtml('Gross Monthly Churn', '1.18%', '-0.3% reduction', 'up', 'Benchmark: 3.5%', '📉'),
-        kpiHtml('Average Revenue / User (ARPU)', '₹1,397 / mo', '+8.5% YoY', 'up', 'Multi-tier add-ons', '💎'),
-        kpiHtml('Customer Lifetime Value (LTV)', '₹24,800', '17.8 months avg tenure', 'up', 'LTV/CAC ratio: 5.4x', '⭐'),
+        kpiHtml('Monthly Recurring Rev (MRR)', '₹0', '0.0% MoM', 'neutral', 'Annualized ARR: ₹0', '🔄'),
+        kpiHtml('Active Paying Subscribers', '0 Pets', 'Across 0 recurring plans', 'neutral', 'Recurring subscriber base', '👥'),
+        kpiHtml('Subscriber Renewal Rate', '0.0%', 'Automated UPI / Card mandates', 'neutral', 'Auto-debit adherence', '🛡️'),
+        kpiHtml('Gross Monthly Churn', '0.0%', 'Benchmark: 0.0%', 'neutral', 'Monthly churn metrics', '📉'),
+        kpiHtml('Average Revenue / User (ARPU)', '₹0 / mo', '0.0% YoY', 'neutral', 'Multi-tier add-ons', '💎'),
+        kpiHtml('Customer Lifetime Value (LTV)', '₹0', 'LTV/CAC ratio: 0.0x', 'neutral', 'Lifetime customer value', '⭐'),
       '</div>',
 
       '<div class="zsub-card">',
@@ -122,7 +122,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Plan Code</th><th>Plan Name</th><th>Monthly Price</th><th>Active Pets</th><th>MRR Contribution</th><th>Renewal Rate</th><th>Monthly Churn</th><th>Status</th></tr></thead>',
             '<tbody>',
-              PLANS.map(function(p) {
+              PLANS.length === 0 ? '<tr><td colspan="8" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No recurring subscription plans found</td></tr>' : PLANS.map(function(p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(p.id) + '</td>' +
                   '<td style="font-weight:600;">' + esc(p.name) + '</td>' +
@@ -144,10 +144,10 @@
   function renderActive() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Total Active Subscriptions', '824 Pets', '+68 net this month', 'up', 'Bangalore, Mumbai, Delhi', '✅'),
-        kpiHtml('Auto-Debit Mandate Success', '98.2%', 'NPCI UPI & E-NACH', 'up', 'Automated tokenization', '💳'),
-        kpiHtml('Subscriber Longevity', '14.2 Months', '+2.4 months YoY', 'up', 'High customer stickiness', '⏱️'),
-        kpiHtml('Collected Active MRR', '₹11.51 Lakh', '100% collectable', 'up', 'Zero manual follow-up', '💰'),
+        kpiHtml('Total Active Subscriptions', '0 Pets', 'Across all regions', 'neutral', 'Active roster count', '✅'),
+        kpiHtml('Auto-Debit Mandate Success', '0.0%', 'NPCI UPI & E-NACH', 'neutral', 'Automated tokenization', '💳'),
+        kpiHtml('Subscriber Longevity', '0.0 Months', 'High customer stickiness', 'neutral', 'Average membership lifespan', '⏱️'),
+        kpiHtml('Collected Active MRR', '₹0', '0.0% collectable', 'neutral', 'Recurring revenue realized', '💰'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">✅ Live Active Members Master Roster</h3><p class="zsub-card-sub">Subscribed pets, parent details, mandate rails, and renewal dates</p></div></div>',
@@ -155,7 +155,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Sub ID</th><th>Pet Patient</th><th>Parent Name</th><th>Plan</th><th>Mandate Rail</th><th>Monthly Rate</th><th>Next Billing</th><th>Status</th></tr></thead>',
             '<tbody>',
-              SUBSCRIBERS.map(function(s) {
+              SUBSCRIBERS.length === 0 ? '<tr><td colspan="8" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No active subscriber records found</td></tr>' : SUBSCRIBERS.map(function(s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(s.subId) + '</td>' +
                   '<td style="font-weight:600;">' + esc(s.petName) + '</td>' +
@@ -177,10 +177,10 @@
   function renderNew() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('New Subscriptions (MTD)', '108 Signups', '+34% vs last month', 'up', 'Target: 90 signups', '✨'),
-        kpiHtml('Blended Acquisition CAC', '₹342', '-18% YoY reduction', 'up', 'Clinic referral efficiency', '🎯'),
-        kpiHtml('New MRR Added', '₹1,82,684', '+28% MoM', 'up', 'Pure ARR expansion', '💰'),
-        kpiHtml('Avg Payback Period', '16.4 Days', 'Instant unit profit', 'up', 'First month margin positive', '⏱️'),
+        kpiHtml('New Subscriptions (MTD)', '0 Signups', 'Target: 0 signups', 'neutral', 'New member signups', '✨'),
+        kpiHtml('Blended Acquisition CAC', '₹0', '0.0% YoY reduction', 'neutral', 'Clinic referral efficiency', '🎯'),
+        kpiHtml('New MRR Added', '₹0', '0.0% MoM', 'neutral', 'Pure ARR expansion', '💰'),
+        kpiHtml('Avg Payback Period', '0.0 Days', 'First month margin positive', 'neutral', 'Payback duration', '⏱️'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">✨ New Subscriber Acquisition Channels</h3><p class="zsub-card-sub">Acquisition velocity, CAC, conversion rate, and payback days</p></div></div>',
@@ -188,9 +188,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Channel</th><th>Signups</th><th>CAC</th><th>Conversion</th><th>New MRR</th><th>Payback</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Zenve SuperApp Onboarding</td><td>38 Subs</td><td>₹420</td><td>14.2%</td><td style="color:#059669;font-weight:600;">₹56,400</td><td><span class="zsub-pill active">22 Days</span></td></tr>',
-              '<tr><td style="font-weight:600;">Clinic Post-Consult Checkout</td><td>24 Subs</td><td>₹180</td><td>32.5%</td><td style="color:#059669;font-weight:600;">₹45,600</td><td><span class="zsub-pill active">8 Days</span></td></tr>',
-              '<tr><td style="font-weight:600;">Welcome Puppy & Kitten Camp</td><td>16 Subs</td><td>₹310</td><td>28.0%</td><td style="color:#059669;font-weight:600;">₹23,984</td><td><span class="zsub-pill active">14 Days</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No new subscriber acquisition records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -201,10 +199,10 @@
   function renderRenewals() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('First-Pass Renewal Rate', '96.1%', '+1.8% vs Q2', 'up', 'Automated mandate execution', '🔄'),
-        kpiHtml('Smart Dunning Recovery', '75.0%', '9 of 12 recovered', 'up', 'WhatsApp prompt + retry', '⚡'),
-        kpiHtml('Processed Renewal Funds', '₹5.74 Lakh', 'MTD collected', 'up', 'Direct bank settlement', '💰'),
-        kpiHtml('Involuntary Churn', '0.7%', 'Card expiry / low balance', 'up', 'Benchmark: 2.2%', '📉'),
+        kpiHtml('First-Pass Renewal Rate', '0.0%', '0.0% vs Q2', 'neutral', 'Automated mandate execution', '🔄'),
+        kpiHtml('Smart Dunning Recovery', '0.0%', 'WhatsApp prompt + retry', 'neutral', 'Dunning recovery rate', '⚡'),
+        kpiHtml('Processed Renewal Funds', '₹0', 'MTD collected', 'neutral', 'Direct bank settlement', '💰'),
+        kpiHtml('Involuntary Churn', '0.0%', 'Benchmark: 0.0%', 'neutral', 'Payment failure churn', '📉'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">🔄 Monthly Renewal Batches & Auto-Debit Performance</h3><p class="zsub-card-sub">Scheduled debits, success rates, retry recovery, and collected funds</p></div></div>',
@@ -212,8 +210,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Billing Cohort</th><th>Scheduled</th><th>Success</th><th>Retry Queue</th><th>Renewal Rate</th><th>Collected Value</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Oct 2026 Scheduled Cycles</td><td>412 Debits</td><td style="color:#059669;font-weight:600;">396</td><td style="color:#d97706;">12</td><td><span class="zsub-pill active">96.1%</span></td><td style="font-weight:600;color:#6d28d9;">₹5,74,200</td></tr>',
-              '<tr><td style="font-weight:600;">Sep 2026 Completed Cycles</td><td>388 Debits</td><td style="color:#059669;font-weight:600;">372</td><td>0</td><td><span class="zsub-pill active">95.9%</span></td><td style="font-weight:600;color:#6d28d9;">₹5,38,100</td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No monthly renewal batch records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -224,10 +221,10 @@
   function renderExpiring() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Expiries in 30 Days', '14 Plans', '₹1.84L Annualized', 'warn', 'Annual membership plans', '⏳'),
-        kpiHtml('Pre-Renewal Confirmation', '71.4%', '10 of 14 confirmed', 'up', 'Automated outreach response', '✅'),
-        kpiHtml('Token Expirations', '2 Cards', 'Mandate update needed', 'warn', 'NPCI notification', '💳'),
-        kpiHtml('Concierge Retention Rate', '88.0%', 'Direct vet nurse call', 'up', 'Zero passive drop-off', '🛡️'),
+        kpiHtml('Expiries in 30 Days', '0 Plans', '₹0 Annualized', 'neutral', 'Annual membership plans', '⏳'),
+        kpiHtml('Pre-Renewal Confirmation', '0.0%', 'Automated outreach response', 'neutral', 'Renewal confirmations', '✅'),
+        kpiHtml('Token Expirations', '0 Cards', 'Mandate update needed', 'neutral', 'NPCI notification', '💳'),
+        kpiHtml('Concierge Retention Rate', '0.0%', 'Direct vet nurse call', 'neutral', 'Retention outreach saves', '🛡️'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">⏳ Proactive Expiration Watchlist & Action Queue</h3><p class="zsub-card-sub">Subscriptions expiring within 30 days and automated retention actions</p></div></div>',
@@ -235,8 +232,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Sub ID</th><th>Pet Patient</th><th>Parent</th><th>Plan</th><th>Expiry Timeline</th><th>Value</th><th>Action Taken</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">SUB-EXP-1101</td><td style="font-weight:600;">Rocky (Beagle)</td><td>Rajesh Subramaniam</td><td>Puppy Preventive Care</td><td style="color:#d97706;font-weight:600;">In 7 Days</td><td style="font-weight:600;color:#059669;">₹14,990 / yr</td><td>WhatsApp Prompt Sent</td></tr>',
-              '<tr><td style="font-family:monospace;">SUB-EXP-1102</td><td style="font-weight:600;">Snowy (Persian Cat)</td><td>Meera Chawla</td><td>Feline Wellness & Spa</td><td style="color:#d97706;font-weight:600;">In 10 Days</td><td style="font-weight:600;color:#059669;">₹12,500 / yr</td><td>Card Token Update Sent</td></tr>',
+              '<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No expiring subscription records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -247,10 +243,10 @@
   function renderChurn() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Gross Monthly Churn', '1.18%', '-0.3% MoM reduction', 'up', 'Only 14 cancellations MTD', '📉'),
-        kpiHtml('Net Revenue Retention (NRR)', '114.2%', '+4.2% YoY', 'up', 'Expansion > Churn', '📈'),
-        kpiHtml('Preventable Churn Ratio', '33.5%', 'Mitigated via downgrades', 'up', 'Saved 42% of budget exits', '🛡️'),
-        kpiHtml('Win-Back Campaign Rate', '24.8%', 'Re-subscribed in 90D', 'up', 'Targeted re-activation', '🔄'),
+        kpiHtml('Gross Monthly Churn', '0.0%', '0.0% MoM reduction', 'neutral', '0 cancellations MTD', '📉'),
+        kpiHtml('Net Revenue Retention (NRR)', '0.0%', '0.0% YoY', 'neutral', 'Expansion > Churn', '📈'),
+        kpiHtml('Preventable Churn Ratio', '0.0%', 'Mitigated via downgrades', 'neutral', 'Exit mitigation rate', '🛡️'),
+        kpiHtml('Win-Back Campaign Rate', '0.0%', 'Targeted re-activation', 'neutral', 'Re-subscribed in 90D', '🔄'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">📉 Root Cause Churn Analysis & Remediation</h3><p class="zsub-card-sub">Stated exit reasons, lost MRR, and automated retention workflows</p></div></div>',
@@ -258,9 +254,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Stated Cancellation Reason</th><th>Share</th><th>Lost MRR</th><th>Preventable?</th><th>Remediation Action</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Relocation to City without Zenve Clinic Hub</td><td>38.5%</td><td style="color:#dc2626;font-weight:600;">₹8,490</td><td>No (Geo)</td><td>Telehealth Fallback Offered</td></tr>',
-              '<tr><td style="font-weight:600;">Financial Constraints / Budgeting</td><td>18.2%</td><td style="color:#dc2626;font-weight:600;">₹4,497</td><td>Yes</td><td>Downgrade to Telehealth Saved 2</td></tr>',
-              '<tr><td style="font-weight:600;">Switch to Custom Raw Diet</td><td>15.3%</td><td style="color:#dc2626;font-weight:600;">₹5,700</td><td>Yes</td><td>Nutrition Counseling Booked</td></tr>',
+              '<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No churn categorization records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -271,10 +265,10 @@
   function renderRevenue() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Annual Recurring Revenue (ARR)', '₹1.38 Crore', '+36.2% YoY', 'up', 'Current MRR x 12', '💵'),
-        kpiHtml('Monthly Recurring Rev (MRR)', '₹11.51 Lakh', '+24.8% MoM', 'up', '100% contracted debits', '🔄'),
-        kpiHtml('Subscription Gross Margin', '58.2%', '+4.1% YoY', 'up', 'High digital & telehealth mix', '📈'),
-        kpiHtml('Expansion / Upsell MRR', '₹1.14 Lakh', '+18% MoM', 'up', 'Nutrition tier upgrades', '🚀'),
+        kpiHtml('Annual Recurring Revenue (ARR)', '₹0', '0.0% YoY', 'neutral', 'Current MRR x 12', '💵'),
+        kpiHtml('Monthly Recurring Rev (MRR)', '₹0', '0.0% MoM', 'neutral', '100% contracted debits', '🔄'),
+        kpiHtml('Subscription Gross Margin', '0.0%', '0.0% YoY', 'neutral', 'High digital & telehealth mix', '📈'),
+        kpiHtml('Expansion / Upsell MRR', '₹0', '0.0% MoM', 'neutral', 'Nutrition tier upgrades', '🚀'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">💵 Recurring Revenue Contribution by Tier</h3><p class="zsub-card-sub">Revenue realization, ARR velocity, ARPU, and plan margins</p></div></div>',
@@ -282,9 +276,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Plan Tier</th><th>MRR Share</th><th>Monthly MRR</th><th>Annualized ARR</th><th>Gross Margin</th><th>YoY Growth</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Monthly Nutrition Auto-Ship Program</td><td>35.1%</td><td style="color:#059669;font-weight:600;">₹4,04,700</td><td style="color:#6d28d9;font-weight:600;">₹48,56,400</td><td>42.0%</td><td><span class="zsub-pill active">+28.4%</span></td></tr>',
-              '<tr><td style="font-weight:600;">Puppy & Kitten Preventive Care Suite</td><td>24.0%</td><td style="color:#059669;font-weight:600;">₹2,75,816</td><td style="color:#6d28d9;font-weight:600;">₹33,09,792</td><td>68.5%</td><td><span class="zsub-pill active">+44.0%</span></td></tr>',
-              '<tr><td style="font-weight:600;">Senior Pet Geriatric Vitality Membership</td><td>15.7%</td><td style="color:#059669;font-weight:600;">₹1,81,300</td><td style="color:#6d28d9;font-weight:600;">₹21,75,600</td><td>58.0%</td><td><span class="zsub-pill active">+31.2%</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No subscription tier revenue records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -295,10 +287,10 @@
   function renderAnalytics() {
     return [
       '<div class="zsub-kpi-grid">',
-        kpiHtml('Blended LTV / CAC', '5.4x', 'World-class > 3.0x', 'up', 'Healthy acquisition engine', '📊'),
-        kpiHtml('Avg Customer Lifetime', '18.2 Months', '+2.6 mo vs FY25', 'up', 'Long-term pet relationship', '⏱️'),
-        kpiHtml('Quick Ratio (Growth / Churn)', '7.7x', 'New MRR vs Lost MRR', 'up', 'Extremely healthy growth', '🚀'),
-        kpiHtml('Net Revenue Retention (NRR)', '114.2%', '+14.2% expansion', 'up', 'Negative net revenue churn', '📈'),
+        kpiHtml('Blended LTV / CAC', '0.0x', 'World-class > 3.0x', 'neutral', 'Healthy acquisition engine', '📊'),
+        kpiHtml('Avg Customer Lifetime', '0.0 Months', '0.0 mo vs FY25', 'neutral', 'Long-term pet relationship', '⏱️'),
+        kpiHtml('Quick Ratio (Growth / Churn)', '0.0x', 'New MRR vs Lost MRR', 'neutral', 'Growth vs churn velocity', '🚀'),
+        kpiHtml('Net Revenue Retention (NRR)', '0.0%', '0.0% expansion', 'neutral', 'Net revenue retention rate', '📈'),
       '</div>',
       '<div class="zsub-card">',
         '<div class="zsub-card-head"><div><h3 class="zsub-card-title">📊 Subscriber Cohort Retention Longevity</h3><p class="zsub-card-sub">Month-over-month cohort retention longevity and cumulative LTV</p></div></div>',
@@ -306,9 +298,7 @@
           '<table class="zsub-table">',
             '<thead><tr><th>Signup Cohort</th><th>Starting Pets</th><th>Month 3 Ret.</th><th>Month 6 Ret.</th><th>Cumulative LTV</th><th>LTV / CAC</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Q1 2026 Cohort</td><td>140 Pets</td><td style="color:#059669;font-weight:600;">96.4%</td><td style="color:#059669;font-weight:600;">92.1%</td><td style="font-weight:600;">₹18,400</td><td><span class="zsub-pill active">5.2x</span></td></tr>',
-              '<tr><td style="font-weight:600;">Q2 2026 Cohort</td><td>185 Pets</td><td style="color:#059669;font-weight:600;">97.2%</td><td style="color:#059669;font-weight:600;">93.5%</td><td style="font-weight:600;">₹14,200</td><td><span class="zsub-pill active">5.5x</span></td></tr>',
-              '<tr><td style="font-weight:600;">Q3 2026 Cohort</td><td>240 Pets</td><td style="color:#059669;font-weight:600;">98.0%</td><td>—</td><td style="font-weight:600;">₹8,900</td><td><span class="zsub-pill active">5.8x</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No subscriber cohort retention records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',

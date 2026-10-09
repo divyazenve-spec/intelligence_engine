@@ -205,6 +205,7 @@ body.zsub-locked {
 .zsub-delta.up { color: #059669; }
 .zsub-delta.down { color: #dc2626; }
 .zsub-delta.warn { color: #d97706; }
+.zsub-delta.neutral { color: var(--muted-foreground, #64748b); }
 .zsub-subtext { color: var(--muted-foreground, #64748b); font-size: 11px; }
 
 /* Cards & Grids */

@@ -17,10 +17,10 @@ export default function Renewals() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="First-Pass Renewal Rate" value="0.0%" delta="+1.8% vs Q2" trend="up" subtext="Automated mandate execution" icon="🔄" />
-        <KpiCard label="Smart Dunning Recovery" value="0.0%" delta="9 of 12 recovered" trend="up" subtext="WhatsApp prompt + UPI retry" icon="⚡" />
-        <KpiCard label="Processed Renewal Value" value="₹0" delta="MTD Realized" trend="up" subtext="Direct settlement to bank" icon="💰" />
-        <KpiCard label="Involuntary Churn Rate" value="0.0%" delta="Expired card / low balance" trend="up" subtext="Industry benchmark 2.2%" icon="📉" />
+        <KpiCard label="First-Pass Renewal Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Automated mandate execution" icon="🔄" />
+        <KpiCard label="Smart Dunning Recovery" value="0.0%" delta="" trend="neutral" subtext="WhatsApp prompt + UPI retry" icon="⚡" />
+        <KpiCard label="Processed Renewal Value" value="₹0" delta="" trend="neutral" subtext="Direct settlement to bank" icon="💰" />
+        <KpiCard label="Involuntary Churn Rate" value="0.0%" delta="" trend="neutral" subtext="Industry benchmark 0.0%" icon="📉" />
       </div>
 
       <div style={card}>
@@ -40,21 +40,29 @@ export default function Renewals() {
               </tr>
             </thead>
             <tbody>
-              {renewals.map(r => (
-                <tr key={r.cohort} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{r.cohort}</td>
-                  <td style={{ padding: '12px' }}>{r.scheduled} Debits</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{r.successful}</td>
-                  <td style={{ padding: '12px', color: '#d97706' }}>{r.retryQueue}</td>
-                  <td style={{ padding: '12px', color: '#dc2626' }}>{r.failed}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {r.rate}
-                    </span>
+              {renewals.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No monthly renewal batch records found
                   </td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{r.processedRev}</td>
                 </tr>
-              ))}
+              ) : (
+                renewals.map(r => (
+                  <tr key={r.cohort} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{r.cohort}</td>
+                    <td style={{ padding: '12px' }}>{r.scheduled} Debits</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{r.successful}</td>
+                    <td style={{ padding: '12px', color: '#d97706' }}>{r.retryQueue}</td>
+                    <td style={{ padding: '12px', color: '#dc2626' }}>{r.failed}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {r.rate}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{r.processedRev}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

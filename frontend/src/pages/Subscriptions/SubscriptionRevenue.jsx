@@ -14,13 +14,13 @@ export default function SubscriptionRevenue() {
       title="Recurring Revenue (MRR / ARR) Trajectory"
       subtitle="Monthly recurring revenue breakdown, annualized contract run rates, expansion revenue, and gross margins"
       icon="💵"
-      badge="₹0 ARR"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Annual Recurring Revenue (ARR)" value="₹0" delta="+36.2% YoY" trend="up" subtext="Current MRR x 12" icon="💵" />
-        <KpiCard label="Monthly Recurring Revenue (MRR)" value="₹0" delta="+24.8% MoM" trend="up" subtext="100% contracted debits" icon="🔄" />
-        <KpiCard label="Subscription Gross Margin" value="0.0%" delta="+4.1% YoY" trend="up" subtext="High digital & telehealth mix" icon="📈" />
-        <KpiCard label="Expansion / Upsell MRR" value="₹0" delta="+18% MoM" trend="up" subtext="Upgrades to nutrition tiers" icon="🚀" />
+        <KpiCard label="Annual Recurring Revenue (ARR)" value="₹0" delta="0.0%" trend="neutral" subtext="Current MRR x 12" icon="💵" />
+        <KpiCard label="Monthly Recurring Revenue (MRR)" value="₹0" delta="0.0%" trend="neutral" subtext="100% contracted debits" icon="🔄" />
+        <KpiCard label="Subscription Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="High digital & telehealth mix" icon="📈" />
+        <KpiCard label="Expansion / Upsell MRR" value="₹0" delta="0.0%" trend="neutral" subtext="Upgrades to nutrition tiers" icon="🚀" />
       </div>
 
       <div style={card}>
@@ -40,21 +40,29 @@ export default function SubscriptionRevenue() {
               </tr>
             </thead>
             <tbody>
-              {plans.map(p => (
-                <tr key={p.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{p.name}</td>
-                  <td style={{ padding: '12px' }}>{p.share}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{p.mrr}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{p.arr}</td>
-                  <td style={{ padding: '12px' }}>{p.arpu}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#0891b2' }}>{p.margin}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {p.growth}
-                    </span>
+              {plans.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No subscription tier revenue records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                plans.map(p => (
+                  <tr key={p.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{p.name}</td>
+                    <td style={{ padding: '12px' }}>{p.share}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{p.mrr}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{p.arr}</td>
+                    <td style={{ padding: '12px' }}>{p.arpu}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#0891b2' }}>{p.margin}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {p.growth}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
