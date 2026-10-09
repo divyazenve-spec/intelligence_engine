@@ -15,10 +15,10 @@ export default function OrderAuditTrail() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Audited Orders Today" value="184 Orders" delta="100% Tracked" trend="up" subtext="End-to-end chain of custody" icon="📦" />
-        <KpiCard label="OTP Delivery Validation" value="0.0%" delta="Verified" trend="up" subtext="Contactless signed handover" icon="📱" />
-        <KpiCard label="Price / Discount Overrides" value="3 Logged" delta="All Approved" trend="neutral" subtext="Manager authorization valid" icon="🏷️" />
-        <KpiCard label="Prescription Match SLA" value="4.2 Mins" delta="MCI Guidelines" trend="up" subtext="Verified by licensed doctor" icon="🩺" />
+        <KpiCard label="Audited Orders Today" value="0 Orders" delta="0.0%" trend="neutral" subtext="0 tracked orders" icon="📦" />
+        <KpiCard label="OTP Delivery Validation" value="0.0%" delta="0.0%" trend="neutral" subtext="0 validations" icon="📱" />
+        <KpiCard label="Price / Discount Overrides" value="0 Logged" delta="0.0%" trend="neutral" subtext="0 overrides" icon="🏷️" />
+        <KpiCard label="Prescription Match SLA" value="0 Mins" delta="0.0%" trend="neutral" subtext="0 prescription checks" icon="🩺" />
       </div>
 
       <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
@@ -37,17 +37,25 @@ export default function OrderAuditTrail() {
               </tr>
             </thead>
             <tbody>
-              {orders.map((o, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{o.orderId}</td>
-                  <td style={{ padding: '12px', fontWeight: 700 }}>{o.customer}</td>
-                  <td style={{ padding: '12px' }}>{o.event}</td>
-                  <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#fef3c7', color: '#b45309', fontSize: '11px', fontWeight: 600 }}>{o.prevStatus}</span></td>
-                  <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontSize: '11px', fontWeight: 600 }}>{o.newStatus}</span></td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{o.officer}</td>
-                  <td style={{ padding: '12px', fontSize: '12px' }}>{o.time}</td>
+              {orders.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No order audit trail records found.
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                orders.map((o, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{o.orderId}</td>
+                    <td style={{ padding: '12px', fontWeight: 700 }}>{o.customer}</td>
+                    <td style={{ padding: '12px' }}>{o.event}</td>
+                    <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#fef3c7', color: '#b45309', fontSize: '11px', fontWeight: 600 }}>{o.prevStatus}</span></td>
+                    <td style={{ padding: '12px' }}><span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontSize: '11px', fontWeight: 600 }}>{o.newStatus}</span></td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{o.officer}</td>
+                    <td style={{ padding: '12px', fontSize: '12px' }}>{o.time}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -8,9 +8,9 @@ export default function ComplianceDashboard() {
   const frameworks = [];
 
   const runProbe = () => {
-    setToast('Executing automated compliance health check across 64 regulatory controls...');
+    setToast('Executing automated compliance health check across regulatory controls...');
     setTimeout(() => {
-      setToast('Compliance Health Check Complete: 64/64 Controls Passed (Overall Posture: 99.8% Grade A+).');
+      setToast('Compliance Health Check Complete: 0 active controls detected.');
       setTimeout(() => setToast(''), 4000);
     }, 1500);
   };
@@ -22,7 +22,7 @@ export default function ComplianceDashboard() {
       title="Regulatory Compliance Dashboard"
       subtitle="Real-time posture across SOC-2, medical laws, drug registries, data privacy, and taxation standards"
       icon="⚖️"
-      badge="Grade A+ Verified"
+      badge=""
       actions={
         <button
           onClick={runProbe}
@@ -48,10 +48,10 @@ export default function ComplianceDashboard() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Compliance Score" value="0.0%" delta="Grade A+" trend="up" subtext="Audited across 6 frameworks" icon="🛡️" />
-        <KpiCard label="SOC-2 Controls" value="64 / 64 Passing" delta="100% Tested" trend="up" subtext="Automated evidence collector" icon="🔒" />
-        <KpiCard label="Schedule H Drug Audit" value="100% Compliant" delta="Zero Deviations" trend="up" subtext="Full prescription audit trail" icon="💊" />
-        <KpiCard label="Next Regulatory Audit" value="34 Days" delta="GST & ISO Review" trend="neutral" subtext="Readiness score: 100%" icon="📅" />
+        <KpiCard label="Overall Compliance Score" value="0.0%" delta="0.0%" trend="neutral" subtext="No frameworks audited" icon="🛡️" />
+        <KpiCard label="SOC-2 Controls" value="0 / 0 Passing" delta="0.0%" trend="neutral" subtext="Automated evidence collector" icon="🔒" />
+        <KpiCard label="Schedule H Drug Audit" value="0.0%" delta="0.0%" trend="neutral" subtext="Prescription audit trail" icon="💊" />
+        <KpiCard label="Next Regulatory Audit" value="0 Days" delta="0.0%" trend="neutral" subtext="No scheduled reviews" icon="📅" />
       </div>
 
       <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
@@ -69,18 +69,26 @@ export default function ComplianceDashboard() {
               </tr>
             </thead>
             <tbody>
-              {frameworks.map((f, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                  <td style={{ padding: '12px', fontWeight: 700 }}>{f.standard}</td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#16a34a' }}>{f.score}</td>
-                  <td style={{ padding: '12px' }}>{f.controls}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{f.auditor}</td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '12px' }}>{f.renew}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontWeight: 600, fontSize: '11px' }}>● {f.status}</span>
+              {frameworks.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No regulatory frameworks found.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                frameworks.map((f, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                    <td style={{ padding: '12px', fontWeight: 700 }}>{f.standard}</td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#16a34a' }}>{f.score}</td>
+                    <td style={{ padding: '12px' }}>{f.controls}</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{f.auditor}</td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '12px' }}>{f.renew}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontWeight: 600, fontSize: '11px' }}>● {f.status}</span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

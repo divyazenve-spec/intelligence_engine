@@ -12,13 +12,13 @@ export default function ApprovalHistory() {
       title="Approval Workflows & Digital Signatures"
       subtitle="Audit logs for medical sign-offs, high-value purchase orders, financial overrides, and staff leave approvals"
       icon="✍️"
-      badge="PKI Digital Signs Active"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Prescriptions Signed" value="100% MCI Verified" delta="Zero Unsigned" trend="up" subtext="Digital cryptographic signature" icon="✍️" />
-        <KpiCard label="Avg Approval SLA" value="3.8 Mins" delta="-1.2m vs SLA" trend="up" subtext="Rapid multi-tier workflow" icon="⚡" />
-        <KpiCard label="Pending Approvals" value="0 Pending" delta="Inbox Zero" trend="up" subtext="All queue requests cleared" icon="✅" />
-        <KpiCard label="Approval Escalations" value="Zero Escalations" delta="Clean Path" trend="up" subtext="Standard hierarchy adherence" icon="🛡️" />
+        <KpiCard label="Prescriptions Signed" value="0.0%" delta="0.0%" trend="neutral" subtext="0 signatures logged" icon="✍️" />
+        <KpiCard label="Avg Approval SLA" value="0 Mins" delta="0.0%" trend="neutral" subtext="0 SLA metrics" icon="⚡" />
+        <KpiCard label="Pending Approvals" value="0 Pending" delta="0.0%" trend="neutral" subtext="0 pending approvals" icon="✅" />
+        <KpiCard label="Approval Escalations" value="0 Escalations" delta="0.0%" trend="neutral" subtext="0 escalations" icon="🛡️" />
       </div>
 
       <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
@@ -37,19 +37,27 @@ export default function ApprovalHistory() {
               </tr>
             </thead>
             <tbody>
-              {approvals.map((a, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{a.id}</td>
-                  <td style={{ padding: '12px', fontWeight: 700 }}>{a.type}</td>
-                  <td style={{ padding: '12px' }}>{a.entity}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{a.requester}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{a.approver}</td>
-                  <td style={{ padding: '12px', fontSize: '12px' }}>{a.time}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontWeight: 600, fontSize: '11px' }}>● {a.status}</span>
+              {approvals.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No approval workflow records found.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                approvals.map((a, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{a.id}</td>
+                    <td style={{ padding: '12px', fontWeight: 700 }}>{a.type}</td>
+                    <td style={{ padding: '12px' }}>{a.entity}</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{a.requester}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{a.approver}</td>
+                    <td style={{ padding: '12px', fontSize: '12px' }}>{a.time}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#dcfce7', color: '#15803d', fontWeight: 600, fontSize: '11px' }}>● {a.status}</span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

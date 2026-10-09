@@ -17,15 +17,15 @@
 
   /* ── 1. Module Registry ──────────────────────────────────────────── */
   var MODULES = [
-    { id: 'audit-log',       label: 'Audit Log',             icon: '🛡️', hash: '#audit-log',             badge: '14,820 Events' },
-    { id: 'user-activity',   label: 'User Activity',         icon: '👥', hash: '#user-activity',         badge: '48 Staff Active' },
-    { id: 'login-history',   label: 'Login History',         icon: '🔑', hash: '#login-history',         badge: '2FA Enforced' },
-    { id: 'data-changes',    label: 'Data Changes',          icon: '🔄', hash: '#data-changes',          badge: 'Field Diffs' },
-    { id: 'financial-audit', label: 'Financial Audit Trail', icon: '💰', hash: '#financial-audit-trail', badge: '₹0 Discrepancy' },
-    { id: 'order-audit',     label: 'Order Audit Trail',     icon: '📦', hash: '#order-audit-trail',     badge: '8,240 Verified' },
-    { id: 'inventory-audit', label: 'Inventory Audit Trail', icon: '📋', hash: '#inventory-audit-trail', badge: 'Cold-Chain OK' },
-    { id: 'approval-history',label: 'Approval History',      icon: '✍️', hash: '#approval-history',      badge: '100% Signed' },
-    { id: 'compliance',      label: 'Compliance Dashboard',  icon: '⚖️', hash: '#compliance-dashboard',  badge: 'SOC-2 / Schedule H' }
+    { id: 'audit-log',       label: 'Audit Log',             icon: '🛡️', hash: '#audit-log',             badge: '' },
+    { id: 'user-activity',   label: 'User Activity',         icon: '👥', hash: '#user-activity',         badge: '' },
+    { id: 'login-history',   label: 'Login History',         icon: '🔑', hash: '#login-history',         badge: '' },
+    { id: 'data-changes',    label: 'Data Changes',          icon: '🔄', hash: '#data-changes',          badge: '' },
+    { id: 'financial-audit', label: 'Financial Audit Trail', icon: '💰', hash: '#financial-audit-trail', badge: '' },
+    { id: 'order-audit',     label: 'Order Audit Trail',     icon: '📦', hash: '#order-audit-trail',     badge: '' },
+    { id: 'inventory-audit', label: 'Inventory Audit Trail', icon: '📋', hash: '#inventory-audit-trail', badge: '' },
+    { id: 'approval-history',label: 'Approval History',      icon: '✍️', hash: '#approval-history',      badge: '' },
+    { id: 'compliance',      label: 'Compliance Dashboard',  icon: '⚖️', hash: '#compliance-dashboard',  badge: '' }
   ];
 
   /* ── 2. In-Memory State ──────────────────────────────────────────── */
@@ -158,7 +158,9 @@
       return !q || l.actor.toLowerCase().indexOf(q) >= 0 || l.action.toLowerCase().indexOf(q) >= 0 || l.module.toLowerCase().indexOf(q) >= 0;
     });
 
-    var rows = filtered.map(function (log) {
+    var rows = filtered.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No audit log events found.</td></tr>'
+      : filtered.map(function (log) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + log.id + '</span></td>',
@@ -175,10 +177,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Total Audit Events', '14,820', '+184 Today', 'Immutable SQLite WAL', '📑', 'up'),
-        makeKpi('Cryptographic Integrity', '100% Valid', 'SHA-256 Seal', 'Zero hash mismatches', '🔒', 'up'),
-        makeKpi('Staff Actions Logged', '4,289', 'Last 30 Days', '100% auditable trail', '👥', 'blue'),
-        makeKpi('Tamper Alerts', '0 Detected', 'Clean Log', 'Zero unauthorized diffs', '🛡️', 'up'),
+        makeKpi('Total Audit Events', '0', '0.0%', 'Immutable SQLite WAL', '📑', 'blue'),
+        makeKpi('Cryptographic Integrity', '0.0%', '0.0%', 'Zero hash mismatches', '🔒', 'blue'),
+        makeKpi('Staff Actions Logged', '0', '0.0%', 'Auditable trail', '👥', 'blue'),
+        makeKpi('Tamper Alerts', '0 Detected', '0.0%', 'Zero unauthorized diffs', '🛡️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -208,7 +210,9 @@
   function renderUserActivityTab() {
     var users = [];
 
-    var rows = users.map(function (u) {
+    var rows = users.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No user activity records found.</td></tr>'
+      : users.map(function (u) {
       return [
         '<tr>',
           '<td><strong>' + u.name + '</strong></td>',
@@ -225,15 +229,15 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Active Staff Today', '48 / 52 Staff', '92% Active', 'Role-based access', '🧑‍💼', 'up'),
-        makeKpi('Avg Actions / User', '71.4 Actions', '+8.2% vs avg', 'High productivity', '⚡', 'blue'),
-        makeKpi('Peak Activity Window', '11:00 AM - 3:00 PM', 'IST', 'Peak clinic consults', '⏰', 'blue'),
-        makeKpi('Suspicious Activity', 'Zero Flagged', '100% Cleared', 'Normal telemetry', '🛡️', 'up'),
+        makeKpi('Active Staff Today', '0 / 0 Staff', '0.0%', 'Role-based access', '🧑‍💼', 'blue'),
+        makeKpi('Avg Actions / User', '0.0 Actions', '0.0%', 'Productivity metrics', '⚡', 'blue'),
+        makeKpi('Peak Activity Window', '00:00 - 00:00', '0.0%', 'Clinic consults', '⏰', 'blue'),
+        makeKpi('Suspicious Activity', '0 Flagged', '0.0%', 'Telemetry monitoring', '🛡️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
           '<div><h3 class="zaud-panel-title">Staff Activity & Productivity Telemetry</h3><p class="zaud-panel-desc">Real-time session time, operation volume, and privilege utilization per staff member</p></div>',
-          '<span class="zaud-badge zaud-badge-blue">48 Active Sessions</span>',
+          '<span class="zaud-badge zaud-badge-blue">0 Active Sessions</span>',
         '</div>',
         '<div class="zaud-table-wrap">',
           '<table class="zaud-table">',
@@ -249,7 +253,9 @@
   function renderLoginHistoryTab() {
     var logins = [];
 
-    var rows = logins.map(function (l) {
+    var rows = logins.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No login history records found.</td></tr>'
+      : logins.map(function (l) {
       var isSuccess = l.status === 'Success';
       return [
         '<tr>',
@@ -267,10 +273,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('2FA Enforcement', '100%', 'Mandatory', 'TOTP / SSO / FIDO2', '🔑', 'up'),
-        makeKpi('Successful Logins (24h)', '142', '100% verified', 'Zero credential bypass', '✅', 'up'),
-        makeKpi('Failed / Blocked Attempts', '1 Blocked', 'Automated IP drop', 'Firewall rate-limited', '🚫', 'warn'),
-        makeKpi('Concurrent Sessions', '48 Active', 'Within license', 'Max 100 seats', '💻', 'blue'),
+        makeKpi('2FA Enforcement', '0.0%', '0.0%', 'TOTP / SSO / FIDO2', '🔑', 'blue'),
+        makeKpi('Successful Logins (24h)', '0', '0.0%', 'Credential verification', '✅', 'blue'),
+        makeKpi('Failed / Blocked Attempts', '0 Blocked', '0.0%', 'Rate-limited', '🚫', 'blue'),
+        makeKpi('Concurrent Sessions', '0 Active', '0.0%', 'Seats allocated', '💻', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -291,7 +297,9 @@
   function renderDataChangesTab() {
     var changes = [];
 
-    var rows = changes.map(function (c) {
+    var rows = changes.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No data change records found.</td></tr>'
+      : changes.map(function (c) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + c.id + '</span></td>',
@@ -313,10 +321,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Field-Level Mutations', '284', 'Last 7 Days', 'Every column change tracked', '🔄', 'blue'),
-        makeKpi('Rollback Readiness', '100% Snapshot', 'Point-in-Time', 'Instant point rollback', '⏪', 'up'),
-        makeKpi('Schema Migrations', 'v2.4.0 Live', 'Clean State', 'Zero schema drift', '🗄️', 'up'),
-        makeKpi('Critical Table Overrides', '0 Flagged', 'All Approved', 'Change approval workflow', '🛡️', 'up'),
+        makeKpi('Field-Level Mutations', '0', '0.0%', 'Column changes tracked', '🔄', 'blue'),
+        makeKpi('Rollback Readiness', '0.0%', '0.0%', 'Point-in-Time snapshot', '⏪', 'blue'),
+        makeKpi('Schema Migrations', '0', '0.0%', 'Clean State', '🗄️', 'blue'),
+        makeKpi('Critical Table Overrides', '0 Flagged', '0.0%', 'Change approval workflow', '🛡️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -337,7 +345,9 @@
   function renderFinancialAuditTab() {
     var financial = [];
 
-    var rows = financial.map(function (f) {
+    var rows = financial.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No financial audit records found.</td></tr>'
+      : financial.map(function (f) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + f.ref + '</span></td>',
@@ -354,10 +364,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Reconciliation Variance', '₹0.00', 'Perfect Match', 'Tally & Zoho Books matched', '⚖️', 'up'),
-        makeKpi('Total Audited Ledger', '₹54.80 L', 'MTD Volume', 'Zero unapproved journal entries', '💰', 'blue'),
-        makeKpi('GST Input Tax Credit', '₹1.24 L', '100% Validated', 'GSTR-2B automated match', '🧾', 'up'),
-        makeKpi('Audit Sign-off', 'Unqualified', 'Clean Opinion', 'Deloitte standard practices', '🛡️', 'up'),
+        makeKpi('Reconciliation Variance', '₹0.00', '0.0%', 'Books matched', '⚖️', 'blue'),
+        makeKpi('Total Audited Ledger', '₹0.00', '0.0%', 'Zero unapproved journal entries', '💰', 'blue'),
+        makeKpi('GST Input Tax Credit', '₹0.00', '0.0%', 'Tax validation', '🧾', 'blue'),
+        makeKpi('Audit Sign-off', '0', '0.0%', 'Standard practices', '🛡️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -378,7 +388,9 @@
   function renderOrderAuditTab() {
     var orders = [];
 
-    var rows = orders.map(function (o) {
+    var rows = orders.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No order audit trail records found.</td></tr>'
+      : orders.map(function (o) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + o.orderId + '</span></td>',
@@ -394,10 +406,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Audited Orders Today', '184 Orders', '100% Tracked', 'End-to-end chain of custody', '📦', 'up'),
-        makeKpi('OTP Delivery Validation', '99.4%', 'Verified', 'Contactless signed handover', '📱', 'up'),
-        makeKpi('Price / Discount Overrides', '3 Logged', 'All Approved', 'Manager authorization valid', '🏷️', 'blue'),
-        makeKpi('Prescription Match SLA', '4.2 Mins', 'MCI Guidelines', 'Verified by licensed doctor', '🩺', 'up'),
+        makeKpi('Audited Orders Today', '0 Orders', '0.0%', 'Chain of custody', '📦', 'blue'),
+        makeKpi('OTP Delivery Validation', '0.0%', '0.0%', 'Handover validation', '📱', 'blue'),
+        makeKpi('Price / Discount Overrides', '0 Logged', '0.0%', 'Authorization logs', '🏷️', 'blue'),
+        makeKpi('Prescription Match SLA', '0 Mins', '0.0%', 'Verified guidelines', '🩺', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -418,7 +430,9 @@
   function renderInventoryAuditTab() {
     var inv = [];
 
-    var rows = inv.map(function (i) {
+    var rows = inv.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No inventory audit trail records found.</td></tr>'
+      : inv.map(function (i) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + i.batch + '</span></td>',
@@ -435,10 +449,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Cold-Chain Integrity', '99.98%', '2°C to 8°C', 'Zero thermal excursions', '❄️', 'up'),
-        makeKpi('Stock Variance Rate', '0.01%', 'Industry Benchmark', 'Physical vs ERP match', '📦', 'up'),
-        makeKpi('Quarantine Actions', '4 Units YTD', 'Safe Disposal', 'Biomedical waste compliant', '🗑️', 'blue'),
-        makeKpi('Batch Traceability', '100% Tracked', 'Barcode / QR', 'Manufacturer to pet parent', '🏷️', 'up'),
+        makeKpi('Cold-Chain Integrity', '0.0%', '0.0%', 'Zero thermal excursions', '❄️', 'blue'),
+        makeKpi('Stock Variance Rate', '0.0%', '0.0%', 'Physical vs ERP match', '📦', 'blue'),
+        makeKpi('Quarantine Actions', '0 Units', '0.0%', 'Disposal log', '🗑️', 'blue'),
+        makeKpi('Batch Traceability', '0.0%', '0.0%', 'Traceability log', '🏷️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -459,7 +473,9 @@
   function renderApprovalHistoryTab() {
     var approvals = [];
 
-    var rows = approvals.map(function (a) {
+    var rows = approvals.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No approval history records found.</td></tr>'
+      : approvals.map(function (a) {
       return [
         '<tr>',
           '<td><span class="zaud-badge zaud-badge-blue zaud-mono">' + a.id + '</span></td>',
@@ -476,10 +492,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Prescriptions Signed', '100% MCI Verified', 'Zero Unsigned', 'Digital cryptographic signature', '✍️', 'up'),
-        makeKpi('Avg Approval SLA', '3.8 Mins', '-1.2m vs SLA', 'Rapid multi-tier workflow', '⚡', 'blue'),
-        makeKpi('Pending Approvals', '0 Pending', 'Inbox Zero', 'All queue requests cleared', '✅', 'up'),
-        makeKpi('Approval Escalations', 'Zero Escalations', 'Clean Path', 'Standard hierarchy adherence', '🛡️', 'up'),
+        makeKpi('Prescriptions Signed', '0.0%', '0.0%', 'Cryptographic signatures', '✍️', 'blue'),
+        makeKpi('Avg Approval SLA', '0 Mins', '0.0%', 'Approval workflow', '⚡', 'blue'),
+        makeKpi('Pending Approvals', '0 Pending', '0.0%', 'Queue requests cleared', '✅', 'blue'),
+        makeKpi('Approval Escalations', '0 Escalations', '0.0%', 'Hierarchy adherence', '🛡️', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',
@@ -500,7 +516,9 @@
   function renderComplianceDashboardTab() {
     var frameworks = [];
 
-    var rows = frameworks.map(function (f) {
+    var rows = frameworks.length === 0
+      ? '<tr><td colspan="6" style="text-align:center;padding:36px;color:#94a3b8">No regulatory frameworks found.</td></tr>'
+      : frameworks.map(function (f) {
       return [
         '<tr>',
           '<td><strong>' + f.standard + '</strong></td>',
@@ -515,10 +533,10 @@
 
     return [
       '<div class="zaud-kpi-grid">',
-        makeKpi('Overall Compliance Score', '99.8%', 'Grade A+', 'Audited across 6 frameworks', '🛡️', 'up'),
-        makeKpi('SOC-2 Controls', '64 / 64 Passing', '100% Tested', 'Automated evidence collector', '🔒', 'up'),
-        makeKpi('Schedule H Drug Audit', '100% Compliant', 'Zero Deviations', 'Full prescription audit trail', '💊', 'up'),
-        makeKpi('Next Regulatory Audit', '34 Days', 'GST & ISO Review', 'Readiness score: 100%', '📅', 'blue'),
+        makeKpi('Overall Compliance Score', '0.0%', '0.0%', 'No frameworks audited', '🛡️', 'blue'),
+        makeKpi('SOC-2 Controls', '0 / 0 Passing', '0.0%', 'Automated evidence collector', '🔒', 'blue'),
+        makeKpi('Schedule H Drug Audit', '0.0%', '0.0%', 'Prescription audit trail', '💊', 'blue'),
+        makeKpi('Next Regulatory Audit', '0 Days', '0.0%', 'No scheduled reviews', '📅', 'blue'),
       '</div>',
       '<div class="zaud-panel">',
         '<div class="zaud-panel-header">',

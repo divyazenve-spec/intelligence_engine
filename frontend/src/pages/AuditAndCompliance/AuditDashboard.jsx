@@ -8,9 +8,9 @@ export default function AuditDashboard() {
   const auditSummary = [];
 
   const runFullVerification = () => {
-    setToast('Cryptographic audit in progress: checking 14,820 SHA-256 block signatures...');
+    setToast('Cryptographic audit in progress: checking block signatures...');
     setTimeout(() => {
-      setToast('Audit Verification Passed: 100% cryptographic ledger integrity confirmed across all 9 modules.');
+      setToast('Audit Verification Passed: Cryptographic ledger verified.');
       setTimeout(() => setToast(''), 4000);
     }, 1500);
   };
@@ -22,7 +22,7 @@ export default function AuditDashboard() {
       title="Audit Trail & Regulatory Compliance"
       subtitle="Immutable activity logs, medical compliance trails, approval workflows, and data governance"
       icon="🛡️"
-      badge="SOC-2 & Schedule H Compliant"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -59,10 +59,10 @@ export default function AuditDashboard() {
 
       {/* KPI Highlights */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Compliance Score" value="0.0%" delta="Grade A+" trend="up" subtext="SOC-2 & Schedule H verified" icon="🛡️" />
-        <KpiCard label="Audit Log Events" value="0" delta="Immutable" trend="neutral" subtext="Stored in SQLite WAL" icon="📑" />
-        <KpiCard label="Prescription Approvals" value="100% Signed" delta="MCI verified" trend="up" subtext="Zero unsigned scripts" icon="✍️" />
-        <KpiCard label="Data Access Logs" value="Zero Breaches" delta="100% 2FA" trend="up" subtext="Role-based access" icon="🔒" />
+        <KpiCard label="Compliance Score" value="0.0%" delta="0.0%" trend="neutral" subtext="No active audits" icon="🛡️" />
+        <KpiCard label="Audit Log Events" value="0" delta="0" trend="neutral" subtext="Stored in SQLite WAL" icon="📑" />
+        <KpiCard label="Prescription Approvals" value="0.0%" delta="0.0%" trend="neutral" subtext="No pending scripts" icon="✍️" />
+        <KpiCard label="Data Access Logs" value="0" delta="0" trend="neutral" subtext="Role-based access" icon="🔒" />
       </div>
 
       {/* 9 Modules Governance Matrix */}
@@ -85,61 +85,67 @@ export default function AuditDashboard() {
           <span style={{
             padding: '4px 10px',
             borderRadius: '99px',
-            background: '#dcfce7',
-            color: '#15803d',
+            background: 'var(--muted, #f1f5f9)',
+            color: 'var(--muted-foreground, #64748b)',
             fontWeight: 700,
             fontSize: '11px'
           }}>
-            ● 9 Subsystems Compliant
+            0 Subsystems
           </span>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
-          {auditSummary.map((sub, idx) => (
-            <div
-              key={idx}
-              style={{
-                padding: '16px',
-                borderRadius: '10px',
-                border: '1px solid var(--border, #e2e8f0)',
-                background: '#f8fafc',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                gap: '10px'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '20px' }}>{sub.icon}</span>
-                  <span style={{
-                    padding: '2px 8px',
-                    borderRadius: '99px',
-                    background: '#dcfce7',
-                    color: '#15803d',
-                    fontSize: '10.5px',
-                    fontWeight: 700
-                  }}>
-                    {sub.badge}
-                  </span>
-                </div>
-                <h4 style={{ margin: '10px 0 4px', fontSize: '14px', fontWeight: 700, color: '#0f172a' }}>{sub.module}</h4>
-                <p style={{ margin: 0, fontSize: '11.5px', color: '#64748b', lineHeight: 1.4 }}>{sub.desc}</p>
-              </div>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingTop: '10px',
-                borderTop: '1px solid #e2e8f0',
-                fontSize: '11px',
-                fontWeight: 600
-              }}>
-                <span style={{ color: '#0f172a' }}>{sub.count}</span>
-                <span style={{ color: '#059669' }}>{sub.health}</span>
-              </div>
+          {auditSummary.length === 0 ? (
+            <div style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)', gridColumn: '1 / -1' }}>
+              No subsystem audit summary metrics recorded.
             </div>
-          ))}
+          ) : (
+            auditSummary.map((sub, idx) => (
+              <div
+                key={idx}
+                style={{
+                  padding: '16px',
+                  borderRadius: '10px',
+                  border: '1px solid var(--border, #e2e8f0)',
+                  background: '#f8fafc',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '10px'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '20px' }}>{sub.icon}</span>
+                    <span style={{
+                      padding: '2px 8px',
+                      borderRadius: '99px',
+                      background: '#dcfce7',
+                      color: '#15803d',
+                      fontSize: '10.5px',
+                      fontWeight: 700
+                    }}>
+                      {sub.badge}
+                    </span>
+                  </div>
+                  <h4 style={{ margin: '10px 0 4px', fontSize: '14px', fontWeight: 700, color: '#0f172a' }}>{sub.module}</h4>
+                  <p style={{ margin: 0, fontSize: '11.5px', color: '#64748b', lineHeight: 1.4 }}>{sub.desc}</p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingTop: '10px',
+                  borderTop: '1px solid #e2e8f0',
+                  fontSize: '11px',
+                  fontWeight: 600
+                }}>
+                  <span style={{ color: '#0f172a' }}>{sub.count}</span>
+                  <span style={{ color: '#059669' }}>{sub.health}</span>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </DashboardLayout>

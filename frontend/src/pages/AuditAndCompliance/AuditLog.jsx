@@ -21,7 +21,7 @@ export default function AuditLog() {
       title="Master Immutable Audit Log"
       subtitle="Cryptographically sealed chronological log of all administrative, clinical, and financial actions"
       icon="🛡️"
-      badge="Append-Only Log Active"
+      badge=""
     >
       {toast && (
         <div style={{ padding: '10px 16px', background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '8px', color: '#065f46', fontSize: '13px', fontWeight: 600 }}>
@@ -30,10 +30,10 @@ export default function AuditLog() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Audit Events" value="0" delta="+184 Today" trend="up" subtext="Immutable SQLite WAL" icon="📑" />
-        <KpiCard label="Cryptographic Integrity" value="100% Valid" delta="SHA-256 Seal" trend="up" subtext="Zero hash mismatches" icon="🔒" />
-        <KpiCard label="Staff Actions Logged" value="0" delta="Last 30 Days" trend="up" subtext="100% auditable trail" icon="👥" />
-        <KpiCard label="Tamper Alerts" value="0 Detected" delta="Clean Log" trend="up" subtext="Zero unauthorized diffs" icon="🛡️" />
+        <KpiCard label="Total Audit Events" value="0" delta="0.0%" trend="neutral" subtext="0 audit events" icon="📑" />
+        <KpiCard label="Cryptographic Integrity" value="0.0%" delta="0.0%" trend="neutral" subtext="0 verification logs" icon="🔒" />
+        <KpiCard label="Staff Actions Logged" value="0" delta="0.0%" trend="neutral" subtext="0 staff actions" icon="👥" />
+        <KpiCard label="Tamper Alerts" value="0 Detected" delta="0.0%" trend="neutral" subtext="0 tamper alerts" icon="🛡️" />
       </div>
 
       <div style={{
@@ -60,7 +60,7 @@ export default function AuditLog() {
           />
           <button
             onClick={() => {
-              setToast('SHA-256 Ledger integrity check passed: 14,820 / 14,820 cryptographic hashes verified.');
+              setToast('SHA-256 Ledger integrity verified. 0 audit records.');
               setTimeout(() => setToast(''), 3000);
             }}
             style={{
@@ -92,31 +92,39 @@ export default function AuditLog() {
               </tr>
             </thead>
             <tbody>
-              {filteredLogs.map((log, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', fontWeight: 600, color: '#2563eb' }}>{log.id}</td>
-                  <td style={{ padding: '12px', fontWeight: 700 }}>
-                    {log.actor}
-                    <div style={{ fontSize: '10.5px', color: '#64748b', fontWeight: 400 }}>{log.role}</div>
-                  </td>
-                  <td style={{ padding: '12px' }}>{log.action}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f3e8ff', color: '#7e22ce', fontSize: '11px', fontWeight: 600 }}>{log.module}</span>
-                  </td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: 'var(--muted-foreground, #64748b)' }}>{log.ip}</td>
-                  <td style={{ padding: '12px', fontSize: '12px' }}>{log.time}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
-                    <span style={{
-                      padding: '2px 8px',
-                      borderRadius: '99px',
-                      background: '#dcfce7',
-                      color: '#15803d',
-                      fontWeight: 600,
-                      fontSize: '11px'
-                    }}>● {log.status}</span>
+              {filteredLogs.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No audit events found. Log ledger is empty.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredLogs.map((log, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', fontWeight: 600, color: '#2563eb' }}>{log.id}</td>
+                    <td style={{ padding: '12px', fontWeight: 700 }}>
+                      {log.actor}
+                      <div style={{ fontSize: '10.5px', color: '#64748b', fontWeight: 400 }}>{log.role}</div>
+                    </td>
+                    <td style={{ padding: '12px' }}>{log.action}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f3e8ff', color: '#7e22ce', fontSize: '11px', fontWeight: 600 }}>{log.module}</span>
+                    </td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: 'var(--muted-foreground, #64748b)' }}>{log.ip}</td>
+                    <td style={{ padding: '12px', fontSize: '12px' }}>{log.time}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '99px',
+                        background: '#dcfce7',
+                        color: '#15803d',
+                        fontWeight: 600,
+                        fontSize: '11px'
+                      }}>● {log.status}</span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

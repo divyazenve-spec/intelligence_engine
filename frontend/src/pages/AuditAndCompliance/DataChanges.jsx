@@ -12,13 +12,13 @@ export default function DataChanges() {
       title="Field-Level Data Mutation Log"
       subtitle="Granular Before-and-After change comparisons across all database entities"
       icon="🔄"
-      badge="Point-in-Time Rollback Ready"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Field-Level Mutations" value="0" delta="Last 7 Days" trend="up" subtext="Every column change tracked" icon="🔄" />
-        <KpiCard label="Rollback Readiness" value="100% Snapshot" delta="Point-in-Time" trend="up" subtext="Instant point rollback" icon="⏪" />
-        <KpiCard label="Schema Migrations" value="v2.4.0 Live" delta="Clean State" trend="up" subtext="Zero schema drift" icon="🗄️" />
-        <KpiCard label="Critical Overrides" value="0 Flagged" delta="All Approved" trend="up" subtext="Change approval valid" icon="🛡️" />
+        <KpiCard label="Field-Level Mutations" value="0" delta="0.0%" trend="neutral" subtext="0 mutations logged" icon="🔄" />
+        <KpiCard label="Rollback Readiness" value="0.0%" delta="0.0%" trend="neutral" subtext="0 snapshots" icon="⏪" />
+        <KpiCard label="Schema Migrations" value="v0.0.0" delta="0.0%" trend="neutral" subtext="0 migrations" icon="🗄️" />
+        <KpiCard label="Critical Overrides" value="0 Flagged" delta="0.0%" trend="neutral" subtext="0 override alerts" icon="🛡️" />
       </div>
 
       <div style={{ background: 'var(--card, #ffffff)', border: '1px solid var(--border, #e2e8f0)', borderRadius: '12px', padding: '20px' }}>
@@ -38,21 +38,29 @@ export default function DataChanges() {
               </tr>
             </thead>
             <tbody>
-              {changes.map((c, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{c.id}</td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700 }}>{c.table}</td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', color: '#2563eb' }}>{c.record}</td>
-                  <td style={{ padding: '12px' }}><code>{c.field}</code></td>
-                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>
-                    <div style={{ color: '#dc2626', background: '#fef2f2', padding: '2px 6px', borderRadius: '4px', textDecoration: 'line-through' }}>- {c.oldVal}</div>
-                    <div style={{ color: '#16a34a', background: '#f0fdf4', padding: '2px 6px', borderRadius: '4px', fontWeight: 600, marginTop: '2px' }}>+ {c.newVal}</div>
+              {changes.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No field-level mutation records found.
                   </td>
-                  <td style={{ padding: '12px' }}>{c.changedBy}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{c.reason}</td>
-                  <td style={{ padding: '12px', fontSize: '12px' }}>{c.time}</td>
                 </tr>
-              ))}
+              ) : (
+                changes.map((c, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px', color: '#2563eb', fontWeight: 600 }}>{c.id}</td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700 }}>{c.table}</td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', color: '#2563eb' }}>{c.record}</td>
+                    <td style={{ padding: '12px' }}><code>{c.field}</code></td>
+                    <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>
+                      <div style={{ color: '#dc2626', background: '#fef2f2', padding: '2px 6px', borderRadius: '4px', textDecoration: 'line-through' }}>- {c.oldVal}</div>
+                      <div style={{ color: '#16a34a', background: '#f0fdf4', padding: '2px 6px', borderRadius: '4px', fontWeight: 600, marginTop: '2px' }}>+ {c.newVal}</div>
+                    </td>
+                    <td style={{ padding: '12px' }}>{c.changedBy}</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{c.reason}</td>
+                    <td style={{ padding: '12px', fontSize: '12px' }}>{c.time}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
