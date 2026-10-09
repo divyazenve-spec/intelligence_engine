@@ -26,7 +26,7 @@ export default function B2BDashboard() {
       title="B2B Enterprise & Institutional Accounts"
       subtitle="Corporate kennels, breeder partnerships, institutional hospital contracts, and wholesale volume receivables"
       icon="🏢"
-      badge="₹0 MTD Rev"
+      badge=""
       actions={
         <button onClick={() => alert('New Enterprise Client Onboarding initiated...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #4f46e5', background: 'rgba(79,70,229,0.12)', color: '#4338ca', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Onboard Enterprise Client
@@ -34,12 +34,12 @@ export default function B2BDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="B2B Gross Revenue (MTD)" value="₹0" delta="+18.4% MoM" trend="up" subtext="14.2% total company revenue" icon="🏢" />
-        <KpiCard label="Active Corporate Clients" value="48 Accounts" delta="6 enterprise tiers" trend="up" subtext="Key accounts: 14" icon="📑" />
-        <KpiCard label="Avg. Contract Value (ACV)" value="₹0" delta="+8.2% YoY" trend="up" subtext="Multi-year agreements" icon="💼" />
-        <KpiCard label="B2B Outstanding Receivables" value="₹0" delta="88% under 30 days" trend="up" subtext="Low delinquency risk" icon="💰" />
-        <KpiCard label="Wholesale Gross Margin" value="0.0%" delta="+1.8% vs FY25" trend="up" subtext="Volume-tier protected" icon="📈" />
-        <KpiCard label="Contract Renewal Rate" value="0.0%" delta="High enterprise loyalty" trend="up" subtext="Only 1 churn YTD" icon="🛡️" />
+        <KpiCard label="B2B Gross Revenue (MTD)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="🏢" />
+        <KpiCard label="Active Corporate Clients" value="0 Accounts" delta="" trend="neutral" subtext="No active records" icon="📑" />
+        <KpiCard label="Avg. Contract Value (ACV)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="💼" />
+        <KpiCard label="B2B Outstanding Receivables" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="💰" />
+        <KpiCard label="Wholesale Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="📈" />
+        <KpiCard label="Contract Renewal Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="🛡️" />
       </div>
 
       <div style={card}>
@@ -91,28 +91,36 @@ export default function B2BDashboard() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(acc => (
-                <tr key={acc.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{acc.id}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{acc.name}</td>
-                  <td style={{ padding: '12px' }}>{acc.category}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{acc.contractVal}</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{acc.mtdOrders}</td>
-                  <td style={{ padding: '12px' }}>{acc.terms} ({acc.creditLimit})</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: acc.status.includes('Active') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
-                      color: acc.status.includes('Active') ? '#059669' : '#d97706'
-                    }}>
-                      {acc.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No enterprise account records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(acc => (
+                  <tr key={acc.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{acc.id}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{acc.name}</td>
+                    <td style={{ padding: '12px' }}>{acc.category}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{acc.contractVal}</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{acc.mtdOrders}</td>
+                    <td style={{ padding: '12px' }}>{acc.terms} ({acc.creditLimit})</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: acc.status.includes('Active') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
+                        color: acc.status.includes('Active') ? '#059669' : '#d97706'
+                      }}>
+                        {acc.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

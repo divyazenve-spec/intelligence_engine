@@ -18,13 +18,13 @@ export default function B2BReceivables() {
       title="B2B Accounts Receivable & Aging Ledger"
       subtitle="Corporate invoice aging buckets, DSO tracking, collections follow-up, and institutional credit risk"
       icon="💳"
-      badge="₹0 Outstanding"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Outstanding Receivables" value="₹0" delta="6 Accounts" trend="up" subtext="All within approved limits" icon="💳" />
-        <KpiCard label="Days Sales Outstanding (DSO)" value="34.2 Days" delta="-4.1 days improvement" trend="up" subtext="Target < 40 days" icon="⏱️" />
-        <KpiCard label="Current (0-30 Days)" value="₹0" delta="72.7% of total" trend="up" subtext="Healthy debt profile" icon="✅" />
-        <KpiCard label="Overdue (> 60 Days)" value="₹0" delta="5.5% of total" trend="warn" subtext="1 account in grace period" icon="⚠️" />
+        <KpiCard label="Total Outstanding Receivables" value="₹0" delta="" trend="neutral" subtext="No active records" icon="💳" />
+        <KpiCard label="Days Sales Outstanding (DSO)" value="0.0 Days" delta="" trend="neutral" subtext="No active records" icon="⏱️" />
+        <KpiCard label="Current (0-30 Days)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="✅" />
+        <KpiCard label="Overdue (> 60 Days)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="⚠️" />
       </div>
 
       <div style={card}>
@@ -69,28 +69,36 @@ export default function B2BReceivables() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(i => (
-                <tr key={i.inv} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{i.inv}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{i.client}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#0f172a' }}>{i.amt}</td>
-                  <td style={{ padding: '12px' }}>{i.dueDate}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: i.aging === '0-30 Days' ? 'rgba(16,185,129,0.12)' : i.aging === '31-60 Days' ? 'rgba(245,158,11,0.14)' : 'rgba(239,68,68,0.12)',
-                      color: i.aging === '0-30 Days' ? '#059669' : i.aging === '31-60 Days' ? '#d97706' : '#dc2626'
-                    }}>
-                      {i.aging}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No B2B invoice records found
                   </td>
-                  <td style={{ padding: '12px' }}>{i.terms}</td>
-                  <td style={{ padding: '12px' }}>{i.status}</td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(i => (
+                  <tr key={i.inv} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{i.inv}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{i.client}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#0f172a' }}>{i.amt}</td>
+                    <td style={{ padding: '12px' }}>{i.dueDate}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: i.aging === '0-30 Days' ? 'rgba(16,185,129,0.12)' : i.aging === '31-60 Days' ? 'rgba(245,158,11,0.14)' : 'rgba(239,68,68,0.12)',
+                        color: i.aging === '0-30 Days' ? '#059669' : i.aging === '31-60 Days' ? '#d97706' : '#dc2626'
+                      }}>
+                        {i.aging}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px' }}>{i.terms}</td>
+                    <td style={{ padding: '12px' }}>{i.status}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

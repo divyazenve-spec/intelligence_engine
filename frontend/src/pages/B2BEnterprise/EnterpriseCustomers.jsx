@@ -29,10 +29,10 @@ export default function EnterpriseCustomers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Key Enterprise Stakeholders" value="64 Contacts" delta="48 Accounts" trend="up" subtext="Verified decision makers" icon="👥" />
-        <KpiCard label="Tier 1 Enterprise Clients" value="18 Accounts" delta="Annual > ₹0" trend="up" subtext="High-volume priority" icon="⭐" />
-        <KpiCard label="Corporate Account NPS" value="74 NPS" delta="+6 pts YoY" trend="up" subtext="Annual institutional survey" icon="🎯" />
-        <KpiCard label="Avg Account Tenure" value="3.4 Years" delta="98% retention" trend="up" subtext="Multi-year framework" icon="📅" />
+        <KpiCard label="Key Enterprise Stakeholders" value="0 Contacts" delta="" trend="neutral" subtext="No active records" icon="👥" />
+        <KpiCard label="Tier 1 Enterprise Clients" value="0 Accounts" delta="" trend="neutral" subtext="No active records" icon="⭐" />
+        <KpiCard label="Corporate Account NPS" value="0 NPS" delta="" trend="neutral" subtext="No active records" icon="🎯" />
+        <KpiCard label="Avg Account Tenure" value="0.0 Years" delta="" trend="neutral" subtext="No active records" icon="📅" />
       </div>
 
       <div style={card}>
@@ -84,21 +84,29 @@ export default function EnterpriseCustomers() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
-                <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{c.name}</td>
-                  <td style={{ padding: '12px' }}>{c.company}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(79,70,229,0.1)', color: '#4338ca' }}>
-                      {c.tier}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No enterprise customer records found
                   </td>
-                  <td style={{ padding: '12px' }}>{c.locations}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{c.annualSpend}</td>
-                  <td style={{ padding: '12px', fontFamily: 'monospace' }}>{c.contact}</td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(c => (
+                  <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{c.name}</td>
+                    <td style={{ padding: '12px' }}>{c.company}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(79,70,229,0.1)', color: '#4338ca' }}>
+                        {c.tier}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px' }}>{c.locations}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{c.annualSpend}</td>
+                    <td style={{ padding: '12px', fontFamily: 'monospace' }}>{c.contact}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

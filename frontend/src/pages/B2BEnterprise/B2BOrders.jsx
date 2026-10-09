@@ -21,10 +21,10 @@ export default function B2BOrders() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="B2B Orders (MTD)" value="148 Orders" delta="+22% vs Sep" trend="up" subtext="Avg order: ₹0" icon="📦" />
-        <KpiCard label="Order Value Pipeline" value="₹0" delta="100% contracted" trend="up" subtext="Wholesale pricing tiers" icon="💵" />
-        <KpiCard label="On-Time Dispatch Rate" value="0.0%" delta="48h SLA" trend="up" subtext="Bulk freight partners" icon="⚡" />
-        <KpiCard label="Pending Orders" value="6 Orders" delta="In warehouse pack" trend="warn" subtext="Dispatching today" icon="⏳" />
+        <KpiCard label="B2B Orders (MTD)" value="0 Orders" delta="" trend="neutral" subtext="No active records" icon="📦" />
+        <KpiCard label="Order Value Pipeline" value="₹0" delta="" trend="neutral" subtext="No active records" icon="💵" />
+        <KpiCard label="On-Time Dispatch Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="⚡" />
+        <KpiCard label="Pending Orders" value="0 Orders" delta="" trend="neutral" subtext="No active records" icon="⏳" />
       </div>
 
       <div style={card}>
@@ -69,28 +69,36 @@ export default function B2BOrders() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(o => (
-                <tr key={o.po} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.po}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{o.client}</td>
-                  <td style={{ padding: '12px' }}>{o.items}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
-                  <td style={{ padding: '12px' }}>{o.orderDate}</td>
-                  <td style={{ padding: '12px' }}>{o.dispatchDate}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: o.status === 'Delivered' || o.status === 'Fulfilled' ? 'rgba(16,185,129,0.12)' : o.status === 'Dispatched' ? 'rgba(79,70,229,0.1)' : 'rgba(245,158,11,0.14)',
-                      color: o.status === 'Delivered' || o.status === 'Fulfilled' ? '#059669' : o.status === 'Dispatched' ? '#4338ca' : '#d97706'
-                    }}>
-                      {o.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No B2B order records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(o => (
+                  <tr key={o.po} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.po}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{o.client}</td>
+                    <td style={{ padding: '12px' }}>{o.items}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
+                    <td style={{ padding: '12px' }}>{o.orderDate}</td>
+                    <td style={{ padding: '12px' }}>{o.dispatchDate}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: o.status === 'Delivered' || o.status === 'Fulfilled' ? 'rgba(16,185,129,0.12)' : o.status === 'Dispatched' ? 'rgba(79,70,229,0.1)' : 'rgba(245,158,11,0.14)',
+                        color: o.status === 'Delivered' || o.status === 'Fulfilled' ? '#059669' : o.status === 'Dispatched' ? '#4338ca' : '#d97706'
+                      }}>
+                        {o.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

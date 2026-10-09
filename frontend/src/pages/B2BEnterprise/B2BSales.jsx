@@ -17,10 +17,10 @@ export default function B2BSales() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Quarterly Enterprise Bookings" value="₹0" delta="+28.4% YoY" trend="up" subtext="Quota: ₹0" icon="💼" />
-        <KpiCard label="Pipeline Value (Q4)" value="₹0" delta="14 deals in RFP" trend="up" subtext="Weighted: ₹0" icon="📈" />
-        <KpiCard label="Deal Win Rate" value="0.0%" delta="+6.2% vs industry" trend="up" subtext="Enterprise proposals" icon="🏆" />
-        <KpiCard label="Avg Sales Cycle" value="42 Days" delta="-8 days reduction" trend="up" subtext="Standardized MSAs" icon="⚡" />
+        <KpiCard label="Quarterly Enterprise Bookings" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="💼" />
+        <KpiCard label="Pipeline Value (Q4)" value="₹0" delta="" trend="neutral" subtext="No active records" icon="📈" />
+        <KpiCard label="Deal Win Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="🏆" />
+        <KpiCard label="Avg Sales Cycle" value="0 Days" delta="" trend="neutral" subtext="No active records" icon="⚡" />
       </div>
 
       <div style={card}>
@@ -40,21 +40,29 @@ export default function B2BSales() {
               </tr>
             </thead>
             <tbody>
-              {reps.map(r => (
-                <tr key={r.rep} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{r.rep}</td>
-                  <td style={{ padding: '12px' }}>{r.accounts} Accounts</td>
-                  <td style={{ padding: '12px' }}>{r.quota}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{r.actual}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {r.attainment}
-                    </span>
+              {reps.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No sales executive scorecard records found
                   </td>
-                  <td style={{ padding: '12px', color: '#4338ca', fontWeight: 600 }}>{r.pipeline}</td>
-                  <td style={{ padding: '12px' }}>{r.commission}</td>
                 </tr>
-              ))}
+              ) : (
+                reps.map(r => (
+                  <tr key={r.rep} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{r.rep}</td>
+                    <td style={{ padding: '12px' }}>{r.accounts} Accounts</td>
+                    <td style={{ padding: '12px' }}>{r.quota}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{r.actual}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {r.attainment}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px', color: '#4338ca', fontWeight: 600 }}>{r.pipeline}</td>
+                    <td style={{ padding: '12px' }}>{r.commission}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

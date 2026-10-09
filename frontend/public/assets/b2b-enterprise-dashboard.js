@@ -96,7 +96,7 @@
         '</div>',
         '<div class="zb2b-kpi-val">' + esc(val) + '</div>',
         '<div class="zb2b-kpi-bottom">',
-          '<span class="zb2b-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : 'warn') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
+          '<span class="zb2b-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : trend === 'neutral' ? 'neutral' : 'warn') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
           '<span class="zb2b-subtext">' + esc(subtext) + '</span>',
         '</div>',
       '</div>'
@@ -107,12 +107,12 @@
   function renderDashboard() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('B2B Gross Revenue (MTD)', '₹34.82 Lakh', '+18.4% MoM', 'up', '14.2% total company revenue', '🏢'),
-        kpiHtml('Active Corporate Clients', '48 Accounts', '6 enterprise tiers', 'up', 'Key accounts: 14', '📑'),
-        kpiHtml('Avg. Contract Value (ACV)', '₹14.50 Lakh', '+8.2% YoY', 'up', 'Multi-year agreements', '💼'),
-        kpiHtml('Outstanding Receivables', '₹12.40 Lakh', '88% under 30 days', 'up', 'Low delinquency risk', '💰'),
-        kpiHtml('Wholesale Gross Margin', '38.4%', '+1.8% vs FY25', 'up', 'Volume-tier protected', '📈'),
-        kpiHtml('Contract Renewal Rate', '96.2%', 'High enterprise loyalty', 'up', 'Only 1 churn YTD', '🛡️'),
+        kpiHtml('B2B Gross Revenue (MTD)', '₹0', '0.0%', 'neutral', 'No active records', '🏢'),
+        kpiHtml('Active Corporate Clients', '0 Accounts', '0.0%', 'neutral', 'No active records', '📑'),
+        kpiHtml('Avg. Contract Value (ACV)', '₹0', '0.0%', 'neutral', 'No active records', '💼'),
+        kpiHtml('Outstanding Receivables', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
+        kpiHtml('Wholesale Gross Margin', '0.0%', '0.0%', 'neutral', 'No active records', '📈'),
+        kpiHtml('Contract Renewal Rate', '0.0%', '0.0%', 'neutral', 'No active records', '🛡️'),
       '</div>',
 
       '<div class="zb2b-card">',
@@ -127,7 +127,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Account ID</th><th>Organization Name</th><th>Category</th><th>Annual Contract</th><th>MTD Run Rate</th><th>Credit Terms</th><th>Account RM</th><th>Status</th></tr></thead>',
             '<tbody>',
-              ACCOUNTS.map(function(a) {
+              (ACCOUNTS.length ? ACCOUNTS.map(function(a) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(a.id) + '</td>' +
                   '<td style="font-weight:600;">' + esc(a.name) + '</td>' +
@@ -138,7 +138,7 @@
                   '<td>' + esc(a.rm) + '</td>' +
                   '<td><span class="zb2b-pill ' + (a.status.indexOf('Active') >= 0 ? 'active' : 'warning') + '">' + esc(a.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No enterprise account records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -149,10 +149,10 @@
   function renderCustomers() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Enterprise Stakeholders', '64 Contacts', '48 Accounts', 'up', 'Authorized procurement leads', '👥'),
-        kpiHtml('Tier 1 Enterprise Clients', '18 Accounts', 'Annual > ₹15L', 'up', 'Priority concierge SLA', '⭐'),
-        kpiHtml('Corporate Account NPS', '74 NPS', '+6 pts YoY', 'up', 'High satisfaction score', '🎯'),
-        kpiHtml('Avg Client Tenure', '3.4 Years', '98% retention', 'up', 'Long-term partnership', '📅'),
+        kpiHtml('Enterprise Stakeholders', '0 Contacts', '0 Accounts', 'neutral', 'No active records', '👥'),
+        kpiHtml('Tier 1 Enterprise Clients', '0 Accounts', '0.0%', 'neutral', 'No active records', '⭐'),
+        kpiHtml('Corporate Account NPS', '0 NPS', '0.0%', 'neutral', 'No active records', '🎯'),
+        kpiHtml('Avg Client Tenure', '0.0 Years', '0.0%', 'neutral', 'No active records', '📅'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -162,10 +162,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Contact ID</th><th>Procurement Head</th><th>Organization</th><th>Classification</th><th>Annual Spend</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">ENT-CUST-101</td><td style="font-weight:600;">Dr. Rameshwar Rao</td><td>PetCare Hospital Network (12 Centers)</td><td><span class="zb2b-pill corporate">Tier 1 Enterprise</span></td><td style="font-weight:600;color:#059669;">₹28,50,000</td><td><span class="zb2b-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;">ENT-CUST-102</td><td style="font-weight:600;">Col. Arvind Rathore (Retd)</td><td>K-9 National Police & Paramilitary Kennels</td><td><span class="zb2b-pill corporate">Tier 1 Enterprise</span></td><td style="font-weight:600;color:#059669;">₹18,50,000</td><td><span class="zb2b-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;">ENT-CUST-103</td><td style="font-weight:600;">Malini Chidambaram</td><td>Bangalore Canine Breeding Co-op</td><td><span class="zb2b-pill corporate">Tier 2 Wholesale</span></td><td style="font-weight:600;color:#059669;">₹12,80,000</td><td><span class="zb2b-pill active">Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;">ENT-CUST-104</td><td style="font-weight:600;">Deepa Varma (HR Benefits)</td><td>Infosys Employee Pets Program</td><td><span class="zb2b-pill corporate">Corporate Wellness</span></td><td style="font-weight:600;color:#059669;">₹9,60,000</td><td><span class="zb2b-pill active">Active</span></td></tr>',
+              '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No enterprise decision maker records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -176,10 +173,10 @@
   function renderAccounts() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Total Sanctioned Credit', '₹1.12 Crore', '48 Corporate Accounts', 'up', 'Revolving commercial credit', '🏛️'),
-        kpiHtml('Credit Utilization', '43.2%', '₹48.3L drawn', 'up', 'Healthy buffer headroom', '📊'),
-        kpiHtml('Avg Payment Terms', '38.5 Days', 'Target < 45 days', 'up', 'Commercial credit governance', '⏱️'),
-        kpiHtml('GST & E-Invoicing', '100% Compliant', 'All 48 GSTINs verified', 'up', 'Direct IRN generation', '✅'),
+        kpiHtml('Total Sanctioned Credit', '₹0', '0 Accounts', 'neutral', 'No active records', '🏛️'),
+        kpiHtml('Credit Utilization', '0.0%', '₹0 drawn', 'neutral', 'No active records', '📊'),
+        kpiHtml('Avg Payment Terms', '0.0 Days', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('GST & E-Invoicing', '0.0%', '0.0%', 'neutral', 'No active records', '✅'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -189,7 +186,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Code</th><th>Corporate Entity</th><th>GSTIN</th><th>Sanctioned Limit</th><th>Used Credit</th><th>Terms</th><th>Risk Grade</th></tr></thead>',
             '<tbody>',
-              ACCOUNTS.map(function(a) {
+              (ACCOUNTS.length ? ACCOUNTS.map(function(a) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(a.id) + '</td>' +
                   '<td style="font-weight:600;">' + esc(a.name) + '</td>' +
@@ -199,7 +196,7 @@
                   '<td>' + esc(a.terms) + '</td>' +
                   '<td><span class="zb2b-pill active">Low Risk</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No corporate account credit records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -210,10 +207,10 @@
   function renderOrders() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('B2B Orders (MTD)', '148 Orders', '+22% vs last month', 'up', 'Average PO: ₹2.35L', '📦'),
-        kpiHtml('Order Value Realized', '₹34.82 Lakh', '100% contracted rates', 'up', 'Institutional rate cards', '💵'),
-        kpiHtml('On-Time Dispatch SLA', '98.6%', '48h fulfillment benchmark', 'up', 'Dedicated freight vans', '⚡'),
-        kpiHtml('Open Warehouse POs', '5 Orders', 'Packaging in progress', 'warn', 'Dispatch scheduled today', '⏳'),
+        kpiHtml('B2B Orders (MTD)', '0 Orders', '0.0%', 'neutral', 'No active records', '📦'),
+        kpiHtml('Order Value Realized', '₹0', '0.0%', 'neutral', 'No active records', '💵'),
+        kpiHtml('On-Time Dispatch SLA', '0.0%', '0.0%', 'neutral', 'No active records', '⚡'),
+        kpiHtml('Open Warehouse POs', '0 Orders', '0.0%', 'neutral', 'No active records', '⏳'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -224,7 +221,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>PO Number</th><th>Client Entity</th><th>Line Items Description</th><th>PO Value</th><th>Order Date</th><th>Dispatch ETA</th><th>Status</th></tr></thead>',
             '<tbody>',
-              ORDERS.map(function(o) {
+              (ORDERS.length ? ORDERS.map(function(o) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(o.po) + '</td>' +
                   '<td style="font-weight:600;">' + esc(o.client) + '</td>' +
@@ -234,7 +231,7 @@
                   '<td>' + esc(o.dispatchDate) + '</td>' +
                   '<td><span class="zb2b-pill ' + (o.status === 'Delivered' ? 'active' : o.status === 'Dispatched' ? 'corporate' : 'warning') + '">' + esc(o.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No institutional purchase order records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -245,10 +242,10 @@
   function renderSales() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Quarterly Closed Bookings', '₹1.25 Crore', '+28.4% YoY', 'up', 'Quota: ₹1.18 Cr (106%)', '💼'),
-        kpiHtml('Active Qualified Pipeline', '₹2.15 Crore', '14 deals in RFP', 'up', 'Weighted pipeline: ₹1.42 Cr', '📈'),
-        kpiHtml('Deal Win Rate', '48.5%', '+6.2% vs industry', 'up', 'Institutional tenders', '🏆'),
-        kpiHtml('Avg Enterprise Sales Cycle', '42 Days', '-8 days reduction', 'up', 'Standardized master deeds', '⚡'),
+        kpiHtml('Quarterly Closed Bookings', '₹0', '0.0%', 'neutral', 'No active records', '💼'),
+        kpiHtml('Active Qualified Pipeline', '₹0', '0.0%', 'neutral', 'No active records', '📈'),
+        kpiHtml('Deal Win Rate', '0.0%', '0.0%', 'neutral', 'No active records', '🏆'),
+        kpiHtml('Avg Enterprise Sales Cycle', '0 Days', '0.0%', 'neutral', 'No active records', '⚡'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -258,9 +255,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Sales Lead</th><th>Assigned Accounts</th><th>Quota Target</th><th>Closed Bookings</th><th>Attainment</th><th>Active Pipeline</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Vikram Mehta (VP Enterprise)</td><td>18 Accounts</td><td>₹40,00,000</td><td style="font-weight:600;color:#059669;">₹44,20,000</td><td><span class="zb2b-pill active">110.5%</span></td><td style="color:#4338ca;font-weight:600;">₹62,00,000</td></tr>',
-              '<tr><td style="font-weight:600;">Sneha Rao (Senior RM)</td><td>14 Accounts</td><td>₹28,00,000</td><td style="font-weight:600;color:#059669;">₹29,80,000</td><td><span class="zb2b-pill active">106.4%</span></td><td style="color:#4338ca;font-weight:600;">₹45,00,000</td></tr>',
-              '<tr><td style="font-weight:600;">Aarav Sen (Wholesale Lead)</td><td>12 Accounts</td><td>₹20,00,000</td><td style="font-weight:600;color:#059669;">₹19,10,000</td><td><span class="zb2b-pill active">95.5%</span></td><td style="color:#4338ca;font-weight:600;">₹28,00,000</td></tr>',
+              '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No sales executive scorecard records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -271,10 +266,10 @@
   function renderRevenue() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Annualized B2B Run Rate', '₹3.75 Crore', '+34.2% YoY', 'up', 'On track for ₹4.0 Cr FY27', '💰'),
-        kpiHtml('Blended B2B Gross Margin', '38.4%', '+2.1% YoY', 'up', 'Direct OEM economies', '📈'),
-        kpiHtml('Monthly Revenue per Account', '₹72,500 / mo', '+14% YoY', 'up', 'High basket re-orders', '🏢'),
-        kpiHtml('Repeat Contract Revenue', '92.4%', 'Committed volume', 'up', 'High financial predictability', '🔄'),
+        kpiHtml('Annualized B2B Run Rate', '₹0', '0.0%', 'neutral', 'No active records', '💰'),
+        kpiHtml('Blended B2B Gross Margin', '0.0%', '0.0%', 'neutral', 'No active records', '📈'),
+        kpiHtml('Monthly Revenue per Account', '₹0', '0.0%', 'neutral', 'No active records', '🏢'),
+        kpiHtml('Repeat Contract Revenue', '0.0%', '0.0%', 'neutral', 'No active records', '🔄'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -284,10 +279,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Revenue Stream</th><th>B2B Share</th><th>MTD Realized</th><th>Gross Margin</th><th>Trajectory</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Hospital & Clinic Consumables Master Contract</td><td>38.5%</td><td style="font-weight:600;color:#059669;">₹13,40,000</td><td style="color:#4338ca;font-weight:600;">36.2%</td><td><span class="zb2b-pill active">Growing (+24%)</span></td></tr>',
-              '<tr><td style="font-weight:600;">Government & Working Dog Procurement (K-9)</td><td>24.2%</td><td style="font-weight:600;color:#059669;">₹8,42,000</td><td style="color:#4338ca;font-weight:600;">42.0%</td><td><span class="zb2b-pill active">Stable (+8%)</span></td></tr>',
-              '<tr><td style="font-weight:600;">Corporate Employee Pet Benefits Subsidies</td><td>18.1%</td><td style="font-weight:600;color:#059669;">₹6,30,000</td><td style="color:#4338ca;font-weight:600;">45.8%</td><td><span class="zb2b-pill active">Fast (+48%)</span></td></tr>',
-              '<tr><td style="font-weight:600;">Breeder & Shelter Wholesale Feeds & Kits</td><td>14.2%</td><td style="font-weight:600;color:#059669;">₹4,95,000</td><td style="color:#4338ca;font-weight:600;">28.5%</td><td><span class="zb2b-pill warning">Seasonal</span></td></tr>',
+              '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No B2B revenue stream records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -298,10 +290,10 @@
   function renderContracts() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Active Commercial MSAs', '38 Contracts', '₹3.14 Cr Total Value', 'up', 'Multi-year binding agreements', '📜'),
-        kpiHtml('Contracts Expiring in 90D', '3 Contracts', 'Renewal talks in progress', 'warn', '₹34.5L total value', '⏳'),
-        kpiHtml('Legal SLA Compliance', '99.4%', 'Zero penalty notices', 'up', 'Full fulfillment compliance', '🛡️'),
-        kpiHtml('Avg Contract Tenure', '2.2 Years', 'Standard 1 to 3 yrs', 'up', 'High client retention', '📅'),
+        kpiHtml('Active Commercial MSAs', '0 Contracts', '₹0 Total Value', 'neutral', 'No active records', '📜'),
+        kpiHtml('Contracts Expiring in 90D', '0 Contracts', '0.0%', 'neutral', 'No active records', '⏳'),
+        kpiHtml('Legal SLA Compliance', '0.0%', '0.0%', 'neutral', 'No active records', '🛡️'),
+        kpiHtml('Avg Contract Tenure', '0.0 Years', '0.0%', 'neutral', 'No active records', '📅'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -311,9 +303,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Contract ID</th><th>Agreement Name</th><th>Client Entity</th><th>Validity Period</th><th>Committed Value</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;font-weight:600;">CTR-ENT-2024-01</td><td style="font-weight:600;">National Veterinary Consumables Master Agreement</td><td>PetCare Hospital Network</td><td>2024-04 to 2027-03 (3-Yr)</td><td style="font-weight:600;color:#059669;">₹72,00,000</td><td><span class="zb2b-pill active">Active (Signed)</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">CTR-ENT-2024-08</td><td style="font-weight:600;">Paramilitary K-9 Nutrition & Medical Supply Contract</td><td>K-9 Paramilitary Kennels</td><td>2024-08 to 2025-07 (1-Yr)</td><td style="font-weight:600;color:#059669;">₹18,50,000</td><td><span class="zb2b-pill active">Active (Signed)</span></td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">CTR-ENT-2025-02</td><td style="font-weight:600;">Bangalore Breeder Network Feed Supply Framework</td><td>Bangalore Canine Co-op</td><td>2025-01 to 2025-12 (1-Yr)</td><td style="font-weight:600;color:#059669;">₹12,80,000</td><td><span class="zb2b-pill active">Active (Signed)</span></td></tr>',
+              '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No active contract records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -324,10 +314,10 @@
   function renderPricing() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Avg Volume Discount', '26.4%', 'Protected floor: 22%', 'up', 'Guaranteed positive contribution', '🏷️'),
-        kpiHtml('Price-Locked Master SKUs', '480 SKUs', '12-month lock', 'up', 'Inflation protected contracts', '🔒'),
-        kpiHtml('Volume Rebates Issued', '₹3.18 Lakh', 'YTD Paid', 'up', 'Threshold achievement bonus', '💵'),
-        kpiHtml('Minimum Order Value (MOQ)', '₹75,000', 'Tier 3 entry threshold', 'neutral', 'Wholesale governance', '📦'),
+        kpiHtml('Avg Volume Discount', '0.0%', '0.0%', 'neutral', 'No active records', '🏷️'),
+        kpiHtml('Price-Locked Master SKUs', '0 SKUs', '0.0%', 'neutral', 'No active records', '🔒'),
+        kpiHtml('Volume Rebates Issued', '₹0', '0.0%', 'neutral', 'No active records', '💵'),
+        kpiHtml('Minimum Order Value (MOQ)', '₹0', '0.0%', 'neutral', 'No active records', '📦'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -337,9 +327,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Tier Classification</th><th>Min Order Value</th><th>Discount Off MRP</th><th>Credit Terms</th><th>Rebate Schedule</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Tier 1 — Strategic Institutional</td><td style="font-weight:600;color:#4338ca;">₹5,00,000+</td><td style="font-weight:600;color:#059669;">Base MRP - 32%</td><td>Net 60 Days</td><td>3% Annual Volume Rebate</td></tr>',
-              '<tr><td style="font-weight:600;">Tier 2 — Hospital & Clinic Chain</td><td style="font-weight:600;color:#4338ca;">₹2,00,000+</td><td style="font-weight:600;color:#059669;">Base MRP - 26%</td><td>Net 45 Days</td><td>2% Annual Volume Rebate</td></tr>',
-              '<tr><td style="font-weight:600;">Tier 3 — Breeder & Kennel Club</td><td style="font-weight:600;color:#4338ca;">₹75,000+</td><td style="font-weight:600;color:#059669;">Base MRP - 20%</td><td>Net 30 Days</td><td>1% Semi-Annual Rebate</td></tr>',
+              '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No volume pricing tiers found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -350,10 +338,10 @@
   function renderReceivables() {
     return [
       '<div class="zb2b-kpi-grid">',
-        kpiHtml('Total B2B Receivables', '₹12.40 Lakh', '6 Corporate Accounts', 'up', 'All within sanctioned limits', '💳'),
-        kpiHtml('Days Sales Outstanding (DSO)', '34.2 Days', '-4.1 days improvement', 'up', 'Benchmark < 40 days', '⏱️'),
-        kpiHtml('Current Dues (0-30 Days)', '₹9.02 Lakh', '72.7% of total', 'up', 'High collection velocity', '✅'),
-        kpiHtml('Overdue Dues (> 60 Days)', '₹68,000', '5.5% of total', 'warn', 'Grace period follow-up', '⚠️'),
+        kpiHtml('Total B2B Receivables', '₹0', '0 Accounts', 'neutral', 'No active records', '💳'),
+        kpiHtml('Days Sales Outstanding (DSO)', '0.0 Days', '0.0%', 'neutral', 'No active records', '⏱️'),
+        kpiHtml('Current Dues (0-30 Days)', '₹0', '0.0%', 'neutral', 'No active records', '✅'),
+        kpiHtml('Overdue Dues (> 60 Days)', '₹0', '0.0%', 'neutral', 'No active records', '⚠️'),
       '</div>',
       '<div class="zb2b-card">',
         '<div class="zb2b-card-head">',
@@ -363,10 +351,7 @@
           '<table class="zb2b-table">',
             '<thead><tr><th>Invoice #</th><th>Corporate Client</th><th>Amount</th><th>Due Date</th><th>Aging Bucket</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;font-weight:600;">INV-B2B-9101</td><td style="font-weight:600;">PetCare Hospital Network</td><td style="font-weight:600;">₹3,45,000</td><td>2026-10-25</td><td><span class="zb2b-pill active">0-30 Days</span></td><td>Current (Unpaid)</td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">INV-B2B-9088</td><td style="font-weight:600;">K-9 Paramilitary Kennels</td><td style="font-weight:600;">₹2,80,000</td><td>2026-11-15</td><td><span class="zb2b-pill active">0-30 Days</span></td><td>Current (Govt Audit)</td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">INV-B2B-9042</td><td style="font-weight:600;">Bangalore Canine Breeding Co-op</td><td style="font-weight:600;">₹1,95,000</td><td>2026-09-28</td><td><span class="zb2b-pill warning">31-60 Days</span></td><td>Follow-up Sent</td></tr>',
-              '<tr><td style="font-family:monospace;font-weight:600;">INV-B2B-8872</td><td style="font-weight:600;">Western India Shelter Network</td><td style="font-weight:600;">₹68,000</td><td>2026-08-15</td><td><span class="zb2b-pill critical">61-90 Days</span></td><td>Grace Period Notice</td></tr>',
+              '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No corporate receivables records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -451,7 +436,7 @@
       '</div>',
       '<form onsubmit="event.preventDefault(); alert(\'B2B Purchase order generated and linked to ERP!\'); ZenveB2BDashboard.closeModal();">',
         '<div class="zb2b-form-group"><label>Client Corporate Organization</label><select class="zb2b-select">' +
-          ACCOUNTS.map(function(a){ return '<option>' + esc(a.name) + '</option>'; }).join('') +
+          (ACCOUNTS.length ? ACCOUNTS.map(function(a){ return '<option>' + esc(a.name) + '</option>'; }).join('') : '<option value="">No registered accounts</option>') +
         '</select></div>',
         '<div class="zb2b-form-group"><label>Order Description & Line Items</label><input type="text" class="zb2b-input" placeholder="e.g. 500 vials Nobivac DHPPi + 40 boxes Bravecto" required /></div>',
         '<div class="zb2b-form-row">',

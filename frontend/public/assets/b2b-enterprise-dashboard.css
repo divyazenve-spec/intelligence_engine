@@ -206,6 +206,7 @@ body.zb2b-locked {
 .zb2b-delta.up { color: #059669; }
 .zb2b-delta.down { color: #dc2626; }
 .zb2b-delta.warn { color: #d97706; }
+.zb2b-delta.neutral { color: #64748b; }
 .zb2b-subtext { color: var(--muted-foreground, #64748b); font-size: 11px; }
 
 /* Cards & Grids */

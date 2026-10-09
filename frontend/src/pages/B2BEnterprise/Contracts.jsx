@@ -21,10 +21,10 @@ export default function Contracts() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Commercial MSAs" value="38 Contracts" delta="₹0 Total Value" trend="up" subtext="Multi-year binding" icon="📜" />
-        <KpiCard label="Contracts Expiring in 90D" value="3 Contracts" delta="Renewal in discussion" trend="warn" subtext="₹0 total value" icon="⏳" />
-        <KpiCard label="Legal SLA Compliance" value="0.0%" delta="Zero penalty notices" trend="up" subtext="Full delivery fulfillment" icon="🛡️" />
-        <KpiCard label="Avg Contract Duration" value="2.2 Years" delta="Standard 1 to 3 yrs" trend="up" subtext="Long-term predictability" icon="📅" />
+        <KpiCard label="Active Commercial MSAs" value="0 Contracts" delta="" trend="neutral" subtext="No active records" icon="📜" />
+        <KpiCard label="Contracts Expiring in 90D" value="0 Contracts" delta="" trend="neutral" subtext="No active records" icon="⏳" />
+        <KpiCard label="Legal SLA Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="🛡️" />
+        <KpiCard label="Avg Contract Duration" value="0.0 Years" delta="" trend="neutral" subtext="No active records" icon="📅" />
       </div>
 
       <div style={card}>
@@ -69,28 +69,36 @@ export default function Contracts() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
-                <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{c.title}</td>
-                  <td style={{ padding: '12px' }}>{c.entity}</td>
-                  <td style={{ padding: '12px' }}>{c.validFrom} to {c.validTo}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{c.value}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{c.slaPenalty}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: c.status.includes('Active') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
-                      color: c.status.includes('Active') ? '#059669' : '#d97706'
-                    }}>
-                      {c.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No contract records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(c => (
+                  <tr key={c.id} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{c.id}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{c.title}</td>
+                    <td style={{ padding: '12px' }}>{c.entity}</td>
+                    <td style={{ padding: '12px' }}>{c.validFrom} to {c.validTo}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{c.value}</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{c.slaPenalty}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: c.status.includes('Active') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
+                        color: c.status.includes('Active') ? '#059669' : '#d97706'
+                      }}>
+                        {c.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -18,13 +18,13 @@ export default function CorporateAccounts() {
       title="Corporate Account Master & Credit Limits"
       subtitle="Corporate KYC compliance, GSTIN master, credit sanctions, and relationship manager assignments"
       icon="🏛️"
-      badge="₹0 Sanctioned"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Sanctioned Credit" value="₹0" delta="Across 48 accounts" trend="up" subtext="Revolving commercial credit" icon="🏛️" />
-        <KpiCard label="Active Credit Utilization" value="0.0%" delta="₹0 drawn" trend="up" subtext="Healthy safety margin" icon="📊" />
-        <KpiCard label="Weighted Avg Payment Terms" value="38.5 Days" delta="Target < 45" trend="up" subtext="Commercial terms compliance" icon="⏱️" />
-        <KpiCard label="KYC & GST Compliance" value="0.0%" delta="All 48 verified" trend="up" subtext="Active GST e-invoicing" icon="✅" />
+        <KpiCard label="Total Sanctioned Credit" value="₹0" delta="" trend="neutral" subtext="No active records" icon="🏛️" />
+        <KpiCard label="Active Credit Utilization" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="📊" />
+        <KpiCard label="Weighted Avg Payment Terms" value="0.0 Days" delta="" trend="neutral" subtext="No active records" icon="⏱️" />
+        <KpiCard label="KYC & GST Compliance" value="0.0%" delta="" trend="neutral" subtext="No active records" icon="✅" />
       </div>
 
       <div style={card}>
@@ -70,29 +70,37 @@ export default function CorporateAccounts() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(acc => (
-                <tr key={acc.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{acc.code}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{acc.org}</td>
-                  <td style={{ padding: '12px', fontFamily: 'monospace' }}>{acc.gst}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{acc.creditLimit}</td>
-                  <td style={{ padding: '12px', color: '#4338ca', fontWeight: 600 }}>{acc.usedCredit}</td>
-                  <td style={{ padding: '12px' }}>{acc.paymentTerms}</td>
-                  <td style={{ padding: '12px' }}>{acc.rm}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: acc.risk.includes('Low') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
-                      color: acc.risk.includes('Low') ? '#059669' : '#d97706'
-                    }}>
-                      {acc.risk}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No corporate account records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(acc => (
+                  <tr key={acc.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{acc.code}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{acc.org}</td>
+                    <td style={{ padding: '12px', fontFamily: 'monospace' }}>{acc.gst}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{acc.creditLimit}</td>
+                    <td style={{ padding: '12px', color: '#4338ca', fontWeight: 600 }}>{acc.usedCredit}</td>
+                    <td style={{ padding: '12px' }}>{acc.paymentTerms}</td>
+                    <td style={{ padding: '12px' }}>{acc.rm}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: acc.risk.includes('Low') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
+                        color: acc.risk.includes('Low') ? '#059669' : '#d97706'
+                      }}>
+                        {acc.risk}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

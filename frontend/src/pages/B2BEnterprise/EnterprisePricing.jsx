@@ -16,13 +16,13 @@ export default function EnterprisePricing() {
       title="Enterprise Tiered Pricing & Rate Cards"
       subtitle="Volume discount tiers, institutional master rate cards, MOQs, and corporate price lock guarantees"
       icon="🏷️"
-      badge="Tier 1-4 Matrices"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average Volume Discount" value="0.0%" delta="Protected floor 22%" trend="up" subtext="Guaranteed margin positive" icon="🏷️" />
-        <KpiCard label="Annual Price Locked SKUs" value="480 SKUs" delta="12-month lock" trend="up" subtext="Inflation protected" icon="🔒" />
-        <KpiCard label="Enterprise Rebates Issued" value="₹0" delta="YTD Paid" trend="up" subtext="Volume threshold bonuses" icon="💵" />
-        <KpiCard label="Minimum Order Quantity (MOQ)" value="₹0" delta="Tier 3 entry" trend="neutral" subtext="Strict wholesale gating" icon="📦" />
+        <KpiCard label="Average Volume Discount" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="🏷️" />
+        <KpiCard label="Annual Price Locked SKUs" value="0 SKUs" delta="" trend="neutral" subtext="No active records" icon="🔒" />
+        <KpiCard label="Enterprise Rebates Issued" value="₹0" delta="" trend="neutral" subtext="No active records" icon="💵" />
+        <KpiCard label="Minimum Order Quantity (MOQ)" value="₹0" delta="" trend="neutral" subtext="No active records" icon="📦" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
@@ -42,16 +42,24 @@ export default function EnterprisePricing() {
                 </tr>
               </thead>
               <tbody>
-                {tiers.map(t => (
-                  <tr key={t.tier} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                    <td style={{ padding: '12px', fontWeight: 600 }}>{t.tier}</td>
-                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{t.minOrder}</td>
-                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{t.discount}</td>
-                    <td style={{ padding: '12px' }}>{t.paymentTerms}</td>
-                    <td style={{ padding: '12px' }}>{t.freight}</td>
-                    <td style={{ padding: '12px', color: '#64748b' }}>{t.rebate}</td>
+                {tiers.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                      No volume discount tiers found
+                    </td>
                   </tr>
-                ))}
+                ) : (
+                  tiers.map(t => (
+                    <tr key={t.tier} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                      <td style={{ padding: '12px', fontWeight: 600 }}>{t.tier}</td>
+                      <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{t.minOrder}</td>
+                      <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{t.discount}</td>
+                      <td style={{ padding: '12px' }}>{t.paymentTerms}</td>
+                      <td style={{ padding: '12px' }}>{t.freight}</td>
+                      <td style={{ padding: '12px', color: '#64748b' }}>{t.rebate}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -74,17 +82,25 @@ export default function EnterprisePricing() {
                 </tr>
               </thead>
               <tbody>
-                {skus.map(s => (
-                  <tr key={s.sku} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.sku}</td>
-                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.name}</td>
-                    <td style={{ padding: '12px', color: '#64748b' }}>{s.retailMrp}</td>
-                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.tier1}</td>
-                    <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{s.tier2}</td>
-                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.tier3}</td>
-                    <td style={{ padding: '12px' }}>{s.minQty}</td>
+                {skus.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                      No master SKU rate cards found
+                    </td>
                   </tr>
-                ))}
+                ) : (
+                  skus.map(s => (
+                    <tr key={s.sku} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                      <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.sku}</td>
+                      <td style={{ padding: '12px', fontWeight: 600 }}>{s.name}</td>
+                      <td style={{ padding: '12px', color: '#64748b' }}>{s.retailMrp}</td>
+                      <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.tier1}</td>
+                      <td style={{ padding: '12px', fontWeight: 600, color: '#4338ca' }}>{s.tier2}</td>
+                      <td style={{ padding: '12px', fontWeight: 600 }}>{s.tier3}</td>
+                      <td style={{ padding: '12px' }}>{s.minQty}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
