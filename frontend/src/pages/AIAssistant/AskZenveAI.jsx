@@ -81,10 +81,10 @@ export default function AskZenveAI() {
       badge="Free-Source Neural Core Active"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="NLP Pipeline Latency" value="18 ms" delta="Zero Cloud Cost" trend="up" subtext="In-browser neural inference" icon="⚡" />
-        <KpiCard label="Grounding Accuracy" value="0.0%" delta="Zero Hallucination" trend="up" subtext="Direct ERP record links" icon="🎯" />
-        <KpiCard label="Executive Queries (MTD)" value="0" delta="+34% MoM" trend="up" subtext="Leadership adoption" icon="💡" />
-        <KpiCard label="Autonomous Actions Taken" value="0" delta="96% Success" trend="up" subtext="Workflow triggers" icon="🤖" />
+        <KpiCard label="NLP Pipeline Latency" value="--" delta="--" trend="neutral" subtext="No baseline latency" icon="⚡" />
+        <KpiCard label="Grounding Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No baseline records" icon="🎯" />
+        <KpiCard label="Executive Queries (MTD)" value="0" delta="--" trend="neutral" subtext="No active queries" icon="💡" />
+        <KpiCard label="Autonomous Actions Taken" value="0" delta="--" trend="neutral" subtext="No actions taken" icon="🤖" />
       </div>
 
       <div style={cardStyle}>

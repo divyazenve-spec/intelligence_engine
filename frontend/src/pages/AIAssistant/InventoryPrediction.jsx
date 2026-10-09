@@ -23,10 +23,10 @@ export default function InventoryPrediction() {
       badge="Early Warning System Active"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Imminent Stockout Risk" value="1 SKU" delta="4 Days Runway" trend="down" subtext="Apoquel 16mg" icon="⚠️" />
-        <KpiCard label="Average Inventory Runway" value="38.4 Days" delta="Target: 30-45d" trend="neutral" subtext="Balanced working cap" icon="📅" />
-        <KpiCard label="Excess / Slow-Moving Stock" value="₹0" delta="-18% vs Q2" trend="up" subtext="Promotional markdown" icon="📉" />
-        <KpiCard label="Automated Reorder Accuracy" value="0.0%" delta="Zero stockout SLA" trend="up" subtext="Autonomous POs" icon="🤖" />
+        <KpiCard label="Imminent Stockout Risk" value="0 SKUs" delta="--" trend="neutral" subtext="No stockout risks detected" icon="⚠️" />
+        <KpiCard label="Average Inventory Runway" value="-- Days" delta="--" trend="neutral" subtext="No buffer records" icon="📅" />
+        <KpiCard label="Excess / Slow-Moving Stock" value="₹0" delta="--" trend="neutral" subtext="No excess stock detected" icon="📉" />
+        <KpiCard label="Automated Reorder Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No reorders logged" icon="🤖" />
       </div>
 
       <div style={cardStyle}>
@@ -49,7 +49,14 @@ export default function InventoryPrediction() {
               </tr>
             </thead>
             <tbody>
-              {inventoryRisks.map((item, i) => (
+              {inventoryRisks.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No inventory risk records found
+                  </td>
+                </tr>
+              ) : (
+                inventoryRisks.map((item, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#2563eb' }}>{item.sku}</td>
                   <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{item.name}</td>

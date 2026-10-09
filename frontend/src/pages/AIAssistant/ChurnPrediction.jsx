@@ -23,16 +23,16 @@ export default function ChurnPrediction() {
       badge="Early Warning Churn Radar"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Churn Risk Index" value="0.0%" delta="-2.1% vs Q2" trend="down" subtext="Best-in-class" icon="🛡️" />
-        <KpiCard label="High-Risk Pet Parents" value="226 Users" delta="1.8% of Base" trend="neutral" subtext="In intervention queue" icon="⚠️" />
-        <KpiCard label="Intervention Win-Back Rate" value="0.0%" delta="+6.4% YoY" trend="up" subtext="Recovered revenue" icon="🔄" />
-        <KpiCard label="Protected Annual Revenue" value="₹0" delta="LTV preserved" trend="up" subtext="Proactive playbooks" icon="💎" />
+        <KpiCard label="Overall Churn Risk Index" value="0.0%" delta="--" trend="neutral" subtext="No baseline records" icon="🛡️" />
+        <KpiCard label="High-Risk Pet Parents" value="0 Users" delta="--" trend="neutral" subtext="No users queued" icon="⚠️" />
+        <KpiCard label="Intervention Win-Back Rate" value="0.0%" delta="--" trend="neutral" subtext="No win-back records" icon="🔄" />
+        <KpiCard label="Protected Annual Revenue" value="₹0" delta="--" trend="neutral" subtext="No protected revenue" icon="💎" />
       </div>
 
       <div style={cardStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>At-Risk Cohorts & Automated Retention Playbooks</h3>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: '#10b981' }}>Model: Survival Analysis + Random Forest</span>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Model: Survival Analysis + Random Forest</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -48,7 +48,14 @@ export default function ChurnPrediction() {
               </tr>
             </thead>
             <tbody>
-              {churnCohorts.map((c, i) => (
+              {churnCohorts.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No at-risk cohorts or churn predictions found
+                  </td>
+                </tr>
+              ) : (
+                churnCohorts.map((c, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{c.cohort}</td>
                   <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.users}</td>

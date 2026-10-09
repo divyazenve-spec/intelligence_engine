@@ -23,17 +23,17 @@ export default function DemandForecast() {
       badge="Demand Intelligence"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="SKUs with Surge Demand" value="28 SKUs" delta="+18% Surge" trend="up" subtext="Requires buffer stock" icon="⚡" />
-        <KpiCard label="Fulfillment Availability" value="0.0%" delta="Zero Stockout" trend="up" subtext="Across 14 hubs" icon="✅" />
-        <KpiCard label="Forecast Horizon" value="45 Days" delta="Rolling weekly" trend="neutral" subtext="Dynamic lead time" icon="📅" />
-        <KpiCard label="Procurement Capital Plan" value="₹0" delta="-6.2% Bulk Disc" trend="up" subtext="Pre-negotiated" icon="💰" />
+        <KpiCard label="SKUs with Surge Demand" value="0 SKUs" delta="--" trend="neutral" subtext="No active surges" icon="⚡" />
+        <KpiCard label="Fulfillment Availability" value="0.0%" delta="--" trend="neutral" subtext="No fulfillment records" icon="✅" />
+        <KpiCard label="Forecast Horizon" value="-- Days" delta="--" trend="neutral" subtext="No horizon configured" icon="📅" />
+        <KpiCard label="Procurement Capital Plan" value="₹0" delta="--" trend="neutral" subtext="No procurement plan" icon="💰" />
       </div>
 
       <div style={cardStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>High-Velocity SKU Demand Projections (30 Days)</h3>
           <button
-            onClick={() => alert('Automated Purchase Orders generated for all 4 surge SKUs')}
+            onClick={() => alert('No active surge SKUs available to generate Purchase Orders')}
             style={{
               padding: '6px 14px',
               borderRadius: '6px',
@@ -63,7 +63,14 @@ export default function DemandForecast() {
               </tr>
             </thead>
             <tbody>
-              {demandItems.map((item, i) => (
+              {demandItems.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No demand projection records found
+                  </td>
+                </tr>
+              ) : (
+                demandItems.map((item, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#2563eb' }}>{item.sku}</td>
                   <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{item.item}</td>

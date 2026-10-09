@@ -23,16 +23,16 @@ export default function RevenueIntelligence() {
       badge="Revenue Radar Active"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Detected Revenue Leakage" value="₹0" delta="Recoverable" trend="down" subtext="Across 4 vectors" icon="⚠️" />
-        <KpiCard label="Recovery Realization (MTD)" value="₹0" delta="55% Recovered" trend="up" subtext="Automated recovery" icon="💰" />
-        <KpiCard label="Optimal Price Elasticity" value="+4.2%" delta="Margin upside" trend="up" subtext="On premium services" icon="📈" />
-        <KpiCard label="Discount Efficiency Score" value="0.0%" delta="+3.1% QoQ" trend="up" subtext="Effective coupon yield" icon="🎯" />
+        <KpiCard label="Detected Revenue Leakage" value="₹0" delta="--" trend="neutral" subtext="No leakage detected" icon="⚠️" />
+        <KpiCard label="Recovery Realization (MTD)" value="₹0" delta="--" trend="neutral" subtext="No recovery actions" icon="💰" />
+        <KpiCard label="Optimal Price Elasticity" value="0.0%" delta="--" trend="neutral" subtext="No elasticity tested" icon="📈" />
+        <KpiCard label="Discount Efficiency Score" value="0.0%" delta="--" trend="neutral" subtext="No discount records" icon="🎯" />
       </div>
 
       <div style={cardStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>Identified Revenue Leakage & Remediation Radar</h3>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: '#ef4444' }}>Total Identified: ₹0</span>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Total Identified: ₹0</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -47,7 +47,14 @@ export default function RevenueIntelligence() {
               </tr>
             </thead>
             <tbody>
-              {leakagePoints.map((item, idx) => (
+              {leakagePoints.length === 0 ? (
+                <tr>
+                  <td colSpan={5} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No revenue leakage detected.
+                  </td>
+                </tr>
+              ) : (
+                leakagePoints.map((item, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', color: '#0f172a', fontWeight: 600 }}>{item.source}</td>
                   <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#dc2626' }}>{item.amount}</td>

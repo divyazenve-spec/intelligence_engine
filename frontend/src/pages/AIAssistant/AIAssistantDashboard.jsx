@@ -45,10 +45,10 @@ export default function AIAssistantDashboard() {
     >
       {/* KPI Vitals */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '20px' }}>
-        <KpiCard label="Prediction Accuracy" value="0.0%" delta="+1.4% WoW" trend="up" subtext="Across 180 SKU clusters" icon="🎯" />
-        <KpiCard label="Anomalies Flagged" value="4 Active" delta="Resolved 12" trend="up" subtext="2 pricing, 2 dispatch" icon="🔍" />
-        <KpiCard label="Identified Growth" value="₹0" delta="EBITDA potential" trend="up" subtext="In next 60-day horizon" icon="💹" />
-        <KpiCard label="Queries Processed" value="0" delta="Avg 180ms latency" trend="neutral" subtext="Executive & manager sessions" icon="⚡" />
+        <KpiCard label="Prediction Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No baseline records" icon="🎯" />
+        <KpiCard label="Anomalies Flagged" value="0 Active" delta="--" trend="neutral" subtext="No active anomalies" icon="🔍" />
+        <KpiCard label="Identified Growth" value="₹0" delta="--" trend="neutral" subtext="No growth opportunities detected" icon="💹" />
+        <KpiCard label="Queries Processed" value="0" delta="--" trend="neutral" subtext="No queries processed" icon="⚡" />
       </div>
 
       {/* Overview Grid */}

@@ -23,10 +23,10 @@ export default function CustomerPrediction() {
       badge="NBA Predictor Online"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Next-Best-Action Accuracy" value="0.0%" delta="+4.2% Lift" trend="up" subtext="Conversion probability" icon="🎯" />
-        <KpiCard label="Predicted Repurchase Pipeline" value="₹0" delta="Next 14 Days" trend="up" subtext="840 Pet parents" icon="💰" />
-        <KpiCard label="Vaccination Recall Accuracy" value="0.0%" delta="100% On-time" trend="up" subtext="Preventive schedule" icon="💉" />
-        <KpiCard label="Cross-Sell Conversion Rate" value="0.0%" delta="+12.4% vs Generic" trend="up" subtext="AI tailored nudges" icon="🚀" />
+        <KpiCard label="Next-Best-Action Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No conversion data" icon="🎯" />
+        <KpiCard label="Predicted Repurchase Pipeline" value="₹0" delta="--" trend="neutral" subtext="No pipeline data" icon="💰" />
+        <KpiCard label="Vaccination Recall Accuracy" value="0.0%" delta="--" trend="neutral" subtext="No schedule records" icon="💉" />
+        <KpiCard label="Cross-Sell Conversion Rate" value="0.0%" delta="--" trend="neutral" subtext="No nudges active" icon="🚀" />
       </div>
 
       <div style={cardStyle}>
@@ -48,7 +48,14 @@ export default function CustomerPrediction() {
               </tr>
             </thead>
             <tbody>
-              {nextActions.map((row, i) => (
+              {nextActions.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No next-best-action customer triggers found
+                  </td>
+                </tr>
+              ) : (
+                nextActions.map((row, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{row.petParent}</td>
                   <td style={{ padding: '12px 16px', color: '#334155' }}>{row.propensity}</td>

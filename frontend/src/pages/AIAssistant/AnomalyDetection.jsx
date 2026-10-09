@@ -23,16 +23,16 @@ export default function AnomalyDetection() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Anomalies" value="1 Critical" delta="1 High / 1 Med" trend="down" subtext="Whitefield footfall" icon="⚠️" />
-        <KpiCard label="Detection Latency" value="0" delta="Real-time stream" trend="up" subtext="From telemetry stream" icon="⚡" />
-        <KpiCard label="False Positive Rate" value="0.0%" delta="< 1% Target" trend="up" subtext="Isolation Forest ML" icon="🎯" />
-        <KpiCard label="Auto-Remediated (MTD)" value="24 Incidents" delta="91.4% Automated" trend="up" subtext="Self-healing flows" icon="🤖" />
+        <KpiCard label="Active Anomalies" value="0 Active" delta="--" trend="neutral" subtext="Continuous telemetry scanning" icon="⚠️" />
+        <KpiCard label="Detection Latency" value="--" delta="--" trend="neutral" subtext="From telemetry stream" icon="⚡" />
+        <KpiCard label="False Positive Rate" value="0.0%" delta="--" trend="neutral" subtext="No baseline data" icon="🎯" />
+        <KpiCard label="Auto-Remediated (MTD)" value="0 Incidents" delta="--" trend="neutral" subtext="No incidents logged" icon="🤖" />
       </div>
 
       <div style={cardStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>Real-Time Operational Outlier Feed</h3>
-          <span style={{ fontSize: '11px', color: '#64748b' }}>Scanned 14,800 events in last hour</span>
+          <span style={{ fontSize: '11px', color: '#64748b' }}>No anomaly events in stream</span>
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -48,7 +48,14 @@ export default function AnomalyDetection() {
               </tr>
             </thead>
             <tbody>
-              {anomalies.map((anm, i) => (
+              {anomalies.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: '#94a3b8' }}>
+                    No statistical anomalies or operational outliers detected
+                  </td>
+                </tr>
+              ) : (
+                anomalies.map((anm, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#2563eb' }}>{anm.id}</td>
                   <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>{anm.metric}</td>

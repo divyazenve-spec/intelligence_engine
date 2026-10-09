@@ -14,9 +14,9 @@ export default function ProfitPrediction() {
   };
 
   const scenarios = {
-    BASE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (38.1%)', opex: '₹0', ebitda: '₹0 (17.4%)', pat: '₹0 (15.2%)' },
-    AGGRESSIVE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (39.0%)', opex: '₹0', ebitda: '₹0 (18.2%)', pat: '₹0 (15.7%)' },
-    CONSERVATIVE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (37.1%)', opex: '₹0', ebitda: '₹0 (15.9%)', pat: '₹0 (13.6%)' }
+    BASE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (0.0%)', opex: '₹0', ebitda: '₹0 (0.0%)', pat: '₹0 (0.0%)' },
+    AGGRESSIVE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (0.0%)', opex: '₹0', ebitda: '₹0 (0.0%)', pat: '₹0 (0.0%)' },
+    CONSERVATIVE: { rev: '₹0', cogs: '₹0', grossProfit: '₹0 (0.0%)', opex: '₹0', ebitda: '₹0 (0.0%)', pat: '₹0 (0.0%)' }
   };
 
   const cur = scenarios[scenario];
@@ -31,10 +31,10 @@ export default function ProfitPrediction() {
       badge="Financial Scenario Simulator"
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Projected Q4 EBITDA" value={cur.ebitda} delta="+18.2% vs Q3" trend="up" subtext="Under current simulation" icon="📈" />
-        <KpiCard label="Projected Gross Margin" value={cur.grossProfit.split(' ')[1]} delta="+1.2% Expansion" trend="up" subtext="Direct sourcing" icon="💎" />
-        <KpiCard label="Net Profit Margin (PAT)" value={cur.pat.split(' ')[1]} delta="+1.4% Net" trend="up" subtext="Bottom-line yield" icon="💰" />
-        <KpiCard label="Contribution Margin / Order" value="₹0" delta="30.2% Net AOV" trend="up" subtext="AOV: ₹0" icon="⚡" />
+        <KpiCard label="Projected Q4 EBITDA" value={cur.ebitda} delta="--" trend="neutral" subtext="Under current simulation" icon="📈" />
+        <KpiCard label="Projected Gross Margin" value={cur.grossProfit.split(' ')[1]} delta="--" trend="neutral" subtext="Direct sourcing" icon="💎" />
+        <KpiCard label="Net Profit Margin (PAT)" value={cur.pat.split(' ')[1]} delta="--" trend="neutral" subtext="Bottom-line yield" icon="💰" />
+        <KpiCard label="Contribution Margin / Order" value="₹0" delta="--" trend="neutral" subtext="AOV: ₹0" icon="⚡" />
       </div>
 
       <div style={cardStyle}>
