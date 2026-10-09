@@ -18,8 +18,8 @@
   }
 
   var TABS = [
-    { id: 'dashboard',   label: 'Executive Dashboard', icon: '🏛️', hash: '#executive-dashboard', badge: '', title: 'Executive Control Center — Zenve BI', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
-    { id: 'ceo-control', label: 'CEO Control Center',  icon: '👔', hash: '#ceo-control-center',   badge: '', title: 'CEO Strategic Command & Governance', sub: 'Consolidated performance pacing, capital allocation, board metrics, and expansion roadmaps' },
+    { id: 'dashboard',   label: 'Executive Dashboard', icon: '🏛️', hash: '#overview', badge: '', title: 'Zenve Executive Control Center', sub: 'Complete business intelligence for healthier, happier pets across all healthcare and commerce operations' },
+    { id: 'ceo-control', label: 'CEO Control Center',  icon: '👔', hash: '#ceo-control-center',   badge: '', title: 'CEO Strategic Command & Governance', sub: 'Strategic enterprise OKRs, multi-entity performance pacing, capital allocation decisions, and risk governance sentinel' },
     { id: 'overview',    label: 'Business Overview',   icon: '📊', hash: '#business-overview',    badge: '', title: 'Business Overview & Segment Economics', sub: 'Multi-entity profit margins, geographic revenue distribution, and unit economics' },
     { id: 'kpi',         label: 'KPI Dashboard',       icon: '🎯', hash: '#kpi-dashboard',        badge: '', title: 'Master Enterprise KPI Scorecard', sub: 'Balanced scorecard covering financial, clinical quality, customer sentiment, and logistics' }
   ];
@@ -65,7 +65,10 @@
     if (h === 'ceo-control-center' || h === 'ceo-control' || h === 'ceo' || h.indexOf('ceo') >= 0) return 'ceo-control';
     if (h === 'business-overview' || h === 'business') return 'overview';
     if (h === 'kpi-dashboard' || h === 'kpi' || h === 'kpis') return 'kpi';
-    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard') return 'dashboard';
+    if (h === 'executive-dashboard' || h === 'executive' || h === 'exec-dashboard' || h === 'overview') {
+      redirectToHomeDashboard();
+      return null;
+    }
     return null;
   }
 
@@ -379,7 +382,7 @@
     for (var i = 0; i < TABS.length; i++) {
       if (TABS[i].id === S.tab) return TABS[i];
     }
-    return TABS[0];
+    return TABS[1];
   }
 
   function renderTabsBar() {
@@ -389,7 +392,7 @@
         '<button type="button" class="zexec-tab ' + (isActive ? 'active' : '') + '" data-tab="' + t.id + '">',
           '<span>' + t.icon + '</span>',
           '<span>' + esc(t.label) + '</span>',
-          '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>',
+          (t.badge ? '<span class="zexec-tab-badge">' + esc(t.badge) + '</span>' : ''),
         '</button>'
       ].join('');
     }).join('');
@@ -407,8 +410,26 @@
 
   function render() {
     if (!root) return;
+    var current = getActiveTabConfig();
 
     root.innerHTML = [
+      '<header class="zexec-head">',
+        '<div class="zexec-head-left">',
+          '<div class="zexec-title-row">',
+            '<h1 class="zexec-title">' + esc(current.title) + '</h1>',
+            '<span class="zexec-live-badge"><span class="zexec-pulse-dot"></span> Live Enterprise</span>',
+          '</div>',
+          '<p class="zexec-sub">' + esc(current.sub) + '</p>',
+        '</div>',
+        '<div class="zexec-head-actions">',
+          '<button class="zexec-btn" onclick="alert(\'Syncing enterprise financials with ERP ledgers...\')">🔄 Sync Ledgers</button>',
+          '<button class="zexec-btn primary" onclick="alert(\'Executive Board Brief downloaded (PDF).\')">📊 Download Board Brief</button>',
+          '<button class="zexec-btn" id="zexec-close-btn" title="Close Executive Dashboard">✕</button>',
+        '</div>',
+      '</header>',
+      '<nav class="zexec-tabs-bar">',
+        renderTabsBar(),
+      '</nav>',
       '<div class="zexec-body">',
         renderBody(),
       '</div>'
@@ -448,7 +469,7 @@
   }
 
   function switchTab(tid) {
-    if (tid === 'home') {
+    if (tid === 'dashboard' || tid === 'home') {
       redirectToHomeDashboard();
       return;
     }
@@ -466,13 +487,17 @@
   }
 
   function open(tabId) {
+    if (tabId === 'dashboard' || tabId === 'home') {
+      redirectToHomeDashboard();
+      return;
+    }
     if (!root) {
       root = document.createElement('div');
       root.id = 'zexec-root';
       document.body.appendChild(root);
     }
-    if (tabId && tabId !== 'home') S.tab = tabId;
-    else if (!S.tab) S.tab = 'dashboard';
+    if (tabId) S.tab = tabId;
+    else if (!S.tab || S.tab === 'dashboard') S.tab = 'ceo-control';
     S.open = true;
     root.style.display = 'block';
     document.documentElement.classList.add('zexec-locked');

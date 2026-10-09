@@ -101,7 +101,7 @@
 
   var ROUTE_MAP = {
     // Executive Dashboard
-    'executive dashboard': { controller: 'ZenveExecutiveDashboard', tab: 'dashboard', hash: '#executive-dashboard', rootId: 'zexec-root', module: 'Executive Dashboard' },
+    'executive dashboard': { isHomeOverview: true, hash: '#overview', module: 'Executive Dashboard' },
     'ceo control center': { controller: 'ZenveExecutiveDashboard', tab: 'ceo-control', hash: '#ceo-control', rootId: 'zexec-root', module: 'Executive Dashboard' },
     'business overview': { controller: 'ZenveExecutiveDashboard', tab: 'overview', hash: '#business-overview', rootId: 'zexec-root', module: 'Executive Dashboard' },
     'kpi dashboard': { controller: 'ZenveExecutiveDashboard', tab: 'kpi', hash: '#kpi-dashboard', rootId: 'zexec-root', module: 'Executive Dashboard' },
@@ -644,6 +644,27 @@
       if (itemKey === 'sales forecast') itemKey = 'ai sales forecast';
     }
 
+    if (itemKey === 'executive dashboard' || itemKey === 'executive' || (ROUTE_MAP[itemKey] && ROUTE_MAP[itemKey].isHomeOverview)) {
+      closeAllDashboards();
+      try {
+        if (window.location.hash && window.location.hash !== '#overview') {
+          history.pushState(null, '', '#overview');
+        }
+      } catch (err) {
+        window.location.hash = '#overview';
+      }
+      var overviewEl = document.getElementById('overview') || document.querySelector('main');
+      if (overviewEl) {
+        overviewEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      syncSidebar('Executive Dashboard', 'Executive Dashboard');
+      var retBtnHome = document.getElementById('z-floating-return-btn');
+      if (retBtnHome) retBtnHome.style.display = 'none';
+      return true;
+    }
+
     // Direct lookup in ROUTE_MAP
     var route = ROUTE_MAP[itemKey];
 
@@ -801,8 +822,8 @@
 
   function handleHash() {
     var hash = window.location.hash;
-    if (!hash || hash === '#' || hash === '#overview' || hash === '#daily' || hash === '#ledger' || hash === '#ai' || hash === '#apps') {
-      if (hash === '#' || hash === '#overview' || !hash) {
+    if (!hash || hash === '#' || hash === '#overview' || hash === '#executive-dashboard' || hash === '#executive' || hash === '#daily' || hash === '#ledger' || hash === '#ai' || hash === '#apps') {
+      if (hash === '#' || hash === '#overview' || hash === '#executive-dashboard' || hash === '#executive' || !hash) {
         closeAllDashboards();
       }
       return;
@@ -840,20 +861,8 @@
     // Check for parent domain accordion button in sidebar
     var navItem = target.closest('.sidebar-nav-item');
     if (navItem && !target.closest('.sidebar-submenu-box')) {
-      var domain = navItem.getAttribute('data-domain');
-      if (domain) {
-        var dLower = domain.toLowerCase();
-        if (dLower === 'executive dashboard') {
-          e.preventDefault();
-          closeAllDashboards();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          return;
-        }
-        // If clicking a module domain, open its main dashboard immediately
-        setTimeout(function () {
-          openDashboard(domain, domain);
-        }, 30);
-      }
+      // Domain button should strictly toggle the accordion in the sidebar.
+      // Do NOT open dashboards, navigate, or scroll.
       return;
     }
 
@@ -868,6 +877,30 @@
         var moduleLabel = parentHeader ? parentHeader.textContent.trim() : null;
 
         if (text.toLowerCase() === 'export center') {
+          return;
+        }
+
+        if (text.toLowerCase() === 'executive dashboard') {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          closeAllDashboards();
+          try {
+            if (window.location.hash !== '#overview') {
+              history.pushState(null, '', '#overview');
+            }
+          } catch (err) {
+            window.location.hash = '#overview';
+          }
+          var overviewEl2 = document.getElementById('overview') || document.querySelector('main');
+          if (overviewEl2) {
+            overviewEl2.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          syncSidebar('Executive Dashboard', 'Executive Dashboard');
+          var retBtnHome2 = document.getElementById('z-floating-return-btn');
+          if (retBtnHome2) retBtnHome2.style.display = 'none';
           return;
         }
 

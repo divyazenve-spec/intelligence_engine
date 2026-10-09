@@ -22,7 +22,6 @@ export default function BusinessOverview() {
       subtitle="Comprehensive cross-divisional profit & loss, geographic penetration, and business unit balance"
       icon="🌐"
       badge="Enterprise View"
-      hideHeader
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard label="Consolidated Sales" value="₹0" delta="0.0% YoY" trend="neutral" subtext="No records recorded" icon="💰" />
