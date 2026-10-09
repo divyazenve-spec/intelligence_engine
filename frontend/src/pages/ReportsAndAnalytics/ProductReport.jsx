@@ -36,7 +36,7 @@ export default function ProductReport() {
       title="Product Catalog Sales & Margin Matrix"
       subtitle="Top performing SKUs, ABC inventory categorization, gross product margins, return rate benchmarks, and velocity tracking"
       icon="🏷️"
-      badge="Top 500 SKUs Live"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -74,10 +74,10 @@ export default function ProductReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top-Performing SKUs" value="48 Class A" delta="72% Revenue Contribution" trend="up" subtext="Royal Canin, Zoetis" icon="🏆" />
-        <KpiCard label="Blended Product Margin" value="0.0%" delta="+2.1% YoY" trend="up" subtext="High-margin pharma" icon="📊" />
-        <KpiCard label="Avg Product Return Rate" value="0.0%" delta="Within 2.5% threshold" trend="up" subtext="Minus Bravecto" icon="🔄" />
-        <KpiCard label="Active Catalog Units" value="1,840 SKUs" delta="Across 8 categories" trend="neutral" subtext="Live in micro-hubs" icon="📦" />
+        <KpiCard label="Top-Performing SKUs" value="0 Class A" delta="0.0%" trend="neutral" subtext="Top tier SKUs" icon="🏆" />
+        <KpiCard label="Blended Product Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Product margin" icon="📊" />
+        <KpiCard label="Avg Product Return Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Within threshold" icon="🔄" />
+        <KpiCard label="Active Catalog Units" value="0 SKUs" delta="0.0%" trend="neutral" subtext="Live catalog" icon="📦" />
       </div>
 
       {/* Table Section */}
@@ -102,31 +102,39 @@ export default function ProductReport() {
               </tr>
             </thead>
             <tbody>
-              {products.map((p) => (
-                <tr key={p.sku} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px' }}>
-                    <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{p.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.sku}</div>
-                  </td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.category}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.unitsSold.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(p.revenue)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.margin}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: Number(p.returnRate.replace('%','')) > 4 ? '#f87171' : 'var(--foreground, #f8fafc)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.returnRate}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
-                    <span style={{
-                      padding: '2px 8px',
-                      borderRadius: '99px',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      background: p.abcClass === 'Class A' ? 'rgba(16,185,129,0.15)' : 'rgba(59,130,246,0.15)',
-                      color: p.abcClass === 'Class A' ? '#34d399' : '#60a5fa'
-                    }}>
-                      {p.abcClass}
-                    </span>
+              {products.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No product records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                products.map((p) => (
+                  <tr key={p.sku} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{p.name}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.sku}</div>
+                    </td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.category}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.unitsSold.toLocaleString('en-IN')}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(p.revenue)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.margin}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: Number(p.returnRate.replace('%','')) > 4 ? '#f87171' : 'var(--foreground, #f8fafc)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.returnRate}</td>
+                    <td style={{ padding: '12px', textAlign: 'right' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '99px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        background: p.abcClass === 'Class A' ? 'rgba(16,185,129,0.15)' : 'rgba(59,130,246,0.15)',
+                        color: p.abcClass === 'Class A' ? '#34d399' : '#60a5fa'
+                      }}>
+                        {p.abcClass}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

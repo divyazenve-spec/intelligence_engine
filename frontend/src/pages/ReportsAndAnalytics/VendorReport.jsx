@@ -36,7 +36,7 @@ export default function VendorReport() {
       title="Vendor Procurement & Supplier Scorecard Report"
       subtitle="Procurement expenditure, order fill rate accuracy, cold-chain compliance, vendor payment terms, and negotiated volume discounts"
       icon="🤝"
-      badge="Top Tier Suppliers"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -74,10 +74,10 @@ export default function VendorReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Procurement Spend MTD" value="₹0" delta="Across 18 suppliers" trend="neutral" subtext="Direct manufacturer" icon="🛒" />
-        <KpiCard label="Average PO Fill Rate" value="0.0%" delta="High stock readiness" trend="up" subtext="Target: > 96.0%" icon="📋" />
-        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="+1.8% vs last quarter" trend="up" subtext="To Bhiwandi Central" icon="🚚" />
-        <KpiCard label="Procurement Savings" value="₹0" delta="6.1% average discount" trend="up" subtext="Volume negotiated" icon="💎" />
+        <KpiCard label="Procurement Spend MTD" value="₹0" delta="0.0%" trend="neutral" subtext="Direct manufacturer" icon="🛒" />
+        <KpiCard label="Average PO Fill Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Stock readiness" icon="📋" />
+        <KpiCard label="On-Time Delivery Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Delivery rate" icon="🚚" />
+        <KpiCard label="Procurement Savings" value="₹0" delta="0.0%" trend="neutral" subtext="Volume negotiated" icon="💎" />
       </div>
 
       {/* Table Section */}
@@ -103,18 +103,26 @@ export default function VendorReport() {
               </tr>
             </thead>
             <tbody>
-              {vendors.map((v) => (
-                <tr key={v.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{v.name}</td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{v.category}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(v.poSpend)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{v.fillRate}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{v.onTimeRate}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{v.qualityScore}</td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{v.paymentTerms}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(v.savingsGenerated)}</td>
+              {vendors.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No vendor procurement records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                vendors.map((v) => (
+                  <tr key={v.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{v.name}</td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{v.category}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(v.poSpend)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{v.fillRate}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{v.onTimeRate}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{v.qualityScore}</td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{v.paymentTerms}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(v.savingsGenerated)}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

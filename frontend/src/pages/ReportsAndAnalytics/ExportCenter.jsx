@@ -44,10 +44,10 @@ export default function ExportCenter() {
       title="Intelligence Data Export & Bulk Download Center"
       subtitle="One-click streaming downloads for audited financial packs, raw sales ledgers, inventory valuation matrices, and clinical patient records"
       icon="📥"
-      badge="High-Speed Stream Engine"
+      badge=""
       actions={
         <button
-          onClick={() => triggerToast('Initiated batch backup of all 10 operational data packs to encrypted cloud bucket.')}
+          onClick={() => triggerToast('Initiated batch backup of operational data packs to encrypted cloud bucket.')}
           style={{
             padding: '8px 14px',
             borderRadius: '8px',
@@ -82,10 +82,10 @@ export default function ExportCenter() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Exports Generated This Month" value="482 Files" delta="+44 files vs Sept" trend="up" subtext="CSV, PDF, XLSX" icon="📊" />
-        <KpiCard label="Data Pipeline Bandwidth" value="1.84 GB" delta="Compressed streams" trend="neutral" subtext="FastAPI worker pool" icon="⚡" />
-        <KpiCard label="Export Audit Compliance" value="100% Tracked" delta="SOC-2 standard" trend="up" subtext="SHA-256 fingerprinted" icon="🛡️" />
-        <KpiCard label="Max Query Retention" value="365 Days" delta="Immutable storage" trend="neutral" subtext="Encrypted S3 vault" icon="🗄️" />
+        <KpiCard label="Exports Generated This Month" value="0 Files" delta="0.0%" trend="neutral" subtext="CSV, PDF, XLSX" icon="📊" />
+        <KpiCard label="Data Pipeline Bandwidth" value="0.0 GB" delta="0.0%" trend="neutral" subtext="Compressed streams" icon="⚡" />
+        <KpiCard label="Export Audit Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="Audit tracked" icon="🛡️" />
+        <KpiCard label="Max Query Retention" value="0 Days" delta="0.0%" trend="neutral" subtext="Storage vault" icon="🗄️" />
       </div>
 
       {/* Filter and Table Card */}
@@ -134,7 +134,14 @@ export default function ExportCenter() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((item) => (
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No exportable datasets found
+                  </td>
+                </tr>
+              ) : (
+                filtered.map((item) => (
                 <tr key={item.id} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
                   <td style={{ padding: '12px' }}>
                     <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{item.title}</div>

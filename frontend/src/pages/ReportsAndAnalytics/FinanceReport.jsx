@@ -41,7 +41,7 @@ export default function FinanceReport() {
       title="Financial P&L & EBITDA Statement Report"
       subtitle="Corporate Profit & Loss statement, gross contribution margin analysis, operating cost breakdown, and EBITDA reconciliation"
       icon="💰"
-      badge="Audited GAAP Ledger"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -79,10 +79,10 @@ export default function FinanceReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Net Operating Revenue" value="₹0" delta="+25.1% YoY" trend="up" subtext="MTD recognized" icon="📈" />
-        <KpiCard label="Gross Profit Margin" value="0.0%" delta="+1.2% expansion" trend="up" subtext="Target: 38.0%" icon="🛡️" />
-        <KpiCard label="EBITDA Generated" value="₹0" delta="17.1% EBITDA Margin" trend="up" subtext="+32.8% vs prior" icon="💎" />
-        <KpiCard label="Net Cash Runway" value="18.4 Months" delta="Zero bank debt" trend="up" subtext="HDFC corporate liquid" icon="🏦" />
+        <KpiCard label="Net Operating Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Operating revenue" icon="📈" />
+        <KpiCard label="Gross Profit Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Gross margin" icon="🛡️" />
+        <KpiCard label="EBITDA Generated" value="₹0" delta="0.0%" trend="neutral" subtext="Operating EBITDA" icon="💎" />
+        <KpiCard label="Net Cash Runway" value="0 Months" delta="0.0%" trend="neutral" subtext="Treasury runway" icon="🏦" />
       </div>
 
       {/* Table Section */}
@@ -105,31 +105,39 @@ export default function FinanceReport() {
               </tr>
             </thead>
             <tbody>
-              {plItems.map((p) => {
-                const isHighlight = p.line.indexOf('Net Operating') >= 0 || p.line.indexOf('Gross Profit') >= 0 || p.line.indexOf('EBITDA') >= 0 || p.line.indexOf('PBT') >= 0;
-                return (
-                  <tr key={p.line} style={{
-                    borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))',
-                    background: isHighlight ? 'rgba(59,130,246,0.06)' : 'transparent'
-                  }}>
-                    <td style={{ padding: '12px', fontWeight: isHighlight ? 700 : 500, color: isHighlight ? '#60a5fa' : 'var(--foreground, #f8fafc)' }}>
-                      {p.line}
-                    </td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>
-                      {inr(p.mtd)}
-                    </td>
-                    <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>
-                      {inr(p.priorMtd)}
-                    </td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: p.variance.startsWith('+') ? '#34d399' : '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>
-                      {p.variance}
-                    </td>
-                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '11px' }}>
-                      {p.note}
-                    </td>
-                  </tr>
-                );
-              })}
+              {plItems.length === 0 ? (
+                <tr>
+                  <td colSpan={5} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No financial statement line items found
+                  </td>
+                </tr>
+              ) : (
+                plItems.map((p) => {
+                  const isHighlight = p.line.indexOf('Net Operating') >= 0 || p.line.indexOf('Gross Profit') >= 0 || p.line.indexOf('EBITDA') >= 0 || p.line.indexOf('PBT') >= 0;
+                  return (
+                    <tr key={p.line} style={{
+                      borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))',
+                      background: isHighlight ? 'rgba(59,130,246,0.06)' : 'transparent'
+                    }}>
+                      <td style={{ padding: '12px', fontWeight: isHighlight ? 700 : 500, color: isHighlight ? '#60a5fa' : 'var(--foreground, #f8fafc)' }}>
+                        {p.line}
+                      </td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>
+                        {inr(p.mtd)}
+                      </td>
+                      <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>
+                        {inr(p.priorMtd)}
+                      </td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: p.variance.startsWith('+') ? '#34d399' : '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>
+                        {p.variance}
+                      </td>
+                      <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '11px' }}>
+                        {p.note}
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>

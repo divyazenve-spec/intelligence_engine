@@ -61,7 +61,7 @@ export default function ScheduledReports() {
       title="Automated Intelligence Reports & Cron Dispatcher"
       subtitle="Configure recurring automated PDF, CSV, and XLSX dispatch schedules delivered to executive email inboxes, Slack webhooks, and secure audit vaults"
       icon="⏰"
-      badge={`${schedules.filter(s => s.status === 'Active').length} Active Cron Schedules`}
+      badge=""
       actions={
         <button
           onClick={() => setModalOpen(true)}
@@ -99,10 +99,10 @@ export default function ScheduledReports() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Automated Jobs" value={`${schedules.filter(s => s.status === 'Active').length} Jobs`} delta="100% on-time execution" trend="up" subtext="Cron scheduler live" icon="⏰" />
-        <KpiCard label="Daily Email Dispatches" value="142 Deliveries" delta="Zero bounce rate" trend="up" subtext="Corporate domain" icon="📬" />
-        <KpiCard label="Slack Leadership Alerts" value="4 Channels" delta="#exec, #fleet, #pharma" trend="neutral" subtext="Encrypted webhooks" icon="💬" />
-        <KpiCard label="Audit Compliance Log" value="SOC-2 Standard" delta="Every export hashed" trend="up" subtext="SHA-256 fingerprint" icon="🛡️" />
+        <KpiCard label="Active Automated Jobs" value={`${schedules.filter(s => s.status === 'Active').length} Jobs`} delta="0.0%" trend="neutral" subtext="Cron scheduler live" icon="⏰" />
+        <KpiCard label="Daily Email Dispatches" value="0 Deliveries" delta="0.0%" trend="neutral" subtext="Corporate domain" icon="📬" />
+        <KpiCard label="Slack Leadership Alerts" value="0 Channels" delta="0.0%" trend="neutral" subtext="Leadership alerts" icon="💬" />
+        <KpiCard label="Audit Compliance Log" value="SOC-2 Standard" delta="0.0%" trend="neutral" subtext="Compliance verified" icon="🛡️" />
       </div>
 
       {/* Schedules Table */}
@@ -115,7 +115,12 @@ export default function ScheduledReports() {
         <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: 700 }}>Active Scheduled Report Dispatches</h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {schedules.map((s) => (
+          {schedules.length === 0 ? (
+            <div style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+              No active report schedules found
+            </div>
+          ) : (
+            schedules.map((s) => (
             <div
               key={s.id}
               style={{

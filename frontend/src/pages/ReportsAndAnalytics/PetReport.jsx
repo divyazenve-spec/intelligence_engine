@@ -32,7 +32,7 @@ export default function PetReport() {
       category="Reports & Analytics"
       subcategory="Pet Reports"
       title="Pet Demographics & Health Profile Report"
-      subtitle="Species distributions, breed prevalence, vaccination adherence, and chronic condition registries across 13,400+ active pet patient records"
+      subtitle="Species distributions, breed prevalence, vaccination adherence, and chronic condition registries across active pet patient records"
       icon="🐾"
       badge=""
       actions={
@@ -72,10 +72,10 @@ export default function PetReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Patient Census" value="13,400 Pets" delta="68% Canine · 32% Feline" trend="neutral" subtext="In electronic health records" icon="🐕" />
-        <KpiCard label="Vaccination Adherence" value="0.0%" delta="+2.4% vs 2025" trend="up" subtext="Automated reminder active" icon="💉" />
-        <KpiCard label="Chronic Care Cohort" value="1,850 Pets" delta="Renal, Cardiac, Allergy" trend="neutral" subtext="Monthly Rx protocol" icon="🩺" />
-        <KpiCard label="Preventive Care Visits" value="3.6 / Year" delta="Industry leading" trend="up" subtext="Includes teleconsults" icon="📋" />
+        <KpiCard label="Total Patient Census" value="0 Pets" delta="0.0%" trend="neutral" subtext="In electronic health records" icon="🐕" />
+        <KpiCard label="Vaccination Adherence" value="0.0%" delta="0.0%" trend="neutral" subtext="Automated reminder active" icon="💉" />
+        <KpiCard label="Chronic Care Cohort" value="0 Pets" delta="0.0%" trend="neutral" subtext="Care protocol" icon="🩺" />
+        <KpiCard label="Preventive Care Visits" value="0 / Year" delta="0.0%" trend="neutral" subtext="Includes teleconsults" icon="📋" />
       </div>
 
       {/* Table Section */}
@@ -100,17 +100,25 @@ export default function PetReport() {
               </tr>
             </thead>
             <tbody>
-              {breeds.map((b) => (
-                <tr key={b.breed} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{b.breed}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{b.registered.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{b.share}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #94a3b8)' }}>{b.avgAge}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{b.vaxRate}</td>
-                  <td style={{ padding: '12px', color: '#93c5fd', fontSize: '11px' }}>{b.commonIssues}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{b.checkupsPerYr}</td>
+              {breeds.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No pet demographic records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                breeds.map((b) => (
+                  <tr key={b.breed} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{b.breed}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{b.registered.toLocaleString('en-IN')}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{b.share}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #94a3b8)' }}>{b.avgAge}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{b.vaxRate}</td>
+                    <td style={{ padding: '12px', color: '#93c5fd', fontSize: '11px' }}>{b.commonIssues}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{b.checkupsPerYr}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

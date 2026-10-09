@@ -332,22 +332,22 @@
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Gross Sales</span><span class="zrep-kpi-icon">💰</span></div>' +
             '<div class="zrep-kpi-value">' + D.salesSummary.grossSales + '</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 14.8%</span><span class="zrep-kpi-desc">vs last period</span></div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">vs last period</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Net GMV Revenue</span><span class="zrep-kpi-icon">📈</span></div>' +
             '<div class="zrep-kpi-value" style="color:#4f46e5;">' + D.salesSummary.netSales + '</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 16.2%</span><span class="zrep-kpi-desc">after discounts</span></div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">after discounts</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Total Orders</span><span class="zrep-kpi-icon">📦</span></div>' +
             '<div class="zrep-kpi-value">' + D.salesSummary.ordersCount + '</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 11.4%</span><span class="zrep-kpi-desc">completed orders</span></div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">completed orders</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Average Order Value</span><span class="zrep-kpi-icon">🎯</span></div>' +
             '<div class="zrep-kpi-value">' + D.salesSummary.aov + '</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 4.2%</span><span class="zrep-kpi-desc">basket size</span></div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">basket size</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -394,23 +394,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Period Revenue Attainment</span><span class="zrep-kpi-icon">🎯</span></div>' +
-            '<div class="zrep-kpi-value">104.2%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ +4.2%</span><span class="zrep-kpi-desc">above target</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">target attainment</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Blended Gross Margin</span><span class="zrep-kpi-icon">💎</span></div>' +
-            '<div class="zrep-kpi-value">41.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 240 bps</span><span class="zrep-kpi-desc">margin expansion</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">margin expansion</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Annual Recurring Revenue</span><span class="zrep-kpi-icon">🔄</span></div>' +
-            '<div class="zrep-kpi-value">₹4.20Cr</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 28%</span><span class="zrep-kpi-desc">wellness plans</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">wellness plans</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Cash Inflow Speed</span><span class="zrep-kpi-icon">⚡</span></div>' +
-            '<div class="zrep-kpi-value">98.4%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Instant UPI</span><span class="zrep-kpi-desc">same-day clearance</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">clearance speed</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -458,23 +458,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Registered Pet Parents</span><span class="zrep-kpi-icon">👥</span></div>' +
-            '<div class="zrep-kpi-value">142,500</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 8,240</span><span class="zrep-kpi-desc">new this month</span></div>' +
+            '<div class="zrep-kpi-value">0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">new this month</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Repeat Purchase Rate</span><span class="zrep-kpi-icon">🔁</span></div>' +
-            '<div class="zrep-kpi-value">64.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 3.2%</span><span class="zrep-kpi-desc">within 60 days</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">within 60 days</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Average Customer LTV</span><span class="zrep-kpi-icon">💎</span></div>' +
-            '<div class="zrep-kpi-value">₹10,480</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 18.4%</span><span class="zrep-kpi-desc">annualized</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">annualized</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Churn Risk Propensity</span><span class="zrep-kpi-icon">🛡️</span></div>' +
-            '<div class="zrep-kpi-value">3.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↓ 0.6%</span><span class="zrep-kpi-desc">ultra-low churn</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">churn rate</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -521,23 +521,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Registered Pets</span><span class="zrep-kpi-icon">🐾</span></div>' +
-            '<div class="zrep-kpi-value">186,400</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">64% Dogs · 28% Cats</span></div>' +
+            '<div class="zrep-kpi-value">0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Vaccination Adherence</span><span class="zrep-kpi-icon">💉</span></div>' +
-            '<div class="zrep-kpi-value">92.6%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 2.4%</span><span class="zrep-kpi-desc">on-time immunizations</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">on-time immunizations</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Chronic Cohort Wellness</span><span class="zrep-kpi-icon">❤️</span></div>' +
-            '<div class="zrep-kpi-value">18,240</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Renal, Cardiac &amp; Joint</span></div>' +
+            '<div class="zrep-kpi-value">0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Avg Care Plans / Pet</span><span class="zrep-kpi-icon">📋</span></div>' +
-            '<div class="zrep-kpi-value">2.4 Plans</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Nutritional &amp; Clinical</span></div>' +
+            '<div class="zrep-kpi-value">0 Plans</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -584,23 +584,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Active Surgeons &amp; Vets</span><span class="zrep-kpi-icon">🩺</span></div>' +
-            '<div class="zrep-kpi-value">18 Specialists</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Full Super-Specialty Cover</span></div>' +
+            '<div class="zrep-kpi-value">0 Specialists</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Total Consultations</span><span class="zrep-kpi-icon">📋</span></div>' +
-            '<div class="zrep-kpi-value">14,280</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 18.5%</span><span class="zrep-kpi-desc">OPD &amp; Tele-Vet</span></div>' +
+            '<div class="zrep-kpi-value">0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">OPD &amp; Tele-Vet</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Surgical Procedures</span><span class="zrep-kpi-icon">🔬</span></div>' +
-            '<div class="zrep-kpi-value">588 Surgeries</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">99.4% Success Rate</span></div>' +
+            '<div class="zrep-kpi-value">0 Surgeries</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Average Satisfaction</span><span class="zrep-kpi-icon">⭐</span></div>' +
-            '<div class="zrep-kpi-value">4.88 / 5.0</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Pet Parent Rating</span></div>' +
+            '<div class="zrep-kpi-value">0.0 / 5.0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -670,23 +670,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Avg Length of Stay</span><span class="zrep-kpi-icon">🛏️</span></div>' +
-            '<div class="zrep-kpi-value">2.8 Days</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↓ 0.4 days</span><span class="zrep-kpi-desc">vs last quarter</span></div>' +
+            '<div class="zrep-kpi-value">0 Days</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">vs last quarter</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">NABH Accredited Hubs</span><span class="zrep-kpi-icon">🏅</span></div>' +
-            '<div class="zrep-kpi-value">4 / 5 Clinics</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Whitefield in review</span></div>' +
+            '<div class="zrep-kpi-value">0 Clinics</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Avg Infection Rate</span><span class="zrep-kpi-icon">🦠</span></div>' +
-            '<div class="zrep-kpi-value">0.063%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↓ 0.018%</span><span class="zrep-kpi-desc">below WHO benchmark</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">infection rate</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Overall Patient NPS</span><span class="zrep-kpi-icon">⭐</span></div>' +
-            '<div class="zrep-kpi-value">NPS 74</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↑ 6 pts</span><span class="zrep-kpi-desc">across all hubs</span></div>' +
+            '<div class="zrep-kpi-value">NPS 0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0%</span><span class="zrep-kpi-desc">across hubs</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -754,23 +754,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Active SKUs</span><span class="zrep-kpi-icon">🏷️</span></div>' +
-            '<div class="zrep-kpi-value">4,200 SKUs</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">98.4% In-Stock Rate</span></div>' +
+            '<div class="zrep-kpi-value">0 SKUs</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% In-Stock Rate</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Class A Revenue Share</span><span class="zrep-kpi-icon">🏆</span></div>' +
-            '<div class="zrep-kpi-value">74.2%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Generated by top 20% SKUs</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% Pareto Yield</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Average Product Margin</span><span class="zrep-kpi-icon">💎</span></div>' +
-            '<div class="zrep-kpi-value">44.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Healthy SKU economics</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% SKU economics</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Product Return Rate</span><span class="zrep-kpi-icon">🔄</span></div>' +
-            '<div class="zrep-kpi-value">1.4%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↓ 0.3%</span><span class="zrep-kpi-desc">low return benchmark</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% return rate</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -817,23 +817,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Total Stock Valuation</span><span class="zrep-kpi-icon">📦</span></div>' +
-            '<div class="zrep-kpi-value">₹16.64Cr</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Central + 4 Dark Stores</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 total valuation</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Days Sales of Inventory</span><span class="zrep-kpi-icon">📅</span></div>' +
-            '<div class="zrep-kpi-value">22.4 Days</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Optimal capital rotation</span></div>' +
+            '<div class="zrep-kpi-value">0 Days</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 days cover</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Cold-Chain Vaccines</span><span class="zrep-kpi-icon">❄️</span></div>' +
-            '<div class="zrep-kpi-value">100% Guarded</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">+4°C IoT Telemetry live</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 telemetry feeds</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Shrinkage &amp; Discrepancy</span><span class="zrep-kpi-icon">🛡️</span></div>' +
-            '<div class="zrep-kpi-value">0.18%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Best-in-class audit score</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% variance</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -881,23 +881,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Net Operating Revenue</span><span class="zrep-kpi-icon">💰</span></div>' +
-            '<div class="zrep-kpi-value">₹14.18Cr</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">MTD GAAP Audited</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 MTD</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Gross Margin</span><span class="zrep-kpi-icon">📊</span></div>' +
-            '<div class="zrep-kpi-value">41.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">₹5.93Cr Gross Profit</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 Gross Profit</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Operating EBITDA</span><span class="zrep-kpi-icon">📈</span></div>' +
-            '<div class="zrep-kpi-value" style="color:#16a34a;">17.7%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">₹2.51Cr Cash Operating EBITDA</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 Cash EBITDA</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Net Profit (PAT)</span><span class="zrep-kpi-icon">💎</span></div>' +
-            '<div class="zrep-kpi-value" style="color:#4f46e5;">13.3%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">₹1.88Cr Post-Tax Bottom Line</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 Net Profit</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -943,23 +943,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Total Workforce Headcount</span><span class="zrep-kpi-icon">🧑‍💼</span></div>' +
-            '<div class="zrep-kpi-value">300 Staff</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Clinical, Field &amp; HQ</span></div>' +
+            '<div class="zrep-kpi-value">0 Staff</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 active members</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Monthly Payroll Outflow</span><span class="zrep-kpi-icon">💳</span></div>' +
-            '<div class="zrep-kpi-value">₹1.87Cr</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">100% On-time salary disbursement</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 disbursement</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Blended Attendance Rate</span><span class="zrep-kpi-icon">⏱️</span></div>' +
-            '<div class="zrep-kpi-value">98.1%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">High operational adherence</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% adherence</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Monthly Employee Turnover</span><span class="zrep-kpi-icon">🛡️</span></div>' +
-            '<div class="zrep-kpi-value">1.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">↓ Industry-leading retention</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% turnover</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -1006,23 +1006,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Blended Marketing ROAS</span><span class="zrep-kpi-icon">🎯</span></div>' +
-            '<div class="zrep-kpi-value">4.7x</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">₹1.81Cr Attributed GMV</span></div>' +
+            '<div class="zrep-kpi-value">0.0x</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 Attributed GMV</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Customer Acquisition Cost</span><span class="zrep-kpi-icon">🏷️</span></div>' +
-            '<div class="zrep-kpi-value">₹365</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">LTV:CAC Ratio of 28.7x</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0x LTV:CAC</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Total Performance Spend</span><span class="zrep-kpi-icon">💸</span></div>' +
-            '<div class="zrep-kpi-value">₹38.5L</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">2.6% of Net GMV</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 Net GMV</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">New Customers Acquired</span><span class="zrep-kpi-icon">👥</span></div>' +
-            '<div class="zrep-kpi-value">12,144</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">High pet parent intent</span></div>' +
+            '<div class="zrep-kpi-value">0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 new registrations</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -1069,23 +1069,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">60-Min Express SLA Rate</span><span class="zrep-kpi-icon">⚡</span></div>' +
-            '<div class="zrep-kpi-value">96.2%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Avg delivery 37.8 mins</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">Avg 0 mins</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Active Delivery Fleet</span><span class="zrep-kpi-icon">🛵</span></div>' +
-            '<div class="zrep-kpi-value">84 Riders</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">GPS live telemetry connected</span></div>' +
+            '<div class="zrep-kpi-value">0 Riders</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 telemetry feeds</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Dark Store Staging Dwell</span><span class="zrep-kpi-icon">⏱️</span></div>' +
-            '<div class="zrep-kpi-value">6.4 mins</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Order receipt to dispatch</span></div>' +
+            '<div class="zrep-kpi-value">0 mins</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 mins dispatch</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Delivery Satisfaction</span><span class="zrep-kpi-icon">⭐</span></div>' +
-            '<div class="zrep-kpi-value">4.92 / 5.0</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Customer delivery score</span></div>' +
+            '<div class="zrep-kpi-value">0.0 / 5.0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0 rating</span></div>' +
           '</div>' +
         '</div>' +
 
@@ -1132,23 +1132,23 @@
         '<div class="zrep-kpi-grid">' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Active Suppliers &amp; Vendors</span><span class="zrep-kpi-icon">🤝</span></div>' +
-            '<div class="zrep-kpi-value">48 Vendors</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">100% Compliant &amp; Licensed</span></div>' +
+            '<div class="zrep-kpi-value">0 Vendors</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0 compliant vendors</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Purchase Order Fill Rate</span><span class="zrep-kpi-icon">📋</span></div>' +
-            '<div class="zrep-kpi-value">97.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">High supply predictability</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% fill rate</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">On-Time In-Full (OTIF)</span><span class="zrep-kpi-icon">⏱️</span></div>' +
-            '<div class="zrep-kpi-value">96.8%</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Minimal stockout exposure</span></div>' +
+            '<div class="zrep-kpi-value">0.0%</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">0.0% OTIF</span></div>' +
           '</div>' +
           '<div class="zrep-kpi-card">' +
             '<div class="zrep-kpi-header"><span class="zrep-kpi-label">Procurement Savings &amp; Rebates</span><span class="zrep-kpi-icon">💰</span></div>' +
-            '<div class="zrep-kpi-value">₹42.8L</div>' +
-            '<div class="zrep-kpi-meta"><span class="zrep-trend-pos">Direct bottom-line savings</span></div>' +
+            '<div class="zrep-kpi-value">₹0</div>' +
+            '<div class="zrep-kpi-meta"><span class="zrep-trend-neu">₹0 savings</span></div>' +
           '</div>' +
         '</div>' +
 

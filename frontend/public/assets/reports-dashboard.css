@@ -390,6 +390,13 @@ body.zrep-locked {
   align-items: center;
   gap: 2px;
 }
+.zrep-trend-neu {
+  color: #94a3b8;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
 .zrep-kpi-desc {
   color: #94a3b8;
 }

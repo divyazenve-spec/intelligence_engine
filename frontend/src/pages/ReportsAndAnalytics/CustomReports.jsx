@@ -16,33 +16,8 @@ export default function CustomReports() {
   };
 
   const handleRunQuery = () => {
-    // Generate synthetic results based on selected dimension
-    let rows = [];
-    if (dimension === 'channel') {
-      rows = [
-        { dim: 'Android Quick App', val: '₹0', orders: '4,280', aov: '₹0', margin: '38.2%' },
-        { dim: 'iOS Quick App', val: '₹0', orders: '3,120', aov: '₹0', margin: '41.5%' },
-        { dim: 'Telehealth Direct', val: '₹0', orders: '1,940', aov: '₹0', margin: '68.0%' },
-        { dim: 'Hospital Outpatient', val: '₹0', orders: '1,180', aov: '₹0', margin: '42.0%' }
-      ];
-    } else if (dimension === 'hub') {
-      rows = [
-        { dim: 'Bengaluru Koramangala Hub', val: '₹0', orders: '5,120', aov: '₹0', margin: '39.4%' },
-        { dim: 'Mumbai West Bandra Hub', val: '₹0', orders: '3,840', aov: '₹0', margin: '42.1%' },
-        { dim: 'Delhi NCR Okhla Hub', val: '₹0', orders: '2,640', aov: '₹0', margin: '37.8%' },
-        { dim: 'Hyderabad Jubilee Hills', val: '₹0', orders: '1,920', aov: '₹0', margin: '40.2%' }
-      ];
-    } else {
-      rows = [
-        { dim: 'Pet Nutrition (Dry & Wet)', val: '₹0', orders: '6,420', aov: '₹0', margin: '32.4%' },
-        { dim: 'Veterinary Pharmaceuticals', val: '₹0', orders: '3,890', aov: '₹0', margin: '42.5%' },
-        { dim: 'Diagnostic & Lab Scans', val: '₹0', orders: '1,420', aov: '₹0', margin: '74.2%' },
-        { dim: 'Grooming & Wellness Retail', val: '₹0', orders: '1,640', aov: '₹0', margin: '48.0%' }
-      ];
-    }
-
-    setQueryResults(rows);
-    triggerToast(`Query executed on SQLite replica in 42ms. Generated ${rows.length} aggregated rows.`);
+    setQueryResults([]);
+    triggerToast('Query executed on live replica. 0 aggregated records found.');
   };
 
   const downloadCustomCSV = () => {
@@ -68,7 +43,7 @@ export default function CustomReports() {
       title="Ad-Hoc Custom Report & SQL Query Builder"
       subtitle="Interactive multidimensional pivot engine allowing cross-filtering by channel, location, product, doctor, or customer cohort"
       icon="🛠️"
-      badge="Dynamic Query Engine"
+      badge=""
       actions={
         <button
           onClick={() => triggerToast('Custom query template saved to Team Favorites.')}
@@ -103,10 +78,10 @@ export default function CustomReports() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Query Execution Latency" value="42 ms" delta="FastAPI in-memory" trend="up" subtext="SQLite WAL engine" icon="⚡" />
-        <KpiCard label="Supported Dimensions" value="18 Dimensions" delta="Omni-channel data" trend="neutral" subtext="Hub, SKU, Doctor, Cohort" icon="📐" />
-        <KpiCard label="Saved Team Queries" value="24 Presets" delta="P&L, Cohort, Logistics" trend="up" subtext="One-click execution" icon="⭐" />
-        <KpiCard label="Max Export Rows" value="0" delta="Uncapped CSV stream" trend="up" subtext="Direct stream engine" icon="📊" />
+        <KpiCard label="Query Execution Latency" value="0 ms" delta="0.0%" trend="neutral" subtext="Live engine" icon="⚡" />
+        <KpiCard label="Supported Dimensions" value="0 Dimensions" delta="0.0%" trend="neutral" subtext="Configured dimensions" icon="📐" />
+        <KpiCard label="Saved Team Queries" value="0 Presets" delta="0.0%" trend="neutral" subtext="Team presets" icon="⭐" />
+        <KpiCard label="Max Export Rows" value="0" delta="0.0%" trend="neutral" subtext="Export engine" icon="📊" />
       </div>
 
       {/* Builder Form Card */}
@@ -241,15 +216,23 @@ export default function CustomReports() {
                 </tr>
               </thead>
               <tbody>
-                {queryResults.map((r, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                    <td style={{ padding: '12px', fontWeight: 600 }}>{r.dim}</td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{r.val}</td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{r.orders}</td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{r.aov}</td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{r.margin}</td>
+                {queryResults.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                      No query records found
+                    </td>
                   </tr>
-                ))}
+                ) : (
+                  queryResults.map((r, i) => (
+                    <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                      <td style={{ padding: '12px', fontWeight: 600 }}>{r.dim}</td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{r.val}</td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{r.orders}</td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{r.aov}</td>
+                      <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{r.margin}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

@@ -72,10 +72,10 @@ export default function OperationsReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated On-Time SLA" value="0.0%" delta="--" trend="neutral" subtext="No delivery records" icon="⚡" />
-        <KpiCard label="Average Dispatch Dwell" value="--" delta="--" trend="neutral" subtext="No dispatch records" icon="⏱️" />
-        <KpiCard label="Active Dedicated Fleet" value="0 EV Riders" delta="--" trend="neutral" subtext="0 active riders" icon="🛵" />
-        <KpiCard label="Blended Cost / Delivery" value="₹0" delta="--" trend="neutral" subtext="0 delivery cost" icon="📉" />
+        <KpiCard label="Consolidated On-Time SLA" value="0.0%" delta="0.0%" trend="neutral" subtext="No delivery records" icon="⚡" />
+        <KpiCard label="Average Dispatch Dwell" value="0 Mins" delta="0.0%" trend="neutral" subtext="No dispatch records" icon="⏱️" />
+        <KpiCard label="Active Dedicated Fleet" value="0 EV Riders" delta="0.0%" trend="neutral" subtext="0 active riders" icon="🛵" />
+        <KpiCard label="Blended Cost / Delivery" value="₹0" delta="0.0%" trend="neutral" subtext="0 delivery cost" icon="📉" />
       </div>
 
       {/* Table Section */}

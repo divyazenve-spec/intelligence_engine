@@ -74,10 +74,10 @@ export default function DoctorReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Doctor Consultations" value="1,848 Consults" delta="+16.2% MTD" trend="up" subtext="Across 6 metro hospitals" icon="🩺" />
-        <KpiCard label="Surgical Procedures" value="99 Surgeries" delta="Zero post-op sepsis" trend="up" subtext="Super-specialty OR" icon="🏥" />
-        <KpiCard label="Average Doctor Rating" value="4.92 / 5.0" delta="Based on 1,420 ratings" trend="up" subtext="Verified pet parents" icon="⭐" />
-        <KpiCard label="Doctor Generated Revenue" value="₹0" delta="₹0 commission" trend="up" subtext="20% incentive split" icon="💼" />
+        <KpiCard label="Total Doctor Consultations" value="0 Consults" delta="0.0%" trend="neutral" subtext="Recorded consultations" icon="🩺" />
+        <KpiCard label="Surgical Procedures" value="0 Surgeries" delta="0.0%" trend="neutral" subtext="Specialty OR" icon="🏥" />
+        <KpiCard label="Average Doctor Rating" value="0.0 / 5.0" delta="0.0%" trend="neutral" subtext="Verified ratings" icon="⭐" />
+        <KpiCard label="Doctor Generated Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Clinical revenue" icon="💼" />
       </div>
 
       {/* Table Section */}
@@ -103,21 +103,29 @@ export default function DoctorReport() {
               </tr>
             </thead>
             <tbody>
-              {doctors.map((d) => (
-                <tr key={d.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px' }}>
-                    <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{d.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{d.spec}</div>
+              {doctors.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No doctor performance records found
                   </td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{d.hospital}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.consults}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.surgeries}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>★ {d.rating}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.revenue)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.commission)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.rxAdherence}</td>
                 </tr>
-              ))}
+              ) : (
+                doctors.map((d) => (
+                  <tr key={d.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{d.name}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{d.spec}</div>
+                    </td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{d.hospital}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.consults}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.surgeries}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>★ {d.rating}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.revenue)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.commission)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.rxAdherence}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -38,7 +38,7 @@ export default function SalesReport() {
       title="Executive Sales Performance Report"
       subtitle="Detailed breakdown of gross revenue, promotional deductions, return allowances, net sales, and average order value across channels"
       icon="📊"
-      badge="Verified Live Data"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <select
@@ -95,10 +95,10 @@ export default function SalesReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Gross Sales MTD" value="₹0" delta="+18.4% YoY" trend="up" subtext="Across 8,548 orders" icon="📈" />
-        <KpiCard label="Total Deductions" value="₹0" delta="5.9% of Gross" trend="neutral" subtext="Discounts + Returns" icon="🧾" />
-        <KpiCard label="Net Sales Realized" value="₹0" delta="94.1% Retention" trend="up" subtext="Bank settled GMV" icon="💰" />
-        <KpiCard label="Blended AOV" value="₹0" delta="+₹0 prior" trend="up" subtext="Higher pharma basket" icon="🛒" />
+        <KpiCard label="Gross Sales MTD" value="₹0" delta="0.0%" trend="neutral" subtext="Across channels" icon="📈" />
+        <KpiCard label="Total Deductions" value="₹0" delta="0.0%" trend="neutral" subtext="Discounts + Returns" icon="🧾" />
+        <KpiCard label="Net Sales Realized" value="₹0" delta="0.0%" trend="neutral" subtext="Settled GMV" icon="💰" />
+        <KpiCard label="Blended AOV" value="₹0" delta="0.0%" trend="neutral" subtext="Average order value" icon="🛒" />
       </div>
 
       {/* Table Section */}
@@ -111,7 +111,7 @@ export default function SalesReport() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700 }}>Sales Channel Performance Breakdown ({dateRange})</h3>
           <span style={{ fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>
-            5 CHANNELS ACTIVE
+            CHANNELS ACTIVE
           </span>
         </div>
 
@@ -129,17 +129,25 @@ export default function SalesReport() {
               </tr>
             </thead>
             <tbody>
-              {salesData.map((s) => (
-                <tr key={s.channel} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.channel}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.orders.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.gross)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>-{inr(s.discounts)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>-{inr(s.refunds)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.net)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.aov)}</td>
+              {salesData.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No sales records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                salesData.map((s) => (
+                  <tr key={s.channel} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.channel}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.orders.toLocaleString('en-IN')}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.gross)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>-{inr(s.discounts)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>-{inr(s.refunds)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.net)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(s.aov)}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

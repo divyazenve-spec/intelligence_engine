@@ -36,7 +36,7 @@ export default function MarketingReport() {
       title="Marketing Spend, ROAS & CAC Attribution Report"
       subtitle="Campaign conversion performance, customer acquisition costs (CAC), Return on Ad Spend (ROAS), and organic retention funnels"
       icon="📣"
-      badge="Blended 4.7x ROAS"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -74,10 +74,10 @@ export default function MarketingReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Ad Spend MTD" value="₹0" delta="Under budget ₹0" trend="up" subtext="Meta, Google, CRM" icon="💳" />
-        <KpiCard label="New Pet Parents Acquired" value="1,860 Parents" delta="+22.4% vs last month" trend="up" subtext="First purchase verified" icon="👶" />
-        <KpiCard label="Blended CAC" value="₹0" delta="-₹0" trend="up" subtext="Target: < ₹0" icon="🎯" />
-        <KpiCard label="Blended ROAS" value="4.7x" delta="₹0 Revenue" trend="up" subtext="High efficiency" icon="🚀" />
+        <KpiCard label="Total Ad Spend MTD" value="₹0" delta="0.0%" trend="neutral" subtext="Ad spend" icon="💳" />
+        <KpiCard label="New Pet Parents Acquired" value="0 Parents" delta="0.0%" trend="neutral" subtext="Acquired customers" icon="👶" />
+        <KpiCard label="Blended CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Acquisition cost" icon="🎯" />
+        <KpiCard label="Blended ROAS" value="0.0x" delta="0.0%" trend="neutral" subtext="Return on spend" icon="🚀" />
       </div>
 
       {/* Table Section */}
@@ -103,21 +103,29 @@ export default function MarketingReport() {
               </tr>
             </thead>
             <tbody>
-              {campaigns.map((c) => (
-                <tr key={c.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px' }}>
-                    <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{c.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{c.channel}</div>
+              {campaigns.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No marketing campaign records found
                   </td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.spend)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.impressions}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.clicks.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.newCustomers}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#38bdf8', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.cac)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.gmvGenerated)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{c.roas}</td>
                 </tr>
-              ))}
+              ) : (
+                campaigns.map((c) => (
+                  <tr key={c.name} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--foreground, #f8fafc)' }}>{c.name}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{c.channel}</div>
+                    </td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.spend)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.impressions}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.clicks.toLocaleString('en-IN')}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.newCustomers}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#38bdf8', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.cac)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.gmvGenerated)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{c.roas}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

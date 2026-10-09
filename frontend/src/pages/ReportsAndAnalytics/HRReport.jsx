@@ -74,10 +74,10 @@ export default function HRReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Organization Headcount" value="300 Personnel" delta="112 Clinical Vets/Nurses" trend="up" subtext="Across 6 metro cities" icon="👥" />
-        <KpiCard label="Average Shift Attendance" value="0.0%" delta="Low absenteeism" trend="up" subtext="Biometric / App sync" icon="📅" />
-        <KpiCard label="Monthly Payroll Disbursement" value="₹0" delta="Includes doctor incentive" trend="neutral" subtext="Fully funded" icon="💳" />
-        <KpiCard label="Annualized Attrition Rate" value="0.0%" delta="Well below industry 8%" trend="up" subtext="High retention" icon="🌟" />
+        <KpiCard label="Total Organization Headcount" value="0 Personnel" delta="0.0%" trend="neutral" subtext="Recorded staff" icon="👥" />
+        <KpiCard label="Average Shift Attendance" value="0.0%" delta="0.0%" trend="neutral" subtext="Shift adherence" icon="📅" />
+        <KpiCard label="Monthly Payroll Disbursement" value="₹0" delta="0.0%" trend="neutral" subtext="Disbursed payroll" icon="💳" />
+        <KpiCard label="Annualized Attrition Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Retention metric" icon="🌟" />
       </div>
 
       {/* Table Section */}
@@ -102,17 +102,25 @@ export default function HRReport() {
               </tr>
             </thead>
             <tbody>
-              {departments.map((d) => (
-                <tr key={d.dept} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{d.dept}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{d.headcount}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.attendance}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{d.targetAttainment}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.monthlyPayroll)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: d.avgOvertimeHrs > 20 ? '#f87171' : 'var(--foreground, #f8fafc)', fontFamily: '"IBM Plex Mono", monospace' }}>{d.avgOvertimeHrs} hrs/wk</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{d.attrition}</td>
+              {departments.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No department workforce records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                departments.map((d) => (
+                  <tr key={d.dept} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{d.dept}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{d.headcount}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{d.attendance}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{d.targetAttainment}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(d.monthlyPayroll)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: d.avgOvertimeHrs > 20 ? '#f87171' : 'var(--foreground, #f8fafc)', fontFamily: '"IBM Plex Mono", monospace' }}>{d.avgOvertimeHrs} hrs/wk</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{d.attrition}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

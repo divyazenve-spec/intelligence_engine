@@ -28,7 +28,25 @@ export default function ReportsDashboard() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const tabs = [];
+  const tabs = [
+    { id: 'overview', label: 'Overview Hub', icon: '🎛️' },
+    { id: 'sales', label: 'Sales Reports', icon: '📊' },
+    { id: 'revenue', label: 'Revenue Reports', icon: '💼' },
+    { id: 'customer', label: 'Customer Reports', icon: '👥' },
+    { id: 'pet', label: 'Pet Reports', icon: '🐾' },
+    { id: 'doctor', label: 'Doctor Reports', icon: '👨‍⚕️' },
+    { id: 'clinic', label: 'Clinic Reports', icon: '🏥' },
+    { id: 'product', label: 'Product Reports', icon: '🏷️' },
+    { id: 'inventory', label: 'Inventory Reports', icon: '📦' },
+    { id: 'finance', label: 'Finance Reports', icon: '💰' },
+    { id: 'hr', label: 'HR Reports', icon: '🧑‍💼' },
+    { id: 'marketing', label: 'Marketing Reports', icon: '📣' },
+    { id: 'operations', label: 'Operations Reports', icon: '🚚' },
+    { id: 'vendor', label: 'Vendor Reports', icon: '🤝' },
+    { id: 'custom', label: 'Custom Reports', icon: '🛠️' },
+    { id: 'scheduled', label: 'Scheduled Reports', icon: '⏰' },
+    { id: 'export', label: 'Export Center', icon: '📥' }
+  ];
 
   const quickPacks = [];
 
@@ -160,10 +178,10 @@ export default function ReportsDashboard() {
         >
           {/* Executive KPI Row */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-            <KpiCard label="Reporting Modules Available" value="16 Modules" delta="100% Operational" trend="up" subtext="Finance, Sales, Clinical" icon="📊" />
-            <KpiCard label="Scheduled Automated Jobs" value="6 Active Cron" delta="Daily, Weekly, Monthly" trend="neutral" subtext="Zero bounce rate" icon="⏰" />
-            <KpiCard label="Total Exports Generated" value="482 Files" delta="+44 files this month" trend="up" subtext="CSV, PDF, XLSX" icon="📥" />
-            <KpiCard label="Data Pipeline Synchronization" value="FastAPI Live" delta="42ms query speed" trend="up" subtext="SQLite persistence" icon="⚡" />
+            <KpiCard label="Reporting Modules Available" value="16 Modules" delta="0.0%" trend="neutral" subtext="Finance, Sales, Clinical" icon="📊" />
+            <KpiCard label="Scheduled Automated Jobs" value="0 Jobs" delta="0.0%" trend="neutral" subtext="Automated jobs" icon="⏰" />
+            <KpiCard label="Total Exports Generated" value="0 Files" delta="0.0%" trend="neutral" subtext="CSV, PDF, XLSX" icon="📥" />
+            <KpiCard label="Data Pipeline Synchronization" value="Live" delta="0.0%" trend="neutral" subtext="Operational" icon="⚡" />
           </div>
 
           {/* Grid of All 16 Modules */}
@@ -234,7 +252,12 @@ export default function ReportsDashboard() {
             </h3>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
-              {quickPacks.map((q) => (
+              {quickPacks.length === 0 ? (
+                <div style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)', gridColumn: '1 / -1' }}>
+                  No quick downloads available
+                </div>
+              ) : (
+                quickPacks.map((q) => (
                 <div
                   key={q.title}
                   style={{

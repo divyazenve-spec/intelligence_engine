@@ -36,7 +36,7 @@ export default function InventoryReport() {
       title="Warehouse Inventory & Batch Valuation Audit Report"
       subtitle="Stock valuation across 5 regional cold-chain distribution centers, days of inventory cover (DSI), near-expiry write-downs, and aging capital"
       icon="📦"
-      badge="₹0 Total Inventory"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -74,10 +74,10 @@ export default function InventoryReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated Inventory Valuation" value="₹0" delta="+6.2% vs budget" trend="neutral" subtext="Across 5 cold hubs" icon="🏭" />
-        <KpiCard label="Days of Inventory Cover" value="26.4 Days" delta="-3.2 days improved" trend="up" subtext="Target: < 30 days" icon="⏱️" />
-        <KpiCard label="Near-Expiry Valuation (<60d)" value="₹0" delta="Under 1.0% threshold" trend="up" subtext="Active clearance" icon="⏳" />
-        <KpiCard label="Stock Fill Rate SLA" value="0.0%" delta="Same-day dispatch" trend="up" subtext="High availability" icon="✅" />
+        <KpiCard label="Consolidated Inventory Valuation" value="₹0" delta="0.0%" trend="neutral" subtext="Cold hubs" icon="🏭" />
+        <KpiCard label="Days of Inventory Cover" value="0 Days" delta="0.0%" trend="neutral" subtext="Target cover" icon="⏱️" />
+        <KpiCard label="Near-Expiry Valuation (<60d)" value="₹0" delta="0.0%" trend="neutral" subtext="Within threshold" icon="⏳" />
+        <KpiCard label="Stock Fill Rate SLA" value="0.0%" delta="0.0%" trend="neutral" subtext="Dispatched orders" icon="✅" />
       </div>
 
       {/* Table Section */}
@@ -102,17 +102,25 @@ export default function InventoryReport() {
               </tr>
             </thead>
             <tbody>
-              {warehouses.map((w) => (
-                <tr key={w.hub} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{w.hub}</td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{w.type}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.totalSkus}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.stockValue)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{w.daysCover} Days</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.nearExpiryValue)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.deadStockValue)}</td>
+              {warehouses.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No warehouse inventory records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                warehouses.map((w) => (
+                  <tr key={w.hub} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{w.hub}</td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{w.type}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{w.totalSkus}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.stockValue)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{w.daysCover} Days</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.nearExpiryValue)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#f87171', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(w.deadStockValue)}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

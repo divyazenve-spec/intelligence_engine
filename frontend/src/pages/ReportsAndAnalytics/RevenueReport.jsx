@@ -36,7 +36,7 @@ export default function RevenueReport() {
       title="Business Unit & Margin Revenue Report"
       subtitle="Financial performance, recurring subscription revenue, gross contribution margins, and growth trajectory across all 5 operational business units"
       icon="💼"
-      badge="Pacing at 98.2%"
+      badge=""
       actions={
         <button
           onClick={downloadCSV}
@@ -74,10 +74,10 @@ export default function RevenueReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Consolidated Revenue MTD" value="₹0" delta="+24.8% YoY" trend="up" subtext="All 5 business units" icon="💰" />
-        <KpiCard label="Target Attainment" value="0.0%" delta="₹0 gap to budget" trend="up" subtext="Month pacing strong" icon="🎯" />
-        <KpiCard label="Blended Gross Margin" value="0.0%" delta="+1.4% margin expansion" trend="up" subtext="Driven by telehealth" icon="📈" />
-        <KpiCard label="Recurring ARR Run-Rate" value="₹0" delta="24% share" trend="up" subtext="Wellness subscriptions" icon="🔄" />
+        <KpiCard label="Consolidated Revenue MTD" value="₹0" delta="0.0%" trend="neutral" subtext="All 5 business units" icon="💰" />
+        <KpiCard label="Target Attainment" value="0.0%" delta="0.0%" trend="neutral" subtext="Current period" icon="🎯" />
+        <KpiCard label="Blended Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Gross contribution" icon="📈" />
+        <KpiCard label="Recurring ARR Run-Rate" value="₹0" delta="0.0%" trend="neutral" subtext="Recurring subscriptions" icon="🔄" />
       </div>
 
       {/* Table Section */}
@@ -102,17 +102,25 @@ export default function RevenueReport() {
               </tr>
             </thead>
             <tbody>
-              {buData.map((b) => (
-                <tr key={b.bu} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{b.bu}</td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{b.lead}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(b.mtdRev)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(b.target)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: b.attainment >= 100 ? '#34d399' : '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{b.attainment}%</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{b.margin}%</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{b.growth}</td>
+              {buData.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No business unit revenue records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                buData.map((b) => (
+                  <tr key={b.bu} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{b.bu}</td>
+                    <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{b.lead}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{inr(b.mtdRev)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(b.target)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: b.attainment >= 100 ? '#34d399' : '#fbbf24', fontFamily: '"IBM Plex Mono", monospace' }}>{b.attainment}%</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{b.margin}%</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{b.growth}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

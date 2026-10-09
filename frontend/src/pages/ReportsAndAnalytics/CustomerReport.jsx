@@ -34,7 +34,7 @@ export default function CustomerReport() {
       category="Reports & Analytics"
       subcategory="Customer Reports"
       title="Customer Demographics, LTV & Retention Report"
-      subtitle="Comprehensive cohort analytics, Lifetime Value (LTV), repeat purchase frequency, and RFM segmentation for 10,000+ registered pet parents"
+      subtitle="Comprehensive cohort analytics, Lifetime Value (LTV), repeat purchase frequency, and RFM segmentation for registered pet parents"
       icon="👥"
       badge=""
       actions={
@@ -74,10 +74,10 @@ export default function CustomerReport() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Registered Pet Parents" value="10,000 Parents" delta="+1,120 this month" trend="up" subtext="Across 6 metro cities" icon="🐾" />
-        <KpiCard label="Average Blended LTV" value="₹0" delta="+₹0" trend="up" subtext="Healthcare + Food" icon="💎" />
-        <KpiCard label="Repeat Order Rate" value="0.0%" delta="+4.2% vs Q2" trend="up" subtext="Target: 65.0%" icon="🔄" />
-        <KpiCard label="Monthly Churn Rate" value="0.0%" delta="-1.1% reduction" trend="up" subtext="Industry low" icon="🛡️" />
+        <KpiCard label="Total Registered Pet Parents" value="0 Parents" delta="0.0%" trend="neutral" subtext="Registered base" icon="🐾" />
+        <KpiCard label="Average Blended LTV" value="₹0" delta="0.0%" trend="neutral" subtext="Lifetime value" icon="💎" />
+        <KpiCard label="Repeat Order Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Target: 0.0%" icon="🔄" />
+        <KpiCard label="Monthly Churn Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Current period" icon="🛡️" />
       </div>
 
       {/* Table Section */}
@@ -102,17 +102,25 @@ export default function CustomerReport() {
               </tr>
             </thead>
             <tbody>
-              {cohorts.map((c) => (
-                <tr key={c.cohort} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{c.cohort}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.count.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.pct}%</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.avgOrders}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.ltv)}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.repeatRate}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: Number(c.churn.replace('%','')) > 10 ? '#f87171' : '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{c.churn}</td>
+              {cohorts.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #94a3b8)' }}>
+                    No customer cohort records found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                cohorts.map((c) => (
+                  <tr key={c.cohort} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{c.cohort}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.count.toLocaleString('en-IN')}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.pct}%</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.avgOrders}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, color: '#34d399', fontFamily: '"IBM Plex Mono", monospace' }}>{inr(c.ltv)}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.repeatRate}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: Number(c.churn.replace('%','')) > 10 ? '#f87171' : '#60a5fa', fontFamily: '"IBM Plex Mono", monospace' }}>{c.churn}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
