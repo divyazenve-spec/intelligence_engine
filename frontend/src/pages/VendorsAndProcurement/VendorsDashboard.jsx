@@ -13,8 +13,8 @@ export default function VendorsDashboard() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Suppliers" value="24 Vendors" delta="100% compliant" trend="neutral" subtext="Direct pharma & food" icon="🏭" />
-        <KpiCard label="Open Purchase Orders" value="₹0" delta="8 active POs" trend="neutral" subtext="In transit to hub" icon="📑" />
+        <KpiCard label="Active Suppliers" value="0 Vendors" delta="" trend="neutral" subtext="Direct pharma & food" icon="🏭" />
+        <KpiCard label="Open Purchase Orders" value="₹0" delta="0 active POs" trend="neutral" subtext="In transit to hub" icon="📑" />
         <KpiCard label="Procurement Savings" value="₹0" delta="0.0%" trend="up" subtext="Bulk discount savings" icon="💰" />
         <KpiCard label="Vendor On-Time SLA" value="0.0%" delta="0.0%" trend="up" subtext="Delivery compliance" icon="⏱️" />
       </div>
@@ -26,7 +26,7 @@ export default function VendorsDashboard() {
         padding: '20px'
       }}>
         <h3 style={{ margin: '0 0 12px', fontSize: '15px', fontWeight: 700 }}>Primary Pharmaceutical & Diet Suppliers</h3>
-        <p style={{ margin: '0 0 16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Royal Canin India, Zoetis Healthcare, MSD Animal Health, Boehringer Ingelheim</p>
+        <p style={{ margin: '0 0 16px', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>Verified clinical pharmaceutical and dietary supplier network</p>
         <div style={{ height: '140px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', display: 'grid', placeItems: 'center', fontSize: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>
           Supplier Scorecard & Lead Times Matrix
         </div>

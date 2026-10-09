@@ -29,7 +29,7 @@ export default function PurchaseHistory() {
       title="Purchase History & Fulfilled Order Archive"
       subtitle="Complete ledger of historical purchase orders, fulfillment timelines, invoice audit trail, and multi-hub spend"
       icon="📜"
-      badge="PO Audit Archive"
+      badge=""
       actions={
         <button onClick={() => alert('Exporting Purchase History Audit Ledger (CSV)...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #3b82f6', background: 'rgba(59,130,246,0.15)', color: '#60a5fa', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           📥 Export Audit Ledger
@@ -37,29 +37,35 @@ export default function PurchaseHistory() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Cumulative Spend (FYTD)" value="₹0" delta="+18.4% YoY" trend="up" subtext="71 POs fulfilled" icon="💰" />
-        <KpiCard label="Fulfilled Orders" value="71 Orders" delta="100% GRN signed" trend="up" subtext="Zero lost shipments" icon="📦" />
-        <KpiCard label="Avg. Order Value" value="₹0" delta="+4.2% vs FY25" trend="up" subtext="Bulk purchasing efficiency" icon="📊" />
-        <KpiCard label="Historical Fulfillment SLA" value="0.0%" delta="+1.8% vs last year" trend="up" subtext="On-time delivery" icon="⏱️" />
-        <KpiCard label="Invoice Match Accuracy" value="0.0%" delta="Three-way PO/GRN/Inv" trend="up" subtext="Audit compliant" icon="🛡️" />
-        <KpiCard label="Active Supplier Count" value="24 Vendors" delta="Direct pharma & nutrition" trend="neutral" subtext="Approved registry" icon="🏭" />
+        <KpiCard label="Cumulative Spend (FYTD)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="💰" />
+        <KpiCard label="Fulfilled Orders" value="0 Orders" delta="" trend="neutral" subtext="No active records" icon="📦" />
+        <KpiCard label="Avg. Order Value" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="📊" />
+        <KpiCard label="Historical Fulfillment SLA" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="⏱️" />
+        <KpiCard label="Invoice Match Accuracy" value="0.0%" delta="" trend="neutral" subtext="No active records" icon="🛡️" />
+        <KpiCard label="Active Supplier Count" value="0 Vendors" delta="" trend="neutral" subtext="No active records" icon="🏭" />
       </div>
 
       {/* Quarterly Spend Overview */}
       <div style={card}>
         <h3 style={{ margin: '0 0 16px', fontSize: '16px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>📅 Quarterly Purchase Spend & Performance Breakdown</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
-          {quarterlySpend.map((q, idx) => (
-            <div key={idx} style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#38bdf8', marginBottom: '8px' }}>{q.quarter}</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--foreground, #0f172a)', marginBottom: '12px' }}>{q.totalSpend}</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px' }}>
-                <div><span style={{ color: '#64748b' }}>Fulfilled POs:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.ordersCount}</span></div>
-                <div><span style={{ color: '#64748b' }}>Avg. Ticket:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.avgTicket}</span></div>
-                <div style={{ gridColumn: 'span 2' }}><span style={{ color: '#64748b' }}>Fulfillment SLA:</span> <span style={{ color: '#34d399', fontWeight: 700 }}>{q.onTimeDelivery}</span></div>
-              </div>
+          {quarterlySpend.length === 0 ? (
+            <div style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)', fontSize: '13px', gridColumn: '1 / -1' }}>
+              No quarterly purchase spend records found
             </div>
-          ))}
+          ) : (
+            quarterlySpend.map((q, idx) => (
+              <div key={idx} style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '16px' }}>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#38bdf8', marginBottom: '8px' }}>{q.quarter}</div>
+                <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--foreground, #0f172a)', marginBottom: '12px' }}>{q.totalSpend}</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px' }}>
+                  <div><span style={{ color: '#64748b' }}>Fulfilled POs:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.ordersCount}</span></div>
+                  <div><span style={{ color: '#64748b' }}>Avg. Ticket:</span> <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{q.avgTicket}</span></div>
+                  <div style={{ gridColumn: 'span 2' }}><span style={{ color: '#64748b' }}>Fulfillment SLA:</span> <span style={{ color: '#34d399', fontWeight: 700 }}>{q.onTimeDelivery}</span></div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -104,24 +110,32 @@ export default function PurchaseHistory() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((r, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px', fontWeight: 600 }}>{r.poNumber}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{r.vendor}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{r.category}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.itemsCount} SKUs</td>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{r.orderValue}</td>
-                  <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.deliveredDate}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.location}</td>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#a78bfa', fontSize: '11px' }}>{r.invoiceRef}</td>
-                  <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.paidDate}</td>
-                  <td style={{ padding: '11px 12px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: 'rgba(52,211,153,0.15)', color: '#34d399' }}>
-                      {r.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={10} style={{ padding: '28px 12px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No fulfilled purchase records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map((r, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px', fontWeight: 600 }}>{r.poNumber}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{r.vendor}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{r.category}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.itemsCount} SKUs</td>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{r.orderValue}</td>
+                    <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.deliveredDate}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{r.location}</td>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#a78bfa', fontSize: '11px' }}>{r.invoiceRef}</td>
+                    <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{r.paidDate}</td>
+                    <td style={{ padding: '11px 12px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: 'rgba(52,211,153,0.15)', color: '#34d399' }}>
+                        {r.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

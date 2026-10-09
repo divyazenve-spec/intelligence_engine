@@ -26,7 +26,7 @@
   /* ── 10 Subdomains Configuration ─────────────────────────────────── */
   var TABS = [
     { id: 'dashboard',         label: 'Vendor Dashboard',     icon: '🤝', hash: '#vendor-dashboard',     badge: '',   title: 'Vendors & Procurement Command Center', sub: 'Master supplier network, active purchase orders, fulfillment compliance, and network-wide procurement savings' },
-    { id: 'all-vendors',       label: 'All Vendors',          icon: '🏭', hash: '#all-vendors',          badge: '', title: 'Complete Vendor Directory & Supplier Registry', sub: 'All 24 registered suppliers with contacts, spend totals, quality ratings, and GSTIN verification status' },
+    { id: 'all-vendors',       label: 'All Vendors',          icon: '🏭', hash: '#all-vendors',          badge: '', title: 'Complete Vendor Directory & Supplier Registry', sub: 'Registered suppliers with contacts, spend totals, quality ratings, and GSTIN verification status' },
     { id: 'vendor-perf',       label: 'Vendor Performance',   icon: '📊', hash: '#vendor-performance',   badge: '',    title: 'Vendor Performance Scorecards & SLA Analytics', sub: 'On-time delivery SLA, fill rate, defect rate, lead times, and composite vendor performance scores' },
     { id: 'vendor-pay',        label: 'Vendor Payments',      icon: '💳', hash: '#vendor-payments',      badge: '',   title: 'Vendor Accounts Payable & Payment Scheduling', sub: 'Outstanding invoice aging, 2/10 Net 30 cash discounts, bank UTR disbursements, and payment terms' },
     { id: 'purchase-orders',   label: 'Purchase Orders',      icon: '📑', hash: '#purchase-orders',      badge: '',    title: 'Purchase Order Management & Tracking', sub: 'PO lifecycle tracking: draft creation, department approval, dispatch, transit, and GRN verification' },
@@ -144,7 +144,7 @@
             '<table class="zvp-table">',
               '<thead><tr><th>Supplier</th><th>Category</th><th>Spend (YTD)</th><th>Active POs</th><th>Rating</th><th>Status</th></tr></thead>',
               '<tbody>',
-                VENDORS.slice(0, 5).map(function (v) {
+                (VENDORS.length ? VENDORS.slice(0, 5).map(function (v) {
                   return '<tr>' +
                     '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
                     '<td style="color:var(--muted-foreground,#64748b);">' + esc(v.category) + '</td>' +
@@ -153,7 +153,7 @@
                     '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                     '<td><span class="zvp-tag green">' + esc(v.status) + '</span></td>' +
                   '</tr>';
-                }).join(''),
+                }).join('') : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No supplier partner records found</td></tr>'),
               '</tbody>',
             '</table>',
           '</div>',
@@ -169,15 +169,15 @@
           '</div>',
           '<div style="display:grid;gap:10px;">',
             '<div class="zvp-pipeline-stage" style="border-left-color:#a78bfa;">',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 1: Requisitions</strong><span style="color:#a78bfa;font-weight:700;">12 Requests · ₹18.4 L</span></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 1: Requisitions</strong><span style="color:#a78bfa;font-weight:700;">0 Requests · ₹0</span></div>',
               '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Surgery OT, Koramangala 24x7, and Central Hub approvals pending</div>',
             '</div>',
             '<div class="zvp-pipeline-stage" style="border-left-color:#38bdf8;">',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 2: POs Issued & Dispatched</strong><span style="color:#38bdf8;font-weight:700;">18 POs · ₹34.8 L</span></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 2: POs Issued & Dispatched</strong><span style="color:#38bdf8;font-weight:700;">0 POs · ₹0</span></div>',
               '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Direct-to-hub shipments in transit from Mumbai, Bengaluru, and Hyderabad</div>',
             '</div>',
             '<div class="zvp-pipeline-stage" style="border-left-color:#34d399;">',
-              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 3: GRN Verification & 3-Way Match</strong><span style="color:#34d399;font-weight:700;">14 POs · ₹28.4 L</span></div>',
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><strong>Stage 3: GRN Verification & 3-Way Match</strong><span style="color:#34d399;font-weight:700;">0 POs · ₹0</span></div>',
               '<div style="font-size:11px;color:var(--muted-foreground,#64748b);">Barcode scanned, cold chain integrity verified (2°C - 8°C), invoice matched</div>',
             '</div>',
           '</div>',
@@ -223,7 +223,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>Vendor ID</th><th>Company Name</th><th>GSTIN</th><th>Category</th><th>Key Contact</th><th>Hub City</th><th>Spend (YTD)</th><th>Rating</th><th>Status</th></tr></thead>',
             '<tbody>',
-              filtered.map(function (v) {
+              (filtered.length ? filtered.map(function (v) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;">' + esc(v.id) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
@@ -235,7 +235,7 @@
                   '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                   '<td><span class="zvp-tag ' + (v.status === 'Preferred' ? 'green' : 'blue') + '">' + esc(v.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No registered vendor records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -277,7 +277,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>Vendor Name</th><th>Category</th><th>On-Time %</th><th>Quality %</th><th>Fill Rate %</th><th>Composite Score</th><th>Rating</th><th>SLA Action</th></tr></thead>',
             '<tbody>',
-              sorted.map(function (v) {
+              (sorted.length ? sorted.map(function (v) {
                 var scoreColor = v.score >= 98 ? '#34d399' : v.score >= 95 ? '#38bdf8' : '#fbbf24';
                 return '<tr>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(v.name) + '</td>' +
@@ -289,7 +289,7 @@
                   '<td><span class="zvp-tag purple">' + esc(v.rating) + '</span></td>' +
                   '<td><button class="zvp-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Detailed scorecard audit for ' + esc(v.name) + ' generated.\')">Audit Review</button></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No vendor performance records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -321,7 +321,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>Invoice No</th><th>Vendor Name</th><th>PO Ref</th><th>Invoice Amount</th><th>Due Date</th><th>Cash Discount</th><th>Credit Terms</th><th>Bank UTR / Rail</th><th>Status</th></tr></thead>',
             '<tbody>',
-              PAYMENTS.map(function (p) {
+              (PAYMENTS.length ? PAYMENTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(p.invoiceNo) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.vendor) + '</td>' +
@@ -333,7 +333,7 @@
                   '<td style="font-family:monospace;color:#a78bfa;font-size:11px;">' + esc(p.bankRef) + '</td>' +
                   '<td><span class="zvp-tag ' + (p.status === 'Scheduled' ? 'blue' : p.status === 'Approved' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No vendor payment records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -351,7 +351,7 @@
 
     return [
       '<div class="zvp-kpi-grid">',
-        kpiHtml('Open Purchase Orders', '18 Active POs', '₹34.80 L total value', 'up', 'October procurement pipeline', '📑'),
+        kpiHtml('Open Purchase Orders', '0 Active POs', '₹0', 'neutral', 'No active records', '📑'),
         kpiHtml('POs in Transit', '0', '0.0%', 'neutral', 'No active records', '🚛'),
         kpiHtml('GRN Verified (MTD)', '0', '0.0%', 'neutral', 'No active records', '✅'),
         kpiHtml('Urgent OT Ortho Orders', '0', '0.0%', 'neutral', 'No active records', '🚨'),
@@ -382,7 +382,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>PO Number</th><th>Vendor Name</th><th>Line Items Description</th><th>Total Value</th><th>Created Date</th><th>Delivery ETA</th><th>Receiving Hub</th><th>Priority</th><th>Status</th></tr></thead>',
             '<tbody>',
-              filtered.map(function (po) {
+              (filtered.length ? filtered.map(function (po) {
                 var priColor = po.priority === 'Critical' ? 'red' : po.priority === 'High' ? 'amber' : 'gray';
                 var statColor = po.status === 'Fulfilled' ? 'green' : po.status === 'Dispatched' ? 'blue' : po.status === 'GRN Verified' ? 'purple' : 'amber';
                 return '<tr>' +
@@ -396,7 +396,7 @@
                   '<td><span class="zvp-tag ' + priColor + '">' + esc(po.priority) + '</span></td>' +
                   '<td><span class="zvp-tag ' + statColor + '">' + esc(po.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No purchase order records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -428,7 +428,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>Req ID</th><th>Department</th><th>Requested Item</th><th>Qty</th><th>Urgency</th><th>Requested By</th><th>Created</th><th>Status</th><th>Action</th></tr></thead>',
             '<tbody>',
-              REQUISITIONS.map(function (r) {
+              (REQUISITIONS.length ? REQUISITIONS.map(function (r) {
                 var urgClass = r.urgency === 'Critical' ? 'red' : r.urgency === 'High' ? 'amber' : r.urgency === 'Medium' ? 'blue' : 'gray';
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(r.id) + '</td>' +
@@ -441,7 +441,7 @@
                   '<td><span class="zvp-tag ' + (r.status === 'Received' ? 'green' : r.status === 'PO Raised' ? 'blue' : 'purple') + '">' + esc(r.status) + '</span></td>' +
                   '<td><button class="zvp-btn" style="height:26px;padding:2px 8px;font-size:11px;" onclick="alert(\'Requisition ' + esc(r.id) + ' approved and routed to PO creation.\')">Approve</button></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No requisition records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -473,27 +473,7 @@
           '<table class="zvp-table">',
             '<thead><tr><th>PO Number</th><th>Vendor Name</th><th>Category</th><th>Order Value</th><th>Delivered Date</th><th>Receiving Hub</th><th>Invoice Ref</th><th>Paid Date</th><th>Status</th></tr></thead>',
             '<tbody>',
-              [
-                { po: 'PO-2026-0914', v: 'MSD Animal Health India', cat: 'Vaccines & Biologics', val: '₹4,85,000', del: '2026-09-28', hub: 'Koramangala Hub', inv: 'INV-MSD-9481', paid: '2026-10-02' },
-                { po: 'PO-2026-0882', v: 'Synthes Vet India', cat: 'Surgical Implants', val: '₹3,40,000', del: '2026-09-22', hub: 'Bandra OT Hub', inv: 'INV-SYN-3301', paid: '2026-09-29' },
-                { po: 'PO-2026-0850', v: 'Boehringer Ingelheim Vet', cat: 'Rx Pharmaceuticals', val: '₹5,12,000', del: '2026-09-18', hub: 'Whitefield Hub', inv: 'INV-BI-8820', paid: '2026-09-25' },
-                { po: 'PO-2026-0819', v: 'Zoetis India Ltd.', cat: 'Broad Spectrum Rx', val: '₹3,95,000', del: '2026-09-10', hub: 'Okhla Hub', inv: 'INV-ZOE-4112', paid: '2026-09-19' },
-                { po: 'PO-2026-0790', v: "Hill's Pet Nutrition", cat: 'Rx Diet Foods', val: '₹2,60,000', del: '2026-08-30', hub: 'Koramangala Hub', inv: 'INV-HIL-7740', paid: '2026-09-08' },
-                { po: 'PO-2026-0745', v: 'Royal Canin India', cat: 'Veterinary Nutrition', val: '₹4,10,000', del: '2026-08-22', hub: 'Andheri Hub', inv: 'INV-RC-5520', paid: '2026-08-31' },
-                { po: 'PO-2026-0710', v: 'Virbac India Pvt. Ltd.', cat: 'Dental & Dermatology', val: '₹2,15,000', del: '2026-08-14', hub: 'Indiranagar Hub', inv: 'INV-VIR-3921', paid: '2026-08-24' }
-              ].map(function (h) {
-                return '<tr>' +
-                  '<td style="font-family:monospace;color:#38bdf8;font-size:11px;font-weight:600;">' + esc(h.po) + '</td>' +
-                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(h.v) + '</td>' +
-                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(h.cat) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(h.val) + '</td>' +
-                  '<td style="color:var(--foreground,#334155);">' + esc(h.del) + '</td>' +
-                  '<td style="color:var(--muted-foreground,#64748b);">' + esc(h.hub) + '</td>' +
-                  '<td style="font-family:monospace;color:#a78bfa;font-size:11px;">' + esc(h.inv) + '</td>' +
-                  '<td style="color:#64748b;font-size:11px;">' + esc(h.paid) + '</td>' +
-                  '<td><span class="zvp-tag green">Fulfilled</span></td>' +
-                '</tr>';
-              }).join(''),
+              '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No fulfilled purchase records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -559,7 +539,7 @@
         kpiHtml('Avg. Defect PPM', '0', '0.0%', 'neutral', 'No active records', '🛡️'),
         kpiHtml('Invoice Match Accuracy', '0', '0.0%', 'neutral', 'No active records', '📑'),
         kpiHtml('Strategic Tier 1 Partners', '0', '0.0%', 'neutral', 'No active records', '⭐'),
-        kpiHtml('Audit Certifications', '100% Passed', '8 of 8 certified', 'up', 'WHO-GMP & ISO 13485', '📜'),
+        kpiHtml('Audit Certifications', '0', '0.0%', 'neutral', 'No active records', '📜'),
       '</div>',
 
       '<div class="zvp-card">',

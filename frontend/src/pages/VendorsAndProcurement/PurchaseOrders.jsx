@@ -26,12 +26,12 @@ export default function PurchaseOrders() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Active POs" value="18 Orders" delta="₹0 in pipeline" trend="neutral" subtext="FY 2026 Oct" icon="📑" />
-        <KpiCard label="Received (MTD)" value="3 POs" delta="₹0 received" trend="up" subtext="On-time deliveries" icon="✅" />
-        <KpiCard label="In Transit" value="2 POs" delta="Expected this week" trend="neutral" subtext="MSD + Virbac" icon="🚛" />
-        <KpiCard label="Delayed POs" value="1 PO" delta="Synthes Vet — 3d late" trend="down" subtext="Escalation triggered" icon="⚠️" />
-        <KpiCard label="Avg. PO Value" value="₹0" delta="+12.4% vs Q2" trend="up" subtext="Per order avg." icon="💰" />
-        <KpiCard label="PO Approval TAT" value="4.2 Hours" delta="-1.8h improvement" trend="up" subtext="3-level approval chain" icon="⏱️" />
+        <KpiCard label="Total Active POs" value="0 Orders" delta="₹0 in pipeline" trend="neutral" subtext="No active records" icon="📑" />
+        <KpiCard label="Received (MTD)" value="0 POs" delta="₹0 received" trend="neutral" subtext="No active records" icon="✅" />
+        <KpiCard label="In Transit" value="0 POs" delta="" trend="neutral" subtext="No active records" icon="🚛" />
+        <KpiCard label="Delayed POs" value="0 POs" delta="" trend="neutral" subtext="No active records" icon="⚠️" />
+        <KpiCard label="Avg. PO Value" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="💰" />
+        <KpiCard label="PO Approval TAT" value="0.0 Hours" delta="" trend="neutral" subtext="No active records" icon="⏱️" />
       </div>
 
       <div style={card}>
@@ -56,22 +56,30 @@ export default function PurchaseOrders() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((o, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px' }}>{o.id}</td>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{o.vendor}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)', maxWidth: '180px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{o.items}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)', fontSize: '11px' }}>{o.qty}</td>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#fbbf24', fontWeight: 600 }}>{o.value}</td>
-                  <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{o.raised}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)', fontSize: '11px' }}>{o.delivery}</td>
-                  <td style={{ padding: '11px 12px', color: o.rcvd !== '-' ? '#34d399' : '#64748b', fontSize: '11px' }}>{o.rcvd}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{o.approver}</td>
-                  <td style={{ padding: '11px 12px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: statusColor(o.status) + '22', color: statusColor(o.status) }}>{o.status}</span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={10} style={{ padding: '28px 12px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No purchase order records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map((o, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8', fontSize: '11px' }}>{o.id}</td>
+                    <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{o.vendor}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)', maxWidth: '180px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{o.items}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)', fontSize: '11px' }}>{o.qty}</td>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#fbbf24', fontWeight: 600 }}>{o.value}</td>
+                    <td style={{ padding: '11px 12px', color: '#64748b', fontSize: '11px' }}>{o.raised}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)', fontSize: '11px' }}>{o.delivery}</td>
+                    <td style={{ padding: '11px 12px', color: o.rcvd !== '-' ? '#34d399' : '#64748b', fontSize: '11px' }}>{o.rcvd}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{o.approver}</td>
+                    <td style={{ padding: '11px 12px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: statusColor(o.status) + '22', color: statusColor(o.status) }}>{o.status}</span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
