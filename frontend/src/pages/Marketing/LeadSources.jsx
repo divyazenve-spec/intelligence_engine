@@ -15,10 +15,10 @@ export default function LeadSources() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Top Lead Channel" value="Google Search" delta="34.8% Share" trend="up" subtext="6,420 pet leads" icon="🔍" />
-        <KpiCard label="Highest Quality Score" value="Vet Clinic Network" delta="9.9 / 10" trend="up" subtext="19.8% conversion rate" icon="🩺" />
-        <KpiCard label="Lowest CAC Channel" value="In-App Referrals" delta="₹0 / Lead" trend="up" subtext="₹0 viral budget" icon="👥" />
-        <KpiCard label="Blended Channel Conv" value="0.0%" delta="0.0%" trend="up" subtext="Across all 6 touchpoints" icon="⚡" />
+        <KpiCard label="Top Lead Channel" value="None" delta="0.0% Share" trend="neutral" subtext="0 pet leads" icon="🔍" />
+        <KpiCard label="Highest Quality Score" value="None" delta="0.0 / 10" trend="neutral" subtext="0.0% conversion rate" icon="🩺" />
+        <KpiCard label="Lowest CAC Channel" value="None" delta="₹0 / Lead" trend="neutral" subtext="₹0 viral budget" icon="👥" />
+        <KpiCard label="Blended Channel Conv" value="0.0%" delta="0.0%" trend="neutral" subtext="Across all touchpoints" icon="⚡" />
       </div>
 
       <div style={{
@@ -47,29 +47,37 @@ export default function LeadSources() {
               </tr>
             </thead>
             <tbody>
-              {sources.map(s => (
-                <tr key={s.name} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{s.name}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{s.visitors}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.leads}</td>
-                  <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.convRate}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{s.spend}</td>
-                  <td style={{ padding: '14px 16px', color: '#2563eb', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.cac}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#f0fdf4', color: '#16a34a', fontWeight: 700, fontSize: '11px' }}>
-                      {s.quality}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '60px', height: '6px', background: '#e2e8f0', borderRadius: '99px', overflow: 'hidden' }}>
-                        <div style={{ width: s.share, height: '100%', background: '#2563eb' }} />
-                      </div>
-                      <span style={{ fontSize: '11px', fontWeight: 600, color: '#475569' }}>{s.share}</span>
-                    </div>
+              {sources.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No lead sources found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                sources.map(s => (
+                  <tr key={s.name} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{s.name}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{s.visitors}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.leads}</td>
+                    <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.convRate}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{s.spend}</td>
+                    <td style={{ padding: '14px 16px', color: '#2563eb', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{s.cac}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#f0fdf4', color: '#16a34a', fontWeight: 700, fontSize: '11px' }}>
+                        {s.quality}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div style={{ width: '60px', height: '6px', background: '#e2e8f0', borderRadius: '99px', overflow: 'hidden' }}>
+                          <div style={{ width: s.share, height: '100%', background: '#2563eb' }} />
+                        </div>
+                        <span style={{ fontSize: '11px', fontWeight: 600, color: '#475569' }}>{s.share}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

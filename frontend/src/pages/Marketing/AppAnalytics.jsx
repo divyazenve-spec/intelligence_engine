@@ -17,10 +17,10 @@ export default function AppAnalytics() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total App Downloads" value="0" delta="0.0%" trend="up" subtext="Android (66%) · iOS (34%)" icon="📲" />
-        <KpiCard label="Daily Active Users" value="0" delta="0.0%" trend="up" subtext="DAU / MAU ratio: 26.7%" icon="⚡" />
-        <KpiCard label="Monthly Active Users" value="0" delta="0.0%" trend="up" subtext="Active pet parents" icon="🐾" />
-        <KpiCard label="App Store Rating" value="4.85 ★" delta="+0.12" trend="up" subtext="50K+ verified reviews" icon="⭐" />
+        <KpiCard label="Total App Downloads" value="0" delta="0.0%" trend="neutral" subtext="Android (0%) · iOS (0%)" icon="📲" />
+        <KpiCard label="Daily Active Users" value="0" delta="0.0%" trend="neutral" subtext="DAU / MAU ratio: 0.0%" icon="⚡" />
+        <KpiCard label="Monthly Active Users" value="0" delta="0.0%" trend="neutral" subtext="Active pet parents" icon="🐾" />
+        <KpiCard label="App Store Rating" value="0.0 ★" delta="0.0" trend="neutral" subtext="0 verified reviews" icon="⭐" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '16px' }}>
@@ -36,34 +36,48 @@ export default function AppAnalytics() {
               </tr>
             </thead>
             <tbody>
-              {osMetrics.map(m => (
-                <tr key={m.platform} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{m.platform}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{m.installs}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{m.dau}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontWeight: 600 }}>{m.rating}</td>
+              {osMetrics.length === 0 ? (
+                <tr>
+                  <td colSpan="4" style={{ padding: '24px 12px', textAlign: 'center', color: '#94a3b8' }}>
+                    No platform metrics recorded
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                osMetrics.map(m => (
+                  <tr key={m.platform} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{m.platform}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{m.installs}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{m.dau}</td>
+                    <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontWeight: 600 }}>{m.rating}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
 
         <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px' }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>In-App Veterinary Milestone Completion</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {appActions.map(a => (
-              <div key={a.action} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', background: '#f8fafc', borderRadius: '8px' }}>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '13px', color: '#0f172a' }}>{a.action}</div>
-                  <div style={{ fontSize: '11px', color: '#64748b' }}>{a.volume}</div>
+          {appActions.length === 0 ? (
+            <div style={{ padding: '24px', textAlign: 'center', color: '#94a3b8', fontSize: '13px' }}>
+              No app milestones recorded
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {appActions.map(a => (
+                <div key={a.action} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', background: '#f8fafc', borderRadius: '8px' }}>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: '13px', color: '#0f172a' }}>{a.action}</div>
+                    <div style={{ fontSize: '11px', color: '#64748b' }}>{a.volume}</div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontWeight: 700, fontSize: '13px', color: '#2563eb' }}>{a.completion}</div>
+                    <div style={{ fontSize: '11px', color: '#16a34a' }}>{a.change}</div>
+                  </div>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontWeight: 700, fontSize: '13px', color: '#2563eb' }}>{a.completion}</div>
-                  <div style={{ fontSize: '11px', color: '#16a34a' }}>{a.change}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </DashboardLayout>

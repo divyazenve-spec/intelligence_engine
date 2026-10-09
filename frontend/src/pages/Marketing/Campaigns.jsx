@@ -40,10 +40,10 @@ export default function Campaigns() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Campaign Spend" value="₹0" delta="-6.2% vs Plan" trend="up" subtext="Across 6 active flights" icon="💳" />
-        <KpiCard label="Ad Impressions" value="1.75M" delta="0.0%" trend="up" subtext="Meta, Google, YouTube" icon="👁️" />
-        <KpiCard label="Click-Through Rate" value="0.0%" delta="0.0%" trend="up" subtext="Benchmark: 3.2%" icon="🖱️" />
-        <KpiCard label="Campaign Conversions" value="0" delta="0.0%" trend="up" subtext="Orders & consultations" icon="🎯" />
+        <KpiCard label="Total Campaign Spend" value="₹0" delta="0.0%" trend="neutral" subtext="Across 0 active flights" icon="💳" />
+        <KpiCard label="Ad Impressions" value="0" delta="0.0%" trend="neutral" subtext="Meta, Google, YouTube" icon="👁️" />
+        <KpiCard label="Click-Through Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Benchmark: 0.0%" icon="🖱️" />
+        <KpiCard label="Campaign Conversions" value="0" delta="0.0%" trend="neutral" subtext="Orders & consultations" icon="🎯" />
       </div>
 
       <div style={{
@@ -76,49 +76,57 @@ export default function Campaigns() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
-                <tr key={c.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#0f172a' }}>{c.name}</div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: '"IBM Plex Mono", monospace' }}>{c.id}</div>
-                  </td>
-                  <td style={{ padding: '14px 16px', color: '#334155' }}>{c.channel}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#0f172a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.spend}</div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8' }}>Plan: {c.budget}</div>
-                  </td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.impressions}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#16a34a', fontWeight: 600 }}>{c.ctr}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.conv}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#2563eb' }}>{c.cac}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{
-                      display: 'inline-block',
-                      padding: '3px 8px',
-                      borderRadius: '99px',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      background: parseFloat(c.roas) >= 4.0 ? '#dcfce7' : '#e0f2fe',
-                      color: parseFloat(c.roas) >= 4.0 ? '#15803d' : '#0369a1'
-                    }}>
-                      {c.roas}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: c.status === 'Active' ? '#f0fdf4' : c.status === 'Scheduled' ? '#eff6ff' : '#f8fafc',
-                      color: c.status === 'Active' ? '#16a34a' : c.status === 'Scheduled' ? '#2563eb' : '#64748b',
-                      border: `1px solid ${c.status === 'Active' ? '#bbf7d0' : c.status === 'Scheduled' ? '#bfdbfe' : '#e2e8f0'}`
-                    }}>
-                      {c.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="9" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No campaigns found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(c => (
+                  <tr key={c.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#0f172a' }}>{c.name}</div>
+                      <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: '"IBM Plex Mono", monospace' }}>{c.id}</div>
+                    </td>
+                    <td style={{ padding: '14px 16px', color: '#334155' }}>{c.channel}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#0f172a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.spend}</div>
+                      <div style={{ fontSize: '11px', color: '#94a3b8' }}>Plan: {c.budget}</div>
+                    </td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.impressions}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#16a34a', fontWeight: 600 }}>{c.ctr}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.conv}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#2563eb' }}>{c.cac}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{
+                        display: 'inline-block',
+                        padding: '3px 8px',
+                        borderRadius: '99px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        background: parseFloat(c.roas) >= 4.0 ? '#dcfce7' : '#e0f2fe',
+                        color: parseFloat(c.roas) >= 4.0 ? '#15803d' : '#0369a1'
+                      }}>
+                        {c.roas}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: c.status === 'Active' ? '#f0fdf4' : c.status === 'Scheduled' ? '#eff6ff' : '#f8fafc',
+                        color: c.status === 'Active' ? '#16a34a' : c.status === 'Scheduled' ? '#2563eb' : '#64748b',
+                        border: `1px solid ${c.status === 'Active' ? '#bbf7d0' : c.status === 'Scheduled' ? '#bfdbfe' : '#e2e8f0'}`
+                      }}>
+                        {c.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

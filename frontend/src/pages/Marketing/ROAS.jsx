@@ -15,10 +15,10 @@ export default function ROAS() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Marketing ROAS" value="4.45x" delta="+0.65x" trend="up" subtext="₹0 attributed GMV" icon="🚀" />
-        <KpiCard label="Search Ads ROAS" value="5.20x" delta="+0.40x" trend="up" subtext="Google high-intent queries" icon="🔍" />
-        <KpiCard label="Social Ads ROAS" value="4.12x" delta="+0.32x" trend="up" subtext="Meta Instagram & FB Reels" icon="📸" />
-        <KpiCard label="Incremental ROAS (iROAS)" value="3.68x" delta="+0.24x" trend="up" subtext="Net lift over baseline" icon="📈" />
+        <KpiCard label="Blended Marketing ROAS" value="0.0x" delta="0.0x" trend="neutral" subtext="₹0 attributed GMV" icon="🚀" />
+        <KpiCard label="Search Ads ROAS" value="0.0x" delta="0.0x" trend="neutral" subtext="Google high-intent queries" icon="🔍" />
+        <KpiCard label="Social Ads ROAS" value="0.0x" delta="0.0x" trend="neutral" subtext="Meta Instagram & FB Reels" icon="📸" />
+        <KpiCard label="Incremental ROAS (iROAS)" value="0.0x" delta="0.0x" trend="neutral" subtext="Net lift over baseline" icon="📈" />
       </div>
 
       <div style={{
@@ -45,24 +45,32 @@ export default function ROAS() {
               </tr>
             </thead>
             <tbody>
-              {categoryROAS.map(c => (
-                <tr key={c.category} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{c.category}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.spend}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{c.revenue}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '13px', fontFamily: '"IBM Plex Mono", monospace' }}>
-                      {c.roas}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px', color: '#64748b', fontFamily: '"IBM Plex Mono", monospace' }}>{c.target}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600, fontSize: '11px' }}>
-                      {c.status}
-                    </span>
+              {categoryROAS.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No ROAS data found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                categoryROAS.map(c => (
+                  <tr key={c.category} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{c.category}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.spend}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{c.revenue}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '13px', fontFamily: '"IBM Plex Mono", monospace' }}>
+                        {c.roas}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px', color: '#64748b', fontFamily: '"IBM Plex Mono", monospace' }}>{c.target}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600, fontSize: '11px' }}>
+                        {c.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -18,7 +18,21 @@ import ConversionFunnel from './ConversionFunnel';
 export default function MarketingDashboard() {
   const [activeSubcategory, setActiveSubcategory] = useState('overview');
 
-  const subcategories = [];
+  const subcategories = [
+    { id: 'campaigns', label: 'Campaigns', icon: '🚀' },
+    { id: 'leads', label: 'Leads', icon: '🎯' },
+    { id: 'lead-sources', label: 'Lead Sources', icon: '🌐' },
+    { id: 'website-analytics', label: 'Website Analytics', icon: '💻' },
+    { id: 'app-analytics', label: 'App Analytics', icon: '📱' },
+    { id: 'social-media', label: 'Social Media', icon: '📸' },
+    { id: 'advertising', label: 'Advertising', icon: '📢' },
+    { id: 'marketing-spend', label: 'Marketing Spend', icon: '💰' },
+    { id: 'customer-acquisition', label: 'Customer Acquisition', icon: '🐾' },
+    { id: 'cac', label: 'CAC', icon: '🎯' },
+    { id: 'roas', label: 'ROAS', icon: '🚀' },
+    { id: 'marketing-roi', label: 'Marketing ROI', icon: '💎' },
+    { id: 'conversion-funnel', label: 'Conversion Funnel', icon: '⚡' },
+  ];
 
   if (activeSubcategory === 'campaigns') return <Campaigns />;
   if (activeSubcategory === 'leads') return <Leads />;
@@ -99,10 +113,10 @@ export default function MarketingDashboard() {
 
       {/* Primary KPI Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Ad Spend" value="₹0" delta="-5.4% under budget" trend="up" subtext="Meta, Google, In-App" icon="💳" />
-        <KpiCard label="Acquired Leads" value="0" delta="0.0%" trend="up" subtext="Inbound & app clicks" icon="🎯" />
-        <KpiCard label="Blended CAC" value="₹0" delta="-8.4%" trend="up" subtext="Industry benchmark: ₹0" icon="👥" />
-        <KpiCard label="Blended ROAS" value="4.45x" delta="0.0%" trend="up" subtext="₹0 attributed GMV" icon="🚀" />
+        <KpiCard label="Total Ad Spend" value="₹0" delta="0.0%" trend="neutral" subtext="Meta, Google, In-App" icon="💳" />
+        <KpiCard label="Acquired Leads" value="0" delta="0.0%" trend="neutral" subtext="Inbound & app clicks" icon="🎯" />
+        <KpiCard label="Blended CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Industry benchmark: ₹0" icon="👥" />
+        <KpiCard label="Blended ROAS" value="0.0x" delta="0.0%" trend="neutral" subtext="₹0 attributed GMV" icon="🚀" />
       </div>
 
       {/* Grid of Main Channels & Funnel Snapshot */}
@@ -113,26 +127,8 @@ export default function MarketingDashboard() {
             <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Top Acquisition Channels</h3>
             <button onClick={() => setActiveSubcategory('lead-sources')} style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>View All Sources →</button>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {[
-              { name: 'Google Search Ads', leads: '6,420', roas: '5.2x', share: '34.8%', color: '#3b82f6' },
-              { name: 'Meta Instagram & Reels', leads: '4,180', roas: '4.1x', share: '22.7%', color: '#ec4899' },
-              { name: 'Vet Clinic Referral Network', leads: '2,940', roas: '5.8x', share: '16.0%', color: '#10b981' },
-              { name: 'In-App Viral Invites', leads: '2,450', roas: '6.4x', share: '13.3%', color: '#f59e0b' },
-              { name: 'Organic SEO & Pet Guides', leads: '1,650', roas: 'N/A', share: '9.0%', color: '#8b5cf6' }
-            ].map(ch => (
-              <div key={ch.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', background: '#f8fafc', borderRadius: '8px' }}>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '13px', color: '#0f172a' }}>{ch.name}</div>
-                  <div style={{ fontSize: '11px', color: '#64748b' }}>{ch.leads} leads · {ch.share} share</div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
-                    {ch.roas} ROAS
-                  </span>
-                </div>
-              </div>
-            ))}
+          <div style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8', fontSize: '13px' }}>
+            No acquisition channel data available
           </div>
         </div>
 
@@ -142,24 +138,8 @@ export default function MarketingDashboard() {
             <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>Conversion Velocity & Drop-Off</h3>
             <button onClick={() => setActiveSubcategory('conversion-funnel')} style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>Deep Funnel →</button>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {[
-              { label: 'Ad Impressions', val: '1.84M', pct: '100%', color: '#3b82f6' },
-              { label: 'Website & App Clicks', val: '148,000', pct: '8.0%', color: '#0ea5e9' },
-              { label: 'Pet Parent Leads', val: '32,400', pct: '21.9%', color: '#10b981' },
-              { label: 'Consult / Cart Initiated', val: '12,800', pct: '39.5%', color: '#f59e0b' },
-              { label: 'Paid Orders Completed', val: '4,720', pct: '36.9%', color: '#ec4899' }
-            ].map(fn => (
-              <div key={fn.label}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                  <span style={{ fontWeight: 600, color: '#334155' }}>{fn.label}</span>
-                  <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{fn.val} ({fn.pct})</span>
-                </div>
-                <div style={{ height: '6px', background: '#f1f5f9', borderRadius: '99px', overflow: 'hidden' }}>
-                  <div style={{ width: fn.pct, height: '100%', background: fn.color }} />
-                </div>
-              </div>
-            ))}
+          <div style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8', fontSize: '13px' }}>
+            No conversion funnel velocity recorded
           </div>
         </div>
       </div>

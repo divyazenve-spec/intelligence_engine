@@ -12,13 +12,13 @@ export default function CAC() {
       title="Customer Acquisition Cost (CAC) Intelligence"
       subtitle="Blended CAC, paid vs organic acquisition cost, payback window, and LTV-to-CAC health ratio"
       icon="🎯"
-      badge="₹0 CAC"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended CAC" value="₹0" delta="-8.4%" trend="up" subtext="Across all acquisition channels" icon="🎯" />
-        <KpiCard label="Paid Only CAC" value="₹0" delta="-6.2%" trend="up" subtext="Meta & Google ad spend" icon="💳" />
-        <KpiCard label="Organic / Referral CAC" value="₹0" delta="-12.1%" trend="up" subtext="Viral invite & SEO" icon="🌱" />
-        <KpiCard label="LTV to CAC Ratio" value="3.82x" delta="+0.45x" trend="up" subtext="Target healthy band > 3.0x" icon="⚖️" />
+        <KpiCard label="Blended CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Across all acquisition channels" icon="🎯" />
+        <KpiCard label="Paid Only CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Meta & Google ad spend" icon="💳" />
+        <KpiCard label="Organic / Referral CAC" value="₹0" delta="0.0%" trend="neutral" subtext="Viral invite & SEO" icon="🌱" />
+        <KpiCard label="LTV to CAC Ratio" value="0.0x" delta="0.0x" trend="neutral" subtext="Target healthy band > 0.0x" icon="⚖️" />
       </div>
 
       <div style={{
@@ -46,21 +46,29 @@ export default function CAC() {
               </tr>
             </thead>
             <tbody>
-              {cityCAC.map(c => (
-                <tr key={c.city} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{c.city}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 700, color: '#2563eb', fontFamily: '"IBM Plex Mono", monospace' }}>{c.blendedCAC}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.paidCAC}</td>
-                  <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.organicCAC}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.newCustomers}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
-                      {c.ltvRatio}
-                    </span>
+              {cityCAC.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No city CAC intelligence data found
                   </td>
-                  <td style={{ padding: '14px 16px', color: '#475569', fontWeight: 500 }}>{c.status}</td>
                 </tr>
-              ))}
+              ) : (
+                cityCAC.map(c => (
+                  <tr key={c.city} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{c.city}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 700, color: '#2563eb', fontFamily: '"IBM Plex Mono", monospace' }}>{c.blendedCAC}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.paidCAC}</td>
+                    <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{c.organicCAC}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{c.newCustomers}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
+                        {c.ltvRatio}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px', color: '#475569', fontWeight: 500 }}>{c.status}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

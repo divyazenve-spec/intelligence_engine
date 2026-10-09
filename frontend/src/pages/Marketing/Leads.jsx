@@ -40,10 +40,10 @@ export default function Leads() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="New Leads (MTD)" value="0" delta="0.0%" trend="up" subtext="Qualified pet parents" icon="📥" />
-        <KpiCard label="Consultations Booked" value="0" delta="0.0%" trend="up" subtext="37.2% booking rate" icon="🩺" />
-        <KpiCard label="Lead-to-Order Conversion" value="0.0%" delta="0.0%" trend="up" subtext="Benchmark: 22%" icon="🔄" />
-        <KpiCard label="Avg Lead Pipeline Value" value="₹0" delta="0.0%" trend="up" subtext="Expected first 30D spend" icon="💎" />
+        <KpiCard label="New Leads (MTD)" value="0" delta="0.0%" trend="neutral" subtext="Qualified pet parents" icon="📥" />
+        <KpiCard label="Consultations Booked" value="0" delta="0.0%" trend="neutral" subtext="0.0% booking rate" icon="🩺" />
+        <KpiCard label="Lead-to-Order Conversion" value="0.0%" delta="0.0%" trend="neutral" subtext="Benchmark: 0.0%" icon="🔄" />
+        <KpiCard label="Avg Lead Pipeline Value" value="₹0" delta="0.0%" trend="neutral" subtext="Expected first 30D spend" icon="💎" />
       </div>
 
       <div style={{
@@ -75,44 +75,52 @@ export default function Leads() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(l => (
-                <tr key={l.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#0f172a' }}>{l.parent}</div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: '"IBM Plex Mono", monospace' }}>{l.id}</div>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No leads found
                   </td>
-                  <td style={{ padding: '14px 16px', color: '#334155', fontWeight: 500 }}>{l.pet}</td>
-                  <td style={{ padding: '14px 16px', color: '#64748b', fontSize: '12px' }}>{l.city}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#f1f5f9', color: '#475569', fontSize: '11px' }}>
-                      {l.source}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{
-                      fontWeight: 700,
-                      fontFamily: '"IBM Plex Mono", monospace',
-                      color: l.score.startsWith('A') ? '#16a34a' : '#2563eb'
-                    }}>
-                      {l.score}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: l.stage === 'Converted' ? '#dcfce7' : l.stage === 'Consult Booked' ? '#dbeafe' : '#fef3c7',
-                      color: l.stage === 'Converted' ? '#15803d' : l.stage === 'Consult Booked' ? '#1e40af' : '#92400e'
-                    }}>
-                      {l.stage}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px', color: '#334155' }}>{l.rep}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{l.value}</td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(l => (
+                  <tr key={l.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#0f172a' }}>{l.parent}</div>
+                      <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: '"IBM Plex Mono", monospace' }}>{l.id}</div>
+                    </td>
+                    <td style={{ padding: '14px 16px', color: '#334155', fontWeight: 500 }}>{l.pet}</td>
+                    <td style={{ padding: '14px 16px', color: '#64748b', fontSize: '12px' }}>{l.city}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#f1f5f9', color: '#475569', fontSize: '11px' }}>
+                        {l.source}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{
+                        fontWeight: 700,
+                        fontFamily: '"IBM Plex Mono", monospace',
+                        color: l.score.startsWith('A') ? '#16a34a' : '#2563eb'
+                      }}>
+                        {l.score}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: l.stage === 'Converted' ? '#dcfce7' : l.stage === 'Consult Booked' ? '#dbeafe' : '#fef3c7',
+                        color: l.stage === 'Converted' ? '#15803d' : l.stage === 'Consult Booked' ? '#1e40af' : '#92400e'
+                      }}>
+                        {l.stage}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px', color: '#334155' }}>{l.rep}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{l.value}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

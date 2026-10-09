@@ -15,10 +15,10 @@ export default function WebsiteAnalytics() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Monthly Unique Visitors" value="0" delta="0.0%" trend="up" subtext="72% Mobile web traffic" icon="👥" />
-        <KpiCard label="Avg Session Duration" value="3m 14s" delta="+18s" trend="up" subtext="Benchmark: 2m 20s" icon="⏱️" />
-        <KpiCard label="Sitewide Bounce Rate" value="0.0%" delta="-3.8%" trend="up" subtext="Lower is better" icon="📉" />
-        <KpiCard label="Goal Conversion Rate" value="0.0%" delta="0.0%" trend="up" subtext="Add to Cart & Booking" icon="🎯" />
+        <KpiCard label="Monthly Unique Visitors" value="0" delta="0.0%" trend="neutral" subtext="0% Mobile web traffic" icon="👥" />
+        <KpiCard label="Avg Session Duration" value="0m 0s" delta="0.0%" trend="neutral" subtext="Benchmark: 0m 0s" icon="⏱️" />
+        <KpiCard label="Sitewide Bounce Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Lower is better" icon="📉" />
+        <KpiCard label="Goal Conversion Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Add to Cart & Booking" icon="🎯" />
       </div>
 
       <div style={{
@@ -45,23 +45,31 @@ export default function WebsiteAnalytics() {
               </tr>
             </thead>
             <tbody>
-              {topPages.map(p => (
-                <tr key={p.path} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#0f172a' }}>{p.title}</div>
-                    <div style={{ fontSize: '11px', color: '#2563eb', fontFamily: '"IBM Plex Mono", monospace' }}>{p.path}</div>
-                  </td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.views}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#475569' }}>{p.unique}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{p.time}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#64748b' }}>{p.bounce}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
-                      {p.conv}
-                    </span>
+              {topPages.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No website analytics data found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                topPages.map(p => (
+                  <tr key={p.path} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#0f172a' }}>{p.title}</div>
+                      <div style={{ fontSize: '11px', color: '#2563eb', fontFamily: '"IBM Plex Mono", monospace' }}>{p.path}</div>
+                    </td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{p.views}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#475569' }}>{p.unique}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{p.time}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#64748b' }}>{p.bounce}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#dcfce7', color: '#15803d', fontWeight: 700, fontSize: '12px' }}>
+                        {p.conv}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

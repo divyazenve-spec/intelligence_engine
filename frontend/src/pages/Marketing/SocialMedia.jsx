@@ -15,10 +15,10 @@ export default function SocialMedia() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Total Social Audience" value="0" delta="+26,700 / mo" trend="up" subtext="Across 4 channels" icon="👥" />
-        <KpiCard label="Average Engagement Rate" value="0.0%" delta="0.0%" trend="up" subtext="Industry avg: 1.8%" icon="💬" />
-        <KpiCard label="Monthly Content Reach" value="2.45M" delta="0.0%" trend="up" subtext="Reels, Shorts, Carousels" icon="🔥" />
-        <KpiCard label="UGC Pet Submissions" value="0" delta="0.0%" trend="up" subtext="Pet parent tagging Zenve" icon="🐕" />
+        <KpiCard label="Total Social Audience" value="0" delta="+0 / mo" trend="neutral" subtext="Across 0 channels" icon="👥" />
+        <KpiCard label="Average Engagement Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Industry avg: 0.0%" icon="💬" />
+        <KpiCard label="Monthly Content Reach" value="0" delta="0.0%" trend="neutral" subtext="Reels, Shorts, Carousels" icon="🔥" />
+        <KpiCard label="UGC Pet Submissions" value="0" delta="0.0%" trend="neutral" subtext="Pet parent tagging Zenve" icon="🐕" />
       </div>
 
       <div style={{
@@ -45,25 +45,33 @@ export default function SocialMedia() {
               </tr>
             </thead>
             <tbody>
-              {handles.map(h => (
-                <tr key={h.handle} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, color: '#0f172a' }}>
-                      <span>{h.icon}</span>
-                      <span>{h.handle}</span>
-                    </div>
-                  </td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.followers}</td>
-                  <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.growth}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{h.engRate}</td>
-                  <td style={{ padding: '14px 16px', color: '#334155' }}>{h.topPost}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600, fontSize: '11px' }}>
-                      {h.reach}
-                    </span>
+              {handles.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No social media handles found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                handles.map(h => (
+                  <tr key={h.handle} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, color: '#0f172a' }}>
+                        <span>{h.icon}</span>
+                        <span>{h.handle}</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.followers}</td>
+                    <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{h.growth}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{h.engRate}</td>
+                    <td style={{ padding: '14px 16px', color: '#334155' }}>{h.topPost}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#eff6ff', color: '#2563eb', fontWeight: 600, fontSize: '11px' }}>
+                        {h.reach}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

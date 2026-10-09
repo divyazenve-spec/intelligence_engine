@@ -132,7 +132,7 @@
       var count = '';
       if (m.id === 'campaigns') count = '<span class="zmkt-chip-count">' + CAMPAIGNS.length + '</span>';
       else if (m.id === 'leads') count = '<span class="zmkt-chip-count">' + LEADS.length + '</span>';
-      else if (m.id === 'roas') count = '<span class="zmkt-chip-count">4.45x</span>';
+      else if (m.id === 'roas') count = '<span class="zmkt-chip-count">0.0x</span>';
 
       return [
         '<button type="button" class="zmkt-chip ' + (isActive ? 'active' : '') + '" data-tab="' + m.id + '">',
@@ -238,23 +238,23 @@
       '<div class="zmkt-kpi-grid">',
       '  <div class="zmkt-kpi-card">',
       '    <div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Total Ad Spend</span><span class="zmkt-kpi-icon-wrap">💳</span></div>',
-      '    <div class="zmkt-kpi-val">₹7,56,500</div>',
-      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-up">✓ -5.4% Under Budget</span><span>Favorable OPEX burn</span></div>',
+      '    <div class="zmkt-kpi-val">₹0</div>',
+      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Under Budget</span><span>OPEX burn</span></div>',
       '  </div>',
       '  <div class="zmkt-kpi-card">',
       '    <div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Acquired Leads</span><span class="zmkt-kpi-icon-wrap">🎯</span></div>',
-      '    <div class="zmkt-kpi-val">18,400</div>',
-      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +22.6% MTD</span><span>Qualified pet parents</span></div>',
+      '    <div class="zmkt-kpi-val">0</div>',
+      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% MTD</span><span>Qualified pet parents</span></div>',
       '  </div>',
       '  <div class="zmkt-kpi-card">',
       '    <div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended CAC</span><span class="zmkt-kpi-icon-wrap">👥</span></div>',
-      '    <div class="zmkt-kpi-val">₹365</div>',
-      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -8.4% Efficiency</span><span>Benchmark: ₹450</span></div>',
+      '    <div class="zmkt-kpi-val">₹0</div>',
+      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Efficiency</span><span>Benchmark: ₹0</span></div>',
       '  </div>',
       '  <div class="zmkt-kpi-card">',
       '    <div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended ROAS</span><span class="zmkt-kpi-icon-wrap">🚀</span></div>',
-      '    <div class="zmkt-kpi-val">4.45x</div>',
-      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +18.4%</span><span>₹33.65L Attributed GMV</span></div>',
+      '    <div class="zmkt-kpi-val">0.0x</div>',
+      '    <div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>₹0 Attributed GMV</span></div>',
       '  </div>',
       '</div>',
 
@@ -267,13 +267,7 @@
       '    <div class="zmkt-table-wrap">',
       '      <table class="zmkt-table">',
       '        <thead><tr><th>Channel</th><th>Leads</th><th>Share</th><th>ROAS</th></tr></thead>',
-      '        <tbody>',
-      '          <tr><td><b>Google Search Ads</b></td><td style="font-family:IBM Plex Mono,monospace;">6,420</td><td>34.8%</td><td><span class="zmkt-roas-pill">5.2x</span></td></tr>',
-      '          <tr><td><b>Meta Instagram & Reels</b></td><td style="font-family:IBM Plex Mono,monospace;">4,180</td><td>22.7%</td><td><span class="zmkt-roas-pill">4.1x</span></td></tr>',
-      '          <tr><td><b>Vet Clinic Referral Network</b></td><td style="font-family:IBM Plex Mono,monospace;">2,940</td><td>16.0%</td><td><span class="zmkt-roas-pill">5.8x</span></td></tr>',
-      '          <tr><td><b>In-App Viral Invites</b></td><td style="font-family:IBM Plex Mono,monospace;">2,450</td><td>13.3%</td><td><span class="zmkt-roas-pill">6.4x</span></td></tr>',
-      '          <tr><td><b>Organic SEO & Pet Guides</b></td><td style="font-family:IBM Plex Mono,monospace;">1,650</td><td>9.0%</td><td><span class="zmkt-tag zmkt-tag-completed">Organic</span></td></tr>',
-      '        </tbody>',
+      '        <tbody><tr><td colspan="4" style="text-align:center;padding:24px;color:#94a3b8;">No acquisition channel records found</td></tr></tbody>',
       '      </table>',
       '    </div>',
       '  </div>',
@@ -290,6 +284,9 @@
   }
 
   function renderFunnelBarsSummary() {
+    if (!FUNNEL_STEPS || FUNNEL_STEPS.length === 0) {
+      return '<div style="text-align:center;padding:24px;color:#94a3b8;font-size:13px;">No conversion funnel velocity recorded</div>';
+    }
     return FUNNEL_STEPS.map(function(s, idx) {
       return [
         '<div style="margin-bottom:12px;">',
@@ -334,10 +331,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Active Flights</span><span class="zmkt-kpi-icon-wrap">🚀</span></div><div class="zmkt-kpi-val">' + CAMPAIGNS.filter(function(c){return c.status === 'Active';}).length + '</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">6 Total Flights</span><span>Meta, Google & YouTube</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Campaign Spend</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹7,18,000</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">✓ Budget Adherence</span><span>Under ₹7.5L allocated</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Ad Impressions</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">1.75M</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +22.4%</span><span>Avg CTR: 5.12%</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Conversions</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">4,770</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +18.9%</span><span>Consults & Rx orders</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Active Flights</span><span class="zmkt-kpi-icon-wrap">🚀</span></div><div class="zmkt-kpi-val">' + CAMPAIGNS.filter(function(c){return c.status === 'Active';}).length + '</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0 Total Flights</span><span>Meta, Google & YouTube</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Campaign Spend</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Budget Adherence</span><span>Under plan</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Ad Impressions</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Avg CTR: 0.0%</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Conversions</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Consults & orders</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -358,7 +355,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Campaign Name</th><th>Channel</th><th>Spend / Plan</th><th>Impressions</th><th>CTR</th><th>Conversions</th><th>CAC</th><th>ROAS</th><th>Status</th><th style="text-align:right;">Action</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="10" style="text-align:center;padding:24px;color:#94a3b8;">No campaigns found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -391,10 +388,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Active Leads</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">' + LEADS.length + '</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +18.4%</span><span>Inbound pet prospects</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Consults Booked</span><span class="zmkt-kpi-icon-wrap">🩺</span></div><div class="zmkt-kpi-val">684</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">37.2% Booking Rate</span><span>Doctor appointments</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Pipeline Value</span><span class="zmkt-kpi-icon-wrap">💎</span></div><div class="zmkt-kpi-val">₹42.50L</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Avg ₹3,850/lead</span><span>Prescription + diet orders</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Lead Conv Rate</span><span class="zmkt-kpi-icon-wrap">🔄</span></div><div class="zmkt-kpi-val">28.4%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Top tier benchmark</span><span>Lead to paid sale</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Active Leads</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">' + LEADS.length + '</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Inbound pet prospects</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Consults Booked</span><span class="zmkt-kpi-icon-wrap">🩺</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Booking Rate</span><span>Doctor appointments</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Pipeline Value</span><span class="zmkt-kpi-icon-wrap">💎</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Avg ₹0/lead</span><span>Prescription + diet orders</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Lead Conv Rate</span><span class="zmkt-kpi-icon-wrap">🔄</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Benchmark: 0.0%</span><span>Lead to paid sale</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -408,7 +405,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Pet Parent</th><th>Pet Companion</th><th>City & Zone</th><th>Source</th><th>Score</th><th>Pipeline Stage</th><th>Assigned Rep</th><th>Est. Value</th><th style="text-align:right;">Action</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No leads found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -433,10 +430,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Top Lead Volume</span><span class="zmkt-kpi-icon-wrap">🔍</span></div><div class="zmkt-kpi-val">Google Search</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">34.8% Share</span><span>6,420 pet leads</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Highest Quality</span><span class="zmkt-kpi-icon-wrap">🩺</span></div><div class="zmkt-kpi-val">Vet Network</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">9.9 / 10 Score</span><span>19.8% conversion</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Lowest CAC</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">₹32 / Lead</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Viral Referrals</span><span>Pet parent sharing</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended Conv</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">9.1%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +1.4%</span><span>Across all 6 channels</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Top Lead Volume</span><span class="zmkt-kpi-icon-wrap">🔍</span></div><div class="zmkt-kpi-val">None</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Share</span><span>0 pet leads</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Highest Quality</span><span class="zmkt-kpi-icon-wrap">🩺</span></div><div class="zmkt-kpi-val">None</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0 / 10 Score</span><span>0.0% conversion</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Lowest CAC</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">None</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Viral Referrals</span><span>Pet parent sharing</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended Conv</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Across all channels</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -444,7 +441,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Lead Source</th><th>Site Visitors</th><th>Leads Generated</th><th>Conv. Rate</th><th>Spend</th><th>CAC / Lead</th><th>Quality Index</th><th>Share</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No lead sources found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -467,10 +464,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Visitors</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">260,800</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +24.2%</span><span>72% mobile browser</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Avg Session Time</span><span class="zmkt-kpi-icon-wrap">⏱️</span></div><div class="zmkt-kpi-val">3m 14s</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">+18s vs benchmark</span><span>Deep clinical dwell time</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Bounce Rate</span><span class="zmkt-kpi-icon-wrap">📉</span></div><div class="zmkt-kpi-val">31.2%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -3.8% Lower</span><span>High intent landing pages</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Goal Conversion</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">14.8%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +2.6%</span><span>Cart & consult bookings</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Visitors</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>0% mobile browser</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Avg Session Time</span><span class="zmkt-kpi-icon-wrap">⏱️</span></div><div class="zmkt-kpi-val">0m 0s</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0s vs benchmark</span><span>Clinical dwell time</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Bounce Rate</span><span class="zmkt-kpi-icon-wrap">📉</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Lower</span><span>High intent landing pages</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Goal Conversion</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Cart & consult bookings</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -478,7 +475,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Landing Page URL & Content</th><th>Views</th><th>Unique Visitors</th><th>Avg Time</th><th>Bounce Rate</th><th>Goal Conv.</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No website analytics data found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -488,10 +485,10 @@
   function renderAppAnalytics() {
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Total Downloads</span><span class="zmkt-kpi-icon-wrap">📲</span></div><div class="zmkt-kpi-val">280,600</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +26.8%</span><span>Android 66% · iOS 34%</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Daily Active Users</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">48,200</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">DAU / MAU: 26.7%</span><span>High pet parent stickiness</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Active Users</span><span class="zmkt-kpi-icon-wrap">🐾</span></div><div class="zmkt-kpi-val">180,500</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +21.2%</span><span>Recurring consults & Rx</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Store Rating</span><span class="zmkt-kpi-icon-wrap">⭐</span></div><div class="zmkt-kpi-val">4.85 ★</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">50K+ reviews</span><span>Play Store & App Store</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Total Downloads</span><span class="zmkt-kpi-icon-wrap">📲</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Android 0% · iOS 0%</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Daily Active Users</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">DAU / MAU: 0.0%</span><span>Pet parent stickiness</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Active Users</span><span class="zmkt-kpi-icon-wrap">🐾</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Recurring consults & Rx</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Store Rating</span><span class="zmkt-kpi-icon-wrap">⭐</span></div><div class="zmkt-kpi-val">0.0 ★</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0 reviews</span><span>Play Store & App Store</span></div></div>',
       '</div>',
 
       '<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(460px, 1fr));gap:20px;">',
@@ -500,21 +497,14 @@
       '    <div class="zmkt-table-wrap">',
       '      <table class="zmkt-table">',
       '        <thead><tr><th>Platform</th><th>Installs</th><th>DAU</th><th>Rating</th></tr></thead>',
-      '        <tbody>',
-      '          <tr><td><b>Android (Google Play)</b></td><td style="font-family:IBM Plex Mono,monospace;">184,200</td><td style="font-family:IBM Plex Mono,monospace;">28,400</td><td><span class="zmkt-roas-pill">4.8★</span></td></tr>',
-      '          <tr><td><b>iOS (Apple App Store)</b></td><td style="font-family:IBM Plex Mono,monospace;">96,400</td><td style="font-family:IBM Plex Mono,monospace;">19,800</td><td><span class="zmkt-roas-pill">4.9★</span></td></tr>',
-      '        </tbody>',
+      '        <tbody><tr><td colspan="4" style="text-align:center;padding:24px;color:#94a3b8;">No platform metrics recorded</td></tr></tbody>',
       '      </table>',
       '    </div>',
       '  </div>',
 
       '  <div class="zmkt-card">',
       '    <div class="zmkt-card-head"><div><h3 class="zmkt-card-title">In-App Health Milestones</h3><p class="zmkt-card-sub">Completion velocity for pet parent core actions</p></div></div>',
-      '    <div style="display:flex;flex-direction:column;gap:12px;">',
-      '      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:#f8fafc;border-radius:8px;"><div><b>Pet Health Profile Created</b><div style="font-size:11px;color:#64748b;">18,400 / mo</div></div><div style="text-align:right;"><b style="color:#2563eb;">82.4%</b><div style="font-size:11px;color:#16a34a;">+14.2%</div></div></div>',
-      '      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:#f8fafc;border-radius:8px;"><div><b>Instant Tele-Vet Call Initiated</b><div style="font-size:11px;color:#64748b;">9,200 / mo</div></div><div style="text-align:right;"><b style="color:#2563eb;">68.9%</b><div style="font-size:11px;color:#16a34a;">+22.5%</div></div></div>',
-      '      <div style="display:flex;justify-content:space-between;padding:10px 12px;background:#f8fafc;border-radius:8px;"><div><b>Prescription Reorder in 60 Mins</b><div style="font-size:11px;color:#64748b;">14,800 / mo</div></div><div style="text-align:right;"><b style="color:#2563eb;">74.2%</b><div style="font-size:11px;color:#16a34a;">+19.1%</div></div></div>',
-      '    </div>',
+      '    <div style="text-align:center;padding:24px;color:#94a3b8;font-size:13px;">No app milestones recorded</div>',
       '  </div>',
       '</div>'
     ].join('');
@@ -536,10 +526,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Community Followers</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">600,900</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">+26.7K / mo</span><span>Across 4 social channels</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Engagement Rate</span><span class="zmkt-kpi-icon-wrap">💬</span></div><div class="zmkt-kpi-val">4.90%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Industry Avg: 1.8%</span><span>High pet parent love</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Content Reach</span><span class="zmkt-kpi-icon-wrap">🔥</span></div><div class="zmkt-kpi-val">2.45M</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +34.2%</span><span>Reels & video guides</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">UGC Submissions</span><span class="zmkt-kpi-icon-wrap">🐕</span></div><div class="zmkt-kpi-val">1,840</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +41.0%</span><span>Tagging #ZenvePets</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Community Followers</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">+0 / mo</span><span>Across 0 social channels</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Engagement Rate</span><span class="zmkt-kpi-icon-wrap">💬</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Industry Avg: 0.0%</span><span>Pet parent love</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Content Reach</span><span class="zmkt-kpi-icon-wrap">🔥</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Reels & video guides</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">UGC Submissions</span><span class="zmkt-kpi-icon-wrap">🐕</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Tagging #ZenvePets</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -547,7 +537,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Network & Handle</th><th>Followers</th><th>Monthly Growth</th><th>Engagement Rate</th><th>Top Performing Content</th><th>Reach Impact</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No social channels found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -572,10 +562,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Average CPM</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">₹243</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -8.2%</span><span>Cost per 1K impressions</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended CPC</span><span class="zmkt-kpi-icon-wrap">🖱️</span></div><div class="zmkt-kpi-val">₹11.40</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -4.8%</span><span>Cost per ad click</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Target CPA</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">₹162</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Cap at ₹180</span><span>₹18 below max ceiling</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Auction Share</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">94.2%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +3.1%</span><span>Top ad placement rate</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Average CPM</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Cost per 1K impressions</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended CPC</span><span class="zmkt-kpi-icon-wrap">🖱️</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Cost per ad click</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Target CPA</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Cap at ₹0</span><span>Target ceiling</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Auction Share</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Top ad placement rate</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -583,7 +573,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Ad Set / Campaign</th><th>Platform</th><th>Spend</th><th>CPM</th><th>CPC</th><th>CPA</th><th>ROAS</th><th>Creative Health</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No ad sets found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -606,10 +596,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Budget</span><span class="zmkt-kpi-icon-wrap">📋</span></div><div class="zmkt-kpi-val">₹8,00,000</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Finance Approved</span><span>October 2026</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Actual Burn</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹7,56,500</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">✓ -5.4% Under Plan</span><span>₹43,500 surplus</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Media Spend Share</span><span class="zmkt-kpi-icon-wrap">📊</span></div><div class="zmkt-kpi-val">62.4%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Target: 60-65%</span><span>Paid ad networks</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Mkt % of GMV</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">4.8%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -0.6% Lean</span><span>Highly efficient scale</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Monthly Budget</span><span class="zmkt-kpi-icon-wrap">📋</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Finance Approved</span><span>Current Period</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Actual Burn</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% Under Plan</span><span>₹0 surplus</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Media Spend Share</span><span class="zmkt-kpi-icon-wrap">📊</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Target: 0%</span><span>Paid ad networks</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Mkt % of GMV</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Cost structure</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -617,7 +607,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Spend Category</th><th>Monthly Budget</th><th>Actual Spend</th><th>Variance</th><th>Status</th><th>Share of Budget</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No marketing spend records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -641,10 +631,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">New Customers (MTD)</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">2,840</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +16.8%</span><span>First paid transaction</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">30D Repeat Rate</span><span class="zmkt-kpi-icon-wrap">🔄</span></div><div class="zmkt-kpi-val">44.8%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +3.6%</span><span>Rx refills & nutrition</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">First Order AOV</span><span class="zmkt-kpi-icon-wrap">🛍️</span></div><div class="zmkt-kpi-val">₹1,940</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">+₹120 vs target</span><span>Premium basket size</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">60D Customer LTV</span><span class="zmkt-kpi-icon-wrap">💎</span></div><div class="zmkt-kpi-val">₹4,120</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +14.2%</span><span>High pet lifetime value</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">New Customers (MTD)</span><span class="zmkt-kpi-icon-wrap">👥</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>First paid transaction</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">30D Repeat Rate</span><span class="zmkt-kpi-icon-wrap">🔄</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Rx refills & nutrition</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">First Order AOV</span><span class="zmkt-kpi-icon-wrap">🛍️</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">₹0 vs target</span><span>Basket size</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">60D Customer LTV</span><span class="zmkt-kpi-icon-wrap">💎</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Pet lifetime value</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -652,7 +642,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Cohort</th><th>Acquired Pet Parents</th><th>30-Day Repeat</th><th>60-Day Repeat</th><th>First AOV</th><th>60-Day LTV</th><th>Retention Health</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No cohort retention records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -676,10 +666,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended CAC</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">₹365</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -8.4%</span><span>All marketing channels</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Paid Only CAC</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹512</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -6.2%</span><span>Meta & Google ad spend</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Organic CAC</span><span class="zmkt-kpi-icon-wrap">🌱</span></div><div class="zmkt-kpi-val">₹92</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -12.1%</span><span>Viral invite & SEO</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">LTV to CAC Ratio</span><span class="zmkt-kpi-icon-wrap">⚖️</span></div><div class="zmkt-kpi-val">3.82x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Healthy > 3.0x</span><span>Unit economics validated</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended CAC</span><span class="zmkt-kpi-icon-wrap">🎯</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>All marketing channels</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Paid Only CAC</span><span class="zmkt-kpi-icon-wrap">💳</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Meta & Google ad spend</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Organic CAC</span><span class="zmkt-kpi-icon-wrap">🌱</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Viral invite & SEO</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">LTV to CAC Ratio</span><span class="zmkt-kpi-icon-wrap">⚖️</span></div><div class="zmkt-kpi-val">0.0x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Healthy > 0.0x</span><span>Unit economics</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -687,7 +677,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Metro Territory</th><th>Blended CAC</th><th>Paid CAC</th><th>Organic CAC</th><th>New Customers</th><th>LTV : CAC Multiple</th><th>Unit Health</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No city CAC records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -710,10 +700,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended ROAS</span><span class="zmkt-kpi-icon-wrap">🚀</span></div><div class="zmkt-kpi-val">4.45x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +0.65x</span><span>₹33.65L Attributed GMV</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Search Ads ROAS</span><span class="zmkt-kpi-icon-wrap">🔍</span></div><div class="zmkt-kpi-val">5.20x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">High intent vet care</span><span>Google campaign return</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Social Ads ROAS</span><span class="zmkt-kpi-icon-wrap">📸</span></div><div class="zmkt-kpi-val">4.12x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Instagram & Reels</span><span>Direct order checkout</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Incremental ROAS</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">3.68x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Lift over baseline</span><span>Causal incremental revenue</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Blended ROAS</span><span class="zmkt-kpi-icon-wrap">🚀</span></div><div class="zmkt-kpi-val">0.0x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0x</span><span>₹0 Attributed GMV</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Search Ads ROAS</span><span class="zmkt-kpi-icon-wrap">🔍</span></div><div class="zmkt-kpi-val">0.0x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Search queries</span><span>Google campaign return</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Social Ads ROAS</span><span class="zmkt-kpi-icon-wrap">📸</span></div><div class="zmkt-kpi-val">0.0x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Social platforms</span><span>Direct order checkout</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Incremental ROAS</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">0.0x</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Baseline lift</span><span>Incremental revenue</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -721,7 +711,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Product & Clinical Category</th><th>Ad Spend</th><th>Attributed GMV</th><th>ROAS Multiple</th><th>Target Benchmark</th><th>Performance Status</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No category ROAS records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -744,10 +734,10 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Net Marketing ROI</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">168%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +24.5%</span><span>Net profit / Ad spend</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Gross Profit Lift</span><span class="zmkt-kpi-icon-wrap">💰</span></div><div class="zmkt-kpi-val">₹16,30,000</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Margin-adjusted</span><span>After product COGS</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Payback Window</span><span class="zmkt-kpi-icon-wrap">⏱️</span></div><div class="zmkt-kpi-val">24.8 Days</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↓ -4.2 days faster</span><span>Time to recoup CAC</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Efficiency Ratio</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">5.24</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">Total Sales / Spend</span><span>High capital efficiency</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Net Marketing ROI</span><span class="zmkt-kpi-icon-wrap">📈</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Net profit / Ad spend</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Gross Profit Lift</span><span class="zmkt-kpi-icon-wrap">💰</span></div><div class="zmkt-kpi-val">₹0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Margin-adjusted</span><span>After product COGS</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Payback Window</span><span class="zmkt-kpi-icon-wrap">⏱️</span></div><div class="zmkt-kpi-val">0 Days</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Time to recoup CAC</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Efficiency Ratio</span><span class="zmkt-kpi-icon-wrap">⚡</span></div><div class="zmkt-kpi-val">0.0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">Total Sales / Spend</span><span>Capital efficiency</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
@@ -755,7 +745,7 @@
       '  <div class="zmkt-table-wrap">',
       '    <table class="zmkt-table">',
       '      <thead><tr><th>Marketing Channel</th><th>Spend</th><th>Gross Profit Generated</th><th>Net Profit Lift</th><th>Net ROI %</th><th>Payback Window</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No marketing ROI records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
@@ -789,15 +779,15 @@
 
     return [
       '<div class="zmkt-kpi-grid">',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Top of Funnel</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">1.84M</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +24.5%</span><span>Impressions across ads</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Click-to-Install</span><span class="zmkt-kpi-icon-wrap">📲</span></div><div class="zmkt-kpi-val">21.9%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">High app intent</span><span>App Store / Play Store</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Cart-to-Paid</span><span class="zmkt-kpi-icon-wrap">🛒</span></div><div class="zmkt-kpi-val">36.9%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">↑ +4.1%</span><span>60-min checkout flow</span></div></div>',
-      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Converted Buyers</span><span class="zmkt-kpi-icon-wrap">🎉</span></div><div class="zmkt-kpi-val">4,720</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-up">2.57% End-to-End</span><span>Paying pet parents</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Top of Funnel</span><span class="zmkt-kpi-icon-wrap">👁️</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Impressions across ads</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Click-to-Install</span><span class="zmkt-kpi-icon-wrap">📲</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">High app intent</span><span>App Store / Play Store</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Cart-to-Paid</span><span class="zmkt-kpi-icon-wrap">🛒</span></div><div class="zmkt-kpi-val">0.0%</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0%</span><span>Checkout flow</span></div></div>',
+      '  <div class="zmkt-kpi-card"><div class="zmkt-kpi-top"><span class="zmkt-kpi-label">Converted Buyers</span><span class="zmkt-kpi-icon-wrap">🎉</span></div><div class="zmkt-kpi-val">0</div><div class="zmkt-kpi-foot"><span class="zmkt-badge-neutral">0.0% End-to-End</span><span>Paying pet parents</span></div></div>',
       '</div>',
 
       '<div class="zmkt-card">',
       '  <div class="zmkt-card-head"><div><h3 class="zmkt-card-title">Full Omni-Channel Conversion Funnel</h3><p class="zmkt-card-sub">Step-by-step visitor progression from initial ad view down to completed veterinary appointment</p></div></div>',
-      '  <div>' + stepsHtml + '</div>',
+      '  <div>' + (stepsHtml || '<div style="text-align:center;padding:32px;color:#94a3b8;font-size:13px;">No conversion funnel data available</div>') + '</div>',
       '</div>'
     ].join('');
   }
@@ -1060,9 +1050,9 @@
       });
     } else {
       csvContent += "Category,Metric,Value,Note\n";
-      csvContent += "Marketing Performance,Blended ROAS,4.45x,Across all paid channels\n";
-      csvContent += "Marketing Economics,Blended CAC,₹365,Acquisition cost per pet parent\n";
-      csvContent += "Funnel Velocity,Top of Funnel,1.84M impressions,Meta & Google\n";
+      csvContent += "Marketing Performance,Blended ROAS,0.0x,Across all paid channels\n";
+      csvContent += "Marketing Economics,Blended CAC,₹0,Acquisition cost per pet parent\n";
+      csvContent += "Funnel Velocity,Top of Funnel,0 impressions,Meta & Google\n";
     }
 
     var encodedUri = encodeURI(csvContent);

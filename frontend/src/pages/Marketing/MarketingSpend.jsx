@@ -12,13 +12,13 @@ export default function MarketingSpend() {
       title="Marketing Budget Allocation & Spend Burn"
       subtitle="Monthly OPEX allocation, vendor disbursements, channel spend variance, and budget compliance"
       icon="💰"
-      badge="₹0 Total Spend MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Allocated Marketing Budget" value="₹0" delta="Monthly approved" trend="neutral" subtext="Approved by Finance" icon="📋" />
-        <KpiCard label="Actual Marketing Burn" value="₹0" delta="-5.4% under budget" trend="up" subtext="Favorable variance: ₹0" icon="💳" />
-        <KpiCard label="Paid Media Share" value="0.0%" delta="Meta, Google, YouTube" trend="neutral" subtext="Optimal target: 60-65%" icon="📊" />
-        <KpiCard label="Marketing % of GMV" value="0.0%" delta="-0.6% vs target" trend="up" subtext="Very efficient cost structure" icon="📈" />
+        <KpiCard label="Allocated Marketing Budget" value="₹0" delta="0.0%" trend="neutral" subtext="Approved by Finance" icon="📋" />
+        <KpiCard label="Actual Marketing Burn" value="₹0" delta="0.0%" trend="neutral" subtext="Variance: ₹0" icon="💳" />
+        <KpiCard label="Paid Media Share" value="0.0%" delta="0.0%" trend="neutral" subtext="Optimal target: 0%" icon="📊" />
+        <KpiCard label="Marketing % of GMV" value="0.0%" delta="0.0%" trend="neutral" subtext="Cost structure" icon="📈" />
       </div>
 
       <div style={{
@@ -45,27 +45,35 @@ export default function MarketingSpend() {
               </tr>
             </thead>
             <tbody>
-              {lineItems.map(item => (
-                <tr key={item.category} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{item.category}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{item.budget}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{item.actual}</td>
-                  <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{item.variance}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#f0fdf4', color: '#16a34a', fontWeight: 600, fontSize: '11px' }}>
-                      {item.status}
-                    </span>
-                  </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '60px', height: '6px', background: '#e2e8f0', borderRadius: '99px', overflow: 'hidden' }}>
-                        <div style={{ width: item.share, height: '100%', background: '#10b981' }} />
-                      </div>
-                      <span style={{ fontSize: '11px', fontWeight: 600, color: '#475569' }}>{item.share}</span>
-                    </div>
+              {lineItems.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No marketing spend line items found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                lineItems.map(item => (
+                  <tr key={item.category} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{item.category}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{item.budget}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace', color: '#0f172a' }}>{item.actual}</td>
+                    <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{item.variance}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#f0fdf4', color: '#16a34a', fontWeight: 600, fontSize: '11px' }}>
+                        {item.status}
+                      </span>
+                    </td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div style={{ width: '60px', height: '6px', background: '#e2e8f0', borderRadius: '99px', overflow: 'hidden' }}>
+                          <div style={{ width: item.share, height: '100%', background: '#10b981' }} />
+                        </div>
+                        <span style={{ fontSize: '11px', fontWeight: 600, color: '#475569' }}>{item.share}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

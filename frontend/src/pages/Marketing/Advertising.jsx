@@ -12,13 +12,13 @@ export default function Advertising() {
       title="Paid Advertising Networks & Creative Efficiency"
       subtitle="Meta Ads Manager, Google Ads MCC, CPM, CPC, cost-per-acquisition, and ad creative health"
       icon="📢"
-      badge="₹0 Paid Ad Spend MTD"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average CPM" value="₹0" delta="-8.2%" trend="up" subtext="Cost per 1,000 impressions" icon="👁️" />
-        <KpiCard label="Blended CPC" value="₹0" delta="-4.8%" trend="up" subtext="Cost per ad click" icon="🖱️" />
-        <KpiCard label="Target CPA Adherence" value="₹0" delta="-₹0 cap" trend="up" subtext="Cap set at ₹0" icon="🎯" />
-        <KpiCard label="Ad Spend Efficiency" value="0.0%" delta="0.0%" trend="up" subtext="Impression share score" icon="⚡" />
+        <KpiCard label="Average CPM" value="₹0" delta="0.0%" trend="neutral" subtext="Cost per 1,000 impressions" icon="👁️" />
+        <KpiCard label="Blended CPC" value="₹0" delta="0.0%" trend="neutral" subtext="Cost per ad click" icon="🖱️" />
+        <KpiCard label="Target CPA Adherence" value="₹0" delta="0.0%" trend="neutral" subtext="Cap set at ₹0" icon="🎯" />
+        <KpiCard label="Ad Spend Efficiency" value="0.0%" delta="0.0%" trend="neutral" subtext="Impression share score" icon="⚡" />
       </div>
 
       <div style={{
@@ -47,30 +47,38 @@ export default function Advertising() {
               </tr>
             </thead>
             <tbody>
-              {adSets.map(a => (
-                <tr key={a.name} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{a.name}</td>
-                  <td style={{ padding: '14px 16px', color: '#475569' }}>{a.platform}</td>
-                  <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{a.spend}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpm}</td>
-                  <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpc}</td>
-                  <td style={{ padding: '14px 16px', color: '#2563eb', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpa}</td>
-                  <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{a.roas}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: a.health === 'Optimal' ? '#f0fdf4' : a.health === 'Scaling' ? '#eff6ff' : '#fef3c7',
-                      color: a.health === 'Optimal' ? '#16a34a' : a.health === 'Scaling' ? '#2563eb' : '#d97706',
-                      border: `1px solid ${a.health === 'Optimal' ? '#bbf7d0' : a.health === 'Scaling' ? '#bfdbfe' : '#fde68a'}`
-                    }}>
-                      {a.health}
-                    </span>
+              {adSets.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '32px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No advertising ad sets found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                adSets.map(a => (
+                  <tr key={a.name} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, color: '#0f172a' }}>{a.name}</td>
+                    <td style={{ padding: '14px 16px', color: '#475569' }}>{a.platform}</td>
+                    <td style={{ padding: '14px 16px', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{a.spend}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpm}</td>
+                    <td style={{ padding: '14px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpc}</td>
+                    <td style={{ padding: '14px 16px', color: '#2563eb', fontWeight: 600, fontFamily: '"IBM Plex Mono", monospace' }}>{a.cpa}</td>
+                    <td style={{ padding: '14px 16px', color: '#16a34a', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{a.roas}</td>
+                    <td style={{ padding: '14px 16px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: a.health === 'Optimal' ? '#f0fdf4' : a.health === 'Scaling' ? '#eff6ff' : '#fef3c7',
+                        color: a.health === 'Optimal' ? '#16a34a' : a.health === 'Scaling' ? '#2563eb' : '#d97706',
+                        border: `1px solid ${a.health === 'Optimal' ? '#bbf7d0' : a.health === 'Scaling' ? '#bfdbfe' : '#fde68a'}`
+                      }}>
+                        {a.health}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
