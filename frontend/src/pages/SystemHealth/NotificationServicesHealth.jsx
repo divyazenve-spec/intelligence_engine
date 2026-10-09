@@ -57,10 +57,10 @@ export default function NotificationServicesHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Delivery Rate" value="0.0%" delta="High deliverability" trend="up" subtext="Across SMS, Email & App" icon="🟢" />
-        <KpiCard label="Average Delivery Time" value="1.5 s" delta="-0.3s vs baseline" trend="up" subtext="Real-time alert SLAs" icon="⚡" />
-        <KpiCard label="Messages Dispatched Today" value="0" delta="+16.2% today" trend="up" subtext="Peak hour handled" icon="📨" />
-        <KpiCard label="DLT Template Compliance" value="0.0%" delta="Zero rejections" trend="up" subtext="TRAI DLT compliant" icon="🛡️" />
+        <KpiCard label="Overall Delivery Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Across SMS, Email & App" icon="🟢" />
+        <KpiCard label="Average Delivery Time" value="0.0 s" delta="0.0%" trend="neutral" subtext="Delivery latency monitor" icon="⚡" />
+        <KpiCard label="Messages Dispatched Today" value="0" delta="0.0%" trend="neutral" subtext="Dispatched counter" icon="📨" />
+        <KpiCard label="DLT Template Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="TRAI DLT compliant" icon="🛡️" />
       </div>
 
       {/* Providers Table */}
@@ -85,39 +85,47 @@ export default function NotificationServicesHealth() {
             </tr>
           </thead>
           <tbody>
-            {providers.map((p) => (
-              <tr key={p.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {p.name}
-                  <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.endpoint}</div>
-                </td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{p.channel}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{p.deliveryRate}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{p.latency}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>{p.balance}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {p.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => sendTestNotification(p.name)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Send Test
-                  </button>
+            {providers.length === 0 ? (
+              <tr>
+                <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No notification channels configured.
                 </td>
               </tr>
-            ))}
+            ) : (
+              providers.map((p) => (
+                <tr key={p.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {p.name}
+                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{p.endpoint}</div>
+                  </td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{p.channel}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{p.deliveryRate}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{p.latency}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>{p.balance}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {p.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => sendTestNotification(p.name)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Send Test
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

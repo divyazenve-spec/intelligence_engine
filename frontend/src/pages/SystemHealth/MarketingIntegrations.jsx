@@ -19,7 +19,7 @@ export default function MarketingIntegrations() {
       title="Marketing Ad Platforms & Attribution Health"
       subtitle="Meta CAPI, Google Ads, AppsFlyer mobile attribution, Segment CDP & WhatsApp Cloud APIs"
       icon="📣"
-      badge="All Pixels & Pipelines Live"
+      badge=""
       actions={
         <button
           onClick={() => {
@@ -57,10 +57,10 @@ export default function MarketingIntegrations() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Server Event Delivery" value="0.0%" delta="0 event drops" trend="up" subtext="Meta CAPI & Google" icon="🟢" />
-        <KpiCard label="Event Match Quality" value="9.1 / 10" delta="Top 5% industry" trend="up" subtext="Enhanced conversions" icon="🎯" />
-        <KpiCard label="Daily Stream Volume" value="0" delta="+14.2% traffic" trend="up" subtext="Real-time web & app" icon="📊" />
-        <KpiCard label="Avg Stream Latency" value="72 ms" delta="Sub-100ms" trend="up" subtext="No queuing backlog" icon="⚡" />
+        <KpiCard label="Server Event Delivery" value="0.0%" delta="0.0%" trend="neutral" subtext="Marketing delivery" icon="🟢" />
+        <KpiCard label="Event Match Quality" value="0.0 / 10" delta="0.0%" trend="neutral" subtext="Attribution scoring" icon="🎯" />
+        <KpiCard label="Daily Stream Volume" value="0" delta="0.0%" trend="neutral" subtext="Conversion streams" icon="📊" />
+        <KpiCard label="Avg Stream Latency" value="0 ms" delta="0.0%" trend="neutral" subtext="Queue latency" icon="⚡" />
       </div>
 
       {/* Integrations Table */}
@@ -85,39 +85,47 @@ export default function MarketingIntegrations() {
             </tr>
           </thead>
           <tbody>
-            {integrations.map((i) => (
-              <tr key={i.platform} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {i.platform}
-                  <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{i.endpoint}</div>
-                </td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{i.purpose}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{i.eventMatchQuality}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{i.latency}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{i.dailyEvents}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {i.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => sendTestEvent(i.platform)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Send Test
-                  </button>
+            {integrations.length === 0 ? (
+              <tr>
+                <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No marketing pipelines configured.
                 </td>
               </tr>
-            ))}
+            ) : (
+              integrations.map((i) => (
+                <tr key={i.platform} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {i.platform}
+                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{i.endpoint}</div>
+                  </td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{i.purpose}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{i.eventMatchQuality}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{i.latency}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{i.dailyEvents}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {i.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => sendTestEvent(i.platform)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Send Test
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

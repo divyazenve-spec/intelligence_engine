@@ -6,8 +6,8 @@ export default function DatabaseHealth() {
   const [dbStats, setDbStats] = useState({
     file: 'zenvebi.db',
     engine: 'SQLite 3 (WAL Mode)',
-    size: '28.0 KB',
-    pageSize: '4,096 bytes',
+    size: '0 KB',
+    pageSize: '0 bytes',
     integrity: 'ok (0 corruptions)',
     activeLocks: '0 (None)',
     walBacklog: '0 pages'
@@ -34,7 +34,7 @@ export default function DatabaseHealth() {
       title="SQLite Core Database Health"
       subtitle="zenvebi.db storage allocation, WAL journal mode checkpoints, query benchmarks, and tables"
       icon="🗄️"
-      badge="WAL Mode Active"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -86,10 +86,10 @@ export default function DatabaseHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Database Latency" value="1.2 ms" delta="Fast query execution" trend="up" subtext="Direct SQLite access" icon="⚡" />
-        <KpiCard label="Database File Size" value="28.0 KB" delta="Lightweight" trend="up" subtext="Clean B-tree structure" icon="💾" />
-        <KpiCard label="Journal Mode" value="WAL" delta="Write-Ahead-Log" trend="up" subtext="Concurrent non-blocking reads" icon="🛡️" />
-        <KpiCard label="Active Locks" value="0 Locks" delta="Zero contention" trend="up" subtext="Lock wait time: 0ms" icon="🟢" />
+        <KpiCard label="Database Latency" value="0.0 ms" delta="0.0%" trend="neutral" subtext="Direct SQLite access" icon="⚡" />
+        <KpiCard label="Database File Size" value="0 KB" delta="0.0%" trend="neutral" subtext="B-tree allocation" icon="💾" />
+        <KpiCard label="Journal Mode" value="WAL" delta="0.0%" trend="neutral" subtext="Concurrent non-blocking reads" icon="🛡️" />
+        <KpiCard label="Active Locks" value="0 Locks" delta="0.0%" trend="neutral" subtext="Lock wait time: 0ms" icon="🟢" />
       </div>
 
       {/* Engine Properties */}
@@ -142,20 +142,28 @@ export default function DatabaseHealth() {
             </tr>
           </thead>
           <tbody>
-            {tables.map((t) => (
-              <tr key={t.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--foreground, #0f172a)' }}>{t.name}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.records}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.size}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.indexCount}</td>
-                <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #64748b)' }}>{t.lastUpdated}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {t.status}
-                  </span>
+            {tables.length === 0 ? (
+              <tr>
+                <td colSpan="6" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No database tables found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              tables.map((t) => (
+                <tr key={t.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: 'var(--foreground, #0f172a)' }}>{t.name}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.records}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.size}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{t.indexCount}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', color: 'var(--muted-foreground, #64748b)' }}>{t.lastUpdated}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {t.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

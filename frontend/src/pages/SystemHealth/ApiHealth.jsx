@@ -19,12 +19,12 @@ export default function ApiHealth() {
       title="REST API & Endpoint Latency Health"
       subtitle="FastAPI microservices latency distribution, P50/P95/P99 benchmarks, error rates & throughput"
       icon="⚡"
-      badge="Avg P95: 18ms"
+      badge=""
       actions={
         <button
           onClick={() => {
-            setToast('Benchmarking all registered REST endpoints across 1,000 synthetic requests...');
-            setTimeout(() => setToast('Benchmark complete: All endpoints within sub-50ms SLA.'), 2500);
+            setToast('Benchmarking registered REST endpoints across synthetic requests...');
+            setTimeout(() => setToast('Benchmark complete: 0 endpoints active.'), 2500);
           }}
           style={{
             padding: '7px 14px',
@@ -57,10 +57,10 @@ export default function ApiHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Average P50 Latency" value="4.2 ms" delta="-0.8ms vs baseline" trend="up" subtext="Sub-5ms median" icon="⚡" />
-        <KpiCard label="P99 Tail Latency" value="22.4 ms" delta="Optimal" trend="up" subtext="Well within 100ms budget" icon="🛡️" />
-        <KpiCard label="API Error Rate" value="0.0%" delta="99.99% success" trend="up" subtext="HTTP 5xx: 0.00%" icon="🟢" />
-        <KpiCard label="Total Requests Today" value="0" delta="0.0%" trend="up" subtext="Peak: 76 RPS" icon="📊" />
+        <KpiCard label="Average P50 Latency" value="0.0 ms" delta="0.0%" trend="neutral" subtext="Sub-5ms median" icon="⚡" />
+        <KpiCard label="P99 Tail Latency" value="0.0 ms" delta="0.0%" trend="neutral" subtext="Latency budget" icon="🛡️" />
+        <KpiCard label="API Error Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="HTTP 5xx errors" icon="🟢" />
+        <KpiCard label="Total Requests Today" value="0" delta="0.0%" trend="neutral" subtext="Requests monitor" icon="📊" />
       </div>
 
       {/* HTTP Status Code Distribution */}
@@ -76,23 +76,23 @@ export default function ApiHealth() {
       }}>
         <div style={{ textAlign: 'center', borderRight: '1px solid var(--border, #e2e8f0)' }}>
           <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', textTransform: 'uppercase', fontFamily: '"IBM Plex Mono", monospace' }}>HTTP 2xx (Success)</div>
-          <div style={{ fontSize: '20px', fontWeight: 700, color: '#16a34a', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>99.42%</div>
-          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>183,846 calls</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, color: '#16a34a', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.0%</div>
+          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>0 calls</div>
         </div>
         <div style={{ textAlign: 'center', borderRight: '1px solid var(--border, #e2e8f0)' }}>
           <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', textTransform: 'uppercase', fontFamily: '"IBM Plex Mono", monospace' }}>HTTP 3xx (Redirects)</div>
-          <div style={{ fontSize: '20px', fontWeight: 700, color: '#2563eb', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.20%</div>
-          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>370 calls</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, color: '#2563eb', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.0%</div>
+          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>0 calls</div>
         </div>
         <div style={{ textAlign: 'center', borderRight: '1px solid var(--border, #e2e8f0)' }}>
           <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', textTransform: 'uppercase', fontFamily: '"IBM Plex Mono", monospace' }}>HTTP 4xx (Client Errors)</div>
-          <div style={{ fontSize: '20px', fontWeight: 700, color: '#d97706', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.37%</div>
-          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>684 calls (Auth / 404)</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, color: '#d97706', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.0%</div>
+          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>0 calls</div>
         </div>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', textTransform: 'uppercase', fontFamily: '"IBM Plex Mono", monospace' }}>HTTP 5xx (Server Faults)</div>
-          <div style={{ fontSize: '20px', fontWeight: 700, color: '#16a34a', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.01%</div>
-          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>2 calls (Recovered)</div>
+          <div style={{ fontSize: '20px', fontWeight: 700, color: '#16a34a', marginTop: '4px', fontFamily: '"IBM Plex Mono", monospace' }}>0.0%</div>
+          <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>0 calls</div>
         </div>
       </div>
 
@@ -120,51 +120,59 @@ export default function ApiHealth() {
             </tr>
           </thead>
           <tbody>
-            {endpoints.map((ep) => (
-              <tr key={ep.route} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px' }}>
-                  <span style={{
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    fontSize: '10px',
-                    fontWeight: 700,
-                    background: ep.method.includes('POST') ? '#eff6ff' : '#f0fdf4',
-                    color: ep.method.includes('POST') ? '#2563eb' : '#16a34a',
-                    border: ep.method.includes('POST') ? '1px solid #bfdbfe' : '1px solid #bbf7d0',
-                    fontFamily: '"IBM Plex Mono", monospace'
-                  }}>
-                    {ep.method}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{ep.route}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p50}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p95}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p99}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.rps}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', color: ep.errors === '0.00%' ? '#16a34a' : '#d97706' }}>{ep.errors}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {ep.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => pingRoute(ep.route)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Ping
-                  </button>
+            {endpoints.length === 0 ? (
+              <tr>
+                <td colSpan="9" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No API endpoints registered.
                 </td>
               </tr>
-            ))}
+            ) : (
+              endpoints.map((ep) => (
+                <tr key={ep.route} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px' }}>
+                    <span style={{
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      background: ep.method.includes('POST') ? '#eff6ff' : '#f0fdf4',
+                      color: ep.method.includes('POST') ? '#2563eb' : '#16a34a',
+                      border: ep.method.includes('POST') ? '1px solid #bfdbfe' : '1px solid #bbf7d0',
+                      fontFamily: '"IBM Plex Mono", monospace'
+                    }}>
+                      {ep.method}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{ep.route}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p50}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p95}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.p99}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{ep.rps}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', color: ep.errors === '0.00%' ? '#16a34a' : '#d97706' }}>{ep.errors}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {ep.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => pingRoute(ep.route)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Ping
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

@@ -19,12 +19,12 @@ export default function CrmStatus() {
       title="CRM Integrations & Contact Sync Health"
       subtitle="HubSpot, Freshdesk & Salesforce connectors, contact sync queues, webhook listeners & auth status"
       icon="👥"
-      badge="All Connectors Synced"
+      badge=""
       actions={
         <button
           onClick={() => {
-            setToast('Triggered full CRM contact reconciliation across HubSpot and Freshdesk.');
-            setTimeout(() => setToast('Reconciliation finished: 142,500 contacts 100% matched.'), 2500);
+            setToast('Triggered CRM contact reconciliation.');
+            setTimeout(() => setToast('Reconciliation finished: 0 contacts matched.'), 2500);
           }}
           style={{
             padding: '7px 14px',
@@ -57,10 +57,10 @@ export default function CrmStatus() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Synced Pet Profiles" value="0" delta="+184 today" trend="up" subtext="HubSpot CRM master" icon="🐾" />
-        <KpiCard label="Sync Lag" value="1.4 s" delta="Near real-time" trend="up" subtext="Webhook powered" icon="⚡" />
-        <KpiCard label="Failed Sync Payloads" value="0 Failed" delta="100% clean" trend="up" subtext="Dead letter queue: 0" icon="🟢" />
-        <KpiCard label="API Quota Remaining" value="0.0%" delta="442k / 500k calls" trend="up" subtext="Daily HubSpot quota" icon="📊" />
+        <KpiCard label="Synced Pet Profiles" value="0" delta="0.0%" trend="neutral" subtext="CRM master sync" icon="🐾" />
+        <KpiCard label="Sync Lag" value="0.0 s" delta="0.0%" trend="neutral" subtext="Webhook powered" icon="⚡" />
+        <KpiCard label="Failed Sync Payloads" value="0 Failed" delta="0.0%" trend="neutral" subtext="Dead letter queue: 0" icon="🟢" />
+        <KpiCard label="API Quota Remaining" value="0.0%" delta="0.0%" trend="neutral" subtext="Daily CRM quota" icon="📊" />
       </div>
 
       {/* CRM Connectors Table */}
@@ -86,40 +86,48 @@ export default function CrmStatus() {
             </tr>
           </thead>
           <tbody>
-            {connectors.map((c) => (
-              <tr key={c.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {c.name}
-                  <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{c.endpoint}</div>
-                </td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{c.type}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.syncedContacts}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>{c.syncFrequency}</td>
-                <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.lastSync}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontSize: '11px', color: 'var(--muted-foreground, #64748b)' }}>{c.tokenExpiry}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {c.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => syncNow(c.name)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Sync Now
-                  </button>
+            {connectors.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No CRM connectors found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              connectors.map((c) => (
+                <tr key={c.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {c.name}
+                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{c.endpoint}</div>
+                  </td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)' }}>{c.type}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{c.syncedContacts}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>{c.syncFrequency}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{c.lastSync}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontSize: '11px', color: 'var(--muted-foreground, #64748b)' }}>{c.tokenExpiry}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {c.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => syncNow(c.name)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Sync Now
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

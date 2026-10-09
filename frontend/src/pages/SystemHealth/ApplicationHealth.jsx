@@ -24,12 +24,12 @@ export default function ApplicationHealth() {
       title="Application & Microservice Health"
       subtitle="Host runtime, process memory, Uvicorn ASGI workers, mobile app endpoints & load metrics"
       icon="💻"
-      badge="All Systems Operational"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
             onClick={() => {
-              setToast('Global health check initiated across all 6 application runtimes.');
+              setToast('Global health check initiated across application runtimes.');
               setTimeout(() => setToast(''), 3000);
             }}
             style={{
@@ -64,10 +64,10 @@ export default function ApplicationHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Application Uptime" value="0.0%" delta="Online" trend="up" subtext="No Sev-1 downtime" icon="🟢" />
-        <KpiCard label="Active Applications" value="6 / 6 Live" delta="100% Ready" trend="up" subtext="All microservices green" icon="🚀" />
-        <KpiCard label="Total Process Memory" value="282 MB" delta="-4% vs peak" trend="up" subtext="Under 1GB budget" icon="💾" />
-        <KpiCard label="Total Throughput" value="5,202 rpm" delta="+12% today" trend="up" subtext="Peak load handled" icon="⚡" />
+        <KpiCard label="Application Uptime" value="0.0%" delta="0.0%" trend="neutral" subtext="No Sev-1 downtime" icon="🟢" />
+        <KpiCard label="Active Applications" value="0 / 0 Live" delta="0.0%" trend="neutral" subtext="All microservices monitored" icon="🚀" />
+        <KpiCard label="Total Process Memory" value="0 MB" delta="0.0%" trend="neutral" subtext="Process memory budget" icon="💾" />
+        <KpiCard label="Total Throughput" value="0 rpm" delta="0.0%" trend="neutral" subtext="Throughput metrics" icon="⚡" />
       </div>
 
       {/* Application Matrix Table */}
@@ -85,8 +85,8 @@ export default function ApplicationHealth() {
               Real-time resource utilization, worker process latency, and status
             </p>
           </div>
-          <span style={{ fontSize: '11px', color: '#166534', fontWeight: 600, background: '#f0fdf4', padding: '3px 9px', borderRadius: '99px', border: '1px solid #bbf7d0' }}>
-            ● 6 Services Healthy
+          <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, background: '#f8fafc', padding: '3px 9px', borderRadius: '99px', border: '1px solid #e2e8f0' }}>
+            ● 0 Services Active
           </span>
         </div>
 
@@ -104,62 +104,70 @@ export default function ApplicationHealth() {
             </tr>
           </thead>
           <tbody>
-            {apps.map((app) => (
-              <tr key={app.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {app.name}
-                  <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #64748b)', fontWeight: 400 }}>{app.version}</div>
-                </td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{app.type}</td>
-                <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>{app.port}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.memory}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.cpu}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.requestsPerMin}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{
-                    padding: '2px 8px',
-                    borderRadius: '99px',
-                    background: '#f0fdf4',
-                    color: '#16a34a',
-                    border: '1px solid #bbf7d0',
-                    fontWeight: 600,
-                    fontSize: '11px'
-                  }}>● {app.status}</span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <div style={{ display: 'inline-flex', gap: '6px' }}>
-                    <button
-                      onClick={() => triggerDiagnostic(app.name)}
-                      style={{
-                        padding: '4px 8px',
-                        borderRadius: '6px',
-                        background: '#f8fafc',
-                        border: '1px solid var(--border, #e2e8f0)',
-                        color: 'var(--foreground, #0f172a)',
-                        fontSize: '11px',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Ping
-                    </button>
-                    <button
-                      onClick={() => restartWorker(app.name)}
-                      style={{
-                        padding: '4px 8px',
-                        borderRadius: '6px',
-                        background: '#eff6ff',
-                        border: '1px solid #bfdbfe',
-                        color: '#2563eb',
-                        fontSize: '11px',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Reload
-                    </button>
-                  </div>
+            {apps.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No registered applications found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              apps.map((app) => (
+                <tr key={app.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {app.name}
+                    <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #64748b)', fontWeight: 400 }}>{app.version}</div>
+                  </td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{app.type}</td>
+                  <td style={{ padding: '12px', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>{app.port}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.memory}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.cpu}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{app.requestsPerMin}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{
+                      padding: '2px 8px',
+                      borderRadius: '99px',
+                      background: '#f0fdf4',
+                      color: '#16a34a',
+                      border: '1px solid #bbf7d0',
+                      fontWeight: 600,
+                      fontSize: '11px'
+                    }}>● {app.status}</span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <div style={{ display: 'inline-flex', gap: '6px' }}>
+                      <button
+                        onClick={() => triggerDiagnostic(app.name)}
+                        style={{
+                          padding: '4px 8px',
+                          borderRadius: '6px',
+                          background: '#f8fafc',
+                          border: '1px solid var(--border, #e2e8f0)',
+                          color: 'var(--foreground, #0f172a)',
+                          fontSize: '11px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Ping
+                      </button>
+                      <button
+                        onClick={() => restartWorker(app.name)}
+                        style={{
+                          padding: '4px 8px',
+                          borderRadius: '6px',
+                          background: '#eff6ff',
+                          border: '1px solid #bfdbfe',
+                          color: '#2563eb',
+                          fontSize: '11px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Reload
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

@@ -19,7 +19,7 @@ export default function AccountingSystemHealth() {
       title="Accounting ERP & Banking Integrations"
       subtitle="Zoho Books, Tally Prime, GST e-invoicing API & automated HDFC bank statement feeds"
       icon="💰"
-      badge="Zero Reconciliation Variances"
+      badge=""
       actions={
         <button
           onClick={triggerRecon}
@@ -54,10 +54,10 @@ export default function AccountingSystemHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="ERP Sync Latency" value="1.8 s" delta="Near instant" trend="up" subtext="Zoho Books API v3" icon="⚡" />
-        <KpiCard label="Reconciled Revenue" value="₹0" delta="100% matched" trend="up" subtext="Invoices vs Bank balance" icon="📊" />
-        <KpiCard label="GST IRN Generation SLA" value="240 ms" delta="Fast e-invoicing" trend="up" subtext="Govt portal verified" icon="🛡️" />
-        <KpiCard label="Unmapped Cash / Items" value="₹0" delta="Zero variance" trend="up" subtext="Clean audit trail" icon="🟢" />
+        <KpiCard label="ERP Sync Latency" value="0.0 s" delta="0.0%" trend="neutral" subtext="Zoho Books API" icon="⚡" />
+        <KpiCard label="Reconciled Revenue" value="₹0" delta="0.0%" trend="neutral" subtext="Invoices vs Bank balance" icon="📊" />
+        <KpiCard label="GST IRN Generation SLA" value="0 ms" delta="0.0%" trend="neutral" subtext="Govt portal verified" icon="🛡️" />
+        <KpiCard label="Unmapped Cash / Items" value="₹0" delta="0.0%" trend="neutral" subtext="Financial audit trail" icon="🟢" />
       </div>
 
       {/* Services Table */}
@@ -82,42 +82,50 @@ export default function AccountingSystemHealth() {
             </tr>
           </thead>
           <tbody>
-            {services.map((s) => (
-              <tr key={s.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {s.name}
-                  <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{s.endpoint}</div>
-                </td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{s.module}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>{s.syncInterval}</td>
-                <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{s.lastBatch}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.reconciledInvoices}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {s.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => {
-                      setToast(`Handshake verified with ${s.name} — Status 200 OK.`);
-                      setTimeout(() => setToast(''), 3000);
-                    }}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Test Ping
-                  </button>
+            {services.length === 0 ? (
+              <tr>
+                <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No financial connectors found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              services.map((s) => (
+                <tr key={s.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {s.name}
+                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace' }}>{s.endpoint}</div>
+                  </td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{s.module}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>{s.syncInterval}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{s.lastBatch}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.reconciledInvoices}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {s.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => {
+                        setToast(`Handshake verified with ${s.name} — Status 200 OK.`);
+                        setTimeout(() => setToast(''), 3000);
+                      }}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Test Ping
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

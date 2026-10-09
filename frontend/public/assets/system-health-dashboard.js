@@ -19,16 +19,16 @@
 
   /* ── 1. Module Registry ──────────────────────────────────────────── */
   var MODULES = [
-    { id: 'app',           label: 'Application Health',    icon: '💻', hash: '#application-health',    badge: '6 Apps Live' },
-    { id: 'api',           label: 'API Health',            icon: '⚡', hash: '#api-health',            badge: '4.2ms P50' },
-    { id: 'db',            label: 'Database Health',       icon: '🗄️', hash: '#database-health',       badge: 'SQLite WAL' },
-    { id: 'payment',       label: 'Payment Gateway',       icon: '💳', hash: '#payment-gateway',       badge: '99.4% UPI' },
-    { id: 'crm',           label: 'CRM Status',            icon: '👥', hash: '#crm-status',            badge: '142.5k Synced' },
-    { id: 'inventory',     label: 'Inventory System',      icon: '📦', hash: '#inventory-system',      badge: '5 Hubs' },
-    { id: 'accounting',    label: 'Accounting System',     icon: '💰', hash: '#accounting-system',     badge: '₹0 Variance' },
-    { id: 'marketing',     label: 'Marketing Integrations',icon: '📣', hash: '#marketing-integrations', badge: '5 CAPI Live' },
-    { id: 'notifications', label: 'Notification Services', icon: '🔔', hash: '#notification-services', badge: '99.8% Sent' },
-    { id: 'logs',          label: 'Integration Logs',       icon: '📜', hash: '#integration-logs',      badge: 'Live Buffer' }
+    { id: 'app',           label: 'Application Health',    icon: '💻', hash: '#application-health',    badge: '' },
+    { id: 'api',           label: 'API Health',            icon: '⚡', hash: '#api-health',            badge: '' },
+    { id: 'db',            label: 'Database Health',       icon: '🗄️', hash: '#database-health',       badge: '' },
+    { id: 'payment',       label: 'Payment Gateway',       icon: '💳', hash: '#payment-gateway',       badge: '' },
+    { id: 'crm',           label: 'CRM Status',            icon: '👥', hash: '#crm-status',            badge: '' },
+    { id: 'inventory',     label: 'Inventory System',      icon: '📦', hash: '#inventory-system',      badge: '' },
+    { id: 'accounting',    label: 'Accounting System',     icon: '💰', hash: '#accounting-system',     badge: '' },
+    { id: 'marketing',     label: 'Marketing Integrations',icon: '📣', hash: '#marketing-integrations', badge: '' },
+    { id: 'notifications', label: 'Notification Services', icon: '🔔', hash: '#notification-services', badge: '' },
+    { id: 'logs',          label: 'Integration Logs',       icon: '📜', hash: '#integration-logs',      badge: '' }
   ];
 
   /* ── 2. In-Memory State ──────────────────────────────────────────── */
@@ -169,7 +169,9 @@
   function renderAppTab() {
     var apps = [];
 
-    var rows = apps.map(function (a) {
+    var rows = apps.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No registered applications found.</td></tr>'
+      : apps.map(function (a) {
       return [
         '<tr>',
           '<td><strong>' + a.name + '</strong><div style="font-size:10px;color:#94a3b8">' + a.version + '</div></td>',
@@ -186,15 +188,15 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Application Uptime', '99.98%', 'Online', 'No Sev-1 downtime', '🟢', 'up'),
-        makeKpi('Active Microservices', '6 / 6 Live', '100% Ready', 'All runtimes green', '🚀', 'up'),
-        makeKpi('Process Memory', '282 MB', '-4% vs peak', 'Under 1GB budget', '💾', 'blue'),
-        makeKpi('Combined Throughput', '5,202 rpm', '+12% load', 'Peak traffic handled', '⚡', 'blue'),
+        makeKpi('Application Uptime', '0.0%', '0.0%', 'Uptime monitor', '🟢', 'blue'),
+        makeKpi('Active Microservices', '0 / 0 Live', '0.0%', 'All runtimes monitored', '🚀', 'blue'),
+        makeKpi('Process Memory', '0 MB', '0.0%', 'Process memory budget', '💾', 'blue'),
+        makeKpi('Combined Throughput', '0 rpm', '0.0%', 'Throughput monitoring', '⚡', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header">',
           '<div><h3 class="zsys-panel-title">Registered Applications & Daemons</h3><p class="zsys-panel-desc">Real-time resource utilization, worker process health, and version status</p></div>',
-          '<span class="zsys-badge zsys-badge-green">● 6 Applications Healthy</span>',
+          '<span class="zsys-badge zsys-badge-green">● 0 Applications Active</span>',
         '</div>',
         '<table class="zsys-table">',
           '<thead><tr><th>Application</th><th>Stack</th><th>Host / Port</th><th style="text-align:right">Memory</th><th style="text-align:right">CPU</th><th style="text-align:right">Throughput</th><th style="text-align:right">Status</th><th style="text-align:center">Action</th></tr></thead>',
@@ -207,7 +209,9 @@
   function renderApiTab() {
     var endpoints = [];
 
-    var rows = endpoints.map(function (e) {
+    var rows = endpoints.length === 0
+      ? '<tr><td colspan="9" style="text-align:center;padding:36px;color:#94a3b8">No API endpoints registered.</td></tr>'
+      : endpoints.map(function (e) {
       return [
         '<tr>',
           '<td><span class="zsys-badge ' + (e.method === 'POST' ? 'zsys-badge-blue' : 'zsys-badge-green') + ' zsys-mono">' + e.method + '</span></td>',
@@ -225,10 +229,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Average P50 Latency', '4.2 ms', 'Sub-5ms', 'FastAPI uvicorn core', '⚡', 'up'),
-        makeKpi('P99 Tail Latency', '22.4 ms', 'Optimal', 'Within 100ms budget', '🛡️', 'blue'),
-        makeKpi('HTTP 5xx Server Errors', '0.00%', '100% Reliable', '0 server faults today', '🟢', 'up'),
-        makeKpi('Total Requests Today', '184,920', '+18.4%', 'Peak: 76 RPS', '📊', 'blue'),
+        makeKpi('Average P50 Latency', '0.0 ms', '0.0%', 'FastAPI uvicorn core', '⚡', 'blue'),
+        makeKpi('P99 Tail Latency', '0.0 ms', '0.0%', 'Latency budget', '🛡️', 'blue'),
+        makeKpi('HTTP 5xx Server Errors', '0.00%', '0.0%', 'Server fault monitor', '🟢', 'blue'),
+        makeKpi('Total Requests Today', '0', '0.0%', 'Request counter', '📊', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">REST API Endpoints SLA & Latency Breakdown</h3><p class="zsys-panel-desc">Real-time latency distribution across ASGI endpoints</p></div></div>',
@@ -243,7 +247,9 @@
   function renderDbTab() {
     var tables = [];
 
-    var rows = tables.map(function (t) {
+    var rows = tables.length === 0
+      ? '<tr><td colspan="6" style="text-align:center;padding:36px;color:#94a3b8">No database tables found.</td></tr>'
+      : tables.map(function (t) {
       return [
         '<tr>',
           '<td class="zsys-mono" style="font-weight:700">' + t.name + '</td>',
@@ -258,13 +264,13 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Database Latency', '1.2 ms', 'Direct memory', 'SQLite WAL Engine', '⚡', 'up'),
-        makeKpi('zenvebi.db Size', '28.0 KB', 'Lightweight', 'Clean B-tree allocation', '💾', 'blue'),
-        makeKpi('Journal Mode', 'WAL', 'Write-Ahead-Log', 'Non-blocking reads', '🛡️', 'blue'),
-        makeKpi('Active Lock Queue', '0 Locks', 'Zero wait', 'Lock wait time: 0ms', '🟢', 'up'),
+        makeKpi('Database Latency', '0.0 ms', '0.0%', 'SQLite WAL Engine', '⚡', 'blue'),
+        makeKpi('Database Size', '0 KB', '0.0%', 'Storage allocation', '💾', 'blue'),
+        makeKpi('Journal Mode', 'WAL', '0.0%', 'Non-blocking reads', '🛡️', 'blue'),
+        makeKpi('Active Lock Queue', '0 Locks', '0.0%', 'Lock queue', '🟢', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
-        '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">SQLite Tables & Storage Geometry</h3><p class="zsys-panel-desc">zenvebi.db relational tables, record density, and indices</p></div></div>',
+        '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">SQLite Tables & Storage Geometry</h3><p class="zsys-panel-desc">Database relational tables, record density, and indices</p></div></div>',
         '<table class="zsys-table">',
           '<thead><tr><th>Table Name</th><th style="text-align:right">Records</th><th style="text-align:right">Size</th><th style="text-align:right">Indices</th><th style="text-align:right">Last Ingestion</th><th style="text-align:right">Status</th></tr></thead>',
           '<tbody>' + rows + '</tbody>',
@@ -276,7 +282,9 @@
   function renderPaymentTab() {
     var gateways = [];
 
-    var rows = gateways.map(function (g) {
+    var rows = gateways.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No payment gateways configured.</td></tr>'
+      : gateways.map(function (g) {
       return [
         '<tr>',
           '<td><strong>' + g.name + '</strong><div style="font-size:11px;color:#64748b">' + g.provider + '</div></td>',
@@ -292,10 +300,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('UPI Success Rate', '99.4%', '+0.4% vs target', 'Razorpay + Cashfree', '🟢', 'up'),
-        makeKpi('Webhook Latency', '28 ms', 'Rapid fulfillment', 'Sub-50ms callbacks', '⚡', 'blue'),
-        makeKpi('Failed Payments', '0.08%', 'Low abandonment', 'Bank timeouts only', '🛡️', 'up'),
-        makeKpi('Instant Refund SLA', '100%', 'RBI Compliant', 'Zero breaches', '💳', 'blue'),
+        makeKpi('UPI Success Rate', '0.0%', '0.0%', 'Payment success monitor', '🟢', 'blue'),
+        makeKpi('Webhook Latency', '0 ms', '0.0%', 'Webhook response callbacks', '⚡', 'blue'),
+        makeKpi('Failed Payments', '0.00%', '0.0%', 'Failure rate monitor', '🛡️', 'blue'),
+        makeKpi('Instant Refund SLA', '0.0%', '0.0%', 'Refund processing SLA', '💳', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Configured Payment Processors & Webhooks</h3><p class="zsys-panel-desc">Payment gateways telemetry, success rates, and callback response latencies</p></div></div>',
@@ -310,7 +318,9 @@
   function renderCrmTab() {
     var connectors = [];
 
-    var rows = connectors.map(function (c) {
+    var rows = connectors.length === 0
+      ? '<tr><td colspan="8" style="text-align:center;padding:36px;color:#94a3b8">No CRM connectors found.</td></tr>'
+      : connectors.map(function (c) {
       return [
         '<tr>',
           '<td><strong>' + c.name + '</strong><div class="zsys-mono" style="font-size:11px;color:#64748b">' + c.endpoint + '</div></td>',
@@ -326,10 +336,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Synced Pet Profiles', '142,500', '+184 today', 'HubSpot CRM master', '🐾', 'up'),
-        makeKpi('Sync Latency', '1.4 s', 'Near real-time', 'Webhook powered', '⚡', 'blue'),
-        makeKpi('Dead Letter Queue', '0 Failed', '100% Clean', 'No dropped payloads', '🟢', 'up'),
-        makeKpi('API Quota Remaining', '88.4%', '442k / 500k calls', 'Daily HubSpot quota', '📊', 'blue'),
+        makeKpi('Synced Pet Profiles', '0', '0.0%', 'CRM sync master', '🐾', 'blue'),
+        makeKpi('Sync Latency', '0.0 s', '0.0%', 'Webhook pipeline', '⚡', 'blue'),
+        makeKpi('Dead Letter Queue', '0 Failed', '0.0%', 'Payload delivery', '🟢', 'blue'),
+        makeKpi('API Quota Remaining', '0.0%', '0.0%', 'CRM daily quota', '📊', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Active CRM Connectors & Synchronization Cadence</h3><p class="zsys-panel-desc">Customer record mapping and omnichannel ticket status</p></div></div>',
@@ -344,7 +354,9 @@
   function renderInventoryTab() {
     var nodes = [];
 
-    var rows = nodes.map(function (n) {
+    var rows = nodes.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No inventory nodes found.</td></tr>'
+      : nodes.map(function (n) {
       return [
         '<tr>',
           '<td><strong>' + n.hub + '</strong></td>',
@@ -360,10 +372,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Online Warehouses', '5 / 5 Hubs', '100% Operational', 'All IoT streams green', '🏬', 'up'),
-        makeKpi('Cold-Chain Heartbeat', '3.0 s', '+2°C to +8°C', '0 breaches detected', '❄️', 'blue'),
-        makeKpi('Total Tracked SKUs', '4,200 SKUs', 'Real-time sync', 'Valuation: ₹16.64 Cr', '📦', 'blue'),
-        makeKpi('Automated PO Triggers', '14 Today', 'Zero lag', 'Stock replenishment fired', '⚡', 'up'),
+        makeKpi('Online Warehouses', '0 / 0 Hubs', '0.0%', 'IoT node streams', '🏬', 'blue'),
+        makeKpi('Cold-Chain Heartbeat', '0.0 s', '0.0%', 'Temperature telemetries', '❄️', 'blue'),
+        makeKpi('Total Tracked SKUs', '0 SKUs', '0.0%', 'Real-time stock sync', '📦', 'blue'),
+        makeKpi('Automated PO Triggers', '0 Today', '0.0%', 'Stock replenishment triggers', '⚡', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Fulfillment Hubs & IoT Sensor Streams</h3><p class="zsys-panel-desc">Real-time telemetry from vaccine chillers and inventory node gateways</p></div></div>',
@@ -378,7 +390,9 @@
   function renderAccountingTab() {
     var services = [];
 
-    var rows = services.map(function (s) {
+    var rows = services.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No accounting connectors found.</td></tr>'
+      : services.map(function (s) {
       return [
         '<tr>',
           '<td><strong>' + s.name + '</strong></td>',
@@ -394,10 +408,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('ERP Sync Latency', '1.8 s', 'Near instant', 'Zoho Books API v3', '⚡', 'up'),
-        makeKpi('Reconciled Revenue', '₹14.18 Cr', '100% matched', 'Invoices vs Bank balance', '📊', 'blue'),
-        makeKpi('GST IRN Generation SLA', '240 ms', 'Fast e-invoicing', 'Govt portal verified', '🛡️', 'blue'),
-        makeKpi('Unallocated Variance', '₹0.00', 'Zero variance', 'Clean financial audit trail', '🟢', 'up'),
+        makeKpi('ERP Sync Latency', '0.0 s', '0.0%', 'Accounting API sync', '⚡', 'blue'),
+        makeKpi('Reconciled Revenue', '₹0', '0.0%', 'Invoices matched', '📊', 'blue'),
+        makeKpi('GST IRN Generation SLA', '0 ms', '0.0%', 'Tax API response', '🛡️', 'blue'),
+        makeKpi('Unallocated Variance', '₹0.00', '0.0%', 'Financial audit trail', '🟢', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Financial Connectors & Statutory Tax Gateways</h3><p class="zsys-panel-desc">ERP sync status, e-invoicing portals, and bank feeds</p></div></div>',
@@ -412,7 +426,9 @@
   function renderMarketingTab() {
     var integrations = [];
 
-    var rows = integrations.map(function (i) {
+    var rows = integrations.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No marketing pipelines configured.</td></tr>'
+      : integrations.map(function (i) {
       return [
         '<tr>',
           '<td><strong>' + i.platform + '</strong></td>',
@@ -428,10 +444,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Event Delivery Rate', '99.96%', '0 dropped', 'Meta CAPI & Google Ads', '🟢', 'up'),
-        makeKpi('Event Match Quality', '9.1 / 10', 'Top tier', 'Enhanced conversions', '🎯', 'blue'),
-        makeKpi('Daily Stream Volume', '367,800', '+14.2%', 'Real-time web & mobile events', '📊', 'blue'),
-        makeKpi('Avg Stream Latency', '72 ms', 'Sub-100ms', 'Zero queue backlog', '⚡', 'up'),
+        makeKpi('Event Delivery Rate', '0.0%', '0.0%', 'Marketing conversion delivery', '🟢', 'blue'),
+        makeKpi('Event Match Quality', '0.0 / 10', '0.0%', 'Attribution scoring', '🎯', 'blue'),
+        makeKpi('Daily Stream Volume', '0', '0.0%', 'Marketing stream events', '📊', 'blue'),
+        makeKpi('Avg Stream Latency', '0 ms', '0.0%', 'Queue latency monitor', '⚡', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Marketing & Attribution Pipelines</h3><p class="zsys-panel-desc">Server-to-server conversion delivery and attribution accuracy</p></div></div>',
@@ -446,7 +462,9 @@
   function renderNotificationsTab() {
     var providers = [];
 
-    var rows = providers.map(function (p) {
+    var rows = providers.length === 0
+      ? '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8">No notification providers configured.</td></tr>'
+      : providers.map(function (p) {
       return [
         '<tr>',
           '<td><strong>' + p.name + '</strong></td>',
@@ -462,10 +480,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Delivery Success Rate', '99.82%', 'High deliverability', 'SMS, Email & Push', '🟢', 'up'),
-        makeKpi('Avg Delivery Latency', '1.5 s', '-0.3s vs SLA', 'Near instant chimes', '⚡', 'blue'),
-        makeKpi('Messages Today', '84,210', '+16.2%', 'Peak traffic handled', '📨', 'blue'),
-        makeKpi('DLT Template Compliance', '100%', 'TRAI Approved', 'Zero rejected templates', '🛡️', 'up'),
+        makeKpi('Delivery Success Rate', '0.0%', '0.0%', 'Notification deliverability', '🟢', 'blue'),
+        makeKpi('Avg Delivery Latency', '0.0 s', '0.0%', 'Delivery latency monitor', '⚡', 'blue'),
+        makeKpi('Messages Today', '0', '0.0%', 'Messages dispatched', '📨', 'blue'),
+        makeKpi('DLT Template Compliance', '0.0%', '0.0%', 'Regulatory compliance', '🛡️', 'blue'),
       '</div>',
       '<div class="zsys-panel">',
         '<div class="zsys-panel-header"><div><h3 class="zsys-panel-title">Active Notification Channels & Telemetry</h3><p class="zsys-panel-desc">Delivery rates, transit times, and provider balance monitoring</p></div></div>',
@@ -500,10 +518,10 @@
 
     return [
       '<div class="zsys-kpi-grid">',
-        makeKpi('Logs Ingested Today', '48,120', '+8% volume', 'Zero dropped events', '📜', 'blue'),
-        makeKpi('Warning Rate', '0.04%', 'Low frequency', '12 recoverable warnings', '⚠️', 'warn'),
-        makeKpi('Critical Halts', '0 Errors', '100% Clean', 'Zero service interruptions', '🟢', 'up'),
-        makeKpi('Log Retention SLA', '90 Days', 'Compliant', 'Encrypted storage', '🛡️', 'blue'),
+        makeKpi('Logs Ingested Today', '0', '0.0%', 'Log ingestion monitor', '📜', 'blue'),
+        makeKpi('Warning Rate', '0.0%', '0.0%', 'Warning threshold monitor', '⚠️', 'blue'),
+        makeKpi('Critical Halts', '0 Errors', '0.0%', 'Service interruptions', '🟢', 'blue'),
+        makeKpi('Log Retention SLA', '0 Days', '0.0%', 'Log retention period', '🛡️', 'blue'),
       '</div>',
       '<div class="zsys-panel" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px">',
         '<input type="text" id="zsys-log-search" placeholder="Search logs by keyword or service..." value="' + S.logSearch + '" style="flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px 12px;color:#0f172a;font-size:13px;outline:none;" />',

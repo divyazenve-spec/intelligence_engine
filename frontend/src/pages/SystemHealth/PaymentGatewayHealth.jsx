@@ -57,10 +57,10 @@ export default function PaymentGatewayHealth() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall Success Rate" value="0.0%" delta="+0.4% vs target" trend="up" subtext="Across all payment modes" icon="🟢" />
-        <KpiCard label="Average Webhook Latency" value="28 ms" delta="Rapid callbacks" trend="up" subtext="Sub-50ms fulfillment" icon="⚡" />
-        <KpiCard label="Failed Transactions" value="0.0%" delta="Low abandonment" trend="up" subtext="Bank timeouts only" icon="🛡️" />
-        <KpiCard label="Instant Refund SLA" value="0.0%" delta="Zero breaches" trend="up" subtext="Compliant with RBI 1-hr" icon="💳" />
+        <KpiCard label="Overall Success Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Across payment modes" icon="🟢" />
+        <KpiCard label="Average Webhook Latency" value="0 ms" delta="0.0%" trend="neutral" subtext="Callback fulfillment" icon="⚡" />
+        <KpiCard label="Failed Transactions" value="0.0%" delta="0.0%" trend="neutral" subtext="Transaction monitoring" icon="🛡️" />
+        <KpiCard label="Instant Refund SLA" value="0.0%" delta="0.0%" trend="neutral" subtext="Refund processing SLA" icon="💳" />
       </div>
 
       {/* Gateway Status Table */}
@@ -85,39 +85,47 @@ export default function PaymentGatewayHealth() {
             </tr>
           </thead>
           <tbody>
-            {gateways.map((gw) => (
-              <tr key={gw.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
-                  {gw.name}
-                  <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontWeight: 400 }}>{gw.provider}</div>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{gw.latency}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{gw.successRate}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>{gw.uptime}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>{gw.webhookHealth}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
-                    ● {gw.status}
-                  </span>
-                </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
-                  <button
-                    onClick={() => testWebhook(gw.name)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '6px',
-                      background: '#f8fafc',
-                      border: '1px solid var(--border, #e2e8f0)',
-                      color: 'var(--foreground, #0f172a)',
-                      fontSize: '11px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Test Webhook
-                  </button>
+            {gateways.length === 0 ? (
+              <tr>
+                <td colSpan="7" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No payment gateways configured.
                 </td>
               </tr>
-            ))}
+            ) : (
+              gateways.map((gw) => (
+                <tr key={gw.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>
+                    {gw.name}
+                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #64748b)', fontWeight: 400 }}>{gw.provider}</div>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{gw.latency}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600, color: '#16a34a', fontFamily: '"IBM Plex Mono", monospace' }}>{gw.successRate}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>{gw.uptime}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontSize: '12px', color: 'var(--muted-foreground, #64748b)' }}>{gw.webhookHealth}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{ padding: '2px 8px', borderRadius: '99px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600, fontSize: '11px' }}>
+                      ● {gw.status}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <button
+                      onClick={() => testWebhook(gw.name)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '6px',
+                        background: '#f8fafc',
+                        border: '1px solid var(--border, #e2e8f0)',
+                        color: 'var(--foreground, #0f172a)',
+                        fontSize: '11px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Test Webhook
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

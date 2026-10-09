@@ -76,10 +76,10 @@ export default function SystemHealthDashboard() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Overall System Uptime" value="0.0%" delta="Online" trend="up" subtext="Last 90 days rolling" icon="🟢" />
-        <KpiCard label="Core Backend Latency" value="3.4 ms" delta="Sub-5ms" trend="up" subtext="FastAPI + SQLite" icon="⚡" />
-        <KpiCard label="Active Microservices" value="8 / 8 Online" delta="All green" trend="up" subtext="Zero degraded services" icon="🖥️" />
-        <KpiCard label="API Failure Rate" value="0.0%" delta="Optimal" trend="up" subtext="99.992% HTTP 2xx" icon="🛡️" />
+        <KpiCard label="Overall System Uptime" value="0.0%" delta="0.0%" trend="neutral" subtext="System uptime" icon="🟢" />
+        <KpiCard label="Core Backend Latency" value="0.0 ms" delta="0.0%" trend="neutral" subtext="Backend latency" icon="⚡" />
+        <KpiCard label="Active Microservices" value="0 / 0 Online" delta="0.0%" trend="neutral" subtext="Microservice status" icon="🖥️" />
+        <KpiCard label="API Failure Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Failure rate monitor" icon="🛡️" />
       </div>
 
       {/* System Infrastructure Matrix */}
@@ -99,8 +99,8 @@ export default function SystemHealthDashboard() {
               Live telemetry monitoring across core microservices, databases, and third-party APIs
             </p>
           </div>
-          <span style={{ fontSize: '11px', color: '#166534', fontWeight: 600, background: '#f0fdf4', padding: '3px 9px', borderRadius: '99px', border: '1px solid #bbf7d0' }}>
-            ● All Systems Operational
+          <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, background: '#f8fafc', padding: '3px 9px', borderRadius: '99px', border: '1px solid #e2e8f0' }}>
+            ● 0 Services Active
           </span>
         </div>
 
@@ -118,26 +118,33 @@ export default function SystemHealthDashboard() {
             </tr>
           </thead>
           <tbody>
-            {services.map((s) => (
-              <tr key={s.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
-                <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>{s.name}</td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{s.type}</td>
-                <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>{s.host}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.latency}</td>
-                <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.load}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>{s.uptime}</td>
-                <td style={{ padding: '12px', textAlign: 'right' }}>
-                  <span style={{
-                    padding: '2px 8px',
-                    borderRadius: '99px',
-                    background: '#f0fdf4',
-                    color: '#16a34a',
-                    border: '1px solid #bbf7d0',
-                    fontWeight: 600,
-                    fontSize: '11px'
-                  }}>● {s.status}</span>
+            {services.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ padding: '36px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                  No infrastructure services registered.
                 </td>
-                <td style={{ padding: '12px', textAlign: 'center' }}>
+              </tr>
+            ) : (
+              services.map((s) => (
+                <tr key={s.name} style={{ borderBottom: '1px solid var(--border, #f1f5f9)' }}>
+                  <td style={{ padding: '12px', fontWeight: 700, color: 'var(--foreground, #0f172a)' }}>{s.name}</td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontSize: '12px' }}>{s.type}</td>
+                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #64748b)', fontFamily: '"IBM Plex Mono", monospace', fontSize: '11px' }}>{s.host}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.latency}</td>
+                  <td style={{ padding: '12px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace' }}>{s.load}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>{s.uptime}</td>
+                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                    <span style={{
+                      padding: '2px 8px',
+                      borderRadius: '99px',
+                      background: '#f0fdf4',
+                      color: '#16a34a',
+                      border: '1px solid #bbf7d0',
+                      fontWeight: 600,
+                      fontSize: '11px'
+                    }}>● {s.status}</span>
+                  </td>
+                  <td style={{ padding: '12px', textAlign: 'center' }}>
                   <button
                     onClick={() => {
                       setToast(`Diagnostic ping to ${s.name} succeeded in ${s.latency}. Status: OK.`);

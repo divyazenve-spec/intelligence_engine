@@ -45,7 +45,7 @@ export default function IntegrationLogs() {
       title="Integration Logs & Telemetry Stream"
       subtitle="Real-time multi-service diagnostic logs, webhook traces, ERP sync records & event audit stream"
       icon="📜"
-      badge="Live Log Stream"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -97,10 +97,10 @@ export default function IntegrationLogs() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Logs Ingested Today" value="0" delta="+8% volume" trend="up" subtext="No dropped events" icon="📜" />
-        <KpiCard label="Warning Rate" value="0.0%" delta="Low threshold" trend="warn" subtext="12 non-critical warns" icon="⚠️" />
-        <KpiCard label="Critical Errors" value="0 Errors" delta="100% clean" trend="up" subtext="Zero system halts" icon="🟢" />
-        <KpiCard label="Log Retention SLA" value="90 Days" delta="Compliant" trend="up" subtext="Compressed archival" icon="🛡️" />
+        <KpiCard label="Logs Ingested Today" value="0" delta="0.0%" trend="neutral" subtext="No dropped events" icon="📜" />
+        <KpiCard label="Warning Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Warning thresholds" icon="⚠️" />
+        <KpiCard label="Critical Errors" value="0 Errors" delta="0.0%" trend="neutral" subtext="System halts monitor" icon="🟢" />
+        <KpiCard label="Log Retention SLA" value="0 Days" delta="0.0%" trend="neutral" subtext="Retention period" icon="🛡️" />
       </div>
 
       {/* Filters & Search */}
