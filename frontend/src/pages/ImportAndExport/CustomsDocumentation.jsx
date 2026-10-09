@@ -18,13 +18,13 @@ export default function CustomsDocumentation() {
       title="Customs Compliance, Bill of Entry & Shipping Bills"
       subtitle="DGFT import export code (IEC), CDSCO drug controller permits, ICEGATE electronic filings, and animal quarantine NOCs"
       icon="🏛️"
-      badge="ICEGATE 100% Synced"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="ICEGATE Electronic Filings" value="14 Filings" delta="100% digital e-Sanchit" trend="up" subtext="Direct port processing" icon="🏛️" />
-        <KpiCard label="Customs Clearance Turnaround" value="2.4 Days" delta="-0.8 days improvement" trend="up" subtext="Advance filing protocol" icon="⚡" />
-        <KpiCard label="Tariff Compliance Accuracy" value="0.0%" delta="Zero misdeclaration penalties" trend="up" subtext="Certified CHA audited" icon="🛡️" />
-        <KpiCard label="Export Duty Drawback Claimed" value="₹0" delta="5% average benefit" trend="up" subtext="Credited to bank account" icon="💵" />
+        <KpiCard label="ICEGATE Electronic Filings" value="0 Filings" delta="" trend="neutral" subtext="Direct port processing" icon="🏛️" />
+        <KpiCard label="Customs Clearance Turnaround" value="0.0 Days" delta="" trend="neutral" subtext="Advance filing protocol" icon="⚡" />
+        <KpiCard label="Tariff Compliance Accuracy" value="0.0%" delta="Zero misdeclaration penalties" trend="neutral" subtext="Certified CHA audited" icon="🛡️" />
+        <KpiCard label="Export Duty Drawback Claimed" value="₹0" delta="0.0%" trend="neutral" subtext="Credited to bank account" icon="💵" />
       </div>
 
       <div style={card}>
@@ -70,29 +70,37 @@ export default function CustomsDocumentation() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(d => (
-                <tr key={d.docId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{d.docId}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{d.type}</td>
-                  <td style={{ padding: '12px' }}>{d.port}</td>
-                  <td style={{ padding: '12px', fontFamily: 'monospace' }}>{d.hsn}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{d.assessableVal}</td>
-                  <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{d.duty}</td>
-                  <td style={{ padding: '12px' }}>{d.agency}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: d.status.includes('Cleared') || d.status.includes('Order Granted') || d.status.includes('Passed') || d.status.includes('Issued') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
-                      color: d.status.includes('Cleared') || d.status.includes('Order Granted') || d.status.includes('Passed') || d.status.includes('Issued') ? '#059669' : '#d97706'
-                    }}>
-                      {d.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No customs documentation records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(d => (
+                  <tr key={d.docId} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{d.docId}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{d.type}</td>
+                    <td style={{ padding: '12px' }}>{d.port}</td>
+                    <td style={{ padding: '12px', fontFamily: 'monospace' }}>{d.hsn}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{d.assessableVal}</td>
+                    <td style={{ padding: '12px', color: '#059669', fontWeight: 600 }}>{d.duty}</td>
+                    <td style={{ padding: '12px' }}>{d.agency}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: d.status.includes('Cleared') || d.status.includes('Order Granted') || d.status.includes('Passed') || d.status.includes('Issued') ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.14)',
+                        color: d.status.includes('Cleared') || d.status.includes('Order Granted') || d.status.includes('Passed') || d.status.includes('Issued') ? '#059669' : '#d97706'
+                      }}>
+                        {d.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -206,6 +206,7 @@ body.zix-locked {
 .zix-delta.up { color: #059669; }
 .zix-delta.down { color: #dc2626; }
 .zix-delta.warn { color: #d97706; }
+.zix-delta.neutral { color: var(--muted-foreground, #64748b); }
 .zix-subtext { color: var(--muted-foreground, #64748b); font-size: 11px; }
 
 /* Cards & Grids */

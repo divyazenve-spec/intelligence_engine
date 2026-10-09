@@ -14,7 +14,7 @@ export default function ExportDashboard() {
       title="International Export Sales & Global Trade"
       subtitle="Overseas market shipments, foreign exchange (Forex) remittances, Letter of Credit (LC) execution, and export duty incentives"
       icon="🛫"
-      badge="₹0 MTD Exports"
+      badge=""
       actions={
         <button onClick={() => alert('New Export Shipping Bill creation opened...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #0891b2', background: 'rgba(8,145,178,0.12)', color: '#0e7490', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + Create Export Consignment
@@ -22,10 +22,10 @@ export default function ExportDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Export Revenue (MTD)" value="₹0" delta="+42.5% YoY" trend="up" subtext="FOB Realization ($78.2K USD)" icon="🛫" />
-        <KpiCard label="Export Destinations" value="7 Countries" delta="UAE, SG, UK, KSA, QA" trend="up" subtext="Expanding to US in Q1" icon="🌍" />
-        <KpiCard label="Letter of Credit (LC) Adherence" value="100% Sight LC" delta="Zero payment default" trend="up" subtext="First-class international banks" icon="📑" />
-        <KpiCard label="Duty Drawback / RoDTEP" value="₹0" delta="5% export incentive" trend="up" subtext="Auto-credited to bank" icon="💵" />
+        <KpiCard label="Export Revenue (MTD)" value="₹0" delta="0.0%" trend="neutral" subtext="FOB Realization ($0.0 USD)" icon="🛫" />
+        <KpiCard label="Export Destinations" value="0 Countries" delta="" trend="neutral" subtext="Expanding to international markets" icon="🌍" />
+        <KpiCard label="Letter of Credit (LC) Adherence" value="0.0%" delta="Zero payment default" trend="neutral" subtext="First-class international banks" icon="📑" />
+        <KpiCard label="Duty Drawback / RoDTEP" value="₹0" delta="0.0%" trend="neutral" subtext="Auto-credited to bank" icon="💵" />
       </div>
 
       <div style={card}>
@@ -46,29 +46,37 @@ export default function ExportDashboard() {
               </tr>
             </thead>
             <tbody>
-              {shipments.map(s => (
-                <tr key={s.sb} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.sb}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.destination}</td>
-                  <td style={{ padding: '12px' }}>{s.client}</td>
-                  <td style={{ padding: '12px' }}>{s.product}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.fobValue}</td>
-                  <td style={{ padding: '12px' }}>{s.shippingBill}</td>
-                  <td style={{ padding: '12px' }}>{s.date}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: s.status === 'Delivered' ? 'rgba(16,185,129,0.12)' : 'rgba(8,145,178,0.12)',
-                      color: s.status === 'Delivered' ? '#059669' : '#0e7490'
-                    }}>
-                      {s.status}
-                    </span>
+              {shipments.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No outbound export shipment records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                shipments.map(s => (
+                  <tr key={s.sb} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.sb}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.destination}</td>
+                    <td style={{ padding: '12px' }}>{s.client}</td>
+                    <td style={{ padding: '12px' }}>{s.product}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.fobValue}</td>
+                    <td style={{ padding: '12px' }}>{s.shippingBill}</td>
+                    <td style={{ padding: '12px' }}>{s.date}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: s.status === 'Delivered' ? 'rgba(16,185,129,0.12)' : 'rgba(8,145,178,0.12)',
+                        color: s.status === 'Delivered' ? '#059669' : '#0e7490'
+                      }}>
+                        {s.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

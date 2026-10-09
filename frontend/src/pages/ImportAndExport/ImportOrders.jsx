@@ -18,13 +18,13 @@ export default function ImportOrders() {
       title="International Purchase Orders (IPO) & LC Pipeline"
       subtitle="Cross-border procurement orders, commercial proforma invoices, forex hedging contracts, and port ETA milestones"
       icon="📑"
-      badge="₹0 Inbound Orders"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Open Import POs" value="5 Consignments" delta="€68.5K + $137K" trend="up" subtext="Inbound cross-border" icon="📑" />
-        <KpiCard label="Average Lead Time" value="28 Days" delta="-4 days via Air freight" trend="up" subtext="Factory dispatch to hub" icon="⏱️" />
-        <KpiCard label="Forex Hedging Coverage" value="0.0%" delta="Forward contracts locked" trend="up" subtext="Protected vs USD/EUR surge" icon="🔒" />
-        <KpiCard label="Port Demurrage Incidents" value="0 Days" delta="Direct Port Delivery (DPD)" trend="up" subtext="Zero port detention penalty" icon="⚡" />
+        <KpiCard label="Open Import POs" value="0 Consignments" delta="" trend="neutral" subtext="Inbound cross-border" icon="📑" />
+        <KpiCard label="Average Lead Time" value="0 Days" delta="" trend="neutral" subtext="Factory dispatch to hub" icon="⏱️" />
+        <KpiCard label="Forex Hedging Coverage" value="0.0%" delta="Forward contracts locked" trend="neutral" subtext="Protected vs USD/EUR surge" icon="🔒" />
+        <KpiCard label="Port Demurrage Incidents" value="0 Days" delta="" trend="neutral" subtext="Zero port detention penalty" icon="⚡" />
       </div>
 
       <div style={card}>
@@ -70,29 +70,37 @@ export default function ImportOrders() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(o => (
-                <tr key={o.po} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.po}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{o.supplier}</td>
-                  <td style={{ padding: '12px' }}>{o.goods}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
-                  <td style={{ padding: '12px' }}>{o.terms}</td>
-                  <td style={{ padding: '12px' }}>{o.orderDate}</td>
-                  <td style={{ padding: '12px' }}>{o.deliveryEta}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: o.status.includes('Delivered') ? 'rgba(16,185,129,0.12)' : o.status.includes('Customs') ? 'rgba(245,158,11,0.14)' : 'rgba(8,145,178,0.12)',
-                      color: o.status.includes('Delivered') ? '#059669' : o.status.includes('Customs') ? '#d97706' : '#0e7490'
-                    }}>
-                      {o.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No import order records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(o => (
+                  <tr key={o.po} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.po}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{o.supplier}</td>
+                    <td style={{ padding: '12px' }}>{o.goods}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
+                    <td style={{ padding: '12px' }}>{o.terms}</td>
+                    <td style={{ padding: '12px' }}>{o.orderDate}</td>
+                    <td style={{ padding: '12px' }}>{o.deliveryEta}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: o.status.includes('Delivered') ? 'rgba(16,185,129,0.12)' : o.status.includes('Customs') ? 'rgba(245,158,11,0.14)' : 'rgba(8,145,178,0.12)',
+                        color: o.status.includes('Delivered') ? '#059669' : o.status.includes('Customs') ? '#d97706' : '#0e7490'
+                      }}>
+                        {o.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

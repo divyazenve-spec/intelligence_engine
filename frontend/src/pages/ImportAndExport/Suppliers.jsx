@@ -17,10 +17,10 @@ export default function Suppliers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Global Suppliers" value="16 Manufacturers" delta="Europe, US, Japan" trend="up" subtext="Direct OEM distribution" icon="🌍" />
-        <KpiCard label="CDSCO Registered OEMs" value="100% Compliant" delta="Form 10 / 11 active" trend="up" subtext="Biologicals clearance" icon="🛡️" />
-        <KpiCard label="Avg Import Lead Time" value="21.4 Days" delta="-3 days optimization" trend="up" subtext="Direct air corridors" icon="⏱️" />
-        <KpiCard label="Supplier Quality Score" value="0.0%" delta="Zero batch rejections" trend="up" subtext="Pre-shipment COA verified" icon="✅" />
+        <KpiCard label="Active Global Suppliers" value="0 Manufacturers" delta="" trend="neutral" subtext="Direct OEM distribution" icon="🌍" />
+        <KpiCard label="CDSCO Registered OEMs" value="0.0%" delta="Form 10 / 11 active" trend="neutral" subtext="Biologicals clearance" icon="🛡️" />
+        <KpiCard label="Avg Import Lead Time" value="0.0 Days" delta="" trend="neutral" subtext="Direct air corridors" icon="⏱️" />
+        <KpiCard label="Supplier Quality Score" value="0.0%" delta="Zero batch rejections" trend="neutral" subtext="Pre-shipment COA verified" icon="✅" />
       </div>
 
       <div style={card}>
@@ -41,22 +41,30 @@ export default function Suppliers() {
               </tr>
             </thead>
             <tbody>
-              {suppliers.map(s => (
-                <tr key={s.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.code}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.name}</td>
-                  <td style={{ padding: '12px' }}>{s.country}</td>
-                  <td style={{ padding: '12px' }}>{s.cat}</td>
-                  <td style={{ padding: '12px' }}>{s.terms}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.annualVol}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {s.cdsco}
-                    </span>
+              {suppliers.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No global supplier records found
                   </td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.rating}</td>
                 </tr>
-              ))}
+              ) : (
+                suppliers.map(s => (
+                  <tr key={s.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.code}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.name}</td>
+                    <td style={{ padding: '12px' }}>{s.country}</td>
+                    <td style={{ padding: '12px' }}>{s.cat}</td>
+                    <td style={{ padding: '12px' }}>{s.terms}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.annualVol}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {s.cdsco}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.rating}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

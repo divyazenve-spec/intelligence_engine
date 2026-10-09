@@ -14,13 +14,13 @@ export default function ExportOrders() {
       title="International Export Sales Orders & Invoicing"
       subtitle="Overseas commercial sales orders, foreign bank letters of credit, customs shipping bill filings, and cargo manifests"
       icon="📦"
-      badge="₹0 Active Orders"
+      badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Export Orders" value="4 Consignments" delta="$72.3K USD Value" trend="up" subtext="Middle East & APAC" icon="📦" />
-        <KpiCard label="Export Order Realization" value="100% Secured" delta="LC + Advance wire" trend="up" subtext="Zero bad debt risk" icon="🛡️" />
-        <KpiCard label="Avg Export Ticket Size" value="₹0" delta="+18.4% YoY" trend="up" subtext="High-value luxury apparel" icon="💰" />
-        <KpiCard label="Export Airway Days" value="3.2 Days" delta="Direct express flights" trend="up" subtext="BOM/BLR to DXB/SIN" icon="⚡" />
+        <KpiCard label="Active Export Orders" value="0 Consignments" delta="" trend="neutral" subtext="Middle East & APAC" icon="📦" />
+        <KpiCard label="Export Order Realization" value="0.0%" delta="LC + Advance wire" trend="neutral" subtext="Zero bad debt risk" icon="🛡️" />
+        <KpiCard label="Avg Export Ticket Size" value="₹0" delta="0.0%" trend="neutral" subtext="High-value luxury apparel" icon="💰" />
+        <KpiCard label="Export Airway Days" value="0.0 Days" delta="" trend="neutral" subtext="BOM/BLR to DXB/SIN" icon="⚡" />
       </div>
 
       <div style={card}>
@@ -41,29 +41,37 @@ export default function ExportOrders() {
               </tr>
             </thead>
             <tbody>
-              {orders.map(o => (
-                <tr key={o.expPo} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.expPo}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{o.buyer}</td>
-                  <td style={{ padding: '12px' }}>{o.country}</td>
-                  <td style={{ padding: '12px' }}>{o.items}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
-                  <td style={{ padding: '12px' }}>{o.payment} ({o.terms})</td>
-                  <td style={{ padding: '12px' }}>{o.dispatch}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: o.status === 'Delivered' ? 'rgba(16,185,129,0.12)' : 'rgba(8,145,178,0.12)',
-                      color: o.status === 'Delivered' ? '#059669' : '#0e7490'
-                    }}>
-                      {o.status}
-                    </span>
+              {orders.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No export order records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                orders.map(o => (
+                  <tr key={o.expPo} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{o.expPo}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{o.buyer}</td>
+                    <td style={{ padding: '12px' }}>{o.country}</td>
+                    <td style={{ padding: '12px' }}>{o.items}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{o.val}</td>
+                    <td style={{ padding: '12px' }}>{o.payment} ({o.terms})</td>
+                    <td style={{ padding: '12px' }}>{o.dispatch}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: o.status === 'Delivered' ? 'rgba(16,185,129,0.12)' : 'rgba(8,145,178,0.12)',
+                        color: o.status === 'Delivered' ? '#059669' : '#0e7490'
+                      }}>
+                        {o.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -95,7 +95,7 @@
         '</div>',
         '<div class="zix-kpi-val">' + esc(val) + '</div>',
         '<div class="zix-kpi-bottom">',
-          '<span class="zix-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : 'warn') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
+          '<span class="zix-delta ' + (trend === 'up' ? 'up' : trend === 'down' ? 'down' : 'neutral') + '">' + (trend === 'up' ? '↑ ' : trend === 'down' ? '↓ ' : '• ') + esc(delta) + '</span>',
           '<span class="zix-subtext">' + esc(subtext) + '</span>',
         '</div>',
       '</div>'
@@ -106,12 +106,12 @@
   function renderImportDashboard() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Import Procurement (MTD)', '₹1.82 Crore', '12 Active Shipments', 'up', 'CIF Invoiced Valuation', '🚢'),
-        kpiHtml('Avg Customs Clearance', '2.4 Days', '-0.8 days via advance BE', 'up', 'Advance filing protocol', '⚡'),
-        kpiHtml('Cold-Chain Marine Reefers', '4 Containers', '2°C to 8°C Verified', 'up', 'IoT Marine Telemetry', '❄️'),
-        kpiHtml('Customs Duty & IGST Paid', '₹28.40 Lakh', 'Tariff code 3004 / 3002', 'neutral', 'Auto-debited via ICEGATE', '🏛️'),
-        kpiHtml('CDSCO / Quarantine NOC', '100% Granted', 'Zero compliance holds', 'up', 'Veterinary drug permits', '🛡️'),
-        kpiHtml('Global OEM Suppliers', '16 Partners', 'France, Germany, USA, Japan', 'up', 'Direct exclusive contracts', '🌍'),
+        kpiHtml('Import Procurement (MTD)', '₹0', '0 Active Shipments', 'neutral', 'CIF Invoiced Valuation', '🚢'),
+        kpiHtml('Avg Customs Clearance', '0.0 Days', '0.0 days via advance BE', 'neutral', 'Advance filing protocol', '⚡'),
+        kpiHtml('Cold-Chain Marine Reefers', '0 Containers', '0.0% In-Range', 'neutral', 'IoT Marine Telemetry', '❄️'),
+        kpiHtml('Customs Duty & IGST Paid', '₹0', 'Tariff code 3004 / 3002', 'neutral', 'Auto-debited via ICEGATE', '🏛️'),
+        kpiHtml('CDSCO / Quarantine NOC', '0.0%', 'Zero compliance holds', 'neutral', 'Veterinary drug permits', '🛡️'),
+        kpiHtml('Global OEM Suppliers', '0 Partners', '0.0% coverage', 'neutral', 'Direct exclusive contracts', '🌍'),
       '</div>',
 
       '<div class="zix-card">',
@@ -126,7 +126,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>B/L or AWB #</th><th>Origin Country</th><th>Consignment Description</th><th>Port of Entry</th><th>CIF Value</th><th>Customs Clearance</th><th>ETA / Delivery</th><th>Status</th></tr></thead>',
             '<tbody>',
-              IMPORTS.map(function(s) {
+              IMPORTS.length === 0 ? '<tr><td colspan="8" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No import consignment records found</td></tr>' : IMPORTS.map(function(s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(s.bl) + '</td>' +
                   '<td style="font-weight:600;">' + esc(s.origin) + '</td>' +
@@ -148,10 +148,10 @@
   function renderExportDashboard() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Export Revenue (MTD)', '₹64.40 Lakh', '+42.5% YoY', 'up', 'FOB Realization ($78.2K USD)', '🛫'),
-        kpiHtml('Overseas Export Markets', '7 Countries', 'UAE, SG, UK, KSA, Qatar', 'up', 'Expanding to US in Q1', '🌍'),
-        kpiHtml('LC Execution Adherence', '100% Sight LC', 'Zero default history', 'up', 'Backed by Tier-1 Banks', '📑'),
-        kpiHtml('Duty Drawback / RoDTEP', '₹3.22 Lakh', '5% incentive realized', 'up', 'Bank direct credit', '💵'),
+        kpiHtml('Export Revenue (MTD)', '₹0', '0.0% YoY', 'neutral', 'FOB Realization ($0.0 USD)', '🛫'),
+        kpiHtml('Overseas Export Markets', '0 Countries', '0 active lanes', 'neutral', 'Expanding to international markets', '🌍'),
+        kpiHtml('LC Execution Adherence', '0.0%', 'Zero default history', 'neutral', 'Backed by Tier-1 Banks', '📑'),
+        kpiHtml('Duty Drawback / RoDTEP', '₹0', '0.0% incentive realized', 'neutral', 'Bank direct credit', '💵'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head">',
@@ -161,7 +161,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Shipping Bill</th><th>Destination</th><th>Foreign Importer</th><th>Product Line</th><th>FOB Value</th><th>Status</th></tr></thead>',
             '<tbody>',
-              EXPORTS.map(function(e) {
+              EXPORTS.length === 0 ? '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No outbound export consignment records found</td></tr>' : EXPORTS.map(function(e) {
                 return '<tr>' +
                   '<td style="font-family:monospace;font-weight:600;">' + esc(e.sb) + '</td>' +
                   '<td style="font-weight:600;">' + esc(e.dest) + '</td>' +
@@ -181,10 +181,10 @@
   function renderImportOrders() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Open Import POs', '5 Consignments', '€68.5K + $137K', 'up', 'Inbound global trade', '📑'),
-        kpiHtml('Average Lead Time', '28 Days', '-4 days air corridor', 'up', 'Factory dispatch to hub', '⏱️'),
-        kpiHtml('Forex Hedging Coverage', '92.5%', 'Forward contracts active', 'up', 'Protected vs USD/EUR surge', '🔒'),
-        kpiHtml('Port Demurrage Days', '0 Days', 'DPD Direct Delivery', 'up', 'Zero demurrage charges', '⚡'),
+        kpiHtml('Open Import POs', '0 Consignments', '₹0 value', 'neutral', 'Inbound global trade', '📑'),
+        kpiHtml('Average Lead Time', '0 Days', '0.0 days variance', 'neutral', 'Factory dispatch to hub', '⏱️'),
+        kpiHtml('Forex Hedging Coverage', '0.0%', 'Forward contracts active', 'neutral', 'Protected vs USD/EUR surge', '🔒'),
+        kpiHtml('Port Demurrage Days', '0 Days', 'DPD Direct Delivery', 'neutral', 'Zero demurrage charges', '⚡'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">📑 International Purchase Orders (IPO) Master</h3><p class="zix-card-sub">Foreign currencies, incoterms, and customs milestones</p></div></div>',
@@ -192,9 +192,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>IPO #</th><th>Supplier</th><th>Goods Description</th><th>Value</th><th>Terms</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">IPO-2026-081</td><td style="font-weight:600;">Royal Canin SAS (France)</td><td>Gastrointestinal & Hepatic Diet Pallets</td><td style="font-weight:600;color:#059669;">€52,000 (~₹46.8L)</td><td>CIF JNPT (LC 60D)</td><td><span class="zix-pill customs">Port Inspection</span></td></tr>',
-              '<tr><td style="font-family:monospace;">IPO-2026-082</td><td style="font-weight:600;">MSD Animal Health (Germany)</td><td>Bravecto Chewable Dog Fluralaner</td><td style="font-weight:600;color:#059669;">$41,000 (~₹34.4L)</td><td>CIP BLR Airport</td><td><span class="zix-pill customs">Customs Clearance</span></td></tr>',
-              '<tr><td style="font-family:monospace;">IPO-2026-083</td><td style="font-weight:600;">Guccio Leather Atelier (Italy)</td><td>Tuscan Full Grain Nappa Hides</td><td style="font-weight:600;color:#059669;">€16,500 (~₹14.8L)</td><td>FOB Genoa (Air)</td><td><span class="zix-pill transit">In Transit</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No import purchase order records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -205,10 +203,10 @@
   function renderExportOrders() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Active Export Orders', '4 Consignments', '$72.3K USD Value', 'up', 'Middle East & APAC', '📦'),
-        kpiHtml('Order Realization', '100% Secured', 'LC + Advance wire', 'up', 'Zero bad debt risk', '🛡️'),
-        kpiHtml('Avg Export Ticket', '₹15.80 Lakh', '+18.4% YoY', 'up', 'High-margin bespoke lines', '💰'),
-        kpiHtml('Export Airway TAT', '3.2 Days', 'Direct express flights', 'up', 'BOM/BLR to DXB/SIN', '⚡'),
+        kpiHtml('Active Export Orders', '0 Consignments', '₹0 Value', 'neutral', 'Middle East & APAC', '📦'),
+        kpiHtml('Order Realization', '0.0%', 'LC + Advance wire', 'neutral', 'Zero bad debt risk', '🛡️'),
+        kpiHtml('Avg Export Ticket', '₹0', '0.0% YoY', 'neutral', 'High-margin bespoke lines', '💰'),
+        kpiHtml('Export Airway TAT', '0.0 Days', 'Direct express flights', 'neutral', 'BOM/BLR to DXB/SIN', '⚡'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">📦 International Export Orders Stream</h3><p class="zix-card-sub">Foreign buyers, contract terms, and dispatch progress</p></div></div>',
@@ -216,8 +214,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Export Order</th><th>Buyer Entity</th><th>Country</th><th>Items</th><th>Value</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">XPO-2026-031</td><td style="font-weight:600;">Royal Pets Hospital LLC</td><td>UAE</td><td>Italian Leather Collars & Leashes</td><td style="font-weight:600;color:#059669;">$18,500 (~₹15.5L)</td><td><span class="zix-pill transit">In Transit</span></td></tr>',
-              '<tr><td style="font-family:monospace;">XPO-2026-032</td><td style="font-weight:600;">PetLovers Centre APAC</td><td>Singapore</td><td>Ayurvedic Herbal Shampoos</td><td style="font-weight:600;color:#059669;">$28,000 (~₹23.5L)</td><td><span class="zix-pill cleared">Customs Passed</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No export order records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -228,10 +225,10 @@
   function renderSuppliers() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Global OEM Suppliers', '16 Manufacturers', 'France, Germany, USA, Japan', 'up', 'Direct exclusive contracts', '🌍'),
-        kpiHtml('CDSCO Registered', '100% Compliant', 'Form 10 / 11 active', 'up', 'Biologicals clearance', '🛡️'),
-        kpiHtml('Avg Import Lead Time', '21.4 Days', '-3 days via air freight', 'up', 'Corridor optimization', '⏱️'),
-        kpiHtml('Pre-Shipment QA Score', '99.2%', 'Zero batch rejections', 'up', 'Certificate of Analysis (COA)', '✅'),
+        kpiHtml('Global OEM Suppliers', '0 Manufacturers', '0 partner networks', 'neutral', 'Direct exclusive contracts', '🌍'),
+        kpiHtml('CDSCO Registered', '0.0%', 'Form 10 / 11 active', 'neutral', 'Biologicals clearance', '🛡️'),
+        kpiHtml('Avg Import Lead Time', '0.0 Days', '0.0 days via air freight', 'neutral', 'Corridor optimization', '⏱️'),
+        kpiHtml('Pre-Shipment QA Score', '0.0%', 'Zero batch rejections', 'neutral', 'Certificate of Analysis (COA)', '✅'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">🌍 Global Supplier Master Registry</h3><p class="zix-card-sub">OEM manufacturers, CDSCO registrations, and annual volumes</p></div></div>',
@@ -239,9 +236,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Supplier Code</th><th>Company Name</th><th>Country</th><th>Category</th><th>Annual Volume</th><th>Regulatory Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">SUP-GLB-01</td><td style="font-weight:600;">Royal Canin SAS</td><td>France</td><td>Veterinary Clinical Diets</td><td style="font-weight:600;color:#059669;">€580,000</td><td><span class="zix-pill cleared">Approved & Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;">SUP-GLB-02</td><td style="font-weight:600;">MSD Animal Health GmbH</td><td>Germany</td><td>Biologics & Parasiticides</td><td style="font-weight:600;color:#059669;">€420,000</td><td><span class="zix-pill cleared">Form 10 Active</span></td></tr>',
-              '<tr><td style="font-family:monospace;">SUP-GLB-03</td><td style="font-weight:600;">Zoetis Global LLC</td><td>United States</td><td>Vaccines & Rx Rx</td><td style="font-weight:600;color:#059669;">$640,000</td><td><span class="zix-pill cleared">Form 10 Active</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No global supplier records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -252,10 +247,10 @@
   function renderBuyers() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Active Global Buyers', '8 Accounts', 'Across 7 countries', 'up', 'Direct export frameworks', '🤝'),
-        kpiHtml('Annualized Export Demand', '$860,000 USD', '+38.4% YoY', 'up', '₹7.18 Cr INR equivalent', '💰'),
-        kpiHtml('Buyer Payment Record', '100% On-Time', 'Zero defaults', 'up', 'Bank LC backed', '🛡️'),
-        kpiHtml('Target Markets', '3 New Regions', 'Japan, Germany, Qatar', 'up', 'Clearance in process', '🌍'),
+        kpiHtml('Active Global Buyers', '0 Accounts', 'Across 0 countries', 'neutral', 'Direct export frameworks', '🤝'),
+        kpiHtml('Annualized Export Demand', '₹0', '0.0% YoY', 'neutral', '$0 USD equivalent', '💰'),
+        kpiHtml('Buyer Payment Record', '0.0%', 'Zero defaults', 'neutral', 'Bank LC backed', '🛡️'),
+        kpiHtml('Target Markets', '0 Regions', 'Regulatory clearance underway', 'neutral', 'Expansion pipeline', '🌍'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">🤝 International Buyers Master Ledger</h3><p class="zix-card-sub">Foreign distributor chains, hospital networks, and contract values</p></div></div>',
@@ -263,9 +258,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Buyer Code</th><th>Organization Name</th><th>Country</th><th>Channel Profile</th><th>Annual Value</th><th>Payment Terms</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">BYR-INT-01</td><td style="font-weight:600;">Royal Pets Hospital LLC</td><td>UAE (Dubai)</td><td>Hospital Chain</td><td style="font-weight:600;color:#059669;">$180,000 / yr</td><td>Sight LC (Confirmed)</td></tr>',
-              '<tr><td style="font-family:monospace;">BYR-INT-02</td><td style="font-weight:600;">PetLovers Centre APAC</td><td>Singapore</td><td>Retail Superstore</td><td style="font-weight:600;color:#059669;">$340,000 / yr</td><td>TT Wire (30D)</td></tr>',
-              '<tr><td style="font-family:monospace;">BYR-INT-03</td><td style="font-weight:600;">Mayfair Canine Atelier</td><td>UK (London)</td><td>Luxury Boutique</td><td style="font-weight:600;color:#059669;">£120,000 / yr</td><td>Card / Advance Wire</td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No international buyer records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -276,10 +269,10 @@
   function renderCustoms() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('ICEGATE Filings', '14 Active', '100% digital e-Sanchit', 'up', 'Direct port clearance', '🏛️'),
-        kpiHtml('Clearance Turnaround', '2.4 Days', '-0.8 days improvement', 'up', 'Advance filing protocol', '⚡'),
-        kpiHtml('Tariff Compliance', '100%', 'Zero penalty notices', 'up', 'Certified CHA audited', '🛡️'),
-        kpiHtml('Drawback Claimed', '₹3.22 Lakh', '5% export incentive', 'up', 'Credited to bank', '💵'),
+        kpiHtml('ICEGATE Filings', '0 Active', '0.0% digital e-Sanchit', 'neutral', 'Direct port clearance', '🏛️'),
+        kpiHtml('Clearance Turnaround', '0.0 Days', '0.0 days improvement', 'neutral', 'Advance filing protocol', '⚡'),
+        kpiHtml('Tariff Compliance', '0.0%', 'Zero penalty notices', 'neutral', 'Certified CHA audited', '🛡️'),
+        kpiHtml('Drawback Claimed', '₹0', '0.0% export incentive', 'neutral', 'Credited to bank', '💵'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">🏛️ Customs Declarations (Bill of Entry & Shipping Bills)</h3><p class="zix-card-sub">HSN tariff codes, assessable values, duty amounts, and clearance status</p></div></div>',
@@ -287,9 +280,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Filing #</th><th>Type</th><th>Port</th><th>HSN Code</th><th>Declared Value</th><th>Duty / Drawback</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">BOE-2026-9901</td><td style="font-weight:600;">Bill of Entry (Import)</td><td>Nhava Sheva (JNPT)</td><td>3004.90.99</td><td>₹48,50,000</td><td style="color:#059669;font-weight:600;">₹5,82,000 (12%)</td><td><span class="zix-pill cleared">Out of Charge</span></td></tr>',
-              '<tr><td style="font-family:monospace;">BOE-2026-9902</td><td style="font-weight:600;">Bill of Entry (Import)</td><td>Bengaluru Air (BLR)</td><td>3002.20.19</td><td>₹34,20,000</td><td style="color:#059669;font-weight:600;">₹3,42,000 (10%)</td><td><span class="zix-pill customs">Inspection (ADC)</span></td></tr>',
-              '<tr><td style="font-family:monospace;">SB-2026-4401</td><td style="font-weight:600;">Shipping Bill (Export)</td><td>Mumbai Air (BOM)</td><td>4201.00.00</td><td>₹14,50,000</td><td style="color:#0e7490;font-weight:600;">5% Drawback</td><td><span class="zix-pill cleared">LEO Granted</span></td></tr>',
+              '<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No customs declaration records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -300,10 +291,10 @@
   function renderLogistics() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Multimodal Trade Legs', '4 Corridors', 'Ocean & Air Freight', 'up', 'Direct OEM routing', '🚢'),
-        kpiHtml('Marine Cold-Chain IoT', '99.9% In-Range', '2°C to 8°C continuous', 'up', 'Zero temperature excursions', '❄️'),
-        kpiHtml('Air Cargo Transit Time', '18.4 Hours', 'Direct European corridors', 'up', 'CDG/FRA to BLR/BOM', '✈️'),
-        kpiHtml('Port DPD Clearance', '36 Hours', 'Direct Port Delivery', 'up', 'Zero port container delay', '⚡'),
+        kpiHtml('Multimodal Trade Legs', '0 Corridors', 'Ocean & Air Freight', 'neutral', 'Direct OEM routing', '🚢'),
+        kpiHtml('Marine Cold-Chain IoT', '0.0% In-Range', 'Thermal monitoring inactive', 'neutral', 'Zero temperature excursions', '❄️'),
+        kpiHtml('Air Cargo Transit Time', '0.0 Hours', 'Direct European corridors', 'neutral', 'CDG/FRA to BLR/BOM', '✈️'),
+        kpiHtml('Port DPD Clearance', '0 Hours', 'Direct Port Delivery', 'neutral', 'Zero port container delay', '⚡'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">🚢 Live Cross-Border Multimodal Telematics</h3><p class="zix-card-sub">Vessel positions, flight numbers, temperature telemetry, and port arrival</p></div></div>',
@@ -311,9 +302,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Corridor</th><th>Route</th><th>Carrier & Vessel</th><th>Mode</th><th>Temperature</th><th>Status</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-family:monospace;">TRK-COR-01</td><td style="font-weight:600;">Marseille to JNPT</td><td>CMA CGM (Mozart)</td><td>Ocean (2 x 40ft)</td><td style="color:#0891b2;font-weight:600;">Ambient</td><td><span class="zix-pill cleared">Docked / JNPT</span></td></tr>',
-              '<tr><td style="font-family:monospace;">TRK-COR-02</td><td style="font-weight:600;">Frankfurt to BLR</td><td>Lufthansa (LH 8220)</td><td>Air Reefer</td><td style="color:#0891b2;font-weight:600;">4.2°C Continuous</td><td><span class="zix-pill customs">Customs / BLR</span></td></tr>',
-              '<tr><td style="font-family:monospace;">TRK-COR-03</td><td style="font-weight:600;">Rotterdam to JNPT</td><td>Maersk (Mc-Kinney)</td><td>Ocean Reefer</td><td style="color:#0891b2;font-weight:600;">3.8°C Continuous</td><td><span class="zix-pill transit">In Transit (Sea)</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No multimodal telematics records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -324,10 +313,10 @@
   function renderProfitability() {
     return [
       '<div class="zix-kpi-grid">',
-        kpiHtml('Blended Trade Margin', '47.2%', '+3.4% YoY', 'up', 'Direct OEM arbitrage', '💎'),
-        kpiHtml('Landed Cost Multiplier', '1.14x CIF', 'Duty + Freight + Clearing', 'up', 'Lean cross-border supply', '📈'),
-        kpiHtml('Export Net Contribution', '₹21.10 Lakh', '60.5% export margin', 'up', 'Haute couture luxury markup', '💰'),
-        kpiHtml('Forex Gain / Arbitrage', '+₹1.84 Lakh', 'Favorable hedge settlement', 'up', 'Treasury forward contracts', '🌐'),
+        kpiHtml('Blended Trade Margin', '0.0%', '0.0% YoY', 'neutral', 'Direct OEM arbitrage', '💎'),
+        kpiHtml('Landed Cost Multiplier', '0.0x CIF', 'Duty + Freight + Clearing', 'neutral', 'Lean cross-border supply', '📈'),
+        kpiHtml('Export Net Contribution', '₹0', '0.0% export margin', 'neutral', 'Haute couture luxury markup', '💰'),
+        kpiHtml('Forex Gain / Arbitrage', '₹0', '0.0% hedge settlement', 'neutral', 'Treasury forward contracts', '🌐'),
       '</div>',
       '<div class="zix-card">',
         '<div class="zix-card-head"><div><h3 class="zix-card-title">💎 Trade Lane Unit Economics & Landed Cost Margins</h3><p class="zix-card-sub">Procurement cost, landed duties, realized sales, and gross profit</p></div></div>',
@@ -335,9 +324,7 @@
           '<table class="zix-table">',
             '<thead><tr><th>Trade Lane Description</th><th>Procurement</th><th>Landed Cost</th><th>Realized Revenue</th><th>Gross Profit</th><th>Margin</th></tr></thead>',
             '<tbody>',
-              '<tr><td style="font-weight:600;">Import: Clinical Diet (France to India)</td><td>₹48,50,000</td><td>₹56,40,000</td><td style="font-weight:600;">₹94,80,000</td><td style="color:#059669;font-weight:600;">₹38,40,000</td><td><span class="zix-pill cleared">40.5%</span></td></tr>',
-              '<tr><td style="font-weight:600;">Import: Antiparasitics & Biologics (Germany)</td><td>₹34,20,000</td><td>₹38,60,000</td><td style="font-weight:600;">₹74,20,000</td><td style="color:#059669;font-weight:600;">₹35,60,000</td><td><span class="zix-pill cleared">48.0%</span></td></tr>',
-              '<tr><td style="font-weight:600;">Export: Bespoke Luxury Leather (India to UAE)</td><td>₹4,80,000</td><td>₹5,40,000</td><td style="font-weight:600;">₹14,50,000</td><td style="color:#059669;font-weight:600;">₹9,10,000</td><td><span class="zix-pill trade">62.8%</span></td></tr>',
+              '<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--muted-foreground,#64748b);">No trade lane economics records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',

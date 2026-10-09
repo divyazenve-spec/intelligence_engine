@@ -17,10 +17,10 @@ export default function TradeLogistics() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Global Freight Corridors" value="4 Multi-modal Legs" delta="Ocean & Air Cargo" trend="up" subtext="Direct OEM routing" icon="🚢" />
-        <KpiCard label="Cold-Chain Marine IoT" value="99.9% In-Range" delta="2°C to 8°C continuous" trend="up" subtext="Zero thermal deviations" icon="❄️" />
-        <KpiCard label="Freight Cost per Kg" value="₹0 / kg" delta="-12.4% vs Spot Rate" trend="up" subtext="Annual volume contracted" icon="💰" />
-        <KpiCard label="Average Port Clearance" value="36 Hours" delta="Direct to Central Reefer" trend="up" subtext="Direct Port Delivery (DPD)" icon="⚡" />
+        <KpiCard label="Active Global Freight Corridors" value="0 Multi-modal Legs" delta="" trend="neutral" subtext="Direct OEM routing" icon="🚢" />
+        <KpiCard label="Cold-Chain Marine IoT" value="0.0% In-Range" delta="" trend="neutral" subtext="Zero thermal deviations" icon="❄️" />
+        <KpiCard label="Freight Cost per Kg" value="₹0 / kg" delta="0.0%" trend="neutral" subtext="Annual volume contracted" icon="💰" />
+        <KpiCard label="Average Port Clearance" value="0 Hours" delta="" trend="neutral" subtext="Direct Port Delivery (DPD)" icon="⚡" />
       </div>
 
       <div style={card}>
@@ -41,22 +41,30 @@ export default function TradeLogistics() {
               </tr>
             </thead>
             <tbody>
-              {legs.map(l => (
-                <tr key={l.track} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{l.track}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{l.route}</td>
-                  <td style={{ padding: '12px' }}>{l.carrier}</td>
-                  <td style={{ padding: '12px' }}>{l.mode}</td>
-                  <td style={{ padding: '12px', color: '#0891b2', fontWeight: 600 }}>{l.temp}</td>
-                  <td style={{ padding: '12px' }}>{l.transitTime}</td>
-                  <td style={{ padding: '12px' }}>{l.currentLoc}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(8,145,178,0.12)', color: '#0e7490' }}>
-                      {l.status}
-                    </span>
+              {legs.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No active multimodal freight corridors found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                legs.map(l => (
+                  <tr key={l.track} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{l.track}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{l.route}</td>
+                    <td style={{ padding: '12px' }}>{l.carrier}</td>
+                    <td style={{ padding: '12px' }}>{l.mode}</td>
+                    <td style={{ padding: '12px', color: '#0891b2', fontWeight: 600 }}>{l.temp}</td>
+                    <td style={{ padding: '12px' }}>{l.transitTime}</td>
+                    <td style={{ padding: '12px' }}>{l.currentLoc}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(8,145,178,0.12)', color: '#0e7490' }}>
+                        {l.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

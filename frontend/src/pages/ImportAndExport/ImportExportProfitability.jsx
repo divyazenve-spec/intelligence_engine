@@ -17,10 +17,10 @@ export default function ImportExportProfitability() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Blended Trade Gross Margin" value="0.0%" delta="+3.4% YoY" trend="up" subtext="Direct OEM sourcing advantage" icon="💎" />
-        <KpiCard label="Landed Cost Multiplier" value="1.14x CIF" delta="Duty + Freight + Clearance" trend="up" subtext="Lowest in specialty animal health" icon="📈" />
-        <KpiCard label="Export Net Contribution" value="₹0" delta="60.5% average export margin" trend="up" subtext="Haute couture luxury markup" icon="💰" />
-        <KpiCard label="Forex Gain / Arbitrage" value="+₹0" delta="Favorable EUR/INR hedge" trend="up" subtext="Treasury forward lock" icon="🌐" />
+        <KpiCard label="Blended Trade Gross Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="Direct OEM sourcing advantage" icon="💎" />
+        <KpiCard label="Landed Cost Multiplier" value="0.0x CIF" delta="" trend="neutral" subtext="Lowest in specialty animal health" icon="📈" />
+        <KpiCard label="Export Net Contribution" value="₹0" delta="0.0%" trend="neutral" subtext="Haute couture luxury markup" icon="💰" />
+        <KpiCard label="Forex Gain / Arbitrage" value="₹0" delta="0.0%" trend="neutral" subtext="Treasury forward lock" icon="🌐" />
       </div>
 
       <div style={card}>
@@ -40,21 +40,29 @@ export default function ImportExportProfitability() {
               </tr>
             </thead>
             <tbody>
-              {lanes.map(l => (
-                <tr key={l.lane} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{l.lane}</td>
-                  <td style={{ padding: '12px' }}>{l.grossCost}</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{l.landedLanded}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#0f172a' }}>{l.domesticNetRev || l.exportFobRev}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{l.grossProfit}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#0891b2' }}>{l.margin}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
-                      {l.status}
-                    </span>
+              {lanes.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No trade lane economics records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                lanes.map(l => (
+                  <tr key={l.lane} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{l.lane}</td>
+                    <td style={{ padding: '12px' }}>{l.grossCost}</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{l.landedLanded}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#0f172a' }}>{l.domesticNetRev || l.exportFobRev}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{l.grossProfit}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#0891b2' }}>{l.margin}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(16,185,129,0.12)', color: '#059669' }}>
+                        {l.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

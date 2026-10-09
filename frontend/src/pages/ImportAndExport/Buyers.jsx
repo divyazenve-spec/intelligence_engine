@@ -17,10 +17,10 @@ export default function Buyers() {
       badge=""
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Global Buyers" value="8 Overseas Accounts" delta="Across 7 countries" trend="up" subtext="Direct export agreements" icon="🤝" />
-        <KpiCard label="Annual Contracted Demand" value="$860,000 USD" delta="+38.4% YoY" trend="up" subtext="₹0 INR equivalent" icon="💰" />
-        <KpiCard label="Buyer Payment Track Record" value="100% On-Time" delta="Zero default history" trend="up" subtext="Bank LC backed" icon="🛡️" />
-        <KpiCard label="Export Territory Expansion" value="3 New Countries" delta="Japan, Germany, Qatar" trend="up" subtext="Regulatory clearance underway" icon="🌍" />
+        <KpiCard label="Active Global Buyers" value="0 Overseas Accounts" delta="" trend="neutral" subtext="Direct export agreements" icon="🤝" />
+        <KpiCard label="Annual Contracted Demand" value="$0 USD" delta="0.0%" trend="neutral" subtext="₹0 INR equivalent" icon="💰" />
+        <KpiCard label="Buyer Payment Track Record" value="0.0%" delta="Zero default history" trend="neutral" subtext="Bank LC backed" icon="🛡️" />
+        <KpiCard label="Export Territory Expansion" value="0 New Countries" delta="" trend="neutral" subtext="Regulatory clearance underway" icon="🌍" />
       </div>
 
       <div style={card}>
@@ -41,22 +41,30 @@ export default function Buyers() {
               </tr>
             </thead>
             <tbody>
-              {buyers.map(b => (
-                <tr key={b.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{b.code}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{b.name}</td>
-                  <td style={{ padding: '12px' }}>{b.country}</td>
-                  <td style={{ padding: '12px' }}>{b.type}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{b.contractVal}</td>
-                  <td style={{ padding: '12px' }}>{b.paymentTerms}</td>
-                  <td style={{ padding: '12px' }}>{b.rep}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(8,145,178,0.12)', color: '#0e7490' }}>
-                      {b.status}
-                    </span>
+              {buyers.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No international buyer records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                buyers.map(b => (
+                  <tr key={b.code} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{b.code}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{b.name}</td>
+                    <td style={{ padding: '12px' }}>{b.country}</td>
+                    <td style={{ padding: '12px' }}>{b.type}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{b.contractVal}</td>
+                    <td style={{ padding: '12px' }}>{b.paymentTerms}</td>
+                    <td style={{ padding: '12px' }}>{b.rep}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '999px', fontSize: '10px', fontWeight: 600, background: 'rgba(8,145,178,0.12)', color: '#0e7490' }}>
+                        {b.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

@@ -18,7 +18,7 @@ export default function ImportDashboard() {
       title="Global Import Logistics & Cross-Border Supply"
       subtitle="International procurement manifests, ocean & air cargo shipments, CDSCO veterinary drug clearance, and customs duty tracking"
       icon="🌐"
-      badge="₹0 MTD Imports"
+      badge=""
       actions={
         <button onClick={() => alert('New Import Shipment Manifest filing opened...')} style={{ padding: '6px 14px', borderRadius: '8px', border: '1px solid #0891b2', background: 'rgba(8,145,178,0.12)', color: '#0e7490', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
           + New Import Consignment
@@ -26,12 +26,12 @@ export default function ImportDashboard() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Import Procurement (MTD)" value="₹0" delta="12 Active Shipments" trend="up" subtext="CIF Valuation (Invoiced)" icon="🚢" />
-        <KpiCard label="Avg Customs Clearance Time" value="2.4 Days" delta="-0.8 days improvement" trend="up" subtext="Advance BE filing" icon="⚡" />
-        <KpiCard label="Cold-Chain Sea Reefers" value="4 Containers" delta="2°C to 8°C Verified" trend="up" subtext="IoT GPS Telemetry" icon="❄️" />
-        <KpiCard label="Customs Duty & IGST Paid" value="₹0" delta="YTD: ₹0" trend="neutral" subtext="Tariff code 3002/3004" icon="🏛️" />
-        <KpiCard label="CDSCO / Animal Quarantine NOC" value="100% Granted" delta="Zero compliance holds" trend="up" subtext="Veterinary import permit" icon="🛡️" />
-        <KpiCard label="International Suppliers" value="16 Global Partners" delta="Europe, US & Japan" trend="up" subtext="Exclusive distribution" icon="🌍" />
+        <KpiCard label="Import Procurement (MTD)" value="₹0" delta="" trend="neutral" subtext="CIF Valuation (Invoiced)" icon="🚢" />
+        <KpiCard label="Avg Customs Clearance Time" value="0.0 Days" delta="" trend="neutral" subtext="Advance BE filing" icon="⚡" />
+        <KpiCard label="Cold-Chain Sea Reefers" value="0 Containers" delta="" trend="neutral" subtext="IoT GPS Telemetry" icon="❄️" />
+        <KpiCard label="Customs Duty & IGST Paid" value="₹0" delta="0.0%" trend="neutral" subtext="Tariff code 3002/3004" icon="🏛️" />
+        <KpiCard label="CDSCO / Animal Quarantine NOC" value="0.0%" delta="" trend="neutral" subtext="Veterinary import permit" icon="🛡️" />
+        <KpiCard label="International Suppliers" value="0 Global Partners" delta="" trend="neutral" subtext="Exclusive distribution" icon="🌍" />
       </div>
 
       <div style={card}>
@@ -77,29 +77,37 @@ export default function ImportDashboard() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(s => (
-                <tr key={s.bl} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
-                  <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.bl}</td>
-                  <td style={{ padding: '12px', fontWeight: 600 }}>{s.origin}</td>
-                  <td style={{ padding: '12px' }}>{s.product}</td>
-                  <td style={{ padding: '12px' }}>{s.port}</td>
-                  <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.value}</td>
-                  <td style={{ padding: '12px' }}>{s.customs}</td>
-                  <td style={{ padding: '12px' }}>{s.eta}</td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '999px',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      background: s.status === 'Received' ? 'rgba(16,185,129,0.12)' : s.status === 'In Customs' ? 'rgba(245,158,11,0.14)' : 'rgba(8,145,178,0.12)',
-                      color: s.status === 'Received' ? '#059669' : s.status === 'In Customs' ? '#d97706' : '#0e7490'
-                    }}>
-                      {s.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} style={{ padding: '24px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No import consignment records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(s => (
+                  <tr key={s.bl} style={{ borderBottom: '1px solid var(--border, #f1f5f9)', color: 'var(--foreground, #0f172a)' }}>
+                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 600 }}>{s.bl}</td>
+                    <td style={{ padding: '12px', fontWeight: 600 }}>{s.origin}</td>
+                    <td style={{ padding: '12px' }}>{s.product}</td>
+                    <td style={{ padding: '12px' }}>{s.port}</td>
+                    <td style={{ padding: '12px', fontWeight: 600, color: '#059669' }}>{s.value}</td>
+                    <td style={{ padding: '12px' }}>{s.customs}</td>
+                    <td style={{ padding: '12px' }}>{s.eta}</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '999px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        background: s.status === 'Received' ? 'rgba(16,185,129,0.12)' : s.status === 'In Customs' ? 'rgba(245,158,11,0.14)' : 'rgba(8,145,178,0.12)',
+                        color: s.status === 'Received' ? '#059669' : s.status === 'In Customs' ? '#d97706' : '#0e7490'
+                      }}>
+                        {s.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
