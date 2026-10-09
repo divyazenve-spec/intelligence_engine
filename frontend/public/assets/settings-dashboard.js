@@ -49,112 +49,93 @@
     activeTab: 'company',
     searchQuery: '',
     company: {
-      name: 'Zenve Healthcare Technologies India Pvt. Ltd.',
-      brand: 'Zenve Pets Healthcare',
-      cin: 'U85100KA2023PTC174829',
-      gstin: '29AAAAZ0000A1Z5',
-      pan: 'AABCZ1234D',
-      email: 'corporate@zenve.in',
-      supportPhone: '+91 80 4719 3200',
-      address: 'Plot 42, 80 Feet Road, 4th Block, Koramangala, Bengaluru, Karnataka 560034',
-      currency: 'INR (₹)',
-      fyStart: 'April 1',
-      timezone: 'Asia/Kolkata (IST +5:30)',
-      drugLicense: 'KA-BNG-2023-DL-94812 (Form 20B/21B)',
-      vciAccreditation: 'VCI-2024-TN884 (Telemedicine Certified)',
-      bioWasteAuth: 'KSPCB/BMW/2023/8821'
+      name: '',
+      brand: '',
+      cin: '',
+      gstin: '',
+      pan: '',
+      email: '',
+      supportPhone: '',
+      address: '',
+      currency: '',
+      fyStart: '',
+      timezone: '',
+      drugLicense: '',
+      vciAccreditation: '',
+      bioWasteAuth: ''
     },
     units: [],
     locations: [],
     users: [],
-    roles: [
-      { name: 'Super Administrator', desc: 'Full root access to all system configurations and clinical logs', users: 3 },
-      { name: 'Clinical Director & CMO', desc: 'Medical governance, prescription approval, surgical scheduling, clinical audits', users: 2 },
-      { name: 'Senior Veterinarian', desc: 'Patient diagnosis, prescriptions, teleconsultations, medical records', users: 18 },
-      { name: 'Operations & Dispatch Lead', desc: 'Order fulfillment, rider assignment, 60-min delivery SLAs, inventory transfers', users: 12 },
-      { name: 'Head Pharmacist', desc: 'Schedule-X drug dispensing, batch tracking, expiry audits, stock entry', users: 6 },
-      { name: 'Financial Auditor', desc: 'Tax computation, P&L reporting, refunds, ledger reconciliation, payout approvals', users: 4 }
-    ],
+    roles: [],
     permissions: [
-      { module: 'Clinical Patient Records (EHR)', view: true, create: true, edit: true, del: false, exp: true, app: true },
-      { module: 'Veterinary Prescriptions (Rx)', view: true, create: true, edit: true, del: false, exp: true, app: true },
-      { module: 'Orders & 60-Min Delivery Command', view: true, create: true, edit: true, del: false, exp: true, app: true },
-      { module: 'Cold-Chain Pharmacy & Batch Inventory', view: true, create: true, edit: true, del: false, exp: true, app: true },
-      { module: 'Financial Ledgers & Tax Reports', view: true, create: false, edit: false, del: false, exp: true, app: true },
-      { module: 'User Management & Security Access', view: true, create: true, edit: true, del: true, exp: true, app: true },
-      { module: 'System API & Webhook Configuration', view: true, create: true, edit: true, del: false, exp: true, app: true }
+      { module: 'Clinical Patient Records (EHR)', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'Veterinary Prescriptions (Rx)', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'Orders & 60-Min Delivery Command', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'Cold-Chain Pharmacy & Batch Inventory', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'Financial Ledgers & Tax Reports', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'User Management & Security Access', view: false, create: false, edit: false, del: false, exp: false, app: false },
+      { module: 'System API & Webhook Configuration', view: false, create: false, edit: false, del: false, exp: false, app: false }
     ],
     workflows: [],
     pendingApprovals: [],
     notifications: {
-      whatsapp: true,
-      sms: true,
-      email: true,
-      push: true,
-      orderConfirm: true,
-      expressDispatch: true,
-      appointmentReminders: true,
-      rxReady: true,
-      lowStockAlert: true,
-      dailyDigest: true,
-      securityAlert: true
+      whatsapp: false,
+      sms: false,
+      email: false,
+      push: false,
+      orderConfirm: false,
+      expressDispatch: false,
+      appointmentReminders: false,
+      rxReady: false,
+      lowStockAlert: false,
+      dailyDigest: false,
+      securityAlert: false
     },
     dashboardSettings: {
-      defaultLanding: 'Executive Control Center',
-      refreshInterval: '30s',
+      defaultLanding: '',
+      refreshInterval: '',
       boardroomPrivacy: false,
-      theme: 'Dark Nebula',
-      showKpis: true,
-      highPrecisionNumbers: true
+      theme: '',
+      showKpis: false,
+      highPrecisionNumbers: false
     },
-    taxes: [
-      { category: 'Veterinary Medical Consultations & Surgeries', code: 'SAC 998351', gst: '0% (Exempt)', cgst: '0%', sgst: '0%', igst: '0%' },
-      { category: 'Veterinary Pharmaceuticals & Antibiotics', code: 'HSN 3004', gst: '12%', cgst: '6%', sgst: '6%', igst: '12%' },
-      { category: 'Pet Nutrition & Complete Diets (Dry/Wet)', code: 'HSN 2309', gst: '18%', cgst: '9%', sgst: '9%', igst: '18%' },
-      { category: 'Pet Accessories, Collars, Leashes & Beds', code: 'HSN 4201', gst: '18%', cgst: '9%', sgst: '9%', igst: '18%' },
-      { category: 'Diagnostic Pathology & Radiology Tests', code: 'SAC 9993', gst: '0% (Exempt)', cgst: '0%', sgst: '0%', igst: '0%' }
-    ],
+    taxes: [],
     payments: {
-      primaryGateway: 'Razorpay Enterprise',
-      secondaryGateway: 'Cashfree Payments',
-      internationalGateway: 'Stripe Global',
-      upiAutoPay: true,
-      codEnabled: true,
-      maxCodValue: '₹3,000',
-      settlementAccount: 'HDFC Bank Ltd. · AC: 00492000019284 · IFSC: HDFC0000049'
+      primaryGateway: '',
+      secondaryGateway: '',
+      internationalGateway: '',
+      upiAutoPay: false,
+      codEnabled: false,
+      maxCodValue: '',
+      settlementAccount: ''
     },
     delivery: {
-      expressRadiusKm: 4.8,
-      expressSlaMins: 60,
-      dispatchThresholdMins: 4,
-      freeDeliveryMinOrder: 499,
-      standardDeliveryFee: 49,
-      coldChainEnforced: true,
-      primaryFleet: 'Zenve Dedicated Express Fleet (68 active riders)',
-      secondaryFleet: 'Shadowfax Logistics Spillover'
+      expressRadiusKm: 0,
+      expressSlaMins: 0,
+      dispatchThresholdMins: 0,
+      freeDeliveryMinOrder: 0,
+      standardDeliveryFee: 0,
+      coldChainEnforced: false,
+      primaryFleet: '',
+      secondaryFleet: ''
     },
-    integrations: [
-      { name: 'Electronic Health Record (EHR) PMS Sync', type: 'Clinical API', status: 'Online', uptime: '99.98%', lastSync: '2m ago' },
-      { name: 'Tally Prime / Zoho Books Financial Sync', type: 'ERP Finance', status: 'Online', uptime: '99.95%', lastSync: '14m ago' },
-      { name: 'WhatsApp Business Cloud API (Gupshup)', type: 'Omnichannel Comm', status: 'Online', uptime: '100%', lastSync: '1m ago' },
-      { name: 'Firebase Cloud Messaging (FCM Mobile Push)', type: 'Mobile Notification', status: 'Online', uptime: '99.99%', lastSync: 'Just now' },
-      { name: 'LIMS Lab Equipment Automated Analyzers', type: 'Pathology Diagnostics', status: 'Online', uptime: '99.92%', lastSync: '8m ago' }
-    ],
+    integrations: [],
     security: {
-      mfaEnforced: true,
-      ssoGoogle: true,
-      ssoAzure: true,
-      sessionTimeoutMins: 15,
-      ipWhitelist: '103.21.144.0/24 (Bangalore Hospital), 14.143.12.18 (Mumbai Surgical)',
-      auditLogsRetentionDays: 365,
+      mfaEnforced: false,
+      ssoGoogle: false,
+      ssoAzure: false,
+      sessionTimeoutMins: 0,
+      ipWhitelist: '',
+      auditLogsRetentionDays: 0,
       activeSessions: []
     },
     backup: {
-      primaryRegion: 'AWS Mumbai (ap-south-1)',
-      secondaryRegion: 'AWS Hyderabad (ap-south-2)',
-      rpo: '< 2 Minutes',
-      rto: '< 10 Minutes',
-      pitrRetention: '35 Days',
+      primaryRegion: '',
+      secondaryRegion: '',
+      rpo: '-',
+      rto: '-',
+      pitrRetention: '-',
       snapshots: []
     }
   };
@@ -318,28 +299,28 @@
       '<div class="zset-card">',
         '<div class="zset-card-header">',
           '<h4 class="zset-card-title">🏢 Legal Entity & Corporate Registration</h4>',
-          '<span class="zset-badge zset-badge-success">MCA Verified</span>',
+          '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">' + (c.name ? 'Configured' : 'Not Set') + '</span>',
         '</div>',
         '<div class="zset-grid-2">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Legal Entity Name</label>',
-            '<input class="zset-input" id="inp-comp-name" value="' + esc(c.name) + '">',
+            '<input class="zset-input" id="inp-comp-name" value="' + esc(c.name) + '" placeholder="Legal entity name">',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Consumer Brand Identity</label>',
-            '<input class="zset-input" id="inp-comp-brand" value="' + esc(c.brand) + '">',
+            '<input class="zset-input" id="inp-comp-brand" value="' + esc(c.brand) + '" placeholder="Consumer brand identity">',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Corporate Identification Number (CIN)</label>',
-            '<input class="zset-input font-mono" id="inp-comp-cin" value="' + esc(c.cin) + '">',
+            '<input class="zset-input font-mono" id="inp-comp-cin" value="' + esc(c.cin) + '" placeholder="CIN number">',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Permanent Account Number (PAN)</label>',
-            '<input class="zset-input font-mono" id="inp-comp-pan" value="' + esc(c.pan) + '">',
+            '<input class="zset-input font-mono" id="inp-comp-pan" value="' + esc(c.pan) + '" placeholder="PAN number">',
           '</div>',
           '<div class="zset-form-group" style="grid-column: span 2;">',
             '<label class="zset-label">Registered Corporate Address</label>',
-            '<input class="zset-input" id="inp-comp-addr" value="' + esc(c.address) + '">',
+            '<input class="zset-input" id="inp-comp-addr" value="' + esc(c.address) + '" placeholder="Registered corporate address">',
           '</div>',
         '</div>',
       '</div>',
@@ -347,22 +328,22 @@
       '<div class="zset-card">',
         '<div class="zset-card-header">',
           '<h4 class="zset-card-title">🩺 Healthcare Licenses & Board Accreditations</h4>',
-          '<span class="zset-badge zset-badge-info">Clinical Compliant</span>',
+          '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">' + (c.drugLicense ? 'Licensed' : 'Pending') + '</span>',
         '</div>',
         '<div class="zset-grid-3">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Retail/Wholesale Drug License</label>',
-            '<input class="zset-input font-mono" id="inp-comp-dl" value="' + esc(c.drugLicense) + '">',
-            '<div class="zset-help-text">Form 20B/21B valid till 2028</div>',
+            '<input class="zset-input font-mono" id="inp-comp-dl" value="' + esc(c.drugLicense) + '" placeholder="Drug license number">',
+            '<div class="zset-help-text">Form 20B/21B valid license</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Veterinary Council Accreditation</label>',
-            '<input class="zset-input font-mono" id="inp-comp-vci" value="' + esc(c.vciAccreditation) + '">',
-            '<div class="zset-help-text">Telemedicine practice authorized</div>',
+            '<input class="zset-input font-mono" id="inp-comp-vci" value="' + esc(c.vciAccreditation) + '" placeholder="VCI accreditation ID">',
+            '<div class="zset-help-text">Telemedicine practice accreditation</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Bio-Medical Waste Authorization</label>',
-            '<input class="zset-input font-mono" id="inp-comp-bmw" value="' + esc(c.bioWasteAuth) + '">',
+            '<input class="zset-input font-mono" id="inp-comp-bmw" value="' + esc(c.bioWasteAuth) + '" placeholder="BMW authorization code">',
             '<div class="zset-help-text">State Pollution Control Board</div>',
           '</div>',
         '</div>',
@@ -375,15 +356,15 @@
         '<div class="zset-grid-3">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Base Operating Currency</label>',
-            '<input class="zset-input" value="' + esc(c.currency) + '" disabled>',
+            '<input class="zset-input" value="' + esc(c.currency) + '" placeholder="Currency" disabled>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Financial Year Cycle</label>',
-            '<input class="zset-input" value="' + esc(c.fyStart) + ' - March 31" disabled>',
+            '<input class="zset-input" value="' + esc(c.fyStart ? c.fyStart + ' - March 31' : '') + '" placeholder="FY cycle" disabled>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">System Timezone</label>',
-            '<input class="zset-input font-mono" value="' + esc(c.timezone) + '" disabled>',
+            '<input class="zset-input font-mono" value="' + esc(c.timezone) + '" placeholder="Timezone" disabled>',
           '</div>',
         '</div>',
       '</div>'
@@ -392,7 +373,7 @@
 
   /* ── Tab 2: Business Units ───────────────────────────────────────── */
   function renderBusinessUnits() {
-    var rows = S.units.map(function (u) {
+    var rows = S.units.length ? S.units.map(function (u) {
       return '<tr>' +
         '<td class="font-mono" style="font-weight:600;color:#38bdf8;">' + esc(u.id) + '</td>' +
         '<td><strong>' + esc(u.name) + '</strong><br><small style="color:#64748b;">' + esc(u.code) + '</small></td>' +
@@ -401,7 +382,7 @@
         '<td class="font-mono" style="font-weight:600;color:#10b981;">' + esc(u.revenue) + '</td>' +
         '<td><span class="zset-badge zset-badge-success">' + esc(u.status) + '</span></td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:36px;color:#94a3b8;">No business units found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -413,9 +394,9 @@
       '</div>',
 
       '<div class="zset-kpi-row">',
-        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Total Divisions</div><div class="zset-kpi-val">5 Operating Units</div></div>',
-        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Total Workforce</div><div class="zset-kpi-val font-mono">245 Staff</div></div>',
-        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Consolidated Revenue Run-Rate</div><div class="zset-kpi-val font-mono" style="color:#10b981;">₹2.05 Cr / mo</div></div>',
+        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Total Divisions</div><div class="zset-kpi-val">' + S.units.length + ' Operating Units</div></div>',
+        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Total Workforce</div><div class="zset-kpi-val font-mono">0 Staff</div></div>',
+        '<div class="zset-kpi-card"><div class="zset-kpi-lbl">Consolidated Revenue Run-Rate</div><div class="zset-kpi-val font-mono" style="color:#10b981;">₹0 / mo</div></div>',
       '</div>',
 
       '<div class="zset-card">',
@@ -436,7 +417,7 @@
       return !q || (loc.name + ' ' + loc.city + ' ' + loc.type + ' ' + loc.area).toLowerCase().indexOf(q) >= 0;
     });
 
-    var rows = filtered.map(function (loc) {
+    var rows = filtered.length ? filtered.map(function (loc) {
       return '<tr>' +
         '<td class="font-mono" style="color:#38bdf8;font-weight:600;">' + esc(loc.id) + '</td>' +
         '<td><strong>' + esc(loc.name) + '</strong><br><small style="color:#94a3b8;">' + esc(loc.area) + '</small></td>' +
@@ -446,7 +427,7 @@
         '<td>' + esc(loc.manager) + '<br><small class="font-mono" style="color:#64748b;">' + esc(loc.phone) + '</small></td>' +
         '<td><span class="zset-badge zset-badge-success">' + esc(loc.status) + '</span></td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="7" style="text-align:center;padding:36px;color:#94a3b8;">No facilities found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -480,7 +461,7 @@
       return !q || (u.name + ' ' + u.email + ' ' + u.role + ' ' + u.unit + ' ' + u.location).toLowerCase().indexOf(q) >= 0;
     });
 
-    var rows = filtered.map(function (u) {
+    var rows = filtered.length ? filtered.map(function (u) {
       var av = u.name.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
       var mfaBadge = u.mfa === 'Enforced' ? 'zset-badge-success' : 'zset-badge-warning';
       return '<tr>' +
@@ -499,7 +480,7 @@
         '<td><span class="zset-badge ' + mfaBadge + '">' + esc(u.mfa) + '</span></td>' +
         '<td><span class="zset-badge zset-badge-success">' + esc(u.status) + '</span></td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:36px;color:#94a3b8;">No users found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -528,12 +509,12 @@
 
   /* ── Tab 5: Roles & Permissions ──────────────────────────────────── */
   function renderRolesPermissions() {
-    var roleCards = S.roles.map(function (r) {
+    var roleCards = S.roles.length ? S.roles.map(function (r) {
       return '<div class="zset-kpi-card">' +
-        '<div class="zset-kpi-lbl">' + esc(r.name) + ' (' + r.users + ' Users)</div>' +
+        '<div class="zset-kpi-lbl">' + esc(r.name) + ' (' + (r.users || 0) + ' Users)</div>' +
         '<div style="font-size:11px;color:#cbd5e1;margin-top:6px;line-height:1.4;">' + esc(r.desc) + '</div>' +
       '</div>';
-    }).join('');
+    }).join('') : '<div style="padding:16px;text-align:center;color:#94a3b8;grid-column:1/-1;">No configured role profiles</div>';
 
     var permRows = S.permissions.map(function (p, idx) {
       return '<div class="zset-perm-row">' +
@@ -563,7 +544,7 @@
       '<div class="zset-card">',
         '<div class="zset-card-header">',
           '<h4 class="zset-card-title">📋 Granular Privilege Governance Matrix</h4>',
-          '<span class="zset-badge zset-badge-info">Active Enforcement</span>',
+          '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">Custom</span>',
         '</div>',
         '<div class="zset-table-wrap">',
           '<div class="zset-perm-row" style="background:#141d30;font-weight:700;color:#94a3b8;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;border-color:rgba(255,255,255,0.08);margin-bottom:8px;">' +
@@ -592,7 +573,7 @@
         '<td class="font-mono">' + esc(wf.timeout) + '</td>' +
         '<td><span class="zset-badge zset-badge-success">' + esc(wf.status) + '</span></td>' +
       '</tr>';
-    }).join('')) : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No approval workflows configured</td></tr>';
+    }).join('')) : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No approval workflows configured</td></tr>';
 
     var pendingCards = S.pendingApprovals.map(function (p, idx) {
       return '<div class="zset-switch-row" style="margin-bottom:8px;">' +
@@ -618,7 +599,7 @@
       '<div class="zset-card">',
         '<div class="zset-card-header">',
           '<h4 class="zset-card-title">⏳ Active Requests Awaiting Your Review</h4>',
-          '<span class="zset-badge zset-badge-warning">' + S.pendingApprovals.length + ' Pending</span>',
+          '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">0 Pending</span>',
         '</div>',
         (S.pendingApprovals.length ? pendingCards : '<div style="padding:16px;text-align:center;color:#64748b;">All approval queues are completely cleared! ✓</div>'),
       '</div>',
@@ -710,7 +691,8 @@
           '<div class="zset-form-group">',
             '<label class="zset-label">Default Launch Dashboard</label>',
             '<select class="zset-select" id="sel-dash-launch">' +
-              '<option value="Executive Control Center" ' + (d.defaultLanding === 'Executive Control Center' ? 'selected' : '') + '>Executive Control Center (Default)</option>' +
+              '<option value="" ' + (!d.defaultLanding ? 'selected' : '') + '>Select default dashboard...</option>' +
+              '<option value="Executive Control Center" ' + (d.defaultLanding === 'Executive Control Center' ? 'selected' : '') + '>Executive Control Center</option>' +
               '<option value="Operations Dashboard" ' + (d.defaultLanding === 'Operations Dashboard' ? 'selected' : '') + '>Orders & Operations Hub</option>' +
               '<option value="Sales Dashboard" ' + (d.defaultLanding === 'Sales Dashboard' ? 'selected' : '') + '>Revenue & Sales Overview</option>' +
             '</select>',
@@ -718,8 +700,9 @@
           '<div class="zset-form-group">',
             '<label class="zset-label">Live Data Polling Cadence</label>',
             '<select class="zset-select" id="sel-dash-poll">' +
+              '<option value="" ' + (!d.refreshInterval ? 'selected' : '') + '>Select refresh cadence...</option>' +
               '<option value="10s" ' + (d.refreshInterval === '10s' ? 'selected' : '') + '>Live Websocket (~10s)</option>' +
-              '<option value="30s" ' + (d.refreshInterval === '30s' ? 'selected' : '') + '>30 Seconds (Recommended)</option>' +
+              '<option value="30s" ' + (d.refreshInterval === '30s' ? 'selected' : '') + '>30 Seconds</option>' +
               '<option value="60s" ' + (d.refreshInterval === '60s' ? 'selected' : '') + '>1 Minute</option>' +
               '<option value="5m" ' + (d.refreshInterval === '5m' ? 'selected' : '') + '>5 Minutes</option>' +
             '</select>',
@@ -742,7 +725,7 @@
 
   /* ── Tab 9: Tax Settings ─────────────────────────────────────────── */
   function renderTaxes() {
-    var taxRows = S.taxes.map(function (t) {
+    var taxRows = S.taxes.length ? S.taxes.map(function (t) {
       return '<tr>' +
         '<td><strong>' + esc(t.category) + '</strong></td>' +
         '<td class="font-mono" style="color:#38bdf8;">' + esc(t.code) + '</td>' +
@@ -751,7 +734,7 @@
         '<td class="font-mono">' + esc(t.sgst) + '</td>' +
         '<td class="font-mono">' + esc(t.igst) + '</td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="6" style="text-align:center;padding:36px;color:#94a3b8;">No tax schedules configured</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -766,18 +749,18 @@
         '<div class="zset-grid-3">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Primary GSTIN Number</label>',
-            '<input class="zset-input font-mono" value="' + esc(S.company.gstin) + '" disabled>',
-            '<div class="zset-help-text">Karnataka Principal Place of Business</div>',
+            '<input class="zset-input font-mono" value="' + esc(S.company.gstin) + '" placeholder="GSTIN not set" disabled>',
+            '<div class="zset-help-text">Principal place of business</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">TCS (Tax Collected at Source)</label>',
-            '<input class="zset-input font-mono" value="1.0% (Section 52 CGST Act)" disabled>',
+            '<input class="zset-input font-mono" value="" placeholder="Rate not set" disabled>',
             '<div class="zset-help-text">Marketplace operator deduction</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Automated E-Invoicing Threshold</label>',
-            '<input class="zset-input font-mono" value="Mandatory > ₹50,000" disabled>',
-            '<div class="zset-help-text">Direct NIC portal sync enabled</div>',
+            '<input class="zset-input font-mono" value="" placeholder="Threshold not set" disabled>',
+            '<div class="zset-help-text">Direct NIC portal sync</div>',
           '</div>',
         '</div>',
       '</div>',
@@ -811,27 +794,27 @@
         '<div class="zset-grid-3">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Primary Gateway</label>',
-            '<input class="zset-input" value="' + esc(p.primaryGateway) + '" disabled>',
-            '<div class="zset-help-text">UPI, Cards, Netbanking (Status: Healthy)</div>',
+            '<input class="zset-input" value="' + esc(p.primaryGateway) + '" placeholder="Not configured" disabled>',
+            '<div class="zset-help-text">UPI, Cards, Netbanking</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Secondary / Payout Gateway</label>',
-            '<input class="zset-input" value="' + esc(p.secondaryGateway) + '" disabled>',
+            '<input class="zset-input" value="' + esc(p.secondaryGateway) + '" placeholder="Not configured" disabled>',
             '<div class="zset-help-text">Instant doctor & vendor payouts</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Cross-Border Gateway</label>',
-            '<input class="zset-input" value="' + esc(p.internationalGateway) + '" disabled>',
-            '<div class="zset-help-text">International NRI pet owners</div>',
+            '<input class="zset-input" value="' + esc(p.internationalGateway) + '" placeholder="Not configured" disabled>',
+            '<div class="zset-help-text">International pet owners</div>',
           '</div>',
         '</div>',
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header"><h4 class="zset-card-title">🏦 Settlement Bank Account (T+1 Cycle)</h4></div>',
+        '<div class="zset-card-header"><h4 class="zset-card-title">🏦 Settlement Bank Account</h4></div>',
         '<div class="zset-form-group">',
           '<label class="zset-label">Operating Account</label>',
-          '<input class="zset-input font-mono" value="' + esc(p.settlementAccount) + '" disabled>',
+          '<input class="zset-input font-mono" value="' + esc(p.settlementAccount) + '" placeholder="No settlement account linked" disabled>',
         '</div>',
       '</div>',
 
@@ -840,7 +823,7 @@
         '<div class="zset-switch-row">' +
           '<div class="zset-switch-info">' +
             '<h5>Enable Cash-on-Delivery (COD)</h5>' +
-            '<p>Permitted only for non-prescription nutrition & lifestyle products up to <strong>' + esc(p.maxCodValue) + '</strong>.</p>' +
+            '<p>Permitted only for non-prescription nutrition & lifestyle products up to <strong>' + (p.maxCodValue ? esc(p.maxCodValue) : '-') + '</strong>.</p>' +
           '</div>' +
           '<label class="zset-switch"><input type="checkbox" id="sw-pay-cod" ' + (p.codEnabled ? 'checked' : '') + '><span class="zset-slider"></span></label>' +
         '</div>',
@@ -864,18 +847,18 @@
         '<div class="zset-grid-3">',
           '<div class="zset-form-group">',
             '<label class="zset-label">Express Service Radius</label>',
-            '<input class="zset-input font-mono" id="inp-del-rad" value="' + d.expressRadiusKm + ' km">',
+            '<input class="zset-input font-mono" id="inp-del-rad" value="' + (d.expressRadiusKm ? d.expressRadiusKm + ' km' : '') + '" placeholder="Radius (km)">',
             '<div class="zset-help-text">Max distance from nearest dark store</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Driver Allocation Timeout</label>',
-            '<input class="zset-input font-mono" id="inp-del-sla" value="' + d.dispatchThresholdMins + ' Minutes">',
+            '<input class="zset-input font-mono" id="inp-del-sla" value="' + (d.dispatchThresholdMins ? d.dispatchThresholdMins + ' Minutes' : '') + '" placeholder="Timeout (minutes)">',
             '<div class="zset-help-text">Escalate if rider not assigned</div>',
           '</div>',
           '<div class="zset-form-group">',
             '<label class="zset-label">Free Express Delivery Cap</label>',
-            '<input class="zset-input font-mono" id="inp-del-cap" value="₹' + d.freeDeliveryMinOrder + '">',
-            '<div class="zset-help-text">Standard ₹' + d.standardDeliveryFee + ' fee applied below cap</div>',
+            '<input class="zset-input font-mono" id="inp-del-cap" value="' + (d.freeDeliveryMinOrder ? '₹' + d.freeDeliveryMinOrder : '') + '" placeholder="Min order cap (₹)">',
+            '<div class="zset-help-text">Standard fee applied below cap</div>',
           '</div>',
         '</div>',
       '</div>',
@@ -895,7 +878,7 @@
 
   /* ── Tab 12: API & Integrations ──────────────────────────────────── */
   function renderIntegrations() {
-    var intRows = S.integrations.map(function (it) {
+    var intRows = S.integrations.length ? S.integrations.map(function (it) {
       return '<tr>' +
         '<td><strong>' + esc(it.name) + '</strong></td>' +
         '<td><span class="zset-badge zset-badge-info">' + esc(it.type) + '</span></td>' +
@@ -903,7 +886,7 @@
         '<td class="font-mono">' + esc(it.uptime) + '</td>' +
         '<td class="font-mono" style="color:#94a3b8;">' + esc(it.lastSync) + '</td>' +
       '</tr>';
-    }).join('');
+    }).join('') : '<tr><td colspan="5" style="text-align:center;padding:36px;color:#94a3b8;">No external integrations connected</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -919,7 +902,7 @@
         '<div class="zset-form-group">',
           '<label class="zset-label">Live API Secret Key</label>',
           '<div style="display:flex;gap:8px;">',
-            '<input class="zset-input font-mono" id="inp-api-key" value="sk_live_zenve_9f82a17bc938472910d84a71" type="password" readonly>',
+            '<input class="zset-input font-mono" id="inp-api-key" value="" placeholder="No API key generated" type="password" readonly>',
             '<button type="button" class="zset-btn zset-btn-secondary" id="btn-toggle-key">👁️ Reveal</button>',
             '<button type="button" class="zset-btn zset-btn-secondary" id="btn-copy-key">📋 Copy</button>',
           '</div>',
@@ -950,7 +933,7 @@
         '<td class="font-mono">' + esc(s.time) + '</td>' +
         '<td>' + (s.current ? '<span class="zset-badge zset-badge-success">Current Session</span>' : '<button type="button" class="zset-btn zset-btn-danger" style="padding:2px 8px;font-size:10px;">Revoke</button>') + '</td>' +
       '</tr>';
-    }).join('')) : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No active sessions found</td></tr>';
+    }).join('')) : '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No active sessions found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -968,7 +951,7 @@
             '<label class="zset-switch"><input type="checkbox" id="sw-sec-mfa" ' + (sec.mfaEnforced ? 'checked' : '') + '><span class="zset-slider"></span></label>' +
           '</div>',
           '<div class="zset-switch-row">' +
-            '<div class="zset-switch-info"><h5>Single Sign-On (Google & Azure AD)</h5><p>Allows `@zenve.in` enterprise domain authentication</p></div>' +
+            '<div class="zset-switch-info"><h5>Single Sign-On (Google & Azure AD)</h5><p>Enterprise domain authentication</p></div>' +
             '<label class="zset-switch"><input type="checkbox" id="sw-sec-sso" ' + (sec.ssoGoogle ? 'checked' : '') + '><span class="zset-slider"></span></label>' +
           '</div>',
         '</div>',
@@ -978,7 +961,7 @@
         '<div class="zset-card-header"><h4 class="zset-card-title">🌐 Clinical Subnet IP Whitelisting</h4></div>',
         '<div class="zset-form-group">',
           '<label class="zset-label">Authorized Static IP Ranges</label>',
-          '<input class="zset-input font-mono" id="inp-sec-ip" value="' + esc(sec.ipWhitelist) + '">',
+          '<input class="zset-input font-mono" id="inp-sec-ip" value="' + esc(sec.ipWhitelist) + '" placeholder="e.g. 192.168.1.0/24 (Leave blank for unrestricted)">',
           '<div class="zset-help-text">Direct access to patient medical histories restricted to these verified subnets</div>',
         '</div>',
       '</div>',
@@ -1008,7 +991,7 @@
         '<td><span class="zset-badge zset-badge-success">' + esc(s.status) + '</span></td>' +
         '<td><button type="button" class="zset-btn zset-btn-secondary" style="padding:2px 8px;font-size:11px;">⬇ Download</button></td>' +
       '</tr>';
-    }).join('')) : '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No backup snapshots found</td></tr>';
+    }).join('')) : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No backup snapshots found</td></tr>';
 
     return [
       '<div class="zset-tab-header">',
@@ -1028,8 +1011,8 @@
       '<div class="zset-card">',
         '<div class="zset-card-header"><h4 class="zset-card-title">🌍 Cross-Region Resiliency</h4></div>',
         '<div class="zset-grid-2">',
-          '<div class="zset-form-group"><label class="zset-label">Primary Database Region</label><input class="zset-input font-mono" value="' + esc(b.primaryRegion) + '" disabled></div>',
-          '<div class="zset-form-group"><label class="zset-label">Secondary Replication Region</label><input class="zset-input font-mono" value="' + esc(b.secondaryRegion) + '" disabled></div>',
+          '<div class="zset-form-group"><label class="zset-label">Primary Database Region</label><input class="zset-input font-mono" value="' + esc(b.primaryRegion) + '" placeholder="Not configured" disabled></div>',
+          '<div class="zset-form-group"><label class="zset-label">Secondary Replication Region</label><input class="zset-input font-mono" value="' + esc(b.secondaryRegion) + '" placeholder="Not configured" disabled></div>',
         '</div>',
       '</div>',
 
