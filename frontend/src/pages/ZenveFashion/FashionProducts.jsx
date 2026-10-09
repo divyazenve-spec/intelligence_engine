@@ -34,12 +34,12 @@ export default function FashionProducts() {
       }
     >
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <KpiCard label="Active Fashion SKUs" value="142 Styles" delta="6 Core Categories" trend="up" subtext="Bespoke + Ready-to-wear" icon="👗" />
-        <KpiCard label="Avg. Retail Price (ASP)" value="₹0" delta="+12.4% YoY" trend="up" subtext="Premium fabric upgrade" icon="🏷️" />
-        <KpiCard label="Average Product Margin" value="0.0%" delta="+2.8% vs FY25" trend="up" subtext="In-house artisan atelier" icon="💎" />
-        <KpiCard label="Eco-Certified Fabrics" value="100% Cotton/Wool" delta="OEKO-TEX Class 1" trend="up" subtext="Hypoallergenic pet-safe" icon="🌱" />
-        <KpiCard label="Low Stock Styles" value="4 SKUs" delta="Under 30 days cover" trend="warn" subtext="Production run ordered" icon="⚠️" />
-        <KpiCard label="Custom Atelier Queue" value="34 Orders" delta="7-day tailoring TAT" trend="up" subtext="Wedding & gala apparel" icon="✂️" />
+        <KpiCard label="Active Fashion SKUs" value="0 Styles" delta="0 Categories" trend="neutral" subtext="No active records" icon="👗" />
+        <KpiCard label="Avg. Retail Price (ASP)" value="₹0" delta="0.0%" trend="neutral" subtext="No active records" icon="🏷️" />
+        <KpiCard label="Average Product Margin" value="0.0%" delta="0.0%" trend="neutral" subtext="No active records" icon="💎" />
+        <KpiCard label="Eco-Certified Fabrics" value="0%" delta="" trend="neutral" subtext="No active records" icon="🌱" />
+        <KpiCard label="Low Stock Styles" value="0 SKUs" delta="0 days cover" trend="neutral" subtext="No active records" icon="⚠️" />
+        <KpiCard label="Custom Atelier Queue" value="0 Orders" delta="0-day TAT" trend="neutral" subtext="No active records" icon="✂️" />
       </div>
 
       <div style={card}>
@@ -84,24 +84,32 @@ export default function FashionProducts() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((p, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#f472b6', fontSize: '11px', fontWeight: 600 }}>{p.sku}</td>
-                  <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{p.name}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{p.category}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{p.petType}</td>
-                  <td style={{ padding: '11px 12px', color: '#a78bfa' }}>{p.sizes}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)', fontSize: '11px' }}>{p.material}</td>
-                  <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{p.price}</td>
-                  <td style={{ padding: '11px 12px', color: '#64748b' }}>{p.cost}</td>
-                  <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{p.stock}</td>
-                  <td style={{ padding: '11px 12px' }}>
-                    <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: p.status === 'In Stock' ? 'rgba(52,211,153,0.15)' : p.status === 'Low Stock' ? 'rgba(251,191,36,0.15)' : 'rgba(167,139,250,0.15)', color: p.status === 'In Stock' ? '#34d399' : p.status === 'Low Stock' ? '#fbbf24' : '#a78bfa' }}>
-                      {p.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={10} style={{ padding: '28px 12px', textAlign: 'center', color: 'var(--muted-foreground, #64748b)' }}>
+                    No fashion products found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map((p, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border, rgba(0,0,0,0.06))' }}>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', color: '#f472b6', fontSize: '11px', fontWeight: 600 }}>{p.sku}</td>
+                    <td style={{ padding: '11px 12px', fontWeight: 600, color: 'var(--foreground, #0f172a)' }}>{p.name}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)' }}>{p.category}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #334155)' }}>{p.petType}</td>
+                    <td style={{ padding: '11px 12px', color: '#a78bfa' }}>{p.sizes}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--muted-foreground, #64748b)', fontSize: '11px' }}>{p.material}</td>
+                    <td style={{ padding: '11px 12px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{p.price}</td>
+                    <td style={{ padding: '11px 12px', color: '#64748b' }}>{p.cost}</td>
+                    <td style={{ padding: '11px 12px', color: 'var(--foreground, #0f172a)', fontWeight: 600 }}>{p.stock}</td>
+                    <td style={{ padding: '11px 12px' }}>
+                      <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: p.status === 'In Stock' ? 'rgba(52,211,153,0.15)' : p.status === 'Low Stock' ? 'rgba(251,191,36,0.15)' : 'rgba(167,139,250,0.15)', color: p.status === 'In Stock' ? '#34d399' : p.status === 'Low Stock' ? '#fbbf24' : '#a78bfa' }}>
+                        {p.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

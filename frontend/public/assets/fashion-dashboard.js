@@ -138,7 +138,7 @@
             '<table class="zfsh-table">',
               '<thead><tr><th>SKU</th><th>Product Name</th><th>Category</th><th>Retail Price</th><th>Stock</th><th>Margin</th><th>Status</th></tr></thead>',
               '<tbody>',
-                PRODUCTS.slice(0, 5).map(function (p) {
+                (PRODUCTS.length ? PRODUCTS.slice(0, 5).map(function (p) {
                   return '<tr>' +
                     '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
                     '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
@@ -148,7 +148,7 @@
                     '<td style="font-weight:700;color:#a78bfa;">' + esc(p.margin) + '</td>' +
                     '<td><span class="zfsh-tag green">' + esc(p.status) + '</span></td>' +
                   '</tr>';
-                }).join(''),
+                }).join('') : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No best-selling couture records found</td></tr>'),
               '</tbody>',
             '</table>',
           '</div>',
@@ -163,7 +163,7 @@
             '<button class="zfsh-btn" onclick="ZenveFashionDashboard.switchTab(\'showrooms\')">All Boutiques</button>',
           '</div>',
           '<div style="display:grid;gap:12px;">',
-            SHOWROOMS.map(function (s) {
+            (SHOWROOMS.length ? SHOWROOMS.map(function (s) {
               return '<div style="background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;">' +
                 '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
                   '<strong style="font-size:13px;color:var(--foreground,#0f172a);">' + esc(s.name) + '</strong>' +
@@ -175,7 +175,7 @@
                   '<div><span style="color:#64748b;">Conversion:</span> <strong style="color:#38bdf8;">' + esc(s.conversion) + '</strong></div>' +
                 '</div>' +
               '</div>';
-            }).join(''),
+            }).join('') : '<div style="padding:20px;text-align:center;color:#94a3b8;font-size:12px;">No boutique experience records found</div>'),
           '</div>',
         '</div>',
       '</div>'
@@ -188,7 +188,7 @@
         kpiHtml('Active Fashion SKUs', '0', '0.0%', 'neutral', 'No active records', '👗'),
         kpiHtml('Avg. Retail Price (ASP)', '₹0', '0.0%', 'neutral', 'No active records', '🏷️'),
         kpiHtml('Average Product Margin', '0', '0.0%', 'neutral', 'No active records', '💎'),
-        kpiHtml('Eco-Certified Fabrics', '100% Cotton/Wool', 'OEKO-TEX Class 1', 'up', 'Hypoallergenic pet-safe', '🌱'),
+        kpiHtml('Eco-Certified Fabrics', '0%', '0.0%', 'neutral', 'No active records', '🌱'),
         kpiHtml('Low Stock Styles', '0', '0.0%', 'neutral', 'No active records', '⚠️'),
         kpiHtml('Custom Atelier Queue', '0', '0.0%', 'neutral', 'No active records', '✂️'),
       '</div>',
@@ -206,7 +206,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>SKU</th><th>Product Name</th><th>Category</th><th>Target Pet</th><th>Sizes</th><th>Price</th><th>Cost</th><th>Stock</th><th>Margin</th><th>Status</th></tr></thead>',
             '<tbody>',
-              PRODUCTS.map(function (p) {
+              (PRODUCTS.length ? PRODUCTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
@@ -219,7 +219,7 @@
                   '<td style="font-weight:700;color:#a78bfa;">' + esc(p.margin) + '</td>' +
                   '<td><span class="zfsh-tag ' + (p.status === 'In Stock' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="10" style="text-align:center;padding:24px;color:#94a3b8;">No fashion product records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -251,7 +251,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Order ID</th><th>Pet Parent & Pet</th><th>Items Ordered</th><th>Channel</th><th>Custom Details</th><th>Value</th><th>Date</th><th>Payment</th><th>Status</th></tr></thead>',
             '<tbody>',
-              ORDERS.map(function (o) {
+              (ORDERS.length ? ORDERS.map(function (o) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;font-weight:600;">' + esc(o.orderId) + '</td>' +
                   '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(o.customer) + '<br/><span style="font-size:11px;color:#38bdf8;">' + esc(o.pet) + '</span></td>' +
@@ -263,7 +263,7 @@
                   '<td style="color:var(--foreground,#334155);">' + esc(o.payment) + '</td>' +
                   '<td><span class="zfsh-tag ' + (o.status === 'Delivered' ? 'green' : o.status === 'Dispatched' ? 'blue' : 'pink') + '">' + esc(o.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="9" style="text-align:center;padding:24px;color:#94a3b8;">No fashion order records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -339,17 +339,17 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>SKU Code</th><th>Product Name</th><th>Category</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>Total Stock</th><th>Valuation</th><th>Status</th></tr></thead>',
             '<tbody>',
-              PRODUCTS.map(function (p) {
+              (PRODUCTS.length ? PRODUCTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(p.sku) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
                   '<td style="color:var(--muted-foreground,#64748b);">' + esc(p.cat) + '</td>' +
-                  '<td style="color:var(--foreground,#334155);">15</td><td style="color:var(--foreground,#334155);">40</td><td style="color:var(--foreground,#334155);">60</td><td style="color:var(--foreground,#334155);">45</td><td style="color:var(--foreground,#334155);">24</td>' +
+                  '<td style="color:var(--foreground,#334155);">0</td><td style="color:var(--foreground,#334155);">0</td><td style="color:var(--foreground,#334155);">0</td><td style="color:var(--foreground,#334155);">0</td><td style="color:var(--foreground,#334155);">0</td>' +
                   '<td style="font-weight:700;color:var(--foreground,#0f172a);">' + esc(p.stock) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹' + (p.stock * 2200).toLocaleString('en-IN') + '</td>' +
+                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹0</td>' +
                   '<td><span class="zfsh-tag ' + (p.status === 'In Stock' ? 'green' : 'amber') + '">' + esc(p.status) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="11" style="text-align:center;padding:24px;color:#94a3b8;">No inventory allocation records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -363,7 +363,7 @@
         kpiHtml('Showroom Revenue (MTD)', '₹0', '0.0%', 'neutral', 'No active records', '🛍️'),
         kpiHtml('Pet Footfall (MTD)', '0', '0.0%', 'neutral', 'No active records', '🐾'),
         kpiHtml('Dressing Room Trials', '0', '0.0%', 'neutral', 'No active records', '👗'),
-        kpiHtml('Avg. Revenue per Sq Ft', '₹272 / sqft', '+₹34 vs industry', 'up', 'Premium retail density', '📐'),
+        kpiHtml('Avg. Revenue per Sq Ft', '₹0 / sqft', '0.0%', 'neutral', 'No active records', '📐'),
         kpiHtml('On-Spot Customization', '0', '0.0%', 'neutral', 'No active records', '✨'),
         kpiHtml('Showroom Client Rating', '0', '0.0%', 'neutral', 'No active records', '⭐'),
       '</div>',
@@ -381,7 +381,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>ID</th><th>Showroom Name</th><th>City & Hub Area</th><th>Sq. Ft</th><th>Pet Footfall</th><th>Trials</th><th>Sales MTD</th><th>Rev / Sq Ft</th><th>Conversion</th><th>Avg Ticket</th><th>Rating</th></tr></thead>',
             '<tbody>',
-              SHOWROOMS.map(function (s) {
+              (SHOWROOMS.length ? SHOWROOMS.map(function (s) {
                 return '<tr>' +
                   '<td style="font-family:monospace;color:#f472b6;font-size:11px;">' + esc(s.id) + '</td>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(s.name) + '</td>' +
@@ -395,7 +395,7 @@
                   '<td style="color:var(--foreground,#334155);">' + esc(s.avgTicket) + '</td>' +
                   '<td><span class="zfsh-tag amber">' + esc(s.rating) + '</span></td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="11" style="text-align:center;padding:24px;color:#94a3b8;">No showroom performance records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -410,8 +410,8 @@
         kpiHtml('Online Orders (MTD)', '0', '0.0%', 'neutral', 'No active records', '🛍️'),
         kpiHtml('Average Online AOV', '₹0', '0.0%', 'neutral', 'No active records', '💳'),
         kpiHtml('E-Commerce Conversion', '0', '0.0%', 'neutral', 'No active records', '⚡'),
-        kpiHtml('3D AI Pet Sizing Assist', '78.4% Adoption', '3,210 scans completed', 'up', 'Camera dimension scan', '📐'),
-        kpiHtml('60-Min Rush Delivery', '42.8% of Orders', 'Metro hub express', 'up', 'Same-day party wear', '🚀'),
+        kpiHtml('3D AI Pet Sizing Assist', '0.0% Adoption', '0 scans completed', 'neutral', 'No active records', '📐'),
+        kpiHtml('60-Min Rush Delivery', '0.0% of Orders', '', 'neutral', 'No active records', '🚀'),
       '</div>',
 
       '<div class="zfsh-card">',
@@ -427,22 +427,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Channel Platform</th><th>Sessions</th><th>Orders</th><th>Conversion %</th><th>AOV</th><th>Revenue</th><th>Share</th></tr></thead>',
             '<tbody>',
-              [
-                { ch: 'Zenve iOS Luxury App', sess: '48,200', ord: 342, conv: '3.42%', aov: '₹3,840', rev: '₹13,13,280', share: '46.2%' },
-                { ch: 'Zenve Android App', sess: '36,500', ord: 254, conv: '2.85%', aov: '₹3,120', rev: '₹7,92,480', share: '27.9%' },
-                { ch: 'Mobile Responsive Web', sess: '22,400', ord: 118, conv: '2.10%', aov: '₹2,680', rev: '₹3,16,240', share: '11.1%' },
-                { ch: 'Instagram Shop & Social Drops', sess: '18,900', ord: 122, conv: '2.95%', aov: '₹3,450', rev: '₹4,20,900', share: '14.8%' }
-              ].map(function (c) {
-                return '<tr>' +
-                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.ch) + '</td>' +
-                  '<td style="color:var(--foreground,#334155);">' + esc(c.sess) + '</td>' +
-                  '<td style="color:var(--foreground,#0f172a);font-weight:600;">' + esc(c.ord) + '</td>' +
-                  '<td style="color:#38bdf8;font-weight:700;">' + esc(c.conv) + '</td>' +
-                  '<td style="color:var(--foreground,#334155);">' + esc(c.aov) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(c.rev) + '</td>' +
-                  '<td style="color:#a78bfa;font-weight:700;">' + esc(c.share) + '</td>' +
-                '</tr>';
-              }).join(''),
+              '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No digital channel records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -454,9 +439,9 @@
     return [
       '<div class="zfsh-kpi-grid">',
         kpiHtml('Fashion Gross Revenue (FYTD)', '₹0', '0.0%', 'neutral', 'No active records', '💵'),
-        kpiHtml('Monthly Revenue Run-Rate', '₹7.20 L / Mo', '+28.5% vs FY25', 'up', 'Accelerating into Q3', '📈'),
-        kpiHtml('Showroom vs Online Mix', '58% : 42%', 'Healthy omnichannel', 'neutral', 'Boutiques driving high AOV', '⚖️'),
-        kpiHtml('Festive Season Surge', '+64.2%', 'Diwali & wedding peak', 'up', 'High-margin couture', '✨'),
+        kpiHtml('Monthly Revenue Run-Rate', '₹0 / Mo', '0.0%', 'neutral', 'No active records', '📈'),
+        kpiHtml('Showroom vs Online Mix', '0% : 0%', '', 'neutral', 'No active records', '⚖️'),
+        kpiHtml('Festive Season Surge', '+0.0%', '', 'neutral', 'No active records', '✨'),
         kpiHtml('Blended Average Order Value', '₹0', '0.0%', 'neutral', 'No active records', '🛒'),
         kpiHtml('Fashion Revenue / Pet Parent', '₹0', '0.0%', 'neutral', 'No active records', '💎'),
       '</div>',
@@ -467,21 +452,7 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Category</th><th>Revenue FYTD</th><th>Share %</th><th>Growth YoY</th><th>Avg Ticket</th></tr></thead>',
             '<tbody>',
-              [
-                { cat: 'Ergonomic Harnesses & Leashes', rev: '₹14.80 L', share: '32.5%', growth: '+34.2%', aov: '₹3,650' },
-                { cat: 'Weatherwear & Monsoon Rainwear', rev: '₹10.90 L', share: '24.0%', growth: '+41.8%', aov: '₹2,920' },
-                { cat: 'Formal Wedding & Festive Atelier', rev: '₹8.20 L', share: '18.0%', growth: '+52.4%', aov: '₹4,950' },
-                { cat: 'Winter Cashmere & Knits', rev: '₹6.40 L', share: '14.1%', growth: '+28.0%', aov: '₹2,480' },
-                { cat: 'Collars, Bandanas & Accessories', rev: '₹5.20 L', share: '11.4%', growth: '+22.6%', aov: '₹1,240' }
-              ].map(function (c) {
-                return '<tr>' +
-                  '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(c.cat) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">' + esc(c.rev) + '</td>' +
-                  '<td style="color:#a78bfa;font-weight:600;">' + esc(c.share) + '</td>' +
-                  '<td style="color:#34d399;font-weight:700;">' + esc(c.growth) + '</td>' +
-                  '<td style="color:var(--foreground,#334155);">' + esc(c.aov) + '</td>' +
-                '</tr>';
-              }).join(''),
+              '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No category revenue records found</td></tr>',
             '</tbody>',
           '</table>',
         '</div>',
@@ -496,7 +467,7 @@
         kpiHtml('Net Contribution Margin', '0', '0.0%', 'neutral', 'No active records', '📊'),
         kpiHtml('Full-Price Sell-Through', '0', '0.0%', 'neutral', 'No active records', '🏷️'),
         kpiHtml('Custom Monogram Margin', '0', '0.0%', 'neutral', 'No active records', '✨'),
-        kpiHtml('Sizing Exchange Cost', '1.8% of Rev', '-0.8% reduction', 'up', 'Precise 3D size fitting', '📐'),
+        kpiHtml('Sizing Exchange Cost', '0.0%', '', 'neutral', 'No active records', '📐'),
         kpiHtml('Fashion Operating EBITDA', '₹0', '0.0%', 'neutral', 'No active records', '⚡'),
       '</div>',
 
@@ -506,16 +477,16 @@
           '<table class="zfsh-table">',
             '<thead><tr><th>Apparel Item</th><th>Retail ASP</th><th>Fabric</th><th>Artisan Labor</th><th>Hardware</th><th>COGS</th><th>Gross Profit</th><th>Margin</th></tr></thead>',
             '<tbody>',
-              PRODUCTS.map(function (p) {
+              (PRODUCTS.length ? PRODUCTS.map(function (p) {
                 return '<tr>' +
                   '<td style="font-weight:600;color:var(--foreground,#0f172a);">' + esc(p.name) + '</td>' +
                   '<td style="color:var(--foreground,#334155);">' + esc(p.price) + '</td>' +
-                  '<td style="color:var(--muted-foreground,#64748b);">₹580</td><td style="color:var(--muted-foreground,#64748b);">₹320</td><td style="color:var(--muted-foreground,#64748b);">₹190</td>' +
+                  '<td style="color:var(--muted-foreground,#64748b);">₹0</td><td style="color:var(--muted-foreground,#64748b);">₹0</td><td style="color:var(--muted-foreground,#64748b);">₹0</td>' +
                   '<td style="color:#f87171;">' + esc(p.cost) + '</td>' +
-                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹' + (parseInt(p.price.replace(/[^\d]/g, '')) - parseInt(p.cost.replace(/[^\d]/g, ''))).toLocaleString('en-IN') + '</td>' +
+                  '<td style="font-family:monospace;font-weight:700;color:#34d399;">₹0</td>' +
                   '<td style="font-weight:800;color:#a78bfa;">' + esc(p.margin) + '</td>' +
                 '</tr>';
-              }).join(''),
+              }).join('') : '<tr><td colspan="8" style="text-align:center;padding:24px;color:#94a3b8;">No unit economics records found</td></tr>'),
             '</tbody>',
           '</table>',
         '</div>',
@@ -528,7 +499,7 @@
 
     return [
       '<div class="zfsh-kpi-grid">',
-        kpiHtml('Active Capsule Collections', '3 Live Drops', 'Festive + Winter + Gala', 'up', 'Current retail circulation', '✨'),
+        kpiHtml('Active Capsule Collections', '0 Live Drops', '', 'neutral', 'No active records', '✨'),
         kpiHtml('Avg. Drop Sell-Through', '0', '0.0%', 'neutral', 'No active records', '🎯'),
         kpiHtml('Highest Grossing Drop', '₹0', '0.0%', 'neutral', 'No active records', '👑'),
         kpiHtml('Design-to-Rack Lead Time', '0', '0.0%', 'neutral', 'No active records', '⏱️'),
