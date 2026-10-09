@@ -28,7 +28,7 @@ export default function CriticalAlerts() {
       title="Sev-1 Critical Emergency Alerts"
       subtitle="Immediate response dashboard for life-safety, cold-chain failure, critical gateway downtime, and hospital ICU red flags"
       icon="🚨"
-      badge={`${alerts.filter(a => a.status !== 'Resolved').length} Unresolved Sev-1`}
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -88,34 +88,34 @@ export default function CriticalAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Active Sev-1 Incidents"
-          value={`${alerts.filter(a => a.status !== 'Resolved').length} Active`}
-          delta="2 Escalated"
-          trend="down"
-          subtext="Immediate action required"
+          value="0 Active"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active incidents"
           icon="🚨"
         />
         <KpiCard
           label="Mean Time to Detect (MTTD)"
-          value="1.8 Mins"
-          delta="92% IoT automated"
-          trend="up"
-          subtext="Telemetry sensors live"
+          value="0 Mins"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 telemetry feeds"
           icon="⏱️"
         />
         <KpiCard
           label="Financial Value at Risk"
           value="₹0"
-          delta="Cold-chain + UPI buffer"
-          trend="down"
-          subtext="Contained in safety zones"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 at risk"
           icon="🛡️"
         />
         <KpiCard
           label="On-Call ICU Specialists"
-          value="8 Vets Active"
-          delta="100% Roster Coverage"
-          trend="up"
-          subtext="Across 6 metro hospitals"
+          value="0 Vets Active"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active specialists"
           icon="👨‍⚕️"
         />
       </div>
@@ -151,7 +151,12 @@ export default function CriticalAlerts() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {alerts.map((alert) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No active Sev-1 critical incidents reported. All systems operational.
+            </div>
+          ) : (
+            alerts.map((alert) => (
             <div
               key={alert.id}
               style={{
@@ -261,7 +266,8 @@ export default function CriticalAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

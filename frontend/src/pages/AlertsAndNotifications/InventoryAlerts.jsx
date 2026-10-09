@@ -78,34 +78,34 @@ export default function InventoryAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="SKUs Below Reorder Point"
-          value="14 SKUs"
-          delta="2 Stockout Critical"
-          trend="down"
-          subtext="Requires instant PO"
+          value="0 SKUs"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 stockout warnings"
           icon="⚠️"
         />
         <KpiCard
           label="Near-Expiry Valuation (<30d)"
           value="₹0"
-          delta="4 Pharmaceutical Batches"
-          trend="down"
-          subtext="Clearance discount active"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 near-expiry"
           icon="⏳"
         />
         <KpiCard
           label="Cold-Chain Temperature SLA"
           value="0.0%"
-          delta="+2°C to +8°C compliant"
-          trend="up"
-          subtext="IoT telemetry live"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active sensors"
           icon="❄️"
         />
         <KpiCard
           label="Capital Trapped in Slow-Moving"
           value="₹0"
-          delta="DSI > 120 Days"
+          delta="0.0%"
           trend="neutral"
-          subtext="Monsoon fashion & gear"
+          subtext="₹0 trapped capital"
           icon="🧊"
         />
       </div>
@@ -122,7 +122,12 @@ export default function InventoryAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No inventory stock triggers or expiry exceptions detected.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -224,7 +229,8 @@ export default function InventoryAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

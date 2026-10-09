@@ -24,7 +24,7 @@ export default function RevenueAlerts() {
       title="Revenue Pacing & Margin Risk Alerts"
       subtitle="Automated commercial anomaly detection for sales drop-offs, return surges, CAC inflation, and high-value B2B accounts"
       icon="💼"
-      badge="₹0 Value at Risk"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -79,33 +79,33 @@ export default function RevenueAlerts() {
         <KpiCard
           label="Total Revenue at Risk"
           value="₹0"
-          delta="4 active warnings"
-          trend="down"
-          subtext="GMV + CAC + Returns"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 at risk"
           icon="📉"
         />
         <KpiCard
           label="Target Attainment Gap"
-          value="-4.8% MTD"
-          delta="₹0 below target"
-          trend="down"
-          subtext="Delhi & Chennai hubs"
+          value="0.0% MTD"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0.0% variance"
           icon="🎯"
         />
         <KpiCard
           label="Average Return Rate"
           value="0.0%"
-          delta="+0.8% vs benchmark"
-          trend="down"
-          subtext="Threshold: 2.5%"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0.0% return rate"
           icon="🔄"
         />
         <KpiCard
           label="High-Value Accounts Alert"
-          value="1 B2B Account"
-          delta="Infosys (₹0)"
+          value="0 Accounts"
+          delta="0.0%"
           trend="neutral"
-          subtext="Renewal pending sign-off"
+          subtext="0 accounts flagged"
           icon="🏢"
         />
       </div>
@@ -122,7 +122,12 @@ export default function RevenueAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No revenue pacing warnings or commercial anomalies detected.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -217,7 +222,8 @@ export default function RevenueAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

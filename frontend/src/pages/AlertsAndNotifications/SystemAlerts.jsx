@@ -78,34 +78,34 @@ export default function SystemAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="API Gateway P99 Latency"
-          value="640 ms"
-          delta="Spike on /orders/create"
-          trend="down"
-          subtext="Target: < 80ms"
+          value="0 ms"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 ms latency"
           icon="⚡"
         />
         <KpiCard
           label="Database WAL Contention"
-          value="14 Queued"
-          delta="Peak during batch sync"
-          trend="down"
-          subtext="SQLite zenvebi.db"
+          value="0 Queued"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 lock contentions"
           icon="🗄️"
         />
         <KpiCard
           label="Gemini AI Quota Headroom"
-          value="12% Headroom"
-          delta="88% Consumed"
-          trend="down"
-          subtext="Tier-3 Enterprise API"
+          value="0.0%"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 quota alerts"
           icon="🤖"
         />
         <KpiCard
           label="ERP Connector Status"
-          value="2h 15m Lag"
-          delta="VPN Reconnect required"
-          trend="down"
-          subtext="Tally Prime Sync"
+          value="0 mins Lag"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 sync lag"
           icon="🔌"
         />
       </div>
@@ -122,7 +122,12 @@ export default function SystemAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No infrastructure exceptions or API alerts detected. All systems green.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -205,7 +210,8 @@ export default function SystemAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

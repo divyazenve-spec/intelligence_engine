@@ -63,7 +63,7 @@ export default function AlertRules() {
       title="Alert Rules Engine & Escalation Matrices"
       subtitle="Configure metric triggers, threshold conditions, multi-channel routing (WhatsApp, SMS, Slack, PagerDuty), and cooldown policies"
       icon="⚙️"
-      badge={`${rules.filter(r => r.enabled).length} Active Rules`}
+      badge=""
       actions={
         <button
           onClick={() => setModalOpen(true)}
@@ -103,34 +103,34 @@ export default function AlertRules() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Total Deployed Rules"
-          value={`${rules.length} Rules`}
-          delta={`${rules.filter(r => r.enabled).length} Active`}
-          trend="up"
-          subtext="Automated monitoring"
+          value="0 Rules"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active rules"
           icon="🛡️"
         />
         <KpiCard
           label="Critical (Sev-1) Rules"
-          value="4 Rules"
-          delta="Cold-chain, Life, Gateway"
+          value="0 Rules"
+          delta="0.0%"
           trend="neutral"
-          subtext="Immediate paging"
+          subtext="0 Sev-1 rules"
           icon="🚨"
         />
         <KpiCard
           label="Multi-Channel Routing"
-          value="5 Channels"
-          delta="WA, SMS, Slack, Voice, Push"
-          trend="up"
-          subtext="Zero message drop"
+          value="0 Channels"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 channels configured"
           icon="📱"
         />
         <KpiCard
           label="Avg Alert Resolution SLA"
-          value="14.2 Mins"
-          delta="Target: < 20 Mins"
-          trend="up"
-          subtext="Paced across 6 metros"
+          value="0 Mins"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 mins SLA"
           icon="⏱️"
         />
       </div>
@@ -147,7 +147,12 @@ export default function AlertRules() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {rules.map((r) => (
+          {rules.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No alert rules configured. Click "Create New Alert Rule" to deploy automated monitoring triggers.
+            </div>
+          ) : (
+            rules.map((r) => (
             <div
               key={r.id}
               style={{
@@ -257,7 +262,8 @@ export default function AlertRules() {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
 

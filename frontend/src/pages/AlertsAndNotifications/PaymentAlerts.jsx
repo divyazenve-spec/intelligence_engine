@@ -24,7 +24,7 @@ export default function PaymentAlerts() {
       title="Payment Gateways & Collections Alerts"
       subtitle="Monitoring UPI success rates, B2B aging receivables, payout float balances, chargebacks, and veterinary doctor commissions"
       icon="💳"
-      badge="₹0 Exposure"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -79,33 +79,33 @@ export default function PaymentAlerts() {
         <KpiCard
           label="Gateway Uptime (Razorpay)"
           value="0.0%"
-          delta="4.8% failure spike"
-          trend="down"
-          subtext="UPI intent degraded"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 downtime incidents"
           icon="⚡"
         />
         <KpiCard
           label="Overdue B2B Receivables"
           value="₹0"
-          delta="1 clinic > 30 days"
-          trend="down"
-          subtext="Invoice #8841"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 overdue"
           icon="📑"
         />
         <KpiCard
           label="Instant Refund Balance"
           value="₹0"
-          delta="Critically low float"
-          trend="down"
-          subtext="Requires ₹0 top-up"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 float balance"
           icon="🏦"
         />
         <KpiCard
           label="Pending Vet Commissions"
           value="₹0"
-          delta="14 Doctors pending"
+          delta="0.0%"
           trend="neutral"
-          subtext="Batch #NEFT-41"
+          subtext="₹0 pending"
           icon="👨‍⚕️"
         />
       </div>
@@ -122,7 +122,12 @@ export default function PaymentAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No payment gateway disruptions or collection aging alerts detected.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -207,7 +212,8 @@ export default function PaymentAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

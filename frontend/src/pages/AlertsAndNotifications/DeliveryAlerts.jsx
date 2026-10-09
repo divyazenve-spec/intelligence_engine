@@ -79,33 +79,33 @@ export default function DeliveryAlerts() {
         <KpiCard
           label="60-Min On-Time SLA"
           value="0.0%"
-          delta="+1.1% vs last week"
-          trend="up"
-          subtext="Target: 95.0%"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active deliveries"
           icon="⚡"
         />
         <KpiCard
           label="At-Risk Deliveries (<10m SLA)"
-          value="1 Order"
-          delta="Order #ZV-98214"
-          trend="down"
-          subtext="Rider in HSR Sector 2"
+          value="0 Orders"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 at-risk orders"
           icon="⏱️"
         />
         <KpiCard
           label="Active Fleet on Field"
-          value="68 Riders"
-          delta="1 Breakdown reported"
+          value="0 Riders"
+          delta="0.0%"
           trend="neutral"
-          subtext="5 Metros coverage"
+          subtext="0 active riders"
           icon="🛵"
         />
         <KpiCard
           label="Avg Dispatch Dwell Time"
-          value="3.8 Mins"
-          delta="SLA is 4.0 Mins"
-          trend="up"
-          subtext="Dark stores automated"
+          value="0 Mins"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 mins dispatch"
           icon="🏬"
         />
       </div>
@@ -122,7 +122,12 @@ export default function DeliveryAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No fleet disruptions or SLA alerts detected. All riders on schedule.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -222,7 +227,8 @@ export default function DeliveryAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

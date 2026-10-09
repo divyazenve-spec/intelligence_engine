@@ -78,34 +78,34 @@ export default function OrderAlerts() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Pending Rx Sign-Offs"
-          value="28 Orders"
-          delta="Queue > 30 mins"
-          trend="down"
-          subtext="Pharmacy SLA alert"
+          value="0 Orders"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 pending orders"
           icon="💊"
         />
         <KpiCard
           label="Packing Station SLA"
           value="0.0%"
-          delta="-9.6% vs target"
-          trend="down"
-          subtext="19 orders backlogged"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 backlogs"
           icon="📦"
         />
         <KpiCard
           label="Cancellation Rate"
           value="0.0%"
-          delta="Spike in Indiranagar"
-          trend="down"
-          subtext="Normal: < 2.5%"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0.0% cancellations"
           icon="🚫"
         />
         <KpiCard
           label="VIP Escalations"
-          value="1 Gold Tier"
-          delta="Priya Nair (Post-Op)"
-          trend="down"
-          subtext="Direct VIP concierge"
+          value="0 Orders"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 active escalations"
           icon="⭐"
         />
       </div>
@@ -122,7 +122,12 @@ export default function OrderAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No order processing bottlenecks or anomaly alerts detected.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -211,7 +216,8 @@ export default function OrderAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

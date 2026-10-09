@@ -22,7 +22,20 @@ export default function AlertsDashboard() {
     setTimeout(() => setToast(''), 3000);
   };
 
-  const tabs = [];
+  const tabs = [
+    { id: 'overview', label: 'Executive Overview', icon: '📊', badge: '' },
+    { id: 'critical', label: 'Critical Alerts', icon: '🚨', badge: '' },
+    { id: 'revenue', label: 'Revenue Alerts', icon: '💼', badge: '' },
+    { id: 'inventory', label: 'Inventory Alerts', icon: '📦', badge: '' },
+    { id: 'payment', label: 'Payment Alerts', icon: '💳', badge: '' },
+    { id: 'order', label: 'Order Alerts', icon: '🚚', badge: '' },
+    { id: 'delivery', label: 'Delivery Alerts', icon: '⚡', badge: '' },
+    { id: 'finance', label: 'Finance Alerts', icon: '💰', badge: '' },
+    { id: 'hr', label: 'HR Alerts', icon: '🧑‍💼', badge: '' },
+    { id: 'system', label: 'System Alerts', icon: '🖥️', badge: '' },
+    { id: 'rules', label: 'Alert Rules', icon: '⚙️', badge: '' },
+    { id: 'notifs', label: 'Notification Center', icon: '🔔', badge: '' }
+  ];
 
   const recentIncidents = [];
 
@@ -114,7 +127,7 @@ export default function AlertsDashboard() {
           title="Alerts & Notifications Control Center"
           subtitle="Unified multi-domain command center aggregating Critical, Revenue, Inventory, Payment, Order, Delivery, Finance, HR, and System telemetry"
           icon="🔔"
-          badge="Live Paging Active"
+          badge=""
           actions={
             <div style={{ display: 'flex', gap: '8px' }}>
               <button
@@ -154,34 +167,34 @@ export default function AlertsDashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
             <KpiCard
               label="Active Critical Alerts (Sev-1)"
-              value="4 Emergencies"
-              delta="2 Hospital ICU"
-              trend="down"
-              subtext="Immediate response"
+              value="0 Emergencies"
+              delta="0.0%"
+              trend="neutral"
+              subtext="0 active incidents"
               icon="🚨"
             />
             <KpiCard
               label="Active Warning Alerts (Sev-2)"
-              value="12 Warnings"
-              delta="Stock, SLA, Collections"
+              value="0 Warnings"
+              delta="0.0%"
               trend="neutral"
-              subtext="Escalating within 1h"
+              subtext="0 active warnings"
               icon="⚠️"
             />
             <KpiCard
               label="Total Resolved Today"
-              value="38 Alerts"
-              delta="100% resolved"
-              trend="up"
-              subtext="Mean resolution 14m"
+              value="0 Alerts"
+              delta="0.0%"
+              trend="neutral"
+              subtext="0 resolved"
               icon="✅"
             />
             <KpiCard
               label="Multi-Channel Delivery Health"
               value="0.0%"
-              delta="1,420 notifications"
-              trend="up"
-              subtext="WhatsApp, Slack, SMS"
+              delta="0.0%"
+              trend="neutral"
+              subtext="0 notifications"
               icon="📱"
             />
           </div>
@@ -199,17 +212,17 @@ export default function AlertsDashboard() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px' }}>
               {[
-                { title: 'Critical Alerts', icon: '🚨', count: '4 Active', color: '#ef4444', tab: 'critical' },
-                { title: 'Revenue Alerts', icon: '💼', count: '5 Active', color: '#f59e0b', tab: 'revenue' },
-                { title: 'Inventory Alerts', icon: '📦', count: '5 Active', color: '#f59e0b', tab: 'inventory' },
-                { title: 'Payment Alerts', icon: '💳', count: '5 Active', color: '#ef4444', tab: 'payment' },
-                { title: 'Order Alerts', icon: '🚚', count: '5 Active', color: '#3b82f6', tab: 'order' },
-                { title: 'Delivery Alerts', icon: '⚡', count: '5 Active', color: '#ef4444', tab: 'delivery' },
-                { title: 'Finance Alerts', icon: '💰', count: '5 Active', color: '#f59e0b', tab: 'finance' },
-                { title: 'HR Alerts', icon: '🧑‍💼', count: '5 Active', color: '#ef4444', tab: 'hr' },
-                { title: 'System Alerts', icon: '🖥️', count: '5 Active', color: '#3b82f6', tab: 'system' },
-                { title: 'Alert Rules', icon: '⚙️', count: '8 Rules', color: '#10b981', tab: 'rules' },
-                { title: 'Notification Center', icon: '🔔', count: '3 Unread', color: '#8b5cf6', tab: 'notifs' }
+                { title: 'Critical Alerts', icon: '🚨', count: '0 Active', color: '#ef4444', tab: 'critical' },
+                { title: 'Revenue Alerts', icon: '💼', count: '0 Active', color: '#f59e0b', tab: 'revenue' },
+                { title: 'Inventory Alerts', icon: '📦', count: '0 Active', color: '#f59e0b', tab: 'inventory' },
+                { title: 'Payment Alerts', icon: '💳', count: '0 Active', color: '#ef4444', tab: 'payment' },
+                { title: 'Order Alerts', icon: '🚚', count: '0 Active', color: '#3b82f6', tab: 'order' },
+                { title: 'Delivery Alerts', icon: '⚡', count: '0 Active', color: '#ef4444', tab: 'delivery' },
+                { title: 'Finance Alerts', icon: '💰', count: '0 Active', color: '#f59e0b', tab: 'finance' },
+                { title: 'HR Alerts', icon: '🧑‍💼', count: '0 Active', color: '#ef4444', tab: 'hr' },
+                { title: 'System Alerts', icon: '🖥️', count: '0 Active', color: '#3b82f6', tab: 'system' },
+                { title: 'Alert Rules', icon: '⚙️', count: '0 Rules', color: '#10b981', tab: 'rules' },
+                { title: 'Notification Center', icon: '🔔', count: '0 Unread', color: '#8b5cf6', tab: 'notifs' }
               ].map(cat => (
                 <div
                   key={cat.title}
@@ -252,69 +265,83 @@ export default function AlertsDashboard() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {recentIncidents.map((inc) => (
-                <div
-                  key={inc.id}
-                  style={{
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    background: 'rgba(0,0,0,0.15)',
-                    borderLeft: inc.severity === 'Critical' ? '4px solid #ef4444' : '4px solid #f59e0b',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: '12px'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{
-                        fontFamily: '"IBM Plex Mono", monospace',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        background: 'rgba(255,255,255,0.06)',
-                        padding: '1px 5px',
-                        borderRadius: '4px'
-                      }}>
-                        {inc.id}
-                      </span>
-                      <span style={{ fontSize: '13px', fontWeight: 700 }}>{inc.title}</span>
-                      <span style={{
-                        fontSize: '9px',
-                        padding: '1px 6px',
-                        borderRadius: '4px',
-                        background: inc.severity === 'Critical' ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)',
-                        color: inc.severity === 'Critical' ? '#ef4444' : '#f59e0b',
-                        fontWeight: 600
-                      }}>
-                        {inc.severity}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '4px' }}>
-                      Hub: <strong style={{ color: 'var(--foreground, #f8fafc)' }}>{inc.hub}</strong> · Category: {inc.cat}
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', whiteSpace: 'nowrap' }}>{inc.time}</span>
-                    <button
-                      onClick={() => triggerToast(`Action assigned to Incident Lead for ${inc.id}`)}
-                      style={{
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        background: 'rgba(255,255,255,0.06)',
-                        border: '1px solid var(--border, rgba(255,255,255,0.1))',
-                        color: 'var(--foreground, #f8fafc)',
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Acknowledge
-                    </button>
-                  </div>
+              {recentIncidents.length === 0 ? (
+                <div style={{
+                  padding: '36px 20px',
+                  textAlign: 'center',
+                  color: 'var(--muted-foreground, #94a3b8)',
+                  fontSize: '13px',
+                  background: 'rgba(0,0,0,0.1)',
+                  borderRadius: '8px',
+                  border: '1px dashed var(--border, rgba(255,255,255,0.1))'
+                }}>
+                  No active high-priority alerts in unified stream. All operational parameters normal.
                 </div>
-              ))}
+              ) : (
+                recentIncidents.map((inc) => (
+                  <div
+                    key={inc.id}
+                    style={{
+                      padding: '12px 16px',
+                      borderRadius: '8px',
+                      background: 'rgba(0,0,0,0.15)',
+                      borderLeft: inc.severity === 'Critical' ? '4px solid #ef4444' : '4px solid #f59e0b',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      gap: '12px'
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{
+                          fontFamily: '"IBM Plex Mono", monospace',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          background: 'rgba(255,255,255,0.06)',
+                          padding: '1px 5px',
+                          borderRadius: '4px'
+                        }}>
+                          {inc.id}
+                        </span>
+                        <span style={{ fontSize: '13px', fontWeight: 700 }}>{inc.title}</span>
+                        <span style={{
+                          fontSize: '9px',
+                          padding: '1px 6px',
+                          borderRadius: '4px',
+                          background: inc.severity === 'Critical' ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)',
+                          color: inc.severity === 'Critical' ? '#ef4444' : '#f59e0b',
+                          fontWeight: 600
+                        }}>
+                          {inc.severity}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', marginTop: '4px' }}>
+                        Hub: <strong style={{ color: 'var(--foreground, #f8fafc)' }}>{inc.hub}</strong> · Category: {inc.cat}
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', whiteSpace: 'nowrap' }}>{inc.time}</span>
+                      <button
+                        onClick={() => triggerToast(`Action assigned to Incident Lead for ${inc.id}`)}
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          background: 'rgba(255,255,255,0.06)',
+                          border: '1px solid var(--border, rgba(255,255,255,0.1))',
+                          color: 'var(--foreground, #f8fafc)',
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Acknowledge
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </DashboardLayout>

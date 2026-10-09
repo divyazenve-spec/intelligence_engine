@@ -79,33 +79,33 @@ export default function HRAlerts() {
         <KpiCard
           label="Shift Coverage Rate"
           value="0.0%"
-          delta="2 Shifts understaffed"
-          trend="down"
-          subtext="ICU night shift alert"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 shift alerts"
           icon="🏥"
         />
         <KpiCard
           label="On-Call Specialist Roster"
-          value="7/8 Active"
-          delta="1 Vet Absence"
-          trend="down"
-          subtext="Mumbai Surgical Trauma"
+          value="0 Active"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 roster alerts"
           icon="👨‍⚕️"
         />
         <KpiCard
           label="Quota Lagging Personnel"
-          value="5 Employees"
-          delta="Pacing < 80%"
-          trend="down"
-          subtext="Diagnostics sales team"
+          value="0 Employees"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 quota alerts"
           icon="🎯"
         />
         <KpiCard
           label="Credentialing Expirations"
-          value="1 License"
-          delta="Due in 15 days"
+          value="0 Licenses"
+          delta="0.0%"
           trend="neutral"
-          subtext="Dr. Aisha Khan (VCI)"
+          subtext="0 license alerts"
           icon="📜"
         />
       </div>
@@ -122,7 +122,12 @@ export default function HRAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No workforce exceptions or clinical governance alerts active.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -205,7 +210,8 @@ export default function HRAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

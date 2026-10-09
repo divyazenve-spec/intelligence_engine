@@ -20,15 +20,15 @@
   /* ── Modules Configuration ───────────────────────────────────────── */
   var MODULES = [
     { id: 'critical',   label: 'Critical Alerts',    icon: '🚨', hash: '#critical-alerts',    badge: '', critical: true },
-    { id: 'revenue',    label: 'Revenue Alerts',     icon: '💼', hash: '#revenue-alerts',     badge: '5 Active' },
-    { id: 'inventory',  label: 'Inventory Alerts',   icon: '📦', hash: '#inventory-alerts',   badge: '5 Active' },
-    { id: 'payment',    label: 'Payment Alerts',     icon: '💳', hash: '#payment-alerts',     badge: '5 Active' },
-    { id: 'order',      label: 'Order Alerts',       icon: '🚚', hash: '#order-alerts',       badge: '5 Active' },
-    { id: 'delivery',   label: 'Delivery Alerts',    icon: '⚡', hash: '#delivery-alerts',    badge: '96.2% SLA' },
-    { id: 'finance',    label: 'Finance Alerts',     icon: '💰', hash: '#finance-alerts',     badge: '5 Active' },
-    { id: 'hr',         label: 'HR Alerts',          icon: '🧑‍💼', hash: '#hr-alerts',          badge: '2 Critical' },
-    { id: 'system',     label: 'System Alerts',      icon: '🖥️', hash: '#system-alerts',      badge: '5 Active' },
-    { id: 'rules',      label: 'Alert Rules',        icon: '⚙️', hash: '#alert-rules',        badge: '8 Rules' },
+    { id: 'revenue',    label: 'Revenue Alerts',     icon: '💼', hash: '#revenue-alerts',     badge: '' },
+    { id: 'inventory',  label: 'Inventory Alerts',   icon: '📦', hash: '#inventory-alerts',   badge: '' },
+    { id: 'payment',    label: 'Payment Alerts',     icon: '💳', hash: '#payment-alerts',     badge: '' },
+    { id: 'order',      label: 'Order Alerts',       icon: '🚚', hash: '#order-alerts',       badge: '' },
+    { id: 'delivery',   label: 'Delivery Alerts',    icon: '⚡', hash: '#delivery-alerts',    badge: '' },
+    { id: 'finance',    label: 'Finance Alerts',     icon: '💰', hash: '#finance-alerts',     badge: '' },
+    { id: 'hr',         label: 'HR Alerts',          icon: '🧑‍💼', hash: '#hr-alerts',          badge: '' },
+    { id: 'system',     label: 'System Alerts',      icon: '🖥️', hash: '#system-alerts',      badge: '' },
+    { id: 'rules',      label: 'Alert Rules',        icon: '⚙️', hash: '#alert-rules',        badge: '' },
     { id: 'notifs',     label: 'Notification Center',icon: '🔔', hash: '#notification-center', badge: '' }
   ];
 
@@ -277,27 +277,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active critical alerts. All operational parameters normal.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Active Sev-1 Incidents</span><span class="zalt-kpi-icon">🚨</span></div>',
           '<div class="zalt-kpi-value">' + S.critical.filter(function (a) { return a.status === 'Active'; }).length + ' Active</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Critical SLA: 15m</span><span class="zalt-kpi-subtext">Immediate paging</span></div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Normal</span><span class="zalt-kpi-subtext">No active emergencies</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Financial Value at Risk</span><span class="zalt-kpi-icon">🛡️</span></div>',
-          '<div class="zalt-kpi-value">₹10.48 Lakhs</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">Cold-Chain + UPI</span><span class="zalt-kpi-subtext">Vaccines & refunds</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Zero Risk</span><span class="zalt-kpi-subtext">No assets at risk</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Telemetry MTTD</span><span class="zalt-kpi-icon">⏱️</span></div>',
-          '<div class="zalt-kpi-value">1.8 Mins</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">92% Automated</span><span class="zalt-kpi-subtext">IoT sensor feed</span></div>',
+          '<div class="zalt-kpi-value">0 Mins</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Optimal</span><span class="zalt-kpi-subtext">IoT sensor feed</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">On-Call ICU Specialists</span><span class="zalt-kpi-icon">👨‍⚕️</span></div>',
-          '<div class="zalt-kpi-value">8 Active</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">100% Coverage</span><span class="zalt-kpi-subtext">6 Metro Hospitals</span></div>',
+          '<div class="zalt-kpi-value">0 Active</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">On Standby</span><span class="zalt-kpi-subtext">Metro Hospitals</span></div>',
         '</div>',
       '</div>',
 
@@ -309,7 +311,7 @@
           '</div>',
           '<span class="zalt-badge-sev1" style="font-size:11px;">P1 ESCALATION WINDOW: 15 MINS</span>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -348,27 +350,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active revenue anomalies or pacing alerts.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Revenue at Risk</span><span class="zalt-kpi-icon">📉</span></div>',
-          '<div class="zalt-kpi-value">₹14.88 Lakhs</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">4 Active Warnings</span><span class="zalt-kpi-subtext">GMV + Returns</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Warnings</span><span class="zalt-kpi-subtext">GMV + Returns</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Pacing Gap vs Target</span><span class="zalt-kpi-icon">🎯</span></div>',
-          '<div class="zalt-kpi-value">-4.8% MTD</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">Delhi & Chennai</span><span class="zalt-kpi-subtext">Weather affected</span></div>',
+          '<div class="zalt-kpi-value">0.0% MTD</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">On Track</span><span class="zalt-kpi-subtext">Revenue tracking</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Bravecto Return Rate</span><span class="zalt-kpi-icon">🔄</span></div>',
-          '<div class="zalt-kpi-value">5.8%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Threshold: 2.5%</span><span class="zalt-kpi-subtext">Weight mismatch</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Within Limit</span><span class="zalt-kpi-subtext">Threshold: 2.5%</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">B2B High-Value Accounts</span><span class="zalt-kpi-icon">🏢</span></div>',
-          '<div class="zalt-kpi-value">1 Account</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">Infosys (₹8.4L)</span><span class="zalt-kpi-subtext">Renewal in 4 days</span></div>',
+          '<div class="zalt-kpi-value">0 Accounts</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Active</span><span class="zalt-kpi-subtext">No renewal issues</span></div>',
         '</div>',
       '</div>',
 
@@ -380,7 +384,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-tune-targets-btn">Auto-Tune Seasonality Targets</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -418,27 +422,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active inventory alerts or stockout hazards.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">SKUs Below Safety Stock</span><span class="zalt-kpi-icon">📦</span></div>',
-          '<div class="zalt-kpi-value">14 SKUs</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">2 Critical Stockouts</span><span class="zalt-kpi-subtext">Immediate PO required</span></div>',
+          '<div class="zalt-kpi-value">0 SKUs</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Stockouts</span><span class="zalt-kpi-subtext">Buffers healthy</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Near-Expiry Capital (<30d)</span><span class="zalt-kpi-icon">⏳</span></div>',
-          '<div class="zalt-kpi-value">₹3,42,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">4 Batches</span><span class="zalt-kpi-subtext">Auto-discount applied</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Batches</span><span class="zalt-kpi-subtext">No expired stock</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Cold-Chain Compliance</span><span class="zalt-kpi-icon">❄️</span></div>',
-          '<div class="zalt-kpi-value">99.4%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">+2°C to +8°C compliant</span><span class="zalt-kpi-subtext">Transit telemetry</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Telemetry Normal</span><span class="zalt-kpi-subtext">Transit telemetry</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Capital in Slow-Moving</span><span class="zalt-kpi-icon">🧊</span></div>',
-          '<div class="zalt-kpi-value">₹5,18,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">DSI > 120 Days</span><span class="zalt-kpi-subtext">Monsoon apparel</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Optimal</span><span class="zalt-kpi-subtext">Velocity normal</span></div>',
         '</div>',
       '</div>',
 
@@ -450,7 +456,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-generate-pos-btn">Auto-Generate Purchase Orders</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -490,27 +496,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active payment gateway disruptions or collection aging alerts.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Razorpay Gateway Uptime</span><span class="zalt-kpi-icon">⚡</span></div>',
-          '<div class="zalt-kpi-value">95.2%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">4.8% Failure Rate</span><span class="zalt-kpi-subtext">UPI intent degraded</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0.0% Failure Rate</span><span class="zalt-kpi-subtext">UPI intent stable</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Overdue B2B Receivables</span><span class="zalt-kpi-icon">📑</span></div>',
-          '<div class="zalt-kpi-value">₹1,20,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">PetCare Network</span><span class="zalt-kpi-subtext">> 30 days overdue</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Settled</span><span class="zalt-kpi-subtext">No overdue invoices</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Instant Refund Float</span><span class="zalt-kpi-icon">🏦</span></div>',
-          '<div class="zalt-kpi-value">₹14,200</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Critically Low Float</span><span class="zalt-kpi-subtext">Requires ₹2L top-up</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Float Balanced</span><span class="zalt-kpi-subtext">Reconciliation current</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Pending Vet Commissions</span><span class="zalt-kpi-icon">👨‍⚕️</span></div>',
-          '<div class="zalt-kpi-value">₹3,84,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">14 Doctors Pending</span><span class="zalt-kpi-subtext">Batch #NEFT-41</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Pending</span><span class="zalt-kpi-subtext">All batches cleared</span></div>',
         '</div>',
       '</div>',
 
@@ -522,7 +530,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-danger" id="zalt-gateway-failover-btn">Failover Traffic to Cashfree</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -561,27 +569,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active order processing bottlenecks or anomalies.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Pending Rx Sign-Offs</span><span class="zalt-kpi-icon">💊</span></div>',
-          '<div class="zalt-kpi-value">28 Orders</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Queue > 30m</span><span class="zalt-kpi-subtext">Pharmacy SLA alert</span></div>',
+          '<div class="zalt-kpi-value">0 Orders</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Queue Clear</span><span class="zalt-kpi-subtext">Pharmacy SLA met</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Packing Station SLA</span><span class="zalt-kpi-icon">📦</span></div>',
-          '<div class="zalt-kpi-value">82.4%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">19 Backlogged</span><span class="zalt-kpi-subtext">Koramangala Hub</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Backlogged</span><span class="zalt-kpi-subtext">Fulfillment active</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Order Cancellation Rate</span><span class="zalt-kpi-icon">🚫</span></div>',
-          '<div class="zalt-kpi-value">4.2%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">Indiranagar Node</span><span class="zalt-kpi-subtext">Normal is < 2.5%</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Normal</span><span class="zalt-kpi-subtext">Baseline standard</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">VIP Concierge Escalations</span><span class="zalt-kpi-icon">⭐</span></div>',
-          '<div class="zalt-kpi-value">1 Gold Tier</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Post-Op Sedatives</span><span class="zalt-kpi-subtext">Priya Nair</span></div>',
+          '<div class="zalt-kpi-value">0 Accounts</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Active</span><span class="zalt-kpi-subtext">Priority queue clear</span></div>',
         '</div>',
       '</div>',
 
@@ -593,7 +603,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-danger" id="zalt-page-pharmacist-btn">Page Emergency Duty Pharmacist</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -632,27 +642,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active delivery or fleet alerts.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">60-Min On-Time SLA</span><span class="zalt-kpi-icon">⚡</span></div>',
-          '<div class="zalt-kpi-value">96.2%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">+1.1% vs last week</span><span class="zalt-kpi-subtext">Target: 95.0%</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Target Met</span><span class="zalt-kpi-subtext">Fleet standard</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">At-Risk Deliveries (<10m)</span><span class="zalt-kpi-icon">⏱️</span></div>',
-          '<div class="zalt-kpi-value">1 Order</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Order #ZV-98214</span><span class="zalt-kpi-subtext">HSR Sector 2</span></div>',
+          '<div class="zalt-kpi-value">0 Orders</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 At Risk</span><span class="zalt-kpi-subtext">Routes optimal</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Active Fleet on Field</span><span class="zalt-kpi-icon">🛵</span></div>',
-          '<div class="zalt-kpi-value">68 Riders</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">1 Breakdown reported</span><span class="zalt-kpi-subtext">Ola S1 in Bandra</span></div>',
+          '<div class="zalt-kpi-value">0 Riders</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Breakdowns</span><span class="zalt-kpi-subtext">Telemetry tracking</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Avg Dark-Store Dwell</span><span class="zalt-kpi-icon">🏬</span></div>',
-          '<div class="zalt-kpi-value">3.8 Mins</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">SLA: 4.0 Mins</span><span class="zalt-kpi-subtext">Dark store packaging</span></div>',
+          '<div class="zalt-kpi-value">0.0 Mins</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Within SLA</span><span class="zalt-kpi-subtext">Staging buffer clear</span></div>',
         '</div>',
       '</div>',
 
@@ -664,7 +676,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-opt-routes-btn">🧭 Optimize All Rider Routes</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -704,27 +716,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active financial alerts or tax compliance exceptions.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">October EBITDA Margin</span><span class="zalt-kpi-icon">📉</span></div>',
-          '<div class="zalt-kpi-value">14.6%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">-3.4% vs Budget</span><span class="zalt-kpi-subtext">Target: 18.0%</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Baseline</span><span class="zalt-kpi-subtext">Target: 0.0%</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Unallocated Bank Inflow</span><span class="zalt-kpi-icon">🏦</span></div>',
-          '<div class="zalt-kpi-value">₹4,85,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">1 RTGS Deposit</span><span class="zalt-kpi-subtext">HDFC Corporate AC</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Reconciled</span><span class="zalt-kpi-subtext">No unmapped deposits</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Vendor Payables (<24h)</span><span class="zalt-kpi-icon">🧾</span></div>',
-          '<div class="zalt-kpi-value">₹6,80,000</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Royal Canin PO</span><span class="zalt-kpi-subtext">Pending GRN match</span></div>',
+          '<div class="zalt-kpi-value">₹0</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Cleared</span><span class="zalt-kpi-subtext">No urgent dues</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Days to GST GSTR-3B</span><span class="zalt-kpi-icon">📅</span></div>',
-          '<div class="zalt-kpi-value">3 Days</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">88% ITC Matched</span><span class="zalt-kpi-subtext">Oct 20 Deadline</span></div>',
+          '<div class="zalt-kpi-value">0 Days</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Reconciled</span><span class="zalt-kpi-subtext">ITC Matched</span></div>',
         '</div>',
       '</div>',
 
@@ -736,7 +750,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-ai-recon-btn">🔄 Run AI Bank Reconciliation</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -775,27 +789,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active workforce exceptions or clinical staffing alerts.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Shift Coverage Rate</span><span class="zalt-kpi-icon">🏥</span></div>',
-          '<div class="zalt-kpi-value">93.8%</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">2 Shifts Understaffed</span><span class="zalt-kpi-subtext">ICU night shift alert</span></div>',
+          '<div class="zalt-kpi-value">0.0%</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Fully Staffed</span><span class="zalt-kpi-subtext">No shift shortages</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">On-Call Specialist Roster</span><span class="zalt-kpi-icon">👨‍⚕️</span></div>',
-          '<div class="zalt-kpi-value">7/8 Active</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">1 Absence</span><span class="zalt-kpi-subtext">Mumbai Surgical Trauma</span></div>',
+          '<div class="zalt-kpi-value">0 Active</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Absences</span><span class="zalt-kpi-subtext">Roster complete</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Quota Lagging Personnel</span><span class="zalt-kpi-icon">🎯</span></div>',
-          '<div class="zalt-kpi-value">5 Employees</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">Pacing < 80%</span><span class="zalt-kpi-subtext">Diagnostics sales team</span></div>',
+          '<div class="zalt-kpi-value">0 Personnel</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Normal</span><span class="zalt-kpi-subtext">Pacing on target</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Credentialing Expirations</span><span class="zalt-kpi-icon">📜</span></div>',
-          '<div class="zalt-kpi-value">1 License</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">Due in 15 days</span><span class="zalt-kpi-subtext">Dr. Aisha Khan (VCI)</span></div>',
+          '<div class="zalt-kpi-value">0 Licenses</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Up to date</span><span class="zalt-kpi-subtext">All verified</span></div>',
         '</div>',
       '</div>',
 
@@ -807,7 +823,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-danger" id="zalt-locum-surgeon-btn">🚨 Page Standby Locum Surgeon</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -846,27 +862,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No active infrastructure telemetry or API exception alerts.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">API Gateway P99 Latency</span><span class="zalt-kpi-icon">⚡</span></div>',
-          '<div class="zalt-kpi-value">640 ms</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Spike on /orders/create</span><span class="zalt-kpi-subtext">Baseline: 45ms</span></div>',
+          '<div class="zalt-kpi-value">0 ms</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Nominal</span><span class="zalt-kpi-subtext">Baseline: 0ms</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">SQLite Write Contention</span><span class="zalt-kpi-icon">🗄️</span></div>',
-          '<div class="zalt-kpi-value">14 Queued</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">Peak in batch sync</span><span class="zalt-kpi-subtext">zenvebi.db</span></div>',
+          '<div class="zalt-kpi-value">0 Queued</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Normal</span><span class="zalt-kpi-subtext">Locks clear</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Gemini AI Token Quota</span><span class="zalt-kpi-icon">🤖</span></div>',
-          '<div class="zalt-kpi-value">12% Free</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill warning">88% Consumed</span><span class="zalt-kpi-subtext">Tier-3 Enterprise</span></div>',
+          '<div class="zalt-kpi-value">0% Free</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Quota Ready</span><span class="zalt-kpi-subtext">Usage nominal</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">ERP Connector Status</span><span class="zalt-kpi-icon">🔌</span></div>',
-          '<div class="zalt-kpi-value">2h 15m Lag</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Tally Prime VPN</span><span class="zalt-kpi-subtext">Sync reconnecting</span></div>',
+          '<div class="zalt-kpi-value">0m Lag</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Synced</span><span class="zalt-kpi-subtext">Pipeline live</span></div>',
         '</div>',
       '</div>',
 
@@ -878,7 +896,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-restart-workers-btn">⚡ Graceful Worker Pool Flush</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -917,27 +935,29 @@
       '</div>';
     }).join('');
 
+    var streamContent = items || '<div style="text-align:center;padding:36px;color:#94a3b8;font-size:13px;">No alert rules configured. Click Create New Alert Rule to add one.</div>';
+
     return [
       '<div class="zalt-kpi-grid">',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Configured Rules</span><span class="zalt-kpi-icon">🛡️</span></div>',
-          '<div class="zalt-kpi-value">' + S.rules.length + ' Rules</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">' + S.rules.filter(function (r) { return r.enabled; }).length + ' Active</span><span class="zalt-kpi-subtext">Continuous eval</span></div>',
+          '<div class="zalt-kpi-value">0 Rules</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">0 Active</span><span class="zalt-kpi-subtext">Continuous eval</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Critical (Sev-1) Rules</span><span class="zalt-kpi-icon">🚨</span></div>',
-          '<div class="zalt-kpi-value">4 Rules</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Emergency Broadcast</span><span class="zalt-kpi-subtext">Cold-chain, Life, P1</span></div>',
+          '<div class="zalt-kpi-value">0 Rules</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Standby</span><span class="zalt-kpi-subtext">Cold-chain, Life, P1</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Multi-Channel Routing</span><span class="zalt-kpi-icon">📱</span></div>',
-          '<div class="zalt-kpi-value">5 Channels</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">WA, SMS, Slack, Voice, Push</span><span class="zalt-kpi-subtext">Zero drop SLA</span></div>',
+          '<div class="zalt-kpi-value">0 Channels</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">Channels Ready</span><span class="zalt-kpi-subtext">Zero drop SLA</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Mean Resolution SLA</span><span class="zalt-kpi-icon">⏱️</span></div>',
-          '<div class="zalt-kpi-value">14.2 Mins</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">Target < 20 Mins</span><span class="zalt-kpi-subtext">All metro hubs</span></div>',
+          '<div class="zalt-kpi-value">0.0 Mins</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">SLA Target</span><span class="zalt-kpi-subtext">All metro hubs</span></div>',
         '</div>',
       '</div>',
 
@@ -949,7 +969,7 @@
           '</div>',
           '<button type="button" class="zalt-btn zalt-btn-primary" id="zalt-add-rule-btn">➕ Create New Alert Rule</button>',
         '</div>',
-        '<div class="zalt-stream-list">' + items + '</div>',
+        '<div class="zalt-stream-list">' + streamContent + '</div>',
       '</div>'
     ].join('');
   }
@@ -1001,7 +1021,7 @@
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Unread Notifications</span><span class="zalt-kpi-icon">📬</span></div>',
           '<div class="zalt-kpi-value">' + S.notifs.filter(function (n) { return !n.read; }).length + ' Unread</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill danger">Action Required</span><span class="zalt-kpi-subtext">Immediate triage</span></div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">All Read</span><span class="zalt-kpi-subtext">Inbox clear</span></div>',
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">Dispatched Today</span><span class="zalt-kpi-icon">🚀</span></div>',
@@ -1015,8 +1035,8 @@
         '</div>',
         '<div class="zalt-kpi-card">',
           '<div class="zalt-kpi-header"><span class="zalt-kpi-label">SMS Gateway Latency</span><span class="zalt-kpi-icon">📱</span></div>',
-          '<div class="zalt-kpi-value">--</div>',
-          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill info">DLT Registered</span><span class="zalt-kpi-subtext">Transactional route</span></div>',
+          '<div class="zalt-kpi-value">0 ms</div>',
+          '<div class="zalt-kpi-footer"><span class="zalt-kpi-pill success">DLT Registered</span><span class="zalt-kpi-subtext">Transactional route</span></div>',
         '</div>',
       '</div>',
 

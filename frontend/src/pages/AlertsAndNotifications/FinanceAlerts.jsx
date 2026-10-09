@@ -24,7 +24,7 @@ export default function FinanceAlerts() {
       title="Financial Health & Statutory Compliance Alerts"
       subtitle="Early warnings for EBITDA margin erosion, unallocated bank deposits, vendor payables aging, and GST tax filing deadlines"
       icon="💰"
-      badge="₹0 Impact"
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -79,33 +79,33 @@ export default function FinanceAlerts() {
         <KpiCard
           label="October EBITDA Margin"
           value="0.0%"
-          delta="-3.4% vs Target"
-          trend="down"
-          subtext="Budget: 18.0%"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0.0% variance"
           icon="📉"
         />
         <KpiCard
           label="Unallocated Bank Inflow"
           value="₹0"
-          delta="1 RTGS Deposit"
-          trend="down"
-          subtext="HDFC Corporate AC"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 unallocated"
           icon="🏦"
         />
         <KpiCard
           label="Vendor Payables Due (<24h)"
           value="₹0"
-          delta="Royal Canin PO"
-          trend="down"
-          subtext="Pending GRN sign-off"
+          delta="0.0%"
+          trend="neutral"
+          subtext="₹0 due"
           icon="🧾"
         />
         <KpiCard
           label="Days to GST GSTR-3B"
-          value="3 Days"
-          delta="88% ITC matched"
+          value="0 Days"
+          delta="0.0%"
           trend="neutral"
-          subtext="Oct 20 deadline"
+          subtext="0 pending items"
           icon="📅"
         />
       </div>
@@ -122,7 +122,12 @@ export default function FinanceAlerts() {
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {alerts.map((a) => (
+          {alerts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No corporate financial alerts or tax compliance deadlines pending.
+            </div>
+          ) : (
+            alerts.map((a) => (
             <div
               key={a.id}
               style={{
@@ -203,7 +208,8 @@ export default function FinanceAlerts() {
                 </div>
               )}
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>

@@ -41,7 +41,7 @@ export default function NotificationCenter() {
       title="Omni-Channel Notification Center"
       subtitle="Unified real-time notification feed across WhatsApp, SMS, Push, Slack, and Email with delivery receipts and audit logs"
       icon="🔔"
-      badge={`${notifications.filter(n => !n.read).length} Unread`}
+      badge=""
       actions={
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -95,34 +95,34 @@ export default function NotificationCenter() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         <KpiCard
           label="Unread Notifications"
-          value={`${notifications.filter(n => !n.read).length} Unread`}
-          delta="3 Actionable"
-          trend="down"
-          subtext="Requires attention"
+          value="0 Unread"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 pending notifications"
           icon="📬"
         />
         <KpiCard
           label="Dispatched Today"
-          value="1,420 Alerts"
-          delta="99.8% Delivery Rate"
-          trend="up"
-          subtext="Across all 5 channels"
+          value="0 Alerts"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 notifications dispatched"
           icon="🚀"
         />
         <KpiCard
           label="WhatsApp Business Delivery"
           value="0.0%"
-          delta="DLT & Meta Green Tier"
-          trend="up"
-          subtext="Gupshup Cloud API"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 notifications"
           icon="💬"
         />
         <KpiCard
           label="SMS Gateway Latency"
-          value="1.2s"
-          delta="OTP & Emergency alerts"
-          trend="up"
-          subtext="Direct operator pipe"
+          value="0s"
+          delta="0.0%"
+          trend="neutral"
+          subtext="0 gateway latency"
           icon="📱"
         />
       </div>
@@ -190,7 +190,12 @@ export default function NotificationCenter() {
         padding: '20px'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {filtered.map((n) => (
+          {filtered.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '36px', color: 'var(--muted-foreground, #94a3b8)', fontSize: '13px' }}>
+              No notifications found. All communication channels clear.
+            </div>
+          ) : (
+            filtered.map((n) => (
             <div
               key={n.id}
               onClick={() => handleToggleRead(n.id)}
@@ -244,7 +249,8 @@ export default function NotificationCenter() {
                 <span style={{ color: '#3b82f6', textDecoration: 'underline' }}>{n.read ? 'Mark as Unread' : 'Mark as Read'}</span>
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </DashboardLayout>
