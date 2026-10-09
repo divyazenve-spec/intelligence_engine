@@ -40,7 +40,7 @@
       '    <div class="zhr-sub">Live biometric terminal clock-in stream, geo-fenced mobile punches, shift rosters, and punctuality monitoring</div>',
       '  </div>',
       '  <div style="display:flex;align-items:center;gap:10px;">',
-      '    <span class="zhr-badge zhr-badge-success">● 198 Clocked In Today</span>',
+      '    <span class="zhr-badge">● 0 Clocked In Today</span>',
       '  </div>',
       '</div>',
       '<div class="zhr-body">',
@@ -57,7 +57,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>Employee</th><th>Assigned Shift</th><th>Punch In</th><th>Punch Out</th><th>Terminal Verification</th><th>Overtime</th><th style="text-align:right;">Status</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="7" style="text-align:center;padding:36px 16px;color:#94a3b8;">No clock-in records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'

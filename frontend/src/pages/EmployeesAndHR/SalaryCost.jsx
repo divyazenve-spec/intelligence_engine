@@ -98,22 +98,30 @@ export default function SalaryCost() {
                 </tr>
               </thead>
               <tbody>
-                {deptCosts.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No department cost records found</td></tr>) : deptCosts.map(d => (
-                  <tr key={d.dept} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px', fontWeight: 600, color: d.color }}>{d.dept}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{d.headcount} staff</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#f8fafc' }}>{d.monthlyCTC}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{d.annualCTC}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ width: '100px', height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '99px', overflow: 'hidden' }}>
-                          <div style={{ width: `${d.pctShare}%`, height: '100%', background: d.color, borderRadius: '99px' }}></div>
-                        </div>
-                        <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: d.color }}>{d.pctShare}%</span>
-                      </div>
+                {deptCosts.length === 0 ? (
+                  <tr>
+                    <td colSpan="5" style={{ textAlign: "center", padding: "36px 16px", color: "#94a3b8" }}>
+                      No department cost records found
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  deptCosts.map(d => (
+                    <tr key={d.dept} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '12px 16px', fontWeight: 600, color: d.color }}>{d.dept}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{d.headcount} staff</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 600, color: '#f8fafc' }}>{d.monthlyCTC}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{d.annualCTC}</td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <div style={{ width: '100px', height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '99px', overflow: 'hidden' }}>
+                            <div style={{ width: `${d.pctShare}%`, height: '100%', background: d.color, borderRadius: '99px' }}></div>
+                          </div>
+                          <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: d.color }}>{d.pctShare}%</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -139,14 +147,22 @@ export default function SalaryCost() {
                 </tr>
               </thead>
               <tbody>
-                {salaryBands.map(b => (
-                  <tr key={b.band} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px', fontWeight: 600, color: '#f8fafc' }}>{b.band}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#93c5fd' }}>{b.range}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{b.count} Employees</td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{b.totalSpend}</td>
+                {salaryBands.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" style={{ textAlign: "center", padding: "36px 16px", color: "#94a3b8" }}>
+                      No compensation band records found
+                    </td>
                   </tr>
-                ))}
+                ) : (
+                  salaryBands.map(b => (
+                    <tr key={b.band} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '12px 16px', fontWeight: 600, color: '#f8fafc' }}>{b.band}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#93c5fd' }}>{b.range}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace' }}>{b.count} Employees</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{b.totalSpend}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

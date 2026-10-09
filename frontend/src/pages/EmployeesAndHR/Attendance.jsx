@@ -111,31 +111,39 @@ export default function Attendance() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(p => (
-                <tr key={p.empId} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
-                    <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{p.empId}</div>
-                  </td>
-                  <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{p.shift}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: p.punchIn === '—' ? '#64748b' : '#34d399', fontWeight: 600 }}>{p.punchIn}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{p.punchOut}</td>
-                  <td style={{ padding: '12px 16px', fontSize: '11px', color: '#94a3b8' }}>{p.location}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: p.otHours !== '0.0h' ? '#f59e0b' : '#64748b' }}>{p.otHours}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '99px',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      background: p.status === 'On Time' ? 'rgba(16,185,129,0.15)' : p.status === 'Late Mark' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)',
-                      color: p.status === 'On Time' ? '#10b981' : p.status === 'Late Mark' ? '#ef4444' : '#f59e0b'
-                    }}>
-                      ● {p.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No clock-in records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(p => (
+                  <tr key={p.empId} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                    <td style={{ padding: '12px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
+                      <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{p.empId}</div>
+                    </td>
+                    <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{p.shift}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: p.punchIn === '—' ? '#64748b' : '#34d399', fontWeight: 600 }}>{p.punchIn}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{p.punchOut}</td>
+                    <td style={{ padding: '12px 16px', fontSize: '11px', color: '#94a3b8' }}>{p.location}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: p.otHours !== '0.0h' ? '#f59e0b' : '#64748b' }}>{p.otHours}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '99px',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        background: p.status === 'On Time' ? 'rgba(16,185,129,0.15)' : p.status === 'Late Mark' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)',
+                        color: p.status === 'On Time' ? '#10b981' : p.status === 'Late Mark' ? '#ef4444' : '#f59e0b'
+                      }}>
+                        ● {p.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

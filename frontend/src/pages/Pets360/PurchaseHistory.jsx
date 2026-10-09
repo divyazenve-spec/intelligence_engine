@@ -51,8 +51,8 @@ export default function PurchaseHistory() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '14px', marginBottom: '20px' }}>
         <KpiCard label="Total Pet Orders" value="0" delta="0.0%" trend="neutral" subtext="All categories" icon="📦" />
         <KpiCard label="Average Pet Spend / Yr" value="₹0" delta="0.0%" trend="neutral" subtext="Annualized LTV" icon="💰" />
-        <KpiCard label="Prescription Diet Share" value="0.0%" delta="Clinical nutrition" trend="neutral" subtext="High margin" icon="🥗" />
-        <KpiCard label="Auto-Ship Recurring" value="0.0%" delta="0 Pets" trend="neutral" subtext="High retention" icon="🔄" />
+        <KpiCard label="Prescription Diet Share" value="0.0%" delta="0.0%" trend="neutral" subtext="High margin" icon="🥗" />
+        <KpiCard label="Auto-Ship Recurring" value="0.0%" delta="0.0%" trend="neutral" subtext="High retention" icon="🔄" />
       </div>
 
       <div style={{
@@ -110,46 +110,54 @@ export default function PurchaseHistory() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((p, idx) => (
-              <tr key={p.id} style={{ borderBottom: idx !== filtered.length - 1 ? '1px solid #f1f5f9' : 'none', transition: 'background 0.1s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}>
-                <td style={{ padding: '12px 16px', fontWeight: 600 }}>
-                  <div style={{ fontFamily: 'monospace', color: '#2563eb' }}>{p.id}</div>
-                  <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>{p.date}</div>
-                </td>
-                <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>
-                  {p.pet}
-                </td>
-                <td style={{ padding: '12px 16px', fontWeight: 600, color: '#334155' }}>
-                  {p.item}
-                </td>
-                <td style={{ padding: '12px 16px', color: '#64748b', fontSize: '12px' }}>
-                  {p.category}
-                </td>
-                <td style={{ padding: '12px 16px', color: '#2563eb', fontSize: '12px', fontWeight: 600 }}>
-                  {p.channel}
-                </td>
-                <td style={{ padding: '12px 16px', color: '#0f172a' }}>
-                  {p.parent}
-                </td>
-                <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a', fontFamily: 'monospace' }}>
-                  {p.amount}
-                </td>
-                <td style={{ padding: '12px 16px' }}>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    padding: '3px 8px',
-                    borderRadius: '999px',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    background: p.status === 'Delivered' || p.status === 'Fulfilled' ? '#ecfdf5' : '#eff6ff',
-                    color: p.status === 'Delivered' || p.status === 'Fulfilled' ? '#059669' : '#1d4ed8'
-                  }}>
-                    {p.status}
-                  </span>
+            {filtered.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ textAlign: 'center', padding: '36px 16px', color: '#94a3b8' }}>
+                  No purchase history records found
                 </td>
               </tr>
-            ))}
+            ) : (
+              filtered.map((p, idx) => (
+                <tr key={p.id} style={{ borderBottom: idx !== filtered.length - 1 ? '1px solid #f1f5f9' : 'none', transition: 'background 0.1s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = '#ffffff'}>
+                  <td style={{ padding: '12px 16px', fontWeight: 600 }}>
+                    <div style={{ fontFamily: 'monospace', color: '#2563eb' }}>{p.id}</div>
+                    <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>{p.date}</div>
+                  </td>
+                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a' }}>
+                    {p.pet}
+                  </td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#334155' }}>
+                    {p.item}
+                  </td>
+                  <td style={{ padding: '12px 16px', color: '#64748b', fontSize: '12px' }}>
+                    {p.category}
+                  </td>
+                  <td style={{ padding: '12px 16px', color: '#2563eb', fontSize: '12px', fontWeight: 600 }}>
+                    {p.channel}
+                  </td>
+                  <td style={{ padding: '12px 16px', color: '#0f172a' }}>
+                    {p.parent}
+                  </td>
+                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#0f172a', fontFamily: 'monospace' }}>
+                    {p.amount}
+                  </td>
+                  <td style={{ padding: '12px 16px' }}>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '3px 8px',
+                      borderRadius: '999px',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      background: p.status === 'Delivered' || p.status === 'Fulfilled' ? '#ecfdf5' : '#eff6ff',
+                      color: p.status === 'Delivered' || p.status === 'Fulfilled' ? '#059669' : '#1d4ed8'
+                    }}>
+                      {p.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

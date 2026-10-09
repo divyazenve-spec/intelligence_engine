@@ -14,7 +14,7 @@ export default function PetsDashboard() {
       category="Pets 360°"
       subcategory="Overview"
       title="Pet Health Intelligence & Census Control Center"
-      subtitle="Master control center for 1,240 registered companion animals: longitudinal electronic health records, digital vaccine passports, and clinical analytics"
+      subtitle="Master control center for registered companion animals: longitudinal electronic health records, digital vaccine passports, and clinical analytics"
       icon="🐾"
       badge=""
       actions={

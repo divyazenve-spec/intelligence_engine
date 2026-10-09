@@ -55,7 +55,7 @@ export default function Onboarding() {
               </tr>
             </thead>
             <tbody>
-              {recruits.length === 0 ? (<tr><td colSpan="8" style={{ textAlign: "center", padding: "32px", color: "var(--muted-foreground, #64748b)" }}>No onboarding records found</td></tr>) : recruits.map(r => (
+              {recruits.length === 0 ? (<tr><td colSpan="7" style={{ textAlign: "center", padding: "36px 16px", color: "#94a3b8" }}>No onboarding records found</td></tr>) : recruits.map(r => (
                 <tr key={r.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '12px 16px' }}>
                     <div style={{ fontWeight: 600, color: '#f8fafc' }}>{r.name}</div>
@@ -103,12 +103,18 @@ export default function Onboarding() {
       }}>
         <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700 }}>📋 Onboarding Statutory Milestones &amp; Audit</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '12px' }}>
-          {checklistItems.map(c => (
-            <div key={c.title} style={{ background: 'rgba(0,0,0,0.2)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '12px', color: '#cbd5e1' }}>{c.title}</span>
-              <span style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{c.progress}</span>
+          {checklistItems.length === 0 ? (
+            <div style={{ padding: '24px 16px', textAlign: 'center', color: '#94a3b8', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', gridColumn: '1 / -1' }}>
+              No onboarding statutory milestones recorded
             </div>
-          ))}
+          ) : (
+            checklistItems.map(c => (
+              <div key={c.title} style={{ background: 'rgba(0,0,0,0.2)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '12px', color: '#cbd5e1' }}>{c.title}</span>
+                <span style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{c.progress}</span>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </DashboardLayout>

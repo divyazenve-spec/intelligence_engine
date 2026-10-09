@@ -42,7 +42,7 @@
       '    <div class="zhr-sub">Executive Cost-to-Company (CTC) breakdown, department spend, salary bands, and employer liabilities</div>',
       '  </div>',
       '  <div style="display:flex;align-items:center;gap:10px;">',
-      '    <span class="zhr-badge zhr-badge-success">● ₹19.66 Cr Annualized CTC</span>',
+      '    <span class="zhr-badge">● ₹0 Annualized CTC</span>',
       '  </div>',
       '</div>',
       '<div class="zhr-body">',
@@ -59,7 +59,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>Department</th><th>Headcount</th><th>Monthly CTC</th><th>Annualized Commitment</th><th>Budget Share</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="5" style="text-align:center;padding:36px 16px;color:#94a3b8;">No department cost records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'

@@ -45,7 +45,7 @@
       '    <div class="zhr-sub">Recruit integration journeys, hardware provisioning, background checks, medical council verification, and buddy assignments</div>',
       '  </div>',
       '  <div style="display:flex;align-items:center;gap:10px;">',
-      '    <span class="zhr-badge zhr-badge-success">● 94% SLA Adherence</span>',
+      '    <span class="zhr-badge">● 0.0% SLA Adherence</span>',
       '  </div>',
       '</div>',
       '<div class="zhr-body">',
@@ -62,7 +62,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>New Team Member</th><th>Joined Date</th><th>Buddy</th><th>Hardware Issued</th><th>BGV Status</th><th>Readiness</th><th style="text-align:right;">Status</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="7" style="text-align:center;padding:36px 16px;color:#94a3b8;">No onboarding records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'

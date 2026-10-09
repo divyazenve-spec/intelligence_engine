@@ -19,7 +19,7 @@ export default function Payroll() {
       badge=""
       actions={
         <button
-          onClick={() => alert('Bank NEFT batch export initiated for all 208 accounts.')}
+          onClick={() => alert('Bank NEFT batch export initiated for all 0 accounts.')}
           style={{
             padding: '6px 14px',
             borderRadius: '8px',
@@ -110,36 +110,44 @@ export default function Payroll() {
               </tr>
             </thead>
             <tbody>
-              {payrollRecords.map(p => (
-                <tr key={p.empId} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.role} · <span style={{ fontFamily: '"IBM Plex Mono", monospace' }}>{p.empId}</span></div>
-                  </td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.basic}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.hra}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.allowances}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f87171' }}>-{p.pfDeduction}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f87171' }}>-{p.tds}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{p.netPay}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                    <button
-                      onClick={() => setShowPayslip(p)}
-                      style={{
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        fontSize: '11px',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        background: 'transparent',
-                        color: '#93c5fd',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Payslip 📄
-                    </button>
+              {payrollRecords.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No payroll records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                payrollRecords.map(p => (
+                  <tr key={p.empId} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                    <td style={{ padding: '12px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.role} · <span style={{ fontFamily: '"IBM Plex Mono", monospace' }}>{p.empId}</span></div>
+                    </td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.basic}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.hra}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{p.allowances}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f87171' }}>-{p.pfDeduction}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f87171' }}>-{p.tds}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#34d399' }}>{p.netPay}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                      <button
+                        onClick={() => setShowPayslip(p)}
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          fontSize: '11px',
+                          border: '1px solid rgba(255,255,255,0.15)',
+                          background: 'transparent',
+                          color: '#93c5fd',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Payslip 📄
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

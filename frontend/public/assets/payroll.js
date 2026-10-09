@@ -57,7 +57,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>Employee</th><th>Basic Pay</th><th>HRA</th><th>PF (12%)</th><th>TDS Tax</th><th>Net Disbursed</th><th>Status</th><th style="text-align:right;">Actions</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="8" style="text-align:center;padding:36px 16px;color:#94a3b8;">No payroll records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'

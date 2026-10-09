@@ -116,53 +116,61 @@ export default function EmployeePerformance() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(p => (
-                <tr key={p.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.role}</div>
-                  </td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{ padding: '2px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)', fontSize: '11px', color: '#cbd5e1' }}>
-                      {p.dept}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: p.score >= 95 ? '#10b981' : p.score >= 90 ? '#38bdf8' : '#f59e0b' }}>
-                        {p.score}%
-                      </span>
-                    </div>
-                  </td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: p.rating.includes('5★') ? 'rgba(16,185,129,0.15)' : p.rating.includes('4★') ? 'rgba(56,189,248,0.15)' : 'rgba(245,158,11,0.15)',
-                      color: p.rating.includes('5★') ? '#34d399' : p.rating.includes('4★') ? '#38bdf8' : '#f59e0b'
-                    }}>
-                      {p.rating}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#e2e8f0' }}>{p.consultations}</td>
-                  <td style={{ padding: '12px 16px', color: '#fcd34d', fontWeight: 600 }}>⭐ {p.csat}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399' }}>{p.sla}</td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '99px',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      background: p.status === 'Appraised' ? 'rgba(16,185,129,0.15)' : 'rgba(234,179,8,0.15)',
-                      color: p.status === 'Appraised' ? '#10b981' : '#eab308'
-                    }}>
-                      {p.status}
-                    </span>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No appraisal scorecards found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filtered.map(p => (
+                  <tr key={p.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                    <td style={{ padding: '12px 16px' }}>
+                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{p.name}</div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{p.role}</div>
+                    </td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <span style={{ padding: '2px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.06)', fontSize: '11px', color: '#cbd5e1' }}>
+                        {p.dept}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', color: p.score >= 95 ? '#10b981' : p.score >= 90 ? '#38bdf8' : '#f59e0b' }}>
+                          {p.score}%
+                        </span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: p.rating.includes('5★') ? 'rgba(16,185,129,0.15)' : p.rating.includes('4★') ? 'rgba(56,189,248,0.15)' : 'rgba(245,158,11,0.15)',
+                        color: p.rating.includes('5★') ? '#34d399' : p.rating.includes('4★') ? '#38bdf8' : '#f59e0b'
+                      }}>
+                        {p.rating}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#e2e8f0' }}>{p.consultations}</td>
+                    <td style={{ padding: '12px 16px', color: '#fcd34d', fontWeight: 600 }}>⭐ {p.csat}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399' }}>{p.sla}</td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '99px',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        background: p.status === 'Appraised' ? 'rgba(16,185,129,0.15)' : 'rgba(234,179,8,0.15)',
+                        color: p.status === 'Appraised' ? '#10b981' : '#eab308'
+                      }}>
+                        {p.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

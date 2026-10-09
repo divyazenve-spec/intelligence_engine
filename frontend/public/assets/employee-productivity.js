@@ -44,7 +44,7 @@
       '    <div class="zhr-sub">Active hours utilization, unit handling throughput, clinical consult velocity, and idle capacity tracking</div>',
       '  </div>',
       '  <div style="display:flex;align-items:center;gap:10px;">',
-      '    <span class="zhr-badge zhr-badge-success">● 95.8% Org Efficiency</span>',
+      '    <span class="zhr-badge">● 0.0% Org Efficiency</span>',
       '  </div>',
       '</div>',
       '<div class="zhr-body">',
@@ -61,7 +61,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>Operational Unit</th><th>Active Hours / Shift</th><th>Daily Unit Output</th><th>Avg Turnaround</th><th>Idle Capacity</th><th>Efficiency</th><th style="text-align:right;">Status</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="7" style="text-align:center;padding:36px 16px;color:#94a3b8;">No operational unit productivity records found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'

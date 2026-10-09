@@ -53,35 +53,43 @@ export default function EmployeeProductivity() {
               </tr>
             </thead>
             <tbody>
-              {teams.map(t => (
-                <tr key={t.team} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#f8fafc' }}>{t.team}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{t.activeHours}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{t.tasksDone}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{t.turnaround}</td>
-                  <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>{t.idlePct}</td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '80px', height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '99px', overflow: 'hidden' }}>
-                        <div style={{ width: t.efficiency, height: '100%', background: '#10b981', borderRadius: '99px' }}></div>
-                      </div>
-                      <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#10b981' }}>{t.efficiency}</span>
-                    </div>
-                  </td>
-                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                    <span style={{
-                      padding: '3px 8px',
-                      borderRadius: '99px',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      background: 'rgba(16,185,129,0.15)',
-                      color: '#10b981'
-                    }}>
-                      ● {t.status}
-                    </span>
+              {teams.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                    No operational unit productivity records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                teams.map(t => (
+                  <tr key={t.team} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                    <td style={{ padding: '12px 16px', fontWeight: 600, color: '#f8fafc' }}>{t.team}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#cbd5e1' }}>{t.activeHours}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{t.tasksDone}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{t.turnaround}</td>
+                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>{t.idlePct}</td>
+                    <td style={{ padding: '12px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div style={{ width: '80px', height: '6px', background: 'rgba(255,255,255,0.08)', borderRadius: '99px', overflow: 'hidden' }}>
+                          <div style={{ width: t.efficiency, height: '100%', background: '#10b981', borderRadius: '99px' }}></div>
+                        </div>
+                        <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#10b981' }}>{t.efficiency}</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '99px',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        background: 'rgba(16,185,129,0.15)',
+                        color: '#10b981'
+                      }}>
+                        ● {t.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

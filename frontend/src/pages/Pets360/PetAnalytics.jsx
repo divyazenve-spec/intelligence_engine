@@ -10,9 +10,20 @@ export default function PetAnalytics() {
 
   const breedDistribution = [];
 
-  const lifeStages = [];
+  const lifeStages = [
+    { stage: 'Pediatric / Puppy & Kitten (< 1 yr)', pets: 0, pct: 0, color: '#2563eb', focus: 'Primary DHPPiL/Tricat series, microchipping, puppy socialization, nutritional formulas' },
+    { stage: 'Young Adult (1 – 3 yrs)', pets: 0, pct: 0, color: '#10b981', focus: 'Annual booster immunization, dental prophylaxis scaling, flea & tick prevention, desexing' },
+    { stage: 'Mature Adult (4 – 6 yrs)', pets: 0, pct: 0, color: '#f59e0b', focus: 'Caloric weight tracking, baseline blood chemistry & urinalysis, joint mobility supplements' },
+    { stage: 'Senior Companion (7 – 10 yrs)', pets: 0, pct: 0, color: '#8b5cf6', focus: 'Geriatric screening, renal SDMA biomarker panels, cardiac doppler ultrasound, arthritis analgesia' },
+    { stage: 'Super Senior / Geriatric (11+ yrs)', pets: 0, pct: 0, color: '#ef4444', focus: 'Cognitive dysfunction support, palliative comfort protocols, sub-Q hydration therapy' }
+  ];
 
-  const bcsDistribution = [];
+  const bcsDistribution = [
+    { label: 'BCS 1-3 (Underweight)', count: 0, pct: 0, color: '#3b82f6', tag: 'High-density caloric nutrition & deworming' },
+    { label: 'BCS 4-5 (Ideal & Optimal)', count: 0, pct: 0, color: '#10b981', tag: 'Balanced maintenance diet & regular exercise' },
+    { label: 'BCS 6-7 (Overweight)', count: 0, pct: 0, color: '#f59e0b', tag: 'Caloric restriction & portion management' },
+    { label: 'BCS 8-9 (Clinically Obese)', count: 0, pct: 0, color: '#ef4444', tag: 'Satiety metabolic diet & endocrinology workup' }
+  ];
 
   const regionalHubs = [];
 
@@ -57,9 +68,9 @@ export default function PetAnalytics() {
       {/* KPI Ribbon */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '22px' }}>
         <KpiCard label="Registered Population" value="0" delta="0.0%" trend="neutral" subtext="No registered pets" icon="🐾" />
-        <KpiCard label="Sterilization Rate" value="0.0%" delta="0 Desexed" trend="neutral" subtext="Reduces behavioral & cancer risks" icon="✂️" />
-        <KpiCard label="Microchip RFID Rate" value="0.0%" delta="0 Registered" trend="neutral" subtext="ISO 11784/11785 compliant" icon="📡" />
-        <KpiCard label="Average Body Condition" value="0.0" delta="Optimal Band" trend="neutral" subtext="Standard condition" icon="⚖️" />
+        <KpiCard label="Sterilization Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="Reduces behavioral & cancer risks" icon="✂️" />
+        <KpiCard label="Microchip RFID Rate" value="0.0%" delta="0.0%" trend="neutral" subtext="ISO 11784/11785 compliant" icon="📡" />
+        <KpiCard label="Average Body Condition" value="0.0" delta="0.0%" trend="neutral" subtext="Standard condition" icon="⚖️" />
         <KpiCard label="Preventive Compliance" value="0.0%" delta="0.0%" trend="neutral" subtext="Vaccine & deworming adherence" icon="🛡️" />
       </div>
 
@@ -79,7 +90,7 @@ export default function PetAnalytics() {
               <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>Longitudinal population pyramid based on biological age stages</p>
             </div>
             <span style={{ fontSize: '11px', background: '#f1f5f9', padding: '4px 8px', borderRadius: '4px', fontWeight: 600, color: '#475569' }}>
-              Median: 3.4 Yrs
+              Median: 0 Yrs
             </span>
           </div>
 
@@ -88,10 +99,10 @@ export default function PetAnalytics() {
               <div key={ls.stage} style={{ padding: '12px 14px', borderRadius: '8px', background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                   <span style={{ fontWeight: 700, fontSize: '13px', color: '#0f172a' }}>{ls.stage}</span>
-                  <span style={{ fontWeight: 700, color: ls.color, fontSize: '13px' }}>{ls.pets} pets ({ls.pct}%)</span>
+                  <span style={{ fontWeight: 700, color: ls.color, fontSize: '13px' }}>{ls.pets} pets ({ls.pct.toFixed(1)}%)</span>
                 </div>
                 <div style={{ width: '100%', height: '7px', background: '#e2e8f0', borderRadius: '4px', overflow: 'hidden', marginBottom: '8px' }}>
-                  <div style={{ width: `${ls.pct * 2.5}%`, maxWidth: '100%', height: '100%', background: ls.color, borderRadius: '4px' }} />
+                  <div style={{ width: `${ls.pct}%`, maxWidth: '100%', height: '100%', background: ls.color, borderRadius: '4px' }} />
                 </div>
                 <div style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.4 }}>
                   <strong style={{ color: '#334155' }}>Clinical Focus:</strong> {ls.focus}
@@ -119,7 +130,7 @@ export default function PetAnalytics() {
                 <div key={b.label} style={{ padding: '10px 12px', borderRadius: '6px', background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 700, marginBottom: '4px' }}>
                     <span style={{ color: '#0f172a' }}>{b.label}</span>
-                    <span style={{ color: b.color }}>{b.count} pets ({b.pct}%)</span>
+                    <span style={{ color: b.color }}>{b.count} pets ({b.pct.toFixed(1)}%)</span>
                   </div>
                   <div style={{ width: '100%', height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden', marginBottom: '6px' }}>
                     <div style={{ width: `${b.pct}%`, height: '100%', background: b.color }} />
@@ -141,20 +152,20 @@ export default function PetAnalytics() {
             <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 700, color: '#0f172a' }}>Gender & Reproductive Status</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
               <div style={{ padding: '10px', background: '#eff6ff', borderRadius: '8px', border: '1px solid #bfdbfe', textAlign: 'center' }}>
-                <div style={{ fontSize: '18px', fontWeight: 800, color: '#1d4ed8' }}>482</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, color: '#1e40af' }}>Neutered Males (38.9%)</div>
+                <div style={{ fontSize: '18px', fontWeight: 800, color: '#1d4ed8' }}>0</div>
+                <div style={{ fontSize: '11px', fontWeight: 600, color: '#1e40af' }}>Neutered Males (0.0%)</div>
               </div>
               <div style={{ padding: '10px', background: '#fdf2f8', borderRadius: '8px', border: '1px solid #fbcfe8', textAlign: 'center' }}>
-                <div style={{ fontSize: '18px', fontWeight: 800, color: '#be185d' }}>366</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, color: '#9d174d' }}>Spayed Females (29.5%)</div>
+                <div style={{ fontSize: '18px', fontWeight: 800, color: '#be185d' }}>0</div>
+                <div style={{ fontSize: '11px', fontWeight: 600, color: '#9d174d' }}>Spayed Females (0.0%)</div>
               </div>
               <div style={{ padding: '10px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', textAlign: 'center' }}>
-                <div style={{ fontSize: '18px', fontWeight: 800, color: '#475569' }}>218</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Intact Males (17.6%)</div>
+                <div style={{ fontSize: '18px', fontWeight: 800, color: '#475569' }}>0</div>
+                <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Intact Males (0.0%)</div>
               </div>
               <div style={{ padding: '10px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', textAlign: 'center' }}>
-                <div style={{ fontSize: '18px', fontWeight: 800, color: '#475569' }}>174</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Intact Females (14.0%)</div>
+                <div style={{ fontSize: '18px', fontWeight: 800, color: '#475569' }}>0</div>
+                <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Intact Females (0.0%)</div>
               </div>
             </div>
           </div>
@@ -235,41 +246,49 @@ export default function PetAnalytics() {
               </tr>
             </thead>
             <tbody>
-              {filteredBreeds.map((b, idx) => (
-                <tr key={b.breed} style={{ borderBottom: idx !== filteredBreeds.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                  <td style={{ padding: '12px 18px' }}>
-                    <div style={{ fontWeight: 700, color: '#0f172a' }}>{b.breed}</div>
-                    <div style={{ fontSize: '11px', color: '#64748b' }}>{b.species}</div>
-                  </td>
-                  <td style={{ padding: '12px 18px', fontWeight: 700, color: '#0f172a' }}>{b.count}</td>
-                  <td style={{ padding: '12px 18px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '60px', height: '6px', background: '#f1f5f9', borderRadius: '3px', overflow: 'hidden' }}>
-                        <div style={{ width: `${b.pct * 3.5}%`, height: '100%', background: '#2563eb' }} />
-                      </div>
-                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>{b.pct}%</span>
-                    </div>
-                  </td>
-                  <td style={{ padding: '12px 18px', color: '#475569' }}>{b.avgAge}</td>
-                  <td style={{ padding: '12px 18px', fontWeight: 600, color: b.vaxRate.includes('N/A') ? '#64748b' : '#059669' }}>
-                    {b.vaxRate}
-                  </td>
-                  <td style={{ padding: '12px 18px', fontWeight: 600, color: '#2563eb' }}>{b.microchipRate}</td>
-                  <td style={{ padding: '12px 18px' }}>
-                    <span style={{
-                      padding: '4px 10px',
-                      borderRadius: '999px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      background: b.riskTier.includes('High') ? '#fef2f2' : b.riskTier.includes('Mod') ? '#fffbeb' : '#ecfdf5',
-                      color: b.riskTier.includes('High') ? '#dc2626' : b.riskTier.includes('Mod') ? '#d97706' : '#059669',
-                      border: `1px solid ${b.riskTier.includes('High') ? '#fca5a5' : b.riskTier.includes('Mod') ? '#fde68a' : '#a7f3d0'}`
-                    }}>
-                      {b.riskTier}
-                    </span>
+              {filteredBreeds.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: 'center', padding: '36px 16px', color: '#94a3b8' }}>
+                    No breed records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredBreeds.map((b, idx) => (
+                  <tr key={b.breed} style={{ borderBottom: idx !== filteredBreeds.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                    <td style={{ padding: '12px 18px' }}>
+                      <div style={{ fontWeight: 700, color: '#0f172a' }}>{b.breed}</div>
+                      <div style={{ fontSize: '11px', color: '#64748b' }}>{b.species}</div>
+                    </td>
+                    <td style={{ padding: '12px 18px', fontWeight: 700, color: '#0f172a' }}>{b.count}</td>
+                    <td style={{ padding: '12px 18px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div style={{ width: '60px', height: '6px', background: '#f1f5f9', borderRadius: '3px', overflow: 'hidden' }}>
+                          <div style={{ width: `${b.pct * 3.5}%`, height: '100%', background: '#2563eb' }} />
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 600, color: '#475569' }}>{b.pct}%</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 18px', color: '#475569' }}>{b.avgAge}</td>
+                    <td style={{ padding: '12px 18px', fontWeight: 600, color: b.vaxRate.includes('N/A') ? '#64748b' : '#059669' }}>
+                      {b.vaxRate}
+                    </td>
+                    <td style={{ padding: '12px 18px', fontWeight: 600, color: '#2563eb' }}>{b.microchipRate}</td>
+                    <td style={{ padding: '12px 18px' }}>
+                      <span style={{
+                        padding: '4px 10px',
+                        borderRadius: '999px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        background: b.riskTier.includes('High') ? '#fef2f2' : b.riskTier.includes('Mod') ? '#fffbeb' : '#ecfdf5',
+                        color: b.riskTier.includes('High') ? '#dc2626' : b.riskTier.includes('Mod') ? '#d97706' : '#059669',
+                        border: `1px solid ${b.riskTier.includes('High') ? '#fca5a5' : b.riskTier.includes('Mod') ? '#fde68a' : '#a7f3d0'}`
+                      }}>
+                        {b.riskTier}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -299,20 +318,28 @@ export default function PetAnalytics() {
               </tr>
             </thead>
             <tbody>
-              {regionalHubs.map((rh, idx) => (
-                <tr key={rh.city} style={{ borderBottom: idx !== regionalHubs.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                  <td style={{ padding: '10px 16px', fontWeight: 700, color: '#0f172a' }}>{rh.city}</td>
-                  <td style={{ padding: '10px 16px', fontWeight: 700, color: '#2563eb' }}>{rh.pets}</td>
-                  <td style={{ padding: '10px 16px', color: '#475569' }}>{rh.share}</td>
-                  <td style={{ padding: '10px 16px', fontWeight: 600 }}>{rh.visitsPerPet}</td>
-                  <td style={{ padding: '10px 16px', fontWeight: 700, color: '#059669' }}>{rh.vaxRate}</td>
-                  <td style={{ padding: '10px 16px' }}>
-                    <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#eff6ff', color: '#1d4ed8', fontWeight: 700, fontSize: '11px' }}>
-                      {rh.wellnessPlan}
-                    </span>
+              {regionalHubs.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '36px 16px', color: '#94a3b8' }}>
+                    No regional clinic hub records found
                   </td>
                 </tr>
-              ))}
+              ) : (
+                regionalHubs.map((rh, idx) => (
+                  <tr key={rh.city} style={{ borderBottom: idx !== regionalHubs.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                    <td style={{ padding: '10px 16px', fontWeight: 700, color: '#0f172a' }}>{rh.city}</td>
+                    <td style={{ padding: '10px 16px', fontWeight: 700, color: '#2563eb' }}>{rh.pets}</td>
+                    <td style={{ padding: '10px 16px', color: '#475569' }}>{rh.share}</td>
+                    <td style={{ padding: '10px 16px', fontWeight: 600 }}>{rh.visitsPerPet}</td>
+                    <td style={{ padding: '10px 16px', fontWeight: 700, color: '#059669' }}>{rh.vaxRate}</td>
+                    <td style={{ padding: '10px 16px' }}>
+                      <span style={{ padding: '3px 8px', borderRadius: '4px', background: '#eff6ff', color: '#1d4ed8', fontWeight: 700, fontSize: '11px' }}>
+                        {rh.wellnessPlan}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

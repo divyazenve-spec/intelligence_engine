@@ -100,11 +100,11 @@ export default function HRDashboard() {
       }}>
         {[
           { id: 'overview', label: 'HR Executive Overview', icon: '🧑‍💼' },
-          { id: 'directory', label: 'Workforce Directory', icon: '👥', badge: employees.length },
-          { id: 'attendance', label: 'Attendance & Leaves', icon: '⏰', badge: `${leaveRequests.filter(l => l.status === 'Pending').length} Pending` },
+          { id: 'directory', label: 'Workforce Directory', icon: '👥', badge: '0' },
+          { id: 'attendance', label: 'Attendance & Leaves', icon: '⏰', badge: '0 Pending' },
           { id: 'payroll', label: 'Payroll & Cost Ledger', icon: '💵', badge: '₹0' },
-          { id: 'recruitment', label: 'Talent Acquisition', icon: '📢', badge: `${openJobs.length} Roles` },
-          { id: 'performance', label: 'Performance & Culture', icon: '⭐', badge: '93.8%' }
+          { id: 'recruitment', label: 'Talent Acquisition', icon: '📢', badge: '0 Roles' },
+          { id: 'performance', label: 'Performance & Culture', icon: '⭐', badge: '0.0%' }
         ].map(t => (
           <button
             key={t.id}
@@ -167,20 +167,26 @@ export default function HRDashboard() {
                 <span style={{ fontSize: '11px', padding: '3px 8px', borderRadius: '6px', background: 'rgba(59,130,246,0.15)', color: '#60a5fa', fontWeight: 600 }}>Active Roster</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {deptHeadcounts.map(d => {
-                  const pct = Math.round((d.count / 208) * 100);
-                  return (
-                    <div key={d.name}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                        <span style={{ color: d.color, fontWeight: 600 }}>{d.name}</span>
-                        <span style={{ color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>{d.count} staff · {pct}% ({d.budget})</span>
+                {deptHeadcounts.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '24px 0', color: 'var(--muted-foreground, #94a3b8)', fontSize: '12px' }}>
+                    No department headcount records found
+                  </div>
+                ) : (
+                  deptHeadcounts.map(d => {
+                    const pct = Math.round((d.count / 208) * 100);
+                    return (
+                      <div key={d.name}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
+                          <span style={{ color: d.color, fontWeight: 600 }}>{d.name}</span>
+                          <span style={{ color: 'var(--muted-foreground, #94a3b8)', fontFamily: '"IBM Plex Mono", monospace' }}>{d.count} staff · {pct}% ({d.budget})</span>
+                        </div>
+                        <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
+                          <div style={{ width: `${pct}%`, height: '100%', background: d.color, borderRadius: '99px' }}></div>
+                        </div>
                       </div>
-                      <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
-                        <div style={{ width: `${pct}%`, height: '100%', background: d.color, borderRadius: '99px' }}></div>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
             </div>
 
@@ -197,23 +203,23 @@ export default function HRDashboard() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.2)' }}>
                   <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600 }}>Clocked In Today</div>
-                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>198 / 208</div>
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>95.2% active staffing</div>
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 / 0</div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>0.0% active staffing</div>
                 </div>
                 <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(14,165,233,0.06)', border: '1px solid rgba(14,165,233,0.2)' }}>
                   <div style={{ fontSize: '11px', color: '#38bdf8', fontWeight: 600 }}>Time to Hire</div>
-                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>18.4 Days</div>
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Fast clinical sourcing</div>
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 Days</div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>No active requisitions</div>
                 </div>
                 <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)' }}>
                   <div style={{ fontSize: '11px', color: '#fbbf24', fontWeight: 600 }}>Pending Leaves</div>
-                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>3 Requests</div>
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>Awaiting manager signoff</div>
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0 Requests</div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>0 awaiting signoff</div>
                 </div>
                 <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(139,92,246,0.06)', border: '1px solid rgba(139,92,246,0.2)' }}>
                   <div style={{ fontSize: '11px', color: '#c4b5fd', fontWeight: 600 }}>Day-1 Readiness</div>
-                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>98.5%</div>
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>IT hardware &amp; credentials</div>
+                  <div style={{ fontSize: '20px', fontWeight: 700, color: '#f8fafc', marginTop: '2px' }}>0.0%</div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>No pending onboarding</div>
                 </div>
               </div>
             </div>
@@ -276,54 +282,59 @@ export default function HRDashboard() {
                   <th style={{ padding: '12px 16px' }}>Contact Info</th>
                   <th style={{ padding: '12px 16px' }}>Gross CTC</th>
                   <th style={{ padding: '12px 16px' }}>Status</th>
-                  <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredEmployees.map(e => (
-                  <tr key={e.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{e.name}</div>
-                      <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{e.id} · {e.role}</div>
-                    </td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', background: 'rgba(56,189,248,0.15)', color: '#38bdf8', fontWeight: 600 }}>
-                        {e.dept}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{e.loc}</td>
-                    <td style={{ padding: '12px 16px', color: '#94a3b8' }}>{e.email}<br/><small style={{ color: '#64748b' }}>{e.phone}</small></td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399', fontWeight: 600 }}>{e.salary}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <span style={{
-                        padding: '3px 8px',
-                        borderRadius: '99px',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        background: e.status === 'Active' ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)',
-                        color: e.status === 'Active' ? '#10b981' : '#f59e0b'
-                      }}>
-                        ● {e.status}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                      <button
-                        onClick={() => setSelectedStaff(e)}
-                        style={{
-                          padding: '4px 10px',
-                          borderRadius: '6px',
-                          fontSize: '11px',
-                          border: '1px solid rgba(255,255,255,0.15)',
-                          background: 'transparent',
-                          color: '#93c5fd',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        View 360°
-                      </button>
+                  <th style={{ padding: '12px 16px', textAlign: 'right' }}>Ac              <tbody>
+                {filteredEmployees.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                      No staff records found
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  filteredEmployees.map(e => (
+                    <tr key={e.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '12px 16px' }}>
+                        <div style={{ fontWeight: 600, color: '#f8fafc' }}>{e.name}</div>
+                        <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{e.id} · {e.role}</div>
+                      </td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', background: 'rgba(56,189,248,0.15)', color: '#38bdf8', fontWeight: 600 }}>
+                          {e.dept}
+                        </span>
+                      </td>
+                      <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{e.loc}</td>
+                      <td style={{ padding: '12px 16px', color: '#94a3b8' }}>{e.email}<br/><small style={{ color: '#64748b' }}>{e.phone}</small></td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399', fontWeight: 600 }}>{e.salary}</td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <span style={{
+                          padding: '3px 8px',
+                          borderRadius: '99px',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          background: e.status === 'Active' ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)',
+                          color: e.status === 'Active' ? '#10b981' : '#f59e0b'
+                        }}>
+                          ● {e.status}
+                        </span>
+                      </td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                        <button
+                          onClick={() => setSelectedStaff(e)}
+                          style={{
+                            padding: '4px 10px',
+                            borderRadius: '6px',
+                            fontSize: '11px',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            background: 'transparent',
+                            color: '#93c5fd',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          View 360°
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -357,40 +368,48 @@ export default function HRDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {leaveRequests.map(lr => (
-                  <tr key={lr.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#93c5fd' }}>{lr.id}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{lr.name}</div>
-                      <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{lr.role}</div>
-                    </td>
-                    <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{lr.type}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f8fafc' }}>{lr.dates}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399' }}>{lr.bal}</td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <span style={{
-                        padding: '3px 8px',
-                        borderRadius: '99px',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        background: lr.status === 'Approved' ? 'rgba(16,185,129,0.15)' : lr.status === 'Pending' ? 'rgba(234,179,8,0.15)' : 'rgba(239,68,68,0.15)',
-                        color: lr.status === 'Approved' ? '#10b981' : lr.status === 'Pending' ? '#eab308' : '#ef4444'
-                      }}>
-                        ● {lr.status}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                      {lr.status === 'Pending' ? (
-                        <div style={{ display: 'inline-flex', gap: '6px' }}>
-                          <button onClick={() => approveLeave(lr.id)} style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: '#10b981', color: '#fff', border: 'none', cursor: 'pointer' }}>Approve</button>
-                          <button onClick={() => rejectLeave(lr.id)} style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: '#ef4444', color: '#fff', border: 'none', cursor: 'pointer' }}>Reject</button>
-                        </div>
-                      ) : (
-                        <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>Processed</span>
-                      )}
+                {leaveRequests.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                      No leave requests found
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  leaveRequests.map(lr => (
+                    <tr key={lr.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#93c5fd' }}>{lr.id}</td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <div style={{ fontWeight: 600, color: '#f8fafc' }}>{lr.name}</div>
+                        <div style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{lr.role}</div>
+                      </td>
+                      <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{lr.type}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f8fafc' }}>{lr.dates}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#34d399' }}>{lr.bal}</td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <span style={{
+                          padding: '3px 8px',
+                          borderRadius: '99px',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          background: lr.status === 'Approved' ? 'rgba(16,185,129,0.15)' : lr.status === 'Pending' ? 'rgba(234,179,8,0.15)' : 'rgba(239,68,68,0.15)',
+                          color: lr.status === 'Approved' ? '#10b981' : lr.status === 'Pending' ? '#eab308' : '#ef4444'
+                        }}>
+                          ● {lr.status}
+                        </span>
+                      </td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                        {lr.status === 'Pending' ? (
+                          <div style={{ display: 'inline-flex', gap: '6px' }}>
+                            <button onClick={() => approveLeave(lr.id)} style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: '#10b981', color: '#fff', border: 'none', cursor: 'pointer' }}>Approve</button>
+                            <button onClick={() => rejectLeave(lr.id)} style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: '#ef4444', color: '#fff', border: 'none', cursor: 'pointer' }}>Reject</button>
+                          </div>
+                        ) : (
+                          <span style={{ fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>Processed</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -429,17 +448,17 @@ export default function HRDashboard() {
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch HDFC-0926-01 (Clinical &amp; Doctors)</strong>
                 <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
-                <div style={{ color: '#94a3b8' }}>48 Accounts Credited · Verified ✅</div>
+                <div style={{ color: '#94a3b8' }}>0 Accounts Credited · Verified ✅</div>
               </div>
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch HDFC-0926-02 (Tech, Pharmacy, Ops)</strong>
                 <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
-                <div style={{ color: '#94a3b8' }}>84 Accounts Credited · Verified ✅</div>
+                <div style={{ color: '#94a3b8' }}>0 Accounts Credited · Verified ✅</div>
               </div>
               <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px' }}>
                 <strong style={{ color: '#f8fafc' }}>Batch ICICI-0926-03 (Delivery Riders)</strong>
                 <div style={{ color: '#34d399', fontFamily: '"IBM Plex Mono", monospace', fontSize: '16px', margin: '4px 0' }}>₹0</div>
-                <div style={{ color: '#94a3b8' }}>76 Accounts Credited · Verified ✅</div>
+                <div style={{ color: '#94a3b8' }}>0 Accounts Credited · Verified ✅</div>
               </div>
             </div>
           </div>
@@ -478,33 +497,41 @@ export default function HRDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {openJobs.map(j => (
-                  <tr key={j.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '12px 16px' }}>
-                      <div style={{ fontWeight: 600, color: '#f8fafc' }}>{j.title}</div>
-                      <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{j.id}</div>
-                    </td>
-                    <td style={{ padding: '12px 16px' }}>
-                      <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', background: 'rgba(56,189,248,0.15)', color: '#38bdf8' }}>{j.dept}</span>
-                    </td>
-                    <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{j.loc}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#f8fafc' }}>{j.openings}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{j.applicants}</td>
-                    <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>{j.interview}</td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                      <span style={{
-                        padding: '3px 8px',
-                        borderRadius: '99px',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        background: j.priority === 'Urgent' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)',
-                        color: j.priority === 'Urgent' ? '#ef4444' : '#f59e0b'
-                      }}>
-                        ● {j.priority}
-                      </span>
+                {openJobs.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8' }}>
+                      No open job requisitions found
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  openJobs.map(j => (
+                    <tr key={j.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '12px 16px' }}>
+                        <div style={{ fontWeight: 600, color: '#f8fafc' }}>{j.title}</div>
+                        <div style={{ fontSize: '11px', fontFamily: '"IBM Plex Mono", monospace', color: 'var(--muted-foreground, #94a3b8)' }}>{j.id}</div>
+                      </td>
+                      <td style={{ padding: '12px 16px' }}>
+                        <span style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '11px', background: 'rgba(56,189,248,0.15)', color: '#38bdf8' }}>{j.dept}</span>
+                      </td>
+                      <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>{j.loc}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', fontWeight: 700, color: '#f8fafc' }}>{j.openings}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#38bdf8' }}>{j.applicants}</td>
+                      <td style={{ padding: '12px 16px', fontFamily: '"IBM Plex Mono", monospace', color: '#f59e0b' }}>{j.interview}</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                        <span style={{
+                          padding: '3px 8px',
+                          borderRadius: '99px',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          background: j.priority === 'Urgent' ? 'rgba(239,68,68,0.15)' : 'rgba(245,158,11,0.15)',
+                          color: j.priority === 'Urgent' ? '#ef4444' : '#f59e0b'
+                        }}>
+                          ● {j.priority}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -528,22 +555,8 @@ export default function HRDashboard() {
             padding: '20px'
           }}>
             <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700 }}>🏆 Q3 2026 Employee Recognition &amp; Spot Awards</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
-              <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px', borderLeft: '3px solid #10b981' }}>
-                <div style={{ fontWeight: 700, color: '#f8fafc' }}>Dr. Priya Sharma</div>
-                <div style={{ fontSize: '11px', color: '#34d399' }}>Chief Clinical Officer · Clinical Excellence Award</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>Handled 342 high-complexity surgical consultations with 99.4% SLA adherence.</div>
-              </div>
-              <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px', borderLeft: '3px solid #ec4899' }}>
-                <div style={{ fontWeight: 700, color: '#f8fafc' }}>Sneha Chawla</div>
-                <div style={{ fontSize: '11px', color: '#f472b6' }}>Senior AI Engineer · Tech Innovation Award</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>Delivered Zenve Pet AI Clinical Assistant with 96.8% diagnostic accuracy.</div>
-              </div>
-              <div style={{ background: 'rgba(0,0,0,0.25)', padding: '14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
-                <div style={{ fontWeight: 700, color: '#f8fafc' }}>Manish Rawat</div>
-                <div style={{ fontSize: '11px', color: '#fbbf24' }}>Express Delivery Rider · Rapid Dispatch Star</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>Completed 612 deliveries within 34-min average turnaround and zero damages.</div>
-              </div>
+            <div style={{ padding: '36px 16px', textAlign: 'center', color: '#94a3b8', background: 'rgba(0,0,0,0.15)', borderRadius: '10px' }}>
+              No spot awards recorded for the current cycle
             </div>
           </div>
         </div>

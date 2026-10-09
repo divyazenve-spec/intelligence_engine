@@ -58,7 +58,7 @@
       '    </div>',
       '    <table class="zhr-table">',
       '      <thead><tr><th>Employee</th><th>Department</th><th>KPI Score</th><th>Rating Tier</th><th>Workload / Output</th><th>CSAT</th><th>SLA Adherence</th><th>Status</th></tr></thead>',
-      '      <tbody>' + rows + '</tbody>',
+      '      <tbody>' + (rows || '<tr><td colspan="8" style="text-align:center;padding:36px 16px;color:#94a3b8;">No appraisal scorecards found</td></tr>') + '</tbody>',
       '    </table>',
       '  </div>',
       '</div>'
