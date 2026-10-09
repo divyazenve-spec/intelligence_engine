@@ -22,8 +22,8 @@ export default function SalesForecast() {
     <DashboardLayout
       category="Revenue & Sales"
       subcategory="Sales Forecast"
-      title="Predictive Revenue & Demand Forecast"
-      subtitle="Machine learning projections with pet healthcare seasonality cycles, 90% confidence bands, and scenario modeling"
+      title="Predictive Sales Forecast & Revenue Trajectory"
+      subtitle="Machine learning projections with sales seasonality cycles, 90% confidence bands, and scenario modeling"
       icon="📈"
       badge="No Forecast Model Active"
       actions={

@@ -398,13 +398,14 @@
     'ask zenve ai': { controller: 'ZenveAIAssistant', tab: 'ask-ai', hash: '#ask-ai', rootId: 'zai-root', module: 'AI Assistant' },
     'business insights': { controller: 'ZenveAIAssistant', tab: 'insights', hash: '#business-insights', rootId: 'zai-root', module: 'AI Assistant' },
     'revenue intelligence': { controller: 'ZenveAIAssistant', tab: 'revenue', hash: '#revenue-intelligence', rootId: 'zai-root', module: 'AI Assistant' },
-    'demand forecast': { controller: 'ZenveAIAssistant', tab: 'demand', hash: '#demand-forecast', rootId: 'zai-root', module: 'AI Assistant' },
-    'inventory prediction': { controller: 'ZenveAIAssistant', tab: 'inventory', hash: '#inventory-prediction', rootId: 'zai-root', module: 'AI Assistant' },
-    'customer prediction': { controller: 'ZenveAIAssistant', tab: 'customer', hash: '#customer-prediction', rootId: 'zai-root', module: 'AI Assistant' },
-    'churn prediction': { controller: 'ZenveAIAssistant', tab: 'churn', hash: '#churn-prediction', rootId: 'zai-root', module: 'AI Assistant' },
-    'profit prediction': { controller: 'ZenveAIAssistant', tab: 'profit', hash: '#profit-prediction', rootId: 'zai-root', module: 'AI Assistant' },
+    'ai sales forecast': { controller: 'ZenveAIAssistant', tab: 'sales-fc', hash: '#ai-sales-forecast', rootId: 'zai-root', module: 'AI Assistant' },
+    'demand forecast': { controller: 'ZenveAIAssistant', tab: 'demand-fc', hash: '#demand-forecast', rootId: 'zai-root', module: 'AI Assistant' },
+    'inventory prediction': { controller: 'ZenveAIAssistant', tab: 'inventory-pr', hash: '#inventory-prediction', rootId: 'zai-root', module: 'AI Assistant' },
+    'customer prediction': { controller: 'ZenveAIAssistant', tab: 'customer-pr', hash: '#customer-prediction', rootId: 'zai-root', module: 'AI Assistant' },
+    'churn prediction': { controller: 'ZenveAIAssistant', tab: 'churn-pr', hash: '#churn-prediction', rootId: 'zai-root', module: 'AI Assistant' },
+    'profit prediction': { controller: 'ZenveAIAssistant', tab: 'profit-pr', hash: '#profit-prediction', rootId: 'zai-root', module: 'AI Assistant' },
     'anomaly detection': { controller: 'ZenveAIAssistant', tab: 'anomaly', hash: '#anomaly-detection', rootId: 'zai-root', module: 'AI Assistant' },
-    'ai recommendations': { controller: 'ZenveAIAssistant', tab: 'recommendations', hash: '#ai-recommendations', rootId: 'zai-root', module: 'AI Assistant' },
+    'ai recommendations': { controller: 'ZenveAIAssistant', tab: 'recommend', hash: '#ai-recommendations', rootId: 'zai-root', module: 'AI Assistant' },
 
     // Alerts & Notifications
     'alerts & notifications': { controller: 'ZenveAlertsDashboard', tab: 'critical', hash: '#critical-alerts', rootId: 'zalt-root', module: 'Alerts & Notifications' },
@@ -638,6 +639,9 @@
     if (modKey && (modKey.indexOf('logistics') >= 0 || modKey.indexOf('delivery') >= 0)) {
       if (itemKey === '60-minute delivery') itemKey = '60-minute delivery (logistics)';
       if (itemKey === 'delivery performance') itemKey = 'delivery performance (logistics)';
+    }
+    if (modKey && (modKey.indexOf('ai') >= 0 || modKey.indexOf('assistant') >= 0)) {
+      if (itemKey === 'sales forecast') itemKey = 'ai sales forecast';
     }
 
     // Direct lookup in ROUTE_MAP

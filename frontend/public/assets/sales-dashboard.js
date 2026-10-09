@@ -719,8 +719,8 @@
       if (titleEl) titleEl.textContent = '🎯 Sales Targets & Quota Realization';
       if (sub) sub.innerHTML = 'Executive pacing command center, calendar elapsed tracking, and departmental quota fulfillment · <span style="color:#10b981;font-weight:700;">● No Active Quota</span>';
     } else if (S.tab === 'forecast') {
-      if (titleEl) titleEl.textContent = '📈 Predictive Revenue & Demand Forecast';
-      if (sub) sub.innerHTML = 'Machine learning time-series projections, veterinary healthcare seasonality cycles, and 90% confidence bands · <span style="color:#a78bfa;font-weight:700;">● 0.0% Confidence (R²)</span>';
+      if (titleEl) titleEl.textContent = '📈 Predictive Sales Forecast & Revenue Trajectory';
+      if (sub) sub.innerHTML = 'Machine learning time-series projections, sales seasonality cycles, and 90% statistical confidence bands · <span style="color:#a78bfa;font-weight:700;">● 0.0% Confidence (R²)</span>';
     } else {
       if (titleEl) titleEl.textContent = tabInfo.label;
       if (sub) {
@@ -2115,8 +2115,8 @@
 
     var forecastHero =
       '<div class="zsd-hero-banner zsd-hero-forecast">' +
-      '<div><h3 class="zsd-hero-title"><span>📈</span> Predictive Revenue & Demand Forecast</h3>' +
-      '<p class="zsd-hero-sub">Triple exponential smoothing with pet healthcare seasonality cycles, ARIMA trend dampening, and 90% confidence bands</p></div>' +
+      '<div><h3 class="zsd-hero-title"><span>📈</span> Predictive Sales Forecast & Revenue Trajectory</h3>' +
+      '<p class="zsd-hero-sub">Triple exponential smoothing with sales seasonality cycles, ARIMA revenue trend dampening, and 90% statistical confidence bands</p></div>' +
       '<div style="display:flex;align-items:center;gap:10px;">' +
       '<span class="zsd-hero-badge zsd-badge-purple">0.0% Confidence (R²)</span>' +
       '<div style="display:flex;gap:4px;">' +
@@ -2186,14 +2186,14 @@
   function tabFromText(text) {
     if (!text) return null;
     var s = text.trim().toLowerCase();
-    // Exclude other domains: Clinics & Hospitals, Pharmacy, Doctors domain, Products & Inventory
-    if (s.indexOf('clinic') >= 0 || s.indexOf('hospital') >= 0 || s.indexOf('pharmacy') >= 0) return null;
+    // Exclude other domains: Clinics & Hospitals, Pharmacy, Doctors domain, Products & Inventory, AI Demand Forecast
+    if (s.indexOf('clinic') >= 0 || s.indexOf('hospital') >= 0 || s.indexOf('pharmacy') >= 0 || s.indexOf('demand') >= 0) return null;
     if (s === 'clinic doctors' || s === 'doctors dashboard' || s === 'all doctors' || s === 'doctor performance' || s === 'doctor patients' || s === 'doctor orders' || s === 'doctor commissions') return null;
     if (s.indexOf('revenue & sales') >= 0 || s.indexOf('revenue and sales') >= 0) return null;
 
     if (s === 'sales funnel' || s === 'funnel') return 'funnel';
     if (s === 'targets & achievement' || s === 'targets & achievements' || s === 'targets' || s === 'achievement') return 'targets';
-    if (s === 'sales forecast' || s === 'revenue forecast' || s === 'forecast') return 'forecast';
+    if (s === 'sales forecast' || s === 'revenue forecast' || (s === 'forecast' && s.indexOf('demand') < 0)) return 'forecast';
     if (s === 'revenue by channel' || s === 'sales by channel' || s === 'channel revenue') return 'channel';
     if (s === 'revenue by location' || s === 'sales by location' || s === 'geographic sales' || s === 'location revenue') return 'location';
     if (s === 'revenue by product' || s === 'sales by product' || s === 'product revenue') return 'product';
@@ -2207,7 +2207,7 @@
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
-    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('pharmacy') >= 0 || h.startsWith('doctor-') || h.startsWith('customer-')) return null;
+    if (h.indexOf('clinic') >= 0 || h.indexOf('hospital') >= 0 || h.indexOf('pharmacy') >= 0 || h.indexOf('demand') >= 0 || h.startsWith('doctor-') || h.startsWith('customer-')) return null;
     if (h === 'revenue-by-doctor' || h === 'sales-by-doctor') return 'doctor';
     if (h === 'revenue-by-channel' || h === 'sales-by-channel') return 'channel';
     if (h === 'revenue-by-location' || h === 'sales-by-location') return 'location';
@@ -2216,7 +2216,7 @@
     if (h === 'revenue-by-customer' || h === 'sales-by-customer') return 'customer';
     if (h === 'sales-funnel' || h === 'funnel') return 'funnel';
     if (h === 'targets-achievement' || h === 'targets') return 'targets';
-    if (h === 'sales-forecast' || h === 'forecast') return 'forecast';
+    if (h === 'sales-forecast' || (h === 'forecast' && h.indexOf('demand') < 0)) return 'forecast';
     if (h === 'sales-dashboard' || h === 'sales') return 'sales';
     return null;
   }

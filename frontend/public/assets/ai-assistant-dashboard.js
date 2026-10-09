@@ -71,37 +71,67 @@
 
   var root = null;
 
+  function normalizeTab(raw) {
+    if (!raw) return 'ask-ai';
+    var s = String(raw).trim().toLowerCase();
+    if (s.startsWith('#')) s = s.slice(1);
+    var clean = s.replace(/[_\s]+/g, '-');
+    if (clean === 'ask-ai' || clean === 'ask-zenve-ai' || clean === 'ai' || clean === 'copilot') return 'ask-ai';
+    if (clean === 'insights' || clean === 'business-insights') return 'insights';
+    if (clean === 'revenue' || clean === 'revenue-intelligence') return 'revenue';
+    if (clean === 'sales-fc' || clean === 'sales' || clean === 'sales-forecast' || clean === 'ai-sales-forecast') return 'sales-fc';
+    if (clean === 'demand-fc' || clean === 'demand' || clean === 'demand-forecast') return 'demand-fc';
+    if (clean === 'inventory-pr' || clean === 'inventory' || clean === 'inventory-prediction') return 'inventory-pr';
+    if (clean === 'customer-pr' || clean === 'customer' || clean === 'customer-prediction') return 'customer-pr';
+    if (clean === 'churn-pr' || clean === 'churn' || clean === 'churn-prediction') return 'churn-pr';
+    if (clean === 'profit-pr' || clean === 'profit' || clean === 'profit-prediction') return 'profit-pr';
+    if (clean === 'anomaly' || clean === 'anomaly-detection') return 'anomaly';
+    if (clean === 'recommend' || clean === 'recommendations' || clean === 'recommendation' || clean === 'ai-recommendations') return 'recommend';
+
+    if (clean.indexOf('demand') >= 0) return 'demand-fc';
+    if (clean.indexOf('inventory') >= 0) return 'inventory-pr';
+    if (clean.indexOf('customer') >= 0) return 'customer-pr';
+    if (clean.indexOf('churn') >= 0) return 'churn-pr';
+    if (clean.indexOf('profit') >= 0) return 'profit-pr';
+    if (clean.indexOf('recommend') >= 0) return 'recommend';
+    if (clean.indexOf('anomaly') >= 0) return 'anomaly';
+    if (clean.indexOf('sales') >= 0) return 'sales-fc';
+    if (clean.indexOf('insight') >= 0) return 'insights';
+    if (clean.indexOf('revenue') >= 0) return 'revenue';
+    return 'ask-ai';
+  }
+
   function tabFromHash(hash) {
     if (!hash) return null;
     var h = (hash.startsWith('#') ? hash.slice(1) : hash).toLowerCase();
     if (h === 'ask-zenve-ai' || h === 'ask-ai' || h === 'ai') return 'ask-ai';
-    if (h === 'business-insights') return 'insights';
-    if (h === 'revenue-intelligence') return 'revenue';
-    if (h === 'ai-sales-forecast' || h === 'sales-forecast') return 'sales-fc';
-    if (h === 'demand-forecast') return 'demand-fc';
-    if (h === 'inventory-prediction') return 'inventory-pr';
-    if (h === 'customer-prediction') return 'customer-pr';
-    if (h === 'churn-prediction') return 'churn-pr';
-    if (h === 'profit-prediction') return 'profit-pr';
-    if (h === 'anomaly-detection') return 'anomaly';
-    if (h === 'ai-recommendations') return 'recommend';
+    if (h === 'business-insights' || h === 'insights') return 'insights';
+    if (h === 'revenue-intelligence' || h === 'revenue') return 'revenue';
+    if (h === 'ai-sales-forecast' || h === 'sales-forecast' || h === 'sales-fc') return 'sales-fc';
+    if (h === 'demand-forecast' || h === 'demand-fc' || h === 'demand') return 'demand-fc';
+    if (h === 'inventory-prediction' || h === 'inventory-pr' || h === 'inventory') return 'inventory-pr';
+    if (h === 'customer-prediction' || h === 'customer-pr' || h === 'customer') return 'customer-pr';
+    if (h === 'churn-prediction' || h === 'churn-pr' || h === 'churn') return 'churn-pr';
+    if (h === 'profit-prediction' || h === 'profit-pr' || h === 'profit') return 'profit-pr';
+    if (h === 'anomaly-detection' || h === 'anomaly') return 'anomaly';
+    if (h === 'ai-recommendations' || h === 'recommendations' || h === 'recommend') return 'recommend';
     return null;
   }
 
   function tabFromText(txt) {
     if (!txt) return null;
     var raw = txt.replace(/\s+/g, ' ').trim().toLowerCase();
-    if (raw === 'ask zenve ai' || raw === 'zenve ai') return 'ask-ai';
-    if (raw === 'business insights') return 'insights';
-    if (raw === 'revenue intelligence') return 'revenue';
-    if (raw === 'sales forecast') return 'sales-fc';
-    if (raw === 'demand forecast') return 'demand-fc';
-    if (raw === 'inventory prediction') return 'inventory-pr';
-    if (raw === 'customer prediction') return 'customer-pr';
-    if (raw === 'churn prediction') return 'churn-pr';
-    if (raw === 'profit prediction') return 'profit-pr';
-    if (raw === 'anomaly detection') return 'anomaly';
-    if (raw === 'ai recommendations') return 'recommend';
+    if (raw === 'ask zenve ai' || raw === 'zenve ai' || raw === 'ask ai') return 'ask-ai';
+    if (raw === 'business insights' || raw === 'insights') return 'insights';
+    if (raw === 'revenue intelligence' || raw === 'revenue') return 'revenue';
+    if (raw === 'sales forecast' || raw === 'ai sales forecast' || raw === 'sales-fc') return 'sales-fc';
+    if (raw === 'demand forecast' || raw === 'demand' || raw === 'demand-fc') return 'demand-fc';
+    if (raw === 'inventory prediction' || raw === 'inventory' || raw === 'inventory-pr') return 'inventory-pr';
+    if (raw === 'customer prediction' || raw === 'customer' || raw === 'customer-pr') return 'customer-pr';
+    if (raw === 'churn prediction' || raw === 'churn' || raw === 'churn-pr') return 'churn-pr';
+    if (raw === 'profit prediction' || raw === 'profit' || raw === 'profit-pr') return 'profit-pr';
+    if (raw === 'anomaly detection' || raw === 'anomaly') return 'anomaly';
+    if (raw === 'ai recommendations' || raw === 'recommendations' || raw === 'recommend') return 'recommend';
     return null;
   }
 
@@ -995,35 +1025,35 @@
             '<tbody>',
               '<tr>',
                 '<td><strong>Bravecto Chewable 20-40kg (ZV-MED-04)</strong></td>',
-                'Anti-Parasitic',
-                '142 Units',
-                '480 Units',
-                '<span class="zai-badge danger">9 Days Left</span>',
-                'Order 350 Units from MSD Animal Health',
+                '<td>Anti-Parasitic</td>',
+                '<td>142 Units</td>',
+                '<td>480 Units</td>',
+                '<td><span class="zai-badge danger">9 Days Left</span></td>',
+                '<td>Order 350 Units from MSD Animal Health</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Royal Canin Gastrointestinal Dog 12kg</strong></td>',
-                'Clinical Diet',
-                '86 Bags',
-                '240 Bags',
-                '<span class="zai-badge warning">11 Days Left</span>',
-                'Order 180 Bags from Royal Canin India',
+                '<td>Clinical Diet</td>',
+                '<td>86 Bags</td>',
+                '<td>240 Bags</td>',
+                '<td><span class="zai-badge warning">11 Days Left</span></td>',
+                '<td>Order 180 Bags from Royal Canin India</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Zoetis Vanguard Plus 5 Vaccine</strong></td>',
-                'Vaccines',
-                '320 Vials',
-                '580 Vials',
-                '<span class="zai-badge success">17 Days Left</span>',
-                'Routine replenishment PO-9014',
+                '<td>Vaccines</td>',
+                '<td>320 Vials</td>',
+                '<td>580 Vials</td>',
+                '<td><span class="zai-badge success">17 Days Left</span></td>',
+                '<td>Routine replenishment PO-9014</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Apoquel 16mg Tablets (100s)</strong></td>',
-                'Dermatology',
-                '44 Bottles',
-                '90 Bottles',
-                '<span class="zai-badge warning">14 Days Left</span>',
-                'Order 60 Bottles from Zoetis',
+                '<td>Dermatology</td>',
+                '<td>44 Bottles</td>',
+                '<td>90 Bottles</td>',
+                '<td><span class="zai-badge warning">14 Days Left</span></td>',
+                '<td>Order 60 Bottles from Zoetis</td>',
               '</tr>',
             '</tbody>',
           '</table>',
@@ -1065,34 +1095,34 @@
             '<tbody>',
               '<tr>',
                 '<td><strong>Koramangala Trauma Hub</strong></td>',
-                'Isoflurane Anesthetic 250ml',
-                '6 Bottles',
-                'In 44 Hours',
-                '24 Hours',
+                '<td>Isoflurane Anesthetic 250ml</td>',
+                '<td>6 Bottles</td>',
+                '<td>In 44 Hours</td>',
+                '<td>24 Hours</td>',
                 '<td><span class="zai-badge danger">CRITICAL: Reorder Now</span></td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Indiranagar Flagship</strong></td>',
-                'Bravecto Chewable (Large Dog)',
-                '14 Units',
-                'In 3 Days',
-                '2 Days',
+                '<td>Bravecto Chewable (Large Dog)</td>',
+                '<td>14 Units</td>',
+                '<td>In 3 Days</td>',
+                '<td>2 Days</td>',
                 '<td><span class="zai-badge warning">Inter-hub Transfer</span></td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Whitefield Specialty</strong></td>',
-                'Feline Calicivirus PCR Kits',
-                '12 Kits',
-                'In 6 Days',
-                '3 Days',
+                '<td>Feline Calicivirus PCR Kits</td>',
+                '<td>12 Kits</td>',
+                '<td>In 6 Days</td>',
+                '<td>3 Days</td>',
                 '<td><span class="zai-badge info">Adequate Buffer</span></td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Central Warehouse</strong></td>',
-                'Royal Canin Urinary S/O Cat',
-                '48 Bags',
-                'In 18 Days',
-                '5 Days',
+                '<td>Royal Canin Urinary S/O Cat</td>',
+                '<td>48 Bags</td>',
+                '<td>In 18 Days</td>',
+                '<td>5 Days</td>',
                 '<td><span class="zai-badge success">Healthy</span></td>',
               '</tr>',
             '</tbody>',
@@ -1135,35 +1165,35 @@
             '<tbody>',
               '<tr>',
                 '<td><strong>Puppy Care Club (1-6 Mo)</strong></td>',
-                'Golden Retrievers, Labradors (3,240 pets)',
-                'Rabies & DHPPiL booster vaccination',
-                'Days 84 - 90',
-                '<span class="zai-badge success">+₹6.2 Lakh</span>',
-                'Automated clinic booking via WhatsApp',
+                '<td>Golden Retrievers, Labradors (3,240 pets)</td>',
+                '<td>Rabies & DHPPiL booster vaccination</td>',
+                '<td>Days 84 - 90</td>',
+                '<td><span class="zai-badge success">+₹6.2 Lakh</span></td>',
+                '<td>Automated clinic booking via WhatsApp</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Senior Feline Wellness (7+ Yrs)</strong></td>',
-                'Persian, Domestic Shorthair (1,840 pets)',
-                'Renal & kidney panel screening',
-                'Bi-annual checkup',
-                '<span class="zai-badge success">+₹4.8 Lakh</span>',
-                'Personalized doctor consult voucher',
+                '<td>Persian, Domestic Shorthair (1,840 pets)</td>',
+                '<td>Renal & kidney panel screening</td>',
+                '<td>Bi-annual checkup</td>',
+                '<td><span class="zai-badge success">+₹4.8 Lakh</span></td>',
+                '<td>Personalized doctor consult voucher</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Chronic Allergy Patients</strong></td>',
-                'French Bulldogs, Beagles (920 pets)',
-                'Cytopoint injection & Apoquel refills',
-                'Every 28 - 32 Days',
-                '<span class="zai-badge success">+₹3.9 Lakh</span>',
-                '1-click prescription subscription link',
+                '<td>French Bulldogs, Beagles (920 pets)</td>',
+                '<td>Cytopoint injection & Apoquel refills</td>',
+                '<td>Every 28 - 32 Days</td>',
+                '<td><span class="zai-badge success">+₹3.9 Lakh</span></td>',
+                '<td>1-click prescription subscription link</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Active Canine Agility</strong></td>',
-                'German Shepherds, Huskies (1,150 pets)',
-                'Joint supplements (Glucosamine + Omega 3)',
-                'Every 45 Days',
-                '<span class="zai-badge success">+₹2.4 Lakh</span>',
-                'App notification on replenishment date',
+                '<td>German Shepherds, Huskies (1,150 pets)</td>',
+                '<td>Joint supplements (Glucosamine + Omega 3)</td>',
+                '<td>Every 45 Days</td>',
+                '<td><span class="zai-badge success">+₹2.4 Lakh</span></td>',
+                '<td>App notification on replenishment date</td>',
               '</tr>',
             '</tbody>',
           '</table>',
@@ -1205,35 +1235,35 @@
             '<tbody>',
               '<tr>',
                 '<td><strong>Meenakshi Sundaram</strong></td>',
-                'Bruno (German Shepherd, 4Y)',
-                '₹42,800',
+                '<td>Bruno (German Shepherd, 4Y)</td>',
+                '<td>₹42,800</td>',
                 '<td><span class="zai-badge danger">0.91 (Critical)</span></td>',
-                'Lapsed annual vaccination by 45 days',
-                'VIP Home Consultation free upgrade invite',
+                '<td>Lapsed annual vaccination by 45 days</td>',
+                '<td>VIP Home Consultation free upgrade invite</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Rajesh Kulkarni</strong></td>',
-                'Milo & Coco (Shih Tzus, 2Y)',
-                '₹38,200',
+                '<td>Milo & Coco (Shih Tzus, 2Y)</td>',
+                '<td>₹38,200</td>',
                 '<td><span class="zai-badge danger">0.84 (High)</span></td>',
-                'Unfulfilled prescription complaint 3 weeks ago',
-                'Senior Vet complimentary wellness review',
+                '<td>Unfulfilled prescription complaint 3 weeks ago</td>',
+                '<td>Senior Vet complimentary wellness review</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Pooja Agarwal</strong></td>',
-                'Simba (Persian Cat, 3Y)',
-                '₹29,400',
+                '<td>Simba (Persian Cat, 3Y)</td>',
+                '<td>₹29,400</td>',
                 '<td><span class="zai-badge warning">0.78 (Elevated)</span></td>',
-                'Grooming appointment cancelled, no rebook',
-                '20% Spa & Grooming voucher code',
+                '<td>Grooming appointment cancelled, no rebook</td>',
+                '<td>20% Spa & Grooming voucher code</td>',
               '</tr>',
               '<tr>',
                 '<td><strong>Vikram Malhotra</strong></td>',
-                'Rocky (Golden Retriever, 6Y)',
-                '₹56,000',
+                '<td>Rocky (Golden Retriever, 6Y)</td>',
+                '<td>₹56,000</td>',
                 '<td><span class="zai-badge warning">0.76 (Elevated)</span></td>',
-                'Refill interval delayed by 18 days',
-                'Concierge medicine dispatch follow-up',
+                '<td>Refill interval delayed by 18 days</td>',
+                '<td>Concierge medicine dispatch follow-up</td>',
               '</tr>',
             '</tbody>',
           '</table>',
@@ -1384,33 +1414,33 @@
             '<tbody>',
               '<tr>',
                 '<td><span class="zai-badge danger">#1 High</span></td>',
-                '<strong>Transfer 80 units Bravecto from Koramangala to Whitefield</strong><br><span style="font-size: 11px; color: #64748b;">Eliminates stockout and stops split courier leakage</span>',
-                'Pharmacy Supply Chain',
-                '<strong>+₹2.80 Lakh</strong>',
+                '<td><strong>Transfer 80 units Bravecto from Koramangala to Whitefield</strong><br><span style="font-size: 11px; color: #64748b;">Eliminates stockout and stops split courier leakage</span></td>',
+                '<td>Pharmacy Supply Chain</td>',
+                '<td><strong>+₹2.80 Lakh</strong></td>',
                 '<td><span class="zai-badge success">Immediate (4h)</span></td>',
                 '<td><button class="zai-btn" onclick="alert(\'Transfer initiated.\')">Execute</button></td>',
               '</tr>',
               '<tr>',
                 '<td><span class="zai-badge danger">#2 High</span></td>',
-                '<strong>Launch WhatsApp Vaccination Booster Automation</strong><br><span style="font-size: 11px; color: #64748b;">Targets 3,240 puppy parents approaching day 90 booster</span>',
-                'Veterinary Clinical Growth',
-                '<strong>+₹6.20 Lakh</strong>',
+                '<td><strong>Launch WhatsApp Vaccination Booster Automation</strong><br><span style="font-size: 11px; color: #64748b;">Targets 3,240 puppy parents approaching day 90 booster</span></td>',
+                '<td>Veterinary Clinical Growth</td>',
+                '<td><strong>+₹6.20 Lakh</strong></td>',
                 '<td><span class="zai-badge success">1 Click</span></td>',
                 '<td><button class="zai-btn" onclick="alert(\'Campaign activated.\')">Activate</button></td>',
               '</tr>',
               '<tr>',
                 '<td><span class="zai-badge warning">#3 Medium</span></td>',
-                '<strong>Index Oncology Drug MRP to Dynamic Vendor Wholesale</strong><br><span style="font-size: 11px; color: #64748b;">Protects 18% margin slippage on specialized oncology therapies</span>',
-                'Commercial Pricing Policy',
-                '<strong>+₹4.10 Lakh</strong>',
+                '<td><strong>Index Oncology Drug MRP to Dynamic Vendor Wholesale</strong><br><span style="font-size: 11px; color: #64748b;">Protects 18% margin slippage on specialized oncology therapies</span></td>',
+                '<td>Commercial Pricing Policy</td>',
+                '<td><strong>+₹4.10 Lakh</strong></td>',
                 '<td><span class="zai-badge info">2 Days</span></td>',
                 '<td><button class="zai-btn" onclick="alert(\'Pricing rule applied.\')">Apply Rule</button></td>',
               '</tr>',
               '<tr>',
                 '<td><span class="zai-badge info">#4 Medium</span></td>',
-                '<strong>Expand Dr. Nambiar Orthopedic Surgery Slots to Whitefield</strong><br><span style="font-size: 11px; color: #64748b;">Meets 3-week backlog of pending orthopedic procedures</span>',
-                'Medical Board Scheduling',
-                '<strong>+₹8.40 Lakh</strong>',
+                '<td><strong>Expand Dr. Nambiar Orthopedic Surgery Slots to Whitefield</strong><br><span style="font-size: 11px; color: #64748b;">Meets 3-week backlog of pending orthopedic procedures</span></td>',
+                '<td>Medical Board Scheduling</td>',
+                '<td><strong>+₹8.40 Lakh</strong></td>',
                 '<td><span class="zai-badge info">1 Week</span></td>',
                 '<td><button class="zai-btn" onclick="alert(\'Roster updated.\')">Update Roster</button></td>',
               '</tr>',
@@ -1422,15 +1452,17 @@
   }
 
   function getActiveTabConfig() {
+    var norm = normalizeTab(S.tab);
     for (var i = 0; i < TABS.length; i++) {
-      if (TABS[i].id === S.tab) return TABS[i];
+      if (TABS[i].id === norm) return TABS[i];
     }
     return TABS[0];
   }
 
   function renderTabsBar() {
+    var activeId = normalizeTab(S.tab);
     return TABS.map(function (t) {
-      var isActive = t.id === S.tab;
+      var isActive = t.id === activeId;
       return [
         '<button type="button" class="zai-tab ' + (isActive ? 'active' : '') + '" data-tab="' + t.id + '">',
           '<span>' + t.icon + '</span>',
@@ -1442,7 +1474,8 @@
   }
 
   function renderBody() {
-    switch (S.tab) {
+    var tab = normalizeTab(S.tab);
+    switch (tab) {
       case 'insights':     return renderInsights();
       case 'revenue':      return renderRevenue();
       case 'sales-fc':     return renderSalesForecast();
@@ -1606,7 +1639,7 @@
   }
 
   function switchTab(tid) {
-    S.tab = tid;
+    S.tab = normalizeTab(tid);
     var current = getActiveTabConfig();
     if (window.location.hash !== current.hash) {
       try {
@@ -1625,7 +1658,7 @@
       root.id = 'zai-root';
       document.body.appendChild(root);
     }
-    if (tabId) S.tab = tabId;
+    if (tabId) S.tab = normalizeTab(tabId);
     S.open = true;
     root.style.display = 'block';
     document.documentElement.classList.add('zai-locked');

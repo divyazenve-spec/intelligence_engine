@@ -461,9 +461,17 @@
       var btn = e.target.closest('[data-panel="forecast"]');
       if (!btn) {
         var it = e.target.closest('button, a, li');
-        if (it && it.textContent && it.textContent.toLowerCase().indexOf('forecast') >= 0) btn = it;
+        if (it && it.textContent) {
+          var txt = it.textContent.toLowerCase().trim();
+          if ((txt === 'sales forecast' || txt === 'revenue forecast' || txt.indexOf('sales forecast') >= 0) && txt.indexOf('demand') < 0) {
+            btn = it;
+          }
+        }
       }
       if (btn) {
+        var bTxt = (btn.textContent || '').toLowerCase();
+        if (bTxt.indexOf('demand') >= 0) return;
+        if (btn.closest('#zai-root')) return;
         e.preventDefault();
         if (window.ZenveSalesDashboard) window.ZenveSalesDashboard.open('forecast');
         else S.open ? close() : open();
