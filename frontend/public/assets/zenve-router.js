@@ -645,6 +645,9 @@
     }
 
     if (itemKey === 'executive dashboard' || itemKey === 'executive' || (ROUTE_MAP[itemKey] && ROUTE_MAP[itemKey].isHomeOverview)) {
+      if (window.ZenveDragonLoader) {
+        window.ZenveDragonLoader.show('Executive Dashboard', 'Executive Dashboard');
+      }
       closeAllDashboards();
       try {
         if (window.location.hash && window.location.hash !== '#overview') {
@@ -662,6 +665,9 @@
       syncSidebar('Executive Dashboard', 'Executive Dashboard');
       var retBtnHome = document.getElementById('z-floating-return-btn');
       if (retBtnHome) retBtnHome.style.display = 'none';
+      if (window.ZenveDragonLoader) {
+        window.ZenveDragonLoader.hide();
+      }
       return true;
     }
 
@@ -718,13 +724,24 @@
     // If ALREADY OPEN, switch the subcategory tab dynamically without flickering
     if (isOpen && ctrl && typeof ctrl.switchTab === 'function' && route.tab) {
       try {
+        if (window.ZenveDragonLoader) {
+          window.ZenveDragonLoader.show(rawItem, route.module || moduleLabel);
+        }
         ctrl.switchTab(route.tab);
         if (route.hash) {
           try { history.pushState(null, '', route.hash); } catch (e) { window.location.hash = route.hash; }
         }
         syncSidebar(route.module || moduleLabel, rawItem);
+        if (window.ZenveDragonLoader) {
+          window.ZenveDragonLoader.hide();
+        }
         return true;
       } catch (err) {}
+    }
+
+    // ACTIVATE DRAGON REVOLVING "Z" LOADER CLIP TO MASK DOM UNTIL DASHBOARD ARRIVES
+    if (window.ZenveDragonLoader) {
+      window.ZenveDragonLoader.show(rawItem || route.module || moduleLabel, route.module || moduleLabel);
     }
 
     // Otherwise close other dashboards cleanly
@@ -780,9 +797,17 @@
           if (mobileClose && window.innerWidth < 1024) {
             try { mobileClose.click(); } catch (e) {}
           }
+
+          // Smoothly hide Dragon loader once dashboard has arrived to view
+          if (window.ZenveDragonLoader) {
+            window.ZenveDragonLoader.hide();
+          }
           return true;
         } catch (err) {
           console.error('[ZenveRouter] Error opening dashboard:', err);
+          if (window.ZenveDragonLoader) {
+            window.ZenveDragonLoader.hide();
+          }
         }
       }
 
@@ -804,8 +829,16 @@
             var retBtn2 = ensureReturnButton();
             if (retBtn2) retBtn2.style.display = 'flex';
             syncSidebar(route.module || moduleLabel, rawItem);
+
+            if (window.ZenveDragonLoader) {
+              window.ZenveDragonLoader.hide();
+            }
             return true;
-          } catch (err) {}
+          } catch (err) {
+            if (window.ZenveDragonLoader) {
+              window.ZenveDragonLoader.hide();
+            }
+          }
         }
       }
 
@@ -813,6 +846,9 @@
         setTimeout(function () { invoke(attemptsLeft - 1); }, 100);
       } else {
         console.warn('[ZenveRouter] Controller not ready for route:', route);
+        if (window.ZenveDragonLoader) {
+          window.ZenveDragonLoader.hide();
+        }
       }
       return false;
     }

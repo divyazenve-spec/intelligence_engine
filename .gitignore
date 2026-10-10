@@ -43,6 +43,7 @@ frontend/.env.local
 # Test / temp
 *.csv
 test_pipeline.csv
+scratch/
 
 # Docker
 *.pid

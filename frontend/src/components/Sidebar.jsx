@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) {
+export default function Sidebar({ activeItem = '', onNavigate }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedSection, setExpandedSection] = useState('Revenue & Sales');
+  const [expandedSection, setExpandedSection] = useState('');
 
   const navigationSections = [
     {
@@ -351,7 +351,7 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
         </div>
       </div>
 
-      {/* 2. Menu Search Input with Ctrl + K */}
+      {/* 2. Menu Search Input */}
       <div
         className="sidebar-search-wrap"
         style={{
@@ -380,12 +380,12 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search 250+ pages…"
+          placeholder="Search"
           style={{
             height: '36px',
             width: '100%',
             boxSizing: 'border-box',
-            padding: '0 62px 0 32px',
+            padding: '0 12px 0 32px',
             background: '#f1f5f9',
             border: '1px solid #e2e8f0',
             borderRadius: '11px',
@@ -394,26 +394,6 @@ export default function Sidebar({ activeItem = 'Sales Dashboard', onNavigate }) 
             outline: 'none'
           }}
         />
-        <span
-          className="sidebar-search-kbd"
-          style={{
-            position: 'absolute',
-            right: '8px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            background: '#e2e8f0',
-            border: '1px solid #cbd5e1',
-            borderRadius: '6px',
-            padding: '2px 6px',
-            fontSize: '9.5px',
-            fontWeight: 600,
-            color: '#475569',
-            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-            pointerEvents: 'none'
-          }}
-        >
-          Ctrl + K
-        </span>
       </div>
 
       {/* 3. Navigation Sections List */}
