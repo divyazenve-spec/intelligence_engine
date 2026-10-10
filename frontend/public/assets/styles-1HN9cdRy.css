@@ -600,9 +600,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 [data-domain="Settings"] .sidebar-icon-wrap { color: #64748b !important; background: rgba(100, 116, 139, 0.1) !important; }
 
 /* =====================================================================
-   Zenve BI — Fiery Celestial Chinese Dragon Revolving "Z" Logo Loading Clip
-   Website-matching Light Luxury Theme & Realistic Fiery Magma Dragon
-   Smoothly revolving 360 degrees around the central Zenve "Z" logo emblem.
+   Zenve BI — Celestial Stars Revolving Circular Logo Loading Clip
+   Website-matching Light Luxury Theme & Sparkling Celestial Stars
+   Stars smoothly revolving around the central circular Zenve Logo.
    Active during subdomain and domain transitions to eliminate dashboard flashing.
    ===================================================================== */
 
@@ -652,168 +652,223 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   justify-content: center;
 }
 
-/* Ambient Pulsing Magma & Flame Aura */
+/* Ambient Pulsing Starlight Aura */
 .zdl-ambient-aura {
   position: absolute;
-  width: 360px;
-  height: 360px;
+  width: 340px;
+  height: 340px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.24) 0%, rgba(234, 88, 12, 0.12) 42%, transparent 72%);
-  filter: blur(36px);
-  animation: zdlAuraPulse 3s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, rgba(245, 158, 11, 0.10) 45%, transparent 70%);
+  filter: blur(34px);
+  animation: zdlAuraPulse 3.5s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
 @keyframes zdlAuraPulse {
   0% { transform: scale(0.92); opacity: 0.7; }
-  100% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1.12); opacity: 1; }
 }
 
-/* Celestial Orbit Rings */
-.zdl-celestial-ring-outer {
+/* Outer Celestial Orbit Ring (Dashed Starlight Track) */
+.zdl-orbit-track-outer {
   position: absolute;
-  width: 330px;
-  height: 330px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(245, 158, 11, 0.35);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15), inset 0 0 20px rgba(245, 158, 11, 0.08);
-  animation: zdlRingSpinReverse 24s linear infinite;
+  border: 1.5px dashed rgba(245, 158, 11, 0.32);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.12), inset 0 0 16px rgba(245, 158, 11, 0.06);
   pointer-events: none;
 }
 
-.zdl-celestial-ring-inner {
+/* Inner Celestial Orbit Ring */
+.zdl-orbit-track-inner {
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 174px;
+  height: 174px;
   border-radius: 50%;
-  border: 1.5px solid rgba(217, 119, 6, 0.3);
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.15);
-  animation: zdlRingSpinForward 16s linear infinite;
+  border: 1px dashed rgba(217, 119, 6, 0.25);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.1);
   pointer-events: none;
 }
 
-@keyframes zdlRingSpinReverse {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
+/* Circular Halo framing the Logo */
+.zdl-logo-halo {
+  position: absolute;
+  width: 122px;
+  height: 122px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245, 158, 11, 0.38);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.22);
+  animation: zdlHaloSpin 20s linear infinite;
+  pointer-events: none;
 }
 
-@keyframes zdlRingSpinForward {
+@keyframes zdlHaloSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* Central Zenve "Z" Logo Emblem — Sits in the eye of the Dragon */
+/* Central Zenve Logo in a Perfect Circle */
 .zdl-emblem-core {
   position: absolute;
   width: 96px;
   height: 96px;
-  border-radius: 24px;
-  background: #ffffff;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 38% 34%, #ffffff 0%, #fffdf8 62%, #fef3c7 100%);
   border: 2.5px solid rgba(245, 158, 11, 0.65);
   box-shadow: 
-    0 12px 36px -4px rgba(217, 119, 6, 0.25),
-    0 4px 16px rgba(15, 23, 42, 0.08),
-    0 0 24px rgba(245, 158, 11, 0.25),
-    inset 0 0 18px rgba(245, 158, 11, 0.14);
+    0 14px 36px -4px rgba(217, 119, 6, 0.22),
+    0 4px 16px rgba(15, 23, 42, 0.06),
+    0 0 26px rgba(245, 158, 11, 0.24),
+    inset 0 0 16px rgba(245, 158, 11, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 20;
-  animation: zdlEmblemBreathe 2.6s ease-in-out infinite;
+  animation: zdlEmblemBreathe 3s ease-in-out infinite;
 }
 
 .zdl-emblem-core img {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(217, 119, 6, 0.35));
+  filter: drop-shadow(0 2px 6px rgba(217, 119, 6, 0.3));
 }
 
 @keyframes zdlEmblemBreathe {
   0%, 100% {
     transform: scale(1);
     box-shadow: 
-      0 12px 36px -4px rgba(217, 119, 6, 0.25),
-      0 4px 16px rgba(15, 23, 42, 0.08),
-      0 0 24px rgba(245, 158, 11, 0.25),
-      inset 0 0 18px rgba(245, 158, 11, 0.14);
+      0 14px 36px -4px rgba(217, 119, 6, 0.22),
+      0 4px 16px rgba(15, 23, 42, 0.06),
+      0 0 26px rgba(245, 158, 11, 0.24),
+      inset 0 0 16px rgba(245, 158, 11, 0.12);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.05);
     box-shadow: 
-      0 16px 44px -2px rgba(217, 119, 6, 0.35),
-      0 6px 20px rgba(15, 23, 42, 0.1),
-      0 0 32px rgba(245, 158, 11, 0.4),
-      inset 0 0 24px rgba(245, 158, 11, 0.22);
+      0 18px 44px -2px rgba(217, 119, 6, 0.32),
+      0 6px 20px rgba(15, 23, 42, 0.08),
+      0 0 34px rgba(245, 158, 11, 0.36),
+      inset 0 0 22px rgba(245, 158, 11, 0.18);
   }
 }
 
-/* Fiery Magma Dragon Wrap: Revolves 360 degrees around the logo */
-.zdl-fiery-dragon-wrap {
+/* REVOLVING CELESTIAL ORBITS CARRYING THE STARS */
+.zdl-orbit-outer {
   position: absolute;
-  width: 360px;
-  height: 360px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
   pointer-events: none;
   z-index: 10;
+  animation: zdlOrbitCW 8s linear infinite;
+}
+
+.zdl-orbit-inner {
+  position: absolute;
+  width: 174px;
+  height: 174px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 11;
+  animation: zdlOrbitCCW 11s linear infinite;
+}
+
+@keyframes zdlOrbitCW {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes zdlOrbitCCW {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Precise Star Holder Positions along the circumference */
+.zdl-star-holder {
+  position: absolute;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: zdlDragonRevolve 6.5s linear infinite;
+  pointer-events: none;
 }
 
-.zdl-fiery-dragon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.65)) drop-shadow(0 0 32px rgba(234, 88, 12, 0.45));
-  animation: zdlDragonHeatPulse 2.2s ease-in-out infinite alternate;
+/* Outer orbit star placements (circle of radius 130px, center 130px, 130px) */
+.zdl-star-pos-0   { top: 0px;   left: 130px; }
+.zdl-star-pos-60  { top: 65px;  left: 243px; }
+.zdl-star-pos-120 { top: 195px; left: 243px; }
+.zdl-star-pos-180 { top: 260px; left: 130px; }
+.zdl-star-pos-240 { top: 195px; left: 17px;  }
+.zdl-star-pos-300 { top: 65px;  left: 17px;  }
+
+/* Inner orbit star placements (circle of radius 87px, center 87px, 87px) */
+.zdl-star-pos-in-45  { top: 25px;  left: 149px; }
+.zdl-star-pos-in-135 { top: 149px; left: 149px; }
+.zdl-star-pos-in-225 { top: 149px; left: 25px;  }
+.zdl-star-pos-in-315 { top: 25px;  left: 25px;  }
+
+/* Star Visual Styling */
+.zdl-star {
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 14px rgba(251, 191, 36, 0.7));
+  animation: zdlStarTwinkle 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes zdlDragonRevolve {
+.zdl-star-lg { width: 28px; height: 28px; }
+.zdl-star-md { width: 20px; height: 20px; }
+.zdl-star-sm { width: 14px; height: 14px; }
+.zdl-star-xs { width: 10px; height: 10px; }
+
+.zdl-delay-0 { animation-delay: 0s; }
+.zdl-delay-1 { animation-delay: 0.35s; }
+.zdl-delay-2 { animation-delay: 0.75s; }
+.zdl-delay-3 { animation-delay: 1.15s; }
+.zdl-delay-4 { animation-delay: 1.55s; }
+.zdl-delay-5 { animation-delay: 1.95s; }
+
+@keyframes zdlStarTwinkle {
   0% {
-    transform: rotate(0deg);
+    transform: scale(0.85) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 8px rgba(251, 191, 36, 0.45));
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.22) rotate(20deg);
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 1)) drop-shadow(0 0 22px rgba(251, 191, 36, 0.9));
+    opacity: 1;
   }
   100% {
-    transform: rotate(360deg);
+    transform: scale(0.92) rotate(0deg);
+    filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 10px rgba(251, 191, 36, 0.55));
+    opacity: 0.85;
   }
 }
 
-@keyframes zdlDragonHeatPulse {
-  0% {
-    transform: scale(0.98);
-    filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.55)) drop-shadow(0 0 28px rgba(234, 88, 12, 0.35));
-  }
-  100% {
-    transform: scale(1.03);
-    filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.85)) drop-shadow(0 0 42px rgba(234, 88, 12, 0.6));
-  }
-}
-
-/* Sparkling golden magma embers trailing the dragon */
-.zdl-ember {
+/* Floating Stardust Particles */
+.zdl-stardust {
   position: absolute;
   border-radius: 50%;
-  background: #f59e0b;
-  box-shadow: 0 0 6px #f59e0b, 0 0 12px rgba(234, 88, 12, 0.6);
+  background: #fbbf24;
+  box-shadow: 0 0 6px #f59e0b, 0 0 12px rgba(251, 191, 36, 0.7);
   pointer-events: none;
-  animation: zdlEmberSparkle 1.8s ease-in-out infinite;
+  animation: zdlStardustFloat 2.6s ease-in-out infinite alternate;
 }
 
-.zdl-ember-1 { width: 5px; height: 5px; top: 16%; left: 24%; animation-delay: 0s; }
-.zdl-ember-2 { width: 4px; height: 4px; top: 82%; left: 72%; animation-delay: 0.4s; }
-.zdl-ember-3 { width: 6px; height: 6px; top: 22%; left: 78%; animation-delay: 0.8s; }
-.zdl-ember-4 { width: 4px; height: 4px; top: 78%; left: 20%; animation-delay: 1.2s; }
-.zdl-ember-5 { width: 5px; height: 5px; top: 50%; left: 12%; animation-delay: 1.5s; }
-.zdl-ember-6 { width: 5px; height: 5px; top: 48%; left: 88%; animation-delay: 0.2s; }
+.zdl-dust-1 { width: 4px; height: 4px; top: 18%; left: 24%; animation-delay: 0.2s; }
+.zdl-dust-2 { width: 3px; height: 3px; top: 22%; left: 74%; animation-delay: 0.8s; }
+.zdl-dust-3 { width: 5px; height: 5px; top: 76%; left: 78%; animation-delay: 1.4s; }
+.zdl-dust-4 { width: 3px; height: 3px; top: 80%; left: 22%; animation-delay: 1.8s; }
 
-@keyframes zdlEmberSparkle {
-  0%, 100% { opacity: 0.25; transform: scale(0.65); }
-  50% { opacity: 1; transform: scale(1.35); }
+@keyframes zdlStardustFloat {
+  0% { transform: translateY(0px) scale(0.7); opacity: 0.35; }
+  100% { transform: translateY(-8px) scale(1.3); opacity: 0.95; }
 }
 
 /* Loading Typography & Progress Bar — Clean Website Light Styling */
 .zdl-caption {
-  margin-top: 18px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
