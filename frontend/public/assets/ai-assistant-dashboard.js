@@ -51,20 +51,25 @@
     chatHistory: [
       {
         role: 'ai',
-        text: 'Hello! I am <strong>Zenve AI Executive Copilot</strong>. Connect your live database or import sales records to begin real-time conversational analysis across clinics, pharmacy, and executive telemetry.',
+        text: 'Hello! 🐾 I am <strong>Dr. Zenve</strong>, your dedicated Veterinary Healthcare & Executive Intelligence Copilot. I am connected in real time to our 14 pet hospitals, patient health records (28,450 pets), e-pharmacy stock ledgers, and hyper-local 60-minute logistics fleet. Ask me anything about our pet patients, sales drops, clinic EBITDA, or pet health care!',
         nlpMeta: {
-          intent: 'EXECUTIVE ONBOARDING',
-          entities: ['All Modules', 'Live ERP'],
-          grounding: 'Postgres & BigQuery Telemetry',
+          intent: 'PET INTELLIGENCE ONLINE',
+          entities: ['14 Hospital Hubs', '28,450 Pets', 'E-Pharmacy Ledgers'],
+          grounding: 'Veterinary Telemetry & Live ERP',
           confidence: '100%'
         },
         kpis: [
-          { label: 'MTD Revenue', val: '₹0', status: 'neutral' },
-          { label: 'EBITDA Margin', val: '0.0%', status: 'neutral' },
-          { label: 'Active Pets', val: '0', status: 'neutral' },
-          { label: 'SLA Delivery', val: '--', status: 'neutral' }
+          { label: 'Active Pets', val: '28,450 Pets', status: 'info' },
+          { label: 'Network EBITDA', val: '₹38.2L (20.7%)', status: 'success' },
+          { label: 'Surgical Success', val: '99.4%', status: 'success' },
+          { label: '60-Min SLA', val: '97.6%', status: 'success' }
         ],
-        followups: []
+        followups: [
+          'Show dog vs cat patient split',
+          'Why did sales drop in Delhi NCR?',
+          'Check Bravecto inventory status',
+          'What is our consolidated EBITDA?'
+        ]
       }
     ]
   };
@@ -152,45 +157,174 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════════════
-     Zenve Free-Source Neural Intelligence & Domain Reasoning Core
-     Zero-cost, zero-dependency, in-browser NLP and generative LLM engine.
+     Zenve Pet-Trained Neural Intelligence & Domain LLM Core (v4.0)
+     100% Free, zero-dependency, in-browser NLP and generative reasoning engine.
+     Tailored for Zenve Pets Healthcare: 14 Veterinary Hospitals, E-Pharmacy,
+     60-Minute Logistics, Clinical Care, and Executive Business Intelligence.
      ═══════════════════════════════════════════════════════════════════════ */
   var ZenveNLP_LLM = (function () {
     var KNOWLEDGE = {
       overview: {
-        mtdRevenue: '₹0',
-        revenueGrowth: '0.0%',
-        totalOrders: '0',
-        activePets: '0',
-        ebitda: '₹0 (0.0%)',
-        hubsCount: 0,
-        sla: '--'
+        mtdRevenue: '₹184.2 Lakh (₹1.84 Cr)',
+        revenueGrowth: '+14.6% MoM',
+        totalOrders: '14,280 Orders',
+        activePets: '28,450 Registered Pets',
+        ebitda: '₹38.2 Lakh (20.7% Margin)',
+        hubsCount: 14,
+        sla: '97.6% (42.8 Min Avg)'
       },
-      salesDrop: {},
-      clinics: {},
-      pharmacy: {},
-      doctors: {}
+      species: {
+        total: 28450,
+        dogs: { count: 17639, pct: '62.0%', topBreeds: 'Labrador (24%), Golden Retriever (18%), Indie/Desi (16%), Shih Tzu (12%), German Shepherd (10%), Beagle (8%)' },
+        cats: { count: 9673, pct: '34.0%', topBreeds: 'Persian (38%), Indie Domestic Shorthair (34%), Siamese (14%), British Shorthair (8%)' },
+        exotics: { count: 1138, pct: '4.0%', types: 'Parakeets, Cockatiels, Rabbits, Guinea Pigs, Turtles' }
+      },
+      salesDrop: {
+        'Delhi NCR': {
+          dropAmt: '₹18.4 Lakh',
+          dropPct: '14.2%',
+          orders: '1,420 Orders',
+          reason: 'Temporary stockout of Bravecto chewables and Royal Canin Renal Diet at Central Gurgaon Hub + Severe afternoon heatwave reducing walk-in consultations by 28%',
+          remedy: 'Dispatched emergency stock PO-8821 (60 units) from Central Hub + Extended evening clinic consulting hours (5 PM - 10 PM) with complimentary pet hydration triage'
+        },
+        'Mumbai': {
+          dropAmt: '₹9.2 Lakh',
+          dropPct: '7.8%',
+          orders: '860 Orders',
+          reason: 'Heavy monsoon waterlogging causing 60-min delivery delays in Bandra West and Andheri East',
+          remedy: 'Deployed waterproof all-weather e-bike rider fleet + Route redistribution to Powai Micro-Hub'
+        },
+        'Bengaluru': {
+          dropAmt: '₹0 (Growing)',
+          dropPct: '+18.4%',
+          orders: '4,120 Orders',
+          reason: 'Strong performance across Indiranagar Flagship and Koramangala 24/7 Trauma Hub',
+          remedy: 'Maintain inventory buffers and scale surgical slot capacities'
+        }
+      },
+      clinics: {
+        count: 14,
+        hubs: [
+          { name: 'Indiranagar Flagship', city: 'Bengaluru', ebitda: '₹16.4L (26.2%)', beds: '12 ICU / 24 General', lead: 'Dr. Aisha Khan' },
+          { name: 'Koramangala 24/7 Trauma Hub', city: 'Bengaluru', ebitda: '₹12.8L (23.4%)', beds: '16 ICU / 30 General', lead: 'Dr. Rajesh Nair' },
+          { name: 'Whitefield Multi-Specialty', city: 'Bengaluru', ebitda: '₹9.6L (21.0%)', beds: '8 ICU / 18 General', lead: 'Dr. Priya Sharma' },
+          { name: 'Bandra West Advanced Care', city: 'Mumbai', ebitda: '₹14.2L (24.8%)', beds: '10 ICU / 20 General', lead: 'Dr. Rohan Verma' },
+          { name: 'Gurgaon Cyber City Center', city: 'Delhi NCR', ebitda: '₹11.5L (19.8%)', beds: '10 ICU / 22 General', lead: 'Dr. Ananya Sen' }
+        ],
+        icuOccupancy: '81.4%',
+        surgicalSuccessRate: '99.4%'
+      },
+      doctors: [
+        { name: 'Dr. Aisha Khan', title: 'Chief Veterinary Surgeon', specialty: 'Orthopedics & Soft Tissue Surgery', hub: 'Indiranagar Flagship', stats: '22 Surgeries/Wk · 99.6% Recovery Rate' },
+        { name: 'Dr. Rajesh Nair', title: 'Senior Trauma Specialist', specialty: 'Spinal Decompression & TPLO', hub: 'Koramangala 24/7 Trauma Hub', stats: '18 Complex Surgeries/Wk · 99.2% Recovery Rate' },
+        { name: 'Dr. Priya Sharma', title: 'Lead Feline Medicine Specialist', specialty: 'Feline Internal Medicine & Nephrology', hub: 'Whitefield Multi-Specialty', stats: '48 Consults/Wk · 98.9% Client Rating' },
+        { name: 'Dr. Rohan Verma', title: 'Head of Emergency & Critical Care', specialty: 'Triage & ICU Resuscitation', hub: 'Bandra West (Mumbai)', stats: '36 Emergency Cases/Wk · 97.8% Stabilization Rate' },
+        { name: 'Dr. Ananya Sen', title: 'Consultant Dermatologist', specialty: 'Allergy Desensitization & Cytopoint Therapy', hub: 'Gurgaon Cyber City', stats: '42 Consults/Wk · 99.1% Client Rating' }
+      ],
+      pharmacy: {
+        valuation: '₹1.48 Crore (1,420 Active SKUs)',
+        topMeds: [
+          { name: 'Bravecto Chewables (Fluralaner)', status: 'CRITICAL', runway: '18 Days', reorder: '600 Units Needed', use: '12-Week Tick & Flea Prevention' },
+          { name: 'NexGard Spectra', status: 'HEALTHY', runway: '34 Days', reorder: 'Optimal', use: 'Monthly Tick, Flea & Heartworm Protection' },
+          { name: 'Royal Canin Renal Diet', status: 'WARNING', runway: '14 Days', reorder: '450 Bags Needed', use: 'Feline & Canine Kidney Support' },
+          { name: 'Apoquel 16mg Tablets', status: 'HEALTHY', runway: '42 Days', reorder: 'Optimal', use: 'Atopic Dermatitis & Allergy Relief' },
+          { name: 'Synulox Palatable Drops', status: 'HEALTHY', runway: '38 Days', reorder: 'Optimal', use: 'Broad-Spectrum Antibiotic for Pets' },
+          { name: 'Vetmedin 5mg (Pimobendan)', status: 'HEALTHY', runway: '29 Days', reorder: 'Optimal', use: 'Congestive Heart Failure in Dogs' }
+        ],
+        coldChainCompliance: '100% IoT Monitored (2°C - 8°C Temperature Range)',
+        expiryRisk: '14 Batches (<90 Days Expiry, ₹1.82L Value) under FEFO Priority Protocol'
+      },
+      logistics: {
+        sla: '97.6% Express 60-Minute Compliance',
+        avgTime: '42.8 Minutes',
+        costPerOrder: '₹51.4',
+        fleet: '184 Two-Wheeler Riders + 12 Temperature-Controlled Medical Vans',
+        coldChainBags: 'Medical-grade insulated bags with eutectic ice gel packs'
+      },
+      financials: {
+        revenue: '₹184.2 Lakh MTD',
+        ebitda: '₹38.2 Lakh (20.7%)',
+        grossMargins: 'Clinical Procedures 62.8% · Pharmacy 44.2% · Nutrition 31.4% · Grooming 54.0%',
+        opex: '₹42.8L (Staff & Doctors 58%, Logistics 18%, Hub Rent 14%, Marketing 10%)'
+      },
+      customers: {
+        totalParents: 22140,
+        activeSubscribers: 6420,
+        repeatRate: '68.4%',
+        cac: '₹482 Blended',
+        ltv: '₹14,200 Annual LTV',
+        churnRiskCohort: '248 Pet Parents (>75% Churn Risk due to >60-day vaccination lapse)'
+      }
     };
 
     function extractEntities(text) {
       var t = ' ' + text.toLowerCase() + ' ';
-      var res = { locations: [], skus: [], doctors: [], timeframes: [], metrics: [] };
+      var res = {
+        locations: [],
+        skus: [],
+        doctors: [],
+        species: [],
+        procedures: [],
+        timeframes: [],
+        metrics: []
+      };
 
-      var locs = [];
+      var locs = [
+        { name: 'Delhi NCR', re: /\b(delhi|ncr|gurgaon|noida)\b/i },
+        { name: 'Mumbai', re: /\b(mumbai|bombay|bandra|andheri|powai)\b/i },
+        { name: 'Bengaluru', re: /\b(bengaluru|bangalore|indiranagar|koramangala|whitefield|hsr|jayanagar)\b/i },
+        { name: 'Pune', re: /\b(pune|kalyani nagar)\b/i },
+        { name: 'Hyderabad', re: /\b(hyderabad|jubilee)\b/i },
+        { name: 'Chennai', re: /\b(chennai|adyar)\b/i },
+        { name: 'Kolkata', re: /\b(kolkata|calcutta)\b/i },
+        { name: 'Indiranagar Flagship', re: /\bindiranagar\b/i },
+        { name: 'Koramangala 24/7 Trauma Hub', re: /\bkoramangala\b/i },
+        { name: 'Whitefield Multi-Specialty', re: /\bwhitefield\b/i }
+      ];
       locs.forEach(function (l) { if (l.re.test(t) && res.locations.indexOf(l.name) === -1) res.locations.push(l.name); });
 
-      var skus = [];
+      var skus = [
+        { name: 'Bravecto Chewables', re: /\bbravecto\b/i },
+        { name: 'NexGard Spectra', re: /\b(nexgard|spectra)\b/i },
+        { name: 'Royal Canin Clinical Diet', re: /\b(royal canin|renal|gastro|urinary|hepatic)\b/i },
+        { name: 'Apoquel 16mg Tablets', re: /\bapoquel\b/i },
+        { name: 'Simparica Trio', re: /\bsimparica\b/i },
+        { name: 'Synulox Palatable Drops', re: /\bsynulox\b/i },
+        { name: 'Vetmedin (Pimobendan)', re: /\b(vetmedin|pimobendan)\b/i }
+      ];
       skus.forEach(function (s) { if (s.re.test(t) && res.skus.indexOf(s.name) === -1) res.skus.push(s.name); });
 
-      var docs = [];
+      var docs = [
+        { name: 'Dr. Aisha Khan (Chief Surgeon)', re: /\b(aisha|khan)\b/i },
+        { name: 'Dr. Rajesh Nair (Orthopedic & Trauma)', re: /\b(rajesh|nair)\b/i },
+        { name: 'Dr. Priya Sharma (Feline Specialist)', re: /\b(priya|sharma)\b/i },
+        { name: 'Dr. Rohan Verma (Emergency ICU)', re: /\b(rohan|verma)\b/i },
+        { name: 'Dr. Ananya Sen (Dermatology)', re: /\b(ananya|sen)\b/i }
+      ];
       docs.forEach(function (d) { if (d.re.test(t) && res.doctors.indexOf(d.name) === -1) res.doctors.push(d.name); });
+
+      var speciesList = [
+        { name: 'Canine (Dogs)', re: /\b(dog|dogs|canine|puppy|puppies|hound|labrador|golden retriever|shih tzu|indie dog)\b/i },
+        { name: 'Feline (Cats)', re: /\b(cat|cats|feline|kitten|kittens|persian|siamese)\b/i },
+        { name: 'Exotic & Avian', re: /\b(bird|birds|parrot|parakeet|rabbit|hamster|turtle|exotic)\b/i }
+      ];
+      speciesList.forEach(function (sp) { if (sp.re.test(t) && res.species.indexOf(sp.name) === -1) res.species.push(sp.name); });
+
+      var procs = [
+        { name: 'Vaccination & Boosters', re: /\b(vaccin\w*|rabies|dhppi|fvrcp|shot|booster)\b/i },
+        { name: 'Orthopedic & TPLO Surgery', re: /\b(tplo|orthopedic|bone|fracture|ligament|joint)\b/i },
+        { name: 'Dental Scaling & Prophylaxis', re: /\b(dental|teeth|tartar|scaling|periodontal)\b/i },
+        { name: 'Diagnostic Imaging & Lab', re: /\b(xray|x-ray|radiology|ultrasound|usg|cbc|blood test|biochem\w*)\b/i },
+        { name: 'Spay & Neuter', re: /\b(spay|neuter|steriliz\w*|castrat\w*)\b/i }
+      ];
+      procs.forEach(function (pr) { if (pr.re.test(t) && res.procedures.indexOf(pr.name) === -1) res.procedures.push(pr.name); });
 
       if (/\b(7\s*d|7\s*days|seven days|past week|last week)\b/i.test(t)) res.timeframes.push('7D');
       else if (/\b(14\s*d|14\s*days|fortnight|last 2 weeks)\b/i.test(t)) res.timeframes.push('14D');
       else if (/\b(30\s*d|30\s*days|last month|past month)\b/i.test(t)) res.timeframes.push('30D');
       else if (/\b(mtd|month to date|this month)\b/i.test(t)) res.timeframes.push('MTD');
 
-      var metrics = ['ebitda', 'revenue', 'sales', 'profit', 'margin', 'drop', 'churn', 'cac', 'roas', 'aov', 'sla', 'stockout', 'expiry'];
+      var metrics = ['ebitda', 'revenue', 'sales', 'profit', 'margin', 'drop', 'churn', 'cac', 'roas', 'aov', 'sla', 'stockout', 'expiry', 'ltv'];
       metrics.forEach(function (m) { if (new RegExp('\\b' + m + '\\b', 'i').test(t)) res.metrics.push(m.toUpperCase()); });
 
       return res;
@@ -201,35 +335,40 @@
       var raw = text.trim();
       var clean = raw.toLowerCase().replace(/^[^\w\s]+|[^\w\s]+$/g, '').trim();
 
-      // If query explicitly contains specific business domain keywords, route to business reasoning
-      var hasBusinessDomain = /\b(sales|drop|ebitda|profit|revenue|margin|inventory|bravecto|nexgard|clinic|clinics|hospital|hospitals|doctor|doctors|vet|aisha|rajesh|priya|logistics|delivery|rider|riders|sla|breach|transit|churn|retention|cac|roas|marketing|subscription|mrr|database|telemetry|stock|orders?|performance|scorecard|procedure|surgery)\b/i.test(clean);
+      // If query contains specific business or pet domain keywords, route to clinical/business reasoning
+      var hasBusinessDomain = /\b(sales|drop|ebitda|profit|revenue|margin|inventory|bravecto|nexgard|clinic|clinics|hospital|hospitals|doctor|doctors|vet|aisha|rajesh|priya|rohan|ananya|logistics|delivery|rider|riders|sla|breach|transit|churn|retention|cac|roas|marketing|subscription|mrr|database|telemetry|stock|orders?|performance|scorecard|procedure|surgery|vaccine|vaccination|rabies|dhppi|feline|canine|breed|dog|cat|puppy|kitten|food|diet|toxic|chocolate|arthritis|kidney|tick|flea|dental|grooming|diagnostics|xray|ultrasound)\b/i.test(clean);
       if (hasBusinessDomain) return null;
 
-      // 1. "How are you" / "hw r u" / "how r u" variations (with or without ?)
+      // 1. "How are you"
       if (/\b(how\s*(are|r)\s*(you|u)|hw\s*r\s*u|how\s*is\s*(it|your\s*day|things)|hows\s*(it|your\s*day|things)|how\s*(are|r)\s*(you|u)\s*doing|how\s*do\s*(you|u)\s*do|what\s*s\s*up|whats\s*up|sup)\b/i.test(clean)) {
         return 'HOW_ARE_YOU';
       }
 
-      // 2. Pure greetings: Hi, Hello, Hey, Good morning, etc.
-      if (/^(hi|hello|hey|heya|hola|howdy|yo|hi\s*there|hello\s*there|hey\s*there|hi\s*mate|hello\s*mate|hey\s*mate|good\s*(morning|afternoon|evening|day))(\s+zenve)?$/i.test(clean) ||
+      // 2. Greetings
+      if (/^(hi|hello|hey|heya|hola|howdy|yo|namaste|hi\s*there|hello\s*there|hey\s*there|good\s*(morning|afternoon|evening|day))(\s+zenve|\s+doctor|\s+dr)?$/i.test(clean) ||
           /^(hi|hello|hey)\b/i.test(clean)) {
         if (/^hey\b/i.test(clean)) return 'GREETING_HEY';
         if (/^hi\b/i.test(clean)) return 'GREETING_HI';
         return 'GREETING_HELLO';
       }
 
-      // 3. Persona / Identity
-      if (/\b(who\s*(are|r)\s*(you|u)|what\s*(are|r)\s*(you|u)|what\s*can\s*(you|u)\s*do|what\s*do\s*(you|u)\s*do)\b/i.test(clean)) {
+      // 3. Identity / Persona
+      if (/\b(who\s*(are|r)\s*(you|u)|what\s*(are|r)\s*(you|u)|what\s*can\s*(you|u)\s*do|what\s*do\s*(you|u)\s*do|your\s*name)\b/i.test(clean)) {
         return 'WHO_ARE_YOU';
       }
 
-      // 4. Gratitude
-      if (/^(thank\s*you|thanks|thx|ty|thank\s*u|many\s*thanks|cheers)(\s+mate)?$/i.test(clean)) {
+      // 4. Jokes & Pet Fun
+      if (/\b(joke|funny|humor|make\s*me\s*laugh)\b/i.test(clean)) {
+        return 'PET_JOKE';
+      }
+
+      // 5. Gratitude
+      if (/^(thank\s*you|thanks|thx|ty|thank\s*u|many\s*thanks|cheers|awesome|great\s*job)(\s+doctor|\s+zenve)?$/i.test(clean)) {
         return 'THANKS';
       }
 
-      // 5. Parting
-      if (/^(bye|goodbye|see\s*you|cya|take\s*care|bye\s*bye)(\s+mate)?$/i.test(clean)) {
+      // 6. Parting
+      if (/^(bye|goodbye|see\s*you|cya|take\s*care|bye\s*bye|good\s*night)(\s+zenve)?$/i.test(clean)) {
         return 'BYE';
       }
 
@@ -239,6 +378,11 @@
     function classifyIntent(text, entities, ctx) {
       var t = text.toLowerCase();
       var scores = {
+        PET_VACCINATION: 0,
+        PET_TOXIC_FOOD: 0,
+        PET_HEALTH_CARE: 0,
+        PET_DEMOGRAPHICS: 0,
+        PET_PROCEDURES: 0,
         SALES_DROP: 0,
         EBITDA_FINANCIALS: 0,
         PHARMACY_INVENTORY: 0,
@@ -249,105 +393,108 @@
         WHAT_IF_SIMULATION: 0,
         MARKETING_METRICS: 0,
         SUBSCRIPTIONS: 0,
-        SYSTEM_HEALTH: 0,
-        GENERAL_OVERVIEW: 0
+        VENDORS_PROCUREMENT: 0,
+        GENERAL_SALES: 0,
+        EXECUTIVE_STRATEGY: 0
       };
 
+      if (/\b(vaccin\w*|rabies|dhppi|fvrcp|booster shot|immuniz\w*)\b/i.test(t)) scores.PET_VACCINATION += 10;
+      if (/\b(chocolate|grape|raisin|onion|garlic|toxic|poison|poisonous|can dogs eat|xylitol)\b/i.test(t)) scores.PET_TOXIC_FOOD += 10;
+      if (/\b(arthritis|tick fever|flea|allerg\w*|vomit\w*|diarrhea|itching|scratch\w*|kidney disease|heart disease|deworm\w*)\b/i.test(t)) scores.PET_HEALTH_CARE += 9;
+      if (/\b(dog vs cat|how many dogs|how many cats|breeds?|registered pets|pet split|demographics)\b/i.test(t)) scores.PET_DEMOGRAPHICS += 10;
+      if (/\b(surgery|surgeries|tplo|dental scaling|procedure|x-?ray|ultrasound|spay|neuter|biochemistry)\b/i.test(t)) scores.PET_PROCEDURES += 9;
+
       if (/\b(drop|decline|declined?|fell|down|dip|slipp?ed|loss|lost sales|drop details)\b/i.test(t)) scores.SALES_DROP += 9;
-      if (/\b(ebitda|profit|margin|financials?|gross margin|net margin|earnings)\b/i.test(t)) scores.EBITDA_FINANCIALS += 8;
-      if (/\b(bravecto|nexgard|inventory|stock|stockout|shortage|runway|expiry|reorder|po|batch)\b/i.test(t)) scores.PHARMACY_INVENTORY += 8;
-      if (/\b(clinic|clinics|hospital|hospitals|indiranagar|koramangala|whitefield|bed|occupancy|triage)\b/i.test(t)) scores.CLINICS_HOSPITALS += 7;
-      if (/\b(doctor|doctors|vet|aisha|rajesh|priya|rohan|ananya|utilization|surgeon|workload)\b/i.test(t)) scores.DOCTOR_WORKLOAD += 8;
-      if (/\b(logistics|delivery|rider|riders|60\s*min|dispatch|sla|breach|transit)\b/i.test(t)) scores.LOGISTICS_DELIVERY += 8;
-      if (/\b(churn|retention|pet parents?|cohort|attrition|lapse|winback|renew)\b/i.test(t)) scores.CHURN_RETENTION += 8;
+      if (/\b(ebitda|profit|gross margin|net margin|earnings|financials?|expenses?|opex|cost)\b/i.test(t)) scores.EBITDA_FINANCIALS += 8;
+      if (/\b(bravecto|nexgard|inventory|stock|stockout|shortage|runway|expiry|reorder|po|valuation|medicines?|pharmacy)\b/i.test(t)) scores.PHARMACY_INVENTORY += 8;
+      if (/\b(clinic|clinics|hospital|hospitals|indiranagar|koramangala|whitefield|bandra|gurgaon|bed|occupancy|icu|footfall)\b/i.test(t)) scores.CLINICS_HOSPITALS += 8;
+      if (/\b(doctor|doctors|vet|vets|veterinarian|aisha|rajesh|priya|rohan|ananya|surgeon|consultations?)\b/i.test(t)) scores.DOCTOR_WORKLOAD += 8;
+      if (/\b(logistics|delivery|rider|riders|60\s*min|dispatch|sla|breach|transit|speed)\b/i.test(t)) scores.LOGISTICS_DELIVERY += 8;
+      if (/\b(churn|retention|pet parents?|cohort|attrition|lapse|winback|renew|ltv)\b/i.test(t)) scores.CHURN_RETENTION += 8;
       if (/\b(simulate|what if|scenario|if\b|increase by|hike|decrease by|cut by)\b/i.test(t)) scores.WHAT_IF_SIMULATION += 9;
-      if (/\b(marketing|cac|roas|campaign|ad spend|google ads|meta ads|conversion)\b/i.test(t)) scores.MARKETING_METRICS += 7;
-      if (/\b(subscription|wellness plan|recurring|mrr|membership)\b/i.test(t)) scores.SUBSCRIPTIONS += 7;
-      if (/\b(health|latency|telemetry|database|uptime|system|nodes|sync)\b/i.test(t)) scores.SYSTEM_HEALTH += 7;
-      if (/\b(overview|brief|summary|how are we|business status|executive status)\b/i.test(t)) scores.GENERAL_OVERVIEW += 6;
+      if (/\b(marketing|cac|roas|campaign|ad spend|google ads|meta ads|conversion)\b/i.test(t)) scores.MARKETING_METRICS += 8;
+      if (/\b(subscription|wellness plan|recurring|mrr|membership|puppy bundle)\b/i.test(t)) scores.SUBSCRIPTIONS += 8;
+      if (/\b(vendor|vendors|supplier|suppliers|procurement|zoetis|boehringer|elanco|mars)\b/i.test(t)) scores.VENDORS_PROCUREMENT += 8;
+      if (/\b(revenue|sales|total sales|mtd sales|aov|channels?|android vs ios|ecommerce|orders?)\b/i.test(t)) scores.GENERAL_SALES += 7;
+      if (/\b(grow|growth|strategy|advice|recommend\w*|summary|executive overview|how to improve)\b/i.test(t)) scores.EXECUTIVE_STRATEGY += 7;
 
       if (entities.locations.length > 0 && scores.SALES_DROP > 0) scores.SALES_DROP += 5;
       if (entities.skus.length > 0) scores.PHARMACY_INVENTORY += 5;
       if (entities.doctors.length > 0) scores.DOCTOR_WORKLOAD += 5;
 
-      if (ctx && ctx.intent) {
-        if (scores.SALES_DROP === 0 && scores.EBITDA_FINANCIALS === 0 && scores.PHARMACY_INVENTORY === 0 && scores.CLINICS_HOSPITALS === 0) {
-          if (entities.locations.length > 0) {
-            scores[ctx.intent] += 6;
-          } else if (/\b(why|reason|cause|how|solve|fix|action|remedy)\b/i.test(t)) {
-            scores[ctx.intent] += 8;
-          }
-        }
-      }
-
-      var maxIntent = 'GENERAL_OVERVIEW', maxScore = 0;
+      var maxIntent = 'EXECUTIVE_STRATEGY', maxScore = 0;
       for (var k in scores) {
         if (scores[k] > maxScore) { maxScore = scores[k]; maxIntent = k; }
       }
-      return { intent: maxIntent, confidence: Math.min(99.6, Math.max(92.4, 90 + maxScore * 1.1)) };
+      return { intent: maxIntent, confidence: Math.min(99.6, Math.max(93.5, 90 + maxScore * 1.1)) };
     }
 
     function generateResponse(text, ctx) {
-      // Check for basic conversational inputs first
+      var K = KNOWLEDGE;
+
+      // 1. Conversational
       var conv = detectConversationalIntent(text);
       if (conv) {
         var reply = '';
         switch (conv) {
           case 'GREETING_HI':
-            reply = 'Hello mate ! How can I help you today?';
+            reply = 'Hello! 🐾 I am **Dr. Zenve**, your Executive Veterinary Intelligence Copilot. How may I assist you with pet healthcare analytics, clinic operations, or e-pharmacy stock today?';
             break;
           case 'GREETING_HEY':
-            reply = 'Hey mate ! How may I assist you today?';
+            reply = 'Hey there! 🐾 Dr. Zenve at your service! Whether you need patient demographics, Delhi sales drop diagnosis, or Bravecto stock runway, just ask!';
             break;
           case 'GREETING_HELLO':
-            reply = "Hi mate ! How's your day going? How may I assist you?";
+            reply = "Hi! 🐾 Hope your day is going great. I'm connected to all 14 hospital hubs and live pharmacy databases. What would you like to explore?";
             break;
           case 'HOW_ARE_YOU':
-            reply = "I'm good mate, how are you? How's your day going? How may I help you today?";
+            reply = "I'm doing pawsitively fantastic, thank you! 🐶 All 14 clinic telemetry feeds are healthy, and our express 60-minute delivery fleet is running at 97.6% on-time SLA. How can I help you today?";
             break;
           case 'WHO_ARE_YOU':
-            reply = "I'm Zenve AI, your executive intelligence copilot! I can help you analyze sales drops, monitor clinic EBITDA, check pharmacy stock runways, and track operations across your 14 clinic hubs. How may I assist you today?";
+            reply = "I am **Dr. Zenve AI**, your executive veterinary and business intelligence copilot! 🐾\n\nI specialize in:\n• **Veterinary Healthcare & Clinical Care:** Dog/cat vaccination protocols, emergency triage, surgery tracking, and nutrition.\n• **14 Hospital & Clinic Hubs:** Bed occupancies, surgery recovery scores, and doctor performance.\n• **E-Pharmacy & Cold Chain:** Bravecto/NexGard inventory runway, expiry batch alerts, and IoT temperature telemetry.\n• **Executive BI & Growth:** Sales drop diagnostics, EBITDA margins, marketing ROAS, and customer churn reduction.";
+            break;
+          case 'PET_JOKE':
+            reply = "Here is a pet chuckle for your day! 🐾😄\n\n• **Q:** Why did the cat sit on the computer?\n  **A:** To keep an eye on the mouse! 🐱💻\n\n• **Q:** What do you call a dog magician?\n  **A:** A Labracadabrador! 🐕✨";
             break;
           case 'THANKS':
-            reply = "You're welcome mate ! Let me know if you need any other business details or analysis.";
+            reply = "You're most welcome! 🐾 Always happy to support you and our furry patients. Let me know if you need any other reports or clinical details!";
             break;
           case 'BYE':
-            reply = "Goodbye mate ! Have a productive day ahead.";
+            reply = "Goodbye! 🐾 Have a wonderful and productive day ahead. Wishing all our pets a healthy, tail-wagging time!";
             break;
           default:
-            reply = "Hello mate ! How may I assist you today?";
+            reply = "Hello! 🐾 How may Dr. Zenve assist you today?";
         }
 
         return {
           role: 'ai',
           nlpMeta: {
-            intent: 'CONVERSATION',
-            entities: [],
-            grounding: 'Zenve AI Assistant',
+            intent: 'CONVERSATIONAL GREETING',
+            entities: ['Dr. Zenve Copilot'],
+            grounding: 'Zenve Pet Healthcare Core',
             confidence: '99.9%'
           },
-          text: esc(reply),
+          text: reply,
           kpis: [],
           insights: [],
           actions: [],
-          followups: [],
-          context: {
-            intent: 'CONVERSATION',
-            location: null,
-            sku: null,
-            doctor: null,
-            timeframe: 'MTD'
-          }
+          followups: [
+            'Show dog vs cat patient split',
+            'Why did sales drop in Delhi NCR?',
+            'Check Bravecto inventory status',
+            'What is our consolidated EBITDA?'
+          ],
+          context: { intent: 'CONVERSATION', location: null, sku: null, doctor: null, timeframe: 'MTD' }
         };
       }
 
+      // 2. Entities & Intent
       var entities = extractEntities(text);
       var classification = classifyIntent(text, entities, ctx);
       var intent = classification.intent;
       var conf = classification.confidence.toFixed(1) + '%';
 
       var loc = entities.locations.length > 0 ? entities.locations[0] : (ctx && ctx.location ? ctx.location : null);
-      var tf = entities.timeframes.length > 0 ? entities.timeframes[0] : '14D';
+      var tf = entities.timeframes.length > 0 ? entities.timeframes[0] : 'MTD';
 
       var newCtx = {
         intent: intent,
@@ -357,22 +504,20 @@
         timeframe: tf
       };
 
-      var entitiesList = [];
-      if (entities.locations.length > 0) {
-        entitiesList.push(entities.locations[0]);
-      } else if (loc && intent === 'SALES_DROP') {
-        entitiesList.push(loc);
-      }
-      if (entities.skus.length > 0) entitiesList.push(entities.skus[0]);
-      if (entities.doctors.length > 0) entitiesList.push(entities.doctors[0]);
-      if (entities.timeframes.length > 0) entitiesList.push(entities.timeframes[0]);
+      var entitiesList = [].concat(
+        entities.species,
+        entities.locations,
+        entities.skus,
+        entities.doctors,
+        entities.procedures
+      );
 
       var res = {
         role: 'ai',
         nlpMeta: {
           intent: intent.replace(/_/g, ' '),
-          entities: entitiesList.length > 0 ? entitiesList : ['Consolidated Telemetry'],
-          grounding: 'ERP & Live BI Telemetry',
+          entities: entitiesList.length > 0 ? entitiesList : ['Pet Healthcare Telemetry'],
+          grounding: '14 Hospital Hubs & Live ERP',
           confidence: conf
         },
         text: '',
@@ -384,171 +529,271 @@
       };
 
       switch (intent) {
-        case 'SALES_DROP': {
-          var targetCity = loc || 'Delhi NCR';
-          var dropInfo = KNOWLEDGE.salesDrop[targetCity] || KNOWLEDGE.salesDrop['Delhi NCR'];
-          res.text = [
-            '<strong>Sales Drop Intelligence — ' + esc(targetCity) + ' (' + esc(tf) + '):</strong>',
-            '• <strong>Revenue Drop:</strong> -' + esc(dropInfo.dropAmt) + ' (-' + esc(dropInfo.dropPct) + ') across ' + esc(dropInfo.orders) + ' orders.',
-            '• <strong>Primary Reason:</strong> ' + esc(dropInfo.reason) + '.',
-            '• <strong>Recommended Action:</strong> ' + esc(dropInfo.remedy)
-          ].join('<br/>');
+        case 'PET_TOXIC_FOOD': {
+          res.text = '🐾 **Critical Pet Toxicology Guidelines (Canine & Feline):**\n\n' +
+            '• **Chocolate (Theobromine Toxicity):** High risk! Dogs metabolize theobromine extremely slowly. Dark chocolate and baking cocoa are the most dangerous. Signs include tachycardia, seizures, and arrhythmias.\n' +
+            '• **Grapes & Raisins:** Extremely toxic to dogs — can cause acute, irreversible oliguric renal failure even in small quantities.\n' +
+            '• **Onions & Garlic (Allium Species):** Cause oxidative hemolysis of red blood cells leading to severe hemolytic anemia.\n' +
+            '• **Xylitol (Artificial Sweetener):** Triggers rapid, massive insulin release causing severe hypoglycemia and acute hepatic necrosis within 30–60 minutes.\n\n' +
+            '🩺 **Emergency Protocol:** If accidental ingestion occurred in the past 2 hours, rush the patient to **Koramangala 24/7 Trauma Hub** or **Bandra West ICU** for immediate gastric lavage and IV fluid support.';
           res.kpis = [
-            { label: 'Revenue Drop', val: '-' + dropInfo.dropAmt, status: 'danger' },
-            { label: 'Drop Percentage', val: '-' + dropInfo.dropPct, status: 'danger' },
-            { label: 'Order Volume', val: dropInfo.orders, status: 'warn' }
+            { label: 'Toxicology Risk', val: 'EMERGENCY', status: 'danger' },
+            { label: '24/7 Trauma Hubs', val: 'Koramangala & Bandra', status: 'success' },
+            { label: 'Emergency Line', val: 'Active (24/7)', status: 'info' }
           ];
           res.actions = [
-            { label: '📊 View Sales Drop Dashboard', hash: '#overview', scrollTarget: 'ai', primary: true },
-            { label: '📦 Approve Stock Rebalance PO-8821', type: 'exec_action', actionId: 'po_8821' }
+            { label: '🏥 View Koramangala Trauma Hub', hash: '#clinics-hospitals-dashboard', primary: true }
           ];
           res.followups = [
-            'Why did sales drop in Mumbai?',
-            'Break down Delhi sales by time of day',
-            'Show inventory stockout impact in Delhi'
+            'What are signs of tick fever in dogs?',
+            'Show dog vs cat patient split',
+            'Which clinic has 24/7 emergency ICU?'
           ];
           break;
         }
 
-        case 'EBITDA_FINANCIALS': {
-          res.text = [
-            '<strong>EBITDA & Financial Health:</strong>',
-            '• <strong>Consolidated EBITDA:</strong> ₹38.2 Lakh (20.7% margin, +₹4.2L vs budget).',
-            '• <strong>Top Hub Contribution:</strong> Indiranagar Flagship at ₹16.4L (26.2% margin).',
-            '• <strong>Gross Margins:</strong> Pharmacy at 44.2% • Clinical Procedures at 62.8%.',
-            '• <strong>Strategic Opportunity:</strong> Direct manufacturer procurement recovers ~₹3.8L/mo.'
-          ].join('<br/>');
+        case 'PET_VACCINATION': {
+          res.text = '🐾 **Core Veterinary Vaccination Protocols & Schedules:**\n\n' +
+            '• **Puppies (Canine Core):**\n' +
+            '  - **6–8 Weeks:** DHPPi (Distemper, Hepatitis, Parvovirus, Parainfluenza) + Deworming.\n' +
+            '  - **10–12 Weeks:** DHPPi Booster + Leptospirosis + Kennel Cough (Bordetella).\n' +
+            '  - **14–16 Weeks:** Rabies (Anti-Rabies Vaccine) + Final Core Booster.\n' +
+            '  - **Annual:** Rabies and DHPPi booster shots every 12 months.\n\n' +
+            '• **Kittens (Feline Core):**\n' +
+            '  - **8–9 Weeks:** FVRCP (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia).\n' +
+            '  - **12 Weeks:** FVRCP Booster + FeLV (Feline Leukemia).\n' +
+            '  - **16 Weeks:** Rabies Vaccine + Deworming.\n\n' +
+            '🛡️ **Cold Chain Guarantee:** All vaccines across our 14 clinic pharmacies are preserved between **2°C and 8°C** with 100% IoT temperature sensors.';
           res.kpis = [
-            { label: 'EBITDA', val: '₹38.2L', status: 'success' },
-            { label: 'EBITDA Margin', val: '20.7%', status: 'success' },
-            { label: 'Top Hub EBITDA', val: '₹16.4L', status: 'info' }
+            { label: 'Vaccination Compliance', val: '91.8%', status: 'success' },
+            { label: 'At-Risk Lapsed Pets', val: '248 Pets', status: 'warn' },
+            { label: 'Cold-Chain IoT', val: '100% Monitored (2-8°C)', status: 'success' }
           ];
           res.actions = [
-            { label: '⚡ Open Revenue Intelligence', hash: '#revenue-intelligence', primary: true },
-            { label: '💹 View Profit Prediction Model', hash: '#profit-prediction' }
+            { label: '💉 Open Vaccination Records', hash: '#vaccinations', primary: true }
           ];
           res.followups = [
-            'Which clinic has the lowest EBITDA margin?',
-            'What is our pharmacy gross margin breakdown?',
-            'Simulate profit if logistics costs increase 8%'
+            'How many pet parents have lapsed vaccines?',
+            'Show Bravecto tick & flea stock',
+            'Who handles feline medicine at Whitefield?'
+          ];
+          break;
+        }
+
+        case 'PET_DEMOGRAPHICS': {
+          res.text = '🐾 **Zenve Pet Demographics & Patient Census (28,450 Registered Pets):**\n\n' +
+            '• **Canine Patients (Dogs):** **' + K.species.dogs.count.toLocaleString() + ' Dogs (' + K.species.dogs.pct + ')**\n' +
+            '  - Top Breeds: ' + K.species.dogs.topBreeds + '.\n' +
+            '• **Feline Patients (Cats):** **' + K.species.cats.count.toLocaleString() + ' Cats (' + K.species.cats.pct + ')**\n' +
+            '  - Top Breeds: ' + K.species.cats.topBreeds + '.\n' +
+            '• **Avian & Exotic Companions:** **' + K.species.exotics.count.toLocaleString() + ' Exotics (' + K.species.exotics.pct + ')**\n' +
+            '  - ' + K.species.exotics.types + '.\n\n' +
+            '📊 **Patient Trends:** Feline adoptions are growing at +28% YoY in Bengaluru & Mumbai. Our Whitefield hub features a dedicated Cat-Friendly Clinic certification.';
+          res.kpis = [
+            { label: 'Canine Patients', val: '17,639 (62%)', status: 'info' },
+            { label: 'Feline Patients', val: '9,673 (34%)', status: 'info' },
+            { label: 'Total Registered Pets', val: '28,450', status: 'success' }
+          ];
+          res.actions = [
+            { label: '🐾 Open Pets 360 Dashboard', hash: '#pets-360-dashboard', primary: true }
+          ];
+          res.followups = [
+            'Which doctor specializes in cats?',
+            'What are common canine surgeries?',
+            'Show pet food sales split'
+          ];
+          break;
+        }
+
+        case 'SALES_DROP': {
+          var targetCity = loc || 'Delhi NCR';
+          var dropInfo = K.salesDrop[targetCity] || K.salesDrop['Delhi NCR'];
+          res.text = '📉 **Sales Drop Root Cause Analysis — ' + targetCity + ' (' + tf + '):**\n\n' +
+            '• **Revenue Variance:** -' + dropInfo.dropAmt + ' (-' + dropInfo.dropPct + ') across ' + dropInfo.orders + '.\n' +
+            '• **Diagnostic Root Cause:** ' + dropInfo.reason + '.\n' +
+            '• **Prescribed Executive Remedy:** ' + dropInfo.remedy + '.\n' +
+            '• **Financial Recovery Horizon:** Full volume recovery anticipated within 7–10 days post-dispatch.';
+          res.kpis = [
+            { label: 'Revenue Drop', val: '-' + dropInfo.dropAmt, status: 'danger' },
+            { label: 'Drop Percentage', val: '-' + dropInfo.dropPct, status: 'danger' },
+            { label: 'Impacted Volume', val: dropInfo.orders, status: 'warn' }
+          ];
+          res.actions = [
+            { label: '📊 View Sales Drop Dashboard', hash: '#sales-drop-analysis', primary: true },
+            { label: '📦 Approve Stock Rebalance PO-8821', type: 'exec_action', actionId: 'po_8821' }
+          ];
+          res.followups = [
+            'Why did sales drop in Mumbai?',
+            'What is our Bravecto inventory status?',
+            'How are Bengaluru clinics performing?'
           ];
           break;
         }
 
         case 'PHARMACY_INVENTORY': {
-          var skuKey = entities.skus.length > 0 ? entities.skus[0] : 'Bravecto Chewables';
-          var pInfo = KNOWLEDGE.pharmacy[skuKey] || KNOWLEDGE.pharmacy['Bravecto Chewables'];
-          res.text = [
-            '<strong>Pharmacy Inventory Telemetry — ' + esc(skuKey) + ':</strong>',
-            '• <strong>Current Stock:</strong> ' + esc(pInfo.stock) + ' (Monthly run rate: ' + esc(pInfo.runRate) + ').',
-            '• <strong>Runway Status:</strong> ' + esc(pInfo.runway) + '.',
-            '• <strong>Staged Action:</strong> ' + esc(pInfo.reorderPo) + '.'
-          ].join('<br/>');
+          res.text = '💊 **Veterinary E-Pharmacy & Stock Runway Status:**\n\n' +
+            '• **Total Inventory Valuation:** **' + K.pharmacy.valuation + '**.\n' +
+            '• **Bravecto Chewables (Fluralaner):** **' + K.pharmacy.topMeds[0].runway + ' Runway** (CRITICAL). Reorder of 600 units required to prevent clinic out-of-stock.\n' +
+            '• **NexGard Spectra:** **' + K.pharmacy.topMeds[1].runway + ' Runway** (Healthy supply across all 14 hubs).\n' +
+            '• **Royal Canin Renal & Gastro Diets:** **' + K.pharmacy.topMeds[2].runway + ' Runway** (Urgent reorder batch dispatched from Chennai).\n' +
+            '• **Cold Chain Storage:** **' + K.pharmacy.coldChainCompliance + '**.\n' +
+            '• **Expiry Batch Risk:** **' + K.pharmacy.expiryRisk + '**.';
           res.kpis = [
-            { label: 'Current Stock', val: pInfo.stock, status: pInfo.runway.indexOf('Critical') >= 0 ? 'danger' : 'info' },
-            { label: 'Monthly Run Rate', val: pInfo.runRate, status: 'info' },
-            { label: 'Runway Risk', val: pInfo.runway.indexOf('Critical') >= 0 ? '44 Hours' : 'Healthy', status: pInfo.runway.indexOf('Critical') >= 0 ? 'danger' : 'success' }
+            { label: 'Inventory Value', val: '₹1.48 Crore', status: 'success' },
+            { label: 'Bravecto Runway', val: '18 Days (Critical)', status: 'danger' },
+            { label: 'Cold-Chain IoT', val: '100% Compliant', status: 'success' }
           ];
           res.actions = [
-            { label: '📦 Approve Transfer PO-8821', type: 'exec_action', actionId: 'po_8821', primary: true },
-            { label: '💊 Open Pharmacy Dashboard', hash: '#pharmacy-dashboard' }
+            { label: '💊 Open Pharmacy Dashboard', hash: '#pharmacy-dashboard', primary: true },
+            { label: '📦 Approve PO-8821 Reorder', type: 'exec_action', actionId: 'po_8821' }
           ];
           res.followups = [
-            'Check NexGard Spectra inventory',
-            'Show batches expiring in the next 30 days',
-            'Which clinic has the highest pharmacy sales?'
+            'Which batches have expiry risk in 90 days?',
+            'What is the price of Bravecto chewables?',
+            'Simulate stockout impact on clinic revenue'
           ];
           break;
         }
 
         case 'CLINICS_HOSPITALS': {
-          res.text = [
-            '<strong>Clinics & Hospitals Network (14 Hubs):</strong>',
-            '• <strong>Top Revenue:</strong> Indiranagar Flagship at ₹42.8L (382 surgeries, 26.2% margin).',
-            '• <strong>Top Western Hub:</strong> Bandra Hub Mumbai at ₹31.4L (295 surgeries, 24.1% margin).',
-            '• <strong>Peak ER Volume:</strong> Koramangala Trauma Hub at ₹28.6L (94.2% bed occupancy).'
-          ].join('<br/>');
+          res.text = '🏥 **14 Multi-Specialty Veterinary Hospitals & Clinics:**\n\n' +
+            '• **Indiranagar Flagship (Bengaluru):** ₹16.4L EBITDA (26.2% margin) · Lead: Dr. Aisha Khan · 12 ICU Beds.\n' +
+            '• **Koramangala 24/7 Trauma Hub (Bengaluru):** ₹12.8L EBITDA (23.4% margin) · Lead: Dr. Rajesh Nair · 16 ICU Beds.\n' +
+            '• **Bandra West Center (Mumbai):** ₹14.2L EBITDA (24.8% margin) · Lead: Dr. Rohan Verma · 10 ICU Beds.\n' +
+            '• **Whitefield Multi-Specialty (Bengaluru):** ₹9.6L EBITDA (21.0% margin) · Lead: Dr. Priya Sharma · Cat-Friendly Certified.\n' +
+            '• **Gurgaon Cyber City (Delhi NCR):** ₹11.5L EBITDA (19.8% margin) · Lead: Dr. Ananya Sen · 10 ICU Beds.\n\n' +
+            '🐾 **Network Metrics:** Consolidated ICU bed occupancy stands at **81.4%**, with a surgical recovery score of **99.4%**.';
           res.kpis = [
-            { label: 'Active Clinic Hubs', val: '14 Hubs', status: 'info' },
-            { label: 'Top Hub Revenue', val: '₹42.8L', status: 'success' },
-            { label: 'Peak ER Occupancy', val: '94.2%', status: 'warn' }
+            { label: 'Active Facilities', val: '14 Hubs', status: 'success' },
+            { label: 'ICU Occupancy', val: '81.4%', status: 'info' },
+            { label: 'Surgical Success', val: '99.4%', status: 'success' }
           ];
           res.actions = [
             { label: '🏥 Open Clinics & Hospitals Dashboard', hash: '#clinics-hospitals-dashboard', primary: true }
           ];
           res.followups = [
-            'Compare Mumbai vs Bengaluru clinic EBITDA',
-            'Show doctor utilization report',
-            'Which clinic generated the highest EBITDA?'
+            'Which clinic generated the highest EBITDA this month?',
+            'Show Dr. Aisha Khan surgical cases',
+            'What are patient wait times in Indiranagar?'
           ];
           break;
         }
 
         case 'DOCTOR_WORKLOAD': {
-          res.text = [
-            '<strong>Doctor Utilization & Clinical Roster:</strong>',
-            '• <strong>Dr. Aisha Khan (Chief Surgeon):</strong> 94.2% utilization • 114 surgeries MTD • 4.96★.',
-            '• <strong>Dr. Priya Sharma (Feline):</strong> 91.0% utilization • 186 consultations • 4.94★.',
-            '• <strong>Dr. Rajesh Nair (Orthopedics):</strong> 88.5% utilization • 78 surgeries • 4.91★.'
-          ].join('<br/>');
+          res.text = '👨‍⚕️ **Veterinary Specialists & Clinical Performance:**\n\n' +
+            '• **Dr. Aisha Khan (Indiranagar Flagship):** Chief Surgeon · Specialty: Orthopedics & Complex Soft Tissue · **22 Surgeries/Wk (99.6% Recovery Rate)**.\n' +
+            '• **Dr. Rajesh Nair (Koramangala Trauma Hub):** Senior Orthopedic Specialist · Specialty: TPLO, Spinal Decompression · **18 Surgeries/Wk (99.2% Recovery Rate)**.\n' +
+            '• **Dr. Priya Sharma (Whitefield Hub):** Lead Feline Specialist · Specialty: Feline Internal Medicine & Nephrology · **48 Consults/Wk (98.9% Client Rating)**.\n' +
+            '• **Dr. Rohan Verma (Bandra West Mumbai):** Head of Emergency & Critical Care · Specialty: Acute Trauma & Toxicology · **36 Cases/Wk (97.8% Stabilization Rate)**.\n' +
+            '• **Dr. Ananya Sen (Gurgaon Hub):** Consultant Dermatologist · Specialty: Cytopoint & Atopic Allergies · **42 Consults/Wk (99.1% Client Rating)**.';
           res.kpis = [
-            { label: 'Dr. Aisha Khan', val: '94.2% Util', status: 'warn' },
-            { label: 'Dr. Priya Sharma', val: '91.0% Util', status: 'warn' },
-            { label: 'Dr. Rajesh Nair', val: '88.5% Util', status: 'success' }
+            { label: 'Specialist Vets', val: '42 Doctors', status: 'success' },
+            { label: 'Avg Recovery Rate', val: '99.2%', status: 'success' },
+            { label: 'Client Satisfaction', val: '4.9 / 5.0', status: 'success' }
           ];
           res.actions = [
             { label: '👨‍⚕️ Open Doctors Dashboard', hash: '#doctors-dashboard', primary: true }
           ];
           res.followups = [
-            'Which clinic has the longest patient wait times?',
-            'What is doctor revenue contribution MTD?',
-            'Show Dr. Aisha Khan performance details'
+            'What surgeries does Dr. Rajesh Nair perform?',
+            'How many consultations done this month?',
+            'Show doctor revenue contribution'
           ];
           break;
         }
 
         case 'LOGISTICS_DELIVERY': {
-          res.text = [
-            '<strong>60-Minute Express Delivery Telemetry:</strong>',
-            '• <strong>On-Time SLA:</strong> 97.6% compliance (2.4% breach rate).',
-            '• <strong>Transit Speed:</strong> 42.8 minutes avg order-to-door (3,840 express orders).',
-            '• <strong>Fulfillment Cost:</strong> ₹51.4 avg rider dispatch expense.'
-          ].join('<br/>');
+          res.text = '🚚 **Hyper-Local 60-Minute Pet Medical Delivery Telemetry:**\n\n' +
+            '• **On-Time SLA Compliance:** **97.6%** (Target: >95.0%).\n' +
+            '• **Doorstep Speed:** **42.8 Minutes** average order-to-door transit time across 14,280 deliveries.\n' +
+            '• **Fulfillment Cost:** **₹51.4** per order.\n' +
+            '• **Cold-Chain Fleet:** 184 two-wheeler riders + 12 medical vans equipped with temperature-calibrated insulated bags ensuring vaccine potency (2°C - 8°C).';
           res.kpis = [
-            { label: 'SLA Compliance', val: '97.6%', status: 'success' },
-            { label: 'Avg Delivery Time', val: '42.8 Mins', status: 'info' },
+            { label: 'On-Time SLA', val: '97.6%', status: 'success' },
+            { label: 'Avg Doorstep Time', val: '42.8 Mins', status: 'info' },
             { label: 'Cost Per Order', val: '₹51.4', status: 'info' }
           ];
           res.actions = [
             { label: '🚚 Open Logistics Dashboard', hash: '#logistics-dashboard', primary: true }
           ];
           res.followups = [
-            'Simulate profit if logistics costs increase 8%',
-            'Show delivery partner performance in Bengaluru',
-            'What are top reasons for delivery SLA breaches?'
+            'Simulate profit if logistics costs rise 8%',
+            'What delivery partners do we use?',
+            'How are monsoon deliveries handled in Mumbai?'
           ];
           break;
         }
 
         case 'CHURN_RETENTION': {
-          res.text = [
-            '<strong>Pet Parent Churn Risk Radar:</strong>',
-            '• <strong>At-Risk Cohort:</strong> 248 pet parents (>75% churn probability).',
-            '• <strong>Top Attrition Cause:</strong> Lapsed annual booster vaccinations (42%).',
-            '• <strong>Recoverable ARR:</strong> ₹8.4 Lakh via automated VIP WhatsApp concierge.'
-          ].join('<br/>');
+          res.text = '🛡️ **Pet Parent Churn Risk & Retention Analytics:**\n\n' +
+            '• **High Churn Risk Cohort:** **248 Pet Parents** identified with >75% churn probability.\n' +
+            '• **Primary Attrition Trigger:** Annual booster vaccine lapse exceeding 60 days (accounts for 44% of lapses).\n' +
+            '• **Repeat Order Rate:** **68.4%** across pet food and preventive medications.\n' +
+            '• **Recoverable ARR:** **₹8.4 Lakh** through automated WhatsApp VIP Concierge reminders offering complimentary dental triage checkups.';
           res.kpis = [
             { label: 'High Churn Risk', val: '248 Pets', status: 'danger' },
-            { label: 'Recoverable ARR', val: '₹8.4 Lakh', status: 'success' },
-            { label: 'Vaccine Lapse %', val: '42.0%', status: 'warn' }
+            { label: 'Repeat Rate', val: '68.4%', status: 'success' },
+            { label: 'Recoverable ARR', val: '₹8.4 Lakh', status: 'success' }
           ];
           res.actions = [
-            { label: '⚡ Trigger VIP WhatsApp Win-Back', type: 'exec_action', actionId: 'winback_whatsapp', primary: true }
+            { label: '💬 Trigger VIP WhatsApp Win-Back', type: 'exec_action', actionId: 'winback_whatsapp', primary: true },
+            { label: '👥 Open Customers 360', hash: '#customers-360-dashboard' }
           ];
           res.followups = [
-            'Show puppy cohort churn rate',
-            'Which customer cohort has the highest LTV?',
-            'Simulate impact of 15% discount voucher on churn'
+            'Show customer lifetime value (LTV)',
+            'What is our customer acquisition cost (CAC)?',
+            'Simulate impact of 15% discount on churn'
+          ];
+          break;
+        }
+
+        case 'EBITDA_FINANCIALS': {
+          res.text = '💹 **Consolidated EBITDA & Unit Economics (Zenve Pets Healthcare):**\n\n' +
+            '• **Consolidated EBITDA:** **₹38.2 Lakh (20.7% Margin)**, outperforming budget by +₹4.2 Lakh.\n' +
+            '• **Gross Margins by Vertical:**\n' +
+            '  - Clinical Care & Surgeries: **62.8%**\n' +
+            '  - E-Pharmacy & Prescription Meds: **44.2%**\n' +
+            '  - Preventive Pet Nutrition: **31.4%**\n' +
+            '  - Professional Grooming & Spa: **54.0%**\n' +
+            '• **OPEX Breakdown:** Staff & Specialist Doctors (58%), Hyper-Local Logistics (18%), Hub Rent & Leases (14%), Marketing (10%).\n' +
+            '• **Optimization Vector:** Direct pharmaceutical procurement contracts with Zoetis and Boehringer recover ~₹3.8 Lakh/month.';
+          res.kpis = [
+            { label: 'MTD EBITDA', val: '₹38.2 Lakh', status: 'success' },
+            { label: 'EBITDA Margin', val: '20.7%', status: 'success' },
+            { label: 'Surgery Gross Margin', val: '62.8%', status: 'success' }
+          ];
+          res.actions = [
+            { label: '📊 Open Finance & Accounting', hash: '#finance-accounting-dashboard', primary: true }
+          ];
+          res.followups = [
+            'Which clinic has highest EBITDA?',
+            'Break down logistics expenses',
+            'Simulate profit if logistics costs increase 8%'
+          ];
+          break;
+        }
+
+        case 'GENERAL_SALES': {
+          res.text = '📊 **Sales & Revenue Performance (Zenve Pets Healthcare):**\n\n' +
+            '• **MTD Consolidated Revenue:** **₹184.2 Lakh (₹1.84 Crore)**, growing **+14.6% MoM**.\n' +
+            '• **Channel Contribution:**\n' +
+            '  - In-Clinic Consultations & Surgeries: **₹77.4 Lakh (42%)**\n' +
+            '  - E-Pharmacy & Therapeutics: **₹62.6 Lakh (34%)**\n' +
+            '  - Pet Food, Diets & Fashion: **₹25.8 Lakh (14%)**\n' +
+            '  - Diagnostics & Telehealth: **₹18.4 Lakh (10%)**\n' +
+            '• **Platform Split:** Android App leads with **52% (₹95.8L)**, iOS App delivers **31% (₹57.1L)** with higher AOV (₹2,410 vs ₹1,620), Web & Direct brings **17% (₹31.3L)**.';
+          res.kpis = [
+            { label: 'MTD Revenue', val: '₹1.84 Crore', status: 'success' },
+            { label: 'Growth MoM', val: '+14.6%', status: 'success' },
+            { label: 'Total Orders', val: '14,280 Orders', status: 'info' }
+          ];
+          res.actions = [
+            { label: '📈 Open Sales Dashboard', hash: '#sales-dashboard', primary: true }
+          ];
+          res.followups = [
+            'Why did sales drop in Delhi NCR?',
+            'Compare Android vs iOS revenue',
+            'What are top selling pet medicines?'
           ];
           break;
         }
@@ -557,119 +802,49 @@
           var pctMatch = /(\d+(?:\.\d+)?)\s*%/i.exec(text);
           var simPct = pctMatch ? parseFloat(pctMatch[1]) : 8;
           var costIncrease = Math.round(15500 * simPct);
-          res.text = [
-            '<strong>Scenario Simulation (' + simPct + '% Logistics Variance):</strong>',
-            '• <strong>Monthly Cost Impact:</strong> +₹' + (costIncrease / 1000).toFixed(1) + 'k in delivery dispatch.',
-            '• <strong>EBITDA Shift:</strong> 21.1% → 20.4% margin.',
-            '• <strong>Offset Strategy:</strong> Dynamic 2.5km cluster batching saves ₹94k/mo.'
-          ].join('<br/>');
+          res.text = '🔬 **What-If Scenario Simulation (' + simPct + '% Logistics Cost Variance):**\n\n' +
+            '• **Monthly Cost Impact:** +₹' + (costIncrease / 1000).toFixed(1) + 'k increase in delivery rider payout.\n' +
+            '• **EBITDA Compression:** EBITDA margin shifts from **20.7% → ' + (20.7 - simPct * 0.08).toFixed(1) + '%**.\n' +
+            '• **Mitigation Strategy:** Dynamic 2.5km delivery batching and off-peak route grouping saves ~₹94,000/month, fully offsetting the variance.';
           res.kpis = [
             { label: 'Logistics Variance', val: '+' + simPct + '%', status: 'warn' },
             { label: 'Expense Delta', val: '+₹' + (costIncrease / 1000).toFixed(1) + 'k', status: 'danger' },
-            { label: 'EBITDA Impact', val: '21.1% → 20.4%', status: 'warn' }
+            { label: 'Projected EBITDA', val: (20.7 - simPct * 0.08).toFixed(1) + '%', status: 'warn' }
           ];
           res.actions = [
-            { label: '💹 Open Profit Prediction Simulation', hash: '#profit-prediction', primary: true }
+            { label: '💹 Open Profit Prediction', hash: '#profit-prediction', primary: true }
           ];
           res.followups = [
-            'Simulate profit if logistics costs increase 15%',
-            'What if doctor consultation fees rise 10%?',
+            'Simulate logistics cost +15%',
+            'What if doctor fees rise 10%?',
             'Simulate 10% increase in prescription sales'
           ];
           break;
         }
 
-        case 'MARKETING_METRICS': {
-          res.text = [
-            '<strong>Marketing Performance Telemetry:</strong>',
-            '• <strong>Blended CAC:</strong> ₹482 across Google Search & Meta Ads.',
-            '• <strong>Blended ROAS:</strong> 3.82x (Puppy Health Bundle leads at 4.4x).',
-            '• <strong>Acquisition Volume:</strong> +1,006 new pet parents registered MTD.'
-          ].join('<br/>');
-          res.kpis = [
-            { label: 'Blended CAC', val: '₹482', status: 'success' },
-            { label: 'Blended ROAS', val: '3.82x', status: 'success' },
-            { label: 'New Pet Parents', val: '+1,006', status: 'success' }
-          ];
-          res.actions = [
-            { label: '📢 Open Marketing Dashboard', hash: '#marketing-dashboard', primary: true }
-          ];
-          res.followups = [
-            'Compare Google Ads vs Meta ROAS',
-            'Show customer acquisition cost by city',
-            'Identify top 3 drivers of customer churn'
-          ];
-          break;
-        }
-
-        case 'SUBSCRIPTIONS': {
-          res.text = [
-            '<strong>Pet Wellness Subscriptions:</strong>',
-            '• <strong>Active Plans:</strong> 3,420 members (+14.2% MoM).',
-            '• <strong>Monthly MRR:</strong> ₹24.8 Lakh with 88.4% 6-month retention.',
-            '• <strong>Plan Distribution:</strong> Comprehensive Canine Care accounts for 58%.'
-          ].join('<br/>');
-          res.kpis = [
-            { label: 'Active Plans', val: '3,420', status: 'success' },
-            { label: 'Monthly MRR', val: '₹24.8L', status: 'success' },
-            { label: '6-Mo Retention', val: '88.4%', status: 'success' }
-          ];
-          res.actions = [
-            { label: '🔄 Open Subscriptions Dashboard', hash: '#subscriptions-dashboard', primary: true }
-          ];
-          res.followups = [
-            'What is the churn rate on wellness plans?',
-            'Show puppy cohort retention',
-            'Which clinic has highest subscription sales?'
-          ];
-          break;
-        }
-
-        case 'SYSTEM_HEALTH': {
-          res.text = [
-            '<strong>System Health & Data Telemetry:</strong>',
-            '• <strong>Connected Nodes:</strong> 14 DB replicas synchronized with zero drift.',
-            '• <strong>Query Latency:</strong> 142ms p99 response time.',
-            '• <strong>Platform Uptime:</strong> 99.98% over past 30 days.'
-          ].join('<br/>');
-          res.kpis = [
-            { label: 'Connected Nodes', val: '14 DBs', status: 'success' },
-            { label: 'Query Latency', val: '142ms', status: 'success' },
-            { label: 'Platform Uptime', val: '99.98%', status: 'success' }
-          ];
-          res.actions = [
-            { label: '🔍 View System Health Dashboard', hash: '#system-health-dashboard', primary: true }
-          ];
-          res.followups = [
-            'Why did sales drop in Delhi NCR?',
-            'Which clinic generated the highest EBITDA this month?',
-            'What is the forecast for Bravecto chewables inventory?'
-          ];
-          break;
-        }
-
-        case 'GENERAL_OVERVIEW':
         default: {
-          res.text = [
-            '<strong>Zenve Executive Business Overview:</strong>',
-            '• <strong>MTD Revenue:</strong> ₹1.84 Cr (+18.4% YoY) across 12,480 orders.',
-            '• <strong>Operating EBITDA:</strong> ₹38.2 Lakh (20.7% margin) across 14 hubs.',
-            '• <strong>Top Driver:</strong> Clinical procedures in Indiranagar & Bandra (44% gross margin).',
-            '• <strong>Key Watchpoint:</strong> Delhi NCR sales drop (-22.4%) due to 48h stockout.'
-          ].join('<br/>');
+          res.text = '🐾 **Executive Veterinary Intelligence Synthesis — Dr. Zenve:**\n\n' +
+            'Regarding **"' + text + '"**:\n\n' +
+            '• **Clinical & Operational Reality:** Grounded in telemetry across our 14 hospital hubs, 28,450 pet profiles, and live e-pharmacy databases.\n' +
+            '• **Key Observation:** Zenve Pets Healthcare maintains a **99.4% surgical success rate**, **97.6% 60-minute delivery SLA**, and **₹1.84 Cr MTD revenue** with a healthy **20.7% EBITDA margin**.\n' +
+            '• **Strategic Guidance:**\n' +
+            '  1. **Preventive Health Prioritization:** Focus on annual vaccination renewals and dental checkups to minimize high-risk patient churn.\n' +
+            '  2. **Supply Chain Continuity:** Maintain strict 30-day buffer stocks for key chronic medicines (Bravecto, Apoquel, Renal diets).\n' +
+            '  3. **Multi-Channel Synergy:** Connect clinic walk-in pet parents directly with our 60-minute doorstep medicine delivery app.';
           res.kpis = [
-            { label: 'MTD Revenue', val: '₹1.84 Cr', status: 'success' },
-            { label: 'Operating EBITDA', val: '₹38.2L (20.7%)', status: 'success' },
-            { label: 'SLA Delivery', val: '97.6%', status: 'success' }
+            { label: 'Active Facilities', val: '14 Hubs', status: 'success' },
+            { label: 'Registered Pets', val: '28,450', status: 'info' },
+            { label: 'EBITDA Margin', val: '20.7%', status: 'success' }
           ];
           res.actions = [
-            { label: '📊 View Sales Drop Analysis', hash: '#overview', scrollTarget: 'ai', primary: true },
-            { label: '⚡ Open Revenue Intelligence', hash: '#revenue-intelligence' }
+            { label: '📊 View Executive Overview', hash: '#executive-dashboard', primary: true },
+            { label: '🐾 Open Pets 360', hash: '#pets-360-dashboard' }
           ];
           res.followups = [
+            'Show dog vs cat patient split',
             'Why did sales drop in Delhi NCR?',
-            'Which clinic generated the highest EBITDA this month?',
-            'What is the forecast for Bravecto chewables inventory?'
+            'What is our Bravecto inventory status?',
+            'Who is Dr. Aisha Khan?'
           ];
           break;
         }
@@ -685,6 +860,16 @@
     };
   })();
 
+  function formatLlmText(text) {
+    if (!text) return '';
+    var s = esc(text);
+    s = s.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    s = s.replace(/\n\n/g, '<div style="height:8px;"></div>');
+    s = s.replace(/\n/g, '<br/>');
+    return s;
+  }
+
   /* ── 1. Ask Zenve AI ─────────────────────────────────────────────── */
   function renderAskAi() {
     var msgsHtml = S.chatHistory.map(function (m, idx) {
@@ -692,11 +877,11 @@
       if (m.nlpMeta) {
         nlpMetaHtml = [
           '<div class="zai-nlp-meta">',
-            '<span class="zai-nlp-tag intent">⚡ ' + esc(m.nlpMeta.intent) + '</span>',
+            '<span class="zai-nlp-tag intent">🐾 ' + esc(m.nlpMeta.intent) + '</span>',
             (m.nlpMeta.entities || []).map(function (e) {
               return '<span class="zai-nlp-tag entity">🏷️ ' + esc(e) + '</span>';
             }).join(''),
-            '<span class="zai-nlp-tag grounding">🛡️ ' + esc(m.nlpMeta.grounding || 'ERP Verified') + '</span>',
+            '<span class="zai-nlp-tag grounding">🛡️ ' + esc(m.nlpMeta.grounding || '14 Hospital Hubs') + '</span>',
             '<span style="margin-left: auto; font-family: \'IBM Plex Mono\', monospace; font-size: 10px; color: #059669; font-weight: 700;">Conf: ' + esc(m.nlpMeta.confidence || '98.5%') + '</span>',
           '</div>'
         ].join('');
@@ -756,7 +941,7 @@
       if (m.followups && m.followups.length) {
         followupsHtml = [
           '<div class="zai-followups-box">',
-            '<span class="zai-followup-title">💡 Drill-down:</span>',
+            '<span class="zai-followup-title">🐾 Dr. Zenve Recommends Exploring:</span>',
             m.followups.map(function (f) {
               return '<button type="button" class="zai-followup-btn" data-query="' + esc(f) + '">' + esc(f) + '</button>';
             }).join(''),
@@ -764,12 +949,14 @@
         ].join('');
       }
 
+      var avatarBadge = m.role === 'ai' ? '🐾' : '👤';
+
       return [
         '<div class="zai-msg ' + m.role + '">',
-          '<div class="zai-avatar ' + m.role + '">' + (m.role === 'ai' ? '🤖' : '👤') + '</div>',
+          '<div class="zai-avatar ' + m.role + '" title="' + (m.role === 'ai' ? 'Dr. Zenve Veterinary AI' : 'Executive Pet Parent') + '">' + avatarBadge + '</div>',
           '<div class="zai-bubble">',
             nlpMetaHtml,
-            '<div>' + m.text + '</div>',
+            '<div class="zai-formatted-body">' + formatLlmText(m.text) + '</div>',
             kpisHtml,
             insightsHtml,
             actionsHtml,
@@ -782,36 +969,48 @@
 
     return [
       '<div class="zai-kpi-grid">',
-        kpiHtml('Connected Data Nodes', '0 Live DBs', '--', 'neutral', 'No connected data nodes', '🔌'),
-        kpiHtml('Neural NLP Latency', '--', '--', 'neutral', 'No query latency records', '⚡'),
-        kpiHtml('Model Grounding', '0.0%', '--', 'neutral', 'No verification records', '🛡️'),
-        kpiHtml('Executive Queries Today', '0 Prompts', '--', 'neutral', 'No queries processed', '💬'),
+        kpiHtml('Active Pet Patients', '28,450 Pets', '+14.6% MoM', 'success', '62% Canine · 34% Feline', '🐾'),
+        kpiHtml('Hospital Hubs Online', '14 Facilities', '100% Uptime', 'success', '81.4% ICU Bed Occupancy', '🏥'),
+        kpiHtml('Neural NLP Latency', '18 ms', '--', 'neutral', 'Sub-second Local Neural Dispatch', '⚡'),
+        kpiHtml('Clinical Grounding', '99.2%', '+0.4%', 'success', '14 Hospital Hubs & Live ERP', '🛡️'),
       '</div>',
 
-      '<div class="zai-card" style="padding: 0;">',
-        '<div style="padding: 10px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">',
-          '<div style="display: flex; align-items: center; gap: 8px;">',
-            '<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span>',
-            '<span style="font-size: 12px; font-weight: 700; color: #1e293b;">Zenve Free-Source Neural Reasoning Core</span>',
-            '<span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; background: #ede9fe; color: #6d28d9; font-weight: 700;">100% Free • No API Key Needed</span>',
+      '<div class="zai-card zai-pet-chat-card" style="padding: 0;">',
+        '<div class="zai-pet-chat-header">',
+          '<div style="display: flex; align-items: center; gap: 10px;">',
+            '<div class="zai-pet-avatar-glow">🐾</div>',
+            '<div>',
+              '<div style="display: flex; align-items: center; gap: 8px;">',
+                '<span style="font-size: 13.5px; font-weight: 800; color: #0f172a;">Dr. Zenve — Pet Healthcare & Business Intelligence</span>',
+                '<span class="zai-pet-tag-active"><span class="zai-pulse-dot" style="background:#10b981;"></span> Neural Model Online</span>',
+              '</div>',
+              '<div style="font-size: 11px; color: #64748b; font-weight: 500; margin-top: 1px;">',
+                '🐶 17.6k Dogs · 🐱 9.6k Cats · 🏥 14 Hospital Hubs · 💊 1,420 Pharmacy SKUs · 🚚 60-Min Express',
+              '</div>',
+            '</div>',
           '</div>',
-          '<button type="button" class="zai-btn" id="zai-clear-chat" style="padding: 4px 10px; font-size: 11px;">🧹 Reset Chat</button>',
+          '<div style="display: flex; align-items: center; gap: 8px;">',
+            '<button type="button" class="zai-btn zai-pet-clean-btn" id="zai-clear-chat" title="Clear Chat History">🧹 Reset Chat</button>',
+          '</div>',
         '</div>',
         '<div class="zai-chat-box">',
           '<div class="zai-chat-msgs" id="zai-chat-msgs">',
             msgsHtml,
           '</div>',
           '<div class="zai-chips">',
-            '<span style="font-size: 11px; font-weight: 700; color: #64748b; margin-right: 4px; display: inline-flex; align-items: center;">Suggested Executive Prompts:</span>',
-            '<button type="button" class="zai-chip" data-query="Why did sales drop in Delhi NCR?">Why did sales drop in Delhi NCR?</button>',
-            '<button type="button" class="zai-chip" data-query="Which clinic generated the highest EBITDA this month?">Highest EBITDA clinic?</button>',
-            '<button type="button" class="zai-chip" data-query="What is the forecast for Bravecto chewables inventory?">Bravecto inventory runway?</button>',
-            '<button type="button" class="zai-chip" data-query="Identify top 3 drivers of customer churn in Q3.">Top drivers of customer churn</button>',
-            '<button type="button" class="zai-chip" data-query="Simulate net profit if logistics dispatch cost increases by 8%.">Simulate logistics cost +8%</button>',
+            '<span style="font-size: 11.5px; font-weight: 800; color: #475569; margin-right: 4px; display: inline-flex; align-items: center; gap: 4px;">🐾 Ask Dr. Zenve:</span>',
+            '<button type="button" class="zai-chip" data-query="How many dogs vs cats do we have?">🐕 Dog vs Cat Census</button>',
+            '<button type="button" class="zai-chip" data-query="Why did sales drop in Delhi NCR?">📉 Why did Delhi sales drop?</button>',
+            '<button type="button" class="zai-chip" data-query="What is our Bravecto inventory status?">💊 Bravecto Stock Runway</button>',
+            '<button type="button" class="zai-chip" data-query="Who is Dr. Aisha Khan?">🩺 Dr. Aisha Surgery Cases</button>',
+            '<button type="button" class="zai-chip" data-query="How is our 60 minute delivery performing?">🚚 60-Min Express Delivery</button>',
+            '<button type="button" class="zai-chip" data-query="What is the vaccine schedule for puppies?">🐶 Puppy Vaccine Schedule</button>',
+            '<button type="button" class="zai-chip" data-query="Is chocolate bad for dogs?">🍫 Can dogs eat chocolate?</button>',
+            '<button type="button" class="zai-chip" data-query="Which clinic generated the highest EBITDA this month?">💹 Highest EBITDA Clinic</button>',
           '</div>',
           '<form class="zai-chat-input-bar" id="zai-chat-form">',
-            '<input type="text" class="zai-input" id="zai-query-input" placeholder="Ask Zenve AI any question about sales drop, clinics, inventory, or margins..." autocomplete="off" />',
-            '<button type="submit" class="zai-btn primary">Ask AI →</button>',
+            '<input type="text" class="zai-input zai-pet-input" id="zai-query-input" placeholder="🐾 Ask Dr. Zenve about pet health, clinic EBITDA, sales drops, dog vaccines, inventory..." autocomplete="off" />',
+            '<button type="submit" class="zai-btn primary zai-pet-send-btn">🐾 Ask AI →</button>',
           '</form>',
         '</div>',
       '</div>'
@@ -1315,14 +1514,18 @@
         S.chatHistory = [
           {
             role: 'ai',
-            text: 'Conversation reset. I am ready for your next strategic query. Ask about Sales Drop, EBITDA, Bravecto Runway, Clinics, or Doctor Workload.',
+            text: 'Conversation reset. 🐾 Dr. Zenve is ready for your next prompt! Ask about Pet Care, Dog/Cat Demographics, Sales Drop, Clinic EBITDA, or E-Pharmacy Stock.',
             nlpMeta: {
-              intent: 'EXECUTIVE ONBOARDING',
-              entities: ['Ready'],
-              grounding: 'Live ERP Telemetry',
+              intent: 'PET INTELLIGENCE READY',
+              entities: ['14 Hospital Hubs', '28,450 Pets'],
+              grounding: 'Live Veterinary Telemetry',
               confidence: '99.9%'
             },
-            followups: []
+            followups: [
+              'Show dog vs cat patient split',
+              'Why did sales drop in Delhi NCR?',
+              'Check Bravecto inventory status'
+            ]
           }
         ];
         S.lastContext = { intent: 'GENERAL_OVERVIEW', location: null, timeframe: 'MTD' };

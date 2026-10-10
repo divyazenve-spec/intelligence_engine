@@ -761,3 +761,180 @@ body.zai-locked {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* =====================================================================
+   Zenve AI — Professional Pet Theme Styling (Dr. Zenve Copilot)
+   ===================================================================== */
+.zai-pet-chat-card {
+  border: 1px solid #f1f5f9 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 30px -4px rgba(245, 158, 11, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.zai-pet-chat-header {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #fffdf9 60%, #fef8ee 100%);
+  border-bottom: 1.5px solid #fef3c7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.zai-pet-avatar-glow {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: radial-gradient(circle, #fef3c7 0%, #fde68a 100%);
+  border: 1.5px solid #f59e0b;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  animation: zaiPetAvatarPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes zaiPetAvatarPulse {
+  0% { transform: scale(0.96); box-shadow: 0 0 10px rgba(245, 158, 11, 0.2); }
+  100% { transform: scale(1.04); box-shadow: 0 0 18px rgba(245, 158, 11, 0.45); }
+}
+
+.zai-pet-tag-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 99px;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.zai-pet-clean-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.zai-pet-clean-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* Chat Message Styling Enhancements */
+.zai-msg.ai .zai-avatar {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #10b981 !important;
+  color: #047857 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2) !important;
+  font-size: 19px !important;
+}
+
+.zai-msg.ai .zai-bubble {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-left: 3.5px solid #10b981 !important;
+  border-radius: 14px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+}
+
+.zai-msg.user .zai-avatar {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+  border-radius: 10px !important;
+  font-size: 17px !important;
+}
+
+.zai-msg.user .zai-bubble {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+}
+
+.zai-formatted-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #1e293b;
+}
+
+.zai-formatted-body strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Pet Theme Prompt Chips */
+.zai-chip {
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+}
+
+.zai-chip:hover {
+  background: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #f59e0b !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.18) !important;
+}
+
+/* Pet Theme Input Bar */
+.zai-pet-input {
+  border-radius: 10px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  padding: 12px 18px !important;
+  font-size: 13px !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  transition: all 0.18s ease !important;
+}
+
+.zai-pet-input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18) !important;
+}
+
+.zai-pet-send-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 11px 22px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  box-shadow: 0 3px 10px rgba(217, 119, 6, 0.3) !important;
+  transition: all 0.18s ease !important;
+}
+
+.zai-pet-send-btn:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 5px 14px rgba(217, 119, 6, 0.4) !important;
+}
+
