@@ -861,13 +861,22 @@ body.zai-locked {
 }
 
 .zai-msg.user .zai-bubble {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  color: #1e293b !important;
+  border: 1px solid #fcd34d !important;
+  border-right: 3.5px solid #f59e0b !important;
   border-radius: 14px !important;
   padding: 14px 18px !important;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15) !important;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.15) !important;
   font-size: 13.5px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
+  line-height: 1.6 !important;
+}
+
+.zai-msg.user .zai-bubble::selection,
+.zai-msg.user .zai-bubble *::selection {
+  background: #fde68a;
+  color: #1e293b;
 }
 
 .zai-formatted-body {
