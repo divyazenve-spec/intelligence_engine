@@ -17,12 +17,12 @@
 
     function starSvg(sizeClass, isEightPoint, delayClass) {
       var extra = isEightPoint
-        ? '<path d="' + starFlarePath + '" fill="url(#zdlGoldStarGrad)" transform="rotate(45 12 12) scale(0.62)" transform-origin="center" />'
+        ? '<path d="' + starFlarePath + '" fill="url(#zdlThemeStarGrad)" transform="rotate(45 12 12) scale(0.62)" transform-origin="center" />'
         : '';
       var coreRadius = sizeClass === 'zdl-star-lg' ? '3' : (sizeClass === 'zdl-star-md' ? '2.2' : '1.8');
       return [
         '<svg viewBox="0 0 24 24" class="zdl-star ' + sizeClass + ' ' + (delayClass || '') + '">',
-        '  <path d="' + starFlarePath + '" fill="url(#zdlGoldStarGrad)" />',
+        '  <path d="' + starFlarePath + '" fill="url(#zdlThemeStarGrad)" />',
         extra,
         '  <circle cx="12" cy="12" r="' + coreRadius + '" fill="#ffffff" />',
         '</svg>'
@@ -33,11 +33,17 @@
       '<!-- SVG Definitions for Celestial Stars -->',
       '<svg width="0" height="0" style="position:absolute;visibility:hidden;pointer-events:none;">',
       '  <defs>',
+      '    <linearGradient id="zdlThemeStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">',
+      '      <stop offset="0%" stop-color="#ffffff" />',
+      '      <stop offset="25%" stop-color="#a7f3d0" />',
+      '      <stop offset="65%" stop-color="#10b981" />',
+      '      <stop offset="100%" stop-color="#059669" />',
+      '    </linearGradient>',
       '    <linearGradient id="zdlGoldStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">',
-      '      <stop offset="0%" stop-color="#fffbeb" />',
-      '      <stop offset="25%" stop-color="#fef08a" />',
-      '      <stop offset="65%" stop-color="#fbbf24" />',
-      '      <stop offset="100%" stop-color="#d97706" />',
+      '      <stop offset="0%" stop-color="#ffffff" />',
+      '      <stop offset="25%" stop-color="#a7f3d0" />',
+      '      <stop offset="65%" stop-color="#10b981" />',
+      '      <stop offset="100%" stop-color="#059669" />',
       '    </linearGradient>',
       '  </defs>',
       '</svg>',
