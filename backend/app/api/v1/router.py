@@ -20,6 +20,8 @@ router.add_api_route("/sales/import", sales.import_sales, methods=["POST"], tags
 
 # AI
 router.add_api_route("/ai/brief", chat.ai_brief, methods=["GET", "POST"], tags=["ai"])
+router.add_api_route("/ai/recommendations", chat.ai_recommendations, methods=["GET", "POST"], tags=["ai"])
+router.add_api_route("/ai/recommendations/execute", chat.execute_recommendation, methods=["POST"], tags=["ai"])
 
 # Inventory
 router.add_api_route("/inventory", inventory.load_inventory, methods=["GET", "POST"], tags=["inventory"])

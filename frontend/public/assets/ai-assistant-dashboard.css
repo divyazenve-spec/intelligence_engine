@@ -947,3 +947,25 @@ body.zai-locked {
   box-shadow: 0 5px 14px rgba(217, 119, 6, 0.4) !important;
 }
 
+/* ── AI Recommendations Engine Animations ──────────────────────────── */
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.15); }
+  50%      { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+}
+
+.zai-rec-filter:hover {
+  background: #eff6ff !important;
+}
+
+.zai-table tbody tr {
+  transition: opacity 0.2s ease, background 0.15s ease;
+}
+.zai-table tbody tr:hover {
+  background: #f8fafc;
+}
+

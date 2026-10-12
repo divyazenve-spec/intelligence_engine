@@ -15,3 +15,5 @@ export const loadData = () => request('/data');
 export const saveSale = (sale) => request('/sales/save', { method: 'POST', body: sale });
 export const importSales = (rows) => request('/sales/import', { method: 'POST', body: { rows } });
 export const aiBrief = (filters) => request('/ai/brief', { method: 'POST', body: filters });
+export const getRecommendations = (filters) => request('/ai/recommendations', { method: 'POST', body: filters });
+export const executePlaybook = (id, payload) => request('/ai/recommendations/execute', { method: 'POST', body: { id, payload } });

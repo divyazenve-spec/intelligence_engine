@@ -601,13 +601,34 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 
 /* =====================================================================
    Zenve BI — Celestial Stars Revolving Circular Logo Loading Clip
-   Website UI/UX Theme — Signature Emerald, Mint, Slate & Porcelain
-   Stars smoothly revolving around the central circular Zenve Logo.
-   Active during subdomain and domain transitions to eliminate dashboard flashing.
+   Dynamic Thematic Adaptation per Dashboard & Page Domain
+   Supports dynamic CSS custom properties:
+     --zdl-primary, --zdl-secondary, --zdl-accent, --zdl-light, --zdl-dark
+     --zdl-glow, --zdl-glow-border, --zdl-core-border, --zdl-core-inner
+     --zdl-bg-tint, --zdl-badge-bg, --zdl-badge-border, --zdl-badge-color
+     --zdl-star-glow1, --zdl-star-glow2, --zdl-runner-grad, --zdl-title-grad
    ===================================================================== */
 
-/* Full Dashboard Overlay — Light Luxury Theme Matching Zenve BI */
+/* Full Dashboard Overlay — Light Luxury Theme Matching Destination Domain */
 #zenve-dragon-loader {
+  --zdl-primary: #10b981;
+  --zdl-secondary: #059669;
+  --zdl-accent: #34d399;
+  --zdl-light: #a7f3d0;
+  --zdl-dark: #047857;
+  --zdl-glow: rgba(16, 185, 129, 0.22);
+  --zdl-glow-border: rgba(16, 185, 129, 0.38);
+  --zdl-core-border: rgba(16, 185, 129, 0.68);
+  --zdl-core-inner: #ecfdf5;
+  --zdl-bg-tint: rgba(240, 253, 250, 0.96);
+  --zdl-badge-bg: #d1fae5;
+  --zdl-badge-border: #a7f3d0;
+  --zdl-badge-color: #065f46;
+  --zdl-star-glow1: rgba(16, 185, 129, 0.95);
+  --zdl-star-glow2: rgba(52, 211, 153, 0.70);
+  --zdl-runner-grad: linear-gradient(90deg, transparent, #34d399, #10b981, #059669, transparent);
+  --zdl-title-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 35%, #059669 70%, #10b981 100%);
+
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
@@ -618,13 +639,13 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.98) 0%, rgba(240, 253, 250, 0.96) 45%, rgba(248, 250, 252, 0.95) 75%, rgba(241, 245, 249, 0.94) 100%) !important;
+  background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.98) 0%, var(--zdl-bg-tint, rgba(240, 253, 250, 0.96)) 45%, rgba(248, 250, 252, 0.95) 75%, rgba(241, 245, 249, 0.94) 100%) !important;
   backdrop-filter: blur(16px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
   box-sizing: border-box !important;
   overflow: hidden !important;
 }
@@ -658,10 +679,11 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 340px;
   height: 340px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.20) 0%, rgba(5, 150, 105, 0.09) 45%, rgba(16, 185, 129, 0.02) 65%, transparent 72%);
+  background: radial-gradient(circle, var(--zdl-glow, rgba(16, 185, 129, 0.22)) 0%, color-mix(in srgb, var(--zdl-secondary, #059669) 24%, transparent) 45%, color-mix(in srgb, var(--zdl-primary, #10b981) 4%, transparent) 65%, transparent 72%);
   filter: blur(34px);
   animation: zdlAuraPulse 3.5s ease-in-out infinite alternate;
   pointer-events: none;
+  transition: background 0.3s ease;
 }
 
 @keyframes zdlAuraPulse {
@@ -675,9 +697,10 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(16, 185, 129, 0.35);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.14), inset 0 0 16px rgba(16, 185, 129, 0.06);
+  border: 1.5px dashed var(--zdl-glow-border, rgba(16, 185, 129, 0.35));
+  box-shadow: 0 0 20px var(--zdl-glow, rgba(16, 185, 129, 0.14)), inset 0 0 16px var(--zdl-glow, rgba(16, 185, 129, 0.06));
   pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Inner Celestial Orbit Ring */
@@ -686,9 +709,10 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 174px;
   height: 174px;
   border-radius: 50%;
-  border: 1px dashed rgba(5, 150, 105, 0.28);
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.12);
+  border: 1px dashed var(--zdl-glow-border, rgba(5, 150, 105, 0.28));
+  box-shadow: 0 0 14px var(--zdl-glow, rgba(16, 185, 129, 0.12));
   pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Circular Halo framing the Logo */
@@ -697,10 +721,11 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 122px;
   height: 122px;
   border-radius: 50%;
-  border: 1.5px solid rgba(16, 185, 129, 0.40);
-  box-shadow: 0 0 22px rgba(16, 185, 129, 0.22);
+  border: 1.5px solid var(--zdl-glow-border, rgba(16, 185, 129, 0.40));
+  box-shadow: 0 0 22px var(--zdl-glow, rgba(16, 185, 129, 0.22));
   animation: zdlHaloSpin 20s linear infinite;
   pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 @keyframes zdlHaloSpin {
@@ -714,43 +739,44 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 96px;
   height: 96px;
   border-radius: 50% !important;
-  background: radial-gradient(circle at 38% 34%, #ffffff 0%, #f8fafc 62%, #ecfdf5 100%);
-  border: 2.5px solid rgba(16, 185, 129, 0.68);
+  background: radial-gradient(circle at 38% 34%, #ffffff 0%, #f8fafc 62%, var(--zdl-core-inner, #ecfdf5) 100%);
+  border: 2.5px solid var(--zdl-core-border, rgba(16, 185, 129, 0.68));
   box-shadow: 
-    0 14px 36px -4px rgba(5, 150, 105, 0.22),
+    0 14px 36px -4px var(--zdl-glow, rgba(5, 150, 105, 0.22)),
     0 4px 16px rgba(15, 23, 42, 0.06),
-    0 0 26px rgba(16, 185, 129, 0.24),
-    inset 0 0 16px rgba(16, 185, 129, 0.12);
+    0 0 26px var(--zdl-glow, rgba(16, 185, 129, 0.24)),
+    inset 0 0 16px var(--zdl-glow, rgba(16, 185, 129, 0.12));
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 20;
   animation: zdlEmblemBreathe 3s ease-in-out infinite;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zdl-emblem-core img {
   width: 64px;
   height: 64px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(5, 150, 105, 0.3));
+  filter: drop-shadow(0 2px 6px var(--zdl-glow, rgba(5, 150, 105, 0.3)));
 }
 
 @keyframes zdlEmblemBreathe {
   0%, 100% {
     transform: scale(1);
     box-shadow: 
-      0 14px 36px -4px rgba(5, 150, 105, 0.22),
+      0 14px 36px -4px var(--zdl-glow, rgba(5, 150, 105, 0.22)),
       0 4px 16px rgba(15, 23, 42, 0.06),
-      0 0 26px rgba(16, 185, 129, 0.24),
-      inset 0 0 16px rgba(16, 185, 129, 0.12);
+      0 0 26px var(--zdl-glow, rgba(16, 185, 129, 0.24)),
+      inset 0 0 16px var(--zdl-glow, rgba(16, 185, 129, 0.12));
   }
   50% {
     transform: scale(1.05);
     box-shadow: 
-      0 18px 44px -2px rgba(5, 150, 105, 0.32),
+      0 18px 44px -2px var(--zdl-glow, rgba(5, 150, 105, 0.32)),
       0 6px 20px rgba(15, 23, 42, 0.08),
-      0 0 34px rgba(16, 185, 129, 0.36),
-      inset 0 0 22px rgba(16, 185, 129, 0.18);
+      0 0 34px var(--zdl-glow, rgba(16, 185, 129, 0.36)),
+      inset 0 0 22px var(--zdl-glow, rgba(16, 185, 129, 0.18));
   }
 }
 
@@ -812,8 +838,9 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 /* Star Visual Styling */
 .zdl-star {
   display: block;
-  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.95)) drop-shadow(0 0 14px rgba(52, 211, 153, 0.7));
+  filter: drop-shadow(0 0 6px var(--zdl-star-glow1, rgba(16, 185, 129, 0.95))) drop-shadow(0 0 14px var(--zdl-star-glow2, rgba(52, 211, 153, 0.7)));
   animation: zdlStarTwinkle 2.4s ease-in-out infinite alternate;
+  transition: filter 0.3s ease;
 }
 
 .zdl-star-lg { width: 28px; height: 28px; }
@@ -831,17 +858,17 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 @keyframes zdlStarTwinkle {
   0% {
     transform: scale(0.85) rotate(0deg);
-    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.75)) drop-shadow(0 0 8px rgba(52, 211, 153, 0.45));
+    filter: drop-shadow(0 0 4px var(--zdl-star-glow1, rgba(16, 185, 129, 0.75))) drop-shadow(0 0 8px var(--zdl-star-glow2, rgba(52, 211, 153, 0.45)));
     opacity: 0.8;
   }
   50% {
     transform: scale(1.22) rotate(20deg);
-    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 1)) drop-shadow(0 0 22px rgba(52, 211, 153, 0.9));
+    filter: drop-shadow(0 0 10px var(--zdl-star-glow1, rgba(16, 185, 129, 1))) drop-shadow(0 0 22px var(--zdl-star-glow2, rgba(52, 211, 153, 0.9)));
     opacity: 1;
   }
   100% {
     transform: scale(0.92) rotate(0deg);
-    filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 10px rgba(52, 211, 153, 0.55));
+    filter: drop-shadow(0 0 5px var(--zdl-star-glow1, rgba(16, 185, 129, 0.8))) drop-shadow(0 0 10px var(--zdl-star-glow2, rgba(52, 211, 153, 0.55)));
     opacity: 0.85;
   }
 }
@@ -850,10 +877,11 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
 .zdl-stardust {
   position: absolute;
   border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 6px #10b981, 0 0 12px rgba(52, 211, 153, 0.7);
+  background: var(--zdl-accent, #34d399);
+  box-shadow: 0 0 6px var(--zdl-primary, #10b981), 0 0 12px var(--zdl-star-glow2, rgba(52, 211, 153, 0.7));
   pointer-events: none;
   animation: zdlStardustFloat 2.6s ease-in-out infinite alternate;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zdl-dust-1 { width: 4px; height: 4px; top: 18%; left: 24%; animation-delay: 0.2s; }
@@ -866,7 +894,7 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   100% { transform: translateY(-8px) scale(1.3); opacity: 0.95; }
 }
 
-/* Loading Typography & Progress Bar — Clean Website Light Styling */
+/* Loading Typography & Thematic Category Badge */
 .zdl-caption {
   margin-top: 24px;
   display: flex;
@@ -877,16 +905,37 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   text-align: center;
 }
 
+/* Domain / Category Pill Badge */
+.zdl-category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3.5px 14px;
+  border-radius: 99px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--zdl-badge-bg, #d1fae5);
+  border: 1px solid var(--zdl-badge-border, #a7f3d0);
+  color: var(--zdl-badge-color, #065f46);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
 .zdl-title {
   font-family: 'Sora', sans-serif;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 35%, #059669 70%, #10b981 100%);
+  background: var(--zdl-title-grad, linear-gradient(135deg, #0f172a 0%, #1e293b 35%, #059669 70%, #10b981 100%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 2px rgba(5, 150, 105, 0.18));
+  filter: drop-shadow(0 1px 2px var(--zdl-glow, rgba(5, 150, 105, 0.18)));
+  transition: filter 0.3s ease;
 }
 
 .zdl-subtitle {
@@ -905,9 +954,10 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+  background: var(--zdl-primary, #10b981);
+  box-shadow: 0 0 8px var(--zdl-primary, rgba(16, 185, 129, 0.7));
   animation: zdlDotPulse 1.2s ease-in-out infinite;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 @keyframes zdlDotPulse {
@@ -930,12 +980,14 @@ aside.sidebar-scope::-webkit-scrollbar-thumb:hover,
   top: 0;
   bottom: 0;
   width: 45%;
-  background: linear-gradient(90deg, transparent, #34d399, #10b981, #059669, transparent);
+  background: var(--zdl-runner-grad, linear-gradient(90deg, transparent, #34d399, #10b981, #059669, transparent));
   animation: zdlProgressRun 1.3s ease-in-out infinite;
+  transition: background 0.3s ease;
 }
 
 @keyframes zdlProgressRun {
   0% { left: -50%; }
   100% { left: 110%; }
 }
+
 
