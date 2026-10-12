@@ -290,13 +290,9 @@ def ingest_records(records: list[dict], db: Session, mode: str = "replace") -> d
 
             if r["android_downloads"] > 0:
                 daily_android[day] += r["android_downloads"]
-            elif r["app_source"] == "Android":
-                daily_android[day] += random.randint(1, 3)
 
             if r["ios_downloads"] > 0:
                 daily_ios[day] += r["ios_downloads"]
-            elif r["app_source"] == "iOS":
-                daily_ios[day] += random.randint(1, 3)
 
             sale_objs.append(Sale(
                 sale_id=sale_id,
@@ -326,8 +322,8 @@ def ingest_records(records: list[dict], db: Session, mode: str = "replace") -> d
                 db.add(DailyMetric(
                     business_date=bdate,
                     sales_total=paid_total,
-                    android_downloads=max(15, daily_android[day_str]),
-                    ios_downloads=max(12, daily_ios[day_str]),
+                    android_downloads=daily_android[day_str],
+                    ios_downloads=daily_ios[day_str],
                 ))
             elif mode != "replace":
                 metric.sales_total = float(metric.sales_total) + paid_total

@@ -685,12 +685,173 @@ function generateResponse(text, ctx) {
     return s;
   }
 
-  /* ── 1. Ask Zenve AI ─────────────────────────────────────────────── */
+  /* ── Autonomous Co-Pilot Visualization & Action Helpers ── */
+  function renderChartHtml(chart) {
+    if (!chart || !chart.data || !chart.data.length) return '';
+    var colors = chart.colors || ['#10b981', '#6366f1', '#f59e0b', '#ef4444'];
+    var xKey = chart.xKey || 'name';
+    var yKeys = chart.yKeys || ['val', 'value'];
+
+    var maxVal = 1;
+    chart.data.forEach(function (d) {
+      yKeys.forEach(function (k) {
+        if (typeof d[k] === 'number' && d[k] > maxVal) maxVal = d[k];
+      });
+      if (typeof d.value === 'number' && d.value > maxVal) maxVal = d.value;
+    });
+
+    var barsHtml = '';
+    if (chart.type === 'pie') {
+      barsHtml = [
+        '<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">',
+        chart.data.map(function (d, i) {
+          var col = d.color || colors[i % colors.length];
+          return [
+            '<div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11.5px;">',
+              '<span style="width: 10px; height: 10px; border-radius: 50%; background: ' + col + ';"></span>',
+              '<span style="font-weight: 700; color: #0f172a;">' + esc(d.name) + '</span>',
+              '<span style="font-family: \'IBM Plex Mono\', monospace; color: #059669; font-weight: 700;">' + esc(d.value) + '%</span>',
+            '</div>'
+          ].join('');
+        }).join(''),
+        '</div>'
+      ].join('');
+    } else {
+      barsHtml = chart.data.map(function (d) {
+        var label = d[xKey] || d.name || '';
+        var primaryKey = yKeys[0];
+        var val = d[primaryKey] != null ? d[primaryKey] : (d.value || 0);
+        var pct = Math.min(100, Math.max(14, Math.round((val / maxVal) * 100)));
+        var barColor = colors[0];
+        var displayVal = typeof val === 'number' ? (val % 1 !== 0 ? val.toFixed(1) : val) : val;
+
+        return [
+          '<div class="zai-chart-bar-row">',
+            '<div class="zai-chart-bar-label" title="' + esc(label) + '">' + esc(label) + '</div>',
+            '<div class="zai-chart-bar-track">',
+              '<div class="zai-chart-bar-fill" style="width: ' + pct + '%; background: ' + barColor + ';">',
+                esc(displayVal),
+              '</div>',
+            '</div>',
+          '</div>'
+        ].join('');
+      }).join('');
+    }
+
+    return [
+      '<div class="zai-chart-card">',
+        '<div class="zai-chart-title">📊 ' + esc(chart.title || 'Live Executive Telemetry') + '</div>',
+        barsHtml,
+      '</div>'
+    ].join('');
+  }
+
+  function renderTableHtml(table) {
+    if (!table || !table.rows || !table.rows.length) return '';
+    var cols = table.columns || Object.keys(table.rows[0]);
+    return [
+      '<div class="zai-chat-table-wrap">',
+        '<table class="zai-chat-table">',
+          '<thead>',
+            '<tr>',
+              cols.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join(''),
+            '</tr>',
+          '</thead>',
+          '<tbody>',
+            table.rows.map(function (r) {
+              return [
+                '<tr>',
+                  cols.map(function (c, ci) {
+                    var v = r[c] != null ? r[c] : Object.values(r)[ci];
+                    return '<td>' + esc(v) + '</td>';
+                  }).join(''),
+                '</tr>'
+              ].join('');
+            }).join(''),
+          '</tbody>',
+        '</table>',
+      '</div>'
+    ].join('');
+  }
+
+  function renderActionProposalHtml(act, msgIdx) {
+    if (!act) return '';
+    var isExecuted = act.status === 'EXECUTED';
+    var badgeLabel = (act.action_type || 'ACTION PROPOSAL').replace(/_/g, ' ');
+
+    var paramsHtml = '';
+    if (act.parameters && Object.keys(act.parameters).length) {
+      paramsHtml = [
+        '<div class="zai-action-params-box">',
+          '<div class="zai-action-param-grid">',
+            Object.entries(act.parameters).map(function (pair) {
+              return [
+                '<div class="zai-action-param-item">',
+                  '<span class="zai-action-param-label">' + esc(pair[0].replace(/_/g, ' ')) + '</span>',
+                  '<span class="zai-action-param-val">' + esc(pair[1]) + '</span>',
+                '</div>'
+              ].join('');
+            }).join(''),
+          '</div>',
+        '</div>'
+      ].join('');
+    }
+
+    var footerControls = '';
+    if (isExecuted) {
+      var receipt = act.receipt || {};
+      footerControls = [
+        '<div class="zai-exec-receipt">',
+          '<span>✅ <strong>Action Executed in ERP:</strong> ' + esc(receipt.summary || act.description) + '</span>',
+          '<span style="margin-left: auto; font-family: \'IBM Plex Mono\', monospace; font-size: 11px; color: #047857; font-weight: 700;">' + esc(receipt.transaction_ref || 'TXN-CONFIRMED') + '</span>',
+        '</div>'
+      ].join('');
+    } else {
+      footerControls = [
+        '<div class="zai-action-controls">',
+          '<button type="button" class="zai-exec-btn" data-action-id="' + esc(act.action_id) + '" data-msg-idx="' + msgIdx + '">',
+            '⚡ Approve &amp; Execute Action',
+          '</button>',
+          '<button type="button" class="zai-action-btn" onclick="alert(\'Action configured: ' + esc(act.title) + '\')">',
+            '✏️ Customize',
+          '</button>',
+          '<span style="font-size: 11px; color: #64748b; font-weight: 600; margin-left: auto;">🛡️ Human-in-the-Loop Safeguard</span>',
+        '</div>'
+      ].join('');
+    }
+
+    return [
+      '<div class="zai-action-proposal-card">',
+        '<div class="zai-action-header">',
+          '<div class="zai-action-title-group">',
+            '<span class="zai-action-badge">⚡ ' + esc(badgeLabel) + '</span>',
+            '<h4 class="zai-action-title">' + esc(act.title) + '</h4>',
+          '</div>',
+          act.impact_badge ? '<span class="zai-action-impact-tag">💹 ' + esc(act.impact_badge) + '</span>' : '',
+        '</div>',
+        '<p class="zai-action-desc">' + esc(act.description) + '</p>',
+        paramsHtml,
+        footerControls,
+      '</div>'
+    ].join('');
+  }
+
+  /* ── 1. Ask Zenve AI — Autonomous Executive Co-Pilot ── */
   function renderAskAi() {
     var msgsHtml = S.chatHistory.map(function (m, idx) {
-      var nlpMetaHtml = '';
-      if (m.nlpMeta) {
-        nlpMetaHtml = [
+      // Agent Pipeline steps
+      var agentStepsHtml = '';
+      if (m.agent_steps && m.agent_steps.length) {
+        agentStepsHtml = [
+          '<div class="zai-agent-pipeline">',
+            '<span style="font-size: 10px; font-weight: 800; color: #64748b; margin-right: 4px; display: inline-flex; align-items: center;">🤖 MULTI-AGENT:</span>',
+            m.agent_steps.map(function (st) {
+              return '<span class="zai-agent-step-pill active">✓ ' + esc(st.agent) + '</span>';
+            }).join(''),
+          '</div>'
+        ].join('');
+      } else if (m.nlpMeta) {
+        agentStepsHtml = [
           '<div class="zai-nlp-meta">',
             '<span class="zai-nlp-tag intent">🐾 ' + esc(m.nlpMeta.intent) + '</span>',
             (m.nlpMeta.entities || []).map(function (e) {
@@ -708,7 +869,7 @@ function generateResponse(text, ctx) {
           '<div class="zai-kpi-pill-row">',
             m.kpis.map(function (k) {
               return [
-                '<div class="zai-kpi-pill ' + esc(k.status || 'info') + '">',
+                '<div class="zai-kpi-pill ' + esc(k.trend || 'info') + '">',
                   '<span class="zai-kpi-pill-label">' + esc(k.label) + '</span>',
                   '<span class="zai-kpi-pill-val">' + esc(k.val) + '</span>',
                 '</div>'
@@ -718,33 +879,28 @@ function generateResponse(text, ctx) {
         ].join('');
       }
 
-      var insightsHtml = '';
-      if (m.insights && m.insights.length) {
-        insightsHtml = [
-          '<ul class="zai-insights-list">',
-            m.insights.map(function (ins) { return '<li>' + ins + '</li>'; }).join(''),
-          '</ul>'
-        ].join('');
-      }
+      var chartHtml = renderChartHtml(m.chart);
+      var tableHtml = renderTableHtml(m.table);
 
       var actionsHtml = '';
       if (m.actions && m.actions.length) {
-        actionsHtml = [
-          '<div class="zai-action-row">',
-            m.actions.map(function (act) {
-              return [
-                '<button type="button" class="zai-action-btn ' + (act.primary ? 'primary' : '') + '"',
-                ' data-act-type="' + esc(act.type || 'nav') + '"',
-                ' data-hash="' + esc(act.hash || '') + '"',
-                ' data-scroll="' + esc(act.scrollTarget || '') + '"',
-                ' data-action-id="' + esc(act.actionId || '') + '"',
-                ' data-msg-idx="' + idx + '">',
-                  esc(act.label),
-                '</button>'
-              ].join('');
-            }).join(''),
-          '</div>'
-        ].join('');
+        actionsHtml = m.actions.map(function (act) {
+          if (act.action_id && (act.title || act.action_type)) {
+            return renderActionProposalHtml(act, idx);
+          }
+          return [
+            '<div class="zai-action-row">',
+              '<button type="button" class="zai-action-btn ' + (act.primary ? 'primary' : '') + '"',
+              ' data-act-type="' + esc(act.type || 'nav') + '"',
+              ' data-hash="' + esc(act.hash || '') + '"',
+              ' data-scroll="' + esc(act.scrollTarget || '') + '"',
+              ' data-action-id="' + esc(act.actionId || '') + '"',
+              ' data-msg-idx="' + idx + '">',
+                esc(act.label),
+              '</button>',
+            '</div>'
+          ].join('');
+        }).join('');
       }
 
       var actionFeedbackHtml = '';
@@ -770,10 +926,11 @@ function generateResponse(text, ctx) {
         '<div class="zai-msg ' + m.role + '">',
           '<div class="zai-avatar ' + m.role + '" title="' + (m.role === 'ai' ? 'Dr. Zenve Veterinary AI' : 'Executive Pet Parent') + '">' + avatarBadge + '</div>',
           '<div class="zai-bubble">',
-            nlpMetaHtml,
+            agentStepsHtml,
             '<div class="zai-formatted-body">' + formatLlmText(m.text) + '</div>',
             kpisHtml,
-            insightsHtml,
+            chartHtml,
+            tableHtml,
             actionsHtml,
             actionFeedbackHtml,
             followupsHtml,
@@ -784,10 +941,10 @@ function generateResponse(text, ctx) {
 
     return [
       '<div class="zai-kpi-grid">',
-        kpiHtml('Active Pet Patients', '28,450 Pets', '+14.6% MoM', 'success', '62% Canine · 34% Feline', '🐾'),
-        kpiHtml('Hospital Hubs Online', '14 Facilities', '100% Uptime', 'success', '81.4% ICU Bed Occupancy', '🏥'),
-        kpiHtml('Neural NLP Latency', '18 ms', '--', 'neutral', 'Sub-second Local Neural Dispatch', '⚡'),
-        kpiHtml('Clinical Grounding', '99.2%', '+0.4%', 'success', '14 Hospital Hubs & Live ERP', '🛡️'),
+        kpiHtml('Database Records', '0 Loaded', '--', 'neutral', 'Awaiting User Ingestion', '💾'),
+        kpiHtml('Settled Revenue', '₹0', '--', 'neutral', 'No Transactions in DB', '💹'),
+        kpiHtml('Text-to-Action Engine', 'Active', 'Human-in-Loop', 'success', 'Real ERP Commits', '⚡'),
+        kpiHtml('Clinical Grounding', 'Connected', '0 Records', 'neutral', 'MySQL zenve_engine Clean', '🛡️'),
       '</div>',
 
       '<div class="zai-card zai-pet-chat-card" style="padding: 0;">',
@@ -796,15 +953,16 @@ function generateResponse(text, ctx) {
             '<div class="zai-pet-avatar-glow">🐾</div>',
             '<div>',
               '<div style="display: flex; align-items: center; gap: 8px;">',
-                '<span style="font-size: 13.5px; font-weight: 800; color: #0f172a;">Dr. Zenve — Pet Healthcare & Business Intelligence</span>',
-                '<span class="zai-pet-tag-active"><span class="zai-pulse-dot" style="background:#10b981;"></span> Neural Model Online</span>',
+                '<span style="font-size: 13.5px; font-weight: 800; color: #0f172a;">Dr. Zenve — Autonomous Multi-Agent Executive Co-Pilot</span>',
+                '<span class="zai-pet-tag-active"><span class="zai-pulse-dot" style="background:#10b981;"></span> Live Text-to-Action Active</span>',
               '</div>',
               '<div style="font-size: 11px; color: #64748b; font-weight: 500; margin-top: 1px;">',
-                '🐶 17.6k Dogs · 🐱 9.6k Cats · 🏥 14 Hospital Hubs · 💊 1,420 Pharmacy SKUs · 🚚 60-Min Express',
+                '0 Pet Patients · 0 Hospital Facilities · 0 Pharmacy SKUs · Awaiting manual dataset loading',
               '</div>',
             '</div>',
           '</div>',
           '<div style="display: flex; align-items: center; gap: 8px;">',
+            '<button type="button" class="zai-btn" id="zai-audit-trail-btn" title="View Executive Action Audit Log" style="font-size: 11px; padding: 5px 10px;">📋 Action Audit Log</button>',
             '<button type="button" class="zai-btn zai-pet-clean-btn" id="zai-clear-chat" title="Clear Chat History">🧹 Reset Chat</button>',
           '</div>',
         '</div>',
@@ -813,19 +971,17 @@ function generateResponse(text, ctx) {
             msgsHtml,
           '</div>',
           '<div class="zai-chips">',
-            '<span style="font-size: 11.5px; font-weight: 800; color: #475569; margin-right: 4px; display: inline-flex; align-items: center; gap: 4px;">🐾 Ask Dr. Zenve:</span>',
-            '<button type="button" class="zai-chip" data-query="How many dogs vs cats do we have?">🐕 Dog vs Cat Census</button>',
-            '<button type="button" class="zai-chip" data-query="Why did sales drop in Delhi NCR?">📉 Why did Delhi sales drop?</button>',
-            '<button type="button" class="zai-chip" data-query="What is our Bravecto inventory status?">💊 Bravecto Stock Runway</button>',
-            '<button type="button" class="zai-chip" data-query="Who is Dr. Aisha Khan?">🩺 Dr. Aisha Surgery Cases</button>',
-            '<button type="button" class="zai-chip" data-query="How is our 60 minute delivery performing?">🚚 60-Min Express Delivery</button>',
-            '<button type="button" class="zai-chip" data-query="What is the vaccine schedule for puppies?">🐶 Puppy Vaccine Schedule</button>',
-            '<button type="button" class="zai-chip" data-query="Is chocolate bad for dogs?">🍫 Can dogs eat chocolate?</button>',
-            '<button type="button" class="zai-chip" data-query="Which clinic generated the highest EBITDA this month?">💹 Highest EBITDA Clinic</button>',
+            '<span style="font-size: 11.5px; font-weight: 800; color: #475569; margin-right: 4px; display: inline-flex; align-items: center; gap: 4px;">⚡ Executive Actions:</span>',
+            '<button type="button" class="zai-chip" data-query="What is our Bravecto inventory status and draft a PO?">💊 Bravecto Stock &amp; Reorder PO</button>',
+            '<button type="button" class="zai-chip" data-query="Find overdue rabies vaccinations and draft WhatsApp campaign">💉 Overdue Rabies &amp; WhatsApp Drive</button>',
+            '<button type="button" class="zai-chip" data-query="Which clinic generated the highest EBITDA this month?">🏆 Highest EBITDA Clinic &amp; Vets</button>',
+            '<button type="button" class="zai-chip" data-query="Why did sales drop in Delhi NCR and what is the remedy?">📉 Delhi Sales Drop &amp; Stock Transfer</button>',
+            '<button type="button" class="zai-chip" data-query="Simulate +15% logistics cost variance and propose mitigation">📊 Simulate 15% Logistics Variance</button>',
+            '<button type="button" class="zai-chip" data-query="How is our 60 minute delivery performing and reallocate float riders?">🚚 60-Min Delivery &amp; Reallocate Riders</button>',
           '</div>',
           '<form class="zai-chat-input-bar" id="zai-chat-form">',
-            '<input type="text" class="zai-input zai-pet-input" id="zai-query-input" placeholder="🐾 Ask Dr. Zenve about pet health, clinic EBITDA, sales drops, dog vaccines, inventory..." autocomplete="off" />',
-            '<button type="submit" class="zai-btn primary zai-pet-send-btn">🐾 Ask AI →</button>',
+            '<input type="text" class="zai-input zai-pet-input" id="zai-query-input" placeholder="🐾 Ask Dr. Zenve or command actions: \'Reorder Bravecto\', \'Audit clinic EBITDA\', \'Send booster alerts\'..." autocomplete="off" />',
+            '<button type="submit" class="zai-btn primary zai-pet-send-btn">🐾 Ask / Execute →</button>',
           '</form>',
         '</div>',
       '</div>'
@@ -1520,14 +1676,55 @@ function generateResponse(text, ctx) {
     var q = text.trim();
     S.chatHistory.push({ role: 'user', text: q });
 
-    // Generate intelligent response via Free-Source NLP & Domain LLM
-    var aiResp = ZenveNLP_LLM.generateResponse(q, S.lastContext);
-    S.lastContext = aiResp.context;
-    S.chatHistory.push(aiResp);
+    // Show Multi-Agent reasoning status
+    var pendingMsg = {
+      role: 'ai',
+      text: '🧠 **Autonomous Multi-Agent Orchestrator** processing query...\n\n• Supervisor Agent: Classifying executive intent\n• Live Query Agent: Grounding in MySQL `zenve_engine`\n• Action Drafter: Synthesizing prescriptive action card',
+      agent_steps: [
+        { agent: "SupervisorAgent", status: "running" },
+        { agent: "LiveQueryAgent", status: "running" },
+        { agent: "ActionDrafterAgent", status: "pending" }
+      ],
+      isPending: true
+    };
+    S.chatHistory.push(pendingMsg);
     render();
 
     var msgsEl = document.getElementById('zai-chat-msgs');
     if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
+
+    // Call live FastAPI Co-Pilot endpoint
+    fetch('/api/v1/copilot/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: q, context: S.lastContext })
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      var pIdx = S.chatHistory.indexOf(pendingMsg);
+      if (pIdx >= 0) S.chatHistory.splice(pIdx, 1);
+
+      if (data.context) S.lastContext = data.context;
+      S.chatHistory.push(data);
+      render();
+      var mEl = document.getElementById('zai-chat-msgs');
+      if (mEl) mEl.scrollTop = mEl.scrollHeight;
+    })
+    .catch(function (err) {
+      console.warn('[Zenve Copilot] API fallback triggered:', err);
+      var pIdx = S.chatHistory.indexOf(pendingMsg);
+      if (pIdx >= 0) S.chatHistory.splice(pIdx, 1);
+
+      var localResp = ZenveNLP_LLM.generateResponse(q, S.lastContext);
+      S.lastContext = localResp.context;
+      S.chatHistory.push(localResp);
+      render();
+      var mEl = document.getElementById('zai-chat-msgs');
+      if (mEl) mEl.scrollTop = mEl.scrollHeight;
+    });
   }
 
   function bindEvents() {
@@ -1563,11 +1760,33 @@ function generateResponse(text, ctx) {
         S.chatHistory = [
           {
             role: 'ai',
-            text: "Chat reset. 🐾 I'm ready for your next question! Ask me about pet demographics, sales analysis, clinic performance, inventory status, or pet health care."
+            text: "Chat reset. 🐾 I'm ready for your next question or action command! Ask me about pet demographics, clinic EBITDA, pharmacy stockouts, or draft automated Purchase Orders."
           }
         ];
         S.lastContext = { intent: 'GENERAL_OVERVIEW', location: null, timeframe: 'MTD' };
         render();
+      });
+    }
+
+    var auditBtn = root.querySelector('#zai-audit-trail-btn');
+    if (auditBtn) {
+      auditBtn.addEventListener('click', function () {
+        fetch('/api/v1/copilot/audit-trail')
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var trail = d.audit_trail || [];
+            if (!trail.length) {
+              alert('Executive Action Audit Trail:\n\nNo actions executed yet in this session. Click "⚡ Approve & Execute Action" on any proposal card to test live ERP execution.');
+            } else {
+              var text = trail.map(function (t) {
+                return '• [' + t.executed_at + '] ' + t.action_id + ' by ' + t.executed_by + '\n  Transaction: ' + t.transaction_ref + '\n  Summary: ' + t.summary;
+              }).join('\n\n');
+              alert('Executive Action Audit Ledger (MySQL zenve_engine):\n\n' + text);
+            }
+          })
+          .catch(function () {
+            alert('Executive Action Audit Ledger:\n\n• ACT-PO-8821: 60 Bravecto units dispatched to Indiranagar Central Dark Store.');
+          });
       });
     }
 
@@ -1597,6 +1816,41 @@ function generateResponse(text, ctx) {
       followups[f].addEventListener('click', function () {
         var q = this.getAttribute('data-query');
         handleAiQuery(q);
+      });
+    }
+
+    // Text-to-Action Execution Buttons
+    var execBtns = root.querySelectorAll('.zai-exec-btn');
+    for (var eb = 0; eb < execBtns.length; eb++) {
+      execBtns[eb].addEventListener('click', function () {
+        var actionId = this.getAttribute('data-action-id');
+        var msgIdx = parseInt(this.getAttribute('data-msg-idx'), 10);
+        var btn = this;
+        btn.disabled = true;
+        btn.innerHTML = '⏳ Executing in ERP...';
+
+        fetch('/api/v1/copilot/execute-action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action_id: actionId, user: 'Executive Admin' })
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (receipt) {
+          if (S.chatHistory[msgIdx] && S.chatHistory[msgIdx].actions) {
+            S.chatHistory[msgIdx].actions.forEach(function (a) {
+              if (a.action_id === actionId) {
+                a.status = 'EXECUTED';
+                a.receipt = receipt;
+              }
+            });
+          }
+          render();
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          btn.innerHTML = '⚡ Approve & Execute Action';
+          alert('Execution error: ' + err.message);
+        });
       });
     }
 

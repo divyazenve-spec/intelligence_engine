@@ -967,13 +967,16 @@ def get_system_health(db: Session = Depends(get_db)):
 
 @router.post("/system-health/ping")
 def ping_system_service(service_name: str = Query(...), db: Session = Depends(get_db)):
+    import time as _time
+    t0 = _time.monotonic()
     srv = db.query(SystemHealth).filter(SystemHealth.service_name.ilike(f"%{service_name}%")).first()
+    elapsed_ms = round((_time.monotonic() - t0) * 1000)
     if srv:
         srv.last_checked = datetime.utcnow()
-        srv.latency_ms = random.randint(2, 28)
+        srv.latency_ms = elapsed_ms
         db.commit()
         return {"success": True, "service": to_dict(srv), "ping_ms": srv.latency_ms}
-    return {"success": True, "ping_ms": random.randint(2, 20), "status": "Healthy"}
+    return {"success": True, "ping_ms": elapsed_ms, "status": "Healthy"}
 
 
 @router.get("/system-health/db-stats")

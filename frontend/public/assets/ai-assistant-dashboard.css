@@ -969,3 +969,290 @@ body.zai-locked {
   background: #f8fafc;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   Autonomous Multi-Agent Executive Co-Pilot (Text-to-Action) Styles
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Agent Pipeline Progress */
+.zai-agent-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.zai-agent-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #334155;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.zai-agent-step-pill.active {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #047857;
+}
+
+/* Dynamic In-Chat Chart */
+.zai-chart-card {
+  margin: 14px 0;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.zai-chart-title {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zai-chart-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 9px;
+  gap: 12px;
+  font-size: 11.5px;
+}
+
+.zai-chart-bar-label {
+  width: 140px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zai-chart-bar-track {
+  flex: 1;
+  height: 20px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.zai-chart-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* In-Chat Data Table */
+.zai-chat-table-wrap {
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+  background: #ffffff;
+}
+
+.zai-chat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.zai-chat-table th {
+  background: #f8fafc;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.zai-chat-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+}
+
+/* Executive Text-to-Action Proposal Card */
+.zai-action-proposal-card {
+  margin: 16px 0 10px 0;
+  border-radius: 12px;
+  border: 1.5px solid #10b981;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 60%);
+  padding: 16px 18px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  position: relative;
+  animation: zaiCardPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zaiCardPop {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.zai-action-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.zai-action-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.zai-action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: #10b981;
+  color: #ffffff;
+}
+
+.zai-action-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  color: #064e3b;
+  font-family: 'Sora', sans-serif;
+}
+
+.zai-action-impact-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #dcfce7;
+  color: #047857;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid #86efac;
+}
+
+.zai-action-desc {
+  margin: 8px 0 12px 0;
+  font-size: 12.5px;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.zai-action-params-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.zai-action-param-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.zai-action-param-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zai-action-param-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.zai-action-param-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zai-action-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zai-exec-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
+  transition: all 0.15s ease;
+  font-family: 'Manrope', sans-serif;
+}
+
+.zai-exec-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.zai-exec-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.zai-exec-receipt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  border: 1.5px solid #10b981;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
