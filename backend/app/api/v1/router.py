@@ -26,6 +26,11 @@ router.add_api_route("/ai/brief", chat.ai_brief, methods=["GET", "POST"], tags=[
 router.add_api_route("/ai/recommendations", chat.ai_recommendations, methods=["GET", "POST"], tags=["ai"])
 router.add_api_route("/ai/recommendations/execute", chat.execute_recommendation, methods=["POST"], tags=["ai"])
 
+# Revenue Intelligence
+router.add_api_route("/revenue/intelligence", chat.revenue_intelligence, methods=["GET", "POST"], tags=["revenue"])
+router.add_api_route("/revenue/simulate", chat.revenue_simulate, methods=["POST"], tags=["revenue"])
+router.add_api_route("/revenue/safeguards/apply", chat.revenue_apply_safeguard, methods=["POST"], tags=["revenue"])
+
 # Inventory
 router.add_api_route("/inventory", inventory.load_inventory, methods=["GET", "POST"], tags=["inventory"])
 router.add_api_route("/inventory/save", inventory.save_inventory, methods=["POST"], tags=["inventory"])
