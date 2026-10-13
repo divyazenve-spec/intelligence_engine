@@ -203,14 +203,15 @@
 
 /* ── Horizontal Navigation Chip Bar ───────────────────────────────── */
 .zhr-chip-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 32px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  overflow-x: auto;
-  scrollbar-width: none;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
 }
 
 .zhr-chip-bar::-webkit-scrollbar {

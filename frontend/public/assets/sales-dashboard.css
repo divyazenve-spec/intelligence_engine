@@ -142,7 +142,17 @@
 .zsd-notice-banner.error{background:color-mix(in oklab,var(--destructive) 14%,transparent);color:var(--destructive);border:1px solid color-mix(in oklab,var(--destructive) 35%,transparent)}
 
 /* Multi-Dashboard Navigation Tabs */
-.zsd-tabs-bar{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:8px 0 12px;border-bottom:1px solid var(--border);margin-bottom:14px;scrollbar-width:none}
+.zsd-tabs-bar {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
 .zsd-tabs-bar::-webkit-scrollbar{display:none}
 .zsd-tab{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted-foreground);font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .15s ease}
 .zsd-tab:hover{background:var(--accent);color:var(--foreground)}

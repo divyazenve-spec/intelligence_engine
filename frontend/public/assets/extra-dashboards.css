@@ -261,3 +261,43 @@ button[onclick*="ZenvePetsDashboard.close()"] {
   display: none !important;
 }
 
+
+
+/* ===================================================================
+   Universal Hide: Sub-navigation tab/chip bars across ALL dashboards
+   =================================================================== */
+.zsd-tabs-bar,
+.zod-tabs-bar,
+.zpid-tabs-bar,
+.zph-tabs-bar,
+.zch-tabs-bar,
+.zfa-tabs-bar,
+.zvp-tabs-bar,
+.zfsh-tabs-bar,
+.zb2b-tabs-bar,
+.zix-tabs-bar,
+.zsub-tabs-bar,
+.zdoc-tabs-bar,
+.zc360-tabs-bar,
+.zexec-tabs-bar,
+.zaud-tabs-bar,
+.zsys-tabs-bar,
+.zai-tabs-bar,
+.zalt-subnav-bar,
+.zhr-chip-bar,
+.zlog-nav-bar,
+.zmkt-nav-bar,
+.zpet-nav-bar,
+.zrep-nav-ribbon,
+.zset-subnav-bar,
+.zvs-nav-bar {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}

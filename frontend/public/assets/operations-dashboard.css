@@ -216,17 +216,15 @@
 
 /* ── Sticky Sub-Navbar: Navigation Tabs ───────────────────────────── */
 .zod-tabs-bar {
-  position: sticky;
-  top: 63px;
-  z-index: 15;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 28px;
-  background: color-mix(in oklab, var(--background, #090d16) 94%, transparent);
-  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.07));
-  overflow-x: auto;
-  scrollbar-width: none;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
 }
 .zod-tabs-bar::-webkit-scrollbar {
   display: none;

@@ -214,18 +214,15 @@
 
 /* ── Chip Navigation Bar ──────────────────────────────────────────── */
 .zmkt-nav-bar {
-  position: sticky;
-  top: 67px;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 32px;
-  background: #ffffff !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
 }
 
 .zmkt-nav-bar::-webkit-scrollbar {

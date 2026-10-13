@@ -173,15 +173,15 @@ body.zexec-locked {
 
 /* Tabs Bar */
 .zexec-tabs-bar {
-  display: flex !important;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 28px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  overflow-x: auto;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
 }
 
 .zexec-tab {
