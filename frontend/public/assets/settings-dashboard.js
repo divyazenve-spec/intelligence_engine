@@ -43,6 +43,44 @@
     { id: 'backup', label: 'Backup & Recovery', group: 'Security & DevOps', icon: '💾', hash: '#backup-recovery' }
   ];
 
+  /* ── Configured Role & Permission Presets ────────────────────────── */
+  var DEFAULT_ROLES = [
+    { name: 'Super Administrator', desc: 'Full root access to all system configurations and clinical logs', users: 3 },
+    { name: 'Clinical Director & CMO', desc: 'Medical governance, prescription approval, surgical scheduling, clinical audits', users: 2 },
+    { name: 'Senior Veterinarian', desc: 'Patient diagnosis, prescriptions, teleconsultations, medical records', users: 18 },
+    { name: 'Operations & Dispatch Lead', desc: 'Order fulfillment, rider assignment, 60-min delivery SLAs, inventory transfers', users: 12 },
+    { name: 'Head Pharmacist', desc: 'Schedule-X drug dispensing, batch tracking, expiry audits, stock entry', users: 6 },
+    { name: 'Financial Auditor', desc: 'Tax computation, P&L reporting, refunds, ledger reconciliation, payout approvals', users: 4 }
+  ];
+
+  var DEFAULT_PERMISSIONS = [
+    { module: 'Clinical Patient Records (EHR)', view: true, create: true, edit: true, del: false, exp: true, app: true },
+    { module: 'Veterinary Prescriptions (Rx)', view: true, create: true, edit: true, del: false, exp: true, app: true },
+    { module: 'Orders & 60-Min Delivery Command', view: true, create: true, edit: true, del: false, exp: true, app: true },
+    { module: 'Cold-Chain Pharmacy & Batch Inventory', view: true, create: true, edit: true, del: false, exp: true, app: true },
+    { module: 'Financial Ledgers & Tax Reports', view: true, create: false, edit: false, del: false, exp: true, app: true },
+    { module: 'User Management & Security Access', view: true, create: true, edit: true, del: true, exp: true, app: true },
+    { module: 'System API & Webhook Configuration', view: true, create: true, edit: true, del: false, exp: true, app: true }
+  ];
+
+  function mergePermissions(savedList) {
+    if (!Array.isArray(savedList)) return;
+    DEFAULT_PERMISSIONS.forEach(function (def, i) {
+      var match = savedList.find(function (item) { return item && item.module === def.module; });
+      if (match) {
+        S.permissions[i] = {
+          module: def.module,
+          view: !!match.view,
+          create: !!match.create,
+          edit: !!match.edit,
+          del: !!match.del,
+          exp: !!match.exp,
+          app: !!match.app
+        };
+      }
+    });
+  }
+
   /* ── In-Memory Settings State ────────────────────────────────────── */
   var S = {
     open: false,
@@ -67,16 +105,8 @@
     units: [],
     locations: [],
     users: [],
-    roles: [],
-    permissions: [
-      { module: 'Clinical Patient Records (EHR)', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'Veterinary Prescriptions (Rx)', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'Orders & 60-Min Delivery Command', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'Cold-Chain Pharmacy & Batch Inventory', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'Financial Ledgers & Tax Reports', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'User Management & Security Access', view: false, create: false, edit: false, del: false, exp: false, app: false },
-      { module: 'System API & Webhook Configuration', view: false, create: false, edit: false, del: false, exp: false, app: false }
-    ],
+    roles: DEFAULT_ROLES.slice(),
+    permissions: JSON.parse(JSON.stringify(DEFAULT_PERMISSIONS)),
     workflows: [],
     pendingApprovals: [],
     notifications: {
@@ -542,9 +572,12 @@
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header">',
-          '<h4 class="zset-card-title">📋 Granular Privilege Governance Matrix</h4>',
-          '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">Custom</span>',
+        '<div class="zset-card-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">',
+          '<div style="display:flex;align-items:center;gap:10px;">',
+            '<h4 class="zset-card-title">📋 Granular Privilege Governance Matrix</h4>',
+            '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">Custom</span>',
+          '</div>',
+          '<button type="button" class="zset-btn zset-btn-primary" id="btn-save-permissions" style="padding:6px 14px;font-size:12px;font-weight:600;"><span>💾</span> Save Changes</button>',
         '</div>',
         '<div class="zset-table-wrap">',
           '<div class="zset-perm-row" style="background:#141d30;font-weight:700;color:#94a3b8;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;border-color:rgba(255,255,255,0.08);margin-bottom:8px;">' +
@@ -1028,6 +1061,85 @@
     ].join('');
   }
 
+  function syncPermissionsFromDom() {
+    if (!root) return;
+    root.querySelectorAll('input[data-p-idx][data-p-field]').forEach(function (cb) {
+      var idx = parseInt(cb.getAttribute('data-p-idx'), 10);
+      var field = cb.getAttribute('data-p-field');
+      if (S.permissions[idx] && field) {
+        S.permissions[idx][field] = cb.checked;
+      }
+    });
+  }
+
+  function saveAllChanges() {
+    var saveBtn = root ? root.querySelector('#zset-save-all-btn') : null;
+    var savePermBtn = root ? root.querySelector('#btn-save-permissions') : null;
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving to MySQL...';
+    }
+    if (savePermBtn) {
+      savePermBtn.disabled = true;
+      savePermBtn.textContent = 'Saving...';
+    }
+
+    // Capture latest checkbox values directly from active DOM
+    syncPermissionsFromDom();
+
+    // Cache to localStorage for instant client-side retention
+    try {
+      localStorage.setItem('zenve_rbac_permissions', JSON.stringify(S.permissions));
+    } catch (e) {}
+
+    var updates = [];
+
+    // Always include rbac_permissions so matrix settings are permanently saved to MySQL
+    updates.push({
+      setting_key: 'rbac_permissions',
+      setting_value: JSON.stringify(S.permissions)
+    });
+
+    var nameInput = root ? root.querySelector('#inp-comp-name') : null;
+    var brandInput = root ? root.querySelector('#inp-comp-brand') : null;
+    var addrInput = root ? root.querySelector('#inp-comp-addr') : null;
+
+    if (nameInput) updates.push({ setting_key: 'company_name', setting_value: nameInput.value });
+    if (brandInput) updates.push({ setting_key: 'brand_name', setting_value: brandInput.value });
+    if (addrInput) updates.push({ setting_key: 'hq_address', setting_value: addrInput.value });
+
+    var promises = updates.map(function (u) {
+      return fetch('/api/v1/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(u)
+      });
+    });
+
+    Promise.all(promises).then(function () {
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>💾</span> Save Changes';
+      }
+      if (savePermBtn) {
+        savePermBtn.disabled = false;
+        savePermBtn.innerHTML = '<span>💾</span> Save Changes';
+      }
+      showToast('✓ Roles & permissions governance matrix saved successfully!');
+      loadLiveSettings();
+    }).catch(function (err) {
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>💾</span> Save Changes';
+      }
+      if (savePermBtn) {
+        savePermBtn.disabled = false;
+        savePermBtn.innerHTML = '<span>💾</span> Save Changes';
+      }
+      showToast('Saved locally. Backend response: ' + err.message);
+    });
+  }
+
   /* ── DOM Event Wiring ────────────────────────────────────────────── */
   function wireEvents() {
     if (!root) return;
@@ -1043,38 +1155,7 @@
     // 2. Top Save All Changes
     var saveBtn = root.querySelector('#zset-save-all-btn');
     if (saveBtn) {
-      saveBtn.onclick = function () {
-        saveBtn.disabled = true;
-        saveBtn.textContent = 'Saving to MySQL...';
-
-        var nameInput = root.querySelector('#inp-comp-name');
-        var brandInput = root.querySelector('#inp-comp-brand');
-        var addrInput = root.querySelector('#inp-comp-addr');
-
-        var updates = [];
-        if (nameInput) updates.push({ setting_key: 'company_name', setting_value: nameInput.value });
-        if (brandInput) updates.push({ setting_key: 'brand_name', setting_value: brandInput.value });
-        if (addrInput) updates.push({ setting_key: 'hq_address', setting_value: addrInput.value });
-
-        var promises = updates.map(function (u) {
-          return fetch('/api/v1/settings', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(u)
-          });
-        });
-
-        Promise.all(promises).then(function () {
-          saveBtn.disabled = false;
-          saveBtn.innerHTML = '<span>💾</span> Save Changes';
-          showToast('✓ Settings updated and stored in MySQL!');
-          loadLiveSettings();
-        }).catch(function (err) {
-          saveBtn.disabled = false;
-          saveBtn.innerHTML = '<span>💾</span> Save Changes';
-          showToast('Failed to save settings: ' + err.message);
-        });
-      };
+      saveBtn.onclick = saveAllChanges;
     }
 
     // 4. Tab Specific Event Handlers
@@ -1082,6 +1163,24 @@
   }
 
   function wireTabSpecificEvents() {
+    // Roles & Permissions matrix checkboxes
+    root.querySelectorAll('input[data-p-idx][data-p-field]').forEach(function (cb) {
+      cb.onchange = function () {
+        var idx = parseInt(cb.getAttribute('data-p-idx'), 10);
+        var field = cb.getAttribute('data-p-field');
+        if (S.permissions[idx] && field) {
+          S.permissions[idx][field] = cb.checked;
+          try {
+            localStorage.setItem('zenve_rbac_permissions', JSON.stringify(S.permissions));
+          } catch (e) {}
+        }
+      };
+    });
+
+    var savePermBtn = root.querySelector('#btn-save-permissions');
+    if (savePermBtn) {
+      savePermBtn.onclick = saveAllChanges;
+    }
     // Search in Locations
     var locSearch = root.querySelector('#inp-loc-search');
     if (locSearch) {
@@ -1334,6 +1433,16 @@
   }
 
   function loadLiveSettings() {
+    // 1. Instant hydration from client-side storage
+    try {
+      var localPerms = localStorage.getItem('zenve_rbac_permissions');
+      if (localPerms) {
+        var parsedLocal = JSON.parse(localPerms);
+        mergePermissions(parsedLocal);
+      }
+    } catch (e) {}
+
+    // 2. Fetch ground-truth settings from MySQL backend
     fetch('/api/v1/settings')
       .then(function (r) { return r.json(); })
       .then(function (data) {
@@ -1345,6 +1454,13 @@
             if (s.setting_key === 'support_phone' && s.setting_value) S.company.supportPhone = s.setting_value;
             if (s.setting_key === 'support_email' && s.setting_value) S.company.email = s.setting_value;
             if (s.setting_key === 'currency_symbol' && s.setting_value) S.company.currency = s.setting_value;
+            if (s.setting_key === 'rbac_permissions' && s.setting_value) {
+              try {
+                var parsed = JSON.parse(s.setting_value);
+                mergePermissions(parsed);
+                try { localStorage.setItem('zenve_rbac_permissions', JSON.stringify(S.permissions)); } catch (e) {}
+              } catch (e) {}
+            }
           });
           if (root && S.open) {
             renderShell();
