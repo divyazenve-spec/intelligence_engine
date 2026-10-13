@@ -943,3 +943,125 @@
   border-radius: 999px;
   transition: width 0.3s ease;
 }
+
+/* ── All Orders Master Ledger View — Padding & Alignments ─────────── */
+.zod-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1279px) {
+  .zod-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .zod-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .zod-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zod-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.zod-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground, #fff);
+}
+
+.zod-card-sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted-foreground, #94a3b8);
+}
+
+.zod-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px 12px;
+}
+
+.zod-input {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  background: var(--card, rgba(255, 255, 255, 0.03));
+  font-size: 12px;
+  color: inherit;
+  outline: none;
+  min-width: 240px;
+  flex: 1;
+  transition: border-color 0.15s ease;
+}
+
+.zod-input:focus {
+  border-color: var(--primary, #0ea5e9);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary, #0ea5e9) 30%, transparent);
+}
+
+.zod-table-wrap {
+  overflow-x: auto;
+  padding: 0 24px 20px;
+}
+
+.zod-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.zod-table th {
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground, #94a3b8);
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.zod-table th:first-child,
+.zod-table td:first-child {
+  padding-left: 16px;
+}
+
+.zod-table th:last-child,
+.zod-table td:last-child {
+  padding-right: 16px;
+}
+
+.zod-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.04));
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.zod-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+

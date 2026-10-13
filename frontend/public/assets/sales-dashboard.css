@@ -269,6 +269,310 @@
 .zsd-strip-emerald{border-top:3px solid #10b981}
 .zsd-strip-purple{border-top:3px solid #8b5cf6}
 
+/* Revenue by Employee Dashboard — Padding & Alignments */
+[data-view="employee"] .zsd-kpis {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 1279px) {
+  [data-view="employee"] .zsd-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  [data-view="employee"] .zsd-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+[data-view="employee"] .zsd-panel {
+  padding: 20px 22px;
+}
+
+[data-view="employee"] .zsd-panel:not(:last-child) {
+  margin-bottom: 16px !important;
+}
+
+[data-view="employee"] .zsd-card-grid {
+  gap: 14px;
+}
+
+[data-view="employee"] .zsd-entity-card {
+  padding: 18px 20px;
+  gap: 12px;
+}
+
+[data-view="employee"] .zsd-card-top {
+  gap: 12px;
+  align-items: center;
+}
+
+[data-view="employee"] .zsd-card-stats {
+  padding: 10px 14px;
+  gap: 10px;
+  align-items: center;
+}
+
+[data-view="employee"] .zsd-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-view="employee"] .zsd-entity-card .zsd-progress {
+  margin-top: -6px;
+}
+
+[data-view="employee"] .zsd-tbl-wrap {
+  margin-top: 4px;
+}
+
+[data-view="employee"] .zsd-tbl th,
+[data-view="employee"] .zsd-tbl td {
+  padding: 10px 14px;
+  vertical-align: middle;
+}
+
+[data-view="employee"] .zsd-tbl th:first-child,
+[data-view="employee"] .zsd-tbl td:first-child {
+  padding-left: 18px;
+  text-align: center;
+  width: 60px;
+}
+
+[data-view="employee"] .zsd-tbl td .zsd-rank-badge {
+  margin: 0 auto;
+}
+
+[data-view="employee"] .zsd-tbl th:last-child,
+[data-view="employee"] .zsd-tbl td:last-child {
+  padding-right: 18px;
+}
+
+/* Revenue by Doctor Dashboard — Padding & Alignments */
+[data-view="doctor"] .zsd-kpis {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 1279px) {
+  [data-view="doctor"] .zsd-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  [data-view="doctor"] .zsd-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+[data-view="doctor"] .zsd-panel {
+  padding: 20px 22px;
+}
+
+[data-view="doctor"] .zsd-panel:not(:last-child) {
+  margin-bottom: 16px !important;
+}
+
+[data-view="doctor"] .zsd-card-grid {
+  gap: 14px;
+}
+
+[data-view="doctor"] .zsd-entity-card {
+  padding: 18px 20px;
+  gap: 12px;
+}
+
+[data-view="doctor"] .zsd-card-top {
+  gap: 12px;
+  align-items: center;
+}
+
+[data-view="doctor"] .zsd-card-stats {
+  padding: 10px 14px;
+  gap: 10px;
+  align-items: center;
+}
+
+[data-view="doctor"] .zsd-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-view="doctor"] .zsd-entity-card .zsd-progress {
+  margin-top: -6px;
+}
+
+[data-view="doctor"] .zsd-tbl-wrap {
+  margin-top: 4px;
+}
+
+[data-view="doctor"] .zsd-tbl th,
+[data-view="doctor"] .zsd-tbl td {
+  padding: 10px 14px;
+  vertical-align: middle;
+}
+
+[data-view="doctor"] .zsd-tbl th:first-child,
+[data-view="doctor"] .zsd-tbl td:first-child {
+  padding-left: 18px;
+  text-align: center;
+  width: 60px;
+}
+
+[data-view="doctor"] .zsd-tbl td .zsd-rank-badge {
+  margin: 0 auto;
+}
+
+[data-view="doctor"] .zsd-tbl th:last-child,
+[data-view="doctor"] .zsd-tbl td:last-child {
+  padding-right: 18px;
+}
+
+/* Revenue by Customer Dashboard — Padding & Alignments */
+[data-view="customer"] .zsd-kpis {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 1279px) {
+  [data-view="customer"] .zsd-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  [data-view="customer"] .zsd-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+[data-view="customer"] .zsd-panel {
+  padding: 20px 22px;
+}
+
+[data-view="customer"] .zsd-panel:not(:last-child) {
+  margin-bottom: 16px !important;
+}
+
+[data-view="customer"] .zsd-card-grid {
+  gap: 14px;
+}
+
+[data-view="customer"] .zsd-entity-card {
+  padding: 18px 20px;
+  gap: 12px;
+}
+
+[data-view="customer"] .zsd-card-top {
+  gap: 12px;
+  align-items: center;
+}
+
+[data-view="customer"] .zsd-card-stats {
+  padding: 10px 14px;
+  gap: 10px;
+  align-items: center;
+}
+
+[data-view="customer"] .zsd-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-view="customer"] .zsd-entity-card .zsd-progress {
+  margin-top: -6px;
+}
+
+[data-view="customer"] .zsd-tbl-wrap {
+  margin-top: 4px;
+}
+
+[data-view="customer"] .zsd-tbl th,
+[data-view="customer"] .zsd-tbl td {
+  padding: 10px 14px;
+  vertical-align: middle;
+}
+
+[data-view="customer"] .zsd-tbl th:first-child,
+[data-view="customer"] .zsd-tbl td:first-child {
+  padding-left: 18px;
+  text-align: center;
+  width: 60px;
+}
+
+[data-view="customer"] .zsd-tbl td .zsd-rank-badge {
+  margin: 0 auto;
+}
+
+[data-view="customer"] .zsd-tbl th:last-child,
+[data-view="customer"] .zsd-tbl td:last-child {
+  padding-right: 18px;
+}
+
+/* Sales Funnel Dashboard — Padding & Alignments */
+[data-view="funnel"] .zsd-hero-banner {
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+[data-view="funnel"] .zsd-kpis {
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+[data-view="funnel"] .zsd-funnel-stages {
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+[data-view="funnel"] .zsd-stage-card {
+  padding: 14px 16px;
+  gap: 8px;
+}
+
+[data-view="funnel"] .zsd-panel {
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+[data-view="funnel"] .zsd-ch-card {
+  padding: 16px 18px;
+  gap: 12px;
+}
+
+[data-view="funnel"] .zsd-ch-stats {
+  padding: 10px 12px;
+  gap: 8px;
+}
+
+[data-view="funnel"] .zsd-tbl-wrap {
+  margin-top: 6px;
+}
+
+[data-view="funnel"] .zsd-tbl th,
+[data-view="funnel"] .zsd-tbl td {
+  padding: 10px 14px;
+  vertical-align: middle;
+}
+
+[data-view="funnel"] .zsd-tbl th:first-child,
+[data-view="funnel"] .zsd-tbl td:first-child {
+  padding-left: 18px;
+}
+
+[data-view="funnel"] .zsd-tbl th:last-child,
+[data-view="funnel"] .zsd-tbl td:last-child {
+  padding-right: 18px;
+}
+
+
+
 
 
 

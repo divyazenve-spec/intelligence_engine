@@ -309,7 +309,7 @@ export default function SalesFunnel() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-        gap: '14px'
+        gap: '16px'
       }}>
         <KpiCard label="Pipeline Inflow Value" value="₹57,09,400" delta="+24.1%" trend="up" subtext="Top-of-funnel value" icon="💼" />
         <KpiCard label="Settled Paid Revenue" value="₹9,48,200" delta="+16.8%" trend="up" subtext="412 paid orders" icon="📈" />
@@ -323,7 +323,7 @@ export default function SalesFunnel() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-        gap: '10px'
+        gap: '12px'
       }}>
         {INITIAL_STAGES.map((st, idx) => {
           const isSelected = selectedStage === st.id;
@@ -565,7 +565,7 @@ export default function SalesFunnel() {
           background: 'var(--card, #1e293b)',
           border: '1px solid var(--border, rgba(255,255,255,0.08))',
           borderRadius: '12px',
-          padding: '20px'
+          padding: '20px 24px'
         }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700 }}>Channel Conversion Matrix</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -604,7 +604,7 @@ export default function SalesFunnel() {
           background: 'var(--card, #1e293b)',
           border: '1px solid var(--border, rgba(255,255,255,0.08))',
           borderRadius: '12px',
-          padding: '20px'
+          padding: '20px 24px'
         }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700 }}>Service Attrition & Bottlenecks</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -631,7 +631,7 @@ export default function SalesFunnel() {
           background: 'var(--card, #1e293b)',
           border: '1px solid var(--border, rgba(255,255,255,0.08))',
           borderRadius: '12px',
-          padding: '20px'
+          padding: '20px 24px'
         }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: 700 }}>Regional City Funnel Velocity</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -659,7 +659,7 @@ export default function SalesFunnel() {
         background: 'var(--card, #1e293b)',
         border: '1px solid var(--border, rgba(255,255,255,0.08))',
         borderRadius: '12px',
-        padding: '20px'
+        padding: '20px 24px'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <div>
@@ -677,27 +677,27 @@ export default function SalesFunnel() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.08))', color: 'var(--muted-foreground, #94a3b8)', fontSize: '11px' }}>
-                <th onClick={() => handleSort('id')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Lead ID {sortConfig.key === 'id' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('date')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Date {sortConfig.key === 'date' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('customer')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Customer & Pet {sortConfig.key === 'customer' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('stage')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Funnel Stage {sortConfig.key === 'stage' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('channel')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Channel {sortConfig.key === 'channel' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('service')} style={{ padding: '8px 12px', cursor: 'pointer' }}>Service {sortConfig.key === 'service' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('city')} style={{ padding: '8px 12px', cursor: 'pointer' }}>City {sortConfig.key === 'city' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('amount')} style={{ padding: '8px 12px', textAlign: 'right', cursor: 'pointer' }}>Amount {sortConfig.key === 'amount' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
-                <th onClick={() => handleSort('status')} style={{ padding: '8px 12px', textAlign: 'right', cursor: 'pointer' }}>Status {sortConfig.key === 'status' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('id')} style={{ padding: '10px 14px 10px 16px', verticalAlign: 'middle', cursor: 'pointer' }}>Lead ID {sortConfig.key === 'id' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('date')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>Date {sortConfig.key === 'date' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('customer')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>Customer & Pet {sortConfig.key === 'customer' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('stage')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>Funnel Stage {sortConfig.key === 'stage' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('channel')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>Channel {sortConfig.key === 'channel' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('service')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>Service {sortConfig.key === 'service' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('city')} style={{ padding: '10px 14px', verticalAlign: 'middle', cursor: 'pointer' }}>City {sortConfig.key === 'city' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('amount')} style={{ padding: '10px 14px', textAlign: 'right', verticalAlign: 'middle', cursor: 'pointer' }}>Amount {sortConfig.key === 'amount' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
+                <th onClick={() => handleSort('status')} style={{ padding: '10px 16px 10px 14px', textAlign: 'right', verticalAlign: 'middle', cursor: 'pointer' }}>Status {sortConfig.key === 'status' ? (sortConfig.dir > 0 ? '▲' : '▼') : ''}</th>
               </tr>
             </thead>
             <tbody>
               {paginatedLeads.map((lead) => (
                 <tr key={lead.id} style={{ borderBottom: '1px solid var(--border, rgba(255,255,255,0.04))' }}>
-                  <td style={{ padding: '12px', fontWeight: 700, fontFamily: 'IBM Plex Mono, monospace', fontSize: '11px' }}>{lead.id}</td>
-                  <td style={{ padding: '12px', fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)' }}>{lead.date}</td>
-                  <td style={{ padding: '12px' }}>
+                  <td style={{ padding: '12px 14px 12px 16px', fontWeight: 700, fontFamily: 'IBM Plex Mono, monospace', fontSize: '11px', verticalAlign: 'middle' }}>{lead.id}</td>
+                  <td style={{ padding: '12px 14px', fontSize: '11px', color: 'var(--muted-foreground, #94a3b8)', verticalAlign: 'middle' }}>{lead.date}</td>
+                  <td style={{ padding: '12px 14px', verticalAlign: 'middle' }}>
                     <div style={{ fontWeight: 600 }}>{lead.customer}</div>
                     <div style={{ fontSize: '10px', color: 'var(--muted-foreground, #94a3b8)' }}>{lead.pet}</div>
                   </td>
-                  <td style={{ padding: '12px' }}>
+                  <td style={{ padding: '12px 14px', verticalAlign: 'middle' }}>
                     <span style={{
                       padding: '2px 8px',
                       borderRadius: '4px',
@@ -707,11 +707,11 @@ export default function SalesFunnel() {
                       fontWeight: 600
                     }}>{lead.stage}</span>
                   </td>
-                  <td style={{ padding: '12px', color: 'var(--muted-foreground, #94a3b8)' }}>{lead.channel}</td>
-                  <td style={{ padding: '12px' }}>{lead.service}</td>
-                  <td style={{ padding: '12px' }}>{lead.city}</td>
-                  <td style={{ padding: '12px', textAlign: 'right', fontWeight: 700, fontFamily: 'IBM Plex Mono, monospace' }}>₹{lead.amount.toLocaleString('en-IN')}</td>
-                  <td style={{ padding: '12px', textAlign: 'right' }}>
+                  <td style={{ padding: '12px 14px', color: 'var(--muted-foreground, #94a3b8)', verticalAlign: 'middle' }}>{lead.channel}</td>
+                  <td style={{ padding: '12px 14px', verticalAlign: 'middle' }}>{lead.service}</td>
+                  <td style={{ padding: '12px 14px', verticalAlign: 'middle' }}>{lead.city}</td>
+                  <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 700, fontFamily: 'IBM Plex Mono, monospace', verticalAlign: 'middle' }}>₹{lead.amount.toLocaleString('en-IN')}</td>
+                  <td style={{ padding: '12px 16px 12px 14px', textAlign: 'right', verticalAlign: 'middle' }}>
                     <span style={{
                       padding: '2px 8px',
                       borderRadius: '99px',
