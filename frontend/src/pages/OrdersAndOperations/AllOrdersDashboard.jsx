@@ -22,7 +22,7 @@ export default function AllOrdersDashboard() {
       icon="📋"
       badge="Master Ledger"
     >
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
         <KpiCard label="Total Master Orders" value="0" delta="0.0% MoM" trend="neutral" subtext="No records recorded" icon="📋" />
         <KpiCard label="Fulfilled & Delivered" value="0" delta="0.0% Rate" trend="neutral" subtext="No records recorded" icon="✅" />
         <KpiCard label="Processing & Active" value="0" delta="0 Active" trend="neutral" subtext="No records recorded" icon="⚡" />
@@ -45,34 +45,34 @@ export default function AllOrdersDashboard() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: '#64748b' }}>
-                <th style={{ padding: '12px 16px', fontWeight: 600 }}>ORDER ID</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600 }}>DATE & TIME</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600 }}>CUSTOMER / ENTITY</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600 }}>CHANNEL / SOURCE</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600 }}>ITEMS & FULFILLMENT</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'right' }}>ORDER AMOUNT</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center' }}>PAYMENT STATUS</th>
-                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center' }}>FULFILLMENT SLA</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, verticalAlign: 'middle' }}>ORDER ID</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, verticalAlign: 'middle' }}>DATE & TIME</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, verticalAlign: 'middle' }}>CUSTOMER / ENTITY</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, verticalAlign: 'middle' }}>CHANNEL / SOURCE</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, verticalAlign: 'middle' }}>ITEMS & FULFILLMENT</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'right', verticalAlign: 'middle' }}>ORDER AMOUNT</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center', verticalAlign: 'middle' }}>PAYMENT STATUS</th>
+                <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center', verticalAlign: 'middle' }}>FULFILLMENT SLA</th>
               </tr>
             </thead>
             <tbody>
               {orders.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ textAlign: 'center', padding: '36px', color: '#94a3b8' }}>
+                  <td colSpan={8} style={{ textAlign: 'center', padding: '36px', color: '#94a3b8', verticalAlign: 'middle' }}>
                     No records found
                   </td>
                 </tr>
               ) : (
                 orders.map((o) => (
                   <tr key={o.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <td style={{ padding: '12px 16px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace' }}>{o.id}</td>
-                    <td style={{ padding: '12px 16px', color: '#64748b' }}>{o.date}</td>
-                    <td style={{ padding: '12px 16px', color: '#0f172a', fontWeight: 600 }}>{o.customer}</td>
-                    <td style={{ padding: '12px 16px', color: '#64748b' }}>{o.channel}</td>
-                    <td style={{ padding: '12px 16px', color: '#475569' }}>{o.items}</td>
-                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 700 }}>{o.amount}</td>
-                    <td style={{ padding: '12px 16px', textAlign: 'center' }}>{o.paymentStatus}</td>
-                    <td style={{ padding: '12px 16px', textAlign: 'center' }}>{o.sla}</td>
+                    <td style={{ padding: '12px 16px', fontWeight: 700, fontFamily: '"IBM Plex Mono", monospace', verticalAlign: 'middle' }}>{o.id}</td>
+                    <td style={{ padding: '12px 16px', color: '#64748b', verticalAlign: 'middle' }}>{o.date}</td>
+                    <td style={{ padding: '12px 16px', color: '#0f172a', fontWeight: 600, verticalAlign: 'middle' }}>{o.customer}</td>
+                    <td style={{ padding: '12px 16px', color: '#64748b', verticalAlign: 'middle' }}>{o.channel}</td>
+                    <td style={{ padding: '12px 16px', color: '#475569', verticalAlign: 'middle' }}>{o.items}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 700, verticalAlign: 'middle' }}>{o.amount}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'center', verticalAlign: 'middle' }}>{o.paymentStatus}</td>
+                    <td style={{ padding: '12px 16px', textAlign: 'center', verticalAlign: 'middle' }}>{o.sla}</td>
                   </tr>
                 ))
               )}

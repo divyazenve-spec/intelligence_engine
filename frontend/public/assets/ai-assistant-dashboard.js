@@ -157,102 +157,87 @@
 
 const ZENVE_PET_KNOWLEDGE = {
   overview: {
-    mtdRevenue: '₹184.2 Lakh (₹1.84 Cr)',
-    revenueGrowth: '+14.6% MoM',
-    totalOrders: '14,280 Orders',
-    activePets: '28,450 Registered Pets',
-    ebitda: '₹38.2 Lakh (20.7% Margin)',
-    hubsCount: 14,
-    sla: '97.6% (42.8 Min Avg)'
+    mtdRevenue: '₹0',
+    revenueGrowth: '0% MoM',
+    totalOrders: '0 Orders',
+    activePets: '0 Registered Pets',
+    ebitda: '₹0 (0% Margin)',
+    hubsCount: 0,
+    sla: '0% (0 Min Avg)'
   },
   species: {
-    total: 28450,
-    dogs: { count: 17639, pct: '62.0%', topBreeds: 'Labrador (24%), Golden Retriever (18%), Indie/Desi (16%), Shih Tzu (12%), German Shepherd (10%), Beagle (8%)' },
-    cats: { count: 9673, pct: '34.0%', topBreeds: 'Persian (38%), Indie Domestic Shorthair (34%), Siamese (14%), British Shorthair (8%)' },
-    exotics: { count: 1138, pct: '4.0%', types: 'Parakeets, Cockatiels, Rabbits, Guinea Pigs, Turtles' }
+    total: 0,
+    dogs: { count: 0, pct: '0.0%', topBreeds: '0' },
+    cats: { count: 0, pct: '0.0%', topBreeds: '0' },
+    exotics: { count: 0, pct: '0.0%', types: '0' }
   },
   salesDrop: {
     'Delhi NCR': {
-      dropAmt: '₹18.4 Lakh',
-      dropPct: '14.2%',
-      orders: '1,420 Orders',
-      reason: 'Temporary stockout of Bravecto chewables and Royal Canin Renal Diet at Central Gurgaon Hub, combined with severe afternoon heatwave reducing walk-in consultations by 28%',
-      remedy: 'Dispatched emergency stock PO-8821 (60 units) from Central Hub and extended evening clinic consulting hours (5 PM – 10 PM) with complimentary pet hydration triage'
+      dropAmt: '₹0',
+      dropPct: '0%',
+      orders: '0 Orders',
+      reason: 'No sales drop recorded.',
+      remedy: 'No action required.'
     },
     'Mumbai': {
-      dropAmt: '₹9.2 Lakh',
-      dropPct: '7.8%',
-      orders: '860 Orders',
-      reason: 'Heavy monsoon waterlogging causing 60-min delivery delays in Bandra West and Andheri East',
-      remedy: 'Deployed waterproof all-weather e-bike rider fleet and redistributed routes to Powai Micro-Hub'
+      dropAmt: '₹0',
+      dropPct: '0%',
+      orders: '0 Orders',
+      reason: 'No sales drop recorded.',
+      remedy: 'No action required.'
     },
     'Bengaluru': {
-      dropAmt: '₹0 (Growing)',
-      dropPct: '+18.4%',
-      orders: '4,120 Orders',
-      reason: 'Strong performance across Indiranagar Flagship and Koramangala 24/7 Trauma Hub',
-      remedy: 'Maintain inventory buffers and scale surgical slot capacities'
+      dropAmt: '₹0',
+      dropPct: '0%',
+      orders: '0 Orders',
+      reason: 'No sales drop recorded.',
+      remedy: 'No action required.'
     },
     'Chennai': {
-      dropAmt: '₹6.8 Lakh',
-      dropPct: '9.4%',
-      orders: '580 Orders',
-      reason: 'Supply chain delay from interstate transit combined with lower foot traffic due to local festival holidays',
-      remedy: 'Pre-positioned buffer stock at Adyar micro-hub and launched doorstep vaccination campaign to recover walk-in volume'
+      dropAmt: '₹0',
+      dropPct: '0%',
+      orders: '0 Orders',
+      reason: 'No sales drop recorded.',
+      remedy: 'No action required.'
     }
   },
   clinics: {
-    count: 14,
-    hubs: [
-      { name: 'Indiranagar Flagship', city: 'Bengaluru', ebitda: '₹16.4L (26.2%)', beds: '12 ICU / 24 General', lead: 'Dr. Aisha Khan' },
-      { name: 'Koramangala 24/7 Trauma Hub', city: 'Bengaluru', ebitda: '₹12.8L (23.4%)', beds: '16 ICU / 30 General', lead: 'Dr. Rajesh Nair' },
-      { name: 'Whitefield Multi-Specialty', city: 'Bengaluru', ebitda: '₹9.6L (21.0%)', beds: '8 ICU / 18 General', lead: 'Dr. Priya Sharma' },
-      { name: 'Bandra West Advanced Care', city: 'Mumbai', ebitda: '₹14.2L (24.8%)', beds: '10 ICU / 20 General', lead: 'Dr. Rohan Verma' },
-      { name: 'Gurgaon Cyber City Center', city: 'Delhi NCR', ebitda: '₹11.5L (19.8%)', beds: '10 ICU / 22 General', lead: 'Dr. Ananya Sen' }
-    ],
-    icuOccupancy: '81.4%',
-    surgicalSuccessRate: '99.4%'
+    count: 0,
+    hubs: [],
+    icuOccupancy: '0%',
+    surgicalSuccessRate: '0%'
   },
-  doctors: [
-    { name: 'Dr. Aisha Khan', title: 'Chief Veterinary Surgeon', specialty: 'Orthopedics & Soft Tissue Surgery', hub: 'Indiranagar Flagship', stats: '22 Surgeries/Wk · 99.6% Recovery Rate' },
-    { name: 'Dr. Rajesh Nair', title: 'Senior Trauma Specialist', specialty: 'Spinal Decompression & TPLO', hub: 'Koramangala 24/7 Trauma Hub', stats: '18 Complex Surgeries/Wk · 99.2% Recovery Rate' },
-    { name: 'Dr. Priya Sharma', title: 'Lead Feline Medicine Specialist', specialty: 'Feline Internal Medicine & Nephrology', hub: 'Whitefield Multi-Specialty', stats: '48 Consults/Wk · 98.9% Client Rating' },
-    { name: 'Dr. Rohan Verma', title: 'Head of Emergency & Critical Care', specialty: 'Triage & ICU Resuscitation', hub: 'Bandra West (Mumbai)', stats: '36 Emergency Cases/Wk · 97.8% Stabilization Rate' },
-    { name: 'Dr. Ananya Sen', title: 'Consultant Dermatologist', specialty: 'Allergy Desensitization & Cytopoint Therapy', hub: 'Gurgaon Cyber City', stats: '42 Consults/Wk · 99.1% Client Rating' }
-  ],
+  doctors: [],
   pharmacy: {
-    valuation: '₹1.48 Crore (1,420 Active SKUs)',
+    valuation: '₹0',
     topMeds: [
-      { name: 'Bravecto Chewables (Fluralaner)', status: 'CRITICAL', runway: '18 Days', reorder: '600 Units Needed', use: '12-Week Tick & Flea Prevention' },
-      { name: 'NexGard Spectra', status: 'HEALTHY', runway: '34 Days', reorder: 'Optimal', use: 'Monthly Tick, Flea & Heartworm Protection' },
-      { name: 'Royal Canin Renal Diet', status: 'WARNING', runway: '14 Days', reorder: '450 Bags Needed', use: 'Feline & Canine Kidney Support' },
-      { name: 'Apoquel 16mg Tablets', status: 'HEALTHY', runway: '42 Days', reorder: 'Optimal', use: 'Atopic Dermatitis & Allergy Relief' },
-      { name: 'Synulox Palatable Drops', status: 'HEALTHY', runway: '38 Days', reorder: 'Optimal', use: 'Broad-Spectrum Antibiotic for Pets' },
-      { name: 'Vetmedin 5mg (Pimobendan)', status: 'HEALTHY', runway: '29 Days', reorder: 'Optimal', use: 'Congestive Heart Failure in Dogs' }
+      { name: 'No inventory data', status: 'NONE', runway: '0 Days', reorder: '0 Units', use: 'No data' },
+      { name: 'No inventory data', status: 'NONE', runway: '0 Days', reorder: '0 Units', use: 'No data' },
+      { name: 'No inventory data', status: 'NONE', runway: '0 Days', reorder: '0 Units', use: 'No data' }
     ],
-    coldChainCompliance: '100% IoT Monitored (2°C – 8°C Temperature Range)',
-    expiryRisk: '14 Batches (<90 Days Expiry, ₹1.82L Value) under FEFO Priority Protocol'
+    coldChainCompliance: '0% Monitored',
+    expiryRisk: '0 batches under review'
   },
   logistics: {
-    sla: '97.6% Express 60-Minute Compliance',
-    avgTime: '42.8 Minutes',
-    costPerOrder: '₹51.4',
-    fleet: '184 Two-Wheeler Riders + 12 Temperature-Controlled Medical Vans',
-    coldChainBags: 'Medical-grade insulated bags with eutectic ice gel packs'
+    sla: '0% Express 60-Minute Compliance',
+    avgTime: '0 Minutes',
+    costPerOrder: '₹0',
+    fleet: '0 Riders + 0 Medical Vans',
+    coldChainBags: 'No active fleet'
   },
   financials: {
-    revenue: '₹184.2 Lakh MTD',
-    ebitda: '₹38.2 Lakh (20.7%)',
-    grossMargins: 'Clinical Procedures 62.8% · Pharmacy 44.2% · Nutrition 31.4% · Grooming 54.0%',
-    opex: '₹42.8L (Staff & Doctors 58%, Logistics 18%, Hub Rent 14%, Marketing 10%)'
+    revenue: '₹0',
+    ebitda: '₹0 (0%)',
+    grossMargins: '0% · 0% · 0% · 0%',
+    opex: '₹0'
   },
   customers: {
-    totalParents: 22140,
-    activeSubscribers: 6420,
-    repeatRate: '68.4%',
-    cac: '₹482 Blended',
-    ltv: '₹14,200 Annual LTV',
-    churnRiskCohort: '248 Pet Parents (>75% Churn Risk due to >60-day vaccination lapse)'
+    totalParents: 0,
+    activeSubscribers: 0,
+    repeatRate: '0%',
+    cac: '₹0',
+    ltv: '₹0',
+    churnRiskCohort: '0 Pet Parents'
   }
 };
 
@@ -857,8 +842,8 @@ function generateResponse(text, ctx) {
             (m.nlpMeta.entities || []).map(function (e) {
               return '<span class="zai-nlp-tag entity">🏷️ ' + esc(e) + '</span>';
             }).join(''),
-            '<span class="zai-nlp-tag grounding">🛡️ ' + esc(m.nlpMeta.grounding || '14 Hospital Hubs') + '</span>',
-            '<span style="margin-left: auto; font-family: \'IBM Plex Mono\', monospace; font-size: 10px; color: #059669; font-weight: 700;">Conf: ' + esc(m.nlpMeta.confidence || '98.5%') + '</span>',
+            '<span class="zai-nlp-tag grounding">🛡️ ' + esc(m.nlpMeta.grounding || '0 Hospital Hubs') + '</span>',
+            '<span style="margin-left: auto; font-family: \'IBM Plex Mono\', monospace; font-size: 10px; color: #059669; font-weight: 700;">Conf: ' + esc(m.nlpMeta.confidence || '0%') + '</span>',
           '</div>'
         ].join('');
       }
@@ -1026,42 +1011,111 @@ function generateResponse(text, ctx) {
     ].join('');
   }
 
+  var REV = { data: null, loading: false, sim: { priceIncreasePct: 5, discountCapPct: 50 }, simOut: 0 };
+
+  function revMoney(v) {
+    var n = Math.abs(v || 0);
+    var s = n >= 100000 ? '₹' + (n / 100000).toFixed(1) + 'L' : n >= 1000 ? '₹' + (n / 1000).toFixed(1) + 'K' : '₹' + n;
+    return v < 0 ? '-' + s : s;
+  }
+
+  function revPost(path, body) {
+    return fetch('/api/v1' + path, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: body || {} })
+    }).then(function (r) { return r.json(); });
+  }
+
+  function revLoad() {
+    if (REV.loading) return;
+    REV.loading = true;
+    revPost('/revenue/intelligence', {}).then(function (d) {
+      REV.loading = false;
+      if (d && d.kpis) { REV.data = d; render(); }
+    }).catch(function () { REV.loading = false; });
+  }
+
+  window._revApply = function (id) {
+    revPost('/revenue/safeguards/apply', { id: id }).then(function (res) {
+      _recToast(res.success ? 'Safeguard applied: ' + res.entry.detail : (res.error || 'Unable to apply'), res.success ? 'success' : 'error');
+      REV.loading = false; revLoad();
+    }).catch(function () { _recToast('Backend unreachable — safeguard not applied', 'error'); });
+  };
+
+  window._revSim = function (key, val) {
+    REV.sim[key] = +val;
+    revPost('/revenue/simulate', REV.sim).then(function (r) {
+      REV.simOut = r.projectedTotalLift || 0;
+      var el = document.getElementById('zai-rev-sim-out');
+      if (el) el.textContent = revMoney(REV.simOut);
+    });
+  };
+
+  function revRows(cols, msg) {
+    return '<tr><td colspan="' + cols + '" style="text-align:center;padding:24px;color:#94a3b8;">' + msg + '</td></tr>';
+  }
+
   /* ── 3. Revenue Intelligence ─────────────────────────────────────── */
   function renderRevenue() {
+    if (!REV.data) revLoad();
+    var d = REV.data || { kpis: { detectedLeakage: 0, recoveryRealized: 0, optimalElasticity: 0, discountEfficiency: 0, netRealizationRate: 0 }, leakagePoints: [], elasticityMatrix: [], waterfall: [], auditLog: [] };
+    var k = d.kpis;
+    var sevColor = { CRITICAL: '#991b1b', HIGH: '#9a3412', MEDIUM: '#92400e', LOW: '#475569' };
+
+    var leakRows = d.leakagePoints.length === 0
+      ? revRows(7, 'No revenue leakage detected. Telemetry streams are active — awaiting transactional data.')
+      : d.leakagePoints.map(function (l) {
+        return '<tr><td><b>' + esc(l.vector.replace(/_/g, ' ')) + '</b></td><td>' + esc(l.source) + '</td>' +
+          '<td style="font-weight:700;color:#dc2626">' + revMoney(l.monthlyDrag) + '</td>' +
+          '<td><span style="font-size:10px;font-weight:700;color:' + (sevColor[l.severity] || '#475569') + '">' + esc(l.severity) + '</span></td>' +
+          '<td>' + esc(l.rootCause) + '</td><td>' + esc(l.recommendedAction) + '</td>' +
+          '<td>' + (l.status === 'APPLIED' ? '<span style="color:#059669;font-weight:700">✅ Applied</span>'
+            : '<button class="zai-btn primary" onclick="window._revApply(\'' + esc(l.id) + '\')">Apply Safeguard</button>') + '</td></tr>';
+      }).join('');
+
+    var elasRows = d.elasticityMatrix.length === 0
+      ? revRows(5, 'No price/volume observations available for elasticity modelling.')
+      : d.elasticityMatrix.map(function (e) {
+        return '<tr><td><b>' + esc(e.service) + '</b></td><td>₹' + e.currentPrice + '</td><td>₹' + e.recommendedPrice + '</td><td>' + e.elasticity + '</td><td style="color:#059669;font-weight:700">' + revMoney(e.projectedGain) + '</td></tr>';
+      }).join('');
+
+    var wfRows = d.waterfall.length === 0
+      ? revRows(2, 'No gross bookings recorded yet.')
+      : d.waterfall.map(function (w) {
+        return '<tr><td><b>' + esc(w.label) + '</b></td><td style="color:' + (w.value < 0 ? '#dc2626' : '#0f172a') + '">' + revMoney(w.value) + '</td></tr>';
+      }).join('');
+
+    var auditRows = d.auditLog.length === 0
+      ? revRows(4, 'No safeguards applied yet.')
+      : d.auditLog.map(function (a) {
+        return '<tr><td>' + esc(a.executedAt) + '</td><td>' + esc(a.id) + ' · ' + esc(a.vector.replace(/_/g, ' ')) + '</td><td style="color:#059669;font-weight:700">' + revMoney(a.recovered) + '</td><td>' + esc(a.detail) + '</td></tr>';
+      }).join('');
+
+    function card(title, sub, head, rows, extra) {
+      return '<div class="zai-card"><div class="zai-card-head"><div><h3 class="zai-card-title">' + title + '</h3><p class="zai-card-sub">' + sub + '</p></div></div>' +
+        (extra || '') + '<div class="zai-table-wrap"><table class="zai-table"><thead><tr>' +
+        head.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+    }
+
+    var simBar = '<div style="display:flex;gap:24px;flex-wrap:wrap;padding:0 20px 16px;font-size:12px;color:#475569">' +
+      '<label>Price uplift on inelastic services: <b>' + REV.sim.priceIncreasePct + '%</b><br><input type="range" min="0" max="15" value="' + REV.sim.priceIncreasePct + '" onchange="window._revSim(\'priceIncreasePct\',this.value)"></label>' +
+      '<label>Repeat-customer discount cap: <b>' + REV.sim.discountCapPct + '%</b><br><input type="range" min="0" max="100" step="10" value="' + REV.sim.discountCapPct + '" onchange="window._revSim(\'discountCapPct\',this.value)"></label>' +
+      '<div>Projected annual lift: <b id="zai-rev-sim-out" style="color:#059669">' + revMoney(REV.simOut) + '</b></div></div>';
+
     return [
       '<div class="zai-kpi-grid">',
-        kpiHtml('Identified Margin Leaks', '₹0', '--', 'neutral', 'No friction points', '⚡'),
-        kpiHtml('Pricing Optimization Gain', '₹0', '--', 'neutral', 'No elasticity tested', '💹'),
-        kpiHtml('Discount Slippage', '0.0%', '--', 'neutral', 'No voucher slippage', '🛡️'),
-        kpiHtml('Revenue Run Rate', '₹0', '--', 'neutral', 'No run rate records', '💰'),
+        kpiHtml('Identified Margin Leaks', revMoney(k.detectedLeakage), d.leakagePoints.length ? d.leakagePoints.length + ' vectors' : '--', k.detectedLeakage ? 'down' : 'neutral', k.detectedLeakage ? 'Monthly drag identified' : 'No friction points', '⚡'),
+        kpiHtml('Recovery Realization (MTD)', revMoney(k.recoveryRealized), '--', k.recoveryRealized ? 'up' : 'neutral', k.recoveryRealized ? 'From applied safeguards' : 'No recovery actions', '💰'),
+        kpiHtml('Optimal Price Elasticity', Number(k.optimalElasticity).toFixed(2), '--', 'neutral', d.elasticityMatrix.length ? 'Avg across tested services' : 'No elasticity tested', '💹'),
+        kpiHtml('Discount Efficiency', Number(k.discountEfficiency).toFixed(1) + '%', '--', k.discountEfficiency > 70 ? 'up' : 'neutral', k.discountEfficiency ? 'Promos reaching new customers' : 'No voucher records', '🛡️'),
+        kpiHtml('Net Realization Rate', Number(k.netRealizationRate).toFixed(1) + '%', '--', 'neutral', 'Net EBITDA ÷ gross bookings', '🧮'),
       '</div>',
-
-      '<div class="zai-card">',
-        '<div class="zai-card-head">',
-          '<div>',
-            '<h3 class="zai-card-title">Revenue Leakage & Elasticity Heatmap</h3>',
-            '<p class="zai-card-sub">Real-time leak radar highlighting pricing disparities, uncollected fees, and coupon misuse</p>',
-          '</div>',
-          '<button class="zai-btn primary" onclick="alert(\'Applying automated pricing elasticity safeguards...\')">Apply Safeguards</button>',
-        '</div>',
-        '<div class="zai-table-wrap">',
-          '<table class="zai-table">',
-            '<thead>',
-              '<tr>',
-                '<th>Leakage Vector</th>',
-                '<th>Facility / Channel</th>',
-                '<th>Monthly Drag</th>',
-                '<th>Root Cause</th>',
-                '<th>Automated Remediation</th>',
-                '<th>Status</th>',
-              '</tr>',
-            '</thead>',
-            '<tbody>',
-              '<tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">No revenue leakage or margin disparity records found</td></tr>',
-            '</tbody>',
-          '</table>',
-        '</div>',
-      '</div>'
+      card('Revenue Leakage &amp; Remediation Radar', 'Real-time leak radar highlighting pricing disparities, uncollected fees, and coupon misuse',
+        ['Leakage Vector', 'Facility / Channel', 'Monthly Drag', 'Severity', 'Root Cause', 'Automated Remediation', 'Action'], leakRows),
+      card('Price Elasticity &amp; What-If Simulator', 'Safe price optimization on inelastic services and discount-cap savings',
+        ['Service / SKU', 'Current', 'Recommended', 'Elasticity', 'Projected Gain'], elasRows, simBar),
+      card('Revenue Realization Waterfall', 'Gross bookings to net realized revenue', ['Stage', 'Amount'], wfRows),
+      card('📋 Safeguard Audit Trail', 'History of applied remediation actions', ['Timestamp', 'Leak', 'Recovered', 'Detail'], auditRows)
     ].join('');
   }
 

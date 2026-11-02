@@ -79,6 +79,22 @@
         };
       }
     });
+    // Append any custom added module scopes
+    savedList.forEach(function (item) {
+      if (!item || !item.module) return;
+      var exists = S.permissions.some(function (p) { return p.module === item.module; });
+      if (!exists) {
+        S.permissions.push({
+          module: item.module,
+          view: !!item.view,
+          create: !!item.create,
+          edit: !!item.edit,
+          del: !!item.del,
+          exp: !!item.exp,
+          app: !!item.app
+        });
+      }
+    });
   }
 
   /* ── In-Memory Settings State ────────────────────────────────────── */
@@ -567,7 +583,10 @@
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header"><h4 class="zset-card-title">🛡️ Configured Role Profiles</h4></div>',
+        '<div class="zset-card-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">',
+          '<h4 class="zset-card-title">🛡️ Configured Role Profiles</h4>',
+          '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-role" style="padding:4px 12px;font-size:11px;">+ Add Role Profile</button>',
+        '</div>',
         '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">' + roleCards + '</div>',
       '</div>',
 
@@ -577,7 +596,10 @@
             '<h4 class="zset-card-title">📋 Granular Privilege Governance Matrix</h4>',
             '<span class="zset-badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;">Custom</span>',
           '</div>',
-          '<button type="button" class="zset-btn zset-btn-primary" id="btn-save-permissions" style="padding:6px 14px;font-size:12px;font-weight:600;"><span>💾</span> Save Changes</button>',
+          '<div style="display:flex;align-items:center;gap:8px;">',
+            '<button type="button" class="zset-btn zset-btn-secondary" id="btn-add-module" style="padding:6px 14px;font-size:12px;font-weight:600;">+ Add Module Scope</button>',
+            '<button type="button" class="zset-btn zset-btn-primary" id="btn-save-permissions" style="padding:6px 14px;font-size:12px;font-weight:600;"><span>💾</span> Save Changes</button>',
+          '</div>',
         '</div>',
         '<div class="zset-table-wrap">',
           '<div class="zset-perm-row" style="background:#141d30;font-weight:700;color:#94a3b8;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;border-color:rgba(255,255,255,0.08);margin-bottom:8px;">' +
@@ -627,6 +649,7 @@
           '<h3 class="zset-tab-title">Approval Workflows & Multi-Tier Sign-Offs</h3>',
           '<p class="zset-tab-desc">Enforce four-eyes principle on clinical narcotics, large vendor purchase orders, patient refunds, and commercial overrides.</p>',
         '</div>',
+        '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-workflow">+ Add Approval Rule</button>',
       '</div>',
 
       '<div class="zset-card">',
@@ -658,7 +681,10 @@
           '<h3 class="zset-tab-title">Notification Channels & Automated Alerts</h3>',
           '<p class="zset-tab-desc">Configure WhatsApp Business API, transactional SMS, mobile push, and real-time clinic broadcast rules.</p>',
         '</div>',
-        '<button type="button" class="zset-btn zset-btn-secondary" id="btn-test-notification">🔔 Test Dispatch Ping</button>',
+        '<div style="display:flex;gap:8px;">',
+          '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-notif-trigger">+ Add Alert Rule</button>',
+          '<button type="button" class="zset-btn zset-btn-secondary" id="btn-test-notification">🔔 Test Dispatch Ping</button>',
+        '</div>',
       '</div>',
 
       '<div class="zset-card">',
@@ -775,6 +801,7 @@
           '<h3 class="zset-tab-title">Tax Governance & GST Engine</h3>',
           '<p class="zset-tab-desc">Goods & Services Tax (GST) schedules, statutory HSN/SAC codes, and veterinary healthcare exemption classifications.</p>',
         '</div>',
+        '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-tax">+ Add HSN/SAC Schedule</button>',
       '</div>',
 
       '<div class="zset-card">',
@@ -873,6 +900,7 @@
           '<h3 class="zset-tab-title">Logistics & 60-Minute Express Settings</h3>',
           '<p class="zset-tab-desc">Hyperlocal service radii, micro-hub dispatch SLAs, cold-chain temperature thresholds, and carrier allocations.</p>',
         '</div>',
+        '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-delivery-zone">+ Add Delivery Zone</button>',
       '</div>',
 
       '<div class="zset-card">',
@@ -944,7 +972,10 @@
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header"><h4 class="zset-card-title">🔌 Active Webhook & Microservice Bridges</h4></div>',
+        '<div class="zset-card-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">',
+          '<h4 class="zset-card-title">🔌 Active Webhook & Microservice Bridges</h4>',
+          '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-integration" style="padding:4px 12px;font-size:11px;">+ Add Integration Bridge</button>',
+        '</div>',
         '<div class="zset-table-wrap">',
           '<table class="zset-table">',
             '<thead><tr><th>Integration Connector</th><th>Service Type</th><th>Status</th><th>Uptime</th><th>Last Sync</th></tr></thead>',
@@ -991,7 +1022,10 @@
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header"><h4 class="zset-card-title">🌐 Clinical Subnet IP Whitelisting</h4></div>',
+        '<div class="zset-card-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">',
+          '<h4 class="zset-card-title">🌐 Clinical Subnet IP Whitelisting</h4>',
+          '<button type="button" class="zset-btn zset-btn-primary" id="btn-add-subnet" style="padding:4px 12px;font-size:11px;">+ Add Subnet Rule</button>',
+        '</div>',
         '<div class="zset-form-group">',
           '<label class="zset-label">Authorized Static IP Ranges</label>',
           '<input class="zset-input font-mono" id="inp-sec-ip" value="' + esc(sec.ipWhitelist) + '" placeholder="e.g. 192.168.1.0/24 (Leave blank for unrestricted)">',
@@ -1000,7 +1034,6 @@
       '</div>',
 
       '<div class="zset-card">',
-        '<div class="zset-card-header"><h4 class="zset-card-title">🖥️ Active Administrative Sessions</h4></div>',
         '<div class="zset-table-wrap">',
           '<table class="zset-table">',
             '<thead><tr><th>Device & Browser</th><th>IP Address</th><th>Location</th><th>Activity</th><th>Action</th></tr></thead>',
@@ -1378,6 +1411,226 @@
         });
       };
     }
+
+    // Modal: Add Role Profile (Roles & Permissions)
+    var addRoleBtn = root.querySelector('#btn-add-role');
+    if (addRoleBtn) {
+      addRoleBtn.onclick = function () {
+        showModal('Create Custom Role Profile', [
+          '<div class="zset-form-group"><label class="zset-label">Role Title / Designation</label><input class="zset-input" id="m-role-name" placeholder="e.g. Junior Paravet & Ward Nurse"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Business Unit Scope</label><select class="zset-select" id="m-role-unit"><option>Clinical Hospitals</option><option>Digital Tele-Health</option><option>Pharmacy & Diagnostics</option><option>Supply Chain</option><option>Customer Experience</option></select></div>',
+          '<div class="zset-form-group"><label class="zset-label">Role Scope Description</label><input class="zset-input" id="m-role-desc" placeholder="e.g. Patient vitals intake, triage assistance, and basic ward care"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Estimated Headcount</label><input class="zset-input font-mono" id="m-role-users" type="number" value="5"></div>'
+        ].join(''), function () {
+          var name = document.getElementById('m-role-name')?.value || 'New Custom Role';
+          var desc = document.getElementById('m-role-desc')?.value || 'Custom defined role profile';
+          var users = parseInt(document.getElementById('m-role-users')?.value || '1', 10);
+          S.roles.push({
+            name: name,
+            desc: desc,
+            users: users
+          });
+          try {
+            localStorage.setItem('zenve_rbac_roles', JSON.stringify(S.roles));
+          } catch (e) {}
+          showToast('✓ Created custom role profile: ' + name);
+          switchTab('roles');
+        });
+      };
+    }
+
+    // Modal: Add Module Scope (Privilege Matrix)
+    var addModuleBtn = root.querySelector('#btn-add-module');
+    if (addModuleBtn) {
+      addModuleBtn.onclick = function () {
+        showModal('Add Module Scope to Privilege Matrix', [
+          '<div class="zset-form-group"><label class="zset-label">Module Scope Name</label><input class="zset-input" id="m-mod-name" placeholder="e.g. Inpatient & ICU Surgical Scheduling"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Default Baseline Permissions</label>',
+            '<div style="display:flex;gap:12px;margin-top:6px;font-size:12px;">',
+              '<label><input type="checkbox" id="m-mod-view" checked> View</label>',
+              '<label><input type="checkbox" id="m-mod-create" checked> Create</label>',
+              '<label><input type="checkbox" id="m-mod-edit" checked> Edit</label>',
+              '<label><input type="checkbox" id="m-mod-del"> Delete</label>',
+              '<label><input type="checkbox" id="m-mod-exp" checked> Export</label>',
+              '<label><input type="checkbox" id="m-mod-app"> Approve</label>',
+            '</div>',
+          '</div>'
+        ].join(''), function () {
+          var name = document.getElementById('m-mod-name')?.value || 'New Module Scope';
+          var v = !!document.getElementById('m-mod-view')?.checked;
+          var c = !!document.getElementById('m-mod-create')?.checked;
+          var e = !!document.getElementById('m-mod-edit')?.checked;
+          var d = !!document.getElementById('m-mod-del')?.checked;
+          var ex = !!document.getElementById('m-mod-exp')?.checked;
+          var a = !!document.getElementById('m-mod-app')?.checked;
+          S.permissions.push({
+            module: name,
+            view: v,
+            create: c,
+            edit: e,
+            del: d,
+            exp: ex,
+            app: a
+          });
+          try {
+            localStorage.setItem('zenve_rbac_permissions', JSON.stringify(S.permissions));
+          } catch (err) {}
+          saveAllChanges();
+          showToast('✓ Added module scope: ' + name);
+          switchTab('roles');
+        });
+      };
+    }
+
+    // Modal: Add Approval Workflow Rule
+    var addWfBtn = root.querySelector('#btn-add-workflow');
+    if (addWfBtn) {
+      addWfBtn.onclick = function () {
+        showModal('Configure Approval Workflow Rule', [
+          '<div class="zset-form-group"><label class="zset-label">Workflow Name / Rule Scope</label><input class="zset-input" id="m-wf-name" placeholder="e.g. High-Risk Surgical Credit Sign-Off"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Trigger Condition</label><input class="zset-input" id="m-wf-trigger" placeholder="e.g. Unscheduled ICU Triage Exception"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Routing Hierarchy Steps</label><input class="zset-input" id="m-wf-steps" placeholder="e.g. Attending Vet → CMO Dual Sign-Off"></div>',
+          '<div class="zset-form-group"><label class="zset-label">SLA Timeout Escalation</label><select class="zset-select" id="m-wf-timeout"><option>30 Minutes</option><option>1 Hour</option><option>4 Hours</option><option>12 Hours</option><option>24 Hours</option></select></div>'
+        ].join(''), function () {
+          var name = document.getElementById('m-wf-name')?.value || 'New Approval Rule';
+          var trigger = document.getElementById('m-wf-trigger')?.value || 'Manual Review';
+          var steps = document.getElementById('m-wf-steps')?.value || 'Coordinator → Manager';
+          var timeout = document.getElementById('m-wf-timeout')?.value || '4 Hours';
+          S.workflows.push({
+            id: 'WF-0' + (S.workflows.length + 1),
+            name: name,
+            trigger: trigger,
+            steps: steps,
+            timeout: timeout,
+            status: 'Active'
+          });
+          try {
+            localStorage.setItem('zenve_custom_workflows', JSON.stringify(S.workflows));
+          } catch (e) {}
+          showToast('✓ Configured approval rule: ' + name);
+          switchTab('workflows');
+        });
+      };
+    }
+
+    // Modal: Add Tax Schedule (HSN/SAC)
+    var addTaxBtn = root.querySelector('#btn-add-tax');
+    if (addTaxBtn) {
+      addTaxBtn.onclick = function () {
+        showModal('Add HSN / SAC Tax Schedule', [
+          '<div class="zset-form-group"><label class="zset-label">Item / Commodity Classification</label><input class="zset-input" id="m-tax-cat" placeholder="e.g. Canine Orthopedic Surgical Implants"></div>',
+          '<div class="zset-form-group"><label class="zset-label">HSN / SAC Statutory Code</label><input class="zset-input font-mono" id="m-tax-code" placeholder="e.g. HSN 9021"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Applicable GST Slab</label><select class="zset-select" id="m-tax-slab"><option value="0">0% (Exempt Healthcare Service)</option><option value="5" selected>5% (2.5% CGST + 2.5% SGST)</option><option value="12">12% (6% CGST + 6% SGST)</option><option value="18">18% (9% CGST + 9% SGST)</option><option value="28">28% (14% CGST + 14% SGST)</option></select></div>'
+        ].join(''), function () {
+          var cat = document.getElementById('m-tax-cat')?.value || 'New Healthcare Commodity';
+          var code = document.getElementById('m-tax-code')?.value || 'HSN-GEN';
+          var slab = parseInt(document.getElementById('m-tax-slab')?.value || '5', 10);
+          var half = (slab / 2) + '%';
+          var full = slab + '%';
+          S.taxes.push({
+            category: cat,
+            code: code,
+            gst: full,
+            cgst: slab === 0 ? '0%' : half,
+            sgst: slab === 0 ? '0%' : half,
+            igst: full
+          });
+          try {
+            localStorage.setItem('zenve_custom_taxes', JSON.stringify(S.taxes));
+          } catch (e) {}
+          showToast('✓ Added tax schedule: ' + cat);
+          switchTab('tax');
+        });
+      };
+    }
+
+    // Modal: Add Integration Bridge
+    var addIntBtn = root.querySelector('#btn-add-integration');
+    if (addIntBtn) {
+      addIntBtn.onclick = function () {
+        showModal('Connect External Webhook / Integration Bridge', [
+          '<div class="zset-form-group"><label class="zset-label">Connector / Service Name</label><input class="zset-input" id="m-int-name" placeholder="e.g. Thyrocare Vet Pathology LIMS"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Service Type</label><select class="zset-select" id="m-int-type"><option>Inbound Pathology LIMS Bridge</option><option>Outbound Webhook Dispatcher</option><option>Hyperlocal Logistics API</option><option>Enterprise CRM Sync</option></select></div>',
+          '<div class="zset-form-group"><label class="zset-label">Endpoint URL</label><input class="zset-input font-mono" id="m-int-url" placeholder="https://api.partner.com/webhook/zenve"></div>'
+        ].join(''), function () {
+          var name = document.getElementById('m-int-name')?.value || 'New Integration';
+          var type = document.getElementById('m-int-type')?.value || 'Outbound Webhook';
+          S.integrations.push({
+            name: name,
+            type: type,
+            status: 'Connected',
+            uptime: '99.99%',
+            lastSync: 'Just now'
+          });
+          try {
+            localStorage.setItem('zenve_custom_integrations', JSON.stringify(S.integrations));
+          } catch (e) {}
+          showToast('✓ Connected external bridge: ' + name);
+          switchTab('integrations');
+        });
+      };
+    }
+
+    // Modal: Add Subnet Rule (Security)
+    var addSubnetBtn = root.querySelector('#btn-add-subnet');
+    if (addSubnetBtn) {
+      addSubnetBtn.onclick = function () {
+        showModal('Authorize Clinical Subnet IP Range', [
+          '<div class="zset-form-group"><label class="zset-label">Authorized Subnet CIDR / Static IP</label><input class="zset-input font-mono" id="m-sec-ip" placeholder="e.g. 192.168.10.0/24"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Facility / Node Name</label><input class="zset-input" id="m-sec-facility" placeholder="e.g. Bengaluru Flagship ICU Subnet"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Access Purpose</label><input class="zset-input" id="m-sec-purpose" placeholder="e.g. Inpatient EHR & Surgery Theatre Terminals"></div>'
+        ].join(''), function () {
+          var ip = document.getElementById('m-sec-ip')?.value || '10.0.0.0/24';
+          var fac = document.getElementById('m-sec-facility')?.value || 'Clinical Node';
+          if (S.security.ipWhitelist) {
+            S.security.ipWhitelist += ', ' + ip;
+          } else {
+            S.security.ipWhitelist = ip;
+          }
+          showToast('✓ Added authorized subnet: ' + ip + ' (' + fac + ')');
+          switchTab('security');
+        });
+      };
+    }
+
+    // Modal: Add Delivery Zone (Delivery Settings)
+    var addDelZoneBtn = root.querySelector('#btn-add-delivery-zone');
+    if (addDelZoneBtn) {
+      addDelZoneBtn.onclick = function () {
+        showModal('Add Hyperlocal Delivery Zone', [
+          '<div class="zset-form-group"><label class="zset-label">Zone Name & Locality</label><input class="zset-input" id="m-del-zone" placeholder="e.g. Zone A - Koramangala Central Express"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Target Service Radius (km)</label><input class="zset-input font-mono" id="m-del-rad" type="number" value="3.5"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Driver Allocation SLA Timeout</label><select class="zset-select" id="m-del-sla"><option>3 Minutes</option><option>5 Minutes</option><option>8 Minutes</option></select></div>',
+          '<div class="zset-form-group"><label class="zset-label">Minimum Order for Free Delivery (₹)</label><input class="zset-input font-mono" id="m-del-min" type="number" value="399"></div>'
+        ].join(''), function () {
+          var zone = document.getElementById('m-del-zone')?.value || 'New Delivery Zone';
+          var rad = parseFloat(document.getElementById('m-del-rad')?.value || '5');
+          var sla = parseInt(document.getElementById('m-del-sla')?.value || '5', 10);
+          var min = parseFloat(document.getElementById('m-del-min')?.value || '499');
+          S.delivery.expressRadiusKm = rad;
+          S.delivery.dispatchThresholdMins = sla;
+          S.delivery.freeDeliveryMinOrder = min;
+          showToast('✓ Configured delivery zone: ' + zone);
+          switchTab('delivery');
+        });
+      };
+    }
+
+    // Modal: Add Alert Rule (Notification Settings)
+    var addNotifBtn = root.querySelector('#btn-add-notif-trigger');
+    if (addNotifBtn) {
+      addNotifBtn.onclick = function () {
+        showModal('Register Notification Alert Rule', [
+          '<div class="zset-form-group"><label class="zset-label">Alert Trigger Name</label><input class="zset-input" id="m-notif-name" placeholder="e.g. Post-Surgery 48-Hour Recovery Checkup"></div>',
+          '<div class="zset-form-group"><label class="zset-label">Dispatch Channel</label><select class="zset-select" id="m-notif-chan"><option>WhatsApp Business API (Gupshup)</option><option>Transactional SMS (DLT Approved)</option><option>Mobile Push (Firebase FCM)</option><option>Transactional Email (Amazon SES)</option></select></div>',
+          '<div class="zset-form-group"><label class="zset-label">DLT Template ID / Reference</label><input class="zset-input font-mono" id="m-notif-tpl" placeholder="DLT-ZENVE-POSTOP-48H"></div>'
+        ].join(''), function () {
+          var name = document.getElementById('m-notif-name')?.value || 'New Alert Rule';
+          showToast('✓ Registered notification rule: ' + name);
+          switchTab('notifications');
+        });
+      };
+    }
   }
 
   /* ── Modal Utility ───────────────────────────────────────────────── */
@@ -1439,6 +1692,26 @@
       if (localPerms) {
         var parsedLocal = JSON.parse(localPerms);
         mergePermissions(parsedLocal);
+      }
+      var localRoles = localStorage.getItem('zenve_rbac_roles');
+      if (localRoles) {
+        var parsedRoles = JSON.parse(localRoles);
+        if (Array.isArray(parsedRoles) && parsedRoles.length) S.roles = parsedRoles;
+      }
+      var localWf = localStorage.getItem('zenve_custom_workflows');
+      if (localWf) {
+        var parsedWf = JSON.parse(localWf);
+        if (Array.isArray(parsedWf) && parsedWf.length) S.workflows = parsedWf;
+      }
+      var localTaxes = localStorage.getItem('zenve_custom_taxes');
+      if (localTaxes) {
+        var parsedTaxes = JSON.parse(localTaxes);
+        if (Array.isArray(parsedTaxes) && parsedTaxes.length) S.taxes = parsedTaxes;
+      }
+      var localInt = localStorage.getItem('zenve_custom_integrations');
+      if (localInt) {
+        var parsedInt = JSON.parse(localInt);
+        if (Array.isArray(parsedInt) && parsedInt.length) S.integrations = parsedInt;
       }
     } catch (e) {}
 

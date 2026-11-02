@@ -17,3 +17,6 @@ export const importSales = (rows) => request('/sales/import', { method: 'POST', 
 export const aiBrief = (filters) => request('/ai/brief', { method: 'POST', body: filters });
 export const getRecommendations = (filters) => request('/ai/recommendations', { method: 'POST', body: filters });
 export const executePlaybook = (id, payload) => request('/ai/recommendations/execute', { method: 'POST', body: { id, payload } });
+export const getRevenueIntelligence = (payload) => request('/revenue/intelligence', { method: 'POST', body: payload || {} });
+export const simulateRevenue = (payload) => request('/revenue/simulate', { method: 'POST', body: payload });
+export const applyRevenueSafeguard = (id) => request('/revenue/safeguards/apply', { method: 'POST', body: { id } });
