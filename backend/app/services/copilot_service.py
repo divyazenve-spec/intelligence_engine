@@ -16,6 +16,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.core.formatting import format_indian, format_int
+
 from app.models.all_models import (
     Alert,
     Appointment,

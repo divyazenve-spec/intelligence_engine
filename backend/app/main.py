@@ -40,6 +40,27 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
 )
 
+
+@app.on_event("startup")
+def startup_zippy_sync():
+    """Auto-sync doctors and clinics from Zippy database on startup if database is fresh."""
+    try:
+        from app.core.database import SessionLocal
+        from app.models.all_models import Doctor
+        from app.services.zippy_sync_service import sync_zippy_all
+        db = SessionLocal()
+        try:
+            doc_count = db.query(Doctor).count()
+            if doc_count == 0:
+                log.info("Doctors table empty, performing initial Zippy synchronization...")
+                sync_zippy_all(db)
+            else:
+                log.info(f"Loaded {doc_count} doctors in Zenve Engine ledger.")
+        finally:
+            db.close()
+    except Exception as e:
+        log.warning(f"Startup Zippy sync skipped: {e}")
+
 # ---------------------------------------------------------------------------
 # CORS (same permissive policy as the original server)
 # ---------------------------------------------------------------------------

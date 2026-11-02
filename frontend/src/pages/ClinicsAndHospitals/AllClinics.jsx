@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import DashboardLayout from '../shared/DashboardLayout';
 import KpiCard from '../shared/KpiCard';
 
@@ -8,21 +8,47 @@ export default function AllClinics() {
   const [search, setSearch] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [toast, setToast] = useState('');
+  const [clinicsData, setClinicsData] = useState([]);
 
-  const clinicsData = [];
+  useEffect(() => {
+    fetch('/api/v1/clinics')
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          const list = data.map(c => {
+            const isTertiary = (c.beds_capacity || 6) >= 10 || (c.name || '').toLowerCase().includes('zenve');
+            return {
+              name: c.name,
+              code: c.clinic_code || `CLN-${c.id}`,
+              city: c.city || 'Bengaluru',
+              address: c.address || 'Pattabhirama Nagara, Bengaluru',
+              tier: isTertiary ? 'Tertiary Referral Center' : 'Specialty Clinic',
+              rooms: c.beds_capacity || 6,
+              leadVet: (c.name || '').toLowerCase().includes('global') ? 'Dr. Vasanth, MVSc' : 'Dr. Lakshmanan M, BVSc',
+              staff: c.doctors_count ? c.doctors_count + 4 : 6,
+              hours: 'Open 24x7',
+              footfall: `${c.daily_footfall || 28} pets/day`,
+              monthlyRev: isTertiary ? '₹14.80 L' : '₹9.40 L'
+            };
+          });
+          setClinicsData(list);
+        }
+      })
+      .catch(err => console.error('Failed to load clinics:', err));
+  }, []);
 
   const filtered = useMemo(() => {
     return clinicsData.filter(c => {
       const matchCity = cityFilter === 'ALL' || c.city === cityFilter;
       const matchTier = tierFilter === 'ALL' || c.tier === tierFilter;
       const matchSearch = search === '' ||
-        c.name.toLowerCase().includes(search.toLowerCase()) ||
-        c.code.toLowerCase().includes(search.toLowerCase()) ||
-        c.city.toLowerCase().includes(search.toLowerCase()) ||
-        c.leadVet.toLowerCase().includes(search.toLowerCase());
+        (c.name || '').toLowerCase().includes(search.toLowerCase()) ||
+        (c.code || '').toLowerCase().includes(search.toLowerCase()) ||
+        (c.city || '').toLowerCase().includes(search.toLowerCase()) ||
+        (c.leadVet || '').toLowerCase().includes(search.toLowerCase());
       return matchCity && matchTier && matchSearch;
     });
-  }, [cityFilter, tierFilter, search]);
+  }, [clinicsData, cityFilter, tierFilter, search]);
 
   function handleAddClinic(e) {
     e.preventDefault();

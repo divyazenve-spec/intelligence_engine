@@ -135,6 +135,9 @@
   async function syncPharmacy() {
     var meds = await apiCall('/pharmacy/medicines');
     if (meds) DB_STATE.medicines = meds;
+    if (window.ZenvePharmacyDashboard && typeof window.ZenvePharmacyDashboard.loadPharmacyData === 'function') {
+      window.ZenvePharmacyDashboard.loadPharmacyData();
+    }
   }
 
   // 5. Veterinary & Appointments Sync
@@ -142,23 +145,83 @@
     var apps = await apiCall('/veterinary/appointments');
     var srvs = await apiCall('/veterinary/services');
     if (apps) DB_STATE.appointments = apps;
+    if (window.ZenveVeterinaryDashboard && typeof window.ZenveVeterinaryDashboard.loadClinicalData === 'function') {
+      window.ZenveVeterinaryDashboard.loadClinicalData();
+    }
   }
 
   // 6. Customers Sync
   async function syncCustomers() {
     var custs = await apiCall('/customers');
-    if (custs) DB_STATE.customers = custs;
+    if (custs) {
+      DB_STATE.customers = custs;
+      if (window.ZenveCustomersDashboard && typeof window.ZenveCustomersDashboard.loadCustomersDataFromApi === 'function') {
+        window.ZenveCustomersDashboard.loadCustomersDataFromApi();
+      }
+    }
   }
 
   // 7. Pets Sync
   async function syncPets() {
     var pets = await apiCall('/pets');
-    if (pets) DB_STATE.pets = pets;
+    if (pets) {
+      DB_STATE.pets = pets;
+      if (window.ZenvePetsDashboard && typeof window.ZenvePetsDashboard.loadPetsClinicalData === 'function') {
+        window.ZenvePetsDashboard.loadPetsClinicalData();
+      }
+    }
+  }
+
+  // 8. Doctors Sync (Zippy Integrated)
+  async function syncDoctors() {
+    var docs = await apiCall('/doctors');
+    if (docs) {
+      DB_STATE.doctors = docs;
+      if (window.ZenveDoctorsDashboard && typeof window.ZenveDoctorsDashboard.setDoctors === 'function') {
+        window.ZenveDoctorsDashboard.setDoctors(docs);
+      }
+    }
+  }
+
+  // 9. Clinics Sync
+  async function syncClinics() {
+    var cls = await apiCall('/clinics');
+    if (cls) {
+      DB_STATE.clinics = cls;
+      if (window.ZenveClinicsDashboard && typeof window.ZenveClinicsDashboard.loadClinicsDataFromApi === 'function') {
+        window.ZenveClinicsDashboard.loadClinicsDataFromApi();
+      }
+    }
+  }
+
+  // 10. Finance Sync
+  async function syncFinance() {
+    if (window.ZenveFinanceDashboard && typeof window.ZenveFinanceDashboard.loadFinanceDataFromApi === 'function') {
+      window.ZenveFinanceDashboard.loadFinanceDataFromApi();
+    }
+  }
+
+  // 11. Trigger Zippy Full Sync
+  async function triggerZippySync() {
+    showToast('Syncing doctors & records from Zippy database...');
+    var res = await apiCall('/zippy/sync', 'POST');
+    if (res && res.success) {
+      showToast('Zippy Sync Complete: ' + (res.doctors_synced || 0) + ' doctors, ' + (res.clinics_synced || 0) + ' clinics live!');
+      await syncDoctors();
+      await syncClinics();
+      await syncPets();
+      await syncCustomers();
+      await syncVeterinary();
+      await syncPharmacy();
+      await syncFinance();
+    } else {
+      showToast('Zippy sync failed', true);
+    }
   }
 
   // Initial full load
   async function syncAll() {
-    console.log('[Zenve DB] Connecting to MySQL zenve_engine backend...');
+    console.log('[Zenve DB] Connecting to MySQL zenve_engine backend & Zippy...');
     await Promise.all([
       syncSubscriptions(),
       syncOrders(),
@@ -166,9 +229,12 @@
       syncPharmacy(),
       syncVeterinary(),
       syncCustomers(),
-      syncPets()
+      syncPets(),
+      syncDoctors(),
+      syncClinics(),
+      syncFinance()
     ]);
-    console.log('[Zenve DB] Successfully synced live data from MySQL!');
+    console.log('[Zenve DB] Successfully synced live data from MySQL & Zippy!');
 
     // Update the sidebar footer status card text
     var statusTitle = document.querySelector('.sidebar-status-title');
@@ -259,18 +325,56 @@
         }
         return false;
       }
+
+      // Doctor Onboarding Modal
+      if (form.closest('#zdoc-modal') || form.closest('.zdoc-modal')) {
+        e.preventDefault();
+        e.stopPropagation();
+        var inputs = form.querySelectorAll('input, select');
+        var dName = inputs[0] ? inputs[0].value : 'Dr. New Doctor';
+        var dReg = inputs[1] ? inputs[1].value : 'KVC-102';
+        var dSpec = inputs[2] ? inputs[2].value : 'Veterinary Medicine & Surgery';
+        var dClinic = inputs[3] ? inputs[3].value : 'Zenve Hospital, Koramangala';
+
+        var res = await apiCall('/zippy/doctors', 'POST', {
+          name: dName,
+          specialty: dSpec,
+          qualification: 'MBBS, BVSc & AH (' + dReg + ')',
+          experience_years: 7,
+          phone: '+91 9080341343',
+          email: dName.toLowerCase().replace(/[^a-z0-9]/g, '') + '@zenve.in',
+          clinic_branch: dClinic,
+          consultation_fee: 1500
+        });
+
+        if (res && res.success) {
+          showToast('Practitioner onboarded & synced to Zippy platform!');
+          if (window.ZenveDoctorsDashboard && window.ZenveDoctorsDashboard.closeModal) {
+            window.ZenveDoctorsDashboard.closeModal();
+          }
+          await syncDoctors();
+        }
+        return false;
+      }
     }, true);
 
-    // Click handler for Action buttons (Cancel, Renew, Delete, Refresh)
+    // Click handler for Action buttons (Cancel, Renew, Delete, Refresh, Zippy Sync)
     document.addEventListener('click', async function (e) {
       var btn = e.target.closest('button');
       if (!btn) return;
 
       var text = (btn.textContent || '').trim().toLowerCase();
 
+      // Zippy Sync button
+      if (text.indexOf('zippy') >= 0 || text.indexOf('sync zippy') >= 0) {
+        e.preventDefault();
+        await triggerZippySync();
+        return;
+      }
+
       // Refresh DB button
       if (text.indexOf('refresh') >= 0 || text.indexOf('↻') >= 0) {
-        showToast('Refreshing live data from MySQL zenve_engine...');
+        showToast('Refreshing live data from MySQL zenve_engine & Zippy...');
         await syncAll();
       }
 
@@ -299,13 +403,15 @@
   // Hook into hash change to trigger domain sync
   window.addEventListener('hashchange', function () {
     var h = (window.location.hash || '').toLowerCase();
-    if (h.indexOf('subscription') >= 0) syncSubscriptions();
+    if (h.indexOf('doctor') >= 0) syncDoctors();
+    else if (h.indexOf('subscription') >= 0) syncSubscriptions();
     else if (h.indexOf('order') >= 0) syncOrders();
     else if (h.indexOf('inventory') >= 0 || h.indexOf('stock') >= 0 || h.indexOf('product') >= 0) syncProducts();
     else if (h.indexOf('pharmacy') >= 0) syncPharmacy();
     else if (h.indexOf('vet') >= 0 || h.indexOf('appointment') >= 0) syncVeterinary();
     else if (h.indexOf('cust') >= 0) syncCustomers();
     else if (h.indexOf('pet') >= 0) syncPets();
+    else if (h.indexOf('clinic') >= 0) syncClinics();
   });
 
   // Expose API on window
@@ -319,6 +425,9 @@
     syncVeterinary: syncVeterinary,
     syncCustomers: syncCustomers,
     syncPets: syncPets,
+    syncDoctors: syncDoctors,
+    syncClinics: syncClinics,
+    triggerZippySync: triggerZippySync,
     apiCall: apiCall,
     showToast: showToast
   };

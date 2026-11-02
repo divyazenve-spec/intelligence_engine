@@ -1,12 +1,15 @@
 """API v1 router — aggregates all endpoint routers."""
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import chat, copilot, dashboard, domains, health, inventory, pipeline, predict, sales
+from app.api.v1.endpoints import chat, copilot, dashboard, domains, health, inventory, pipeline, predict, sales, zippy
 
 router = APIRouter()
 
 # Autonomous Multi-Agent Executive Co-Pilot (Text-to-Action)
 router.include_router(copilot.router, prefix="/copilot", tags=["copilot"])
+
+# Zippy Operations & Doctors Synchronization
+router.include_router(zippy.router, prefix="/zippy", tags=["zippy"])
 
 # Dashboard / data (Live MySQL sales + metrics)
 router.add_api_route("/data", dashboard.load_data, methods=["GET", "POST"], tags=["dashboard"])

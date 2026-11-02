@@ -1031,6 +1031,96 @@
     }
   });
 
+  /* ── Live Zippy Pet & EHR Clinical Data Loader ──────────────────── */
+  function loadPetsClinicalData() {
+    fetch('/api/v1/zippy/all-clinical-records')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data) return;
+        if (data.pets && data.pets.length) {
+          PETS = data.pets.map(function (p) {
+            return {
+              id: p.pet_code || ('PET-' + p.id),
+              name: p.name,
+              species: p.species || 'Dog',
+              breed: p.breed || 'German Shepherd',
+              gender: p.gender || 'Male',
+              age: (p.age_years || 1.5) + ' Yrs',
+              weight: (p.weight_kg || 12.0) + ' kg',
+              parent: p.parent_name || 'Vasanth',
+              phone: p.parent_phone || '+91 6398678122',
+              avatar: '🐕',
+              vaccination: p.vaccination_status || 'Up to date',
+              status: 'Active',
+              lastVisit: p.last_visit_date || '2026-10-06',
+              microchip: p.microchip_id || 'MCP-IND-99412',
+              diet: 'Royal Canin Starter'
+            };
+          });
+        }
+        if (data.medical_records && data.medical_records.length) {
+          HEALTH_RECORDS = data.medical_records.map(function (m) {
+            return {
+              id: m.record_code || ('EHR-' + m.id),
+              date: m.record_date || '2026-10-06',
+              pet: m.pet_name + ' (Dog)',
+              type: m.record_type || 'General Consultation',
+              vitals: 'HR: 104 bpm · Temp: 101.4°F · Wt: ' + m.weight_kg + 'kg',
+              diagnosis: m.diagnosis || 'Healthy Examination',
+              notes: m.chief_complaint + ' — ' + m.treatment_plan,
+              vet: m.doctor_name,
+              status: 'Resolved'
+            };
+          });
+        }
+        if (data.vaccines && data.vaccines.length) {
+          VACCINATIONS = data.vaccines.map(function (v) {
+            return {
+              id: v.record_code || ('VAX-' + v.id),
+              passId: 'PASS-IND-' + v.id,
+              pet: v.pet_name + ' (German Shepherd)',
+              vaccine: v.vaccine_name,
+              batch: v.batch_number,
+              date: v.administered_date,
+              nextDue: v.next_due_date,
+              vet: v.administered_by,
+              status: 'Current Valid'
+            };
+          });
+        }
+        if (data.prescriptions && data.prescriptions.length) {
+          PRESCRIPTIONS = data.prescriptions.map(function (p) {
+            return {
+              id: p.rx_code || ('RX-' + p.id),
+              date: p.prescription_date || '2026-10-06',
+              pet: p.pet_name,
+              medicine: p.medicines,
+              dosage: p.dosage + ' · ' + p.duration + ' · ' + p.instructions,
+              indication: p.diagnosis,
+              prescriber: p.doctor_name,
+              pharmacyStatus: 'Dispensed'
+            };
+          });
+        }
+        if (data.billing && data.billing.length) {
+          PURCHASES = data.billing.map(function (b) {
+            return {
+              id: b.invoice_number,
+              date: b.invoice_date || '2026-10-06',
+              pet: b.pet_name,
+              item: 'Consultation & Pharmacy Meds',
+              category: 'Clinical Care',
+              parent: b.parent_name,
+              amount: '₹' + Number(b.total_amount).toLocaleString('en-IN'),
+              status: b.payment_status || 'Paid'
+            };
+          });
+        }
+        if (S.open) renderTab();
+      })
+      .catch(function () {});
+  }
+
   /* ── Export Global API ────────────────────────────────────────────── */
   window.ZenvePetsDashboard = {
     open: open,
@@ -1042,16 +1132,19 @@
     submitAddPet: submitAddPet,
     exportTabCSV: exportTabCSV,
     triggerInsightAction: triggerInsightAction,
-    triggerInsightById: triggerInsightById
+    triggerInsightById: triggerInsightById,
+    loadPetsClinicalData: loadPetsClinicalData
   };
 
   // Auto-launch if hash matches
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      loadPetsClinicalData();
       var tab = tabFromHash(window.location.hash);
       if (tab) setTimeout(function () { open(tab); }, 300);
     });
   } else {
+    loadPetsClinicalData();
     var tab = tabFromHash(window.location.hash);
     if (tab) setTimeout(function () { open(tab); }, 300);
   }

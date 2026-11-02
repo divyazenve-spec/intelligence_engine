@@ -406,3 +406,94 @@ class CompanySetting(Base):
     category: Mapped[str] = mapped_column(String(80), nullable=False, default="General")
     description: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     updated_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+# 25. Prescriptions
+class Prescription(Base):
+    __tablename__ = "prescriptions"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    rx_code: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    doctor_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    pet_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    parent_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    diagnosis: Mapped[str] = mapped_column(String(255), nullable=False, default="General Wellness")
+    medicines: Mapped[str] = mapped_column(Text, nullable=False)
+    dosage: Mapped[str] = mapped_column(String(120), nullable=False, default="1 Tablet")
+    duration: Mapped[str] = mapped_column(String(64), nullable=False, default="3 Days")
+    instructions: Mapped[str] = mapped_column(String(255), nullable=False, default="Once daily after food")
+    status: Mapped[str] = mapped_column(String(32), nullable=False, default="Active")
+    prescription_date: Mapped[date] = mapped_column(Date, nullable=False)
+    created_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+# 26. Vaccinations
+class VaccinationRecord(Base):
+    __tablename__ = "vaccination_records"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    record_code: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    pet_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    parent_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    vaccine_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    batch_number: Mapped[str] = mapped_column(String(64), nullable=False, default="BAT-STD")
+    administered_by: Mapped[str] = mapped_column(String(160), nullable=False)
+    administered_date: Mapped[date] = mapped_column(Date, nullable=False)
+    next_due_date: Mapped[date] = mapped_column(Date, nullable=False)
+    status: Mapped[str] = mapped_column(String(32), nullable=False, default="Administered")
+    created_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+# 27. Medical Records
+class MedicalRecord(Base):
+    __tablename__ = "medical_records"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    record_code: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    pet_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    parent_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    doctor_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    record_type: Mapped[str] = mapped_column(String(80), nullable=False, default="Consultation")
+    chief_complaint: Mapped[str] = mapped_column(String(255), nullable=False)
+    diagnosis: Mapped[str] = mapped_column(String(255), nullable=False)
+    treatment_plan: Mapped[str] = mapped_column(Text, nullable=False)
+    weight_kg: Mapped[float] = mapped_column(Float, nullable=False, default=1.0)
+    record_date: Mapped[date] = mapped_column(Date, nullable=False)
+    created_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+# 28. Follow-Ups
+class FollowUp(Base):
+    __tablename__ = "clinical_follow_ups"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    followup_code: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    pet_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    parent_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    doctor_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    reason: Mapped[str] = mapped_column(String(255), nullable=False)
+    followup_date: Mapped[date] = mapped_column(Date, nullable=False)
+    next_follow_up_date: Mapped[date] = mapped_column(Date, nullable=False)
+    status: Mapped[str] = mapped_column(String(32), nullable=False, default="Scheduled")
+    reminder_sent: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    created_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+# 29. Clinical Invoices & Billing
+class ClinicalInvoice(Base):
+    __tablename__ = "clinical_invoices"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    invoice_number: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    pet_name: Mapped[str] = mapped_column(String(120), nullable=False)
+    parent_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    doctor_name: Mapped[str] = mapped_column(String(160), nullable=False)
+    consultation_fee: Mapped[float] = mapped_column(Float, nullable=False, default=5000.0)
+    medicine_fee: Mapped[float] = mapped_column(Float, nullable=False, default=146.0)
+    total_amount: Mapped[float] = mapped_column(Float, nullable=False, default=5146.0)
+    paid_amount: Mapped[float] = mapped_column(Float, nullable=False, default=5146.0)
+    payment_status: Mapped[str] = mapped_column(String(32), nullable=False, default="PAID")
+    payment_method: Mapped[str] = mapped_column(String(32), nullable=False, default="CASH")
+    notes: Mapped[str] = mapped_column(String(255), nullable=False, default="Clinical consultation & medicine billing")
+    invoice_date: Mapped[date] = mapped_column(Date, nullable=False)
+    created_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.utcnow)

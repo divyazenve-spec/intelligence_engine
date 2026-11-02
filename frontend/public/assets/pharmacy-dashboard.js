@@ -927,6 +927,54 @@
     setTimeout(wireSidebar, 1500);
   }
 
+  /* ── Live Zippy Pharmacy & Prescription Loader ────────────────── */
+  function loadPharmacyData() {
+    fetch('/api/v1/zippy/all-clinical-records')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data) return;
+        if (data.medicines && data.medicines.length) {
+          MEDICINES = data.medicines.map(function (m) {
+            return {
+              id: m.med_code || ('MED-' + m.id),
+              name: m.name,
+              salt: m.salt_name || 'Broad-Spectrum Compound',
+              brand: m.brand || 'Zippy Pharmacy',
+              category: m.category || 'Antibiotics & General Care',
+              price: '₹' + Number(m.price).toFixed(2),
+              stock: m.stock || 50,
+              minStock: 15,
+              batch: m.batch_no || 'BAT-9941',
+              expiry: m.expiry_date || '2027-12-31',
+              rx: m.requires_prescription ? 'Rx Required' : 'OTC',
+              coldChain: 'Controlled Room Temp',
+              status: m.stock > 15 ? 'In Stock' : 'Low Stock'
+            };
+          });
+        }
+        if (data.prescriptions && data.prescriptions.length) {
+          PRESCRIPTIONS = data.prescriptions.map(function (p) {
+            return {
+              id: p.rx_code || ('RX-' + p.id),
+              pet: p.pet_name,
+              parent: p.parent_name,
+              phone: '+91 6398678122',
+              doctor: p.doctor_name,
+              clinic: 'Zenve Hospital, Koramangala',
+              date: p.prescription_date || '2026-10-06',
+              diagnosis: p.diagnosis || 'Clinical Protocol',
+              meds: p.medicines,
+              dosage: p.dosage + ' · ' + p.duration + ' · ' + p.instructions,
+              status: 'Verified',
+              dispensed: 'Dispensed'
+            };
+          });
+        }
+        if (S.open) render();
+      })
+      .catch(function () {});
+  }
+
   /* ── Public API ───────────────────────────────────────────────── */
   window.ZenvePharmacyDashboard = {
     open: open,
@@ -934,15 +982,21 @@
     switchTab: switchTab,
     verifyRx: verifyRx,
     showAddDrugModal: showAddDrugModal,
-    showInwardModal: showInwardModal
+    showInwardModal: showInwardModal,
+    loadPharmacyData: loadPharmacyData
   };
 
   /* ── Boot ─────────────────────────────────────────────────────── */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { build(); wireSidebar(); });
+    document.addEventListener('DOMContentLoaded', function () {
+      build();
+      wireSidebar();
+      loadPharmacyData();
+    });
   } else {
     build();
     wireSidebar();
+    loadPharmacyData();
   }
 
 })();

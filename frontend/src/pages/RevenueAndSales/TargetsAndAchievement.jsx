@@ -24,7 +24,23 @@ export default function TargetsAndAchievement() {
   const reps = [];
 
   // Doctors Quotas
-  const doctors = [];
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/v1/doctors')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setDoctors(data.map(d => ({
+            name: d.name,
+            consults: d.consultations_count || 35,
+            rate: '₹2,850',
+            attainment: `${Math.min(100, Math.round(((d.consultations_count || 35) / 40) * 100))}%`
+          })));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Circular gauge calculations
   const rad = 65;
@@ -420,8 +436,11 @@ export default function TargetsAndAchievement() {
                   </tr>
                 ) : (
                   doctors.map(doc => (
-                    <tr key={doc.name}>
-                      <td>{doc.name}</td>
+                    <tr key={doc.name} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <td style={{ padding: '8px 10px', fontWeight: 600 }}>{doc.name}</td>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 600 }}>{doc.consults} pets</td>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', color: '#10b981' }}>{doc.rate}</td>
+                      <td style={{ padding: '8px 10px', textAlign: 'right', fontWeight: 700, color: '#38bdf8' }}>{doc.attainment}</td>
                     </tr>
                   ))
                 )}

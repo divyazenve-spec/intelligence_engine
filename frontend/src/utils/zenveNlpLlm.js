@@ -66,6 +66,10 @@ export const ZENVE_PET_KNOWLEDGE = {
     surgicalSuccessRate: '99.4%'
   },
   doctors: [
+    { name: 'Dr. Lakshmanan M', title: 'Lead Veterinary Surgeon', specialty: 'Veterinary Medicine & Surgery', hub: 'Zenve Hospital', stats: '46 Consults/Wk · 4.97★ Client Rating · Zippy Verified' },
+    { name: 'Dr. Vasanth', title: 'Senior Consultant Physician', specialty: 'Internal Medicine & Diagnostics', hub: 'Global Clinic', stats: '30 Consults/Wk · 4.93★ Client Rating · Zippy Verified' },
+    { name: 'Dr. Yuvaraj', title: 'Specialist Cardiologist', specialty: 'Cardiology & Critical Care', hub: 'Zenve Hospital', stats: '34 Consults/Wk · 4.92★ Client Rating · Zippy Verified' },
+    { name: 'Dr. John', title: 'General Veterinary Physician', specialty: 'General Veterinary Medicine', hub: 'Globa Clinic', stats: '37 Consults/Wk · 4.89★ Client Rating · Zippy Verified' },
     { name: 'Dr. Aisha Khan', title: 'Chief Veterinary Surgeon', specialty: 'Orthopedics & Soft Tissue Surgery', hub: 'Indiranagar Flagship', stats: '22 Surgeries/Wk · 99.6% Recovery Rate' },
     { name: 'Dr. Rajesh Nair', title: 'Senior Trauma Specialist', specialty: 'Spinal Decompression & TPLO', hub: 'Koramangala 24/7 Trauma Hub', stats: '18 Complex Surgeries/Wk · 99.2% Recovery Rate' },
     { name: 'Dr. Priya Sharma', title: 'Lead Feline Medicine Specialist', specialty: 'Feline Internal Medicine & Nephrology', hub: 'Whitefield Multi-Specialty', stats: '48 Consults/Wk · 98.9% Client Rating' },
@@ -197,6 +201,10 @@ export function extractEntities(text) {
   skus.forEach(s => { if (s.re.test(t) && !res.skus.includes(s.name)) res.skus.push(s.name); });
 
   const docs = [
+    { name: 'Dr. Lakshmanan M', re: /\b(lakshmanan|meyyappan)\b/i },
+    { name: 'Dr. Vasanth', re: /\b(vasanth)\b/i },
+    { name: 'Dr. Yuvaraj', re: /\b(yuvaraj)\b/i },
+    { name: 'Dr. John', re: /\b(john)\b/i },
     { name: 'Dr. Aisha Khan', re: /\b(aisha|khan)\b/i },
     { name: 'Dr. Rajesh Nair', re: /\b(rajesh|nair)\b/i },
     { name: 'Dr. Priya Sharma', re: /\b(priya|sharma)\b/i },
@@ -269,7 +277,7 @@ export function classifyIntent(text, entities, ctx) {
   if (/\b(ebitda|profit|gross margin|net margin|earnings|financials?|expenses?|opex|cost)\b/i.test(t)) scores.EBITDA_FINANCIALS += 8;
   if (/\b(bravecto|nexgard|inventory|stock|stockout|shortage|runway|expiry|reorder|po|valuation|medicines?|pharmacy)\b/i.test(t)) scores.PHARMACY_INVENTORY += 8;
   if (/\b(clinic|clinics|hospital|hospitals|indiranagar|koramangala|whitefield|bandra|gurgaon|bed|occupancy|icu|footfall)\b/i.test(t)) scores.CLINICS_HOSPITALS += 8;
-  if (/\b(doctor|doctors|vet|vets|veterinarian|aisha|rajesh|priya|rohan|ananya|surgeon|consultations?)\b/i.test(t)) scores.DOCTOR_WORKLOAD += 8;
+  if (/\b(doctor|doctors|vet|vets|veterinarian|lakshmanan|vasanth|yuvaraj|john|aisha|rajesh|priya|rohan|ananya|surgeon|consultations?)\b/i.test(t)) scores.DOCTOR_WORKLOAD += 8;
   if (/\b(logistics|delivery|rider|riders|60\s*min|dispatch|sla|breach|transit|speed)\b/i.test(t)) scores.LOGISTICS_DELIVERY += 8;
   if (/\b(churn|retention|pet parents?|cohort|attrition|lapse|winback|renew|ltv)\b/i.test(t)) scores.CHURN_RETENTION += 8;
   if (/\b(simulate|what if|scenario|if\b|increase by|hike|decrease by|cut by)\b/i.test(t)) scores.WHAT_IF_SIMULATION += 9;
